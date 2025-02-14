@@ -1,0 +1,265 @@
+# Amazon Q pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
+zmodload zsh/zprof
+
+# Test chezmoi
+#--------------------
+# Oh-My-Zsh Setup
+#--------------------
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+plugins=(
+    direnv
+    git 
+    git-commit 
+    bun 
+    1password 
+    npm 
+    you-should-use 
+    zsh-autosuggestions 
+    zsh-syntax-highlighting 
+    aliases 
+    copypath 
+    brew 
+    docker 
+    docker-compose 
+    gitignore 
+    # zsh-abbr
+    asdf
+)
+
+#--------------------
+# ENVIRONMENT VARIABLE
+#--------------------
+
+# === Directories ===
+export XDG_CONFIG_HOME="$HOME/.config"
+export DOTFILES="$HOME/.dotfiles/"
+export EDITOR="nvim"
+
+# === Paths ===
+export BUN_INSTALL="$HOME/.bun"
+export PROTO_HOME="$HOME/.config/proto"
+export GOBIN="$HOME/go/bin"
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+export BAT_THEME="OneHalfDark"
+export LM_STUDIO_BIN="$HOME/.lmstudio/bin"
+
+export PATH="$HOME/.local/bin:$WEZTERM_EXECUTABLE_DIR:$BUN_INSTALL/bin:$HOME/.console-ninja/.bin:$PROTO_HOME/shims:$PROTO_HOME/bin:$GOBIN:$HOME/.tmuxifier/bin:$HOME/.cargo/bin:/opt/homebrew/bin:$LM_STUDIO_BIN:$PATH"
+
+typeset -U path # Ensure unique entries in PATH
+
+# === Bun Completions ===
+[ -f "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# === FZF Configuration ===
+if command -v eza &>/dev/null; then
+    LS_CMD="eza --tree --color=always"
+else
+    LS_CMD="ls -R --color=always"
+fi
+
+if command -v bat &>/dev/null; then
+    CAT_CMD="bat -n --color=always --line-range :500"
+else
+    CAT_CMD="cat"
+fi
+
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_OPTS="--preview 'if [ -d {} ]; then $LS_CMD {} | head -200; else $CAT_CMD {}; fi'"
+export FZF_ALT_C_OPTS="--preview '$LS_CMD {} | head -200'"
+
+# Exporting env variable ini akan memaksa window title terus menjadi 'zsh' tidak bisa berubah secara otomatis berdasarkan current directory atau program yang sedang dijalankan, jadi lebih baik menghapus atau mencommentary line dibawah ini. Jika ini dihapus maka window title terminal kita bisa dinamis sesuai working directory atau program yang sedang dijalankan
+# This is related to tmux renaming window & pane, when this env variable is exported then what happens is when running a command that is triggered by its own terminal application such as from ghostty, this will make the window & pane title change automatically. Consider between choosing to export this with the aim that the window & pane in tmux does not automatically change or comment this so that the variable is not exported so that the window title in ghostty can change dynamically such as the current path directory or what program is running
+# Uncomment the following line to disable auto-setting terminal title.
+export DISABLE_AUTO_TITLE='true'
+
+# ========================
+# SECTION: SOURCE CONFIGS
+# ========================
+source $ZSH/oh-my-zsh.sh
+source ~/zsh-defer/zsh-defer.plugin.zsh
+source $HOME/.config/fzf-git/fzf-git.sh
+source $HOME/.config/op/plugins.sh #1Password
+source $HOME/.dotfiles/zsh/.zsh_aliases
+
+# ========================
+# SECTION: EVAL STATEMENTS
+# ========================
+eval "$(fzf --zsh)" # fzf cli
+eval "$(starship init zsh)" # starship
+eval "$(zoxide init zsh)" # zoxide cli
+eval "$(tmuxifier init -)" # tmuxifier
+eval "$(atuin init zsh)" # atuin cli
+# . "$HOME/.atuin/bin/env"
+
+#--------------------
+# Functions
+#--------------------
+# FZF functions
+_fzf_compgen_path() {
+  fd --hidden --exclude .git . "$1"
+}
+
+_fzf_compgen_dir() {
+  fd --type=d --hidden --exclude .git . "$1"
+}
+
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+    export|unset) fzf --preview "eval 'echo ${}'"         "$@" ;;
+    ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    *)            fzf --preview "$show_file_or_dir_preview" "$@" ;;
+  esac
+}
+
+# Yazi function
+function yy() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+    yazi "$@" --cwd-file="$tmp"
+    if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        cd -- "$cwd"
+    fi
+    rm -f -- "$tmp"
+}
+
+# sesh - https://github.com/joshmedeski/sesh
+# function sesh-sessions() {
+#   {
+#     exec </dev/tty
+#     exec <&1
+#     local session
+#     session=$(sesh list -t -c -d | sed 's/^/󱂬 /' | fzf \
+#       --height 40% \
+#       --border-label ' sesh ' \
+#       --border \
+#       --prompt '⚡  ' \
+#       --preview 'tmux capture-pane -pe -t {2..}'
+#     )
+#     zle reset-prompt > /dev/null 2>&1 || true
+#     [[ -z "$session" ]] && return
+#     sesh connect $(echo "$session" | sed 's/^󱂬 //')
+#   }
+# }
+#
+# zle     -N             sesh-sessions
+# bindkey -M emacs '\eu' sesh-sessions
+# bindkey -M vicmd '\eu' sesh-sessions
+# bindkey -M viins '\eu' sesh-sessions
+
+function sesh-sessions() {
+  {
+    exec </dev/tty
+    exec <&1
+    local session
+    session=$(sesh list -t | sed 's/^/󱂬 /' | fzf \
+      --height 40% \
+      --border-label ' sesh ' \
+      --border \
+      --prompt '⚡  ' \
+      --preview 'tmux capture-pane -pe -t {2..}'
+    )
+    zle reset-prompt > /dev/null 2>&1 || true
+    [[ -z "$session" ]] && return
+    sesh connect $(echo "$session" | sed 's/^󱂬 //')
+  }
+}
+
+zle     -N             sesh-sessions
+bindkey -M emacs '\eu' sesh-sessions
+bindkey -M vicmd '\eu' sesh-sessions
+bindkey -M viins '\eu' sesh-sessions
+
+# pueue cli function
+function pf() {
+  set -f
+  local PUEUE_TASKS="pueue status --json | jq -c '.tasks' | jq -r '.[] | \"\(.id | tostring | (\" \" * (2 - length)) + .) | \(.group) | \(.path[-15:]) | \(.status) | \(.command[-15:]) | \(.start[:19])\"'"
+  local header="p:pause | s:start | r:restart | k:kill | l:log | f:reload"
+
+
+  local bind="\
+  ctrl-p:execute-silent(echo {} | cut -d'|' -f1 | xargs pueue pause > /dev/null)+reload^$PUEUE_TASKS^,\
+  ctrl-s:execute-silent(echo {} | cut -d'|' -f1 | xargs pueue start > /dev/null)+reload^$PUEUE_TASKS^,\
+  ctrl-r:execute-silent(echo {} | cut -d'|' -f1 | xargs pueue restart -ik > /dev/null)+reload^$PUEUE_TASKS^,\
+  ctrl-k:execute-silent(echo {} | cut -d'|' -f1 | xargs pueue kill > /dev/null)+reload^$PUEUE_TASKS^,\
+  ctrl-l:execute-silent(echo {} | cut -d'|' -f1 | xargs pueue log | less > /dev/tty),\
+  ctrl-f:reload^$PUEUE_TASKS^\
+  "
+
+  echo $PUEUE_TASKS | sh | fzf --header "${header}" -m \
+    --preview="echo {} | cut -d'|' -f1 | xargs pueue log | bat -l log --style=rule,numbers --color=always -r ':200'" \
+    --bind="$bind"
+  set +f
+}
+
+# pet cli function
+function pet-select() {
+  BUFFER=$(pet search --query "$LBUFFER")
+  CURSOR=$#BUFFER
+  zle redisplay
+}
+zle -N pet-select
+stty -ixon
+bindkey -r '^s'               # Hapus binding Ctrl+S bawaan
+bindkey '^s' pet-select
+
+# --- zsh-abbr ---
+# abbr import-aliases
+
+# Amazon Q post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
