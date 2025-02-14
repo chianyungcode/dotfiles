@@ -1,0 +1,10 @@
+name: Portfolio-Chian
+root: ~/Code/Personal/Projects/Frontend/portfolio-chian-v2/
+
+windows:
+  - IDE:
+      - nvim
+  - Localhost:
+      - open http://localhost:5173
+  - GIT:
+      - lazygit
