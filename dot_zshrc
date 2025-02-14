@@ -2,7 +2,6 @@
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 zmodload zsh/zprof
 
-# Edit
 #--------------------
 # Oh-My-Zsh Setup
 #--------------------
