@@ -1,6 +1,0 @@
-name: Konfigurasi
-root: ~/.dotfiles/
-
-windows:
-  - Neovim:
-      - nvim

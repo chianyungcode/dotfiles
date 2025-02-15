@@ -1,7 +1,0 @@
-name: Note Taking
-root: ~/
-
-windows:
-  - Obsidian:
-      - cd 'Users/chianyung/Library/CloudStorage/CloudMounter-OneDrive/2024/Obsidian_Vault/'
-      - nvim
