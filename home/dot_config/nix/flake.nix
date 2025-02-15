@@ -81,6 +81,11 @@
               dock = {
                 autohide = true;
                 show-recents = false;
+                tilesize = 30;
+                autohide-delay = 0.24;
+                autohide-time-modifier = 1.0;
+                magnification = true;
+                largesize = 24;
               };
               finder = {
                 AppleShowAllFiles = true;
