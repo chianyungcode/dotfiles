@@ -1,0 +1,56 @@
+# Appearance
+# shell-integration = detect
+shell-integration-features = cursor,sudo,title
+
+# --- General Appearance ---
+background-opacity = 0.8
+background-blur-radius = 10
+theme = custom
+
+# Keybinds
+keybind = alt+shift+t=toggle_quick_terminal
+keybind = ctrl+shift+h=new_split:left
+keybind = ctrl+shift+j=new_split:down
+keybind = ctrl+shift+k=new_split:up
+keybind = ctrl+shift+l=new_split:right
+keybind = alt+shift+h=goto_split:left
+keybind = alt+shift+j=goto_split:down
+keybind = alt+shift+k=goto_split:up
+keybind = alt+shift+l=goto_split:right
+
+
+# Miscellaneous
+macos-option-as-alt = true
+mouse-hide-while-typing = true
+cursor-style-blink = false
+copy-on-select = clipboard
+confirm-close-surface = false
+window-save-state = always
+# auto-update-channel is for using nightly update
+# auto-update-channel = tip
+
+# --- Window Title and Styles ---
+# -- Padding
+window-padding-x = 11
+window-padding-y = 11
+# -- Title and Tabs
+window-title-font-family = Cascadia Code
+macos-titlebar-style = hidden
+macos-titlebar-proxy-icon = hidden
+
+# --- Customize Ghostty App Icon ---
+macos-icon = custom-style
+macos-icon-ghost-color = white
+macos-icon-screen-color = black
+
+# --- Font Styles ---
+font-size = 15
+font-family = JetBrains Mono
+font-thicken = false 
+# font-style-bold = true
+# font-style-italic = true
+# font-style-bold-italic = true
+# font-synthetic-style = italic
+# Set ke true jika font biasanya terlalu tipis
+# bold-is-bright = false
+# window-colorspace = display-p3
