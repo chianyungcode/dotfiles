@@ -1,0 +1,72 @@
+# --- TMUX ---
+[[Snippets]]
+Description = "Local | Rename Pane"
+Output = ""
+Tag = ["tmux"]
+command = "tmux selectp -t <pane_number> -T <pane_title>"
+
+[[Snippets]]
+Description = "Between Session | Rename Pane"
+Output = ""
+Tag = ["tmux"]
+command = "tmux selectp -t <session-name>:<window_number>.<pane_number> -T <pane_title>"
+
+[[Snippets]]
+Description = "Local | Send Keys"
+Output = ""
+Tag = ["tmux"]
+command = 'tmux send-keys -t <window_number>.<pane_number> "<command>" C-m'
+
+[[Snippets]]
+Description = "Between Session | Send Keys"
+Output = ""
+Tag = ["tmux"]
+command = 'tmux send-keys -t <session-name>:<window_number>.<pane_number> "<command>" C-m'
+
+[[Snippets]]
+Description = "Local | Select Layout (option: main-vertical|main-horizontal|even-vertical|even-horizontal|tiled)"
+Output = ""
+Tag = ["tmux"]
+command = 'tmux select-layout -t <window-number=1> <layout-option=|_main-vertical_||_main-horizontal_||_even-vertical_||_even-horizontal_||_tiled_|>'
+
+[[Snippets]]
+Description = "Between Session | Select Layout (option: main-vertical|main-horizontal|even-vertical|even-horizontal|tiled)"
+Output = ""
+Tag = ["tmux"]
+command = 'tmux select-layout -t <session-name>:<window-number=1> <layout-option=|_main-vertical_||_main-horizontal_||_even-vertical_||_even-horizontal_||_tiled_|>'
+
+[[Snippets]]
+Description = "Local | Split Window Horizontally"
+Output = ""
+Tag = ["tmux"]
+command = 'tmux split-window -v -t <window_number>'
+
+[[Snippets]]
+Description = "Local | Split Window Vertically"
+Output = ""
+Tag = ["tmux"]
+command = 'tmux split-window -h -t <window_number>'
+
+[[Snippets]]
+Description = "Between Session | Split Window Horizontally"
+Output = ""
+Tag = ["tmux"]
+command = 'tmux split-window -v -t <session-name>:<window_number>'
+
+[[Snippets]]
+Description = "Between Session | Split Window Vertically"
+Output = ""
+Tag = ["tmux"]
+command = 'tmux split-window -h -t <session-name>:<window_number>'
+
+[[Snippets]]
+Description = "Local | Resize Pane (Left, Right, Up, Down)"
+Output = ""
+Tag = ["tmux"]
+command = 'tmux resize-pane -t <window_number>.<pane_number> <direction_flag=|_-L_||_-R_||_-U_||_-D_|> <size>'
+
+[[Snippets]]
+Description = "Between Session | Resize Pane (Left, Right, Up, Down)"
+Output = ""
+Tag = ["tmux"]
+command = 'tmux resize-pane -t <session-name>:<window_number>.<pane_number> <direction_flag=|_-L_||_-R_||_-U_||_-D_|> <size>'

@@ -1,0 +1,42 @@
+
+[[Snippets]]
+  Description = "exec | execute a snippets"
+  Output = ""
+  Tag = ["pet"]
+  command = "pet exec -t <tag=|_docker_||_tmux_||_unix_||dotenvx||_zsh_|>"
+
+[[Snippets]]
+  Description = "Rainfrog | Connect to postgresql"
+  Output = ""
+  Tag = []
+  command = "rainfrog --driver <db_driver> --username <username> --host <hostname> --port <db_port> --database <db_name>"
+
+[[Snippets]]
+  Description = "Orbstack | Create linux machine with password"
+  Output = ""
+  Tag = []
+  command = "orb create --set-password <linux-distros=ubuntu> <created-machine-name=ubuntu-1>"
+
+[[Snippets]]
+  Description = "Git |Delete mistake commited file or folder from github"
+  Output = ""
+  Tag = []
+  command = "git filter-repo --index-filter \"git rm -rf --cached --ignore-unmatch <folder_or_file_name=.env>\" HEAD"
+
+[[Snippets]]
+  Description = "Git | Delete a mistake committed file or folder"
+  Output = ""
+  Tag = []
+  command = "git rm -r --cached <file_name=.env>"
+
+[[Snippets]]
+  Description = "Directory | Showing tree directory with eza Tree Level"
+  Output = ""
+  Tag = []
+  command = "eza -TL <level=2>"
+
+[[Snippets]]
+  Description = "List all directories"
+  Output = ""
+  Tag = []
+  command = "ls"

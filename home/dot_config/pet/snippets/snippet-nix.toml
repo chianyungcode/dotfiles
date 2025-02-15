@@ -1,0 +1,11 @@
+[[Snippets]]
+Description = "Darwin Kernel (macos) | rebuild configuration with flake"
+Output = ""
+Tag = ["nix"]
+command = 'darwin-rebuild switch --flake <path-to-file=.#Macbook-Pro>'
+
+[[Snippets]]
+Description = "Linux Kernel (nixos) | rebuild configuration with flake"
+Output = ""
+Tag = ["nix"]
+command = 'nixos-rebuild switch --flake .#mbp-m1-chianyung'

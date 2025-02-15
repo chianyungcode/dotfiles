@@ -1,0 +1,11 @@
+[[Snippets]]
+Description = "Linux Machine | create linux machine with custom username, password, and custom machine-name/hostname"
+Output = ""
+Tag = ["orbstack"]
+command = 'orb create -u <username> -p <linux-distros=ubuntu> <machine-name>'
+
+[[Snippets]]
+Description = "Linux Machine | Start using linux machine"
+Output = ""
+Tag = ["orbstack"]
+command = 'orb --machine <machine-name>'
