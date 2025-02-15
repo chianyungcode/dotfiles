@@ -1,0 +1,32 @@
+# 1Password CLI Snippets
+# https://developer.1password.com/docs/cli/reference/
+
+[[Snippets]]
+Description = "Item | get the detail about the item"
+Output = ""
+Tag = ["op"]
+command = 'op item get <item-id>'
+
+[[Snippets]]
+Description = "Read | Read the value about some field"
+Output = ""
+Tag = ["op"]
+command = 'op read "op://<vault-id=lprwq74nsfjujjc2r2upmde2x4>/<item-id=mldcjwxq57p65cg663sj5rf5hq>/<field=public key>"'
+
+[[Snippets]]
+Description = "Vault | List all vault"
+Output = ""
+Tag = ["op"]
+command = 'op vault list'
+
+[[Snippets]]
+Description = "Account | List all account that already login"
+Output = ""
+Tag = ["op"]
+command = 'op account list'
+
+[[Snippets]]
+Description = "Vault | List all vault"
+Output = ""
+Tag = ["op"]
+command = ''
