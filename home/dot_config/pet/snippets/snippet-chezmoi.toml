@@ -17,6 +17,12 @@ Tag = ["chezmoi"]
 command = 'chezmoi init --apply --prompt'
 
 [[Snippets]]
+Description = "Diff"
+Output = ""
+Tag = ["chezmoi"]
+command = 'chezmoi diff'
+
+[[Snippets]]
 Description = "Forget | Only delete in the source directory"
 Output = ""
 Tag = ["chezmoi"]
