@@ -13,6 +13,9 @@ alias bfzf="bun run \"\$(jq -r '.scripts | keys[]' package.json | fzf --no-borde
 # pet
 alias pexec="pet exec -t"
 
+# chezmoi
+alias chz="chezmoi"
+
 # Directories
 alias dotfiles="cd $DOTFILES"
 alias config="cd $HOME/.config/"
