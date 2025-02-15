@@ -21,3 +21,9 @@ Description = "Forget in the source directory"
 Output = ""
 Tag = ["chezmoi"]
 command = 'chezmoi forget <path-to-target-file>'
+
+[[Snippets]]
+Description = "Destroy | Delete file between in source directory and target directory"
+Output = ""
+Tag = ["chezmoi"]
+command = 'chezmoi destroy <path-to-target-file>'
