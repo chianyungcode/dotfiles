@@ -1,0 +1,14 @@
+[[session]]
+name = "Downloads 📥"
+path = "~/Downloads"
+# startup_command = "ls"
+
+[[session]]
+name = "Tmux Config"
+path = "~/.dotfiles/tmux"
+# startup_command = "nvim tmux.conf"
+# preview_command = "bat --color=always ~/.dotfiles/tmux/tmux.conf"
+
+[[session]]
+name = "Note Taking Sesh"
+path = "/Users/chianyung/Desktop/vault-obsidian"
