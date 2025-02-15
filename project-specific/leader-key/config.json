@@ -1,0 +1,262 @@
+{
+  "actions": [
+    {
+      "key": "a",
+      "type": "group",
+      "actions": [
+        {
+          "type": "application",
+          "value": "/Applications/Safari.app",
+          "key": "s"
+        },
+        {
+          "type": "application",
+          "value": "/Applications/Ghostty.app",
+          "key": "g"
+        },
+        {
+          "type": "group",
+          "key": "c",
+          "actions": [
+            {
+              "type": "application",
+              "value": "/Applications/Capacities.app",
+              "key": "a"
+            },
+            {
+              "type": "application",
+              "value": "/Applications/Setapp/CleanShot X.app",
+              "key": "l"
+            },
+            {
+              "type": "application",
+              "value": "/Applications/Setapp/ChatMate for WhatsApp.app",
+              "key": "m"
+            },
+            {
+              "type": "application",
+              "value": "/Applications/Cursor.app",
+              "key": "s"
+            },
+            {
+              "type": "application",
+              "value": "/Applications/Setapp/CleanMyMac.app",
+              "key": "x"
+            },
+            {
+              "type": "application",
+              "value": "/Applications/CloudMounter.app",
+              "key": "t"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "key": "a",
+          "actions": [
+            {
+              "type": "application",
+              "value": "/Applications/Arc.app",
+              "key": "r"
+            },
+            {
+              "type": "application",
+              "value": "/Applications/Google Chrome.app",
+              "key": "c"
+            },
+            {
+              "type": "application",
+              "value": "/Applications/Apidog.app",
+              "key": "d"
+            },
+            {
+              "type": "application",
+              "value": "/System/Applications/Utilities/Activity Monitor.app",
+              "key": "m"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "t",
+      "value": "/System/Applications/Utilities/Terminal.app",
+      "type": "application"
+    },
+    {
+      "key": "o",
+      "type": "group",
+      "actions": [
+        {
+          "type": "application",
+          "value": "/Applications/Safari.app",
+          "key": "s"
+        },
+        {
+          "value": "/Applications/Mail.app",
+          "type": "application",
+          "key": "e"
+        },
+        {
+          "value": "/System/Applications/Music.app",
+          "type": "application",
+          "key": "i"
+        },
+        {
+          "type": "application",
+          "value": "/Applications/Messages.app",
+          "key": "m"
+        },
+        {
+          "type": "group",
+          "key": "a",
+          "actions": [
+            {
+              "value": "/Applications/Postman.app",
+              "key": "s",
+              "type": "application"
+            },
+            {
+              "key": "w",
+              "type": "url",
+              "value": "https://vpn.klikbca.com"
+            },
+            {
+              "type": "url",
+              "value": "https://mesinotomatis.com/client/bank/login/",
+              "key": "m"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "actions": [
+        {
+          "type": "url",
+          "value": "raycast://extensions/raycast/emoji-symbols/search-emoji-symbols",
+          "key": "e"
+        },
+        {
+          "value": "raycast://confetti",
+          "key": "p",
+          "type": "url"
+        },
+        {
+          "type": "url",
+          "value": "raycast://extensions/raycast/system/open-camera",
+          "key": "c"
+        }
+      ],
+      "key": "r"
+    },
+    {
+      "actions": [
+        {
+          "key": "p",
+          "type": "group",
+          "actions": [
+            {
+              "key": "a",
+              "type": "url",
+              "value": "https://9awgj69ymmsa.weezystore.id/transaction/order"
+            }
+          ]
+        },
+        {
+          "actions": [
+            {
+              "type": "url",
+              "value": "https://vpn.klikbca.com",
+              "key": "c"
+            },
+            {
+              "key": "m",
+              "value": "https://koprabymandiri.com/",
+              "type": "url"
+            },
+            {
+              "type": "url",
+              "value": "https://qlola.bri.co.id/",
+              "key": "r"
+            },
+            {
+              "type": "url",
+              "key": "n",
+              "value": "https://bnidirect.bni.co.id"
+            }
+          ],
+          "key": "b",
+          "type": "group"
+        }
+      ],
+      "type": "group",
+      "key": "w"
+    },
+    {
+      "type": "group",
+      "actions": [
+        {
+          "type": "command",
+          "value": "pmset sleepnow",
+          "key": "s"
+        },
+        {
+          "value": "osascript -e 'tell application \"System Events\" to keystroke \"b\" using {command down, control down, option down}'",
+          "key": "b",
+          "type": "command"
+        },
+        {
+          "type": "command",
+          "value": "shortcuts run \"Start Session Only\"",
+          "key": "a"
+        },
+        {
+          "key": "w",
+          "type": "group",
+          "actions": [
+            {
+              "key": "o",
+              "type": "command",
+              "value": "networksetup -setairportpower en0 on"
+            },
+            {
+              "key": "f",
+              "type": "command",
+              "value": "networksetup -setairportpower en0 off"
+            }
+          ]
+        }
+      ],
+      "key": "s"
+    },
+    {
+      "type": "group",
+      "key": "e",
+      "actions": [
+        {
+          "type": "command",
+          "value": "shortcuts run \"Start Session Only\"",
+          "key": "s"
+        },
+        {
+          "type": "command",
+          "value": "shortcuts run \"Pause Session\"",
+          "key": "d"
+        },
+        {
+          "type": "command",
+          "value": "shortcuts run \"Stop Session\"",
+          "key": "f"
+        },
+        {
+          "type": "command",
+          "value": "shortcuts run \"Start Recent Session Only\"",
+          "key": "a"
+        }
+      ]
+    }
+  ],
+  "type": "group"
+}

@@ -1,0 +1,211 @@
+{
+  // Formatter Settings
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+
+  // Format on save for ESLint. Copy and paste this to local configuration .vscode/settings.json per project
+  /* "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+
+  // Biome doesn't working at least until 1 July 2024
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "editor.codeActionsOnSave": {
+    "quickfix.biome": "explicit",
+    "source.organizeImports.biome": "explicit"
+  }, */
+
+  // Editor Settings
+  "editor.accessibilitySupport": "off",
+  "editor.autoClosingBrackets": "always",
+  "editor.fontFamily": "MonoLisa", // Alternative Font : Monolisa/Jetbrains Mono/Fira Code/Cascadia Code/Menlo/Hack/Geist Mono/Monaspace {Neon / Argon / Xenon / Radon / Krypton}
+  // "editor.fontLigatures": true,
+  "editor.fontLigatures": "'calt', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'ss09', 'liga'", // For Monaspace font, use this instead "editor.fontLigatures" : true
+  "editor.inlineSuggest.suppressSuggestions": true,
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "editor.wordWrap": "on",
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": [
+          // the following elements will be in italic
+          //   (=Fira Code iScript)
+          "comment",
+          "keyword.control.import.js", // import
+          "keyword.control.export.js", // export
+          "keyword.control.from.js", // from
+          // "constant", // String, Number, Boolean…, this, super
+          "storage.modifier", // static keyword
+          "storage.type.class", // class keyword
+          "storage.type.php", // typehints in methods keyword
+          "keyword.other.new.php", // new
+          "entity.other.attribute-name", // html attributes
+          "fenced_code.block.language.markdown" // markdown language modifier
+        ],
+        "settings": {
+          "fontStyle": "italic"
+        }
+      },
+      {
+        "scope": [
+          // the following elements will be displayed in bold
+          "entity.name.type.class" // class names
+        ],
+        "settings": {
+          "fontStyle": "bold"
+        }
+      },
+      {
+        "scope": [
+          // the following elements will be displayed in bold and italic
+          "entity.name.section.markdown" // markdown headlines
+        ],
+        "settings": {
+          "fontStyle": "italic bold"
+        }
+      },
+      {
+        "scope": [
+          // the following elements will be excluded from italics
+          //   (VSCode has some defaults for italics)
+          "invalid",
+          "keyword.operator",
+          "constant.numeric.css",
+          "keyword.other.unit.px.css",
+          "constant.numeric.decimal.js",
+          "constant.numeric.json",
+          "comment.block",
+          "entity.other.attribute-name.class.css"
+        ],
+        "settings": {
+          "fontStyle": ""
+        }
+      }
+    ]
+  },
+
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.smoothScrolling": true,
+  "editor.cursorBlinking": "solid",
+
+  // Emmet Settings
+  "emmet.includeLanguages": {
+    "postcss": "css"
+  },
+  "emmet.useInlineCompletions": true,
+  "css.lint.unknownAtRules": "ignore", // Ignore untuk tailwind @tailwind
+
+  // Explorer Settings
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+
+  // JavaScript and TypeScript Settings
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+
+  // Prisma Settings
+  "prisma.showPrismaDataPlatformNotification": false,
+
+  // Supermaven Settings
+  "supermaven.enable": {
+    "*": false,
+    "typescript": false
+  },
+
+  // TailwindCSS Settings
+  "tailwindCSS.experimental.classRegex": [
+    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
+
+  // Terminal Settings
+  "terminal.external.osxExec": "Warp.app",
+  "terminal.integrated.env.osx": {
+    "FIG_NEW_SESSION": "1",
+    "Q_NEW_SESSION": "1"
+  },
+  "terminal.integrated.fontFamily": "Geist Mono",
+
+  // VSCode Office Settings
+  "vscode-office.editorTheme": "Github Dark",
+
+  // VSIcons Settings
+  "vsicons.dontShowNewVersionMessage": true,
+
+  // Window Settings
+  "window.titleBarStyle": "custom",
+  "window.zoomLevel": 1,
+  "workbench.colorTheme": "Minimal Kiwi",
+  "workbench.iconTheme": "symbols",
+
+  // Console Ninja Settings
+  "console-ninja.featureSet": "Community",
+
+  // Cursor CPP Settings
+  "cursor.cpp.disabledLanguages": ["postcss", "prisma", "html", "javascript"],
+  "terminal.integrated.allowedLinkSchemes": [
+    "file",
+    "http",
+    "https",
+    "mailto",
+    "vscode",
+    "vscode-insiders",
+    "docker-desktop"
+  ],
+  /* "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#eee3e1",
+    "activityBar.background": "#eee3e1",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#71ae7a",
+    "activityBarBadge.foreground": "#15202b",
+    "commandCenter.border": "#15202b99",
+    "sash.hoverBorder": "#eee3e1",
+    "statusBar.background": "#dcc4c0",
+    "statusBar.foreground": "#15202b",
+    "statusBarItem.hoverBackground": "#caa59f",
+    "statusBarItem.remoteBackground": "#dcc4c0",
+    "statusBarItem.remoteForeground": "#15202b",
+    "titleBar.activeBackground": "#dcc4c0",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveBackground": "#dcc4c099",
+    "titleBar.inactiveForeground": "#15202b99"
+  }, */
+  "diffEditor.ignoreTrimWhitespace": false,
+  "go.toolsManagement.autoUpdate": true,
+  "gitlens.ai.experimental.model": "openai:gpt-4o-mini",
+
+  /* Buatan Sendiri */
+  "editor.scrollbar.vertical": "hidden",
+  "editor.scrollbar.horizontal": "hidden",
+  "workbench.statusBar.visible": true,
+  "gitlens.ai.model": "openai:gpt-4o-mini" // Hide status bar yang ada di bawah
+}
