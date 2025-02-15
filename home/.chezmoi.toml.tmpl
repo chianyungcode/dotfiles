@@ -1,7 +1,10 @@
-{{- $email := promptStringOnce . "email" "Email address" -}}
+{{- $git_email := promptStringOnce . "git_email" "What's your git email" -}}
+{{- $git_user := promptStringOnce . "git_user" "What's your git user" -}}
+
 
 [data]
-  email             = {{ $email | quote }}
+  git_email         = {{ $git_email | quote }}
+  git_user          = {{ $git_user | quote }}
   github_user       = "chianyungcode"
   xdgCacheDir       = "{{ .chezmoi.homeDir }}/.cache"
   xdgConfigDir      = "{{ .chezmoi.homeDir }}/.config"

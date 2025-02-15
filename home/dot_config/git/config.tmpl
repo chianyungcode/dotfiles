@@ -1,19 +1,23 @@
 [user]
-	name = chianyungcode
-	email = {{ $email | quote }}
+	name = {{ .git_user}}
+	email = {{ .git_email }}
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIuhVrKcfaLtG+OlsI0CBttCRRYNvorC25J8An7EhrvJ
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
 [init]
 	default = branch
 	defaultBranch = main
+
 [credential]
 	helper = osxkeychain
 	helper = 
 	helper = /usr/local/share/gcm-core/git-credential-manager
+
 [alias]
 	co = checkout
 	build = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"build${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
@@ -47,7 +51,6 @@
     minus-style = "syntax #4F221F"     # Warna untuk baris yang dihapus
     line-numbers = true 
 
-
     # delta detects terminal colors automatically; set one of these to disable auto-detection
     # dark = true
     # light = true
@@ -57,13 +60,18 @@
 
 [diff]
     colorMoved = default
+
 [gpg]
 	format = ssh
+
 [gpg "ssh"]
 	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+
 [commit]
 	gpgsign = true
+
 [credential "https://github.com"]
-	username = chianyungcode
+	username = {{ .github_user }}
+
 [credential "https://dev.azure.com"]
 	useHttpPath = true
