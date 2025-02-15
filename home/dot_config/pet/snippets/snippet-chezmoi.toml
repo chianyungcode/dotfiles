@@ -1,0 +1,23 @@
+[[Snippets]]
+Description = "Apply"
+Output = ""
+Tag = ["chezmoi"]
+command = 'chezmoi apply'
+
+[[Snippets]]
+Description = "Edit | and apply"
+Output = ""
+Tag = ["chezmoi"]
+command = 'chezmoi edit --apply'
+
+[[Snippets]]
+Description = "Init "
+Output = ""
+Tag = ["chezmoi"]
+command = 'chezmoi init --apply --prompt'
+
+[[Snippets]]
+Description = "Forget in the source directory"
+Output = ""
+Tag = ["chezmoi"]
+command = 'chezmoi forget <path-to-target-file>'
