@@ -1,0 +1,6 @@
+name: Learn SQL
+root: ~/Code/Personal/Learning/LearnBasic/sql/
+
+windows:
+  - Neovim:
+      - nvim
