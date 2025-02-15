@@ -33,3 +33,6 @@ Description = "Destroy | Delete file between in source directory and target dire
 Output = ""
 Tag = ["chezmoi"]
 command = 'chezmoi destroy <path-to-target-file>'
+
+[[Snippets]]
+Description = "Melihat perbedaan"
