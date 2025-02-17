@@ -1,5 +1,4 @@
-
-{{ if and ( eq .chezmoi.os "darwin" ) ( lookPath q )}}
+{{ if eq .chezmoi.os "darwin" }}
 # Amazon Q pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 zmodload zsh/zprof
@@ -93,7 +92,7 @@ done
 # --- zsh-abbr ---
 # abbr import-aliases
 
-{{ if and ( eq .chezmoi.os "darwin" ) ( lookPath q )}}
+{{ if eq .chezmoi.os "darwin" }}
 # Amazon Q post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
 {{ end }}
