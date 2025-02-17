@@ -1,0 +1,5 @@
+[[Snippets]]
+Description = "Format TOML File"
+Output = ""
+Tag = ["taplo"]
+command = 'taplo fmt --option indent_tables=true <path-to-file>'
