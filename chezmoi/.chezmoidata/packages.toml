@@ -134,14 +134,20 @@
     ]
     # TODO: Separate taps,casks,formulae into dev_computer
     [packages.homebrew.dev_computer]
-    # packages that needed in development computer
+    # packages that needed in development computes
+    taps = []
+    casks = []
+    formulae = []
 
     # TODO: Separate taps,casks,formulae into personal_computer
     [packages.homebrew.personal_computer]
-  # packages that needed for utility in that computer
+    # packages that needed for utility in that computer
+    taps = []
+    casks = []
+    formulae = []
+
   [packages.apt]
     [packages.apt.common]
-
     packages = [
       "apt-transport-https",
       "bat",                 # cat with syntax highlighting and Git integration
@@ -176,4 +182,42 @@
     [packages.apt.homelab_member]
     packages = ["iperf"]
     [packages.apt.personal_computer]
+    packages = []
+
+  [packages.pacman]
+    [packages.pacman.common]
+    packages = [
+      "base-devel",  # Equivalent to apt-transport-https and build essentials
+      "bat",         # cat with syntax highlighting and Git integration
+      "curl",
+      "bind-tools",  # Equivalent to dnsutils
+      "fd",          # Equivalent to fd-find
+      "figlet",
+      "fzf",
+      "git",
+      "git-extras",
+      "gnupg",
+      "gpg",
+      "jq",
+      "logrotate",
+      "lolcat",
+      "mc",          # Midnight Commander
+      "nano",
+      "ncdu",        # NCurses Disk Usage
+      "needrestart",
+      "net-tools",
+      "openssh",     # Equivalent to openssh-server
+      "p7zip",       # Equivalent to p7zip-full
+      "ripgrep",     # search tool like grep and the silver searcher
+      "sudo",
+      "tzdata",
+      "unzip",
+      "wget",
+      "zsh",
+    ]
+    [packages.pacman.dev_computer]
+    packages = []
+    [packages.pacman.homelab_member]
+    packages = ["iperf"]
+    [packages.pacman.personal_computer]
     packages = []
