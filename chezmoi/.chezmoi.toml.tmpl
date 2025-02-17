@@ -1,16 +1,22 @@
+{{- $use_secrets := promptBoolOnce . "use_secrets" "Use secrets from 1Password? (true/false)" -}}
 {{- $git_email := promptStringOnce . "git_email" "What's your git email" -}}
 {{- $git_user := promptStringOnce . "git_user" "What's your git user" -}}
-
+{{- $personal_computer := promptBoolOnce . "personal_computer" "Is this a personal computer for daily driving? (true/false)" -}}
+{{- $dev_computer := promptBoolOnce . "dev_computer" "Do you do development on this computer? (true/false)" -}}
 
 [data]
+  dev_computer      = {{ $dev_computer }}
   git_email         = {{ $git_email | quote }}
   git_user          = {{ $git_user | quote }}
   github_user       = "chianyungcode"
+  personal_computer = {{ $personal_computer }}
+  use_secrets       = {{ $use_secrets }}
   xdgCacheDir       = "{{ .chezmoi.homeDir }}/.cache"
   xdgConfigDir      = "{{ .chezmoi.homeDir }}/.config"
   xdgDataDir        = "{{ .chezmoi.homeDir }}/.local/share"
   xdgStateDir       = "{{ .chezmoi.homeDir }}/.local/state"
 
 [diff]
-  command = "delta"
+  {{ if lookPath "delta" -}}commmand = "delta"
+  {{ end -}}
   pager = "delta"
