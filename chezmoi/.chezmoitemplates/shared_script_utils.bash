@@ -98,15 +98,15 @@ _alert_() {
 
     [[ $# -lt 2 ]] && fatal 'Missing required argument to _alert_'
 
-    if [[ -n "${_line}" && "${_alertType}" =~ ^(fatal|error) && "${FUNCNAME[2]}" != "_trapCleanup_" ]]; then
+    if [[ -n ${_line} && ${_alertType} =~ ^(fatal|error) && ${FUNCNAME[2]} != "_trapCleanup_" ]]; then
         _message="${_message} ${gray}(line: ${_line}) $(_printFuncStack_)"
-    elif [[ -n "${_line}" && "${FUNCNAME[2]}" != "_trapCleanup_" ]]; then
+    elif [[ -n ${_line} && ${FUNCNAME[2]} != "_trapCleanup_" ]]; then
         _message="${_message} ${gray}(line: ${_line})"
-    elif [[ -z "${_line}" && "${_alertType}" =~ ^(fatal|error) && "${FUNCNAME[2]}" != "_trapCleanup_" ]]; then
+    elif [[ -z ${_line} && ${_alertType} =~ ^(fatal|error) && ${FUNCNAME[2]} != "_trapCleanup_" ]]; then
         _message="${_message} ${gray}$(_printFuncStack_)"
     fi
 
-    if [[ "${_alertType}" =~ ^(error|fatal) ]]; then
+    if [[ ${_alertType} =~ ^(error|fatal) ]]; then
         _color="${bold}${red}"
     elif [ "${_alertType}" == "info" ]; then
         _color="${gray}"
@@ -129,17 +129,15 @@ _alert_() {
     fi
 
     _writeToScreen_() {
-        if [ "${QUIET}" = true ]; then
-            return 0
-        fi
-        [[ "${VERBOSE}" == false && "${_alertType}" =~ ^(debug|verbose) ]] && return 0
+        ("${QUIET}") && return 0 # Print to console when script is not 'quiet'
+        [[ ${VERBOSE} == false && ${_alertType} =~ ^(debug|verbose) ]] && return 0
 
-        if ! [[ -t 1 || -z "${TERM:-}" ]]; then
+        if ! [[ -t 1 || -z ${TERM:-} ]]; then # Don't use colors on non-recognized terminals
             _color=""
             reset=""
         fi
 
-        if [[ "${_alertType}" == header ]]; then
+        if [[ ${_alertType} == header ]]; then
             printf "\n✨ ${_color}%s${reset} ✨\n" "${_message}"
         else
             printf "${_color}[%7s] %s${reset}\n" "${_alertType}" "${_message}"
@@ -148,23 +146,22 @@ _alert_() {
     _writeToScreen_
 
     _writeToLog_() {
-        [[ "${_alertType}" == "input" ]] && return 0
-        [[ "${LOGLEVEL}" =~ (off|OFF|Off) ]] && return 0
+        [[ ${_alertType} == "input" ]] && return 0
+        [[ ${LOGLEVEL} =~ (off|OFF|Off) ]] && return 0
         if [ -z "${LOGFILE:-}" ]; then
             LOGFILE="$(pwd)/$(basename "$0").log"
         fi
-        if [ ! -d "$(dirname "${LOGFILE}")" ]; then
-            mkdir -p "$(dirname "${LOGFILE}")"
-        fi
-        if [[ ! -f "${LOGFILE}" ]]; then
-            touch "${LOGFILE}"
-        fi
+        [ ! -d "$(dirname "${LOGFILE}")" ] && mkdir -p "$(dirname "${LOGFILE}")"
+        [[ ! -f ${LOGFILE} ]] && touch "${LOGFILE}"
 
+        # Don't use colors in logs
         local _cleanmessage
         _cleanmessage="$(printf "%s" "${_message}" | sed -E 's/(\x1b)?\[(([0-9]{1,2})(;[0-9]{1,3}){0,2})?[mGK]//g')"
+        # Print message to log file
         printf "%s [%7s] %s %s\n" "$(date +"%b %d %R:%S")" "${_alertType}" "[$(/bin/hostname)]" "${_cleanmessage}" >>"${LOGFILE}"
     }
 
+    # Write specified log level data to logfile
     case "${LOGLEVEL:-ERROR}" in
         ALL | all | All)
             _writeToLog_
@@ -173,27 +170,27 @@ _alert_() {
             _writeToLog_
             ;;
         INFO | info | Info)
-            if [[ "${_alertType}" =~ ^(error|fatal|warning|info|notice|success) ]]; then
+            if [[ ${_alertType} =~ ^(error|fatal|warning|info|notice|success) ]]; then
                 _writeToLog_
             fi
             ;;
         NOTICE | notice | Notice)
-            if [[ "${_alertType}" =~ ^(error|fatal|warning|notice|success) ]]; then
+            if [[ ${_alertType} =~ ^(error|fatal|warning|notice|success) ]]; then
                 _writeToLog_
             fi
             ;;
         WARN | warn | Warn)
-            if [[ "${_alertType}" =~ ^(error|fatal|warning) ]]; then
+            if [[ ${_alertType} =~ ^(error|fatal|warning) ]]; then
                 _writeToLog_
             fi
             ;;
         ERROR | error | Error)
-            if [[ "${_alertType}" =~ ^(error|fatal) ]]; then
+            if [[ ${_alertType} =~ ^(error|fatal) ]]; then
                 _writeToLog_
             fi
             ;;
         FATAL | fatal | Fatal)
-            if [[ "${_alertType}" =~ ^fatal ]]; then
+            if [[ ${_alertType} =~ ^fatal ]]; then
                 _writeToLog_
             fi
             ;;
@@ -201,7 +198,7 @@ _alert_() {
             return 0
             ;;
         *)
-            if [[ "${_alertType}" =~ ^(error|fatal) ]]; then
+            if [[ ${_alertType} =~ ^(error|fatal) ]]; then
                 _writeToLog_
             fi
             ;;
@@ -269,20 +266,20 @@ _printFuncStack_() {
 
     done
     printf "( "
-    printf "%s" "${_funcStackResponse[0]}"
+    printf %s "${_funcStackResponse[0]}"
     printf ' < %s' "${_funcStackResponse[@]:1}"
     printf ' )\n'
 }
 
 _safeExit_() {
     # DESC:
-    #       Cleanup dan exit dari suatu script
+    #       Cleanup and exit from a script
     # ARGS:
     #       $1 (optional) - Exit code (defaults to 0)
     # OUTS:
     #       None
 
-    if [[ -d "${SCRIPT_LOCK:-}" ]]; then
+    if [[ -d ${SCRIPT_LOCK:-} ]]; then
         if command rm -rf "${SCRIPT_LOCK}"; then
             debug "Removing script lock"
         else
@@ -290,8 +287,8 @@ _safeExit_() {
         fi
     fi
 
-    if [[ -n "${TMP_DIR:-}" && -d "${TMP_DIR:-}" ]]; then
-        if [[ "${1:-}" == 1 && -n "$(ls "${TMP_DIR}")" ]]; then
+    if [[ -n ${TMP_DIR:-} && -d ${TMP_DIR:-} ]]; then
+        if [[ ${1:-} == 1 && -n "$(ls "${TMP_DIR}")" ]]; then
             command rm -r "${TMP_DIR}"
         else
             command rm -r "${TMP_DIR}"
@@ -318,8 +315,8 @@ _trapCleanup_() {
     # OUTS:
     #         Exits script with error code 1
 
-    local _line="${1:-}" # LINENO
-    local _linecallfunc="${2:-}"
+    local _line=${1:-} # LINENO
+    local _linecallfunc=${2:-}
     local _command="${3:-}"
     local _funcstack="${4:-}"
     local _script="${5:-}"
@@ -332,7 +329,7 @@ _trapCleanup_() {
 
         _funcstack="'$(printf "%s" "${_funcstack}" | sed -E 's/ / < /g')'"
 
-        if [[ "${_script##*/}" == "${_sourced##*/}" ]]; then
+        if [[ ${_script##*/} == "${_sourced##*/}" ]]; then
             fatal "${7:-} command: '${_command}' (line: ${_line}) [func: $(_printFuncStack_)]"
         else
             fatal "${7:-} command: '${_command}' (func: ${_funcstack} called at line ${_linecallfunc} of '${_script##*/}') (line: ${_line} of '${_sourced##*/}') "
@@ -349,7 +346,7 @@ _trapCleanup_() {
 }
 
 _hasJQ_() {
-    if ! command -v jq &>/dev/null; then
+    if [[ ! $(command -v jq) ]]; then
         warning "Must instal jq prior to running script"
 
         {{- if eq .chezmoi.os "linux" }}
@@ -388,14 +385,12 @@ _inArray_() {
     local _use_regex=false
     local opt
     local OPTIND=1
-    # Simpan kondisi awal nocasematch
-    local old_nocasematch
-    old_nocasematch="$(shopt -p nocasematch 2>/dev/null || echo 'shopt -u nocasematch')"
-
     while getopts ":iIrR" opt; do
         case ${opt} in
             i | I)
-                shopt -s nocasematch
+                #shellcheck disable=SC2064
+                trap '$(shopt -p nocasematch)' RETURN # reset nocasematch when function exits
+                shopt -s nocasematch                  # Use case-insensitive regex
                 ;;
             r | R)
                 _use_regex=true
@@ -403,8 +398,6 @@ _inArray_() {
             *) fatal "Unrecognized option '${1}' passed to ${FUNCNAME[0]}. Exiting." ;;
         esac
     done
-    trap "eval '$old_nocasematch'" RETURN
-
     shift $((OPTIND - 1))
 
     local _array_item
@@ -415,7 +408,7 @@ _inArray_() {
     fi
     shift
     for _array_item in "$@"; do
-        [[ "${_array_item}" =~ ${_value} ]] && return 0
+        [[ ${_array_item} =~ ${_value} ]] && return 0
     done
     return 1
 }
