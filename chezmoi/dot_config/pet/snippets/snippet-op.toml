@@ -26,7 +26,13 @@ Tag = ["op"]
 command = 'op account list'
 
 [[Snippets]]
-Description = "Vault | List all vault"
+Description = "Item | List item by tags"
 Output = ""
 Tag = ["op"]
-command = ''
+command = 'op item ls --tags <tag-name>'
+
+[[Snippets]]
+Description = "Plugin | Initiate plugin"
+Output = ""
+Tag = ["op"]
+command = 'op plugin init <plugin-name=aws>'
