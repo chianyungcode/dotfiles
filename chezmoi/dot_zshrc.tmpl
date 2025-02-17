@@ -80,6 +80,7 @@ configFileLocations=(
 for configFileLocation in "${configFileLocations[@]}"; do
     if [ -d "${configFileLocation}" ]; then
         while read -r configFile; do
+            echo "Sourcing ${configFile}"  # Tambahkan ini untuk debugging
             source "${configFile}"
         done < <(find "${configFileLocation}" \
             -maxdepth 2 \

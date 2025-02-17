@@ -22,7 +22,6 @@ alias config="cd $HOME/.config/"
 ####################### LIST DIRECTORY CONTENTS #######################
 {{- if lookPath "eza" }}
 # List filenames on one line
-alias ls='eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions'
 alias cyh='eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions'
 
 
@@ -47,4 +46,5 @@ alias lt='eza --tree --level=2 --icons=auto'
 # List files in a tree view with long format
 alias llt='eza -lah --classify=always --tree --level=2 --icons=auto'
 
+alias ls='eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions'
 {{- end }}
