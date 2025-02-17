@@ -22,7 +22,9 @@ alias config="cd $HOME/.config/"
 ####################### LIST DIRECTORY CONTENTS #######################
 {{- if lookPath "eza" }}
 # List filenames on one line
-alias ls='eza --git --icons=auto'
+alias ls='eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions'
+alias cyh='eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions'
+
 
 # List filenames with long format
 alias l='eza -l --classify=auto --icon=autos {{- if not (and (eq .chezmoi.os "linux") (eq .chezmoi.arch "arm64")) }} --git{{ end }}'
@@ -45,14 +47,4 @@ alias lt='eza --tree --level=2 --icons=auto'
 # List files in a tree view with long format
 alias llt='eza -lah --classify=always --tree --level=2 --icons=auto'
 
-# List files modified today
-alias ltt='eza -lah --classify=always --icons=auto | grep "$(date +"%d %b")"'
-{{- else if eq .chezmoi.os "darwin" }}
-alias ls="ls -G"
-alias ll='ls -FGlAhpv'
-alias ltt='ls -FlAhpv| grep "$(date +"%d %b")"' # List files modified this day
-{{- else }}
-alias ls="ls --color=auto"
-alias ll='ls -FlAhpv --color=auto'
-alias ltt='ls -FlAhpv| grep "$(date +"%d %b")"' # List files modified today
 {{- end }}
