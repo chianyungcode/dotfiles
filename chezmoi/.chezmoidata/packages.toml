@@ -42,6 +42,8 @@
       "termius",
     ]
     formulae = [
+      "most",
+      "gping",
       "btop",
       "xz",
       "atuin",
