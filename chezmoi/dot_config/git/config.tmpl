@@ -61,9 +61,12 @@
 [diff]
     colorMoved = default
 
+[push]
+  # agar ketika membuat branch baru di lokal tidak perlu melakukan perintah 'git push --set-upstream origin nama-branch-baru' . Menghindari salah penulisan nama branch sehingga dapat menyebabkan nama branch di lokal dan remote berbeda
+  default = current
+
 [gpg]
 	  format = ssh
-
 
 {{- if eq .chezmoi.os "darwin"}}
 [gpg "ssh"]
