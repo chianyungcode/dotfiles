@@ -73,37 +73,6 @@ fi
 autoload -Uz compinit
 compinit -d "{{ .xdgCacheDir }}/zsh/zcompdump-${ZSH_VERSION}"
 
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-plugins=(
-    direnv
-    git 
-    git-commit 
-    bun 
-    1password 
-    npm 
-    you-should-use 
-    zsh-autosuggestions 
-    zsh-syntax-highlighting 
-    aliases 
-    copypath 
-    brew 
-    docker 
-    docker-compose 
-    gitignore 
-    # zsh-abbr
-    # asdf
-)
-
-
-# ========================
-# SECTION: SOURCE CONFIGS
-# ========================
-source $ZSH/oh-my-zsh.sh
-source ~/zsh-defer/zsh-defer.plugin.zsh
-source $HOME/.zsh_aliases
-
 # SOURCE Dotfiles
 #############################################
 
