@@ -42,6 +42,7 @@
       "termius",
     ]
     formulae = [
+      "vivid",
       "most",
       "gping",
       "btop",
