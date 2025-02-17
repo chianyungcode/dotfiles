@@ -1,12 +1,9 @@
+
+{{ if and ( eq .chezmoi.os "darwin" ) ( lookPath q )}}
 # Amazon Q pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 zmodload zsh/zprof
-
-#--------------------
-# Oh-My-Zsh Setup
-#--------------------
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+{{ end }}
 
 # If not running interactively, don't do anything
 #############################################
@@ -96,9 +93,10 @@ done
 # --- zsh-abbr ---
 # abbr import-aliases
 
+{{ if and ( eq .chezmoi.os "darwin" ) ( lookPath q )}}
 # Amazon Q post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
-
+{{ end }}
 
 # ######## === DUMP === #######
 # Set name of the theme to load --- if set to "random", it will
