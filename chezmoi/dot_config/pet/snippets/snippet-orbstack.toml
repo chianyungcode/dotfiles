@@ -2,7 +2,7 @@
 Description = "Linux Machine | create linux machine with custom username, password, and custom machine-name/hostname"
 Output = ""
 Tag = ["orbstack"]
-command = 'orb create -u <username> -p <linux-distros=ubuntu> <machine-name>'
+command = 'orb create --user <username> <use_password=|_--set-password_||__|> <linux-distros=|_ubuntu_||_arch_||_nixos_|> --arch <architecture=|_amd64_||_arm64_|> <machine-name>'
 
 [[Snippets]]
 Description = "Linux Machine | Start using linux machine"
