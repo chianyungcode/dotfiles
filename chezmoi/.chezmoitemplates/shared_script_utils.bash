@@ -10,9 +10,10 @@ DRYRUN=false
 # Set Options
 # ######################
 # Confirm we have BASH greater than v4
-[ "${BASH_VERSINFO:-0}" -ge 4 ] || {
-    shopt -s nullglob globstar # Make `for f in *.txt` work when `*.txt` matches zero files
-}
+if ! [[ "${BASH_VERSINFO:-0}" -ge 4 ]]; then
+    shopt -s nullglob globstar
+    warning "Bash versi 4 atau lebih baru direkomendasikan untuk fitur lengkap"
+fi
 
 trap '_trapCleanup_ ${LINENO} ${BASH_LINENO} "${BASH_COMMAND}" "${FUNCNAME[*]}" "${0}" "${BASH_SOURCE[0]}"' EXIT INT TERM SIGINT SIGQUIT SIGTERM
 set -o errtrace # Trap errors in subshells and functions
@@ -33,13 +34,15 @@ _setColors_() {
     # USAGE:
     #         printf "%s\n" "${blue}Some text${reset}"
 
-    if tput setaf 1 >/dev/null 2>&1; then
+    if tput setaf 1 &>/dev/null; then
         bold=$(tput bold)
         underline=$(tput smul)
         reverse=$(tput rev)
         reset=$(tput sgr0)
 
-        if [[ $(tput colors) -ge 256 ]] >/dev/null 2>&1; then
+        local colors
+        colors=$(tput colors)
+        if [[ $colors -ge 256 ]]; then
             white=$(tput setaf 231)
             blue=$(tput setaf 38)
             yellow=$(tput setaf 11)
@@ -148,11 +151,12 @@ _alert_() {
     _writeToLog_() {
         [[ ${_alertType} == "input" ]] && return 0
         [[ ${LOGLEVEL} =~ (off|OFF|Off) ]] && return 0
-        if [ -z "${LOGFILE:-}" ]; then
-            LOGFILE="$(pwd)/$(basename "$0").log"
-        fi
-        [ ! -d "$(dirname "${LOGFILE}")" ] && mkdir -p "$(dirname "${LOGFILE}")"
-        [[ ! -f ${LOGFILE} ]] && touch "${LOGFILE}"
+        
+        local log_dir
+        log_dir="$(dirname "${LOGFILE}")"
+        mkdir -p "${log_dir}" || fatal "Gagal membuat direktori log"
+        
+        [[ ! -f ${LOGFILE} ]] && touch "${LOGFILE}" || fatal "Gagal membuat file log"
 
         # Don't use colors in logs
         local _cleanmessage
@@ -346,18 +350,18 @@ _trapCleanup_() {
 }
 
 _hasJQ_() {
-    if [[ ! $(command -v jq) ]]; then
-        warning "Must instal jq prior to running script"
-
-        {{- if eq .chezmoi.os "linux" }}
-            {{- if eq .chezmoi.osRelease.id "arch" }}
-        sudo pacman -S --noconfirm jq
-            {{- else }}
-        sudo apt install -y jq
-            {{- end }}
-        {{- else if eq .chezmoi.os "darwin" }}
-        brew install jq
-        {{ end }}
+    if ! command -v jq &>/dev/null; then
+        warning "Aplikasi jq diperlukan - mencoba menginstall..."
+        
+        if [[ $OSTYPE == 'linux-gnu'* ]]; then
+            if command -v apt-get &>/dev/null; then
+                sudo apt-get update -q && sudo apt-get install -yq jq || fatal "Gagal install jq"
+            elif command -v pacman &>/dev/null; then
+                sudo pacman -Sq --noconfirm jq || fatal "Gagal install jq"
+            fi
+        elif [[ $OSTYPE == 'darwin'* ]]; then
+            brew install jq || fatal "Gagal install jq"
+        fi
     fi
 }
 
@@ -400,11 +404,11 @@ _inArray_() {
     done
     shift $((OPTIND - 1))
 
-    local _array_item
+    local _value _array_item
     if ${_use_regex}; then
-        local _value="${1}"
+        _value="${1}"
     else
-        local _value="^${1}$"
+        _value="^${1}$"
     fi
     shift
     for _array_item in "$@"; do
