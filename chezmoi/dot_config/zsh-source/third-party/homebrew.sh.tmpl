@@ -1,0 +1,7 @@
+{{- if and (eq .chezmoi.os "darwin") (lookPath "brew") }}
+
+# Set Exports
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+export HOMEBREW_NO_INSTALL_CLEANUP=1
+
+{{ end }}
