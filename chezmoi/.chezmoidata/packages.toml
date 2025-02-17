@@ -1,330 +1,223 @@
-[packages.apt]
-    to_remove = ["btop", "htop"]
-    [packages.apt.common]
-        packages = [
-            "apt-transport-https",
-            "bat",                 # cat with syntax highlighting and Git integration
-            "curl",
-            "dnsutils",
-            "fd-find",
-            "figlet",
-            "fzf",
-            "git",
-            "git-extras",
-            "gnupg",
-            "gpg",
-            "jq",
-            "logrotate",
-            "lolcat",
-            "mc",                  # Midnight Commander
-            "nano",
-            "ncdu",                # NCurses Disk Usage
-            "needrestart",
-            "net-tools",
-            "openssh-server",
-            "p7zip-full",
-            "ripgrep",             # search tool like grep and the silver searcher
-            "sudo",
-            "tzdata",
-            "unzip",
-            "wget",
-            "zsh",
-        ]
-    [packages.apt.dev_computer]
-        packages = []
-    [packages.apt.homelab_member]
-        packages = ["iperf"]
-    [packages.apt.personal_computer]
-        packages = []
-[packages.python]
-    to_remove = []
-    [packages.python.common]
-        packages = ["halper", "pygments"]
-    [packages.python.dev_computer]
-        packages = ["ansible-core", "cookiecutter", "poetry"]
-    [packages.python.homelab_member]
-        # 'GITEA_ADDRESS' is overwritten by the 'gitea_address' secret
-        packages = ["git+GITEA_ADDRESS/natelandau/usrbin"]
-    [packages.python.personal_computer]
-        packages = ["jdfile", "vid-cleaner"]
-[packages.homebrew]
-    to_remove = ["btop", "htop", "istat-menus", "qlimagesize", "rocket", "shotrr"]
+[packages]
+  [packages.homebrew]
+  to_remove = ["htop"]
     [packages.homebrew.common]
-        casks = [
-            "1password",
-            "1password-cli",
-            "espanso",                       # Text expander
-            "font-departure-mono",
-            "font-jetbrains-mono-nerd-font",
-            "font-meslo-lg-dz",
-            "font-meslo-lg-nerd-font",
-            "git-credential-manager",
-            "grandperspective",              # Disk usage visualizer
-            "iterm2",                        # Terminal emulator
-            "jordanbaird-ice",               # Menu bar customization
-            "lingon-x",
-            "orbstack",                      # Docker replacement
-            "tailscale",
-            "visual-studio-code",
-        ]
-        formulae = [
-            "atuin",           # Better shell history
-            "bash",
-            "bash-completion",
-            "bat",             # cat with syntax highlighting and Git integration
-            "bottom",          # Process/system monitor for the terminal.
-            "chezmoi",         # Dotfile manager
-            "coreutils",
-            "eza",             # ls replacement
-            "fd",              # fd-find
-            "findutils",       # GNU find, locate, updatedb, and xargs
-            "fzf",             # Fuzzy finder
-            "gawk",            # GNU awk
-            "git",
-            "git-delta",       # https://github.com/dandavison/delta
-            "gnu-sed",         # GNU implementation of the famous stream editor
-            "gnu-tar",         # GNU version of the tar archiving utility
-            "gnutls",          # GNU Transport Layer Security (TLS) Library
-            "gping",           # Ping, but with a graph
-            "grep",
-            "jq",              # Lightweight and flexible command-line JSON processor
-            "mas",             # Mac App Store command-line interface
-            "mc",              # Midnight Commander
-            "most",            # Pager
-            "nano",
-            "ncdu",            # NCurses Disk Usage
-            "ncurses",         # Text-based UI library
-            "openssl",         # SSL/TLS cryptography library
-            "rip2",            # A safer, rust-based rm
-            "ripgrep",         # search tool like grep and the silver searcher
-            "sqlite3",
-            "ssh-copy-id",     # Add a public key to a remote machine's authorized_keys file
-            "tealdeer",        # TLDR man pages
-            "tree",            # Display directories as trees (with optional color/HTML output)
-            "uv",              # Python Pyenv, pipx, and packagging replacement
-            "vivid",           # https://github.com/sharkdp/vivid
-            "wget",
-            "zoxide",          # A faster way to navigate your filesystem
-            "zsh",
-            "xz",
-            "icu4c@76",
-            "awscli",
-            "berkeley-db", 
-            "bfg",
-            "brew-gem",
-            "cliclick",
-            "ruby",
-            "cocoapods",
-            "direnv",
-            "dotter",
-            "fastfetch",
-            "ffmpegthumbnailer",
-            "fish",
-            "flyctl",
-            "node",
-            "fx",
-            "git-filter-repo",
-            "git-lfs",
-            "glow",
-            "gzip",
-            "helix",
-            "httpie",
-            "hub",
-            "hyperfine",
-            "imagemagick",
-            "libfido2",
-            "luarocks",
-            "mongosh",
-            "navi",
-            "neonctl",
-            "neovim",
-            "nushell",
-            "nvm",
-            "pkgconf",
-            "pngpaste",
-            "poppler",
-            "presenterm",
-            "pueue",
-            "python@3.11",
-            "sesh",
-            "speedtest-cli",
-            "sshs",
-            "starship",
-            "stow",
-            "taplo",
-            "television",
-            "tlrc",
-            "tmux",
-            "tmuxinator",
-            "tmuxp",
-            "vim",
-            "watchman",
-            "wtfutil",
-            "yazi",
-            "yq",
-            "yubico-piv-tool",
-        ]
-        taps = [
-            "arl/arl",
-            "chase/tap",
-            "dopplerhq/cli",
-            "dotenvx/brew",
-            "felixkratz/formulae",
-            "grishka/grishka",
-            "homebrew/bundle",
-            "homebrew/services",
-            "jesseduffield/lazydocker",
-            "jesseduffield/lazygit",
-            "jstkdng/programs",
-            "knqyf263/pet",
-            "koekeishiya/formulae",
-            "koyeb/tap",
-            "nikitabobko/tap",
-            "olets/tap",
-            "osx-cross/arm",
-            "osx-cross/avr",
-            "pablopunk/brew",
-            "pkgxdev/made",
-            "qmk/qmk",
-            "skiptools/skip",
-            "stripe/stripe-cli",
-            "supabase/tap",
-            "teamookla/speedtest",
-            "vladkens/tap",
-            "waydabber/betterdisplay",
-            "withgraphite/tap"
-        ]
+    # packages that needed in every computer
+    taps = [
+      "arl/arl",
+      "chase/tap",
+      "dopplerhq/cli",
+      "dotenvx/brew",
+      "felixkratz/formulae",
+      "grishka/grishka",
+      "homebrew/bundle",
+      "homebrew/services",
+      "jesseduffield/lazydocker",
+      "jesseduffield/lazygit",
+      "jstkdng/programs",
+      "knqyf263/pet",
+      "koekeishiya/formulae",
+      "koyeb/tap",
+      "nikitabobko/tap",
+      "olets/tap",
+      "osx-cross/arm",
+      "osx-cross/avr",
+      "pablopunk/brew",
+      "pkgxdev/made",
+      "qmk/qmk",
+      "skiptools/skip",
+      "stripe/stripe-cli",
+      "supabase/tap",
+      "teamookla/speedtest",
+      "vladkens/tap",
+      "waydabber/betterdisplay",
+      "withgraphite/tap",
+    ]
+    casks = [
+      "1password-cli",
+      "android-platform-tools",
+      "fig",
+      "git-credential-manager",
+      "skip",
+      "termius",
+    ]
+    formulae = [
+      "btop",
+      "xz",
+      "atuin",
+      "icu4c@76",
+      "awscli",
+      "bat",
+      "berkeley-db",
+      "bfg",
+      "brew-gem",
+      "chezmoi",
+      "cliclick",
+      "ruby",
+      "cocoapods",
+      "direnv",
+      "dotter",
+      "eza",
+      "fastfetch",
+      "fd",
+      "ffmpegthumbnailer",
+      "fish",
+      "flyctl",
+      "node",
+      "fx",
+      "fzf",
+      "gh",
+      "git",
+      "git-delta",
+      "git-filter-repo",
+      "git-lfs",
+      "glow",
+      "gnupg",
+      "gzip",
+      "helix",
+      "httpie",
+      "hub",
+      "hyperfine",
+      "imagemagick",
+      "jq",
+      "libfido2",
+      "luarocks",
+      "mongosh",
+      "navi",
+      "neonctl",
+      "neovim",
+      "nushell",
+      "nvm",
+      "openssh",
+      "pkgconf",
+      "pngpaste",
+      "poppler",
+      "presenterm",
+      "pueue",
+      "python@3.11",
+      "ripgrep",
+      "sesh",
+      "speedtest-cli",
+      "sshs",
+      "starship",
+      "stow",
+      "taplo",
+      "television",
+      "tlrc",
+      "tmux",
+      "tmuxinator",
+      "tmuxp",
+      "unzip",
+      "vim",
+      "watchman",
+      "wget",
+      "wtfutil",
+      "yazi",
+      "yq",
+      "yubico-piv-tool",
+      "zoxide",
+      "arl/arl/gitmux",
+      "dopplerhq/cli/doppler",
+      "dotenvx/brew/dotenvx",
+      "felixkratz/formulae/borders",
+      "jesseduffield/lazydocker/lazydocker",
+      "jesseduffield/lazygit/lazygit",
+      "knqyf263/pet/pet",
+      "koyeb/tap/koyeb",
+      "qmk/qmk/qmk",
+      "stripe/stripe-cli/stripe",
+      "supabase/tap/supabase",
+      "teamookla/speedtest/speedtest",
+      "vladkens/tap/macmon",
+      "waydabber/betterdisplay/betterdisplaycli",
+      "withgraphite/tap/graphite",
+    ]
+    # TODO: Separate taps,casks,formulae into dev_computer
     [packages.homebrew.dev_computer]
-        casks = [
-            "bruno",
-            "dbeaver-community",
-            "fork",
-            # "sourcetree", # Alternative to fork
-            "lingon-x",
-            "android-platform-tools",
-            "fig",
-            "skip",
-            "termius",
-        ]
-        formulae = [
-            "act",        # runs GitHub Actions locally
-            "bats-core",
-            "doggo",      # DNS Client
-            "gh",         # GitHub CLI
-            "git-delta",
-            "git-extras",
-            "goaccess",
-            "gpg",
-            "jless",      # JSON viewer
-            "lazygit",    # simple terminal UI for git commands
-            "libpq",      # PostgreSQL utilities but not postgresql itself
-            "redis",
-            "shellcheck",
-            "shfmt",
-            "arl/arl/gitmux",
-            "dopplerhq/cli/doppler",
-            "dotenvx/brew/dotenvx",
-            "felixkratz/formulae/borders",
-            "jesseduffield/lazydocker/lazydocker",
-            "jesseduffield/lazygit/lazygit",
-            "knqyf263/pet/pet",
-            "koyeb/tap/koyeb",
-            "qmk/qmk/qmk",
-            "stripe/stripe-cli/stripe",
-            "supabase/tap/supabase",
-            "teamookla/speedtest/speedtest",
-            "vladkens/tap/macmon",
-            "waydabber/betterdisplay/betterdisplaycli",
-            "withgraphite/tap/graphite",
-        ]
-    [packages.homebrew.homelab_member]
-        casks    = ["syncthing", "whatsapp"]
-        formulae = ["ffmpeg", "iperf", "nmap", "tailspin"]
+    # packages that needed in development computes
+    taps = []
+    casks = []
+    formulae = []
+
+    # TODO: Separate taps,casks,formulae into personal_computer
     [packages.homebrew.personal_computer]
-        casks = [
-            "arc",
-            "brave-browser",
-            "discord",
-            "firefox",
-            "flux",          # Night Shift
-            "fmail2",
-            "google-chrome",
-            "iina",
-            "kap",
-            "librewolf",
-            "lulu",          # Firewall
-            "mimestream",
-            "obsidian",
-            "plex",
-            "raycast",
-            "roon",
-            "slack",
-            "stats",
-            "steam",
-            "tripmode",
-            "whatsapp",
-            "zoom",
-            # Quick Look plugins
-            "qlcolorcode",
-            "qlmarkdown",
-            "qlprettypatch",
-            "qlstephen",
-            "qlvideo",
-            "quicklook-csv",
-            "quicklook-json",
-            "webpquicklook",
-        ]
-        formulae = []
-[packages.mas]
-    [packages.mas.common]
-        apps = []
-    [packages.mas.dev_computer]
-        apps = []
-    [packages.mas.homelab_member]
-        apps = []
-    [packages.mas.personal_computer]
-        apps = [
-            "1091189122", # Bear
-            "1136220934", # Infuse
-            "1502839586", # Handmirror
-            "1532597159", # MP3tag
-            "696977615",  # Capo
-            "975937182",  # Fantastical
-        ]
-[packages.pacman]
-    to_remove = ["btop", "htop"]
+    # packages that needed for utility in that computer
+    taps = []
+    casks = []
+    formulae = []
+
+  [packages.apt]
+    [packages.apt.common]
+    packages = [
+      "apt-transport-https",
+      "bat",                 # cat with syntax highlighting and Git integration
+      "curl",
+      "dnsutils",
+      "fd-find",
+      "figlet",
+      "fzf",
+      "git",
+      "git-extras",
+      "gnupg",
+      "gpg",
+      "jq",
+      "logrotate",
+      "lolcat",
+      "mc",                  # Midnight Commander
+      "nano",
+      "ncdu",                # NCurses Disk Usage
+      "needrestart",
+      "net-tools",
+      "openssh-server",
+      "p7zip-full",
+      "ripgrep",             # search tool like grep and the silver searcher
+      "sudo",
+      "tzdata",
+      "unzip",
+      "wget",
+      "zsh",
+    ]
+    [packages.apt.dev_computer]
+    packages = []
+    [packages.apt.homelab_member]
+    packages = ["iperf"]
+    [packages.apt.personal_computer]
+    packages = []
+
+  [packages.pacman]
     [packages.pacman.common]
-        packages = [
-            "base-devel",
-            "bat",
-            "curl",
-            "bind", # untuk dnsutils
-            "fd",
-            "figlet",
-            "fzf",
-            "git",
-            "git-extras",
-            "gnupg",
-            "jq",
-            "logrotate",
-            "lolcat",
-            "mc",
-            "nano",
-            "ncdu",
-            "needrestart",
-            "net-tools",
-            "openssh",
-            "p7zip",
-            "ripgrep",
-            "sudo",
-            "tzdata",
-            "unzip",
-            "wget",
-            "zsh",
-        ]
+    packages = [
+      "base-devel",  # Equivalent to apt-transport-https and build essentials
+      "bat",         # cat with syntax highlighting and Git integration
+      "curl",
+      "bind-tools",  # Equivalent to dnsutils
+      "fd",          # Equivalent to fd-find
+      "figlet",
+      "fzf",
+      "git",
+      "git-extras",
+      "gnupg",
+      "gpg",
+      "jq",
+      "logrotate",
+      "lolcat",
+      "mc",          # Midnight Commander
+      "nano",
+      "ncdu",        # NCurses Disk Usage
+      "needrestart",
+      "net-tools",
+      "openssh",     # Equivalent to openssh-server
+      "p7zip",       # Equivalent to p7zip-full
+      "ripgrep",     # search tool like grep and the silver searcher
+      "sudo",
+      "tzdata",
+      "unzip",
+      "wget",
+      "zsh",
+    ]
     [packages.pacman.dev_computer]
-        packages = []
+    packages = []
     [packages.pacman.homelab_member]
-        packages = ["iperf3"]
+    packages = ["iperf"]
     [packages.pacman.personal_computer]
-        packages = []
+    packages = []
