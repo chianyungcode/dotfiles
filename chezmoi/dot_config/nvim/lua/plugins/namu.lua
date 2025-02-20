@@ -1,5 +1,6 @@
 return {
 	"bassamsdata/namu.nvim",
+	enabled = false,
 	config = function()
 		require("namu").setup({
 			-- Enable the modules you want
@@ -20,7 +21,7 @@ return {
 		})
 		-- === Suggested Keymaps: ===
 		vim.keymap.set("n", "<leader>ss", ":Namu symbols<cr>", {
-			desc = "Jump to LSP symbol",
+			desc = "Jump to LSP symbol (namu-nvim)",
 			silent = true,
 		})
 		vim.keymap.set("n", "<leader>th", ":Namu colorscheme<cr>", {
