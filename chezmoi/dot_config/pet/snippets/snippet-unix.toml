@@ -100,3 +100,9 @@ Description = "Start/Stop SSH Service"
 Output = ""
 Tag = ["unix", "ssh"]
 command = 'sudo launchctl <command=|_stop_||_start_|> com.openssh.sshd'
+
+[[Snippets]]
+Description = "Create shell script file"
+Output = ""
+Tag = ["unix", "shell"]
+command = 'touch <filename>.sh && nvim .'
