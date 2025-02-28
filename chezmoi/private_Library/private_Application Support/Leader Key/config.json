@@ -198,8 +198,19 @@
       "type": "group",
       "actions": [
         {
-          "type": "command",
-          "value": "pmset sleepnow",
+          "type": "group",
+          "actions": [
+            {
+              "type": "command",
+              "key": "l",
+              "value": "pmset sleepnow"
+            },
+            {
+              "type": "command",
+              "key": "v",
+              "value": "open -a ScreenSaverEngine.app"
+            }
+          ],
           "key": "s"
         },
         {
