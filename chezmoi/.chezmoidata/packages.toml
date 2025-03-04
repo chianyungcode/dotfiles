@@ -43,6 +43,7 @@
       "mocki-toki/formulae/barik",
     ]
     formulae = [
+      "whois",
       "vivid",
       "most",
       "gping",
