@@ -32,7 +32,7 @@
 vault = "Personal"
 
 [[ssh-keys]]
-vault = "Engineering"
+vault = "Programming"
 
 [[ssh-keys]]
 vault = "UI / UX"
