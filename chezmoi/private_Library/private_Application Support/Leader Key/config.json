@@ -167,6 +167,27 @@
         {
           "actions": [
             {
+              "key": "g",
+              "type": "url",
+              "value": "https://github.com"
+            },
+            {
+              "key": "v",
+              "type": "url",
+              "value": "https://vercel.com"
+            }
+          ],
+          "type": "group",
+          "key": "d"
+        },
+        {
+          "actions": [
+            {
+              "type": "url",
+              "value": "https://mesinotomatis.com/client/bank/login/",
+              "key": "m"
+            },
+            {
               "type": "url",
               "value": "https://vpn.klikbca.com",
               "key": "c"
