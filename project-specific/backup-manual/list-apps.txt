@@ -7,6 +7,7 @@
 /Applications/VLC.app
 /Applications/Codux.app
 /Applications/Bunch.app
+/Applications/Kosmik.app
 /Applications/Apparency.app
 /Applications/Python 3.13/IDLE.app
 /Applications/Python 3.13/Python Launcher.app
@@ -15,19 +16,23 @@
 /Applications/Daily.app
 /Applications/DockDoor.app
 /Applications/SigmaOS.app
+/Applications/iwallpaper.app
 /Applications/ExpressVPN.app
 /Applications/Raindrop.io.app
 /Applications/1Password.app
 /Applications/via-desktop.app
+/Applications/Barik.app
 /Applications/LM Studio.app
 /Applications/Termius.app
 /Applications/Raycast.app
 /Applications/Figma.app
 /Applications/BudgetFlow.app
 /Applications/Speedtest.app
+/Applications/Velja.app
 /Applications/Rectangle.app
 /Applications/Bananotate.app
 /Applications/Google Chrome.app
+/Applications/Anki.app
 /Applications/Karabiner-Elements.app
 /Applications/Karabiner-EventViewer.app
 /Applications/Numbers.app
@@ -39,12 +44,14 @@
 /Applications/Telegram.app
 /Applications/Cursor Teleporter.app
 /Applications/Notion.app
+/Applications/Hand Mirror.app
 /Applications/Xcode.app
 /Applications/Menuwhere.app
 /Applications/OneDrive.app
 /Applications/Final Cut Pro Trial.app
 /Applications/Warp.app
 /Applications/YubiKey Manager.app
+/Applications/Spotify.app
 /Applications/Spaced.app
 /Applications/Apidog.app
 /Applications/AeroSpace.app
@@ -84,6 +91,7 @@
 /Applications/Utilities/LogiPluginService.app
 /Applications/Swift Shift.app
 /Applications/Memo Widget.app
+/Applications/UTM.app
 /Applications/Opera Air.app
 /Applications/ChatGPT.app
 /Applications/Blender.app
@@ -116,7 +124,6 @@
 /Applications/Setapp/Clop.app
 /Applications/Setapp/DevUtils.app
 /Applications/Setapp/Timemator.app
-/Applications/Setapp/iStat Menus.app
 /Applications/Setapp/Clobbr.app
 /Applications/Setapp/ChatMate for WhatsApp.app
 /Applications/Setapp/SideNotes.app
@@ -150,10 +157,12 @@
 /Applications/Strflow.app
 /Applications/Ghostty.app
 /Applications/Moom.app
+/Applications/QSpace Pro.app
 /Applications/Setapp.app
 /Applications/Transnomino.app
 /Applications/GitButler.app
 /Applications/Codye.app
+/Applications/Klokki.app
 /Applications/Android Studio.app
 /Applications/GitKraken.app
 /Applications/kitty.app
@@ -179,6 +188,7 @@
 /Applications/Ice.app
 /Applications/Spaceman.app
 /Applications/Discord.app
+/Applications/RemNote.app
 /Applications/Cap.app
 /Applications/Hyperduck.app
 /Applications/MongoDB Compass.app
