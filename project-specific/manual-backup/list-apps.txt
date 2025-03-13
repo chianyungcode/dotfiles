@@ -1,0 +1,194 @@
+/Applications/PocketTube.app
+/Applications/CorelDRAW Graphics Suite 2022/CorelDRAW.app
+/Applications/DBngin.app
+/Applications/WezTerm.app
+/Applications/LaunchPalette Helper.app
+/Applications/Visual Studio Code.app
+/Applications/VLC.app
+/Applications/Codux.app
+/Applications/Bunch.app
+/Applications/Kosmik.app
+/Applications/Apparency.app
+/Applications/Python 3.13/IDLE.app
+/Applications/Python 3.13/Python Launcher.app
+/Applications/NordVPN.app
+/Applications/Eagle.app
+/Applications/Daily.app
+/Applications/DockDoor.app
+/Applications/SigmaOS.app
+/Applications/iwallpaper.app
+/Applications/ExpressVPN.app
+/Applications/Raindrop.io.app
+/Applications/1Password.app
+/Applications/via-desktop.app
+/Applications/Barik.app
+/Applications/LM Studio.app
+/Applications/Termius.app
+/Applications/Raycast.app
+/Applications/Figma.app
+/Applications/BudgetFlow.app
+/Applications/Speedtest.app
+/Applications/Velja.app
+/Applications/Rectangle.app
+/Applications/Bananotate.app
+/Applications/Google Chrome.app
+/Applications/Anki.app
+/Applications/Karabiner-Elements.app
+/Applications/Karabiner-EventViewer.app
+/Applications/Numbers.app
+/Applications/Pieoneer.app
+/Applications/Dropbox.app
+/Applications/Snipline.app
+/Applications/Rapidmg.app
+/Applications/IINA.app
+/Applications/Telegram.app
+/Applications/Cursor Teleporter.app
+/Applications/Notion.app
+/Applications/Hand Mirror.app
+/Applications/Xcode.app
+/Applications/Menuwhere.app
+/Applications/OneDrive.app
+/Applications/Final Cut Pro Trial.app
+/Applications/Warp.app
+/Applications/YubiKey Manager.app
+/Applications/Spotify.app
+/Applications/Spaced.app
+/Applications/Apidog.app
+/Applications/AeroSpace.app
+/Applications/Leader Key.app
+/Applications/iMovie.app
+/Applications/Mouseless.app
+/Applications/Subscriptions.app
+/Applications/Sleeve.app
+/Applications/Cursor.app
+/Applications/Wispr Flow.app
+/Applications/Microsoft Word.app
+/Applications/Folder Preview.app
+/Applications/Screen Studio.app
+/Applications/Pieces.app
+/Applications/Trae.app
+/Applications/Rio.app
+/Applications/Amazon Q.app
+/Applications/CloudMounter.app
+/Applications/focusedOS.app
+/Applications/Zed.app
+/Applications/Pieces OS.app
+/Applications/Audacity.app
+/Applications/Teleport.app
+/Applications/Cloudflare WARP.app
+/Applications/Obsidian.app
+/Applications/Zen Browser.app
+/Applications/Loupedeck.app
+/Applications/TickTick.app
+/Applications/Homerow.app
+/Applications/LaunchPalette.app
+/Applications/One Thing.app
+/Applications/Arc.app
+/Applications/Dropover.app
+/Applications/Microsoft Excel.app
+/Applications/LINE.app
+/Applications/OrbStack.app
+/Applications/Utilities/LogiPluginService.app
+/Applications/Swift Shift.app
+/Applications/Memo Widget.app
+/Applications/UTM.app
+/Applications/Opera Air.app
+/Applications/ChatGPT.app
+/Applications/Blender.app
+/Applications/zoom.us.app
+/Applications/Microsoft Outlook.app
+/Applications/GitHub Desktop.app
+/Applications/Install Autodesk Fusion.app
+/Applications/Vial.app
+/Applications/Capacities.app
+/Applications/QuitApps.app
+/Applications/Keynote.app
+/Applications/Hazel.app
+/Applications/Setapp/Downie.app
+/Applications/Setapp/CleanShot X.app
+/Applications/Setapp/Dato.app
+/Applications/Setapp/Supercharge.app
+/Applications/Setapp/Session.app
+/Applications/Setapp/Typeface.app
+/Applications/Setapp/AlDente Pro.app
+/Applications/Setapp/TextSniper.app
+/Applications/Setapp/Craft.app
+/Applications/Setapp/QuitAll.app
+/Applications/Setapp/HazeOver.app
+/Applications/Setapp/Spark Mail.app
+/Applications/Setapp/Dash.app
+/Applications/Setapp/Workspaces.app
+/Applications/Setapp/CleanMyMac.app
+/Applications/Setapp/Timing.app
+/Applications/Setapp/Boom.app
+/Applications/Setapp/Clop.app
+/Applications/Setapp/DevUtils.app
+/Applications/Setapp/Timemator.app
+/Applications/Setapp/Clobbr.app
+/Applications/Setapp/ChatMate for WhatsApp.app
+/Applications/Setapp/SideNotes.app
+/Applications/Setapp/TablePlus.app
+/Applications/Setapp/BetterTouchTool.app
+/Applications/Setapp/SnippetsLab.app
+/Applications/Setapp/NotchNook.app
+/Applications/Setapp/Sip.app
+/Applications/Linear.app
+/Applications/Google Docs.app
+/Applications/1Password for Safari.app
+/Applications/Creative Cloud Installer.app
+/Applications/Neovide.app
+/Applications/Blip.app
+/Applications/Bitwarden.app
+/Applications/Google Sheets.app
+/Applications/.Karabiner-VirtualHIDDevice-Manager.app
+/Applications/DaVinci Resolve.app
+/Applications/Studio 3T.app
+/Applications/Pages.app
+/Applications/GarageBand.app
+/Applications/Google Slides.app
+/Applications/Bezel.app
+/Applications/RunJS.app
+/Applications/logioptionsplus.app
+/Applications/Falling.app
+/Applications/Insomnia.app
+/Applications/PiP.app
+/Applications/Lunar.app
+/Applications/Microsoft OneNote.app
+/Applications/Strflow.app
+/Applications/Ghostty.app
+/Applications/Moom.app
+/Applications/QSpace Pro.app
+/Applications/Setapp.app
+/Applications/Transnomino.app
+/Applications/GitButler.app
+/Applications/Codye.app
+/Applications/Klokki.app
+/Applications/Android Studio.app
+/Applications/GitKraken.app
+/Applications/kitty.app
+/Applications/MouseBoost.app
+/Applications/Keyboard Cowboy.app
+/Applications/Jomo.app
+/Applications/Firefox.app
+/Applications/acreom.app
+/Applications/Adobe Audition 2025/Adobe Audition 2025.app
+/Applications/DataGrip.app
+/Applications/adoc Studio.app
+/Applications/Postman.app
+/Applications/QMK Toolbox.app
+/Applications/JetBrains Toolbox.app
+/Applications/Pixelmator Pro Trial.app
+/Applications/Microsoft PowerPoint.app
+/Applications/AdGuard for Safari.app
+/Applications/Replacicon.app
+/Applications/Tailscale.app
+/Applications/LookAway.app
+/Applications/Slack.app
+/Applications/Ollama.app
+/Applications/Ice.app
+/Applications/Spaceman.app
+/Applications/Discord.app
+/Applications/RemNote.app
+/Applications/Cap.app
+/Applications/Hyperduck.app
+/Applications/MongoDB Compass.app
