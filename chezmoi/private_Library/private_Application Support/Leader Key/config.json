@@ -79,6 +79,17 @@
       ]
     },
     {
+      "type": "group",
+      "key": "d",
+      "actions": [
+        {
+          "type": "command",
+          "value": "lunar disconnect without-cursor",
+          "key": "1"
+        }
+      ]
+    },
+    {
       "key": "t",
       "value": "/System/Applications/Utilities/Terminal.app",
       "type": "application"
