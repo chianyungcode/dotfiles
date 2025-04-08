@@ -9,5 +9,11 @@
 -- })
 
 vim.opt.spelllang = { "en", "id" }
+-- vim.diagnostic.config({
+-- 	virtual_text = true,
+-- 	virtual_lines = { current_line = true },
+-- 	underline = true,
+-- 	update_in_insert = false,
+-- })
 -- vim.opt_local.spell = false
 -- vim.opt_global.spell = false
