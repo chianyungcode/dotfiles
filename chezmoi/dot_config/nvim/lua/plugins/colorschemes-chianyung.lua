@@ -4,11 +4,11 @@
 
 return {
 	-- { "killitar/obscure.nvim" },
-	-- {
-	-- 	"oxfist/night-owl.nvim",
-	-- 	lazy = false,
-	-- 	priority = 1000,
-	-- },
+	{
+		"oxfist/night-owl.nvim",
+		lazy = false,
+		priority = 1000,
+	},
 
 	{ "yorumicolors/yorumi.nvim", enabled = false, lazy = false, priority = 1000 },
 	-- { "sainnhe/sonokai", lazy = false, priority = 1000 },
@@ -25,14 +25,16 @@ return {
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
+		enabled = true,
 		priority = 1000,
-		enabled = false,
-		-- config = function()
-		-- 	require("catppuccin").setup({
-		-- 		transparent_background = true, -- disables setting the background color.
-		-- 	})
-		-- end,
+		config = function()
+			require("catppuccin").setup({
+				flavour = "mocha",
+				transparent_background = false, -- disables setting the background color.
+			})
+		end,
 	},
+	{ "datsfilipe/vesper.nvim" },
 	-- {
 	-- 	"vague2k/vague.nvim",
 	-- 	config = function()
@@ -43,6 +45,7 @@ return {
 	-- },
 	{
 		"dgox16/oldworld.nvim",
+		enabled = false,
 		lazy = false,
 		priority = 1000,
 		config = function()
@@ -72,13 +75,58 @@ return {
 	{
 		"folke/tokyonight.nvim",
 		enabled = false,
-		opts = {
-			transparent = true,
-			styles = {
-				sidebars = "transparent",
-				floats = "transparent",
-			},
-		},
+		-- opts = {
+		-- 	transparent = true,
+		-- 	styles = {
+		-- 		sidebars = "transparent",
+		-- 		floats = "transparent",
+		-- 	},
+		-- },
+	},
+	{
+		"olivercederborg/poimandres.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("poimandres").setup({
+				-- leave this setup function empty for default config
+				-- or refer to the configuration section
+				-- for configuration options
+			})
+		end,
+	},
+	{
+		"webhooked/kanso.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			-- Default options:
+			require("kanso").setup({
+				compile = false, -- enable compiling the colorscheme
+				undercurl = true, -- enable undercurls
+				commentStyle = { italic = true },
+				functionStyle = {},
+				keywordStyle = { italic = true },
+				statementStyle = {},
+				typeStyle = {},
+				disableItalics = false,
+				transparent = false, -- do not set background color
+				dimInactive = false, -- dim inactive window `:h hl-NormalNC`
+				terminalColors = true, -- define vim.g.terminal_color_{0,17}
+				colors = { -- add/modify theme and palette colors
+					palette = {},
+					theme = { zen = {}, pearl = {}, ink = {}, all = {} },
+				},
+				overrides = function(colors) -- add/modify highlights
+					return {}
+				end,
+				theme = "zen", -- Load "zen" theme
+				background = { -- map the value of 'background' option to a theme
+					dark = "zen", -- try "ink" !
+					light = "pearl",
+				},
+			})
+		end,
 	},
 	{
 		"olimorris/onedarkpro.nvim",
@@ -100,9 +148,33 @@ return {
 		opts = {},
 	},
 	{
+		"rebelot/kanagawa.nvim",
+		enabled = false,
+	},
+	{
+		"rose-pine/neovim",
+		name = "rose-pine",
+		enabled = true,
+	},
+	{
+		"Skardyy/makurai-nvim",
+	},
+	-- Using lazy.nvim
+	{
+		"metalelf0/black-metal-theme-neovim",
+		lazy = false,
+		priority = 1000,
+		-- config = function()
+		-- 	require("black-metal").setup({
+		-- 		-- optional configuration here
+		-- 	})
+		-- 	require("black-metal").load()
+		-- end,
+	},
+	{
 		"LazyVim/LazyVim",
 		opts = {
-			colorscheme = "oldworld",
+			colorscheme = "catppuccin",
 		},
 	},
 }

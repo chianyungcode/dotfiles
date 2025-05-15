@@ -8,6 +8,9 @@ export DOTFILES="$HOME/.dotfiles/"
 export EDITOR="nvim"
 export GIT_CONFIG_GLOBAL="$HOME/.config/git/config"
 
+# === zulu java ===
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+
 # === Paths ===
 export BUN_INSTALL="$HOME/.bun"
 export PROTO_HOME="$HOME/.config/proto"
