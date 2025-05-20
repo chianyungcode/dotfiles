@@ -30,6 +30,14 @@ return {
 		config = function()
 			require("catppuccin").setup({
 				flavour = "mocha",
+				color_overrides = {
+					mocha = {
+						base = "#2C2C2C",
+						mantle = "#2C2C2C",
+						crust = "#2C2C2C",
+					},
+				},
+
 				transparent_background = false, -- disables setting the background color.
 			})
 		end,
@@ -45,7 +53,7 @@ return {
 	-- },
 	{
 		"dgox16/oldworld.nvim",
-		enabled = false,
+		enabled = true,
 		lazy = false,
 		priority = 1000,
 		config = function()
@@ -174,7 +182,7 @@ return {
 	{
 		"LazyVim/LazyVim",
 		opts = {
-			colorscheme = "catppuccin",
+			colorscheme = "kanso",
 		},
 	},
 }

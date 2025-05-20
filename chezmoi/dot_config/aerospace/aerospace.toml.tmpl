@@ -12,11 +12,10 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 
-# Borders by FelixKratz https://github.com/FelixKratz/JankyBorders
-#after-startup-command = [
-# 'exec-and-forget borders active_color=0xffff0000 inactive_color=0xff494d64 width=7.00'
-#]
-
+# # Borders by FelixKratz https://github.com/FelixKratz/JankyBorders
+# after-startup-command = [
+#   'exec-and-forget borders active_color=0xFFF7AD45 inactive_color=0x00494d64 width=7.00 hidpi=on'
+# ]
 
 # Start AeroSpace at login
 start-at-login = false
@@ -76,7 +75,7 @@ outer.right = 10
 # Asign workspace to selected monitors
 
 [workspace-to-monitor-force-assignment]
-T = 'secondary'
+D = 'secondary'
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -227,7 +226,7 @@ shift-down = ['volume set 0', 'mode main']
 
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser'
-run = 'move-node-to-workspace B'
+run = 'move-node-to-workspace F'
 
 [[on-window-detected]]
 if.app-id = 'com.todesktop.230313mzl4w4u92'
@@ -243,19 +242,23 @@ run = 'move-node-to-workspace D'
 
 [[on-window-detected]]
 if.app-id = 'notion.id'
-run = 'move-node-to-workspace N'
+run = 'move-node-to-workspace G'
+
+[[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = 'move-node-to-workspace G'
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
-run = 'move-node-to-workspace T'
+run = 'move-node-to-workspace D'
 
 [[on-window-detected]]
 if.app-id = 'com.apidog.app'
-run = 'move-node-to-workspace X'
+run = 'move-node-to-workspace A'
 
 [[on-window-detected]]
 if.app-id = 'dev.kdrag0n.MacVirt'
-run = 'move-node-to-workspace X'
+run = 'move-node-to-workspace A'
 
 [[on-window-detected]]
 if.app-id = 'com.linear'
@@ -268,7 +271,7 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.ActivityMonitor'
-run = 'layout floating'
+run = ['layout floating', 'move-node-to-workspace W']
 
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
@@ -276,11 +279,11 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.catforce.timemator-setapp'
-run = 'layout floating'
+run = ['layout floating', 'move-node-to-workspace W']
 
 [[on-window-detected]]
 if.app-id = 'com.macpaw.CleanMyMac-setapp'
-run = 'layout floating'
+run = ['layout floating', 'move-node-to-workspace W']
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Music'
@@ -288,21 +291,23 @@ run = ['layout floating', 'move-node-to-workspace E']
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Safari'
-run = 'move-node-to-workspace E'
+run = 'move-node-to-workspace F'
 
 [[on-window-detected]]
 if.app-id = 'com.TickTick.task.mac'
 run = 'move-node-to-workspace P'
 
 [[on-window-detected]]
+if.app-id = 'app.zen-browser.zen'
+run = 'move-node-to-workspace F'
+
+[[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
 run = 'move-node-to-workspace W'
-
 
 [[on-window-detected]]
 if.app-id = 'com.hnc.Discord'
 run = 'move-node-to-workspace S'
-
 
 [[on-window-detected]]
 if.app-id = 'net.coldx.App-for-WhatsApp-setapp'
@@ -314,6 +319,14 @@ run = ['layout floating', 'move-node-to-workspace S']
 
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
-run = 'move-node-to-workspace T'
+run = 'move-node-to-workspace D'
+
+[[on-window-detected]]
+if.app-id = 'com.jetbrains.datagrip'
+run = 'move-node-to-workspace A'
+
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+run = 'move-node-to-workspace A'
 
 {{ end }}
