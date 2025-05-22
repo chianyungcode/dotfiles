@@ -16,7 +16,7 @@ return {
 					filename_first = true,
 				},
 			},
-			-- Hapus toggles dan win jika ingin kembali ke default yang mana yang hidden pada snacks.picker menekan alt-h, ini saya modifikasi karena bertabrakan dengan aerospace
+			-- Hapus toggles dan win jika ingin kembali ke default yang mana yang toggle_hidden pada snacks.picker menekan alt-h, ini saya modifikasi karena bertabrakan dengan aerospace
 			toggles = {
 				hidden = "u",
 			},
