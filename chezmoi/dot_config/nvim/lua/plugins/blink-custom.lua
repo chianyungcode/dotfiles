@@ -13,20 +13,22 @@ return {
 
 				-- Uncomment dibawah jika ingin kembali ke setinggan sebelumnya
 				-- default = { "obsidian", "obsidian_new", "obsidian_tags" },
-				-- providers = {
-				-- 	obsidian = {
-				-- 		name = "obsidian",
-				-- 		module = "blink.compat.source",
-				-- 	},
-				-- 	obsidian_new = {
-				-- 		name = "obsidian_new",
-				-- 		module = "blink.compat.source",
-				-- 	},
-				-- 	obsidian_tags = {
-				-- 		name = "obsidian_tags",
-				-- 		module = "blink.compat.source",
-				-- 	},
-				-- },
+				default = { "ecolog", "lsp", "path", "snippets", "buffer" },
+				providers = {
+					-- 	obsidian = {
+					-- 		name = "obsidian",
+					-- 		module = "blink.compat.source",
+					-- 	},
+					-- 	obsidian_new = {
+					-- 		name = "obsidian_new",
+					-- 		module = "blink.compat.source",
+					-- 	},
+					-- 	obsidian_tags = {
+					-- 		name = "obsidian_tags",
+					-- 		module = "blink.compat.source",
+					-- 	},
+					ecolog = { name = "ecolog", module = "ecolog.integrations.cmp.blink_cmp" },
+				},
 			},
 
 			-- Ini untuk ignore type file tertentu
@@ -41,6 +43,7 @@ return {
 			-- 2 line diatas saya adalah tulisan sendiri
 			keymap = {
 				preset = "default", -- Opsi ini bisa dilihat disini https://github.com/Saghen/blink.cmp?tab=readme-ov-file#configuration khususnya bagian default-configuration toggle
+				["<Tab>"] = { "select_and_accept" },
 				["<A-1>"] = {
 					function(cmp)
 						cmp.accept({ index = 1 })
