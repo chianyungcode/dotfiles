@@ -16,6 +16,17 @@ return {
 					filename_first = true,
 				},
 			},
+			-- Hapus toggles dan win jika ingin kembali ke default yang mana yang hidden pada snacks.picker menekan alt-h, ini saya modifikasi karena bertabrakan dengan aerospace
+			toggles = {
+				hidden = "u",
+			},
+			win = {
+				input = {
+					keys = {
+						["<a-u>"] = { "toggle_hidden", mode = { "i", "n" } },
+					},
+				},
+			},
 		},
 		terminal = {
 			win = {
