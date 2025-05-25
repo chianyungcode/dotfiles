@@ -1,6 +1,4 @@
--- if true then
--- 	return {}
--- end
+-- Plugin for dimming another window
 
 return {
 	{
