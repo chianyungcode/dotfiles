@@ -1,10 +1,7 @@
-if true then
-	return {}
-end
-
 return {
 	{
 		"luukvbaal/statuscol.nvim",
+		enabled = false,
 		config = function()
 			local builtin = require("statuscol.builtin")
 			local utils = require("utils.status-column-util")
