@@ -25,10 +25,10 @@ return {
 				name = "personal",
 				path = "/Users/chianyung/Desktop/vault-obsidian",
 			},
-			{
-				name = "work",
-				path = "~/vaults/work",
-			},
+			-- {
+			-- 	name = "work",
+			-- 	path = "~/vaults/work",
+			-- },
 		},
 		wiki_link_func = "use_alias_only",
 		completion = {
