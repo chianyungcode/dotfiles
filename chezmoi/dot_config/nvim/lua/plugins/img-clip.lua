@@ -1,3 +1,4 @@
+-- Copy paste image to latex or markdown file in Neovim
 return {
 	"HakonHarnes/img-clip.nvim",
 	event = "VeryLazy",
