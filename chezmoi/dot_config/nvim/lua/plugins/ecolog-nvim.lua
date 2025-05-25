@@ -6,8 +6,8 @@ return {
 		{ "<leader>ge", "<cmd>EcologGoto<cr>", desc = "Go to env file" },
 		{ "<leader>ep", "<cmd>EcologPeek<cr>", desc = "Ecolog peek variable" },
 		{ "<leader>es", "<cmd>EcologSelect<cr>", desc = "Switch env file" },
-		{ "<leader>eh", "<cmd>EcologShelterToggle<cr>", desc = "Masking to *" },
-		{ "<leader>eP", "<cmd>EcologShelterLinePeek<cr>", desc = "Masking to *" },
+		{ "<leader>eh", "<cmd>EcologShelterToggle<cr>", desc = "Toggle masking / shelter to *" },
+		{ "<leader>eP", "<cmd>EcologShelterLinePeek<cr>", desc = "Toggle shelter line peek" },
 	},
 	-- Lazy loading is done internally
 	lazy = false,
