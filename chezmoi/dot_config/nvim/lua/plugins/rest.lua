@@ -1,3 +1,4 @@
+-- A very fast, powerful, extensible and asynchronous Neovim HTTP client written in Lua. Postman like in Neovim
 return {
 	"rest-nvim/rest.nvim",
 	enabled = false,
