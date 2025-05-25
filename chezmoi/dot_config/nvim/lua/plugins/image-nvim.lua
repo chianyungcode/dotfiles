@@ -1,7 +1,4 @@
--- if true then
---   return {}
--- end
-
+-- https://github.com/3rd/image.nvim
 return {
 	{
 		"3rd/image.nvim",
