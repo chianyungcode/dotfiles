@@ -6,6 +6,7 @@ return {
 	-- { "killitar/obscure.nvim" },
 	{
 		"oxfist/night-owl.nvim",
+		enabled = false,
 		lazy = false,
 		priority = 1000,
 	},
@@ -53,7 +54,7 @@ return {
 	-- },
 	{
 		"dgox16/oldworld.nvim",
-		enabled = true,
+		enabled = false,
 		lazy = false,
 		priority = 1000,
 		config = function()
@@ -94,6 +95,7 @@ return {
 	{
 		"olivercederborg/poimandres.nvim",
 		lazy = false,
+		enabled = false,
 		priority = 1000,
 		config = function()
 			require("poimandres").setup({
@@ -162,7 +164,7 @@ return {
 	{
 		"rose-pine/neovim",
 		name = "rose-pine",
-		enabled = true,
+		enabled = false,
 	},
 	{
 		"Skardyy/makurai-nvim",
