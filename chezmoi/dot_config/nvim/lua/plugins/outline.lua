@@ -1,4 +1,5 @@
 -- https://github.com/hedyhli/outline.nvim
+-- Similar with "bassamsdata/namu.nvim",
 return {
 	"hedyhli/outline.nvim",
 	config = function()
