@@ -1,3 +1,6 @@
+-- https://github.com/mfussenegger/nvim-lint?tab=readme-ov-file
+-- https://github.com/DavidAnson/markdownlint-cli2
+
 return {
 	"mfussenegger/nvim-lint",
 	optional = true,
