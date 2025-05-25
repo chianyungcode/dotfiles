@@ -1,3 +1,5 @@
+-- Similar with "hedyhli/outline.nvim" plugin
+--
 return {
 	"bassamsdata/namu.nvim",
 	enabled = false,
@@ -20,7 +22,7 @@ return {
 			},
 		})
 		-- === Suggested Keymaps: ===
-		vim.keymap.set("n", "<leader>ss", ":Namu symbols<cr>", {
+		vim.keymap.set("n", "<leader>ts", ":Namu symbols<cr>", {
 			desc = "Jump to LSP symbol (namu-nvim)",
 			silent = true,
 		})
