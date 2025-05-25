@@ -1,3 +1,4 @@
+-- Similar with mini.surround, nvim-surround.
 return {
 	"NStefan002/visual-surround.nvim",
 	enabled = false,
