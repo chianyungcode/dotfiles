@@ -1,3 +1,4 @@
+-- Similar with Diffview plugin
 return {
 	"tanvirtin/vgit.nvim",
 	branch = "v1.0.x",
