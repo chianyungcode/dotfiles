@@ -1,3 +1,4 @@
+-- Untuk masking env value di .env* file
 return {
 	"t3ntxcl3s/ecolog.nvim",
 	-- Optional: you can add some keybindings
