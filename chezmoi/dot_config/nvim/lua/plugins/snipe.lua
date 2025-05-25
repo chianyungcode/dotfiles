@@ -1,6 +1,6 @@
 return {
 	"leath-dub/snipe.nvim",
-	enabled = false,
+	enabled = true,
 	keys = {
 		{
 			"gb",
