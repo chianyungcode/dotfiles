@@ -35,6 +35,8 @@ return {
 			blink = true,
 		},
 
-		-- see below for full list of options 👇
+		ui = {
+			enable = false,
+		}, -- see below for full list of options 👇
 	},
 }

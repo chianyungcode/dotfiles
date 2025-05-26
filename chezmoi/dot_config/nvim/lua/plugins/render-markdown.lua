@@ -9,6 +9,9 @@ return {
 	opts = {},
 	config = function()
 		require("render-markdown").setup({
+			latex = {
+				enabled = false,
+			},
 			heading = {
 				enabled = true,
 				sign = true,
