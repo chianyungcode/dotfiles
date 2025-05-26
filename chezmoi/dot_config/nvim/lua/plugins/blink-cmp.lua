@@ -1,7 +1,4 @@
--- if true then
--- 	return {}
--- end
-
+-- Completion plugin
 return {
 	{
 		"saghen/blink.cmp",
