@@ -6,11 +6,11 @@ return {
 
 		opts = {
 			sources = {
-				compat = { "obsidian", "obsidian_new", "obsidian_tags" },
+				-- compat = { "obsidian", "obsidian_new", "obsidian_tags" },
 
 				-- Uncomment dibawah jika ingin kembali ke setinggan sebelumnya
 				-- default = { "obsidian", "obsidian_new", "obsidian_tags" },
-				default = { "ecolog", "lsp", "path", "snippets", "buffer" },
+				-- default = { "ecolog", "lsp", "path", "snippets", "buffer" },
 				providers = {
 					-- 	obsidian = {
 					-- 		name = "obsidian",
@@ -40,7 +40,8 @@ return {
 			-- 2 line diatas saya adalah tulisan sendiri
 			keymap = {
 				preset = "default", -- Opsi ini bisa dilihat disini https://github.com/Saghen/blink.cmp?tab=readme-ov-file#configuration khususnya bagian default-configuration toggle
-				["<Tab>"] = { "select_and_accept" },
+				["<Tab>"] = {},
+
 				["<A-1>"] = {
 					function(cmp)
 						cmp.accept({ index = 1 })
