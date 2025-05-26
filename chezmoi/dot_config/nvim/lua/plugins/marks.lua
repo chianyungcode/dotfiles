@@ -1,6 +1,6 @@
 return {
 	"chentoast/marks.nvim",
-	enabled = false,
+	enabled = true,
 	event = "VeryLazy",
 	opts = {},
 }
