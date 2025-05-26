@@ -10,6 +10,7 @@ return {
 		config = function()
 			require("mason-lspconfig").setup({
 				ensure_installed = {
+					-- Semua dibawah ini dinamakan registries
 					"templ", -- Go
 					"markdown_oxide",
 					"ts_ls", -- Kode error diagnostic 'ts'
@@ -19,6 +20,9 @@ return {
 					"vtsls",
 					"astro",
 					"gopls",
+					"html",
+					"jsonls",
+					"denols",
 				},
 				automatic_enable = {
 					exclude = {
