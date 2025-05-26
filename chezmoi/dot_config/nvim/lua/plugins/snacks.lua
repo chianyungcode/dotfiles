@@ -44,8 +44,5 @@ return {
 				},
 			},
 		},
-		-- explorer = {
-		-- 	enabled = true,
-		-- },
 	},
 }
