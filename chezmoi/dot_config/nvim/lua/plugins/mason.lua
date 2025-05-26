@@ -1,6 +1,6 @@
 return {
 	{
-		"mason-org/mason-lspconfig.nvim", -- Ini yang menmberitahu ke nvim-lspconfig mana LSP yang harus dijalankan
+		"mason-org/mason-lspconfig.nvim", -- Ini yang memberitahu ke nvim-lspconfig mana LSP yang harus dijalankan
 		version = "1.32.0",
 		opts = {},
 		dependencies = {
