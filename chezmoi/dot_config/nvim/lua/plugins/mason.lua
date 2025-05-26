@@ -10,11 +10,21 @@ return {
 		config = function()
 			require("mason-lspconfig").setup({
 				ensure_installed = {
-					"templ",
+					"templ", -- Go
+					"markdown_oxide",
+					"ts_ls", -- Kode error diagnostic 'ts'
+					"lua_ls",
+					"eslint", -- Kode error diagnostic 'typesript-eslint'
+					"biome",
+					"vtsls",
+					"astro",
+					"gopls",
 				},
 				automatic_enable = {
 					exclude = {
 						"marksman",
+						"harper-ls",
+						"shellcheck",
 					},
 				},
 			})
@@ -24,10 +34,5 @@ return {
 	{
 		"mason-org/mason.nvim", -- Ini seperti UI nya di Neovim untuk menginstall berbagai LSP, formatters, linters dsb
 		version = "1.11.0",
-		opts = {
-			ensure_installed = {
-				"harper-ls",
-			},
-		},
 	},
 }
