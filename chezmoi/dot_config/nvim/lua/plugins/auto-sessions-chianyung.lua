@@ -1,8 +1,3 @@
--- if true then
--- return {}
--- end
--- Uncomment this line above if want to active this plugin
-
 return {
 	{
 		"rmagatti/auto-session",
