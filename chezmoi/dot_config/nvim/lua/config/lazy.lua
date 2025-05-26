@@ -16,27 +16,29 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	spec = {
-		-- add LazyVim and import its plugins
+		-- Add LazyVim and import its plugins
 		{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
-		-- { import = "lazyvim.plugins.extras.lang.markdown" }, -- makrsman
+		-- { import = "lazyvim.plugins.extras.lang.markdown" }, -- marksman
+
 		{ import = "lazyvim.plugins.extras.util.dot" },
 		{ import = "lazyvim.plugins.extras.lang.tailwind" },
 		{ import = "lazyvim.plugins.extras.lang.typescript" },
 		{ import = "lazyvim.plugins.extras.lang.git" },
-		{ import = "lazyvim.plugins.extras.lang.angular" },
-		{ import = "lazyvim.plugins.extras.lang.astro" },
+		-- { import = "lazyvim.plugins.extras.lang.angular" },
+		-- { import = "lazyvim.plugins.extras.lang.astro" },
 		{ import = "lazyvim.plugins.extras.lang.docker" },
 		{ import = "lazyvim.plugins.extras.lang.prisma" },
 		{ import = "lazyvim.plugins.extras.lang.yaml" },
 		{ import = "lazyvim.plugins.extras.lang.toml" },
 		{ import = "lazyvim.plugins.extras.lang.json" },
-		{ import = "lazyvim.plugins.extras.lang.vue" },
-		{ import = "lazyvim.plugins.extras.lang.svelte" },
+		-- { import = "lazyvim.plugins.extras.lang.vue" },
+		-- { import = "lazyvim.plugins.extras.lang.svelte" },
 		{ import = "lazyvim.plugins.extras.editor.inc-rename" },
 		{ import = "lazyvim.plugins.extras.formatting.biome" },
 		{ import = "lazyvim.plugins.extras.formatting.prettier" },
 		{ import = "lazyvim.plugins.extras.linting.eslint" },
 		{ import = "lazyvim.plugins.extras.editor.snacks_picker" },
+
 		-- { import = "lazyvim.plugins.extras.ui.smear-cursor" },
 		-- { import = "lazyvim.plugins.extras.coding.mini-surround" },
 
