@@ -5,3 +5,7 @@
 -- Related to plugin wormhole
 vim.keymap.set("n", "<leader>wl", "<Plug>(WormholeLabels)", { desc = "Wormhole Labels" })
 vim.keymap.set("n", "<Esc>", "<Plug>(WormholeCloseLabels)", { desc = "Wormhole Close Labels" })
+-- vim.keymap.set("n", "<leader>e", function() end, { desc = "Chian" })
+
+-- Syntax
+-- vim.keymap.set("mode-vim", "keymaps", "command / function", { desc = "Wormhole Close Labels" })
