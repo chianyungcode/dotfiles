@@ -10,7 +10,7 @@ return {
 
 				-- Uncomment dibawah jika ingin kembali ke setinggan sebelumnya
 				-- default = { "obsidian", "obsidian_new", "obsidian_tags" },
-				-- default = { "ecolog", "lsp", "path", "snippets", "buffer" },
+				default = { "ecolog", "lsp", "path", "snippets", "buffer" },
 				providers = {
 					-- 	obsidian = {
 					-- 		name = "obsidian",
