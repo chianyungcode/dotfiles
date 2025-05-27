@@ -9,6 +9,10 @@
 -- })
 
 vim.opt.spelllang = { "en", "id" }
+
+-- Enable this option to avoid conflicts with Prettier. https://www.lazyvim.org/extras/formatting/biome
+-- vim.g.lazyvim_prettier_needs_config = true
+
 -- vim.diagnostic.config({
 -- 	virtual_text = true,
 -- 	virtual_lines = { current_line = true },
