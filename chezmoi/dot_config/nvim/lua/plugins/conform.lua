@@ -10,10 +10,10 @@ return {
 			-- https://medium.com/@lysender/using-biome-with-neovim-and-conform-afcc0ea0524b
 			formatters_by_ft = { -- https://github.com/stevearc/conform.nvim?tab=readme-ov-file#setup
 				nix = { "nixfmt" },
-				javascript = { "biome", "biome-organize-imports", "prettier" },
-				javascriptreact = { "biome", "biome-organize-imports", "prettier" },
-				typescript = { "biome", "biome-organize-imports", "prettier" },
-				typescriptreact = { "biome", "biome-organize-imports", "prettier" },
+				-- javascript = { "biome", "biome-organize-imports", "prettier" },
+				-- javascriptreact = { "biome", "biome-organize-imports", "prettier" },
+				-- typescript = { "biome", "biome-organize-imports", "prettier" },
+				-- typescriptreact = { "biome", "biome-organize-imports", "prettier" },
 			},
 		},
 	},

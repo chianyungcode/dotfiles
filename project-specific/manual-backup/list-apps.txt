@@ -1,10 +1,13 @@
+/Applications/Research.app
 /Applications/PocketTube.app
 /Applications/CorelDRAW Graphics Suite 2022/CorelDRAW.app
 /Applications/DBngin.app
+/Applications/Modoki.app
 /Applications/WezTerm.app
 /Applications/LaunchPalette Helper.app
 /Applications/Visual Studio Code.app
 /Applications/VLC.app
+/Applications/Morgen.app
 /Applications/Codux.app
 /Applications/Bunch.app
 /Applications/Kosmik.app
@@ -18,17 +21,20 @@
 /Applications/SigmaOS.app
 /Applications/iwallpaper.app
 /Applications/ExpressVPN.app
+/Applications/Dia.app
 /Applications/Raindrop.io.app
 /Applications/1Password.app
 /Applications/via-desktop.app
 /Applications/Barik.app
 /Applications/LM Studio.app
+/Applications/Claude.app
 /Applications/Termius.app
 /Applications/Raycast.app
 /Applications/Figma.app
 /Applications/BudgetFlow.app
 /Applications/Speedtest.app
 /Applications/Velja.app
+/Applications/BetterDisplay.app
 /Applications/Rectangle.app
 /Applications/Bananotate.app
 /Applications/Google Chrome.app
@@ -50,6 +56,7 @@
 /Applications/OneDrive.app
 /Applications/Final Cut Pro Trial.app
 /Applications/Warp.app
+/Applications/legcord.app
 /Applications/YubiKey Manager.app
 /Applications/Spotify.app
 /Applications/Spaced.app
@@ -69,33 +76,34 @@
 /Applications/Trae.app
 /Applications/Rio.app
 /Applications/Amazon Q.app
-/Applications/CloudMounter.app
 /Applications/focusedOS.app
 /Applications/Zed.app
 /Applications/Pieces OS.app
 /Applications/Audacity.app
+/Applications/MediaMate.app
 /Applications/Teleport.app
 /Applications/Cloudflare WARP.app
 /Applications/Obsidian.app
-/Applications/Zen Browser.app
 /Applications/Loupedeck.app
 /Applications/TickTick.app
 /Applications/Homerow.app
+/Applications/LarkSuite.app
 /Applications/LaunchPalette.app
 /Applications/One Thing.app
 /Applications/Arc.app
 /Applications/Dropover.app
 /Applications/Microsoft Excel.app
+/Applications/Windsurf.app
 /Applications/LINE.app
 /Applications/OrbStack.app
 /Applications/Utilities/LogiPluginService.app
 /Applications/Swift Shift.app
 /Applications/Memo Widget.app
 /Applications/UTM.app
-/Applications/Opera Air.app
 /Applications/ChatGPT.app
 /Applications/Blender.app
 /Applications/zoom.us.app
+/Applications/Monocle.app
 /Applications/Microsoft Outlook.app
 /Applications/GitHub Desktop.app
 /Applications/Install Autodesk Fusion.app
@@ -103,6 +111,7 @@
 /Applications/Capacities.app
 /Applications/QuitApps.app
 /Applications/Keynote.app
+/Applications/Azure Data Studio.app
 /Applications/Hazel.app
 /Applications/Setapp/Downie.app
 /Applications/Setapp/CleanShot X.app
@@ -122,6 +131,7 @@
 /Applications/Setapp/Timing.app
 /Applications/Setapp/Boom.app
 /Applications/Setapp/Clop.app
+/Applications/Setapp/ForkLift.app
 /Applications/Setapp/DevUtils.app
 /Applications/Setapp/Timemator.app
 /Applications/Setapp/Clobbr.app
@@ -153,6 +163,8 @@
 /Applications/Insomnia.app
 /Applications/PiP.app
 /Applications/Lunar.app
+/Applications/ClickUp.app
+/Applications/Zen.app
 /Applications/Microsoft OneNote.app
 /Applications/Strflow.app
 /Applications/Ghostty.app
@@ -180,10 +192,14 @@
 /Applications/Pixelmator Pro Trial.app
 /Applications/Microsoft PowerPoint.app
 /Applications/AdGuard for Safari.app
+/Applications/Adobe Acrobat DC/Acrobat Distiller.app
+/Applications/Adobe Acrobat DC/Adobe Acrobat.app
 /Applications/Replacicon.app
 /Applications/Tailscale.app
 /Applications/LookAway.app
 /Applications/Slack.app
+/Applications/Toggl Track.app
+/Applications/Expo Orbit.app
 /Applications/Ollama.app
 /Applications/Ice.app
 /Applications/Spaceman.app
