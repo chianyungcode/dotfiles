@@ -339,4 +339,12 @@ run = 'move-node-to-workspace A'
 if.app-id = 'com.google.Chrome'
 run = 'move-node-to-workspace F'
 
+[[on-window-detected]]
+if.app-id = 'com.electron.wispr-flow'
+run = ['layout floating', 'move-node-to-workspace R']
+
+[[on-window-detected]]
+if.app-id = 'com.jinghaoshe.qspace.pro'
+run = ['layout floating', 'move-node-to-workspace R']
+
 {{ end }}
