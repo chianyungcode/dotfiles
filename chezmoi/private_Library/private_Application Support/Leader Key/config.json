@@ -112,6 +112,18 @@
           ],
           "key": "b",
           "type": "group"
+        },
+        {
+          "key": "t",
+          "type": "group",
+          "label": "Arc tabs",
+          "actions": [
+            {
+              "type": "url",
+              "key": "a",
+              "value": "raycast://extensions/the-browser-company/arc/search-tabs"
+            }
+          ]
         }
       ],
       "type": "group",
