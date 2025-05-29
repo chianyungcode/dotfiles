@@ -1,3 +1,4 @@
+-- Alternative : https://github.com/mg979/vim-visual-multi
 return {
 	"smoka7/multicursors.nvim",
 	event = "VeryLazy",

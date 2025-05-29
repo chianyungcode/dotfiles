@@ -9,7 +9,8 @@
 ## List of fonts
 
 - Geist Mono
-- Jebtrains Mono
+- JetBrains Mono
+- Berkeley Mono
 - 0xProto
 - Dank Mono
 - Cartograph CF
