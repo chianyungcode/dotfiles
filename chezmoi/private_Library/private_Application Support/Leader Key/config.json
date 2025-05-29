@@ -1,141 +1,31 @@
 {
   "actions": [
     {
-      "key": "a",
+      "key": "q",
       "type": "group",
+      "label": "Quit apps",
       "actions": [
         {
-          "type": "application",
-          "value": "/Applications/Safari.app",
-          "key": "s"
-        },
-        {
-          "type": "application",
-          "value": "/Applications/Ghostty.app",
-          "key": "g"
-        },
-        {
-          "type": "group",
-          "key": "c",
-          "actions": [
-            {
-              "type": "application",
-              "value": "/Applications/Capacities.app",
-              "key": "a"
-            },
-            {
-              "type": "application",
-              "value": "/Applications/Setapp/CleanShot X.app",
-              "key": "l"
-            },
-            {
-              "type": "application",
-              "value": "/Applications/Setapp/ChatMate for WhatsApp.app",
-              "key": "m"
-            },
-            {
-              "type": "application",
-              "value": "/Applications/Cursor.app",
-              "key": "s"
-            },
-            {
-              "type": "application",
-              "value": "/Applications/Setapp/CleanMyMac.app",
-              "key": "x"
-            },
-            {
-              "type": "application",
-              "value": "/Applications/CloudMounter.app",
-              "key": "t"
-            }
-          ]
-        },
-        {
-          "type": "group",
           "key": "a",
-          "actions": [
-            {
-              "type": "application",
-              "value": "/Applications/Arc.app",
-              "key": "r"
-            },
-            {
-              "type": "application",
-              "value": "/Applications/Google Chrome.app",
-              "key": "c"
-            },
-            {
-              "type": "application",
-              "value": "/Applications/Apidog.app",
-              "key": "d"
-            },
-            {
-              "type": "application",
-              "value": "/System/Applications/Utilities/Activity Monitor.app",
-              "key": "m"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "group",
-      "key": "d",
-      "actions": [
-        {
-          "type": "command",
-          "value": "lunar disconnect without-cursor",
-          "key": "1"
-        }
-      ]
-    },
-    {
-      "key": "t",
-      "value": "/System/Applications/Utilities/Terminal.app",
-      "type": "application"
-    },
-    {
-      "key": "o",
-      "type": "group",
-      "actions": [
-        {
-          "type": "application",
-          "value": "/Applications/Safari.app",
-          "key": "s"
-        },
-        {
-          "value": "/Applications/Mail.app",
-          "type": "application",
-          "key": "e"
-        },
-        {
-          "value": "/System/Applications/Music.app",
-          "type": "application",
-          "key": "i"
-        },
-        {
-          "type": "application",
-          "value": "/Applications/Messages.app",
-          "key": "m"
-        },
-        {
           "type": "group",
-          "key": "a",
           "actions": [
             {
-              "value": "/Applications/Postman.app",
+              "key": "a",
+              "type": "url",
+              "value": "raycast://extensions/raycast/system/quit-all-apps",
+              "label": "Quit all apps"
+            },
+            {
               "key": "s",
-              "type": "application"
+              "type": "url",
+              "value": "raycast://extensions/mackopes/quit-applications/index",
+              "label": "Quit selected apps"
             },
             {
-              "key": "w",
+              "key": "q",
               "type": "url",
-              "value": "https://vpn.klikbca.com"
-            },
-            {
-              "type": "url",
-              "value": "https://mesinotomatis.com/client/bank/login/",
-              "key": "m"
+              "value": "workspaces://start/50D75D01-0BD7-4356-97D4-85B63F1EFA92",
+              "label": "Quit all apps (workspace)"
             }
           ]
         }
@@ -143,6 +33,7 @@
     },
     {
       "type": "group",
+      "label": "Raycast",
       "actions": [
         {
           "type": "url",
@@ -224,39 +115,48 @@
         }
       ],
       "type": "group",
+      "label": "Website",
       "key": "w"
     },
     {
+      "key": "s",
+      "label": "System",
       "type": "group",
       "actions": [
         {
           "type": "group",
+          "key": "s",
+          "label": "Rest",
           "actions": [
             {
               "type": "command",
               "key": "l",
+              "label": "Sleep",
               "value": "pmset sleepnow"
             },
             {
               "type": "command",
               "key": "v",
+              "label": "Screen Saver",
               "value": "open -a ScreenSaverEngine.app"
             }
-          ],
-          "key": "s"
+          ]
         },
         {
-          "value": "osascript -e 'tell application \"System Events\" to keystroke \"b\" using {command down, control down, option down}'",
-          "key": "b",
-          "type": "command"
-        },
-        {
-          "type": "command",
-          "value": "shortcuts run \"Start Session Only\"",
-          "key": "a"
+          "type": "group",
+          "key": "c",
+          "label": "Shortcuts",
+          "actions": [
+            {
+              "type": "command",
+              "value": "shortcuts run \"Start Session Only\"",
+              "key": "a"
+            }
+          ]
         },
         {
           "key": "w",
+          "label": "Network",
           "type": "group",
           "actions": [
             {
@@ -271,8 +171,7 @@
             }
           ]
         }
-      ],
-      "key": "s"
+      ]
     },
     {
       "type": "group",
