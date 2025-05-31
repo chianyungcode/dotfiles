@@ -5,10 +5,10 @@ return {
 	-- (I personally use lspsaga so check out lspsaga integration or lsp integration for a smoother experience without separate keybindings)
 	keys = {
 		{ "<leader>ge", "<cmd>EcologGoto<cr>", desc = "Go to env file" },
-		{ "<leader>ep", "<cmd>EcologPeek<cr>", desc = "Ecolog peek variable" },
-		{ "<leader>es", "<cmd>EcologSelect<cr>", desc = "Switch env file" },
-		{ "<leader>eh", "<cmd>EcologShelterToggle<cr>", desc = "Toggle masking / shelter to *" },
-		{ "<leader>eP", "<cmd>EcologShelterLinePeek<cr>", desc = "Toggle shelter line peek" },
+		{ "<leader>Op", "<cmd>EcologPeek<cr>", desc = "Ecolog peek variable" },
+		{ "<leader>Os", "<cmd>EcologSelect<cr>", desc = "Switch env file" },
+		{ "<leader>Oh", "<cmd>EcologShelterToggle<cr>", desc = "Toggle masking / shelter to *" },
+		{ "<leader>OP", "<cmd>EcologShelterLinePeek<cr>", desc = "Toggle shelter line peek" },
 	},
 	-- Lazy loading is done internally
 	lazy = false,
