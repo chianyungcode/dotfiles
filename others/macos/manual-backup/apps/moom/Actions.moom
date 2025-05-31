@@ -1,0 +1,1566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Custom Controls (4001)</key>
+	<array>
+		<dict>
+			<key>Action</key>
+			<integer>10001</integer>
+			<key>Chain Mode</key>
+			<integer>0</integer>
+			<key>Children</key>
+			<array>
+				<dict>
+					<key>Action</key>
+					<integer>10001</integer>
+					<key>Chain</key>
+					<true/>
+					<key>Chain Mode</key>
+					<integer>0</integer>
+					<key>Children</key>
+					<array>
+						<dict>
+							<key>Action</key>
+							<integer>51</integer>
+							<key>Identifier</key>
+							<string>25C8B6F0-07E2-4713-8826-E326988AAA15</string>
+							<key>Resize Anchor</key>
+							<integer>1</integer>
+							<key>Resize Height Unit</key>
+							<integer>0</integer>
+							<key>Resize Size</key>
+							<string>{1920, 1080}</string>
+							<key>Resize Width Unit</key>
+							<integer>0</integer>
+							<key>Title</key>
+							<string>Resize</string>
+						</dict>
+						<dict>
+							<key>Action</key>
+							<integer>21</integer>
+							<key>Center Mode</key>
+							<integer>1</integer>
+							<key>Identifier</key>
+							<string>9B3590DF-2443-4792-A2A5-1E0ED950025E</string>
+						</dict>
+					</array>
+					<key>Hot Key</key>
+					<dict>
+						<key>Identifier</key>
+						<string>904307ED-CEF8-4D62-A11A-B76040C762AE</string>
+						<key>Key Code</key>
+						<integer>19</integer>
+						<key>Modifier Flags</key>
+						<integer>256</integer>
+						<key>Visual Representation</key>
+						<string>2</string>
+					</dict>
+					<key>Identifier</key>
+					<string>904307ED-CEF8-4D62-A11A-B76040C762AE</string>
+					<key>Title</key>
+					<string>1920 x 1080</string>
+				</dict>
+				<dict>
+					<key>Action</key>
+					<integer>10001</integer>
+					<key>Chain</key>
+					<true/>
+					<key>Chain Mode</key>
+					<integer>0</integer>
+					<key>Children</key>
+					<array>
+						<dict>
+							<key>Action</key>
+							<integer>51</integer>
+							<key>Identifier</key>
+							<string>E33DFE75-A9BD-4BF1-8D99-815A05C61B38</string>
+							<key>Resize Anchor</key>
+							<integer>1</integer>
+							<key>Resize Height Unit</key>
+							<integer>0</integer>
+							<key>Resize Size</key>
+							<string>{1080, 840}</string>
+							<key>Resize Width Unit</key>
+							<integer>0</integer>
+							<key>Title</key>
+							<string>Resize</string>
+						</dict>
+						<dict>
+							<key>Action</key>
+							<integer>21</integer>
+							<key>Center Mode</key>
+							<integer>1</integer>
+							<key>Identifier</key>
+							<string>8CE9927A-064F-46B8-AAFE-B764480A3BA5</string>
+						</dict>
+					</array>
+					<key>Hot Key</key>
+					<dict>
+						<key>Identifier</key>
+						<string>3F128EBD-1E76-4C5E-A101-466B1CB968A8</string>
+						<key>Key Code</key>
+						<integer>18</integer>
+						<key>Modifier Flags</key>
+						<integer>256</integer>
+						<key>Visual Representation</key>
+						<string>1</string>
+					</dict>
+					<key>Identifier</key>
+					<string>3F128EBD-1E76-4C5E-A101-466B1CB968A8</string>
+					<key>Title</key>
+					<string>1080 x 840</string>
+				</dict>
+			</array>
+			<key>Identifier</key>
+			<string>D1EA941E-3853-40E2-9928-B2DEF68854D9</string>
+			<key>Title</key>
+			<string>Window Size</string>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>10001</integer>
+			<key>Chain Mode</key>
+			<integer>0</integer>
+			<key>Children</key>
+			<array>
+				<dict>
+					<key>Action</key>
+					<integer>1001</integer>
+					<key>Activate Applications</key>
+					<true/>
+					<key>Apply to Overlapping Windows</key>
+					<false/>
+					<key>Auto-Trigger</key>
+					<false/>
+					<key>Auto-Trigger Display Count</key>
+					<integer>1</integer>
+					<key>Generic</key>
+					<false/>
+					<key>Hot Key</key>
+					<dict>
+						<key>Identifier</key>
+						<string>32E30FF6-DC52-4FC4-9471-3080B9B2EE95</string>
+						<key>Key Code</key>
+						<integer>12</integer>
+						<key>Modifier Flags</key>
+						<integer>256</integer>
+						<key>Visual Representation</key>
+						<string>Q</string>
+					</dict>
+					<key>Identifier</key>
+					<string>32E30FF6-DC52-4FC4-9471-3080B9B2EE95</string>
+					<key>Snapshot</key>
+					<array>
+						<dict>
+							<key>Application Name</key>
+							<string>Ghostty</string>
+							<key>Available Screen Frame</key>
+							<string>{{0, 0}, {2560, 1415}}</string>
+							<key>Bundle Identifier</key>
+							<string>com.mitchellh.ghostty</string>
+							<key>PID</key>
+							<string>6603</string>
+							<key>Screen Frame</key>
+							<string>{{0, 0}, {2560, 1440}}</string>
+							<key>Window Frame</key>
+							<string>{{16, 16}, {1256, 1383}}</string>
+							<key>Window Number</key>
+							<string>837</string>
+							<key>Window Subrole</key>
+							<string>AXStandardWindow</string>
+							<key>Window Title</key>
+							<string>zsh</string>
+						</dict>
+						<dict>
+							<key>Application Name</key>
+							<string>Ghostty</string>
+							<key>Available Screen Frame</key>
+							<string>{{0, 0}, {2560, 1415}}</string>
+							<key>Bundle Identifier</key>
+							<string>com.mitchellh.ghostty</string>
+							<key>PID</key>
+							<string>6603</string>
+							<key>Screen Frame</key>
+							<string>{{0, 0}, {2560, 1440}}</string>
+							<key>Window Frame</key>
+							<string>{{1288, 16}, {1256, 1383}}</string>
+							<key>Window Number</key>
+							<string>742</string>
+							<key>Window Subrole</key>
+							<string>AXStandardWindow</string>
+							<key>Window Title</key>
+							<string>zsh</string>
+						</dict>
+					</array>
+					<key>Snapshot Screens</key>
+					<array>
+						<string>{{0, 0}, {2560, 1440}}</string>
+					</array>
+					<key>Stubborn</key>
+					<false/>
+				</dict>
+				<dict>
+					<key>Action</key>
+					<integer>1001</integer>
+					<key>Activate Applications</key>
+					<true/>
+					<key>Apply to Overlapping Windows</key>
+					<false/>
+					<key>Auto-Trigger</key>
+					<false/>
+					<key>Auto-Trigger Display Count</key>
+					<integer>1</integer>
+					<key>Generic</key>
+					<true/>
+					<key>Hot Key</key>
+					<dict>
+						<key>Identifier</key>
+						<string>AECDEB45-76EC-4D9E-AD0C-BDF19477C5DA</string>
+						<key>Key Code</key>
+						<integer>1</integer>
+						<key>Modifier Flags</key>
+						<integer>256</integer>
+						<key>Visual Representation</key>
+						<string>S</string>
+					</dict>
+					<key>Identifier</key>
+					<string>AECDEB45-76EC-4D9E-AD0C-BDF19477C5DA</string>
+					<key>Snapshot</key>
+					<array>
+						<dict>
+							<key>Application Name</key>
+							<string>Arc</string>
+							<key>Available Screen Frame</key>
+							<string>{{0, 0}, {2560, 1415}}</string>
+							<key>Bundle Identifier</key>
+							<string>company.thebrowser.browser</string>
+							<key>PID</key>
+							<string>49073</string>
+							<key>Screen Frame</key>
+							<string>{{0, 0}, {2560, 1440}}</string>
+							<key>Window Frame</key>
+							<string>{{16, 16}, {1256, 1383}}</string>
+							<key>Window Number</key>
+							<string>1474</string>
+							<key>Window Subrole</key>
+							<string>AXStandardWindow</string>
+							<key>Window Title</key>
+							<string>(3) Masjid Ini Udah 1000+ Tahun😱⁉️ Berkunjung ke MASJID AGUNG XI'AN🇨🇳 Semuanya SERBA HALAL😋 Xi'an Gra...</string>
+						</dict>
+						<dict>
+							<key>Application Name</key>
+							<string>Arc</string>
+							<key>Available Screen Frame</key>
+							<string>{{0, 0}, {2560, 1415}}</string>
+							<key>Bundle Identifier</key>
+							<string>company.thebrowser.browser</string>
+							<key>PID</key>
+							<string>49073</string>
+							<key>Screen Frame</key>
+							<string>{{0, 0}, {2560, 1440}}</string>
+							<key>Window Frame</key>
+							<string>{{1288, 16}, {1256, 1383}}</string>
+							<key>Window Number</key>
+							<string>1547</string>
+							<key>Window Subrole</key>
+							<string>AXStandardWindow</string>
+							<key>Window Title</key>
+							<string>Better Auth</string>
+						</dict>
+						<dict>
+							<key>Application Name</key>
+							<string>Ghostty</string>
+							<key>Available Screen Frame</key>
+							<string>{{0, 0}, {2560, 1415}}</string>
+							<key>Bundle Identifier</key>
+							<string>com.mitchellh.ghostty</string>
+							<key>PID</key>
+							<string>6603</string>
+							<key>Screen Frame</key>
+							<string>{{0, 0}, {2560, 1440}}</string>
+							<key>Window Frame</key>
+							<string>{{1288, 16}, {1256, 1383}}</string>
+							<key>Window Number</key>
+							<string>742</string>
+							<key>Window Subrole</key>
+							<string>AXStandardWindow</string>
+							<key>Window Title</key>
+							<string>zsh</string>
+						</dict>
+						<dict>
+							<key>Application Name</key>
+							<string>Ghostty</string>
+							<key>Available Screen Frame</key>
+							<string>{{0, 0}, {2560, 1415}}</string>
+							<key>Bundle Identifier</key>
+							<string>com.mitchellh.ghostty</string>
+							<key>PID</key>
+							<string>6603</string>
+							<key>Screen Frame</key>
+							<string>{{0, 0}, {2560, 1440}}</string>
+							<key>Window Frame</key>
+							<string>{{16, 16}, {1256, 1383}}</string>
+							<key>Window Number</key>
+							<string>837</string>
+							<key>Window Subrole</key>
+							<string>AXStandardWindow</string>
+							<key>Window Title</key>
+							<string>zsh</string>
+						</dict>
+					</array>
+					<key>Snapshot Screens</key>
+					<array>
+						<string>{{0, 0}, {2560, 1440}}</string>
+					</array>
+					<key>Stubborn</key>
+					<false/>
+					<key>Title</key>
+					<string>Split Vertical</string>
+				</dict>
+				<dict>
+					<key>Action</key>
+					<integer>10001</integer>
+					<key>Chain Mode</key>
+					<integer>0</integer>
+					<key>Children</key>
+					<array>
+						<dict>
+							<key>Action</key>
+							<integer>1001</integer>
+							<key>Activate Applications</key>
+							<false/>
+							<key>Apply to Overlapping Windows</key>
+							<false/>
+							<key>Auto-Trigger</key>
+							<false/>
+							<key>Auto-Trigger Display Count</key>
+							<integer>1</integer>
+							<key>Generic</key>
+							<false/>
+							<key>Hot Key</key>
+							<dict>
+								<key>Identifier</key>
+								<string>76FC9986-6E7B-4214-914F-FFAAFB37BA9B</string>
+								<key>Key Code</key>
+								<integer>34</integer>
+								<key>Modifier Flags</key>
+								<integer>256</integer>
+								<key>Visual Representation</key>
+								<string>I</string>
+							</dict>
+							<key>Identifier</key>
+							<string>76FC9986-6E7B-4214-914F-FFAAFB37BA9B</string>
+							<key>Snapshot</key>
+							<array>
+								<dict>
+									<key>Application Name</key>
+									<string>Arc</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>company.thebrowser.browser</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{0, 0}, {1040, 1415}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>WEEZY</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Ghostty</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.mitchellh.ghostty</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{1040, 0}, {1520, 1415}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>zsh</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Arc</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>company.thebrowser.browser</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{0, 0}, {1280, 1415}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>SmiteshP/nvim-navic: Simple winbar/statusline plugin that shows your current code context</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Arc</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>company.thebrowser.browser</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{1035, 537}, {490, 360}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Reddit</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Discord</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.hnc.discord</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{640, 521}, {1280, 720}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Friends - Discord</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Notion</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>notion.id</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{1280, 0}, {1280, 1415}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>neovim / nvim</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Google Chrome</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.google.chrome</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Internet tidak konek setelah bayar | Fastmail - Google Chrome - Chian</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Telegram</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.tdesktop.telegram</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{840, 388}, {880, 688}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>‎⁨Mesin Otomatis⁩ – (7121)</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Downie</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.charliemonroe.downie-setapp</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{884, 535}, {856, 371}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Downie</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Slack</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.tinyspeck.slackmacgap</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>! problem (Channel) - WEEZY 2024 - 8 new items - Slack</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Music</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.apple.music</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{706, 332}, {1147, 800}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Music</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Safari</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.apple.safari</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Personal — jeju air passenger - Penelusuran Google</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>TickTick</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.ticktick.task.mac</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>TickTick</string>
+								</dict>
+							</array>
+							<key>Snapshot Screens</key>
+							<array>
+								<string>{{0, 0}, {2560, 1440}}</string>
+							</array>
+							<key>Stubborn</key>
+							<false/>
+							<key>Title</key>
+							<string>Obsidian (nvim) Arc Layout</string>
+						</dict>
+						<dict>
+							<key>Action</key>
+							<integer>1001</integer>
+							<key>Activate Applications</key>
+							<true/>
+							<key>Apply to Overlapping Windows</key>
+							<false/>
+							<key>Auto-Trigger</key>
+							<false/>
+							<key>Auto-Trigger Display Count</key>
+							<integer>1</integer>
+							<key>Generic</key>
+							<false/>
+							<key>Hot Key</key>
+							<dict>
+								<key>Identifier</key>
+								<string>BFEC106D-A360-4FC0-A9C1-4885CBA8E62E</string>
+								<key>Key Code</key>
+								<integer>45</integer>
+								<key>Modifier Flags</key>
+								<integer>256</integer>
+								<key>Visual Representation</key>
+								<string>N</string>
+							</dict>
+							<key>Identifier</key>
+							<string>BFEC106D-A360-4FC0-A9C1-4885CBA8E62E</string>
+							<key>Snapshot</key>
+							<array>
+								<dict>
+									<key>Application Name</key>
+									<string>Notion</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>notion.id</string>
+									<key>PID</key>
+									<string>981</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{1288, 16}, {1256, 1383}}</string>
+									<key>Window Number</key>
+									<string>58</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>HazeOver</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Zen</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>app.zen-browser.zen</string>
+									<key>PID</key>
+									<string>19850</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{16, 16}, {1256, 1383}}</string>
+									<key>Window Number</key>
+									<string>2822</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Course: The Complete SQL Bootcamp (30 Hours): Go from Zero to Hero | Udemy</string>
+								</dict>
+							</array>
+							<key>Snapshot Screens</key>
+							<array>
+								<string>{{0, 0}, {2560, 1440}}</string>
+							</array>
+							<key>Stubborn</key>
+							<false/>
+							<key>Title</key>
+							<string>Zen - Notion</string>
+						</dict>
+						<dict>
+							<key>Action</key>
+							<integer>1001</integer>
+							<key>Activate Applications</key>
+							<true/>
+							<key>Apply to Overlapping Windows</key>
+							<false/>
+							<key>Auto-Trigger</key>
+							<false/>
+							<key>Auto-Trigger Display Count</key>
+							<integer>1</integer>
+							<key>Generic</key>
+							<false/>
+							<key>Hot Key</key>
+							<dict>
+								<key>Identifier</key>
+								<string>F80B0F77-1828-476C-B181-B19849D03798</string>
+								<key>Key Code</key>
+								<integer>31</integer>
+								<key>Modifier Flags</key>
+								<integer>256</integer>
+								<key>Visual Representation</key>
+								<string>O</string>
+							</dict>
+							<key>Identifier</key>
+							<string>F80B0F77-1828-476C-B181-B19849D03798</string>
+							<key>Snapshot</key>
+							<array>
+								<dict>
+									<key>Application Name</key>
+									<string>Zen</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>app.zen-browser.zen</string>
+									<key>PID</key>
+									<string>19850</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{16, 16}, {1256, 1383}}</string>
+									<key>Window Number</key>
+									<string>3767</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Zen Browser</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Obsidian</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>md.obsidian</string>
+									<key>PID</key>
+									<string>23596</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{1288, 16}, {1256, 1383}}</string>
+									<key>Window Number</key>
+									<string>4094</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Why pomodoro doesn't work - vault-obsidian - Obsidian v1.8.10</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Notion</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>notion.id</string>
+									<key>PID</key>
+									<string>23595</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{1288, 16}, {1256, 1383}}</string>
+									<key>Window Number</key>
+									<string>4088</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>MacOS automation tools</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Activity Monitor</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.apple.activitymonitor</string>
+									<key>PID</key>
+									<string>3732</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{700, 203}, {1159, 1058}}</string>
+									<key>Window Number</key>
+									<string>1354</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Activity Monitor – All Processes</string>
+								</dict>
+							</array>
+							<key>Snapshot Screens</key>
+							<array>
+								<string>{{0, 0}, {2560, 1440}}</string>
+							</array>
+							<key>Stubborn</key>
+							<false/>
+							<key>Title</key>
+							<string>Zen - Obsidian</string>
+						</dict>
+					</array>
+					<key>Identifier</key>
+					<string>B2FB6384-E0B9-4457-A14C-EB29DFA307F3</string>
+					<key>Title</key>
+					<string>Writing Workspace</string>
+				</dict>
+				<dict>
+					<key>Action</key>
+					<integer>10001</integer>
+					<key>Chain Mode</key>
+					<integer>0</integer>
+					<key>Children</key>
+					<array>
+						<dict>
+							<key>Action</key>
+							<integer>1001</integer>
+							<key>Activate Applications</key>
+							<false/>
+							<key>Apply to Overlapping Windows</key>
+							<true/>
+							<key>Auto-Trigger</key>
+							<false/>
+							<key>Auto-Trigger Display Count</key>
+							<integer>1</integer>
+							<key>Generic</key>
+							<false/>
+							<key>Hot Key</key>
+							<dict>
+								<key>Identifier</key>
+								<string>94F97164-B5C4-40B9-A68E-9FAEBB24D95A</string>
+								<key>Key Code</key>
+								<integer>2</integer>
+								<key>Modifier Flags</key>
+								<integer>256</integer>
+								<key>Visual Representation</key>
+								<string>D</string>
+							</dict>
+							<key>Identifier</key>
+							<string>94F97164-B5C4-40B9-A68E-9FAEBB24D95A</string>
+							<key>Snapshot</key>
+							<array>
+								<dict>
+									<key>Application Name</key>
+									<string>Ghostty</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.mitchellh.ghostty</string>
+									<key>PID</key>
+									<string>2843</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{1288, 16}, {1256, 1383}}</string>
+									<key>Window Number</key>
+									<string>357</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>zsh</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Ghostty</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.mitchellh.ghostty</string>
+									<key>PID</key>
+									<string>2843</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{16, 16}, {1256, 1383}}</string>
+									<key>Window Number</key>
+									<string>724</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>zsh</string>
+								</dict>
+							</array>
+							<key>Snapshot Screens</key>
+							<array>
+								<string>{{0, 0}, {2560, 1440}}</string>
+							</array>
+							<key>Stubborn</key>
+							<false/>
+							<key>Title</key>
+							<string>Ghostty Dual Window</string>
+						</dict>
+						<dict>
+							<key>Action</key>
+							<integer>1001</integer>
+							<key>Activate Applications</key>
+							<false/>
+							<key>Apply to Overlapping Windows</key>
+							<false/>
+							<key>Auto-Trigger</key>
+							<false/>
+							<key>Auto-Trigger Display Count</key>
+							<integer>1</integer>
+							<key>Generic</key>
+							<false/>
+							<key>Hot Key</key>
+							<dict>
+								<key>Identifier</key>
+								<string>C48D9E96-AB15-4B77-8FC2-AC6AB27AB7EC</string>
+								<key>Key Code</key>
+								<integer>22</integer>
+								<key>Modifier Flags</key>
+								<integer>256</integer>
+								<key>Visual Representation</key>
+								<string>6</string>
+							</dict>
+							<key>Identifier</key>
+							<string>C48D9E96-AB15-4B77-8FC2-AC6AB27AB7EC</string>
+							<key>Snapshot</key>
+							<array>
+								<dict>
+									<key>Application Name</key>
+									<string>Cursor</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.todesktop.230313mzl4w4u92</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{1280, 0}, {1280, 1440}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>package.json — kiys-storefront</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Arc</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Bundle Identifier</key>
+									<string>company.thebrowser.browser</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{0, 0}, {1280, 1440}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Saat Teduh Bersama - MULUTMU HARIMAUMU | 20 November 2024 (Official Philip Mantofa)</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>System Settings</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.apple.systempreferences</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{636, 479}, {715, 739}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Control Center</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Notion</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Bundle Identifier</key>
+									<string>notion.id</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{1280, 0}, {1280, 1440}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Distraction Database | This Week</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>1Password</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.1password.1password</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{768, 307}, {1024, 800}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Chian — All Items — 1Password</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>WezTerm</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.github.wez.wezterm</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{560, 74}, {1440, 1267}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>..tend/allweezy</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Finder</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.apple.finder</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{1280, 0}, {1280, 1415}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Bunch</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Apidog</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.apidog.app</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{537, 132}, {1280, 1079}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>jubel-akun</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>DataGrip</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.jetbrains.datagrip</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{0, 20}, {2540, 1395}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>allweezy – payment_method_types</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>OrbStack</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Bundle Identifier</key>
+									<string>dev.kdrag0n.macvirt</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{915, 451}, {975, 650}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Containers – None running</string>
+								</dict>
+							</array>
+							<key>Snapshot Screens</key>
+							<array>
+								<string>{{0, 0}, {2560, 1440}}</string>
+							</array>
+							<key>Stubborn</key>
+							<false/>
+							<key>Title</key>
+							<string>Cursor Arc Layout</string>
+						</dict>
+					</array>
+					<key>Identifier</key>
+					<string>CBD69D63-893D-4AA3-A22A-3228CFABB243</string>
+					<key>Title</key>
+					<string>Coding Workspace</string>
+				</dict>
+				<dict>
+					<key>Action</key>
+					<integer>10001</integer>
+					<key>Chain Mode</key>
+					<integer>0</integer>
+					<key>Children</key>
+					<array>
+						<dict>
+							<key>Action</key>
+							<integer>1001</integer>
+							<key>Activate Applications</key>
+							<false/>
+							<key>Apply to Overlapping Windows</key>
+							<false/>
+							<key>Auto-Trigger</key>
+							<false/>
+							<key>Auto-Trigger Display Count</key>
+							<integer>1</integer>
+							<key>Generic</key>
+							<false/>
+							<key>Hot Key</key>
+							<dict>
+								<key>Identifier</key>
+								<string>C6A887A8-3AE8-4290-BFD3-9B5B71F3AC0F</string>
+								<key>Key Code</key>
+								<integer>13</integer>
+								<key>Modifier Flags</key>
+								<integer>256</integer>
+								<key>Visual Representation</key>
+								<string>W</string>
+							</dict>
+							<key>Identifier</key>
+							<string>C6A887A8-3AE8-4290-BFD3-9B5B71F3AC0F</string>
+							<key>Snapshot</key>
+							<array>
+								<dict>
+									<key>Application Name</key>
+									<string>Slack</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.tinyspeck.slackmacgap</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{1520, 0}, {1040, 1415}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>problem (Channel) - WEEZY 2024 - 8 new items - Slack</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Arc</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>company.thebrowser.browser</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{0, 0}, {1520, 1415}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>WEEZY STORE - Top up game &amp; voucher terlaris, murah, aman legal 100% buka 24 Jam dengan payment terlengkap Indonesia</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Ghostty</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.mitchellh.ghostty</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{1040, 0}, {1520, 1415}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>zsh</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Arc</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>company.thebrowser.browser</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{0, 0}, {1280, 1415}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>SmiteshP/nvim-navic: Simple winbar/statusline plugin that shows your current code context</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Notion</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>notion.id</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{1280, 0}, {1280, 1415}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>neovim / nvim</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Arc</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>company.thebrowser.browser</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{1035, 537}, {490, 360}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Reddit</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Discord</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.hnc.discord</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{640, 521}, {1280, 720}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Friends - Discord</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Google Chrome</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.google.chrome</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Internet tidak konek setelah bayar | Fastmail - Google Chrome - Chian</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Telegram</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.tdesktop.telegram</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{840, 388}, {880, 688}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>‎⁨Mesin Otomatis⁩ – (7121)</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Downie</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.charliemonroe.downie-setapp</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{884, 535}, {856, 371}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Downie</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Music</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.apple.music</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{706, 332}, {1147, 800}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Music</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Safari</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.apple.safari</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Personal — jeju air passenger - Penelusuran Google</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>TickTick</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.ticktick.task.mac</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>TickTick</string>
+								</dict>
+							</array>
+							<key>Snapshot Screens</key>
+							<array>
+								<string>{{0, 0}, {2560, 1440}}</string>
+							</array>
+							<key>Stubborn</key>
+							<false/>
+							<key>Title</key>
+							<string>Arc Slack Layout</string>
+						</dict>
+						<dict>
+							<key>Action</key>
+							<integer>1001</integer>
+							<key>Activate Applications</key>
+							<false/>
+							<key>Apply to Overlapping Windows</key>
+							<false/>
+							<key>Auto-Trigger</key>
+							<false/>
+							<key>Auto-Trigger Display Count</key>
+							<integer>1</integer>
+							<key>Generic</key>
+							<false/>
+							<key>Identifier</key>
+							<string>A2281C0E-0B07-48E6-9A1F-58063C4C6D5F</string>
+							<key>Snapshot</key>
+							<array>
+								<dict>
+									<key>Application Name</key>
+									<string>Obsidian</string>
+									<key>Available Screen Frame</key>
+									<string>{{2560, -1120}, {1440, 2535}}</string>
+									<key>Bundle Identifier</key>
+									<string>md.obsidian</string>
+									<key>Screen Frame</key>
+									<string>{{2560, -1120}, {1440, 2560}}</string>
+									<key>Window Frame</key>
+									<string>{{2560, -560}, {1440, 1415}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Reminding myself - Vault_Personal - Obsidian v1.7.7</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Ghostty</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.mitchellh.ghostty</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{1040, 0}, {1520, 1415}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>zsh</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Arc</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>company.thebrowser.browser</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{0, 0}, {1040, 1415}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>SmiteshP/nvim-navic: Simple winbar/statusline plugin that shows your current code context</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Arc</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>company.thebrowser.browser</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{1035, 537}, {490, 360}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Reddit</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Notion</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>notion.id</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{1280, 0}, {1280, 1415}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>neovim / nvim</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Slack</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.tinyspeck.slackmacgap</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{1520, 0}, {1040, 1415}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>problem (Channel) - WEEZY 2024 - 8 new items - Slack</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Discord</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.hnc.discord</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{640, 521}, {1280, 720}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Friends - Discord</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Google Chrome</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.google.chrome</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Internet tidak konek setelah bayar | Fastmail - Google Chrome - Chian</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Telegram</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.tdesktop.telegram</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{840, 388}, {880, 688}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>‎⁨Mesin Otomatis⁩ – (7121)</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Downie</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.charliemonroe.downie-setapp</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{884, 535}, {856, 371}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Downie</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Music</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.apple.music</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{706, 332}, {1147, 800}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Music</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>Safari</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.apple.safari</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>Personal — jeju air passenger - Penelusuran Google</string>
+								</dict>
+								<dict>
+									<key>Application Name</key>
+									<string>TickTick</string>
+									<key>Available Screen Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Bundle Identifier</key>
+									<string>com.ticktick.task.mac</string>
+									<key>Screen Frame</key>
+									<string>{{0, 0}, {2560, 1440}}</string>
+									<key>Window Frame</key>
+									<string>{{0, 0}, {2560, 1415}}</string>
+									<key>Window Subrole</key>
+									<string>AXStandardWindow</string>
+									<key>Window Title</key>
+									<string>TickTick</string>
+								</dict>
+							</array>
+							<key>Snapshot Screens</key>
+							<array>
+								<string>{{0, 0}, {2560, 1440}}</string>
+								<string>{{2560, -1120}, {1440, 2560}}</string>
+							</array>
+							<key>Stubborn</key>
+							<false/>
+						</dict>
+					</array>
+					<key>Identifier</key>
+					<string>DBBC424B-1A46-4E39-9A13-717B134EE2E4</string>
+					<key>Title</key>
+					<string>Business Layout</string>
+				</dict>
+			</array>
+			<key>Identifier</key>
+			<string>B161C1D4-9160-48AD-81BB-577FFA908C3D</string>
+			<key>Title</key>
+			<string>1 Display</string>
+		</dict>
+	</array>
+</dict>
+</plist>
