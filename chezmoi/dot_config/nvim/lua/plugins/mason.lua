@@ -23,6 +23,7 @@ return {
 					"html",
 					"jsonls",
 					"denols",
+					"nil_ls",
 				},
 				automatic_enable = {
 					exclude = {
