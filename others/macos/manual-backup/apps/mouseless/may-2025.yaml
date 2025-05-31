@@ -1,6 +1,6 @@
 app_version: 0.4.0-preview.0
 behavior_configs:
-- base_wheel_speed: 20
+- base_wheel_speed: 10
   grid_action_level: subgrid
   hide_cursor_on_click: false
   hide_location: bottom_left
@@ -12,7 +12,7 @@ behavior_configs:
   name: main_behavior
   tap_threshold_ms: 250
   wheel_mode_auto_off_s: 10
-  wheel_speed_multiplier: 5
+  wheel_speed_multiplier: 4
   wheel_step_size: 100
   wheel_step_size_large: 500
 classname: AppConfig
@@ -369,9 +369,9 @@ style_configs:
   - 0.5
   highlight_animation_ms: 0
   highlight_rgba:
-  - 0.10980392156862745
-  - 0.32941176470588235
-  - 0.4392156862745098
+  - 0.30980392156862746
+  - 0.30980392156862746
+  - 0.30980392156862746
   - 0.5
   name: default
   show_initial_highlight: false
@@ -382,14 +382,14 @@ style_configs:
   - 1.0
   - 0.5
   subgrid_text_rgba:
-  - 0.6431372549019608
-  - 0.984313725490196
-  - 0.13333333333333333
+  - 0.996078431372549
+  - 0.996078431372549
+  - 0.996078431372549
   - 0.5
   text_rgba:
-  - 0.6784313725490196
-  - 0.9921568627450981
-  - 0.20784313725490197
+  - 0.996078431372549
+  - 0.996078431372549
+  - 0.996078431372549
   - 1.0
   text_shadow_blur_radius: 2.0
   text_shadow_offset:
