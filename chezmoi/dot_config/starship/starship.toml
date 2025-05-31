@@ -125,7 +125,11 @@ symbol = " "
 symbol = " "
 
 [hostname]
-ssh_symbol = " "
+ssh_symbol = "🌏 "
+ssh_only = true
+format = '[$ssh_symbol](bold blue) on [$hostname](bold red) '
+aliases = { "personal-mbp-m1" = "home" }
+disabled = false
 
 [java]
 symbol = " "
