@@ -21,6 +21,85 @@
                   "meta" : {
                     "delay" : 1000,
                     "enabled" : true,
+                    "id" : "6168FB68-A210-4F25-8B1A-CDFD0A50C179",
+                    "name" : "",
+                    "notification" : "bezel"
+                  }
+                }
+              },
+              {
+                "keyboardCommand" : {
+                  "kind" : {
+                    "key" : {
+                      "command" : {
+                        "iterations" : 1,
+                        "keyboardShortcuts" : [
+                          {
+                            "id" : "C1F01147-542A-4CEB-B1B7-FC7FF76BE281",
+                            "key" : "y",
+                            "modifiers" : [
+                              "^",
+                              "~"
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "meta" : {
+                    "delay" : 500,
+                    "enabled" : true,
+                    "id" : "C290BE36-D40C-4EC7-9DBA-3D1A7A635C2A",
+                    "name" : ""
+                  }
+                }
+              },
+              {
+                "textCommand" : {
+                  "kind" : {
+                    "insertText" : {
+                      "_0" : {
+                        "actions" : [
+
+                        ],
+                        "input" : "!ticktoday",
+                        "meta" : {
+                          "delay" : 500,
+                          "enabled" : true,
+                          "id" : "1C533E2B-EAE7-4D47-99F3-F528CDF030D0",
+                          "name" : ""
+                        },
+                        "mode" : "Typing"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "execution" : "serial",
+            "id" : "504E3259-8D09-49F1-9DC3-5CAA89072617",
+            "name" : "Add Task Today",
+            "trigger" : {
+              "snippet" : {
+                "id" : "4EDE507A-AAFE-4386-812D-EBA05AA75091",
+                "text" : "titod"
+              }
+            }
+          },
+          {
+            "commands" : [
+              {
+                "applicationCommand" : {
+                  "action" : "open",
+                  "application" : {
+                    "bundleIdentifier" : "com.TickTick.task.mac",
+                    "bundleName" : "TickTick",
+                    "displayName" : "TickTick",
+                    "path" : "\/Applications\/TickTick.app"
+                  },
+                  "meta" : {
+                    "delay" : 1000,
+                    "enabled" : true,
                     "id" : "238C6EFC-7827-4FA1-A3AC-67D6D121B3EA",
                     "name" : "",
                     "notification" : "bezel"
@@ -62,7 +141,7 @@
                         "actions" : [
 
                         ],
-                        "input" : "!ticktoday",
+                        "input" : "!ticktodayquick",
                         "meta" : {
                           "delay" : 500,
                           "enabled" : true,
@@ -78,11 +157,11 @@
             ],
             "execution" : "serial",
             "id" : "215D8983-F65B-4CDF-99F5-49E38511B2BE",
-            "name" : "Add Task Today",
+            "name" : "Add Task Today (Quick Task)",
             "trigger" : {
               "snippet" : {
                 "id" : "59A031B5-0763-4E0B-A02A-4A67F03E2CD8",
-                "text" : "titod"
+                "text" : "titoq"
               }
             }
           },
@@ -247,23 +326,215 @@
           {
             "commands" : [
               {
-                "runShortcut" : {
+                "bundledCommand" : {
+                  "kind" : {
+                    "workspace" : {
+                      "command" : {
+                        "bundleIdentifiers" : [
+
+                        ],
+                        "hideOtherApps" : false,
+                        "id" : "DC0FEAC0-87B1-4606-9FBD-63347999F5A4"
+                      }
+                    }
+                  },
                   "meta" : {
                     "enabled" : true,
-                    "id" : "081A7077-0EF8-4FF6-A957-4B90C68C8948",
-                    "name" : "Start Session Only"
-                  },
-                  "shortcutIdentifier" : "Start Session Only"
+                    "id" : "CDFA75F5-76E3-4C4B-BBF5-EB0B731B1DF7",
+                    "name" : ""
+                  }
                 }
               }
             ],
             "execution" : "serial",
-            "id" : "0296E1F8-5302-44AD-9DA7-AB38E8B0F42A",
-            "name" : "Start Session",
+            "id" : "B032AA63-1AF5-4792-BB87-A796C620E0FE",
+            "name" : "Test"
+          },
+          {
+            "commands" : [
+              {
+                "openCommand" : {
+                  "meta" : {
+                    "delay" : 2000,
+                    "enabled" : true,
+                    "id" : "A018101B-1C74-4BEC-9DD0-D4C1C4EAEBBA",
+                    "name" : ""
+                  },
+                  "path" : "https:\/\/vpn.klikbca.com"
+                }
+              },
+              {
+                "uiElementCommand" : {
+                  "meta" : {
+                    "delay" : 1000,
+                    "enabled" : true,
+                    "id" : "A9298245-C851-4C0D-8C4A-4224FDD9CF45",
+                    "name" : ""
+                  },
+                  "predicates" : [
+                    {
+                      "compare" : {
+                        "equals" : {
+
+                        }
+                      },
+                      "id" : "33076F7B-D594-49C7-9255-2BB0380CB2D7",
+                      "kind" : "*",
+                      "properties" : [
+                        "description"
+                      ],
+                      "value" : "Username"
+                    }
+                  ]
+                }
+              },
+              {
+                "textCommand" : {
+                  "kind" : {
+                    "insertText" : {
+                      "_0" : {
+                        "actions" : [
+
+                        ],
+                        "input" : "KBBWEEZYGLWGTMSTR1",
+                        "meta" : {
+                          "delay" : 1000,
+                          "enabled" : true,
+                          "id" : "A573D097-8B55-457A-A577-24C5F03AE927",
+                          "name" : ""
+                        },
+                        "mode" : "Instant"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "uiElementCommand" : {
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "33FF7FBC-4D6F-42E2-BE14-61B4C95E63DA",
+                    "name" : ""
+                  },
+                  "predicates" : [
+                    {
+                      "compare" : {
+                        "equals" : {
+
+                        }
+                      },
+                      "id" : "0AA6D4B0-CF8C-4AB0-AAD9-8DF60DFCE1F8",
+                      "kind" : "button",
+                      "properties" : [
+                        "title"
+                      ],
+                      "value" : "LOGIN"
+                    }
+                  ]
+                }
+              }
+            ],
+            "execution" : "serial",
+            "id" : "B9872729-9C37-46BA-8421-AAC7AE4E5A4F",
+            "name" : "Automation Login Example",
             "trigger" : {
               "snippet" : {
-                "id" : "E1B5551D-F43C-4E28-B95D-38379FB44F03",
-                "text" : "maknae"
+                "id" : "2665724C-962F-48FB-AE56-B8E189D753EB",
+                "text" : "@@oea"
+              }
+            }
+          },
+          {
+            "commands" : [
+              {
+                "openCommand" : {
+                  "meta" : {
+                    "delay" : 2000,
+                    "enabled" : true,
+                    "id" : "DA935448-A90B-4096-8E58-229069A87CF0",
+                    "name" : ""
+                  },
+                  "path" : "https:\/\/vpn.klikbca.com"
+                }
+              },
+              {
+                "uiElementCommand" : {
+                  "meta" : {
+                    "delay" : 1000,
+                    "enabled" : true,
+                    "id" : "0A28BAF0-8988-4EAD-B88F-180CB92F8695",
+                    "name" : ""
+                  },
+                  "predicates" : [
+                    {
+                      "compare" : {
+                        "equals" : {
+
+                        }
+                      },
+                      "id" : "344FC7E9-85CD-4191-96BF-07F67EC96DA8",
+                      "kind" : "*",
+                      "properties" : [
+                        "description"
+                      ],
+                      "value" : "Username"
+                    }
+                  ]
+                }
+              },
+              {
+                "keyboardCommand" : {
+                  "kind" : {
+                    "key" : {
+                      "command" : {
+                        "iterations" : 1,
+                        "keyboardShortcuts" : [
+                          {
+                            "id" : "55C620B5-9551-4859-B006-B39F8AF0E3AD",
+                            "key" : "↓"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "meta" : {
+                    "delay" : 1000,
+                    "enabled" : true,
+                    "id" : "DC5E5888-83BC-470F-876E-B195AB2A61C3",
+                    "name" : ""
+                  }
+                }
+              },
+              {
+                "keyboardCommand" : {
+                  "kind" : {
+                    "key" : {
+                      "command" : {
+                        "iterations" : 1,
+                        "keyboardShortcuts" : [
+                          {
+                            "id" : "6FAE1D8B-2B4F-4595-B9E4-F3A1E087899F",
+                            "key" : "↩"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "C1208BE5-F201-4C50-B68A-6954DB931F20",
+                    "name" : ""
+                  }
+                }
+              }
+            ],
+            "execution" : "serial",
+            "id" : "9D8FE063-9CFC-479B-B121-8F679210944F",
+            "name" : "Automation Login Example 2",
+            "trigger" : {
+              "snippet" : {
+                "id" : "30102C9A-9692-4AB9-B8D3-ED16813DA556",
+                "text" : "@@oeu"
               }
             }
           }
@@ -442,11 +713,6 @@
                 ]
               }
             }
-          },
-          {
-            "execution" : "concurrent",
-            "id" : "602CFF09-8ABC-4150-B146-E3A03343965F",
-            "name" : "Untitled workflow"
           }
         ]
       },
@@ -727,7 +993,60 @@
         "color" : "#5D5FDE",
         "id" : "93F317F6-6687-4C66-BDE1-7C6F134660B8",
         "name" : "ShellScripts",
-        "symbol" : "terminal"
+        "symbol" : "terminal",
+        "workflows" : [
+          {
+            "commands" : [
+              {
+                "scriptCommand" : {
+                  "kind" : {
+                    "shellScript" : {
+
+                    }
+                  },
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "70EC63DA-9243-49E6-83C8-47FB5564C586",
+                    "name" : "Brew Leaves Backup"
+                  },
+                  "source" : {
+                    "path" : {
+                      "_0" : "\/Users\/chianyung\/.local\/share\/chezmoi\/others\/macos\/shell-script\/brew-leaves-backup.sh"
+                    }
+                  }
+                }
+              },
+              {
+                "scriptCommand" : {
+                  "kind" : {
+                    "shellScript" : {
+
+                    }
+                  },
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "711B223F-2F93-4C25-964B-87EB7A272600",
+                    "name" : "Backup apps & brew dump"
+                  },
+                  "source" : {
+                    "path" : {
+                      "_0" : "\/Users\/chianyung\/.local\/share\/chezmoi\/others\/macos\/shell-script\/backup.sh"
+                    }
+                  }
+                }
+              }
+            ],
+            "execution" : "serial",
+            "id" : "E74F143C-1ACA-47AD-8E3A-1A435CF9EE04",
+            "name" : "Backup Weekly",
+            "trigger" : {
+              "snippet" : {
+                "id" : "03D723DA-9C66-47D1-9C61-608AE49963ED",
+                "text" : "bckp"
+              }
+            }
+          }
+        ]
       },
       {
         "color" : "#98989D",
@@ -1745,6 +2064,419 @@
                     ]
                   }
                 ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "color" : "#A78F6D",
+        "id" : "F78A010A-0C32-414F-8CEF-309129650C56",
+        "name" : "Session LookAway",
+        "symbol" : "sparkles",
+        "workflows" : [
+          {
+            "commands" : [
+              {
+                "runShortcut" : {
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "26DC55A1-6E1B-4746-9938-1414EFF3E3CD",
+                    "name" : "Start Session Only"
+                  },
+                  "shortcutIdentifier" : "Start Session Only"
+                }
+              },
+              {
+                "keyboardCommand" : {
+                  "kind" : {
+                    "key" : {
+                      "command" : {
+                        "iterations" : 1,
+                        "keyboardShortcuts" : [
+                          {
+                            "id" : "4A0AE01A-5FD5-4C58-AF38-6DC4FD0F8238",
+                            "key" : "9",
+                            "modifiers" : [
+                              "$",
+                              "@"
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "meta" : {
+                    "delay" : 100,
+                    "enabled" : true,
+                    "id" : "31793DA9-B41C-4800-8C33-BA58D704052F",
+                    "name" : "Ice - Command Pallete"
+                  }
+                }
+              },
+              {
+                "textCommand" : {
+                  "kind" : {
+                    "insertText" : {
+                      "_0" : {
+                        "actions" : [
+
+                        ],
+                        "input" : "LookAway",
+                        "meta" : {
+                          "delay" : 100,
+                          "enabled" : true,
+                          "id" : "20781479-C370-42F0-BBE9-F5B9343140F5",
+                          "name" : ""
+                        },
+                        "mode" : "Instant"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "keyboardCommand" : {
+                  "kind" : {
+                    "key" : {
+                      "command" : {
+                        "iterations" : 1,
+                        "keyboardShortcuts" : [
+                          {
+                            "id" : "806C0E08-4546-4041-94D1-308EA6388F71",
+                            "key" : "↩"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "meta" : {
+                    "delay" : 100,
+                    "enabled" : true,
+                    "id" : "5D469FC5-D83E-4A48-9AD8-C92CC16DF241",
+                    "name" : ""
+                  }
+                }
+              },
+              {
+                "keyboardCommand" : {
+                  "kind" : {
+                    "key" : {
+                      "command" : {
+                        "iterations" : 1,
+                        "keyboardShortcuts" : [
+                          {
+                            "id" : "A97E232B-ED77-400D-976F-1638F6D4FA43",
+                            "key" : "r",
+                            "modifiers" : [
+                              "$",
+                              "@"
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "meta" : {
+                    "delay" : 100,
+                    "enabled" : true,
+                    "id" : "9A00BFC4-3639-4674-BFBB-029DE006FAAE",
+                    "name" : "Start LookAway"
+                  }
+                }
+              }
+            ],
+            "execution" : "serial",
+            "id" : "F3BE9643-3444-4DF8-994B-88B98A74549C",
+            "name" : "Session - LookAway (First Start)",
+            "trigger" : {
+              "snippet" : {
+                "id" : "5B6FF768-04DF-4314-B730-F7EEE79010C4",
+                "text" : "sslo1"
+              }
+            }
+          },
+          {
+            "commands" : [
+              {
+                "keyboardCommand" : {
+                  "kind" : {
+                    "key" : {
+                      "command" : {
+                        "iterations" : 1,
+                        "keyboardShortcuts" : [
+                          {
+                            "id" : "47D4FEFD-E525-4F3C-885E-690D97A6F400",
+                            "key" : "f",
+                            "modifiers" : [
+                              "^",
+                              "~",
+                              "@"
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "38CFB837-1DFC-45AC-BAD2-D7A1BCDA179E",
+                    "name" : "Stop Session"
+                  }
+                }
+              },
+              {
+                "keyboardCommand" : {
+                  "kind" : {
+                    "key" : {
+                      "command" : {
+                        "iterations" : 1,
+                        "keyboardShortcuts" : [
+                          {
+                            "id" : "E9D86AAC-CBB1-4CBA-9A4E-81DC7A8E147C",
+                            "key" : "k",
+                            "modifiers" : [
+                              "^",
+                              "~",
+                              "@"
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "F6B1111E-B353-4CA3-BD68-DF875474DBF7",
+                    "name" : "Repeat Last Session Intention"
+                  }
+                }
+              },
+              {
+                "keyboardCommand" : {
+                  "kind" : {
+                    "key" : {
+                      "command" : {
+                        "iterations" : 1,
+                        "keyboardShortcuts" : [
+                          {
+                            "id" : "9C3D123F-3873-4936-BEE4-6AFCFFC2036D",
+                            "key" : "y",
+                            "modifiers" : [
+                              "$",
+                              "^",
+                              "~",
+                              "@"
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "70AD7930-86DA-44B0-ACFC-EC02EDA14249",
+                    "name" : "Restart LookAway"
+                  }
+                }
+              }
+            ],
+            "execution" : "serial",
+            "id" : "8D6A67AB-99FE-4E87-BD38-ADC482297C03",
+            "name" : "Session - LookAway (Repeat Last Intention)",
+            "trigger" : {
+              "snippet" : {
+                "id" : "B080A75B-382B-42BB-B16F-04C19C5E898E",
+                "text" : "sslo2"
+              }
+            }
+          },
+          {
+            "commands" : [
+              {
+                "keyboardCommand" : {
+                  "kind" : {
+                    "key" : {
+                      "command" : {
+                        "iterations" : 1,
+                        "keyboardShortcuts" : [
+                          {
+                            "id" : "4A0AE01A-5FD5-4C58-AF38-6DC4FD0F8238",
+                            "key" : "9",
+                            "modifiers" : [
+                              "$",
+                              "@"
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "meta" : {
+                    "delay" : 200,
+                    "enabled" : true,
+                    "id" : "8DF54EE2-6E98-4DC7-81E1-7E3CAF1666BF",
+                    "name" : "Ice - Command Pallete"
+                  }
+                }
+              },
+              {
+                "textCommand" : {
+                  "kind" : {
+                    "insertText" : {
+                      "_0" : {
+                        "actions" : [
+
+                        ],
+                        "input" : "LookAway",
+                        "meta" : {
+                          "delay" : 200,
+                          "enabled" : true,
+                          "id" : "4A5F3240-2FC2-482D-BB12-7B6F7F055062",
+                          "name" : ""
+                        },
+                        "mode" : "Instant"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "keyboardCommand" : {
+                  "kind" : {
+                    "key" : {
+                      "command" : {
+                        "iterations" : 1,
+                        "keyboardShortcuts" : [
+                          {
+                            "id" : "806C0E08-4546-4041-94D1-308EA6388F71",
+                            "key" : "↩"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "meta" : {
+                    "delay" : 200,
+                    "enabled" : true,
+                    "id" : "7270A5FA-E844-4755-A1BC-6C82B7DA8857",
+                    "name" : ""
+                  }
+                }
+              },
+              {
+                "keyboardCommand" : {
+                  "kind" : {
+                    "key" : {
+                      "command" : {
+                        "iterations" : 1,
+                        "keyboardShortcuts" : [
+                          {
+                            "id" : "B3007AAB-9741-427B-B013-BFC6B58A667B",
+                            "key" : "t",
+                            "modifiers" : [
+                              "$",
+                              "@"
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "meta" : {
+                    "delay" : 200,
+                    "enabled" : true,
+                    "id" : "FDB31012-B486-4E80-80C3-FA24F9370C73",
+                    "name" : ""
+                  }
+                }
+              },
+              {
+                "keyboardCommand" : {
+                  "kind" : {
+                    "key" : {
+                      "command" : {
+                        "iterations" : 1,
+                        "keyboardShortcuts" : [
+                          {
+                            "id" : "F04BEB7D-4092-403B-8CFC-972A09B40C28",
+                            "key" : "f",
+                            "modifiers" : [
+                              "^",
+                              "~",
+                              "@"
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "21C7A7D4-09D4-43E9-B5D8-879A25613A35",
+                    "name" : "Finish Session"
+                  }
+                }
+              }
+            ],
+            "execution" : "serial",
+            "id" : "C0B5B6C1-BDBF-4A12-9096-127DDEB20895",
+            "name" : "Session - LookAway (Stop All)",
+            "trigger" : {
+              "snippet" : {
+                "id" : "5EBD77D4-1D6F-4364-AA95-C615746C41F5",
+                "text" : "sslo3"
+              }
+            }
+          },
+          {
+            "commands" : [
+              {
+                "runShortcut" : {
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "4F35C096-4658-4B50-B3B2-DAFD541A829B",
+                    "name" : "Start Session Only"
+                  },
+                  "shortcutIdentifier" : "Start Session Only"
+                }
+              },
+              {
+                "keyboardCommand" : {
+                  "kind" : {
+                    "key" : {
+                      "command" : {
+                        "iterations" : 1,
+                        "keyboardShortcuts" : [
+                          {
+                            "id" : "9C3D123F-3873-4936-BEE4-6AFCFFC2036D",
+                            "key" : "y",
+                            "modifiers" : [
+                              "$",
+                              "^",
+                              "~",
+                              "@"
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "meta" : {
+                    "enabled" : true,
+                    "id" : "2FC47C28-E42E-4A0C-B885-F243A04C1626",
+                    "name" : "Restart LookAway"
+                  }
+                }
+              }
+            ],
+            "execution" : "serial",
+            "id" : "8031642F-FA76-4780-81A3-C836BF15B5EF",
+            "name" : "Session - LookAway (Restart LookAway if not matching between either)",
+            "trigger" : {
+              "snippet" : {
+                "id" : "C7C9155A-E6F5-4D1E-B95B-6E7B9A2A0742",
+                "text" : "sslo4"
               }
             }
           }
