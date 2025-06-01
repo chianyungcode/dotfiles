@@ -90,7 +90,9 @@
 /Applications/LarkSuite.app
 /Applications/LaunchPalette.app
 /Applications/One Thing.app
+/Applications/Shortery.app
 /Applications/Arc.app
+/Applications/Espanso.app
 /Applications/Dropover.app
 /Applications/Microsoft Excel.app
 /Applications/Windsurf.app
@@ -153,6 +155,7 @@
 /Applications/.Karabiner-VirtualHIDDevice-Manager.app
 /Applications/DaVinci Resolve.app
 /Applications/Studio 3T.app
+/Applications/Brave Browser.app
 /Applications/Pages.app
 /Applications/GarageBand.app
 /Applications/Google Slides.app
@@ -191,7 +194,7 @@
 /Applications/JetBrains Toolbox.app
 /Applications/Pixelmator Pro Trial.app
 /Applications/Microsoft PowerPoint.app
-/Applications/AdGuard for Safari.app
+/Applications/Folo.app
 /Applications/Adobe Acrobat DC/Acrobat Distiller.app
 /Applications/Adobe Acrobat DC/Adobe Acrobat.app
 /Applications/Replacicon.app
