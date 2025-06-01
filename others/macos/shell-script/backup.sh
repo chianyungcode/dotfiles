@@ -4,7 +4,7 @@ set -e # Berhenti jika ada error
 
 echo "Memulai backup untuk Brewfile dan list apps"
 
-apps_dir="$HOME/.local/share/chezmoi/project-specific/manual-backup"
+apps_dir="$HOME/.local/share/chezmoi/others/macos/manual-backup/"
 apps_file="$apps_dir/list-apps.txt"
 
 brewdump_dir="$apps_dir/cli/brew"
