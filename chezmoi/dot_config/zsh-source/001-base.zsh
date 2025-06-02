@@ -1,7 +1,4 @@
-#--------------------
-# Oh-My-Zsh Setup
-#--------------------
-export ZSH="$HOME/.oh-my-zsh"
+# ZSH base setup
 
 # === Directories ===
 export DOTFILES="$HOME/.dotfiles/"
