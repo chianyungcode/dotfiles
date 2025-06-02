@@ -38,6 +38,9 @@
 # https://antidote.sh/
 #--------------------
 
+# Exclude ~/Library/Caches/antidote/ in Clean MyMac to prevent deletions
+# https://arc.net/l/quote/ejwiyzxh
+
 # === plugins setup ===
 # Ultra high performance install antidote
 # Set the root name of the plugins files (.txt and .zsh) antidote will use.
