@@ -1,8 +1,14 @@
+
+#--------------------
+# Oh-My-Zsh Setup
+#--------------------
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 
-# === oh-my-zsh ===
+# export ZSH="$HOME/.oh-my-zsh"
+
+# === plugins ===
 # plugins=(
 #     direnv
 #     git 
@@ -23,11 +29,16 @@
 #     # asdf
 # )
 
-
-# Source Oh-My-Zsh
+# Load Oh-My-Zsh
 # source $ZSH/oh-my-zsh.sh
 
-# === antidote ===
+
+#--------------------
+# antidote setup
+# https://antidote.sh/
+#--------------------
+
+# === plugins setup ===
 # Ultra high performance install antidote
 # Set the root name of the plugins files (.txt and .zsh) antidote will use.
 zsh_plugins=${ZDOTDIR:-~}/.zsh_plugins
