@@ -54,6 +54,7 @@ fpath=(/path/to/antidote/functions $fpath)
 autoload -Uz antidote
 
 # Generate a new static file whenever .zsh_plugins.txt is updated.
+# Sepertinya block text ini setiap kali saya mengubah file .zsh_plugins.txt .zsh_plugins.zsh menjadi kosong, mungkin bisa dipertimbangkan untuk menghapus ini
 if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.txt ]]; then
   antidote bundle <${zsh_plugins}.txt >|${zsh_plugins}.zsh
 fi
