@@ -141,6 +141,12 @@
           "label": "Rest",
           "actions": [
             {
+              "type": "url",
+              "key": "q",
+              "label": "Lock screen | Raycast",
+              "value": "raycast://extensions/raycast/system/lock-screen"
+            },
+            {
               "type": "command",
               "key": "l",
               "label": "Sleep",
