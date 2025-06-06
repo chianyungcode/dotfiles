@@ -15,6 +15,16 @@ ffe() {
     find . -name '*'"$1"
 }
 
+# mkcd
+mkcd(){
+    if [[ -d $1 ]]; then
+        echo "It already exists! cd to the directory."
+        cd $1
+    else
+        mkdir -p $1 && cd $1
+    fi
+}
+
 mcd() {
     # Create a directory and enter it
     mkdir -pv "$1"
