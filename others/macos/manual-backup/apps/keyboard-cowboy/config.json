@@ -141,7 +141,7 @@
                         "actions" : [
 
                         ],
-                        "input" : "!ticktodayquick",
+                        "input" : "!ticktoquick",
                         "meta" : {
                           "delay" : 500,
                           "enabled" : true,
