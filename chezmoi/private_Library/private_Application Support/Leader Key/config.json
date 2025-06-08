@@ -49,6 +49,16 @@
           "type": "url",
           "value": "raycast://extensions/raycast/system/open-camera",
           "key": "c"
+        },
+        {
+          "type": "url",
+          "value": "raycast://extensions/benvp/audio-device/set-output-device",
+          "key": "o"
+        },
+        {
+          "type": "url",
+          "value": "raycast://extensions/VladCuciureanu/toothpick/manage-bluetooth-connections",
+          "key": "b"
         }
       ],
       "key": "r"
