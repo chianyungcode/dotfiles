@@ -64,6 +64,33 @@
       "key": "r"
     },
     {
+      "type": "group",
+      "label": "Session",
+      "actions": [
+        {
+          "type": "command",
+          "value": "shortcuts run \"Start Session Only\"",
+          "key": "s"
+        },
+        {
+          "type": "command",
+          "value": "shortcuts run \"Pause Session\"",
+          "key": "d"
+        },
+        {
+          "type": "command",
+          "value": "shortcuts run \"Stop Session\"",
+          "key": "f"
+        },
+        {
+          "type": "command",
+          "value": "shortcuts run \"Start Recent Session Only\"",
+          "key": "a"
+        }
+      ],
+      "key": "t"
+    },
+    {
       "actions": [
         {
           "key": "p",
