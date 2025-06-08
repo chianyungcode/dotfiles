@@ -68,24 +68,34 @@
       "label": "Session",
       "actions": [
         {
-          "type": "command",
-          "value": "shortcuts run \"Start Session Only\"",
+          "type": "url",
+          "value": "raycast://extensions/jameslyons/session/session-start-new-form",
           "key": "s"
         },
         {
-          "type": "command",
-          "value": "shortcuts run \"Pause Session\"",
+          "type": "url",
+          "value": "raycast://extensions/jameslyons/session/session-pause",
           "key": "d"
         },
         {
-          "type": "command",
-          "value": "shortcuts run \"Stop Session\"",
+          "type": "url",
+          "value": "raycast://extensions/jameslyons/session/session-finish",
           "key": "f"
         },
         {
-          "type": "command",
-          "value": "shortcuts run \"Start Recent Session Only\"",
+          "type": "url",
+          "value": "raycast://extensions/jameslyons/session/session-start-previous",
           "key": "a"
+        },
+        {
+          "type": "url",
+          "value": "raycast://extensions/jameslyons/session/session-abandon",
+          "key": "g"
+        },
+        {
+          "type": "url",
+          "value": "raycast://extensions/jameslyons/session/break-start",
+          "key": "c"
         }
       ],
       "key": "t"
@@ -255,5 +265,6 @@
       ]
     }
   ],
+  "label": "Shortcuts",
   "type": "group"
 }
