@@ -241,6 +241,7 @@
     {
       "type": "group",
       "key": "e",
+      "label": "Shortcuts",
       "actions": [
         {
           "type": "command",
@@ -265,6 +266,5 @@
       ]
     }
   ],
-  "label": "Shortcuts",
   "type": "group"
 }
