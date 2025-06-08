@@ -70,31 +70,37 @@
         {
           "type": "url",
           "value": "raycast://extensions/jameslyons/session/session-start-new-form",
+          "label": "Start Session",
           "key": "s"
         },
         {
           "type": "url",
           "value": "raycast://extensions/jameslyons/session/session-pause",
+          "label": "Pause Session",
           "key": "d"
         },
         {
           "type": "url",
           "value": "raycast://extensions/jameslyons/session/session-finish",
+          "label": "Finish Session",
           "key": "f"
         },
         {
           "type": "url",
           "value": "raycast://extensions/jameslyons/session/session-start-previous",
+          "label": "Start Last Session",
           "key": "a"
         },
         {
           "type": "url",
           "value": "raycast://extensions/jameslyons/session/session-abandon",
+          "label": "Abandon Session",
           "key": "g"
         },
         {
           "type": "url",
           "value": "raycast://extensions/jameslyons/session/break-start",
+          "label": "Break Session",
           "key": "c"
         }
       ],
