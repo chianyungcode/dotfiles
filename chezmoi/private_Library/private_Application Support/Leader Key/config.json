@@ -116,6 +116,11 @@
               "key": "a",
               "type": "url",
               "value": "https://9awgj69ymmsa.weezystore.id/transaction/order"
+            },
+            {
+              "key": "r",
+              "type": "url",
+              "value": "https://reseller.bangjeff.com/id/dashboard"
             }
           ]
         },
