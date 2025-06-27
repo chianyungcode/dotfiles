@@ -1,7 +1,3 @@
-if true then
-	return {}
-end
-
 return {
 	{
 		"rachartier/tiny-inline-diagnostic.nvim",
@@ -17,7 +13,7 @@ return {
 			-- vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = "#f7bf64" })
 			-- vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = "#64bcf7" })
 			-- vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = "#64f79d" })
-			require("tiny-inline-diagnostic").setup({
+			require("chezmoi.dot_config.nvim.lua.plugins.tiny-inline-diagnostic").setup({
 				-- presets = "amongus",
 				options = {
 					multilines = true,
