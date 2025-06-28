@@ -18,6 +18,7 @@ return {
 					"eslint", -- Kode error diagnostic 'typesript-eslint'
 					"biome",
 					"vtsls",
+					"tailwindcss",
 					"astro",
 					"gopls",
 					"html",
