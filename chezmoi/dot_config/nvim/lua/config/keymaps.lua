@@ -7,6 +7,11 @@ vim.keymap.set("n", "<leader>wl", "<Plug>(WormholeLabels)", { desc = "Wormhole L
 vim.keymap.set("n", "<Esc>", "<Plug>(WormholeCloseLabels)", { desc = "Wormhole Close Labels" })
 -- vim.keymap.set("n", "<leader>e", function() end, { desc = "Chian" })
 
+-- Related to plugin 'tiny-code-action'
+vim.keymap.set("n", "<leader>cb", function()
+	require("tiny-code-action").code_action()
+end, { noremap = true, silent = true })
+
 -- Fix keymap behavior:
 -- When pressing '?' and 'n', the search should move to the top (previous match),
 -- not to the bottom (next match).
