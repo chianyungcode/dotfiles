@@ -16,8 +16,8 @@ end, { noremap = true, silent = true })
 -- When pressing '?' and 'n', the search should move to the top (previous match),
 -- not to the bottom (next match).
 -- This adjusts the search direction to be consistent with expected behavior.
--- vim.keymap.set("n", "n", "n", { noremap = true })
--- vim.keymap.set("n", "N", "N", { noremap = true })
+vim.keymap.set("n", "n", "n", { noremap = true })
+vim.keymap.set("n", "N", "N", { noremap = true })
 
 -- Syntax
 -- vim.keymap.set("mode-vim", "keymaps", "command / function", { desc = "Wormhole Close Labels" })
