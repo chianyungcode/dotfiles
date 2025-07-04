@@ -5,7 +5,6 @@ return {
 	opts = {
 		search = {
 			multi_window = false,
-			forward = false,
 		},
 	},
 	-- stylua: ignore
