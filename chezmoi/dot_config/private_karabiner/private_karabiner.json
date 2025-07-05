@@ -228,7 +228,6 @@
               }
             ]
           },
-
           {
             "description": "Command + a when held, just 'a' when tapped",
             "manipulators": [
@@ -259,6 +258,45 @@
                 "to_if_held_down": [
                   {
                     "key_code": "a",
+                    "modifiers": ["left_command"],
+                    "repeat": false,
+                    "halt": true
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Command + v when held, just 'v' when tapped",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "v",
+                  "modifiers": {
+                    "optional": ["any"]
+                  }
+                },
+                "parameters": {
+                  "basic.to_delayed_action_delay_milliseconds": 200,
+                  "basic.to_if_held_down_threshold_milliseconds": 200
+                },
+                "to_delayed_action": {
+                  "to_if_canceled": [
+                    {
+                      "key_code": "v"
+                    }
+                  ]
+                },
+                "to_if_alone": [
+                  {
+                    "key_code": "v",
+                    "halt": true
+                  }
+                ],
+                "to_if_held_down": [
+                  {
+                    "key_code": "v",
                     "modifiers": ["left_command"],
                     "repeat": false,
                     "halt": true
