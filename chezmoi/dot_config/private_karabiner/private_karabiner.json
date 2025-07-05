@@ -110,6 +110,66 @@
                 "type": "basic"
               }
             ]
+          },
+          {
+            "description": "Command + C when held, just 'c' when tapped",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "c",
+                  "modifiers": {
+                    "optional": ["any"]
+                  }
+                },
+                "parameters": {
+                  "basic.to_delayed_action_delay_milliseconds": 200,
+                  "basic.to_if_held_down_threshold_milliseconds": 200
+                },
+                "to_delayed_action": {
+                  "to_if_canceled": [
+                    {
+                      "key_code": "c"
+                    }
+                  ]
+                },
+                "to_if_alone": [
+                  {
+                    "key_code": "c",
+                    "halt": true
+                  }
+                ],
+                "to_if_held_down": [
+                  {
+                    "key_code": "c",
+                    "modifiers": ["left_command"],
+                    "repeat": false,
+                    "halt": true
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Command + A when held, just 'a' when tapped",
+            "enabled": false,
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": { "key_code": "a" },
+                "to_if_alone": [{ "key_code": "a" }],
+                "to_if_held_down": [
+                  {
+                    "key_code": "a",
+                    "modifiers": ["left_command"]
+                  }
+                ],
+                "parameters": {
+                  "basic.to_if_alone_timeout_milliseconds": 500,
+                  "basic.to_if_held_down_threshold_milliseconds": 500
+                }
+              }
+            ]
           }
         ]
       },
