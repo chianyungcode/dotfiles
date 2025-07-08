@@ -460,6 +460,63 @@
                 "type": "basic"
               }
             ]
+          },
+          {
+            "description": "Pressing 'u' and 'i' simultanoeusly make a 'opt' + 'left_arrow' ",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "simultaneous": [{ "key_code": "u" }, { "key_code": "i" }],
+                  "modifiers": { "optional": ["any"] }
+                },
+                "to": {
+                  "key_code": "left_arrow",
+                  "modifiers": ["left_alt"]
+                }
+              }
+            ]
+          },
+          {
+            "description": "Pressing 'o' and 'i' simultanoeusly make a 'opt' + 'right_arrow' ",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "simultaneous": [{ "key_code": "o" }, { "key_code": "i" }],
+                  "modifiers": { "optional": ["any"] }
+                },
+                "to": {
+                  "key_code": "right_arrow",
+                  "modifiers": ["left_alt"]
+                }
+              }
+            ]
+          },
+          {
+            "description": "Pressing 'm' and ',' simultanoeusly make a 'opt' + 'backspace' ",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "simultaneous": [
+                    {
+                      "key_code": "m"
+                    },
+                    {
+                      "key_code": "comma"
+                    }
+                  ],
+                  "modifiers": {
+                    "optional": ["any"]
+                  }
+                },
+                "to": {
+                  "key_code": "delete_or_backspace",
+                  "modifiers": ["left_alt"]
+                }
+              }
+            ]
           }
         ]
       },
