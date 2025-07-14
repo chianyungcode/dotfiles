@@ -152,6 +152,7 @@
           },
           {
             "description": "Command + Tab when held, just 'Tab' when tapped",
+            "enabled": false,
             "manipulators": [
               {
                 "from": {
@@ -161,8 +162,8 @@
                   }
                 },
                 "parameters": {
-                  "basic.to_delayed_action_delay_milliseconds": 100,
-                  "basic.to_if_held_down_threshold_milliseconds": 100
+                  "basic.to_delayed_action_delay_milliseconds": 200,
+                  "basic.to_if_held_down_threshold_milliseconds": 200
                 },
                 "to_delayed_action": {
                   "to_if_canceled": [
@@ -200,8 +201,8 @@
                   }
                 },
                 "parameters": {
-                  "basic.to_delayed_action_delay_milliseconds": 100,
-                  "basic.to_if_held_down_threshold_milliseconds": 100
+                  "basic.to_delayed_action_delay_milliseconds": 200,
+                  "basic.to_if_held_down_threshold_milliseconds": 200
                 },
                 "to_delayed_action": {
                   "to_if_canceled": [
@@ -239,8 +240,8 @@
                   }
                 },
                 "parameters": {
-                  "basic.to_delayed_action_delay_milliseconds": 130,
-                  "basic.to_if_held_down_threshold_milliseconds": 130
+                  "basic.to_delayed_action_delay_milliseconds": 200,
+                  "basic.to_if_held_down_threshold_milliseconds": 200
                 },
                 "to_delayed_action": {
                   "to_if_canceled": [
@@ -463,6 +464,7 @@
           },
           {
             "description": "Pressing 'u' and 'i' simultanoeusly make a 'opt' + 'left_arrow' ",
+            "enabled": false,
             "manipulators": [
               {
                 "type": "basic",
@@ -479,6 +481,7 @@
           },
           {
             "description": "Pressing 'o' and 'i' simultanoeusly make a 'opt' + 'right_arrow' ",
+            "enabled": false,
             "manipulators": [
               {
                 "type": "basic",
