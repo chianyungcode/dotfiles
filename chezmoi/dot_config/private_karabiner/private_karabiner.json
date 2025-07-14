@@ -97,6 +97,7 @@
           },
           {
             "description": "Caps Lock → Hyper Key (⌃⌥⇧⌘) (Caps Lock if alone)",
+            "enabled": false,
             "manipulators": [
               {
                 "from": { "key_code": "caps_lock" },
