@@ -6,7 +6,7 @@ return {
 	-- { "killitar/obscure.nvim" },
 	{
 		"oxfist/night-owl.nvim",
-		enabled = false,
+		enabled = true,
 		lazy = false,
 		priority = 1000,
 	},
@@ -28,20 +28,20 @@ return {
 		name = "catppuccin",
 		enabled = true,
 		priority = 1000,
-		config = function()
-			require("catppuccin").setup({
-				flavour = "mocha",
-				color_overrides = {
-					mocha = {
-						base = "#2C2C2C",
-						mantle = "#2C2C2C",
-						crust = "#2C2C2C",
-					},
-				},
-
-				transparent_background = false, -- disables setting the background color.
-			})
-		end,
+		-- config = function()
+		-- 	require("catppuccin").setup({
+		-- 		flavour = "mocha",
+		-- 		color_overrides = {
+		-- 			mocha = {
+		-- 				base = "#2C2C2C",
+		-- 				mantle = "#2C2C2C",
+		-- 				crust = "#2C2C2C",
+		-- 			},
+		-- 		},
+		--
+		-- 		transparent_background = false, -- disables setting the background color.
+		-- 	})
+		-- end,
 	},
 	{ "datsfilipe/vesper.nvim" },
 	-- {
@@ -184,7 +184,7 @@ return {
 	{
 		"LazyVim/LazyVim",
 		opts = {
-			colorscheme = "kanso",
+			colorscheme = "catppuccin",
 		},
 	},
 }
