@@ -1,0 +1,77 @@
+;; This is for single line comment
+
+
+;; Blok konfigurasi global
+(defcfg
+  process-unmapped-keys yes
+  concurrent-tap-hold yes ;; for input chording/combos
+  macos-dev-names-exclude (
+    "Corne"
+    "NuPhy Air75 V2"
+  )
+)
+
+;; Variable for storing a value
+(defvar
+  tap-time 200
+  hold-time 200
+  hold-time-slow 300
+  input-chord-time 250
+)
+
+;; Definisikan keyboard fisik
+(defsrc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
+)
+
+;;  Syntax for tap-hold
+;;  (tap-hold TAP-TIME HOLD-TIME TAP-KEY HOLD-KEY)
+(defalias
+  e (tap-hold $tap-time $hold-time e lmet)
+  s (tap-hold $tap-time $hold-time s lctl)
+  d (tap-hold $tap-time $hold-time d lalt)
+  f (tap-hold $tap-time $hold-time f lmet)
+  l (tap-hold $tap-time $hold-time l lctl)
+  k (tap-hold $tap-time $hold-time k lalt)
+  j (tap-hold $tap-time $hold-time j lmet)
+  / (tap-hold $tap-time $hold-time / rmet)
+  hyperkey (tap-hold $tap-time $hold-time spc (multi lsft lctl lalt lmet))
+  caps (tap-hold $tap-time $hold-time esc (layer-toggle layer1))
+)
+
+;; == Input combos / chording ==
+#|
+  syntax:
+  (participating-keysN) actionN timeoutN release-behaviourN (disabled-layersN)
+
+  references:
+  https://jtroo.github.io/config.html#input-chords-v2
+|#
+
+(defchordsv2
+  (m ,) A-bspc $input-chord-time all-released ()
+)
+
+;; == Layers ==
+;; the order of deflayer is important, the first layer defined is the layer that will be active by default when kanata is running
+
+;; Define base / default layer
+(deflayer base
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    @e    r    t    y    u    i    o    p    [    ]    \
+  @caps  a    @s    @d    @f    g    h    @j    @k    @l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    @/    rsft ;; Tombol x sekarang punya fungsi ganda
+  lctl lmet lalt           @hyperkey            ralt rmet rctl
+)
+
+(deflayer layer1
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    left    down    up    right    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
+)
