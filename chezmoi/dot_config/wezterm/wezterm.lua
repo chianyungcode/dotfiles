@@ -25,8 +25,8 @@ config.colors = {
 
 -- ### Config font ###
 -- Alternative font: Geist Mono/Fira Code/JetBrains Mono/MonoLisa/MesloLGS Nerd Font Mono/Maple Mono/Cartograph CF
-config.font = wezterm.font("JetBrains Mono")
-config.font_size = 15
+config.font = wezterm.font("Dank Mono")
+config.font_size = 16.5
 
 -- https://wezfurlong.org/wezterm/config/lua/config/underline_thickness.html#underline_thickness
 config.underline_thickness = 2.8
