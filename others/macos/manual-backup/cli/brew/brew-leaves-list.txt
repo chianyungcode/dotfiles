@@ -23,6 +23,7 @@ fish
 flyctl
 fx
 gh
+ghostscript
 git
 git-delta
 git-filter-repo

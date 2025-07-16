@@ -104,7 +104,6 @@
 /Applications/Swift Shift.app
 /Applications/Memo Widget.app
 /Applications/UTM.app
-/Applications/ChatGPT.app
 /Applications/Blender.app
 /Applications/zoom.us.app
 /Applications/Monocle.app
