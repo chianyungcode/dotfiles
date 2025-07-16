@@ -25,6 +25,7 @@ return {
 					"jsonls",
 					"denols",
 					"nil_ls",
+					"taplo",
 				},
 				automatic_enable = {
 					exclude = {
