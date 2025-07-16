@@ -6,7 +6,7 @@ return {
 	-- { "killitar/obscure.nvim" },
 	{
 		"oxfist/night-owl.nvim",
-		enabled = true,
+		enabled = false,
 		lazy = false,
 		priority = 1000,
 	},
@@ -54,7 +54,7 @@ return {
 	-- },
 	{
 		"dgox16/oldworld.nvim",
-		enabled = false,
+		enabled = true,
 		lazy = false,
 		priority = 1000,
 		config = function()
@@ -169,7 +169,6 @@ return {
 	{
 		"Skardyy/makurai-nvim",
 	},
-	-- Using lazy.nvim
 	{
 		"metalelf0/black-metal-theme-neovim",
 		lazy = false,
