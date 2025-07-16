@@ -6,6 +6,7 @@
 -- https://www.lazyvim.org/extras/ui/treesitter-context#nvim-treesitter-context
 return {
 	"nvim-treesitter/nvim-treesitter-context",
+	enabled = false,
 	event = "LazyFile",
 	opts = {
 		mode = "cursor",
