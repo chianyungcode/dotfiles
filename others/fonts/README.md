@@ -21,5 +21,6 @@
 - Menlo
 - Hack
 - Monaspace {Neon / Argon / Xenon / Radon / Krypton}
+- Martian Mono
 
 [[../README.md]]
