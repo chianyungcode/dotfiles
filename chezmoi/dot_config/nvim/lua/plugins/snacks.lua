@@ -10,6 +10,12 @@ return {
 		picker = {
 			sources = {
 				explorer = {
+					layout = {
+						preset = "sidebar", -- other options is "ivy", "select"
+						layout = {
+							position = "left",
+						},
+					},
 					win = {
 						list = {
 							wo = {
