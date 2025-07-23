@@ -215,6 +215,8 @@ apps = [
   "497799835",  # Velja
 ]
 
+# === APT PACKAGE MANAGER ===
+
 [packages.apt]
 [packages.apt.common]
 packages = [
