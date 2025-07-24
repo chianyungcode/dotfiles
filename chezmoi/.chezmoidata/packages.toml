@@ -47,83 +47,89 @@
       "visual-studio-code",
     ]
     formulae = [
-      "atuin",                         # Better shell history
+      "atuin",                     # Better shell history
       "awscli",
-      "bat",                           # cat with syntax highlighting and git integration
-      "berkeley-db",                   # Oracle berkeley-db
-      "bfg",                           # Remove large files or passwords from Git history like git-filter-branch
+      "bat",                       # cat with syntax highlighting and git integration
+      "berkeley-db",               # Oracle berkeley-db
+      "bfg",                       # Remove large files or passwords from Git history like git-filter-branch
       "brew-gem",
       "btop",
       "chezmoi",
-      "cliclick",                      # macOS CLI tool for emulating mouse and keyboard events
-      "cocoapods",                     # depedency manager for switft
+      "cliclick",                  # macOS CLI tool for emulating mouse and keyboard events
+      "cocoapods",                 # depedency manager for switft
+      "coreutils",                 # GNU coreutils
       "dotter",
-      "eza",                           # Better ls
-      "fastfetch",                     # Better system info
-      "fd",                            # Better find
-      "ffmpegthumbnailer",
-      "fish",                          # Alternative shell for zsh
-      "flyctl",                        # Fly.io CLI
-      "fzf",                           # Fuzzy finder
-      "fx",                            # Better grep
+      "eza",                       # Better ls
+      "fastfetch",                 # Better system info
+      "fd",                        # Better find
+      "ffmpegthumbnailer",         # Video thumbnail for yazi cli
+      "fish",                      # Alternative shell for zsh
+      "flyctl",                    # Fly.io CLI
+      "findutils",                 # GNU find
+      "fzf",                       # Fuzzy finder
+      "fx",                        # Better grep
+      "gawk",                      # GNU awk
       "git",
-      "git-delta",                     # Git diff viewer or pager
+      "gitleaks",                  # Find secrets that leaks in your repo
+      "git-delta",                 # Git diff viewer or pager
+      "gnu-sed",                   # GNU implementation of the famous stream editor
+      "gnu-tar",                   # GNU version of the tar archiving utility
+      "gnutls",                    # GNU Transport Layer Security (TLS) Library
       "git-filter-repo",
       "git-lfs",
-      "gitmux",                        # Git status bar in tmux
-      "glow",                          # Render markdown in CLI
-      "gnupg",                         # GPG
-      "gping",                         # Ping with graph
+      "gitmux",                    # Git status bar in tmux
+      "glow",                      # Render markdown in CLI
+      "gnupg",                     # GPG
+      "gping",                     # Ping with graph
       "gzip",
-      "halp",
-      "helix",                         # Alternative neovim
-      "hyperfine",                     # A command-line benchmarking too
+      "halp",                      # Better help
+      "helix",                     # Alternative neovim
+      "hyperfine",                 # A command-line benchmarking too
       "icu4c@76",
-      "imagemagick",                   # Image processing
-      "jq",                            # Lightweight and flexible command-line JSON processor
-      "libfido2",                      # Provides library functionality for FIDO U2F & FIDO 2.0, including USB
-      "mongosh",                       # MongoDB shell
-      "most",                          # Pager
-      "navi",                          # An interactive cheatsheet tool for the command-line 
-      "neonctl",                       # Neon CLI
-      "neovim",                        # Text 
-      "node",                          # Node.js
-      "nushell",                       # Alternative shell
-      "nvm",                           # Node version manager
-      "openssh",                       # SSH
-      "pkgconf",                       # package compiler and linker metadata toolki
-      "pngpaste",                      # Paste PNG into files on MacOS, much like pbpaste does for text.
-      "poppler",                       # PDF rendering library
-      "python@3.11",
-      "ripgrep",                       # Search tool like grep and the silver searcher
+      "imagemagick",               # Image processing
+      "jq",                        # Lightweight and flexible command-line JSON processor
+      "libfido2",                  # Provides library functionality for FIDO U2F & FIDO 2.0, including USB
+      "mongosh",                   # MongoDB shell
+      "most",                      # Pager
+      "navi",                      # An interactive cheatsheet tool for the command-line 
+      "neonctl",                   # Neon CLI
+      "neovim",                    # Text 
+      "node",                      # Node.js
+      "nushell",                   # Alternative shell
+      "nvm",                       # Node version manager
+      "openssh",                   # SSH
+      "pkgconf",                   # package compiler and linker metadata toolki
+      "pngpaste",                  # Paste PNG into files on MacOS, much like pbpaste does for text.
+      "poppler",                   # PDF rendering library
+      "rip2",                      # A safer rm, written in Rust
+      "ripgrep",                   # Search tool like grep and the silver searcher
       "ruby",
-      "sesh",                          # Tmux session manager
-      "speedtest-cli",
-      "sshs",
-      "starship",                      # Configure shell prompt appearance
-      "stow",                          # Symlink manager
+      "sesh",                      # Tmux session manager
+      "sshs",                      # Graphical command-line client for SSH
+      "ssh-copy-id",               # Add a public key to a remote machine's authorized_keys file
+      "starship",                  # Configure shell prompt appearance
+      "stow",                      # Symlink manager
       "stripe/stripe-cli/stripe",
-      "supabase/tap/supabase",
-      "taplo",                         # TOML parser
-      "teamookla/speedtest/speedtest",
-      "television",                    # Alternative to yazi
-      "tlrc",                          # TLDR client
-      "tmux",                          # Terminal multiplexer
-      "tmuxinator",                    # Tmux session manager
-      "tmuxp",                         # Tmux session manager
+      "taplo",                     # TOML parser
+      "tealdeer",                  # TLDR man pages
+      "television",                # Alternative to yazi
+      "tlrc",                      # TLDR client
+      "tmux",                      # Terminal multiplexer
+      "tmuxinator",                # Tmux session manager
+      "tmuxp",                     # Tmux session manager
       "unzip",
-      "vim",                           # Alternative neovim
-      "vladkens/tap/macmon",           # Mac monitor
-      "vivid",                         # Better ls
-      "watchman",                      # File watcher
+      "vim",                       # Alternative neovim
+      "vladkens/tap/macmon",       # Mac monitor
+      "vivid",                     # Better ls
+      "watchman",                  # File watcher
       "wget",
-      "whois",                         # Lookup tool for domain names and other internet resources
+      "whois",                     # Lookup tool for domain names and other internet resources
       "withgraphite/tap/graphite",
       "wtfutil",
       "xz",
-      "yazi",                          # File manager in CLI
-      "yq",                            # YAML processor
-      "zoxide",                        # Better cd
+      "yazi",                      # File manager in CLI
+      "yq",                        # YAML processor
+      "zoxide",                    # Better cd
     ]
 
     [packages.homebrew.dev_computer]
