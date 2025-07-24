@@ -84,6 +84,7 @@ for cask in ${casks[@]}; do
         # Check if app already exists in /Applications to prevent conflicts
         app_name="${cask}"
         # Convert cask name to common app name patterns
+        # If brew cask name different with the name of an app, please define here for example cask named "jordanbaird-ice" but when the cask installed, the app name is "Ice"
         case "${cask}" in
             "1password")
                 app_name="1Password"
@@ -94,26 +95,8 @@ for cask in ${casks[@]}; do
             "visual-studio-code")
                 app_name="Visual Studio Code"
                 ;;
-            "slack")
-                app_name="Slack"
-                ;;
-            "zoom")
-                app_name="zoom.us"
-                ;;
-            "spotify")
-                app_name="Spotify"
-                ;;
-            "discord")
-                app_name="Discord"
-                ;;
-            "figma")
-                app_name="Figma"
-                ;;
-            "notion")
-                app_name="Notion"
-                ;;
-            "raycast")
-                app_name="Raycast"
+            "jordanbaird-ice")
+                app_name="ice"
                 ;;
             *)
                 # Capitalize first letter and replace dashes with spaces
@@ -125,7 +108,8 @@ for cask in ${casks[@]}; do
         if [[ ! -d "/Applications/${app_name}.app" ]]; then
             brew install -q --cask ${cask}
         else
-            echo "Skipping ${cask} - already exists in /Applications"
+            error "Skipping ${cask} - already exists in /Applications"
+            continue
         fi
     fi
 
