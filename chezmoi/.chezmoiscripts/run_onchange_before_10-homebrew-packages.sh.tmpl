@@ -81,7 +81,52 @@ done
 {{ if not .is_ci_workflow }}
 for cask in ${casks[@]}; do
     if ! _inArray_ -i "${cask}" "${currently_installed_casks[@]}"; then
-        brew install -q --cask ${cask}
+        # Check if app already exists in /Applications to prevent conflicts
+        app_name="${cask}"
+        # Convert cask name to common app name patterns
+        case "${cask}" in
+            "1password")
+                app_name="1Password"
+                ;;
+            "google-chrome")
+                app_name="Google Chrome"
+                ;;
+            "visual-studio-code")
+                app_name="Visual Studio Code"
+                ;;
+            "slack")
+                app_name="Slack"
+                ;;
+            "zoom")
+                app_name="zoom.us"
+                ;;
+            "spotify")
+                app_name="Spotify"
+                ;;
+            "discord")
+                app_name="Discord"
+                ;;
+            "figma")
+                app_name="Figma"
+                ;;
+            "notion")
+                app_name="Notion"
+                ;;
+            "raycast")
+                app_name="Raycast"
+                ;;
+            *)
+                # Capitalize first letter and replace dashes with spaces
+                app_name=$(echo "${cask}" | sed 's/-/ /g' | sed 's/\b\(.\)/\u\1/g')
+                ;;
+        esac
+        
+        # Check if app exists in /Applications
+        if [[ ! -d "/Applications/${app_name}.app" ]]; then
+            brew install -q --cask ${cask}
+        else
+            echo "Skipping ${cask} - already exists in /Applications"
+        fi
     fi
 
 done

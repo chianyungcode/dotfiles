@@ -3,12 +3,15 @@
 {{- $git_user := promptStringOnce . "git_user" "What's your git user" -}}
 {{- $personal_computer := promptBoolOnce . "personal_computer" "Is this a personal computer for daily driving? (true/false)" -}}
 {{- $dev_computer := promptBoolOnce . "dev_computer" "Do you do development on this computer? (true/false)" -}}
+{{- $homelab_member := promptBoolOnce . "homelab_member" "Is this computer part of your homelab? (true/false)" -}}
 
 [data]
   dev_computer      = {{ $dev_computer }}
   git_email         = {{ $git_email | quote }}
   git_user          = {{ $git_user | quote }}
   github_user       = "chianyungcode"
+  homelab_member    = {{ $homelab_member }}
+  is_ci_workflow       = false
   personal_computer = {{ $personal_computer }}
   use_secrets       = {{ $use_secrets }}
   xdgCacheDir       = "{{ .chezmoi.homeDir }}/.cache"

@@ -160,7 +160,7 @@
       "apparency",          # Showing detail app in finder
       "bunch",
       "discord",
-      "doockdoor",
+      "dockdoor",
       "iina",
       "google-chrome",
       "karabiner-elements",
@@ -189,6 +189,11 @@
       "yubico-piv-tool",             # Yubikey PIV tool
       "qmk/qmk/qmk",                 # QMK CLI
     ]
+
+    [packages.homebrew.homelab_member]
+    taps = []
+    casks = ["arc"]
+    formulae = ["ffmpeg", "iperf", "nmap", "tailspin"]
 
 
   [packages.mas]
