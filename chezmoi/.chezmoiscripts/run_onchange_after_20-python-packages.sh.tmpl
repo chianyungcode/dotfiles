@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+{{ template "shared_script_utils.bash" . }}
+
+header "Installing python packages with uv"
+
+packages=(
+    {{ range $package := .packages.python.common.packages }}
+    "{{ $package }}"
+    {{ end }}
+
+    {{ if .dev_computer }}
+    {{ range $package := .packages.python.dev_computer.packages }}
+    "{{ $package }}"
+    {{ end }}
+    {{ end }}
+
+    {{ if .homelab_member }}
+    {{ range $package := .packages.python.homelab_member.packages }}
+    "{{ $package }}"
+    {{ end }}
+    {{ end }}
+
+    {{ if .personal_computer }}
+    {{ range $package := .packages.python.personal_computer.packages }}
+    "{{ $package }}"
+    {{ end }}
+    {{ end }}
+)
+
+UV_PATH="$(_uvBinaryPath_)" || {
+    error "uv is not installed"
+    _safeExit_ 1
+}
+
+if [[ -n ${UV_PATH} ]]; then
+    # Install the packages with uv
+    for package in "${packages[@]}"; do
+        ${UV_PATH} tool install "${package}"
+    done
+fi
+
+success "Python packages installed"
+
+_safeExit_
+
+

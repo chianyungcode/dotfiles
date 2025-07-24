@@ -75,6 +75,7 @@
       "gnupg",                         # GPG
       "gping",                         # Ping with graph
       "gzip",
+      "halp",
       "helix",                         # Alternative neovim
       "hyperfine",                     # A command-line benchmarking too
       "icu4c@76",
@@ -218,6 +219,7 @@
     # === APT PACKAGE MANAGER ===
 
   [packages.apt]
+  to_remove = []
     [packages.apt.common]
     packages = [
       "apt-transport-https",
@@ -292,3 +294,15 @@
     packages = ["iperf"]
     [packages.pacman.personal_computer]
     packages = []
+
+
+  [packages.python]
+  to_remove = []
+    [packages.python.common]
+    packages = ["halper", "pygments"]
+    [packages.python.dev_computer]
+    packages = ["ansible-core", "cookiecutter"]
+    [packages.python.homelab_member]
+    packages = []
+    [packages.python.personal_computer]
+    packages = ["vid-cleaner"]
