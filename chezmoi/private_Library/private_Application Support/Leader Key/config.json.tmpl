@@ -1,3 +1,4 @@
+{{- if eq .chezmoi.os "darwin" -}}
 {
   "actions": [
     {
@@ -279,3 +280,5 @@
   ],
   "type": "group"
 }
+
+{{ end }}
