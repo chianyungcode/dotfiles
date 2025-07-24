@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# The following line will force this script to run monthly
+# https://www.chezmoi.io/user-guide/frequently-asked-questions/usage/#how-do-i-run-a-script-periodically
+# {{ output "date" "+%m" | trim }}
+
+{{ template "shared_script_utils.bash" . }}
+
+UV_PATH="$(_uvBinaryPath_)" || {
+    error "uv is not installed"
+    _safeExit_
+}
+
+# Run these commands on all systems
+if [[ -n ${UV_PATH} ]]; then
+    header "Upgrading tools installed with uv"
+    ${UV_PATH} tool upgrade --all
+fi
+
+_safeExit_
