@@ -267,3 +267,4 @@ For different environments (dev/staging/prod), use naming conventions:
 - [Chezmoi Templating Guide](https://www.chezmoi.io/user-guide/templating/)
 - [Tailscale SSH Documentation](https://tailscale.com/kb/1193/tailscale-ssh/)
 - [Original Inspiration](https://github.com/natelandau/dotfiles?tab=readme-ov-file#ssh-configuration)
+- [1Password Item Template](https://developer.1password.com/docs/cli/item-template-json/)
