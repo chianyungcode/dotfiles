@@ -17,9 +17,13 @@
 	  defaultBranch = main
 
 [credential]
-	  helper = osxkeychain
 	  helper = 
+	  helper = osxkeychain
 	  helper = /usr/local/share/gcm-core/git-credential-manager
+    {{- if ne .chezmoi.os "darwin" }}
+    credentialStore = cache
+    guiPrompt = false
+    {{- end }}
 
 [alias]
 	  co = checkout
@@ -42,6 +46,16 @@
 [core]
     pager = delta
 	  excludesFile = ~/.config/git/ignore
+    sshCommand = ssh -i {{ .directories.ssh_keys_dir | replaceAllRegex "\\${HOME}" "~" }}/git
+
+    # Treat spaces before tabs and all kinds of trailing whitespace as an error
+    # [default] trailing-space: looks for spaces at the end of a line
+    # [default] space-before-tab: looks for spaces before tabs at the beginning of a line
+    whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+
+    # Prevent showing files whose names contain non-ASCII symbols as unversioned.
+    # http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
+    precomposeunicode = false
 
 [interactive]
     diffFilter = delta --color-only
@@ -64,9 +78,6 @@
 [diff]
     colorMoved = default
 
-[push]
-  # agar ketika membuat branch baru di lokal tidak perlu melakukan perintah 'git push --set-upstream origin nama-branch-baru' . Menghindari salah penulisan nama branch sehingga dapat menyebabkan nama branch di lokal dan remote berbeda
-  default = current
 
 [gpg]
 	  format = ssh
@@ -75,6 +86,43 @@
 [gpg "ssh"]
 	  program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 {{- end }}
+
+[apply]
+    whitespace = fix
+
+[branch]
+    sort = -committerdate
+
+[color]
+    ui = true
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+# Auto-cleanup stale remote branches/tags and fetch all remotes during git fetch
+[fetch]
+    prune = true      # Remove deleted remote branches in local
+    pruneTags = true  # Remove deleted remote tags in local
+    all = true        # Fetch from all configured remotes
+
+[push]
+  # agar ketika membuat branch baru di lokal tidak perlu melakukan perintah 'git push --set-upstream origin nama-branch-baru' . Menghindari salah penulisan nama branch sehingga dapat menyebabkan nama branch di lokal dan remote berbeda
+  default = current
+
+[pull]
+    # avoid accidentally creating a merge commit when you run git pull on a branch where the upstream branch has diverged
+    rebase = true
+
+[rebase]
+    autosquash = true
+    autostash = true
+    updateRefs = true
+
+[pager]
+    status = true
+    show-branch = true
 
 [commit]
 	  gpgsign = true
