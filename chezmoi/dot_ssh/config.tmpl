@@ -22,7 +22,7 @@ Host {{ .name }}
     IdentitiesOnly yes
 {{-         if .tailscale_ip}}
 
-Host t{{ .name }}
+Host tail{{ .name }}
     User {{ range (onepassword .op_id).fields }}{{ if eq .label "user" }}{{ .value }}{{ end }}{{ end }}
     Hostname {{ range (onepassword .op_id).fields }}{{ if eq .label "tailscale_ip" }}{{ .value }}{{ end }}{{ end }}
     Port {{ range (onepassword .op_id).fields }}{{ if eq .label "port" }}{{ .value }}{{ end }}{{ end }}
