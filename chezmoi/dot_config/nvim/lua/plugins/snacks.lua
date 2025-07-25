@@ -9,7 +9,13 @@ return {
 		-- Snacks.picker() ini adalah snacks.picker custom configuration
 		picker = {
 			sources = {
+				files = { ignored = true, hidden = true },
+				grep = { ignored = true, hidden = true },
+				grep_word = { ignored = true, hidden = true },
+				grep_buffers = { ignored = true, hidden = true },
 				explorer = {
+					ignored = true,
+					hidden = true,
 					layout = {
 						preset = "sidebar", -- other options is "ivy", "select"
 						layout = {
