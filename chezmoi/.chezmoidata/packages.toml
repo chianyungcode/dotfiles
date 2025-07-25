@@ -1,6 +1,6 @@
 [packages]
   [packages.homebrew]
-  to_remove = ["htop"]
+  to_remove = ["htop", "speedtest-cli"]
     [packages.homebrew.common]
     # packages that needed in every computer
     taps = [
@@ -72,6 +72,7 @@
       "git",
       "gitleaks",                  # Find secrets that leaks in your repo
       "git-delta",                 # Git diff viewer or pager
+      "gnu-getopt",
       "gnu-sed",                   # GNU implementation of the famous stream editor
       "gnu-tar",                   # GNU version of the tar archiving utility
       "gnutls",                    # GNU Transport Layer Security (TLS) Library
@@ -80,6 +81,7 @@
       "gitmux",                    # Git status bar in tmux
       "glow",                      # Render markdown in CLI
       "gnupg",                     # GPG
+      "grep",
       "gping",                     # Ping with graph
       "gzip",
       "halp",                      # Better help
@@ -111,7 +113,6 @@
       "stow",                      # Symlink manager
       "stripe/stripe-cli/stripe",
       "taplo",                     # TOML parser
-      "tealdeer",                  # TLDR man pages
       "television",                # Alternative to yazi
       "tlrc",                      # TLDR client
       "tmux",                      # Terminal multiplexer
