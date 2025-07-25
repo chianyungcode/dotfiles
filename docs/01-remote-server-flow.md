@@ -96,7 +96,7 @@ The `run_after_20-create-ssh-keys.sh.tmpl` script will:
 The `~/.ssh/config.tmpl` file automatically generates SSH configurations using Go template syntax. The generated config includes:
 
 - **Regular connections**: `Host [server-name]`
-- **Tailscale connections**: `Host t[server-name]` (prefix with 't')
+- **Tailscale connections**: `Host tail[server-name]` (prefix with 'tail')
 - **Security settings**: IdentityFile, IdentitiesOnly, and other security options
 
 ## Examples
@@ -228,13 +228,11 @@ op signin
 ## Security Best Practices
 
 1. **Key Management**:
-
    - Use Ed25519 keys for new setups (RSA 4096 for compatibility)
    - Never share private keys outside 1Password
    - Rotate keys regularly (quarterly recommended)
 
 2. **Access Control**:
-
    - Use principle of least privilege for server users
    - Enable 2FA on 1Password account
    - Regular audit of 1Password items
