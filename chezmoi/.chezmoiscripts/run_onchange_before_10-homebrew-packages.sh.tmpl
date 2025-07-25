@@ -108,7 +108,7 @@ for cask in ${casks[@]}; do
         if [[ ! -d "/Applications/${app_name}.app" ]]; then
             brew install -q --cask ${cask}
         else
-            error "Skipping ${cask} - already exists in /Applications"
+            notice "Skipping ${cask} - already exists in /Applications"
             continue
         fi
     fi
