@@ -1,0 +1,37 @@
+{
+  "title": "",
+  "category": "SSH_KEY",
+  "fields": [
+    {
+      "id": "user",
+      "type": "STRING",
+      "purpose": "NOTES",
+      "label": "user",
+      "value": ""
+    },
+    {
+      "id": "ssh_public_key",
+      "type": "SSHKEY",
+      "label": "public key",
+      "value": ""
+    },
+    {
+      "id": "ssh_private_key",
+      "type": "SSHKEY",
+      "label": "private key",
+      "value": ""
+    },
+    {
+      "id": "hostname",
+      "type": "STRING",
+      "label": "hostname",
+      "value": ""
+    },
+    {
+      "id": "port",
+      "type": "STRING",
+      "label": "port",
+      "value": ""
+    }
+  ]
+}
