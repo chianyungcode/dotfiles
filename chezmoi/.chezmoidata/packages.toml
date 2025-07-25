@@ -189,6 +189,7 @@
       "vial",
       "warp",
       "wezterm",
+      "hazel",
     ]
     formulae = [
       "felixkratz/formulae/borders",
