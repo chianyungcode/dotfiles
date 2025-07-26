@@ -1,0 +1,11 @@
+
+# === Directories ===
+export DOTFILES="$HOME/.local/share/chezmoi/chezmoi"
+export EDITOR="nvim"
+export GIT_CONFIG_GLOBAL="$HOME/.config/git/config"
+
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml" # Change default location for starship configuration
+
+{{- if eq .chezmoi.os "darwin"}}
+export DISABLE_AUTO_TITLE='true' # Prevent auto update in title window macos
+{{- end }}
