@@ -1,0 +1,87 @@
+#!/bin/bash
+
+{{ template "shared_script_utils.bash" . }}
+
+header "Installing LazyVim"
+
+# Configuration
+NVIM_CONFIG_DIR="$HOME/.config/nvim"
+BACKUP_DIR="$HOME/.config/nvim_backup_$(date +%Y%m%d_%H%M%S)"
+LAZYVIM_REPO="https://github.com/LazyVim/starter"
+
+# Check if git is available
+if ! command -v git &> /dev/null; then
+    error "Git is not installed. Please install Git first."
+    _safeExit_ 1
+fi
+
+# Check if nvim is available
+if ! command -v nvim &> /dev/null; then
+    warning "Neovim is not installed. LazyVim requires Neovim 0.9+."
+    read -p "Continue with installation? (y/N): " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        info "Skipping LazyVim installation."
+        _safeExit_ 0
+    fi
+fi
+
+# Check if LazyVim is already installed
+if [[ -d "$NVIM_CONFIG_DIR" ]]; then
+    # Check if it's a LazyVim installation
+    if [[ -f "$NVIM_CONFIG_DIR/lua/config/lazy.lua" ]] || [[ -f "$NVIM_CONFIG_DIR/init.lua" ]]; then
+        info "LazyVim appears to already be installed at $NVIM_CONFIG_DIR"
+        
+        # Check if it's a git repository (indicates it's the starter template)
+        if [[ -d "$NVIM_CONFIG_DIR/.git" ]]; then
+            info "Removing .git directory from existing LazyVim installation..."
+            rm -rf "$NVIM_CONFIG_DIR/.git"
+            success "Existing LazyVim installation cleaned up."
+            _safeExit_ 0
+        else
+            warning "Existing configuration detected but it's not a git repository."
+            read -p "Backup existing config and reinstall LazyVim? (y/N): " -n 1 -r
+            echo
+            if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+                info "Skipping LazyVim installation."
+                _safeExit_ 0
+            fi
+        fi
+    else
+        # Backup existing non-LazyVim configuration
+        info "Backing up existing Neovim configuration to $BACKUP_DIR"
+        mkdir -p "$(dirname "$BACKUP_DIR")"
+        if mv "$NVIM_CONFIG_DIR" "$BACKUP_DIR"; then
+            success "Configuration backed up successfully"
+        else
+            error "Failed to backup existing configuration"
+            _safeExit_ 1
+        fi
+    fi
+fi
+
+# Create parent directory if it doesn't exist
+mkdir -p "$(dirname "$NVIM_CONFIG_DIR")"
+
+# Clone LazyVim starter
+info "Cloning LazyVim starter configuration..."
+if git clone --depth 1 "$LAZYVIM_REPO" "$NVIM_CONFIG_DIR"; then
+    success "LazyVim starter configuration cloned successfully"
+    
+    # Remove .git directory
+    rm -rf "$NVIM_CONFIG_DIR/.git"
+    success "Cleaned up git repository"
+    
+    # Verify installation
+    if [[ -f "$NVIM_CONFIG_DIR/init.lua" ]]; then
+        success "LazyVim installation verified"
+        info "You can now run 'nvim' to start LazyVim"
+        info "First launch will install all plugins - this may take a few minutes"
+    else
+        error "Installation verification failed - init.lua not found"
+        _safeExit_ 1
+    fi
+else
+    error "Failed to clone LazyVim repository"
+    _safeExit_ 1
+fi
