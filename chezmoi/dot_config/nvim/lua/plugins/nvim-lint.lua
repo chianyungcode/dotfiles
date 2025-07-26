@@ -8,7 +8,11 @@ return {
 		linters = {
 			-- https://github.com/LazyVim/LazyVim/discussions/4094#discussioncomment-10178217
 			["markdownlint-cli2"] = {
-				args = { "--config", os.getenv("HOME") .. ".dotfiles/.markdownlint.yaml", "--" },
+				args = {
+					"--config",
+					os.getenv("HOME") .. ".config/nvim/lua/cfg_linters/.markdownlint.yaml",
+					"--",
+				},
 			},
 		},
 	},
