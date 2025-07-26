@@ -12,7 +12,7 @@ ohmyzsh/ohmyzsh path:plugins/docker-compose
 mattmc3/ez-compinit
 # zsh-users/zsh-completions kind:fpath path:src
 olets/zsh-abbr    kind:defer
-MichaelAquilina/zsh-you-should-use
+MichaelAquilina/zsh-you-should-use kind:zsh
 zsh-users/zsh-autosuggestions
 zdharma-continuum/fast-syntax-highlighting kind:defer
 
