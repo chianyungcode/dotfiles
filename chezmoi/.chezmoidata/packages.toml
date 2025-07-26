@@ -148,6 +148,7 @@
       "dopplerhq/cli/doppler",               # Secret manager
       "dotenvx/brew/dotenvx",                # Env manager
       "gh",                                  # Github CLI
+      "glab",                                # GitLab CLI
       "git-delta",                           # Pager for git
       "git-extras",                          # Add extra command to default git
       "httpie",                              # HTTP client
@@ -168,6 +169,7 @@
       "bunch",
       "discord",
       "dockdoor",
+      "espanso",
       "iina",
       "google-chrome",
       "karabiner-elements",
