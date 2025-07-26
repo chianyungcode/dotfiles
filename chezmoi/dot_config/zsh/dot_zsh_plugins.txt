@@ -2,6 +2,8 @@
 # oh-my-zsh plugins bawaan
 ohmyzsh/ohmyzsh path:plugins/brew
 ohmyzsh/ohmyzsh path:plugins/direnv
+ohmyzsh/ohmyzsh path:plugins/git
+ohmyzsh/ohmyzsh path:plugins/git-extras
 ohmyzsh/ohmyzsh path:plugins/git-commit
 ohmyzsh/ohmyzsh path:plugins/npm
 ohmyzsh/ohmyzsh path:plugins/aliases
@@ -9,9 +11,10 @@ ohmyzsh/ohmyzsh path:plugins/copypath
 ohmyzsh/ohmyzsh path:plugins/docker-compose
 
 # Third Party Plugins
+# Syntax: owner/repo
 mattmc3/ez-compinit
 # zsh-users/zsh-completions kind:fpath path:src
-olets/zsh-abbr    
+olets/zsh-abbr
 MichaelAquilina/zsh-you-should-use kind:zsh
 zsh-users/zsh-autosuggestions
 zdharma-continuum/fast-syntax-highlighting kind:defer
