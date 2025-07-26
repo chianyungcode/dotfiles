@@ -6,6 +6,8 @@ export GIT_CONFIG_GLOBAL="$HOME/.config/git/config"
 
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml" # Change default location for starship configuration
 
+export ANTIDOTE_HOME=~/.cache/antidote
+
 {{- if eq .chezmoi.os "darwin"}}
 export DISABLE_AUTO_TITLE='true' # Prevent auto update in title window macos
 {{- end }}
