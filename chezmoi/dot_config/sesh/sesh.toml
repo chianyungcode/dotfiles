@@ -5,7 +5,7 @@ path = "~/Downloads"
 
 [[session]]
 name = "Tmux Config"
-path = "~/.dotfiles/tmux"
+path = "$HOME/.local/share/chezmoi/chezmoi/dot_config/tmux/"
 # startup_command = "nvim tmux.conf"
 # preview_command = "bat --color=always ~/.dotfiles/tmux/tmux.conf"
 

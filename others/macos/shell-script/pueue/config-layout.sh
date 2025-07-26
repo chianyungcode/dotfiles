@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pueue add -g "$PUEUE_GROUP" "tmux new-session -d -s \"$SESSION_NAME\" -n editor -c $HOME/.dotfiles"
+pueue add -g "$PUEUE_GROUP" "tmux new-session -d -s \"$SESSION_NAME\" -n editor -c $HOME/.local/share/chezmoi/chezmoi"
 pueue add -g "$PUEUE_GROUP" sleep 5
 
 pueue add -g "$PUEUE_GROUP" "tmux splitw -h -t \"$SESSION_NAME\":1 -c $HOME/.config"

@@ -8,4 +8,4 @@ command = 'brew bundle dump --force'
 Description = "Backup all brew formulae, casks and taps with custom file name"
 Output = ""
 Tag = ["brew"]
-command = 'brew bundle dump --file=$HOME/.dotfiles/brew/<file-name>'
+command = 'brew bundle dump --file=$HOME/.local/share/chezmoi/others/macos/manual-backup/cli/brew/<file-name>'

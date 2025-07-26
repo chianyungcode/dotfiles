@@ -50,7 +50,7 @@ command = 'chsh -s $(which <shell=|_zsh_||_bash_||_fish_|>)'
 Description = "Backup all applications in MacOS"
 Output = ""
 Tag = ["unix"]
-command = 'find /Applications -type d -name "*.app" -maxdepth 2 > $HOME/.dotfiles/apps-list/<file_name=backup-apps>.txt'
+command = 'find /Applications -type d -name "*.app" -maxdepth 2 > $HOME/.local/share/chezmoi/others/macos/manual-backup/list-apps.txt'
 
 [[Snippets]]
 Description = "Change permission to read only"

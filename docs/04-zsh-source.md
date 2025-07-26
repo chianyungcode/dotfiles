@@ -51,17 +51,14 @@ chezmoi/dot_config/zsh-source/
 **Key Configurations**:
 
 - **Directories**:
-
-  - `DOTFILES`: Points to `~/.dotfiles/`
+  - `DOTFILES`: Points to "$HOME/.local/share/chezmoi/chezmoi"
   - `EDITOR`: Set to `nvim` (Neovim)
   - `GIT_CONFIG_GLOBAL`: Git configuration location
 
 - **Java Configuration**:
-
   - `JAVA_HOME`: Zulu JDK 17 path for macOS
 
 - **Tool Paths**:
-
   - `BUN_INSTALL`: Bun runtime location
   - `PROTO_HOME`: Proto toolchain manager
   - `GOBIN`: Go binary directory
@@ -109,14 +106,12 @@ chezmoi/dot_config/zsh-source/
 **Shell Options**:
 
 - **Directory Navigation**:
-
   - `autocd`: Type directory names to cd
   - `dirspell`: Spelling correction for tab-completion
   - `cdspell`: Spelling correction for cd arguments
   - `globstar`: Recursive globbing with \*\*
 
 - **Tab Completion**:
-
   - Case-insensitive completion
   - Hyphen/underscore equivalence
   - Show all matches on first tab
@@ -151,7 +146,6 @@ chezmoi/dot_config/zsh-source/
 **Configuration**:
 
 - **Antidote Setup**:
-
   - Plugin file: `~/.zsh_plugins.txt`
   - Static generation: Creates `.zsh_plugins.zsh` when plugins change
   - Lazy loading for performance

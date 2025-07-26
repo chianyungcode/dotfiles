@@ -4,7 +4,7 @@
 
 # === Directories ===
 set -x XDG_CONFIG_HOME "$HOME/.config"
-set -x DOTFILES "$HOME/.dotfiles/"
+set -x DOTFILES "$HOME/.local/share/chezmoi/chezmoi"
 set -x EDITOR nvim
 set -x STARSHIP_CONFIG "$HOME/.config/starship/starship.toml"
 set -x DISABLE_AUTO_TITLE true
