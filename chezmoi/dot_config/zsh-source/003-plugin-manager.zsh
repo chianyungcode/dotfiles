@@ -62,15 +62,9 @@ fi
 # Source your static plugins file.
 source ${zsh_plugins}.zsh
 
-
-
-
-# === If not using ultra-high-performane install you can uncomment the code below ===
-
-# Source or load antidote plugins
-
+# Source antidote cli
 # == source the plugins if antidote installed using git ==
-# source ${ZDOTDIR}/.antidote/antidote.zsh
+source ${ZDOTDIR}/.antidote/antidote.zsh
 # == source the plugins if antidote installed using homebrew ==
 # source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
 
