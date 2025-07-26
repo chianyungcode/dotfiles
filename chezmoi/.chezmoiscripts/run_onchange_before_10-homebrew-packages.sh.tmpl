@@ -95,8 +95,17 @@ for cask in ${casks[@]}; do
             "visual-studio-code")
                 app_name="Visual Studio Code"
                 ;;
-            "jordanbaird-ice")
-                app_name="ice"
+            "ogdesign-eagle")
+                app_name="Eagle"
+                ;;
+            "keyboard-cowboy")
+                app_name="Keyboard Cowboy"
+                ;;
+            "linear-linear")
+                app_name="Linear"
+                ;;
+            "qspace-pro")
+                app_name="QSpace Pro"
                 ;;
             *)
                 # Capitalize first letter and replace dashes with spaces
@@ -108,7 +117,7 @@ for cask in ${casks[@]}; do
         if [[ ! -d "/Applications/${app_name}.app" ]]; then
             brew install -q --cask ${cask}
         else
-            notice "Skipping ${cask} - already exists in /Applications"
+            notice "Skipping ${cask} - already exists in /Applications and installed manual, not via homebrew"
             continue
         fi
     fi
