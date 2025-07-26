@@ -162,37 +162,63 @@
     ]
 
     [packages.homebrew.personal_computer]
-    taps = []
     casks = [
+      "nikitabobko/tap/aerospace",
+      "anki",
       "arc",
-      "apparency",          # Showing detail app in finder
+      "apparency",                 # Showing detail app in finder
+      "bettertouchtool",
+      "blip",                      # Send any size file between devices
       "bunch",
+      "capacities",                # Note taking
+      "clop",                      # Image and video resizer
+      "cloudmounter",              # Mounts cloud storages as local discs
+      "cursor",                    # IDE : Write, edit, and chat about your code with AI
+      "datagrip",                  # Databases and SQL IDE
       "discord",
+      "dbngin",                    # Lightweight DB GUI, Database version management tool
       "dockdoor",
+      "ogdesign-eagle",            # Organise all your reference images in one place
       "espanso",
-      "iina",
+      "folo",                      # Follow the organized information 
       "google-chrome",
+      "hazel",                     # File organize automation
+      "hazeover",                  # dim your inactive window
+      "homerow",                   # Keyboard shortcuts for every button on your screen
+      "iina",
+      "kanata",                    # Cross-platform software keyboard remapper for Linux, macOS and Windows
       "karabiner-elements",
       "kindavim",
+      "keyboard-cowboy",           # Keyboard shortcut utility
       "leader-key",
-      "lookaway",
-      "lulu",               # Firewall
-      "lunar",
+      "linear-linear",             # App to manage software development and track bugs
+      "lookaway",                  # App for maintaining your eye rest
+      "lulu",                      # Firewall
+      "lunar",                     # Configure your display management
+      "mediamate",                 # UI replacement for volume, brightness and now playing controls
       "menuwhere",
-      "moom",
+      "moom",                      # Manage saved layout window for better workflow
       "mouseless",
       "notion",
       "obsidian",
+      "ollama",                    # Run local LLM
+      "qspace-pro",                # Better finder
       "raycast",
       "raindropio",
+      "readdle-spark",             # Spark mail
       "rectangle",
       "remnote",
+      "replacicon",                # Replace your app icon
+      "swift-shift",               # Drag window with ctl + shift
+      "transnomino",               # Batch rename utility
       "via",
       "vial",
       "warp",
       "wezterm",
-      "hazel",
+      "zed",                       # IDE
+      "zen",                       # Browser
     ]
+    taps = []
     formulae = [
       "felixkratz/formulae/borders",
       "presenterm",                  # Presentation in CLI
