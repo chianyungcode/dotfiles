@@ -1,6 +1,6 @@
 [packages]
   [packages.homebrew]
-  to_remove = ["htop", "speedtest-cli"]
+  to_remove = ["htop", "speedtest-cli", "antidote"]
     [packages.homebrew.common]
     # packages that needed in every computer
     taps = [
@@ -183,40 +183,40 @@
       "folo",                      # Follow the organized information 
       "google-chrome",
       "hazel",                     # File organize automation
-      "hazeover",                  # dim your inactive window
-      "homerow",                   # Keyboard shortcuts for every button on your screen
+      # "hazeover",                  # dim your inactive window
+      "homerow", # Keyboard shortcuts for every button on your screen
       "iina",
-      "kanata",                    # Cross-platform software keyboard remapper for Linux, macOS and Windows
+      # "kanata",             # Cross-platform software keyboard remapper for Linux, macOS and Windows
       "karabiner-elements",
       "kindavim",
-      "keyboard-cowboy",           # Keyboard shortcut utility
+      "keyboard-cowboy",    # Keyboard shortcut utility
       "leader-key",
-      "linear-linear",             # App to manage software development and track bugs
-      "lookaway",                  # App for maintaining your eye rest
-      "lulu",                      # Firewall
-      "lunar",                     # Configure your display management
-      "mediamate",                 # UI replacement for volume, brightness and now playing controls
+      "linear-linear",      # App to manage software development and track bugs
+      "lookaway",           # App for maintaining your eye rest
+      "lulu",               # Firewall
+      "lunar",              # Configure your display management
+      "mediamate",          # UI replacement for volume, brightness and now playing controls
       "menuwhere",
-      "moom",                      # Manage saved layout window for better workflow
+      "moom",               # Manage saved layout window for better workflow
       "mouseless",
       "notion",
       "obsidian",
-      "ollama",                    # Run local LLM
-      "qspace-pro",                # Better finder
+      "ollama",             # Run local LLM
+      "qspace-pro",         # Better finder
       "raycast",
       "raindropio",
-      "readdle-spark",             # Spark mail
+      "readdle-spark",      # Spark mail
       "rectangle",
       "remnote",
-      "replacicon",                # Replace your app icon
-      "swift-shift",               # Drag window with ctl + shift
-      "transnomino",               # Batch rename utility
+      "replacicon",         # Replace your app icon
+      "swift-shift",        # Drag window with ctl + shift
+      "transnomino",        # Batch rename utility
       "via",
       "vial",
       "warp",
       "wezterm",
-      "zed",                       # IDE
-      "zen",                       # Browser
+      "zed",                # IDE
+      "zen",                # Browser
     ]
     taps = []
     formulae = [
