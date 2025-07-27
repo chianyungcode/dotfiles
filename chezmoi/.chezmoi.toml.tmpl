@@ -4,12 +4,18 @@
 {{- $personal_computer := promptBoolOnce . "personal_computer" "Is this a personal computer for daily driving? (true/false)" -}}
 {{- $dev_computer := promptBoolOnce . "dev_computer" "Do you do development on this computer? (true/false)" -}}
 {{- $homelab_member := promptBoolOnce . "homelab_member" "Is this computer part of your homelab? (true/false)" -}}
+{{- $machine_hostname := promptStringOnce . "machine_hostname" "What's your machine hostname" -}}
+{{- $machine_username := promptStringOnce . "machine_username" "What's your machine username" -}}
+
+
 
 [data]
   dev_computer      = {{ $dev_computer }}
   git_email         = {{ $git_email | quote }}
   git_user          = {{ $git_user | quote }}
   github_user       = "chianyungcode"
+  machine_hostname  = {{ $machine_hostname | quote }}
+  machine_username  = {{ $machine_username | quote }}
   homelab_member    = {{ $homelab_member }}
   is_ci_workflow       = false
   personal_computer = {{ $personal_computer }}
