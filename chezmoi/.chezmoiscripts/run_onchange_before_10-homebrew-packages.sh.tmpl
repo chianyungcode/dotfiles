@@ -97,11 +97,15 @@ for cask in ${casks[@]}; do
             app_name=$(echo "${cask}" | sed 's/-/ /g' | sed 's/\b\(.\)/\u\1/g')
         fi
         
-        # Check if app exists in /Applications
-        if [[ ! -d "/Applications/${app_name}.app" ]]; then
+        # Check if app exists in /Applications or /Applications/Setapp
+        if [[ ! -d "/Applications/${app_name}.app" && ! -d "/Applications/Setapp/${app_name}.app" ]]; then
             brew install -q --cask ${cask}
         else
-            notice "Skipping ${cask} - already exists in /Applications and installed manual, not via homebrew"
+            if [[ -d "/Applications/${app_name}.app" ]]; then
+                notice "Skipping ${cask} - already exists in /Applications and installed manual, not via homebrew"
+            elif [[ -d "/Applications/Setapp/${app_name}.app" ]]; then
+                notice "Skipping ${cask} - already exists in /Applications/Setapp and installed via Setapp"
+            fi
             continue
         fi
     fi
