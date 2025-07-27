@@ -1,6 +1,6 @@
 return {
 	"akinsho/bufferline.nvim",
-	enabled = true,
+	enabled = false,
 	keys = {
 		{
 			"<A-1>",
