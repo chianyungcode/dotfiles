@@ -183,7 +183,7 @@
       "folo",                      # Follow the organized information 
       "google-chrome",
       "hazel",                     # File organize automation
-      # "hazeover",                  # dim your inactive window
+      "hazeover",                  # dim your inactive window
       "homerow", # Keyboard shortcuts for every button on your screen
       "iina",
       # "kanata",             # Cross-platform software keyboard remapper for Linux, macOS and Windows
