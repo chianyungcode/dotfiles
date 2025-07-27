@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+# Source shared script utilities
+{{ template "shared_script_utils.bash" . }}
+
+header "Installing antidote - Zsh plugin manager"
+
+# Try to get ZDOTDIR from zshenv if it exists
+if [[ -f "$HOME/.zshenv" ]]; then
+  # Source zshenv in a subshell to extract ZDOTDIR
+  ZDOTDIR=$(bash -c "source \"$HOME/.zshenv\" >/dev/null 2>&1 && echo \$ZDOTDIR")
+fi
+
+# Set the installation directory
+# If ZDOTDIR is still empty, fall back to HOME
+ANTIDOTE_DIR="${ZDOTDIR:-$HOME}/.antidote"
+
+# Log the installation directory for debugging
+info "Using installation directory: $ANTIDOTE_DIR"
+
+# Check if antidote is already installed
+if [[ -d "$ANTIDOTE_DIR" ]]; then
+  info "antidote is already installed at $ANTIDOTE_DIR"
+else
+  info "Installing antidote to $ANTIDOTE_DIR"
+  
+  # Create a temporary directory for the operation
+  _makeTempDir_ "antidote-install"
+  
+  # Clone the repository
+  if git clone --depth=1 https://github.com/mattmc3/antidote.git "$ANTIDOTE_DIR"; then
+    success "Successfully installed antidote to $ANTIDOTE_DIR"
+    
+    # Provide information about how to use antidote
+    notice "To use antidote, add the following to your .zshrc:"
+    notice "source ${ZDOTDIR:-$HOME}/.antidote/antidote.zsh"
+    notice "antidote load"
+  else
+    error "Failed to install antidote"
+    _safeExit_ 1
+  fi
+fi
+
+_safeExit_ 0
