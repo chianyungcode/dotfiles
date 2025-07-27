@@ -1,0 +1,11 @@
+# Manual app name mappings for casks that have different app names
+# Format: cask_name = "App Name"
+
+[manual_apps]
+"1password" = "1Password"
+"google-chrome" = "Google Chrome"
+"visual-studio-code" = "Visual Studio Code"
+"ogdesign-eagle" = "Eagle"
+"keyboard-cowboy" = "Keyboard Cowboy"
+"linear-linear" = "Linear"
+"qspace-pro" = "QSpace Pro"

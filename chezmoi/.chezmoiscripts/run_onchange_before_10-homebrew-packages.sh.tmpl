@@ -83,35 +83,19 @@ for cask in ${casks[@]}; do
     if ! _inArray_ -i "${cask}" "${currently_installed_casks[@]}"; then
         # Check if app already exists in /Applications to prevent conflicts
         app_name="${cask}"
-        # Convert cask name to common app name patterns
-        # If brew cask name different with the name of an app, please define here for example cask named "jordanbaird-ice" but when the cask installed, the app name is "Ice"
-        case "${cask}" in
-            "1password")
-                app_name="1Password"
-                ;;
-            "google-chrome")
-                app_name="Google Chrome"
-                ;;
-            "visual-studio-code")
-                app_name="Visual Studio Code"
-                ;;
-            "ogdesign-eagle")
-                app_name="Eagle"
-                ;;
-            "keyboard-cowboy")
-                app_name="Keyboard Cowboy"
-                ;;
-            "linear-linear")
-                app_name="Linear"
-                ;;
-            "qspace-pro")
-                app_name="QSpace Pro"
-                ;;
-            *)
-                # Capitalize first letter and replace dashes with spaces
-                app_name=$(echo "${cask}" | sed 's/-/ /g' | sed 's/\b\(.\)/\u\1/g')
-                ;;
-        esac
+        
+        # Check if there's a manual mapping for this cask
+        {{ range $cask_key, $app_name_value := .manual_apps }}
+        if [[ "${cask}" == "{{ $cask_key }}" ]]; then
+            app_name="{{ $app_name_value }}"
+        fi
+        {{ end }}
+        
+        # If no manual mapping found, use default transformation
+        if [[ "${app_name}" == "${cask}" ]]; then
+            # Capitalize first letter and replace dashes with spaces
+            app_name=$(echo "${cask}" | sed 's/-/ /g' | sed 's/\b\(.\)/\u\1/g')
+        fi
         
         # Check if app exists in /Applications
         if [[ ! -d "/Applications/${app_name}.app" ]]; then
