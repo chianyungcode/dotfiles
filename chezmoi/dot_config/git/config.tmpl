@@ -31,7 +31,7 @@
 [core]
     pager = delta
     excludesFile = ~/.config/git/ignore
-    sshCommand = ssh -i {{ .directories.ssh_keys_dir | replaceAllRegex "\\${HOME}" "~" }}/git
+    # sshCommand = ssh -i {{ .directories.ssh_keys_dir | replaceAllRegex "\\${HOME}" "~" }}/git
     
     # Treat spaces before tabs and all kinds of trailing whitespace as an error
     # [default] trailing-space: looks for spaces at the end of a line
