@@ -411,3 +411,5 @@ abbr "spot-on"="sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.m
 abbr "urldecode"="python -c \"import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])\""
 abbr "vercel"="op plugin run -- vercel"
 abbr "which-command"="whence"
+abbr "exz"="exec zsh"
+
