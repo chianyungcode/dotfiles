@@ -1,0 +1,57 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
+default_install_hook_types: [commit-msg, pre-commit]
+default_stages: [pre-commit, manual]
+fail_fast: true
+repos:
+  - repo: "https://github.com/commitizen-tools/commitizen"
+    rev: v4.8.3
+    hooks:
+      - id: commitizen
+      - id: commitizen-branch
+        stages:
+          - post-commit
+          - pre-push
+
+  - repo: "https://github.com/pre-commit/pre-commit-hooks"
+    rev: v5.0.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-byte-order-marker
+      - id: check-case-conflict
+      - id: check-json
+        exclude: ".tmpl$|^chezmoi/.chezmoitemplates/"
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-xml
+        exclude: ".tmpl$|^chezmoi/.chezmoitemplates/"
+      - id: check-yaml
+        exclude: ".tmpl$|^chezmoi/.chezmoitemplates/"
+      - id: destroyed-symlinks
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: fix-byte-order-marker
+      - id: mixed-line-ending
+      - id: trailing-whitespace
+
+  - repo: "https://github.com/gitleaks/gitleaks"
+    rev: v8.27.2
+    hooks:
+      - id: gitleaks
+
+  - repo: "https://github.com/adhtruong/mirrors-typos"
+    rev: v1.34.0
+    hooks:
+      - id: typos
+        args: ["--force-exclude"]
+        stages: [commit-msg, pre-commit]
+
+  - repo: local
+    hooks:
+      - id: shellcheck
+        name: shellcheck
+        entry: shellcheck
+        language: system
+        types: [shell]
+        exclude: "chezmoi/dot_config/zsh/dot_zshrc|.*\\.zsh$"
