@@ -1,0 +1,245 @@
+#!/usr/bin/env -S uv run --script
+
+"""Set MacOS Defaults."""
+
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#   "rich",
+#   "sh",
+# ]
+# ///
+
+import platform
+import re
+import shlex
+import sys
+from dataclasses import dataclass
+from enum import Enum
+from pathlib import Path
+
+import sh  # type: ignore
+from rich.console import Console  # type: ignore
+from rich.text import Text  # type: ignore
+from rich.theme import Theme  # type: ignore
+
+custom_theme = Theme(
+    {
+        "info": "",
+        "warning": "dark_orange bold",
+        "error": "bold red",
+        "success": "bold green",
+        "debug": "cadet_blue",
+        "trace": "cadet_blue",
+        "secondary": "dim",
+        "notice": "bold",
+        "dryrun": "blue bold",
+        "critical": "bold red reverse",
+    }
+)
+console = Console(theme=custom_theme)
+
+
+def run_command(  # noqa: C901
+    cmd: str,
+    args: list[str],
+    pushd: str | Path = "",
+    okay_codes: list[int] = [],
+    exclude_regex: str | None = None,
+    *,
+    quiet: bool = False,
+    sudo: bool = False,
+) -> str:
+    """Execute a shell command and capture its output with ANSI color support.
+
+    Run a shell command with the specified arguments while preserving ANSI color codes and terminal formatting. Stream command output to the console in real-time unless quiet mode is enabled. Change to a different working directory before execution if pushd is specified.
+
+    Args:
+        cmd (str): The command name to execute
+        args (list[str]): Command line arguments to pass to the command
+        pushd (str | Path): Directory to change to before running the command. Empty string means current directory. Defaults to "".
+        okay_codes (list[int]): List of exit codes that are considered successful. Defaults to [].
+        exclude_regex (str | None): Regex to exclude lines from the output. Defaults to None.
+        quiet (bool): Whether to suppress real-time output to console. Defaults to False.
+        sudo (bool): Whether to run the command with sudo. Defaults to False.
+
+    Returns:
+        str: The complete command output as a string with ANSI color codes preserved
+
+    Changelog:
+        - v2.2.1: Initial version
+
+    Raises:
+        ShellCommandNotFoundError: When the command is not found in PATH
+        ShellCommandFailedError: When the command exits with a non-zero status code
+    """
+    output_lines: list[str] = []
+
+    def _process_output(line: str, exclude_regex: str | None = None) -> None:
+        """Process a single line of command output.
+
+        Collect output lines for final return value and optionally display to console. Preserve ANSI color codes and formatting when displaying output.
+
+        Args:
+            line (str): A single line of output from the command execution
+            exclude_regex (str | None): Regex to exclude lines from the output. Defaults to None.
+        """
+        if exclude_regex and re.search(exclude_regex, line):
+            return
+
+        output_lines.append(str(line))
+        if not quiet:
+            console.print(Text.from_ansi(str(line)))
+
+    def _execute_command(*, sudo: bool = False) -> str:
+        """Execute the shell command and process its output.
+
+        Create and run the shell command with the configured arguments. Handle command execution errors by raising appropriate exceptions.
+
+        Args:
+            sudo (bool): Whether to run the command with sudo. Defaults to False.
+
+        Returns:
+            str: The complete command output as a string
+
+        Raises:
+            ShellCommandNotFoundError: When the command is not found in PATH
+            ShellCommandFailedError: When the command exits with a non-zero status code
+        """
+        try:
+            command = sh.Command(cmd)
+            if sudo:
+                with sh.contrib.sudo(k=True, _with=True):
+                    command(
+                        *args,
+                        _out=lambda line: _process_output(line, exclude_regex),
+                        _ok_code=okay_codes or [0],
+                    )
+            else:
+                command(
+                    *args,
+                    _out=lambda line: _process_output(line, exclude_regex),
+                    _ok_code=okay_codes or [0],
+                )
+        except sh.CommandNotFound:
+            console.print(f"Command not found: {cmd}", style="error")
+            sys.exit(1)
+        except sh.ErrorReturnCode as e:
+            console.print(
+                f"Above command failed with exit code {e.exit_code}",
+                style="error",
+            )
+            console.print(f"command: '{e.full_cmd}'", style="secondary")
+            if e.stdout:
+                console.print(
+                    f"stdout: {e.stdout.decode()}", style="secondary")
+            if e.stderr:
+                console.print(
+                    f"stderr: {e.stderr.decode()}", style="secondary")
+
+            return ""
+
+        return "".join(output_lines)
+
+    if pushd:
+        if not isinstance(pushd, Path):
+            pushd = Path(pushd)
+
+        pushd = pushd.expanduser().absolute()
+
+        if not pushd.exists():
+            console.print(f"Directory {pushd} does not exist", style="error")
+            sys.exit(1)
+
+        with sh.pushd(pushd):
+            return _execute_command(sudo=sudo)
+
+    return _execute_command(sudo=sudo)
+
+
+class CommandType(Enum):
+    """Enumeration for command types. The value is the command name.
+
+    Attributes:
+        DEFAULTS: Command is a macOS defaults command.
+    """
+
+    DEFAULTS = "defaults"
+    PLISTBUDDY = "/usr/libexec/PlistBuddy"
+    PMSET = "pmset"
+    CHFLAGS = "chflags"
+
+
+@dataclass
+class Setting:
+    """A class to represent a setting.
+
+    Attributes:
+        command (str): The command to run.
+        description (str): A description of the setting.
+    """
+
+    command: str
+    description: str
+    section: str = "Other"
+    type: CommandType = CommandType.DEFAULTS
+    sudo: bool = False
+
+    @property
+    def args(self) -> list[str]:
+        """Get the arguments for the command.
+
+        Returns:
+            list[str]: The arguments for the command.
+        """
+        tokens = shlex.split(self.command.strip())
+        if self.sudo:
+            tokens = [x for x in tokens if x.lower() != "sudo"]
+
+        return [x for x in tokens if x.lower() != self.type.value.lower()]
+
+    @property
+    def full_description(self) -> str:
+        """Get the full description of the setting.
+
+        Returns:
+            str: The full description of the setting.
+        """
+        return f"{self.section}: {self.description}" if self.section else self.description
+
+
+commands = [
+    Setting(
+        command='defaults write com.apple.dock "orientation" -string "left"',
+        description="Set apple dock orientation to left",
+        section="Dock",
+    )
+]
+
+
+def main() -> None:
+    """Set MacOS Defaults."""
+    if platform.system() != "Darwin":
+        console.print("This script is only for macOS")
+        return
+
+    console.rule("Setting MacOS Defaults...")
+    console.print(
+        "You may be asked to enter your password multiple times for commands which require sudo"
+    )
+    console.print("Some changes require a logout/restart to take effect")
+
+    try:
+        for cmd in sorted(commands, key=lambda x: x.section):
+            console.print(f"✔ {cmd.full_description}", style="secondary")
+            run_command(cmd=cmd.type.value, args=cmd.args,
+                        quiet=False, sudo=cmd.sudo)
+    except KeyboardInterrupt as e:
+        console.print("Exiting...")
+        raise SystemExit(1) from e
+
+    console.print(":rocket: Done setting MacOS Defaults")
+
+
+if __name__ == "__main__":
+    main()
