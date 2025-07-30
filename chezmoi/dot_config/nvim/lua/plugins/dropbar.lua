@@ -2,6 +2,6 @@
 -- https://github.com/Bekaboo/dropbar.nvim
 return {
 	"Bekaboo/dropbar.nvim",
-	enabled = true,
+	enabled = false,
 	-- Changed this
 }
