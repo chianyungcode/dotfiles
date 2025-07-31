@@ -4,6 +4,12 @@ alias fier="tmuxifier"
 alias nv="nvim"
 alias lzg="lazygit"
 alias lzd="lazydocker"
+alias ax='chmod a+x'                   # system: make file executable
+alias path='echo -e ${PATH//:/\\n}'    # system: Echo all executable Paths
+alias fpath='echo -e ${FPATH//:/\\n}'  # system: Echo fpath
+alias untar='tar -zxvf'                # Extract tar.gz file
+alias mktar='tar -cvzf'                # Create a tar.gz file
+alias numfiles='echo $(ls -1 | wc -l)' # Count of non-hidden files in current di
 
 # pueue
 alias pue="pueue"
@@ -50,4 +56,3 @@ alias llt='eza -lah --classify=always --tree --level=2 --icons=auto'
 
 alias ls='eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions'
 {{- end }}
-
