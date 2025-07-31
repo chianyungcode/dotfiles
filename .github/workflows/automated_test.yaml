@@ -66,9 +66,11 @@ jobs:
           cat > ${homedir}/.config/chezmoi/chezmoi.toml<< EOF
           [data]
               dev_computer      = false
-              email             = "test@test.com"
+              git_email         = "test@test.com"
               github_user       = "chianyungcode"
               homelab_member    = false
+              machine_username  = "test"
+              machine_hostname  = "machine-test"
               is_ci_workflow    = true # Set true only in CI test
               personal_computer = false
               use_secrets       = false
