@@ -1,4 +1,4 @@
-{{- if eq .chezmoi.osRelease.id "ubuntu" -}}
+{{- if and (hasKey .chezmoi.osRelease "id") (eq .chezmoi.osRelease.id "ubuntu") -}}
 #!/usr/bin/env bash
 
 # A script that would run with terminal startup on debian machines
