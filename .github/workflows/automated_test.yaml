@@ -104,7 +104,7 @@ jobs:
           # ls -al
 
           existing_files=(
-            .zshrc
+            .config/zsh/.zshrc
             .bashrc
             .config/git/config
             .ssh/config
@@ -157,7 +157,7 @@ jobs:
           cd ${homedir}
 
           existing_files=(
-            .zshrc
+            .config/zsh/.zshrc
             .bashrc
             .config/git/config
             .config/nano/nanorc
