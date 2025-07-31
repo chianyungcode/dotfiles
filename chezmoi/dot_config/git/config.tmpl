@@ -32,12 +32,12 @@
     pager = delta
     excludesFile = ~/.config/git/ignore
     # sshCommand = ssh -i {{ .directories.ssh_keys_dir | replaceAllRegex "\\${HOME}" "~" }}/git
-    
+
     # Treat spaces before tabs and all kinds of trailing whitespace as an error
     # [default] trailing-space: looks for spaces at the end of a line
     # [default] space-before-tab: looks for spaces before tabs at the beginning of a line
     whitespace = space-before-tab,-indent-with-non-tab,trailing-space
-    
+
     # Prevent showing files whose names contain non-ASCII symbols as unversioned.
     # http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
     precomposeunicode = false
@@ -53,7 +53,7 @@
 # CREDENTIALS & AUTHENTICATION
 # =============================================================================
 [credential]
-    helper = 
+    helper =
     helper = osxkeychain
     helper = /usr/local/share/gcm-core/git-credential-manager
     {{- if ne .chezmoi.os "darwin" }}
@@ -72,30 +72,30 @@
 # =============================================================================
 [alias]
     co = checkout
-    
+
     # Conventional commit aliases
     build = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"build${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-    
+
     chore = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"chore${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-    
+
     ci = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"ci${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-    
+
     docs = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"docs${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-    
+
     feat = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"feat${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-    
+
     fix = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"fix${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-    
+
     perf = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"perf${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-    
+
     refactor = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"refactor${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-    
+
     rev = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"revert${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-    
+
     style = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"style${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-    
+
     test = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"test${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-    
+
     wip = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"wip${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
 
 # =============================================================================
@@ -104,11 +104,11 @@
 [delta]
     navigate = true    # use n and N to move between diff sections
     side-by-side = true
-    syntax-theme = "OneHalfDark"  # Contoh tema warna
+    syntax-theme = "OneHalfDark"  # Theme
     plus-style = "syntax #445345"      # Warna untuk baris yang ditambahkan
     minus-style = "syntax #4F221F"     # Warna untuk baris yang dihapus
-    line-numbers = true 
-    
+    line-numbers = true
+
     # delta detects terminal colors automatically; set one of these to disable auto-detection
     # dark = true
     # light = true
@@ -151,7 +151,7 @@
     all = true        # Fetch from all configured remotes
 
 [push]
-    # agar ketika membuat branch baru di lokal tidak perlu melakukan perintah 'git push --set-upstream origin nama-branch-baru' . Menghindari salah penulisan nama branch sehingga dapat menyebabkan nama branch di lokal dan remote berbeda
+    # agar ketika membuat branch baru di local tidak perlu melakukan perintah 'git push --set-upstream origin nama-branch-baru' . Menghindari salah penulisan nama branch sehingga dapat menyebabkan nama branch di local dan remote berbeda
     default = current
 
 [pull]
@@ -185,5 +185,3 @@
 # =============================================================================
 # OH-MY-ZSH INTEGRATION
 # =============================================================================
-[oh-my-zsh]
-    git-commit-alias = 2b547d113b7e55a556b695c9372f1beb721efd67
