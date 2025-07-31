@@ -93,8 +93,6 @@ jobs:
       - name: Run chezmoi apply
         run: |
           ./bin/chezmoi apply
-        env:
-          TERM: xterm
 
       # ----------------------------------------------
       # UBUNTU: Confirm dotfiles are installed
