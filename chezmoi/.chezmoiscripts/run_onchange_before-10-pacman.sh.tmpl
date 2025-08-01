@@ -1,0 +1,46 @@
+{{- if eq .chezmoi.osRelease.id "arch" -}}
+
+#!/usr/bin/env bash
+
+{{ template "shared_script_utils.bash" . }}
+
+packages=(
+    {{ range $package := .packages.pacman.common.packages }}
+    "{{ $package }}"
+    {{ end }}
+    {{ if .dev_computer }}
+    {{ range $package := .packages.pacman.dev_computer.packages }}
+    "{{ $package }}"
+    {{ end }}
+    {{ end }}
+    {{ if .homelab_member }}
+    {{ range $package := .packages.pacman.homelab_member.packages }}
+    "{{ $package }}"
+    {{ end }}
+    {{ end }}
+    {{ if .personal_computer }}
+    {{ range $package := .packages.pacman.personal_computer.packages }}
+    "{{ $package }}"
+    {{ end }}
+    {{ end }}
+)
+
+header "Installing packages with paru"
+paru -Syu --noconfirm
+
+for package in "${packages[@]}"; do
+    if pacman -Qi "${package}" &>/dev/null; then
+        info "Package ${package} is already installed"
+        continue
+    fi
+    if paru -Ss "^${package}$" &>/dev/null; then
+        paru -S --noconfirm "${package}"
+    else
+        warning "Package ${package} is not available"
+    fi
+done
+
+success "Pacman packages installed"
+_safeExit_
+
+{{- end }}

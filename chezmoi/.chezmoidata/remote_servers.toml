@@ -4,3 +4,9 @@
   name = "git"
   op_id = "nhczmzrx5uazmizwj6yzkjqohi"
   tailscale_ip = false
+
+  [remote_servers.gcp1]
+  add_to_ssh_config = true
+  name = "gcp1"
+  op_id = "cidpjacci3fjd65sj2ffuhcd3i"
+  tailscale_ip = false

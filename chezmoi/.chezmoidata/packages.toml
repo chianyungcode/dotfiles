@@ -330,7 +330,19 @@
       "zsh",
     ]
     [packages.pacman.dev_computer]
-    packages = []
+    packages = [
+      "pueue",      # Task runner and scheduler
+      "starship",
+      "gh",         # Github CLI
+      "git-delta",  # Pager for git
+      "git-extras", # Add extra command to default git
+      "gitmux",     # Git status bar in tmux
+      "glab",       # GitLab CLI
+      "glow",       # Render markdown in CLI
+      "helix",      # Alternative neovim
+      "httpie",     # HTTP client
+      "eza",
+    ]
     [packages.pacman.homelab_member]
     packages = ["iperf"]
     [packages.pacman.personal_computer]
