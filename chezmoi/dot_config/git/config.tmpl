@@ -7,7 +7,7 @@
 [user]
     name = {{ .git_user}}
     email = {{ .git_email }}
-    {{- if and (eq .chezmoi.os "darwin") (lookPath "op") }}
+    {{- if and (eq .chezmoi.os "darwin") (.use_secrets) }}
     signingkey = {{ onepasswordRead .secrets.git_signing_key }}
     {{- end }}
 
