@@ -1,14 +1,18 @@
+{{if lookPath "starship" -}}
 # Starship prompt
 eval "$(starship init zsh)"
+{{- end }}
 
+{{- if lookPath "z" -}}
 # Zoxide
 eval "$(zoxide init zsh)"
+{{- end }}
 
 # Tmuxifier
 eval "$(tmuxifier init -)"
 
 # Atuin
-eval "$(atuin init zsh)"
+# eval "$(atuin init zsh)"
 
 # Bun Completions
 [ -f "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
@@ -17,4 +21,6 @@ eval "$(atuin init zsh)"
 source $HOME/.config/fzf-git/fzf-git.sh
 
 # 1Password
+{{- if lookPath "op"}}
 source $HOME/.config/op/plugins.sh
+{{- end }}
