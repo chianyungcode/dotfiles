@@ -1,4 +1,5 @@
 {{- if eq .chezmoi.os "linux" }}
+{{- if eq .chezmoi.osRelease.id "ubuntu" }}
 
 # Run startup scripts
 
@@ -63,4 +64,4 @@ alias logs='sudo journalctl -fu'
 alias logs-all='sudo journalctl -u'
 
 {{- end }}
-
+{{- end }}
