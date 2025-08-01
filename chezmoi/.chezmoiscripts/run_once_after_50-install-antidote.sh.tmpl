@@ -23,18 +23,21 @@ if [[ -d "$ANTIDOTE_DIR" ]]; then
   info "antidote is already installed at $ANTIDOTE_DIR"
 else
   info "Installing antidote to $ANTIDOTE_DIR"
-  
+
   # Create a temporary directory for the operation
   _makeTempDir_ "antidote-install"
-  
+
   # Clone the repository
   if git clone --depth=1 https://github.com/mattmc3/antidote.git "$ANTIDOTE_DIR"; then
     success "Successfully installed antidote to $ANTIDOTE_DIR"
-    
+
     # Provide information about how to use antidote
     notice "To use antidote, add the following to your .zshrc:"
     notice "source ${ZDOTDIR:-$HOME}/.antidote/antidote.zsh"
     notice "antidote load"
+
+    # generate ~/.zsh_plugins.zsh
+    antidote bundle <${ZDOTDIR:-~}/.zsh_plugins.txt >${ZDOTDIR:-~}/.zsh_plugins.zsh
   else
     error "Failed to install antidote"
     _safeExit_ 1
