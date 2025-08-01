@@ -98,7 +98,6 @@
       "tmux",                      # Terminal multiplexer
       "unzip",
       "vim",                       # Alternative neovim
-      "vladkens/tap/macmon",       # Mac monitor
       "vivid",                     # Better ls
       "watchman",                  # File watcher
       "wget",
@@ -158,6 +157,7 @@
       "tmuxinator",                          # Tmux session manager
       "tmuxp",                               # Tmux session manager
       "television",                          # Alternative to yazi
+      "vladkens/tap/macmon",                 # Mac monitor
     ]
 
     [packages.homebrew.personal_computer]
