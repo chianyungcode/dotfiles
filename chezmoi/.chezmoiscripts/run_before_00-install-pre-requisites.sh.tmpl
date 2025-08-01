@@ -50,16 +50,6 @@ if ${install}; then
         sudo pacman -S --noconfirm "${pkg}"
     done
 
-    # Install paru AUR helper if not already installed
-    if ! command -v paru &>/dev/null; then
-        header "Installing paru AUR helper"
-        sudo pacman -S --needed --noconfirm base-devel
-        git clone https://aur.archlinux.org/paru.git /tmp/paru
-        cd /tmp/paru || exit
-        makepkg -si --noconfirm
-        cd - || exit
-        rm -rf /tmp/paru
-    fi
     {{ else if eq .chezmoi.osRelease.id "ubuntu" "debian" }}
     # Ubuntu/Debian
     header "Updating package list"

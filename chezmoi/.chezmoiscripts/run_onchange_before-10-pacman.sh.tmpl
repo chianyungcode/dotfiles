@@ -25,16 +25,16 @@ packages=(
     {{ end }}
 )
 
-header "Installing packages with paru"
-paru -Syu --noconfirm
+header "Installing packages with pacman"
+pacman -Syu --noconfirm
 
 for package in "${packages[@]}"; do
     if pacman -Qi "${package}" &>/dev/null; then
         info "Package ${package} is already installed"
         continue
     fi
-    if paru -Ss "^${package}$" &>/dev/null; then
-        paru -S --noconfirm "${package}"
+    if pacman -Ss "^${package}$" &>/dev/null; then
+        pacman -S --noconfirm "${package}"
     else
         warning "Package ${package} is not available"
     fi
