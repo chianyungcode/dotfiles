@@ -3,10 +3,8 @@
 eval "$(starship init zsh)"
 {{- end }}
 
-{{- if lookPath "z" -}}
 # Zoxide
 eval "$(zoxide init zsh)"
-{{- end }}
 
 # Tmuxifier
 eval "$(tmuxifier init -)"
