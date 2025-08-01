@@ -214,7 +214,147 @@ commands = [
         command='defaults write com.apple.dock "orientation" -string "left"',
         description="Set apple dock orientation to left",
         section="Dock",
-    )
+    ),
+    Setting(
+        command='defaults write com.apple.dock "tilesize" -int "48"',
+        description="Set apple dock icon size",
+        section="Dock",
+    ),
+    Setting(
+        command='defaults write com.apple.dock "autohide" -bool "true"',
+        description="Autohide dock",
+        section="Dock",
+    ),
+    Setting(
+        command='defaults write com.apple.dock "autohide-time-modifier" -float "0.5"',
+        description="Set time for autohide",
+        section="Dock",
+    ),
+    Setting(
+        command='defaults write com.apple.dock "show-recents" -bool "false"',
+        description="Set show recent apps to false or don't display any recent apps",
+        section="Dock",
+    ),
+    Setting(
+        command='defaults write com.apple.dock "mineffect" -string "genie"',
+        description="Change animation effect when minimize",
+        section="Dock",
+    ),
+    Setting(
+        command='defaults write com.apple.Safari "ShowFullURLInSmartSearchField" -bool "true"',
+        description="Show full url in safari",
+        section="Safari",
+    ),
+    Setting(
+        command='defaults write NSGlobalDomain "AppleShowAllExtensions" -bool "true"',
+        description="Show extension in Finder",
+        section="Finder",
+    ),
+    Setting(
+        command='defaults write com.apple.finder "AppleShowAllFiles" -bool "true"',
+        description="Show hidden files",
+        section="Finder",
+    ),
+    Setting(
+        command="defaults write com.apple.finder DisableAllAnimations -bool true",
+        description="Disable all animations",
+        section="Finder",
+    ),
+    Setting(
+        command='defaults write com.apple.finder NewWindowTarget -string "PfHm"',
+        description="Set Home folder as the default location for new Finder windows",
+        section="Finder",
+    ),
+    Setting(
+        command="defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true",
+        description="Show external hard drives on desktop",
+        section="Finder",
+    ),
+    Setting(
+        command="defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true",
+        description="Show hard drives on desktop",
+        section="Finder",
+    ),
+    Setting(
+        command="defaults write com.apple.finder ShowMountedServersOnDesktop -bool true",
+        description="Show servers on desktop",
+        section="Finder",
+    ),
+    Setting(
+        command="defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true",
+        description="Show removable media on desktop",
+        section="Finder",
+    ),
+    Setting(
+        command='defaults write com.apple.finder "ShowPathbar" -bool "true"',
+        description="Show path bar in bottom",
+        section="Finder",
+    ),
+    Setting(
+        command="defaults write com.apple.finder ShowStatusBar -bool true",
+        description="Show status bar",
+        section="Finder",
+    ),
+    Setting(
+        command='defaults write com.apple.finder "FXPreferredViewStyle" -string "clmv"',
+        description="Set default style to column view",
+        section="Finder",
+    ),
+    Setting(
+        command='defaults write com.apple.finder "_FXSortFoldersFirst" -bool "true"',
+        description="Keep folder on top",
+        section="Finder",
+    ),
+    Setting(
+        command='defaults write com.apple.finder "FinderSpawnTab" -bool "true"',
+        description="Set the folders shown in the finder open in new tab when using cmd + double-click",
+        section="Finder",
+    ),
+    Setting(
+        command='defaults write NSGlobalDomain "AppleShowAllExtensions" -bool "true"',
+        description="Show extension in Finder",
+        section="Finder",
+    ),
+    Setting(
+        command="defaults write com.apple.finder QLEnableTextSelection -bool true",
+        description="Enable text selection in Quick Look",
+        section="Finder",
+    ),
+    Setting(
+        command="defaults write com.apple.finder _FXShowPosixPathInTitle -bool true",
+        description="Show POSIX path in title bar",
+        section="Finder",
+    ),
+    Setting(
+        command='defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"',
+        description="Search the current folder by default",
+        section="Finder",
+    ),
+    Setting(
+        command="defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false",
+        description="Disable warning when changing file extension",
+        section="Finder",
+    ),
+    Setting(
+        command="defaults write NSGlobalDomain com.apple.springing.enabled -bool true",
+        description="Enable spring loading for directories",
+        section="Finder",
+    ),
+    Setting(
+        command="defaults write NSGlobalDomain com.apple.springing.delay -float 0.1",
+        description="Remove spring loading delay",
+        section="Finder",
+    ),
+    Setting(
+        command="defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true",
+        description="Don't write .DS_Store files to network volumes",
+        section="Finder",
+    ),
+    Setting(
+        command="defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true",
+        description="Don't write .DS_Store files to USB volumes",
+        section="Finder",
+    ),
 ]
 
 
