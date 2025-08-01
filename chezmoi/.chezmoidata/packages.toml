@@ -48,7 +48,6 @@
     ]
     formulae = [
       "atuin",                     # Better shell history
-      "awscli",
       "bat",                       # cat with syntax highlighting and git integration
       "berkeley-db",               # Oracle berkeley-db
       "bfg",                       # Remove large files or passwords from Git history like git-filter-branch
@@ -60,14 +59,9 @@
       "coreutils",                 # GNU coreutils
       "dotter",
       "eza",                       # Better ls
-      "fastfetch",                 # Better system info
       "fd",                        # Better find
-      "ffmpegthumbnailer",         # Video thumbnail for yazi cli
-      "fish",                      # Alternative shell for zsh
-      "flyctl",                    # Fly.io CLI
       "findutils",                 # GNU find
       "fzf",                       # Fuzzy finder
-      "fx",                        # Better grep
       "gawk",                      # GNU awk
       "git",
       "gitleaks",                  # Find secrets that leaks in your repo
@@ -78,46 +72,30 @@
       "gnutls",                    # GNU Transport Layer Security (TLS) Library
       "git-filter-repo",
       "git-lfs",
-      "gitmux",                    # Git status bar in tmux
-      "glow",                      # Render markdown in CLI
       "gnupg",                     # GPG
       "grep",
       "gping",                     # Ping with graph
       "gzip",
       "halp",                      # Better help
-      "helix",                     # Alternative neovim
-      "hyperfine",                 # A command-line benchmarking too
       "icu4c@76",
       "imagemagick",               # Image processing
       "jq",                        # Lightweight and flexible command-line JSON processor
       "libfido2",                  # Provides library functionality for FIDO U2F & FIDO 2.0, including USB
-      "mongosh",                   # MongoDB shell
       "most",                      # Pager
-      "navi",                      # An interactive cheatsheet tool for the command-line 
+      "navi",                      # An interactive cheatsheet tool for the command-line
       "neonctl",                   # Neon CLI
-      "neovim",                    # Text 
+      "neovim",                    # Text
       "node",                      # Node.js
-      "nushell",                   # Alternative shell
       "nvm",                       # Node version manager
       "openssh",                   # SSH
       "pkgconf",                   # package compiler and linker metadata toolki
-      "pngpaste",                  # Paste PNG into files on MacOS, much like pbpaste does for text.
-      "poppler",                   # PDF rendering library
       "rip2",                      # A safer rm, written in Rust
       "ripgrep",                   # Search tool like grep and the silver searcher
-      "ruby",
-      "sesh",                      # Tmux session manager
-      "sshs",                      # Graphical command-line client for SSH
       "ssh-copy-id",               # Add a public key to a remote machine's authorized_keys file
       "starship",                  # Configure shell prompt appearance
-      "stow",                      # Symlink manager
-      "stripe/stripe-cli/stripe",
       "taplo",                     # TOML parser
-      "television",                # Alternative to yazi
       "tlrc",                      # TLDR client
       "tmux",                      # Terminal multiplexer
-      "tmuxinator",                # Tmux session manager
-      "tmuxp",                     # Tmux session manager
       "unzip",
       "vim",                       # Alternative neovim
       "vladkens/tap/macmon",       # Mac monitor
@@ -144,21 +122,42 @@
     ]
     formulae = [
       "act",                                 # runs GitHub Actions locally
+      "awscli",
       "direnv",                              # Environment manager for shell based current working directory
       "dopplerhq/cli/doppler",               # Secret manager
       "dotenvx/brew/dotenvx",                # Env manager
+      "fastfetch",                           # Better system info
+      "ffmpegthumbnailer",                   # Video thumbnail for yazi cli
+      "fish",                                # Alternative shell for zsh
+      "flyctl",                              # Fly.io CLI
+      "fx",                                  # Better grep
       "gh",                                  # Github CLI
-      "glab",                                # GitLab CLI
       "git-delta",                           # Pager for git
       "git-extras",                          # Add extra command to default git
+      "gitmux",                              # Git status bar in tmux
+      "glab",                                # GitLab CLI
+      "glow",                                # Render markdown in CLI
+      "helix",                               # Alternative neovim
       "httpie",                              # HTTP client
+      "hyperfine",                           # A command-line benchmarking too
       "jesseduffield/lazydocker/lazydocker", # Docker manager
       "jesseduffield/lazygit/lazygit",
       "knqyf263/pet/pet",                    # CLI snippet manager
       "koyeb/tap/koyeb",                     # Koyeb CLI
       "luarocks",                            # Lua package manager
+      "mongosh",                             # MongoDB shell
+      "nushell",                             # Alternative shell
+      "pngpaste",                            # Paste PNG into files on MacOS, much like pbpaste does for text.
+      "poppler",                             # PDF rendering library
       "pueue",                               # Task runner and scheduler
+      "sesh",                                # Tmux session manager
+      "sshs",                                # Graphical command-line client for SSH
       "shellcheck",
+      "stow",                                # Symlink manager
+      "stripe/stripe-cli/stripe",
+      "tmuxinator",                          # Tmux session manager
+      "tmuxp",                               # Tmux session manager
+      "television",                          # Alternative to yazi
     ]
 
     [packages.homebrew.personal_computer]
@@ -180,11 +179,11 @@
       "dockdoor",
       "ogdesign-eagle",            # Organise all your reference images in one place
       "espanso",
-      "folo",                      # Follow the organized information 
+      "folo",                      # Follow the organized information
       "google-chrome",
       "hazel",                     # File organize automation
       "hazeover",                  # dim your inactive window
-      "homerow", # Keyboard shortcuts for every button on your screen
+      "homerow",                   # Keyboard shortcuts for every button on your screen
       "iina",
       # "kanata",             # Cross-platform software keyboard remapper for Linux, macOS and Windows
       "karabiner-elements",
