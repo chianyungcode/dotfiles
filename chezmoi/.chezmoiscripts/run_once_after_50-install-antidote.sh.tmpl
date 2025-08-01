@@ -36,8 +36,6 @@ else
     notice "source ${ZDOTDIR:-$HOME}/.antidote/antidote.zsh"
     notice "antidote load"
 
-    # generate ~/.zsh_plugins.zsh
-    antidote bundle <${ZDOTDIR:-~}/.zsh_plugins.txt >${ZDOTDIR:-~}/.zsh_plugins.zsh
   else
     error "Failed to install antidote"
     _safeExit_ 1
