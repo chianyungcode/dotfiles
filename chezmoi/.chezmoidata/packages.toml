@@ -1,14 +1,6 @@
 [packages]
   [packages.homebrew]
-  to_remove = [
-    "htop",
-    "speedtest-cli",
-    "antidote",
-    "berkeley-db",
-    "brew-gem",
-    "cliclick",
-    "dotter",
-  ]
+  to_remove = ["htop"]
     [packages.homebrew.common]
     # packages that needed in every computer
     taps = [
