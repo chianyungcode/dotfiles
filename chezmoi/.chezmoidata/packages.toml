@@ -1,6 +1,14 @@
 [packages]
   [packages.homebrew]
-  to_remove = ["htop", "speedtest-cli", "antidote"]
+  to_remove = [
+    "htop",
+    "speedtest-cli",
+    "antidote",
+    "berkeley-db",
+    "brew-gem",
+    "cliclick",
+    "dotter",
+  ]
     [packages.homebrew.common]
     # packages that needed in every computer
     taps = [
@@ -47,17 +55,17 @@
       "visual-studio-code",
     ]
     formulae = [
-      "atuin",                     # Better shell history
-      "bat",                       # cat with syntax highlighting and git integration
-      "berkeley-db",               # Oracle berkeley-db
-      "bfg",                       # Remove large files or passwords from Git history like git-filter-branch
-      "brew-gem",
+      "atuin", # Better shell history
+      "bat",   # cat with syntax highlighting and git integration
+      # "berkeley-db",               # Oracle berkeley-db
+      "bfg", # Remove large files or passwords from Git history like git-filter-branch
+      # "brew-gem",
       "btop",
       "chezmoi",
-      "cliclick",                  # macOS CLI tool for emulating mouse and keyboard events
-      "cocoapods",                 # depedency manager for switft
-      "coreutils",                 # GNU coreutils
-      "dotter",
+      # "cliclick",                  # macOS CLI tool for emulating mouse and keyboard events
+      "cocoapods", # depedency manager for switft
+      "coreutils", # GNU coreutils
+      # "dotter", # dotfile manager and templater.
       "eza",                       # Better ls
       "fd",                        # Better find
       "findutils",                 # GNU find
@@ -73,9 +81,9 @@
       "git-filter-repo",
       "git-lfs",
       "gnupg",                     # GPG
-      "grep",
+      "grep",                      # GNU grep
       "gping",                     # Ping with graph
-      "gzip",
+      "gzip",                      # Popular GNU data compression program
       "halp",                      # Better help
       "icu4c@76",
       "imagemagick",               # Image processing
@@ -85,10 +93,8 @@
       "navi",                      # An interactive cheatsheet tool for the command-line
       "neonctl",                   # Neon CLI
       "neovim",                    # Text
-      "node",                      # Node.js
-      "nvm",                       # Node version manager
       "openssh",                   # SSH
-      "pkgconf",                   # package compiler and linker metadata toolki
+      "pkgconf",                   # package compiler and linker metadata toolkit
       "rip2",                      # A safer rm, written in Rust
       "ripgrep",                   # Search tool like grep and the silver searcher
       "ssh-copy-id",               # Add a public key to a remote machine's authorized_keys file
@@ -138,7 +144,7 @@
       "glow",                                # Render markdown in CLI
       "helix",                               # Alternative neovim
       "httpie",                              # HTTP client
-      "hyperfine",                           # A command-line benchmarking too
+      "hyperfine",                           # A command-line benchmarking tool
       "jesseduffield/lazydocker/lazydocker", # Docker manager
       "jesseduffield/lazygit/lazygit",
       "knqyf263/pet/pet",                    # CLI snippet manager
@@ -331,6 +337,7 @@
     ]
     [packages.pacman.dev_computer]
     packages = [
+      "dpkg",
       "pueue",      # Task runner and scheduler
       "starship",
       "gh",         # Github CLI
