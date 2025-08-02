@@ -22,14 +22,14 @@ else
         export PATH="$HOME/.proto/bin:$PATH"
     else
         error "Failed to install proto"
-        exit 1
+        _safeExit_ 1
     fi
 fi
 
 # Verify proto is available
 if ! command -v proto >/dev/null 2>&1; then
     error "proto command not found after installation"
-    exit 1
+    _safeExit_ 1
 fi
 
 # Install node, go, and rust with error handling
@@ -44,3 +44,5 @@ for lang in "${LANGUAGES[@]}"; do
         error "Failed to install $lang"
     fi
 done
+
+_safeExit_ 0
