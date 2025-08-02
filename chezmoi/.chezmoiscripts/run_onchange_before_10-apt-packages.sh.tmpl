@@ -1,4 +1,4 @@
-{{- if eq .osid "linux-ubuntu" -}}
+{{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "ubuntu") -}}
 
 #!/usr/bin/env bash
 

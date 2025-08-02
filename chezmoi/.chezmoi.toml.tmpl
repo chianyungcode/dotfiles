@@ -6,10 +6,6 @@
 {{- $homelab_member := promptBoolOnce . "homelab_member" "Is this computer part of your homelab? (true/false)" -}}
 {{- $machine_hostname := promptStringOnce . "machine_hostname" "What's your machine hostname" -}}
 {{- $machine_username := promptStringOnce . "machine_username" "What's your machine username" -}}
-{{- $osid := .chezmoi.os -}}
-{{- if hasKey .chezmoi.osRelease "id" -}}
-{{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
-{{- end -}}
 
 
 [data]
@@ -18,7 +14,6 @@
   github_user       = "chianyungcode"
   machine_hostname  = {{ $machine_hostname | quote }}
   machine_username  = {{ $machine_username | quote }}
-  osid              = {{ $osid | quote }}
   dev_computer      = {{ $dev_computer }}
   homelab_member    = {{ $homelab_member }}
   is_ci_workflow       = false
