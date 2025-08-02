@@ -20,24 +20,3 @@ else
         exit 1
     fi
 fi
-
-# Verify proto is available
-if ! command -v proto >/dev/null 2>&1; then
-    error "proto command not found after installation"
-    exit 1
-fi
-
-# Install node, go, and rust with error handling
-header "Installing Node.js, Go, and Rust via proto"
-
-LANGUAGES=("node" "go" "rust")
-for lang in "${LANGUAGES[@]}"; do
-    info "Installing $lang..."
-    if proto install "$lang"; then
-        info "$lang installed successfully"
-    else
-        error "Failed to install $lang"
-    fi
-done
-
-header "Proto, Node.js, Go, and Rust installation complete"
