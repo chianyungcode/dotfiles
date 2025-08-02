@@ -55,8 +55,18 @@ casks=(
     {{ end }}
 )
 
-currently_installed_formulae=($(brew list --formula -1))
-currently_installed_casks=($(brew list --cask -1))
+# Initialize arrays
+currently_installed_formulae=()
+currently_installed_casks=()
+
+# Populate arrays with currently installed packages
+if brew list --formula -1 &>/dev/null; then
+    currently_installed_formulae=($(brew list --formula -1))
+fi
+
+if brew list --cask -1 &>/dev/null; then
+    currently_installed_casks=($(brew list --cask -1))
+fi
 
 header "Install Homebrew packages"
 
@@ -83,20 +93,20 @@ for cask in ${casks[@]}; do
     if ! _inArray_ -i "${cask}" "${currently_installed_casks[@]}"; then
         # Check if app already exists in /Applications to prevent conflicts
         app_name="${cask}"
-        
+
         # Check if there's a manual mapping for this cask
         {{ range $cask_key, $app_name_value := .manual_apps }}
         if [[ "${cask}" == "{{ $cask_key }}" ]]; then
             app_name="{{ $app_name_value }}"
         fi
         {{ end }}
-        
+
         # If no manual mapping found, use default transformation
         if [[ "${app_name}" == "${cask}" ]]; then
             # Capitalize first letter and replace dashes with spaces
             app_name=$(echo "${cask}" | sed 's/-/ /g' | sed 's/\b\(.\)/\u\1/g')
         fi
-        
+
         # Check if app exists in /Applications or /Applications/Setapp
         if [[ ! -d "/Applications/${app_name}.app" && ! -d "/Applications/Setapp/${app_name}.app" ]]; then
             brew install -q --cask ${cask}
