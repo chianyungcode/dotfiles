@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Set TERM for CI/CD environments
+export TERM=${TERM:-dumb}
+
 # Source shared script utilities
 {{ template "shared_script_utils.bash" . }}
 
