@@ -1,6 +1,7 @@
 {{- $use_secrets := promptBoolOnce . "use_secrets" "Use secrets from 1Password? (true/false)" -}}
 {{- $git_email := promptStringOnce . "git_email" "What's your git email" -}}
 {{- $git_user := promptStringOnce . "git_user" "What's your git user" -}}
+{{- $github_user := promptStringOnce . "github_user" "What's your github user" -}}
 {{- $personal_computer := promptBoolOnce . "personal_computer" "Is this a personal computer for daily driving? (true/false)" -}}
 {{- $dev_computer := promptBoolOnce . "dev_computer" "Do you do development on this computer? (true/false)" -}}
 {{- $homelab_member := promptBoolOnce . "homelab_member" "Is this computer part of your homelab? (true/false)" -}}
@@ -11,7 +12,7 @@
 [data]
   git_email         = {{ $git_email | quote }}
   git_user          = {{ $git_user | quote }}
-  github_user       = "chianyungcode"
+  github_user       = {{ $github_user | quote }}
   machine_hostname  = {{ $machine_hostname | quote }}
   machine_username  = {{ $machine_username | quote }}
   dev_computer      = {{ $dev_computer }}
