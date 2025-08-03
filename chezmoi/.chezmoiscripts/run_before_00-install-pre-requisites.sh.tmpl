@@ -57,6 +57,37 @@ if ${install}; then
         sudo pacman -S --noconfirm "${pkg}"
     done
 
+    # Install packages required for paru AUR helper
+    header "Installing packages required for paru AUR helper"
+    sudo pacman -S --needed --noconfirm git base-devel
+
+    # Install paru AUR helper
+    header "Installing paru AUR helper"
+    # Check if paru is already installed
+    if ! command -v paru &>/dev/null; then
+        # Clone paru repository
+        cd /tmp || exit 1
+        git clone https://aur.archlinux.org/paru.git
+        cd paru || exit 1
+
+        # Build and install paru
+        makepkg -si --noconfirm
+
+        # Clean up
+        cd /tmp || exit 1
+        rm -rf paru
+
+        # Verify installation
+        if command -v paru &>/dev/null; then
+            success "paru AUR helper installed successfully"
+        else
+            error "Failed to install paru AUR helper"
+            exit 1
+        fi
+    else
+        info "paru is already installed"
+    fi
+
     {{ else if eq .chezmoi.osRelease.id "ubuntu" "debian" }}
     # Ubuntu/Debian
     header "Updating package list"
