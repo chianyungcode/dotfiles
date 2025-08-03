@@ -34,7 +34,7 @@ for package in "${packages[@]}"; do
         continue
     fi
     if pacman -Ss "^${package}$" &>/dev/null; then
-        pacman -S --noconfirm "${package}"
+        sudo pacman -S --noconfirm "${package}"
     else
         warning "Package ${package} is not available"
     fi
