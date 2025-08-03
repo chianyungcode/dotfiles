@@ -1,7 +1,6 @@
 
 # oh-my-zsh plugins bawaan
 ohmyzsh/ohmyzsh path:plugins/brew
-ohmyzsh/ohmyzsh path:plugins/direnv
 ohmyzsh/ohmyzsh path:plugins/git
 ohmyzsh/ohmyzsh path:plugins/git-extras
 ohmyzsh/ohmyzsh path:plugins/git-commit
@@ -18,4 +17,3 @@ olets/zsh-abbr
 MichaelAquilina/zsh-you-should-use kind:zsh
 zsh-users/zsh-autosuggestions
 zdharma-continuum/fast-syntax-highlighting kind:defer
-

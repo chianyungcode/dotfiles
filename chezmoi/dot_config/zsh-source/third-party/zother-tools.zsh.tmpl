@@ -14,6 +14,11 @@ eval "$(tmuxifier init -)"
 eval "$(~/.local/bin/mise activate zsh)"
 {{- end }}
 
+# Direnv
+{{- if lookPath "direnv"}}
+eval "$(direnv hook zsh)"
+{{- end }}
+
 # Atuin
 # eval "$(atuin init zsh)"
 
