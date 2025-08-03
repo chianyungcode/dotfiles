@@ -9,6 +9,11 @@ eval "$(zoxide init zsh)"
 # Tmuxifier
 eval "$(tmuxifier init -)"
 
+# Mise
+{{- if lookPath "mise" }}
+eval "$(~/.local/bin/mise activate zsh)"
+{{- end }}
+
 # Atuin
 # eval "$(atuin init zsh)"
 
