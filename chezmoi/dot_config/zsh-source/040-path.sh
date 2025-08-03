@@ -7,6 +7,10 @@ _myPaths=(
   "{{ .xdgDataDir }}/cargo/bin"
   "/usr/bin/snap"
   "${HOME}/.atuin/bin"
+  "${PROTO_HOME}/shims"
+  "${PROTO_HOME}/bin"
+  "${HOME}/.tmuxifier/bin"
+  "${LM_STUDIO_BIN}"
 )
 
 for _path in "${_myPaths[@]}"; do
