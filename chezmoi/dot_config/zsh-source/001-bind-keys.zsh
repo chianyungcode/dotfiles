@@ -13,7 +13,7 @@ bindkey "^_" undo
 
 # [Ctrl-r] - Search backward incrementally for a specified string.
 # The string may begin with ^ to anchor the search to the beginning of the line.
-bindkey '^r' history-incremental-search-backward
+# bindkey '^r' history-incremental-search-backward
 
 # Navigate by words with alt+right/left arrows
 bindkey "^[^[[C" forward-word
@@ -41,4 +41,3 @@ if [[ -n "$terminfo[kend]" ]]; then
     # OPTION+right
     bindkey '[C' end-of-line
 fi
-
