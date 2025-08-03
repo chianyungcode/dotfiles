@@ -332,7 +332,7 @@
       "dpkg",
       "pueue",      # Task runner and scheduler
       "starship",
-      "gh",         # Github CLI
+      "github-cli", # Github CLI
       "git-delta",  # Pager for git
       "git-extras", # Add extra command to default git
       "gitmux",     # Git status bar in tmux
@@ -341,6 +341,7 @@
       "helix",      # Alternative neovim
       "httpie",     # HTTP client
       "eza",
+      "neovim",
     ]
     [packages.pacman.homelab_member]
     packages = ["iperf"]

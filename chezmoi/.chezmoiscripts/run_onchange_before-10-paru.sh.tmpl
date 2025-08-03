@@ -25,22 +25,22 @@ packages=(
     {{ end }}
 )
 
-header "Installing packages with pacman"
-sudo pacman -Syu --noconfirm
+header "Installing packages with paru"
+paru -Syu --noconfirm
 
 for package in "${packages[@]}"; do
-    if pacman -Qi "${package}" &>/dev/null; then
+    if paru -Qi "${package}" &>/dev/null; then
         info "Package ${package} is already installed"
         continue
     fi
-    if pacman -Ss "^${package}$" &>/dev/null; then
-        sudo pacman -S --noconfirm "${package}"
+    if paru -Ss "^${package}$" &>/dev/null; then
+        paru -S --noconfirm "${package}"
     else
         warning "Package ${package} is not available"
     fi
 done
 
-success "Pacman packages installed"
+success "Paru packages installed"
 _safeExit_
 
 {{- end }}
