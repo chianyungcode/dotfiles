@@ -9,3 +9,45 @@ Description = "Linux Machine | Start using linux machine"
 Output = ""
 Tag = ["orbstack"]
 command = 'orb --machine <machine-name>'
+
+[[Snippets]]
+Description = "Linux Machine | Delete specific machine"
+Output = ""
+Tag = ["orbstack"]
+command = 'orb delete <machine-name> --force'
+
+[[Snippets]]
+Description = "Linux Machine | Delete all machine"
+Output = ""
+Tag = ["orbstack"]
+command = 'orb delete --all'
+
+[[Snippets]]
+Description = "Orb help"
+Output = ""
+Tag = ["orbstack"]
+command = 'orbctl --help'
+
+[[Snippets]]
+Description = "Linux Machine | List all machine"
+Output = ""
+Tag = ["orbstack"]
+command = 'orbctl list'
+
+[[Snippets]]
+Description = "Linux Machine | Get detail info about specific machine"
+Output = ""
+Tag = ["orbstack"]
+command = 'orbctl info <machine-name>'
+
+[[Snippets]]
+Description = "Linux Machine | Get detail info about specific machine"
+Output = ""
+Tag = ["orbstack"]
+command = 'orbctl info <machine-name>'
+
+[[Snippets]]
+Description = "Linux Machine | Get logs about specific machine"
+Output = ""
+Tag = ["orbstack"]
+command = 'orbctl logs <machine-name>'
