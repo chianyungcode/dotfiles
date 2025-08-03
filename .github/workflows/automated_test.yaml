@@ -66,7 +66,6 @@ jobs:
               github_user       = "chianyungcode"
               machine_username  = "test"
               machine_hostname  = "machine-test"
-              osid              = "ubuntu"
               dev_computer      = false
               homelab_member    = false
               is_ci_workflow    = true # Set true only in CI test
