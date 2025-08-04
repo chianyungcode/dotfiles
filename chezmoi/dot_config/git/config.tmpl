@@ -8,7 +8,12 @@
     name = {{ .git_user}}
     email = {{ .git_email }}
     {{- if .use_secrets }}
-    signingkey = {{ onepasswordRead .secrets.git_signing_key }}
+    {{ if eq .git_user "chianyungcode"}}
+    signingkey = {{ onepasswordRead .secrets.git_signing_key_cny }}
+    {{ end }}
+    {{ if eq .git_user "seraphynee"}}
+    signingkey = {{ onepasswordRead .secrets.git_signing_key_phyne }}
+    {{ end }}
     {{- end }}
 
 # =============================================================================
