@@ -299,28 +299,28 @@
   [packages.pacman]
     [packages.pacman.common]
     packages = [
-      "base-devel",  # Equivalent to apt-transport-https and build essentials
-      "bat",         # cat with syntax highlighting and Git integration
+      "base-devel",    # Equivalent to apt-transport-https and build essentials
+      "bat",           # cat with syntax highlighting and Git integration
       "curl",
-      "bind-tools",  # Equivalent to dnsutils
-      "fd",          # Equivalent to fd-find
+      "bind-tools",    # Equivalent to dnsutils
+      "fd",            # Equivalent to fd-find
       "figlet",
       "fzf",
       "git",
       "git-extras",
+      "gnome-keyring", # For 1password two factor auth
       "gnupg",
-      "gpg",
       "jq",
       "logrotate",
       "lolcat",
-      "mc",          # Midnight Commander
+      "mc",            # Midnight Commander
       "nano",
-      "ncdu",        # NCurses Disk Usage
-      "needrestart",
+      "ncdu",          # NCurses Disk Usage
       "net-tools",
-      "openssh",     # Equivalent to openssh-server
-      "p7zip",       # Equivalent to p7zip-full
-      "ripgrep",     # search tool like grep and the silver searcher
+      "openssh",       # Equivalent to openssh-server
+      "p7zip",         # Equivalent to p7zip-full
+      "polkit-gnome",  # For 1password prompt available
+      "ripgrep",       # search tool like grep and the silver searcher
       "sudo",
       "tzdata",
       "unzip",
@@ -335,13 +335,15 @@
       "github-cli", # Github CLI
       "git-delta",  # Pager for git
       "git-extras", # Add extra command to default git
-      "gitmux",     # Git status bar in tmux
       "glab",       # GitLab CLI
       "glow",       # Render markdown in CLI
       "helix",      # Alternative neovim
       "httpie",     # HTTP client
       "eza",
       "neovim",
+      "tmux",
+      "pet",
+      "docker",
     ]
     [packages.pacman.homelab_member]
     packages = ["iperf"]
