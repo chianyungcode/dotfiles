@@ -58,8 +58,9 @@
 # CREDENTIALS & AUTHENTICATION
 # =============================================================================
 [credential]
-    helper =
+    {{- if eq .chezmoi.os "darwin"}}
     helper = osxkeychain
+    {{- end }}
     helper = /usr/local/share/gcm-core/git-credential-manager
     {{- if ne .chezmoi.os "darwin" }}
     credentialStore = cache
