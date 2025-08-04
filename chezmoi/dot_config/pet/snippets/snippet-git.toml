@@ -1,0 +1,5 @@
+[[Snippets]]
+Description = "Update remote url to use SSH"
+Output = ""
+Tag = ["git"]
+command = 'git remote set-url <host=git>:<workplace>/<repo>.git'
