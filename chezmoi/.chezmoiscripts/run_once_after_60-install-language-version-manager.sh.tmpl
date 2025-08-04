@@ -47,9 +47,9 @@ if ! command -v mise >/dev/null 2>&1; then
 fi
 
 # Install node, go, and rust with error handling
-header "Installing Node.js, Go, and Rust via mise"
+header "Installing Node.js, Go, Rust, Bun, Deno and Taplo via mise"
 
-LANGUAGES=("node" "go" "rust")
+LANGUAGES=("node" "go" "rust" "bun" "deno" "taplo")
 FAILED_INSTALLS=()
 
 for lang in "${LANGUAGES[@]}"; do
