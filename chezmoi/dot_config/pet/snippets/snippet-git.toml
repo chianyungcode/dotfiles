@@ -2,4 +2,10 @@
 Description = "Update remote url to use SSH"
 Output = ""
 Tag = ["git"]
-command = 'git remote set-url <alias=origin> <host=git>:<workplace>/<repo>.git'
+command = 'git remote set-url <alias=origin> <host=git>:<workplace=|_chianyungcode_||_seraphynee_|>/<repo>.git'
+
+[[Snippets]]
+Description = "Clone repository with SSH"
+Output = ""
+Tag = ["git"]
+command = 'git clone git@github.com:<username>/<repo>.git'
