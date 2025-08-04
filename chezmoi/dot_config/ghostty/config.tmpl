@@ -22,6 +22,7 @@ keybind = alt+shift+l=goto_split:right
 # Miscellaneous
 macos-option-as-alt = true
 mouse-hide-while-typing = true
+cursor-color=#00FF98
 cursor-style=underline
 cursor-style-blink = false
 copy-on-select = clipboard
@@ -48,14 +49,14 @@ macos-icon-screen-color = black
 {{ if eq .chezmoi.os "darwin" }}
 font-size = 17
 font-family = Dank Mono
-font-thicken = true 
+font-thicken = true
 font-thicken-strength = 150
 {{- end }}
 
 {{ if eq .chezmoi.os "linux" }}
 font-size = 12
 font-family = Jetbrains Mono
-font-thicken = false 
+font-thicken = false
 font-thicken-strength = 150
 {{- end }}
 # font-style-bold = true
