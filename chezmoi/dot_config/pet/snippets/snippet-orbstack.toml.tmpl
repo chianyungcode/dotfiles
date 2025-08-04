@@ -1,3 +1,5 @@
+{{ if (eq .chezmoi.os "darwin") }}
+
 [[Snippets]]
 Description = "Linux Machine | create linux machine with custom username, password, and custom machine-name/hostname"
 Output = ""
@@ -51,3 +53,5 @@ Description = "Linux Machine | Get logs about specific machine"
 Output = ""
 Tag = ["orbstack"]
 command = 'orbctl logs <machine-name>'
+
+{{- end }}
