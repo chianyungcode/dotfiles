@@ -339,6 +339,7 @@
       "glow",       # Render markdown in CLI
       "helix",      # Alternative neovim
       "httpie",     # HTTP client
+      "yq",
       "eza",
       "neovim",
       "tmux",
