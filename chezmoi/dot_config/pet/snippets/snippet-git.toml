@@ -9,3 +9,15 @@ Description = "Clone repository with SSH"
 Output = ""
 Tag = ["git"]
 command = 'git clone <host=git@github.com>:<username/workplace>/<repo>.git'
+
+[[Snippets]]
+Description = "Check local branch connect to which remote branch"
+Output = ""
+Tag = ["git"]
+command = 'git branch -vv'
+
+[[Snippets]]
+Description = "List all branch in local and remote"
+Output = ""
+Tag = ["git"]
+command = 'git branch --all'
