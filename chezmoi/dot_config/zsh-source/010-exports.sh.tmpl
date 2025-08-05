@@ -13,6 +13,14 @@ export BAT_THEME="OneHalfDark"
 export PROTO_HOME="$HOME/.config/proto"
 export LM_STUDIO_BIN="$HOME/.lmstudio/bin"
 
+{{ if .use_secrets }}
+{{- if eq .chezmoi.os "darwin"}}
+export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+{{ else if eq .chezmoi.os "linux" }}
+export SSH_AUTH_SOCK=~/.1password/agent.sock
+{{- end }}
+{{- end }}
+
 {{- if eq .chezmoi.os "darwin"}}
 export DISABLE_AUTO_TITLE='true' # Prevent auto update in title window macos
 {{- end }}
