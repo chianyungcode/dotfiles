@@ -95,7 +95,7 @@ for cask in ${casks[@]}; do
         app_name="${cask}"
 
         # Check if there's a manual mapping for this cask
-        {{ range $cask_key, $app_name_value := .manual_apps }}
+        {{ range $cask_key, $app_name_value := .diff_name_apps }}
         if [[ "${cask}" == "{{ $cask_key }}" ]]; then
             app_name="{{ $app_name_value }}"
         fi
