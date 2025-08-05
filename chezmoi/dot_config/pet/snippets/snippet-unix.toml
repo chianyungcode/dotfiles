@@ -80,7 +80,7 @@ command = 'ssh <username=ubuntu>@<hostname>'
 Description = "Copy public key to destination"
 Output = ""
 Tag = ["unix", "ssh"]
-command = 'ssh-copy-id -i ~/.ssh/<filename=securitykey>.pub <username>@<hostname>'
+command = 'ssh-copy-id -i ~/.ssh_keys/<filename=key>.pub <username>@<hostname>'
 
 [[Snippets]]
 Description = "Generate SSH Keys Pair for Physical Security Key like Yubikey"
