@@ -3,13 +3,17 @@
 # If file <key>.pub (public key) exist in ~/.ssh_keys directory
 {{- if stat (joinPath .chezmoi.homeDir ".ssh_keys" "ghcny.pub") }}
 
-["Code/Personal/Frontend/allweezy"]
+["Code/Personal/Projects/Frontend//allweezy"]
 type = "git-repo"
 url = "ghcny:allweezy/allweezy.git"
 
-["Code/Personal/Backend/allweezy-backend"]
+["Code/Personal/Projects/Backend/allweezy-backend"]
 type = "git-repo"
 url = "ghcny:allweezy/allweezy-backend.git"
+
+["Code/Personal/Projects/Frontend/portfolio-chian-v2"]
+type = "git-repo"
+url = "ghcny:chianyungcode/portfolio-chian-v2.git"
 
 {{ end }}
 
