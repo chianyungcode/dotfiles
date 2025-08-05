@@ -347,6 +347,7 @@
       "docker",
       "usbutils",   # check fingerprint info
       "fprintd",    # fingerprint
+      "entr",       # depdency for tmux-autoreload
     ]
     [packages.pacman.homelab_member]
     packages = ["iperf"]
