@@ -1,8 +1,15 @@
 {{ if eq .chezmoi.os "darwin" }}
 
-["Downloads/ExternalMacApps/wisprflow.dmg"]
+{{- range .macos_external_app }}
+{{- if and .app_name .download_url }}
+["Downloads/ExternalMacApps/{{ if eq .type "dmg" }}dmg/{{ else if eq .type "zip" }}zip/{{ else }}other/{{ end }}{{ .app_name }}{{ if eq .type "dmg" }}.dmg{{ else }}.{{ .type }}{{ end }}"]
+{{- if eq .type "dmg" }}
 type = "file"
-url = "https://dl.wisprflow.ai/mac-apple/latest"
+{{- else }}
+type = "archive"
+{{- end }}
+url = "{{ .download_url }}"
+{{- end }}
+{{- end }}
 
-
-{{- end}}
+{{- end }}
