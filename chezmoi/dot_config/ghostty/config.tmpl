@@ -46,17 +46,17 @@ macos-icon-ghost-color = white
 macos-icon-screen-color = black
 
 # --- Font Styles ---
-{{ if eq .chezmoi.os "darwin" }}
+{{- if eq .chezmoi.os "darwin" }}
 font-size = 17
 font-family = Dank Mono
 font-thicken = true
 font-thicken-strength = 150
-{{- end }}
+{{- end -}}
 
-{{ if eq .chezmoi.os "linux" }}
+{{- if eq .chezmoi.os "linux" }}
 font-size = 12
-font-family = Jetbrains Mono
-font-thicken = false
+font-family = TX-02
+font-thicken = true
 font-thicken-strength = 150
 {{- end }}
 # font-style-bold = true
