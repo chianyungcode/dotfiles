@@ -51,9 +51,7 @@ font-size = 17
 font-family = Dank Mono
 font-thicken = true
 font-thicken-strength = 150
-{{- end -}}
-
-{{- if eq .chezmoi.os "linux" }}
+{{- else if eq .chezmoi.os "linux" }}
 font-size = 12
 font-family = TX-02
 font-thicken = true
