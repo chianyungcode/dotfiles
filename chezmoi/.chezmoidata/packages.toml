@@ -345,6 +345,8 @@
       "tmux",
       "pet",
       "docker",
+      "usbutils",   # check fingerprint info
+      "fprintd",    # fingerprint
     ]
     [packages.pacman.homelab_member]
     packages = ["iperf"]
