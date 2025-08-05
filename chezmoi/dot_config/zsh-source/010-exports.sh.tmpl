@@ -3,6 +3,7 @@ export BAT_THEME="OneHalfDark"
 export DOTFILES="$HOME/.local/share/chezmoi"
 export EDITOR="nvim"
 export GIT_CONFIG_GLOBAL="$HOME/.config/git/config"
+export GITHUB_TOKEN = {{ onepasswordRead .secrets.github_personal_access_token }} # Use for break the limit to connect to api.github.com
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml" # Change default location for starship configuration
 export PROTO_HOME="$HOME/.config/proto"
 export LM_STUDIO_BIN="$HOME/.lmstudio/bin"
