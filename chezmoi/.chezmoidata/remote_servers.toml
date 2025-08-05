@@ -19,3 +19,17 @@
   name = "ghphyne"
   op_id = "fzv7mncqpjjmezf47kloo4t6ji"
   tailscale_ip = false
+
+  [remote_servers.acer]
+  generate_public_key_only = true
+  add_to_ssh_config = true
+  name = "acer"
+  op_id = "h4zlfpcdlr3r64qjteoqwww6be"
+  tailscale_ip = true
+
+  [remote_servers.mbp]
+  generate_public_key_only = true
+  add_to_ssh_config = true
+  name = "mbp"
+  op_id = "o3hurjw4rkl24c4msn22pzoele"
+  tailscale_ip = true
