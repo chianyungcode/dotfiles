@@ -16,7 +16,13 @@ UV_PATH="$(_uvBinaryPath_ -p)" || {
 header "Verify ${PACKAGE_NAME} installation and check for updates"
 
 # Fetch the API response once and store it in a variable
-API_RESPONSE=$(curl -s "https://api.github.com/repos/${REPOSITORY}/releases/latest")
+if [[ -n "$GITHUB_TOKEN" ]]; then
+    API_RESPONSE=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+        "https://api.github.com/repos/${REPOSITORY}/releases/latest")
+else
+    API_RESPONSE=$(curl -s \
+        "https://api.github.com/repos/${REPOSITORY}/releases/latest")
+fi
 
 # Extract the required information from the stored API response
 LATEST_VERSION=$(echo "${API_RESPONSE}" | jq -r .tag_name | sed 's/v//g')
@@ -62,7 +68,11 @@ brew upgrade uv
 
 {{ if eq .chezmoi.os "linux" }}
 if [[ -n ${UV_PATH} ]]; then
-    ${UV_PATH} self update
+    if [[ -n "$GITHUB_TOKEN" ]]; then
+        ${UV_PATH} self update --token "$GITHUB_TOKEN"
+    else
+        ${UV_PATH} self update
+    fi
 fi
 {{ end }}
 
