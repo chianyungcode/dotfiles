@@ -1,10 +1,16 @@
 {{ if .use_secrets }}
 
-# If file <key>.pub exist in ~/.ssh_keys directory
+# If file <key>.pub (public key) exist in ~/.ssh_keys directory
 {{- if stat (joinPath .chezmoi.homeDir ".ssh_keys" "ghcny.pub") }}
-["Code/Personal/Frontend"]
+
+["Code/Personal/Frontend/allweezy"]
 type = "git-repo"
 url = "ghcny:allweezy/allweezy.git"
+
+["Code/Personal/Backend/allweezy-backend"]
+type = "git-repo"
+url = "ghcny:allweezy/allweezy-backend.git"
+
 {{ end }}
 
 {{- end }}
