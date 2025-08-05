@@ -1,4 +1,5 @@
-# macOS application that unavailable on homebrew or mas
+# This data file is for .chezmoiexternal/ directory
+# macOS application that unavailable on homebrew or mas, so needed to install from the download url from their website
 # options for field type : dmg | zip
 
 [[macos_external_app]]
