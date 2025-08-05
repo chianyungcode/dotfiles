@@ -136,6 +136,7 @@
       "glow",                                # Render markdown in CLI
       "helix",                               # Alternative neovim
       "httpie",                              # HTTP client
+      "hurl",                                # command line tool that runs HTTP requests defined in a simple plain text format.
       "hyperfine",                           # A command-line benchmarking tool
       "jesseduffield/lazydocker/lazydocker", # Docker manager
       "jesseduffield/lazygit/lazygit",
@@ -152,6 +153,7 @@
       "shellcheck",
       "stow",                                # Symlink manager
       "stripe/stripe-cli/stripe",
+      "tectonic",                            # render LaTex math
       "tmuxinator",                          # Tmux session manager
       "tmuxp",                               # Tmux session manager
       "television",                          # Alternative to yazi
