@@ -1,24 +1,16 @@
-
-# === Directories ===
+export ANTIDOTE_HOME=~/.cache/antidote
+export BAT_THEME="OneHalfDark"
 export DOTFILES="$HOME/.local/share/chezmoi"
 export EDITOR="nvim"
 export GIT_CONFIG_GLOBAL="$HOME/.config/git/config"
-
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml" # Change default location for starship configuration
-
-export ANTIDOTE_HOME=~/.cache/antidote
-
-export BAT_THEME="OneHalfDark"
-
 export PROTO_HOME="$HOME/.config/proto"
 export LM_STUDIO_BIN="$HOME/.lmstudio/bin"
-
-{{ if .use_secrets }}
-{{- if eq .chezmoi.os "darwin"}}
-export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
-{{ else if eq .chezmoi.os "linux" }}
-export SSH_AUTH_SOCK=~/.1password/agent.sock
-{{- end }}
+{{- if .use_secrets }}
+export SSH_AUTH_SOCK={{ index (dict 
+    "darwin" "~/Library/Group\\ Containers/2BUA8C4S2C.com.1password/t/agent.sock" 
+    "linux"  "~/.1password/agent.sock"
+) .chezmoi.os }}
 {{- end }}
 
 {{- if eq .chezmoi.os "darwin"}}
