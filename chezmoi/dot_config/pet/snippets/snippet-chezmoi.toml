@@ -33,3 +33,21 @@ Description = "Destroy | Delete file between in source directory and target dire
 Output = ""
 Tag = ["chezmoi"]
 command = 'chezmoi destroy <path-to-target-file>'
+
+[[Snippets]]
+Description = "Force refresh download external"
+Output = ""
+Tag = ["chezmoi"]
+command = 'chezmoi --refresh-externals apply'
+
+[[Snippets]]
+Description = "Clear the state of run_onchange_ scripts"
+Output = ""
+Tag = ["chezmoi"]
+command = 'chezmoi state delete-bucket --bucket=entryState'
+
+[[Snippets]]
+Description = "Clear the state of run_once_ scripts"
+Output = ""
+Tag = ["chezmoi"]
+command = 'chezmoi state delete-bucket --bucket=scriptState'
