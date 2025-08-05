@@ -348,6 +348,7 @@
       "usbutils",   # check fingerprint info
       "fprintd",    # fingerprint
       "entr",       # depdency for tmux-autoreload
+      "tailscale",
     ]
     [packages.pacman.homelab_member]
     packages = ["iperf"]
