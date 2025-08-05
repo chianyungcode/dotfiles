@@ -42,22 +42,22 @@ Description = "Item create (remote server template)"
 Output = ""
 Tag = ["op"]
 command = '''op item create \
-  --category="<category=SSH Key>" \
+  --category="SSH Key" \
   --title="<item_title>" \
-  --vault="<vault=Code>" \
-  user[string]=<field_value>
-  hostname[string]=<field_value>
-  port[string]=<field_value=22>'''
+  --vault="<vault=Programming>" \
+  user[string]=<field_user_value>  \
+  hostname[string]=<field_hostname_value> \
+  port[string]=<field_port_value=22>'''
 
 [[Snippets]]
 Description = "Item create (remote server template with tailscale connection)"
 Output = ""
 Tag = ["op"]
 command = '''op item create \
-  --category="<category=SSH Key>" \
-  --title="<item_title=Tailscale - >" \
+  --category="SSH Key" \
+  --title="<item_title=Tailscale>" \
   --tags="ssh-tailscale" \
-  --vault="<vault=Code>" \
-  user[string]=<field_value>
-  tailscale_ip[string]=<field_value>
-  port[string]=<field_value=22>'''
+  --vault="<vault=Programming>" \
+  user[string]=<field_user_value> \
+  tailscale_ip[string]=<field_tailscale_ip_value> \
+  port[string]=<field_port_value=22>'''
