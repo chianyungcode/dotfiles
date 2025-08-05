@@ -349,6 +349,8 @@
       "fprintd",    # fingerprint
       "entr",       # depdency for tmux-autoreload
       "tailscale",
+      "tectonic",
+      "hurl",       # runs HTTP requests defined in a simple plain text format.
     ]
     [packages.pacman.homelab_member]
     packages = ["iperf"]
