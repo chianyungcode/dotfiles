@@ -15,6 +15,17 @@ ffe() {
     find . -name '*'"$1"
 }
 
+function alias-select() {
+  BUFFER=$(alias | fzf | awk -F'=' '{print $1}' | sed "s/alias //")
+  CURSOR=$#BUFFER
+  zle redisplay
+}
+zle -N alias-select
+
+# Bind ke Ctrl+f (atau ganti sesuai selera)
+bindkey -r '^e'
+bindkey '^e' alias-select
+
 # mkcd
 mkcd(){
     if [[ -d $1 ]]; then
