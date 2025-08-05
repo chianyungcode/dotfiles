@@ -11,13 +11,6 @@ fi
 
 if [[ -e "/opt/homebrew/bin/brew" && ! $(command -v brew) ]]; then
     notice "Adding Homebrew to your PATH"
-
-    # Check if .zprofile exists, create if it doesn't
-    if [[ ! -f "/Users/{{ .chezmoi.username }}/.zprofile" ]]; then
-        notice "Creating .zprofile file"
-        touch "/Users/{{ .chezmoi.username }}/.zprofile"
-    fi
-
     echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>/Users/{{ .chezmoi.username }}/.zprofile
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
