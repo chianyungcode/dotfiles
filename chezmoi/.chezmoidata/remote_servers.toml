@@ -1,18 +1,21 @@
 [remote_servers]
-  [remote_servers.ghcny]
-  add_to_ssh_config = true
-  name = "ghcny"
-  op_id = "nhczmzrx5uazmizwj6yzkjqohi"
-  tailscale_ip = false
+[remote_servers.ghcny]
+generate_public_key_only = true
+add_to_ssh_config = true
+name = "ghcny"
+op_id = "nhczmzrx5uazmizwj6yzkjqohi"
+tailscale_ip = false
 
-  [remote_servers.gcp1]
-  add_to_ssh_config = true
-  name = "gcp1"
-  op_id = "cidpjacci3fjd65sj2ffuhcd3i"
-  tailscale_ip = false
+[remote_servers.gcp1]
+generate_public_key_only = true
+add_to_ssh_config = true
+name = "gcp1"
+op_id = "cidpjacci3fjd65sj2ffuhcd3i"
+tailscale_ip = false
 
-  [remote_servers.ghphyne]
-  add_to_ssh_config = true
-  name = "ghphyne"
-  op_id = "fzv7mncqpjjmezf47kloo4t6ji"
-  tailscale_ip = false
+[remote_servers.ghphyne]
+generate_public_key_only = true
+add_to_ssh_config = true
+name = "ghphyne"
+op_id = "fzv7mncqpjjmezf47kloo4t6ji"
+tailscale_ip = false

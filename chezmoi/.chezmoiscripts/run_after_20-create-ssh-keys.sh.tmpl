@@ -12,11 +12,17 @@ fi
 
 {{ range .remote_servers -}}
 updated=false
+
+{{ if not .generate_public_key_only }}
+# Create private key if generate_public_key_only is not true
 if [ ! -f "{{ $.directories.ssh_keys_dir }}/{{ .name }}" ]; then
     echo "{{ range (onepassword .op_id).fields }}{{ if or (eq .label "privkey") (eq .label "private key") }}{{ .value }}{{ end }}{{ end }}" >"{{ $.directories.ssh_keys_dir }}/{{ .name }}"
     chmod 600 "{{ $.directories.ssh_keys_dir }}/{{ .name }}"
     updated=true
 fi
+{{ end }}
+
+# Always check for public key
 if [ ! -f "{{ $.directories.ssh_keys_dir }}/{{ .name }}.pub" ]; then
     echo "{{ range (onepassword .op_id).fields }}{{ if or (eq .label "pubkey") (eq .label "public key") }}{{ .value }}{{ end }}{{ end }}" >"{{ $.directories.ssh_keys_dir }}/{{ .name }}.pub"
     chmod 644 "{{ $.directories.ssh_keys_dir }}/{{ .name }}.pub"
@@ -24,10 +30,9 @@ if [ ! -f "{{ $.directories.ssh_keys_dir }}/{{ .name }}.pub" ]; then
 fi
 
 if [ "${updated}" = true ]; then
-    notice "Created SSH key pair for: {{ .name }}"
+    notice "Created SSH key{{ if not .generate_public_key_only }} pair{{ else }} (public only){{ end }} for: {{ .name }}"
 fi
 
 {{ end -}}
 _safeExit_
 {{ end -}}
-
