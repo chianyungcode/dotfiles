@@ -84,9 +84,14 @@ bind -N "Run btop" -T root C-m new-window -c "#{pane_current_path}" -n "📈" "b
 
 # --- Add capabilites to copy and paste in mode: copy-mode-vi ---
 bind -T copy-mode-vi v send -X begin-selection
+{{- if eq .chezmoi.os "darwin" }}
 bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "pbcopy"
-bind P paste-buffer
 bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "pbcopy"
+{{ else if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch" ) }}
+bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "wl-copy"
+bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "wl-copy"
+{{- end }}
+bind P paste-buffer
 
 # === BASIC SETTINGS ===
 # 'set' alias for 'set-option' and 'setw' alias for 'set-window-option'
