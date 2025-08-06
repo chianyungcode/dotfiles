@@ -10,30 +10,20 @@ set -x STARSHIP_CONFIG "$HOME/.config/starship/starship.toml"
 set -x DISABLE_AUTO_TITLE true
 
 # === Paths ===
-set -x BUN_INSTALL "$HOME/.bun"
 set -x PROTO_HOME "$HOME/.config/proto"
-set -x GOBIN "$HOME/go/bin"
 set -x BAT_THEME OneHalfDark
 set -x LM_STUDIO_BIN "$HOME/.lmstudio/bin"
 
 # Set PATH
 set -x PATH $HOME/.local/bin \
     $WEZTERM_EXECUTABLE_DIR \
-    $BUN_INSTALL/bin \
-    $HOME/.console-ninja/.bin \
     $PROTO_HOME/shims \
     $PROTO_HOME/bin \
-    $GOBIN \
     $HOME/.tmuxifier/bin \
     $HOME/.cargo/bin \
     /opt/homebrew/bin \
     $LM_STUDIO_BIN \
     $PATH
-
-# === Bun Completions ===
-if test -f "$HOME/.bun/_bun"
-    source "$HOME/.bun/_bun"
-end
 
 # === FZF Configuration ===
 if command -v eza >/dev/null

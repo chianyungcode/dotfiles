@@ -12,8 +12,7 @@ end
 # INITIATE
 starship init fish | source
 zoxide init fish | source
-atuin init fish | source
-
+# atuin init fish | source
 
 # FUNCTION
 # The shell not will automtically rename tmux pane
@@ -49,7 +48,6 @@ bind \
 bind \
     -M visual \eu sesh-sessions
 
-
 # -- pet cli --
 function pet-select
     set -l buffer (pet search --query "$fish_buffer")
@@ -66,7 +64,6 @@ bind \cs pet-select
 #############
 
 set fish_greeting
-
 
 # Added by LM Studio CLI (lms)
 set -gx PATH $PATH /Users/chianyung/.lmstudio/bin
