@@ -23,8 +23,14 @@ function alias-select() {
 zle -N alias-select
 
 # Bind ke Ctrl+e (atau ganti sesuai selera)
-bindkey -r '^e'
+bindkey -r '^e' # remove existing ctrl+e
+
+# Bind di emacs mode
 bindkey '^e' alias-select
+# Bind di vi insert mode
+bindkey -M viins '^e' alias-select
+# Bind di vi command mode
+bindkey -M vicmd '^e' alias-select
 
 # mkcd
 mkcd(){
