@@ -1,5 +1,11 @@
 # --- TMUX ---
 [[Snippets]]
+Description = "List all tmux keybind"
+Output = ""
+Tag = ["tmux"]
+command = "tmux list-keys | fzf"
+
+[[Snippets]]
 Description = "Local | Rename Pane"
 Output = ""
 Tag = ["tmux"]
