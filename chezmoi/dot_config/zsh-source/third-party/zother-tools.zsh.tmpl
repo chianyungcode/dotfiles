@@ -26,6 +26,6 @@ eval "$(direnv hook zsh)"
 source $HOME/.config/fzf-git/fzf-git.sh
 
 # 1Password
-{{- if lookPath "op"}}
+{{- if stat (joinPath .chezmoi.homeDir ".config" "op" "plugins.sh") }}
 source $HOME/.config/op/plugins.sh
 {{- end }}
