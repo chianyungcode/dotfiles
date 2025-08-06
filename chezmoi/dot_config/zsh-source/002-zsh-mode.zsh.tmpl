@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# Default mode emacs
+bindkey -e
+ZSH_MODE="emacs"
+
+toggle_vi_mode() {
+  if [[ $ZSH_MODE == "vi" ]]; then
+    bindkey -e
+    ZSH_MODE="emacs"
+    echo "Switched to emacs mode"
+  else
+    bindkey -v
+    ZSH_MODE="vi"
+    echo "Switched to vi mode"
+  fi
+  zle reset-prompt
+}
+
+zle -N toggle_vi_mode
+
+# Bind di emacs mode
+bindkey '^A' toggle_vi_mode
+# Bind di vi insert mode
+bindkey -M viins '^A' toggle_vi_mode
+# Bind di vi command mode
+bindkey -M vicmd '^A' toggle_vi_mode
