@@ -7,5 +7,12 @@ zle -N pet-select
 if [ -t 0 ]; then
   stty -ixon
 fi
-bindkey -r '^f'
+
+bindkey -r '^f' # Remoce default ctrl+f
+
+# Bind di emacs mode
 bindkey '^f' pet-select
+# Bind di vi insert mode
+bindkey -M viins '^f' pet-select
+# Bind di vi command mode
+bindkey -M vicmd '^f' pet-select

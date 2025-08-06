@@ -28,17 +28,31 @@ fzf_zoxide_widget() {
     --height=40% \
     --reverse \
     --prompt="Zoxide > " \
-    --preview 'exa -1 --color=always {2} 2>/dev/null || ls -la --color=always {2}' \
-    --preview-window=right:40%:wrap)
+    --preview 'eza --tree --color=always --icons $(echo {} | awk "{ \$1=\"\"; sub(/^ /,\"\"); print }") 2>/dev/null | head -200' \
+    --preview-window=right:40%:wrap) || {
+    zle -I
+    zle redisplay
+    return 0
+  }
 
-  # Ambil kolom path saja (kolom kedua)
+  [[ -z $selection ]] && {
+    zle -I
+    zle redisplay
+    return 0
+  }
+
   dir=$(echo "$selection" | awk '{ $1=""; sub(/^ /,""); print }')
 
-  if [[ -n $dir ]]; then
-    builtin cd "$dir" || return
-    zle accept-line
-  fi
+  BUFFER="cd \"$dir\""
+  CURSOR=$#BUFFER
+  zle -I
+  zle redisplay
 }
 
 zle -N fzf_zoxide_widget
+# Bind di emacs mode
 bindkey '^[^Z' fzf_zoxide_widget
+# Bind di vi insert mode
+bindkey -M viins '^[^Z' fzf_zoxide_widget
+# Bind di vi command mode
+bindkey -M vicmd '^[^Z' fzf_zoxide_widget
