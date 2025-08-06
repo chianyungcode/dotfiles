@@ -44,7 +44,7 @@
   l (tap-hold $tap-time $hold-time l lctl)
   k (tap-hold $tap-time $hold-time k lalt)
   j (tap-hold $tap-time $hold-time j lmet)
-  / (tap-hold $tap-time $hold-time / rmet)
+  / (tap-hold $tap-time $hold-time / lalt)
   hyperkey (tap-hold $tap-time $hold-time spc (multi lsft lctl lalt lmet))
   caps (tap-hold $tap-time $hold-time esc (layer-toggle layer1))
   mc C-up ;; Mission Control
@@ -64,7 +64,11 @@
 |#
 
 (defchordsv2
+  {{- if eq .chezmoi.os "darwin" }}
   (m ,) A-bspc $input-chord-time all-released ()
+  {{- else if eq .chezmoi.os "linux" }}
+  (m ,) C-bspc $input-chord-time all-released ()
+  {{- end }}
 )
 
 ;; == Layers ==
