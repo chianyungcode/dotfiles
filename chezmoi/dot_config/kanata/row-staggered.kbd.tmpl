@@ -69,6 +69,8 @@
   {{- else if eq .chezmoi.os "linux" }}
   (m ,) C-bspc $input-chord-time all-released ()
   {{- end }}
+  (l r) lrld $input-chord-time all-released () ;; live reload kanata, press this after changing kanata configuration
+  (l ;) C-a $input-chord-time all-released () ;; tmux prefix
 )
 
 ;; == Layers ==
