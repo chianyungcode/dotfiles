@@ -16,13 +16,13 @@ ffe() {
 }
 
 function alias-select() {
-  BUFFER=$(alias | fzf | awk -F'=' '{print $1}' | sed "s/alias //")
+  BUFFER=$(alias | fzf --prompt="Select Alias > " | awk -F'=' '{print $1}' | sed "s/alias //")
   CURSOR=$#BUFFER
   zle redisplay
 }
 zle -N alias-select
 
-# Bind ke Ctrl+f (atau ganti sesuai selera)
+# Bind ke Ctrl+e (atau ganti sesuai selera)
 bindkey -r '^e'
 bindkey '^e' alias-select
 
@@ -355,4 +355,3 @@ urlencode() {
 }
 
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"' # dev: Decode a URL [ULR]
-
