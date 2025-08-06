@@ -20,8 +20,8 @@ toggle_vi_mode() {
 zle -N toggle_vi_mode
 
 # Bind di emacs mode
-bindkey '^A' toggle_vi_mode
+bindkey '^V' toggle_vi_mode
 # Bind di vi insert mode
-bindkey -M viins '^A' toggle_vi_mode
+bindkey -M viins '^V' toggle_vi_mode
 # Bind di vi command mode
-bindkey -M vicmd '^A' toggle_vi_mode
+bindkey -M vicmd '^V' toggle_vi_mode
