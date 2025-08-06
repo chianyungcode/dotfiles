@@ -9,10 +9,7 @@
 {{- $machine_username := promptStringOnce . "machine_username" "What's your machine username" -}}
 
 # NOTE
-# 'use_secrets' ensures whether you are using 1Password; if so, all 1Password functions like {{ onePasswordRead }} can be used because the "op" CLI is installed
-# 1Password functions in chezmoi, like {{ onePasswordRead }}, must be wrapped inside {{ if .use_secrets }}...{{ end }}. This ensure first that "op" CLI is installed and {{ onePasswordRead }} can work
-# Example:
-# export GITHUB_TOKEN={{ if .use_secrets }}{{ onePasswordRead .secrets.github_personal_access_token }}{{ end }} 
+# 'use_secrets' ensures whether you are using 1Password; if so, all 1Password functions like 'onePasswordRead' can be used because the "op" CLI is installed
 
 
 [data]
@@ -25,7 +22,7 @@
   homelab_member    = {{ $homelab_member }}
   is_ci_workflow    = false
   personal_computer = {{ $personal_computer }}
-  use_secrets       = {{ $use_secrets }} # Every 1password function chezmoi, for example {{ onePasswordRead }} needed 1Password installed because "op" cli is needed.
+  use_secrets       = {{ $use_secrets }}
   xdgCacheDir       = "{{ .chezmoi.homeDir }}/.cache"
   xdgConfigDir      = "{{ .chezmoi.homeDir }}/.config"
   xdgDataDir        = "{{ .chezmoi.homeDir }}/.local/share"
