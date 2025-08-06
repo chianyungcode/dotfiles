@@ -1,7 +1,8 @@
+# zmodload zsh/zprof # uncomment this for profiling function take time so it will slow startup
+
 {{ if eq .chezmoi.os "darwin" }}
 # Amazon Q pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
-zmodload zsh/zprof
 {{ end }}
 
 # If not running interactively, don't do anything
@@ -66,8 +67,25 @@ fi
 
 # Load Completions
 #############################################
+# Load all fpath completions first
 autoload -Uz compinit
-compinit -d "{{ .xdgCacheDir }}/zsh/zcompdump-${ZSH_VERSION}"
+
+# Use cached dump if fresh (<24h)
+zcdump="{{ .xdgCacheDir }}/zsh/zcompdump-${ZSH_VERSION}"
+# More portable zsh-native way to check file age
+if [[ -r "$zcdump" && (! -f "${zcdump}.zwc" || "$zcdump" -nt "${zcdump}.zwc") ]]; then
+  # If dump exists but compiled version doesn't or is older
+  zcompile "$zcdump"
+fi
+
+# Check if file exists and is less than 24h old using zsh's built-in file age check
+if [[ -r "$zcdump" && -n "$zcdump"(#qN.mh-24) ]]; then
+  # Less than 24 hours old - skip security check
+  compinit -C -d "$zcdump"
+else
+  # More than 24 hours old or doesn't exist - do full init
+  compinit -d "$zcdump"
+fi
 
 # SOURCE Dotfiles
 #############################################
@@ -98,3 +116,6 @@ done
 # Amazon Q post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
 {{ end }}
+
+# zprof # uncomment this for profiling function take time so it will slow startup
+
