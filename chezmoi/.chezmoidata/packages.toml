@@ -332,28 +332,29 @@
     [packages.pacman.dev_computer]
     packages = [
       "dpkg",
-      "pueue",      # Task runner and scheduler
+      "pueue",           # Task runner and scheduler
       "starship",
-      "github-cli", # Github CLI
-      "git-delta",  # Pager for git
-      "git-extras", # Add extra command to default git
-      "glab",       # GitLab CLI
-      "glow",       # Render markdown in CLI
-      "helix",      # Alternative neovim
-      "httpie",     # HTTP client
+      "github-cli",      # Github CLI
+      "git-delta",       # Pager for git
+      "git-extras",      # Add extra command to default git
+      "glab",            # GitLab CLI
+      "glow",            # Render markdown in CLI
+      "helix",           # Alternative neovim
+      "httpie",          # HTTP client
       "yq",
       "eza",
       "neovim",
       "tmux",
       "pet",
       "docker",
-      "usbutils",   # check fingerprint info
-      "fprintd",    # fingerprint
-      "entr",       # depdency for tmux-autoreload
+      "usbutils",        # check fingerprint info
+      "fprintd",         # fingerprint
+      "entr",            # depdency for tmux-autoreload
       "tailscale",
       "tectonic",
-      "hurl",       # runs HTTP requests defined in a simple plain text format.
-      "vivid",      # Color generator for LS_COLORS env variable
+      "hurl",            # runs HTTP requests defined in a simple plain text format.
+      "vivid",           # Color generator for LS_COLORS env variable
+      "espanso-wayland",
     ]
     [packages.pacman.homelab_member]
     packages = ["iperf"]
