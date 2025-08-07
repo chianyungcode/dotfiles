@@ -61,7 +61,7 @@
         "ripgrep",                   # Search tool like grep and the silver searcher
         "ssh-copy-id",               # Add a public key to a remote machine's authorized_keys file
         "starship",                  # Configure shell prompt appearance
-        "taplo",                     # TOML parser
+        "taplo",                     # TOML formatter
         "tlrc",                      # TLDR client
         "tmux",                      # Terminal multiplexer
         "unzip",
@@ -155,8 +155,9 @@
         "pueue",                               # Task runner and scheduler
         "ruff",                                # Python linter
         "sesh",                                # Tmux session manager
+        "sh",                                  # bash, sh formatter
         "shellcheck",                          # bash, sh linter
-        "shellcheck",
+        "shfmt",                               # bash, sh formatter
         "sshs",                                # Graphical command-line client for SSH
         "stow",                                # Symlink manager
         "stripe/stripe-cli/stripe",
@@ -202,6 +203,7 @@
         "lookaway",                  # App for maintaining your eye rest
         "lulu",                      # Firewall
         "lunar",                     # Configure your display management
+        "markdownlint-cli2",         # Linter for markdown file
         "mediamate",                 # UI replacement for volume, brightness and now playing controls
         "menuwhere",
         "moom",                      # Manage saved layout window for better workflow
@@ -364,7 +366,9 @@
         "prettier",        # JS/TS formatter
         "pueue",           # Task runner and scheduler
         "ruff",            # Python linter
+        "sh",              # bash, sh formatter
         "shellcheck",      # bash, sh linter
+        "shfmt",           # bash, sh formatter
         "starship",
         "stylua",          # Lua formatter
         "stylua",          # Lua formatter
@@ -375,6 +379,7 @@
         "usbutils",        # check fingerprint info
         "vivid",           # Color generator for LS_COLORS env variable
         "yq",              # YAML processor
+
       ]
     [packages.pacman.homelab_member]
       packages = ["iperf"]
