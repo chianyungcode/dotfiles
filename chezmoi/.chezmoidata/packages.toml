@@ -46,7 +46,7 @@
         "gping",                     # Ping with graph
         "grep",                      # GNU grep
         "gzip",                      # Popular GNU data compression program
-        "help",                      # Better help
+        "halp",                      # Better help
         "icu4c@76",
         "imagemagick",               # Image processing
         "jq",                        # Lightweight and flexible command-line JSON processor
