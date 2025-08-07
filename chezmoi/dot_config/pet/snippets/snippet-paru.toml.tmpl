@@ -1,0 +1,75 @@
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") -}}
+
+[[Snippets]]
+Description = "List all packages from official and AUR (paru)"
+Output = ""
+Tag = ["paru"]
+command = 'paru -Q'
+
+[[Snippets]]
+Description = "List all explicitly installed packages (paru)"
+Output = ""
+Tag = ["paru"]
+command = 'paru -Qe'
+
+[[Snippets]]
+Description = "List all packages installed as dependencies (paru)"
+Output = ""
+Tag = ["paru"]
+command = 'paru -Qd'
+
+[[Snippets]]
+Description = "List all native (official repo) packages (paru)"
+Output = ""
+Tag = ["paru"]
+command = 'paru -Qn'
+
+[[Snippets]]
+Description = "List all foreign (AUR) packages (paru)"
+Output = ""
+Tag = ["paru"]
+command = 'paru -Qm'
+
+[[Snippets]]
+Description = "List all outdated packages (paru)"
+Output = ""
+Tag = ["paru"]
+command = 'paru -Qu'
+
+[[Snippets]]
+Description = "List all explicitly installed AUR packages (paru)"
+Output = ""
+Tag = ["paru"]
+command = 'paru -Qem'
+
+[[Snippets]]
+Description = "List all explicitly installed official packages (paru)"
+Output = ""
+Tag = ["paru"]
+command = 'paru -Qen'
+
+[[Snippets]]
+Description = "Uninstall a package but keep its dependencies (paru)"
+Output = ""
+Tag = ["paru", "uninstall"]
+command = 'paru -R <package>'
+
+[[Snippets]]
+Description = "Uninstall a package and its dependencies not required by others (paru)"
+Output = ""
+Tag = ["paru", "uninstall"]
+command = 'paru -Rns <package>'
+
+[[Snippets]]
+Description = "Uninstall a package but keep all config files (paru)"
+Output = ""
+Tag = ["paru", "uninstall"]
+command = 'paru -Rn <package>'
+
+[[Snippets]]
+Description = "Uninstall a package and also remove orphaned dependencies (paru)"
+Output = ""
+Tag = ["paru", "uninstall", "orphan"]
+command = 'paru -Rns $(paru -Qdtq)'
+
+{{- end }}

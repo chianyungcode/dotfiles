@@ -1,4 +1,4 @@
-{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") }}
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") -}}
 
 [[Snippets]]
 Description = "List all packages from official and AUR"
@@ -19,13 +19,13 @@ Tag = ["pacman"]
 command = 'pacman -Qm'
 
 [[Snippets]]
-Description = "List all package install explicitly not as a depedency"
+Description = "List all package install explicitly not as a dependency"
 Output = ""
 Tag = ["pacman"]
 command = 'pacman -Qe'
 
 [[Snippets]]
-Description = "List all packages that installed as a depedency"
+Description = "List all packages that installed as a dependency"
 Output = ""
 Tag = ["pacman"]
 command = 'pacman -Qd'
