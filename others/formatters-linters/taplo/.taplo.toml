@@ -7,10 +7,11 @@
   reorder_keys   = true
 
 [[rule]]
-  exclude = ["~/.local/share/chezmoi/chezmoi/dot_config/pet/config.toml"]
+  include = ["chezmoi/dot_config/pet/**/*.toml"]
 
   # Reorder arrays for pet config file will make pet cli doesn't work
   # Because cmd = ["sh", "-c"] will formatted to  cmd = ["-c", "sh"]
   # It's wrong format because pet will run shell command "sh -c" which is flag is on the end, not in the beginning
+  # Don't use format on save with conform.nvim plugin, because it bug, the rule is ignored . Just use `taplo fmt` manually
   [rule.formatting]
     reorder_arrays = false
