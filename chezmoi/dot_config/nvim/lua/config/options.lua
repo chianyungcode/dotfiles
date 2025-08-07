@@ -9,6 +9,7 @@
 -- })
 
 vim.opt.spelllang = { "en", "id" }
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- Enable this option to avoid conflicts with Prettier. https://www.lazyvim.org/extras/formatting/biome
 -- vim.g.lazyvim_prettier_needs_config = true
