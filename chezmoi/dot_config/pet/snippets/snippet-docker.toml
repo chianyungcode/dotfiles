@@ -1,161 +1,161 @@
 [[Snippets]]
-Description = "build | Build image"
-Output = ""
-Tag = ["docker"]
-command = "docker build -t <image_name>:<tag> ./"
+  Description = "build | Build image"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker build -t <image_name>:<tag> ./"
 
 [[Snippets]]
-Description = "container | Bind mount volume to container"
-Output = ""
-Tag = ["docker"]
-command = "docker container create --name <container_name> --mount type=bind,source=<source_path>,target=<target_path> <image_name>:<tag>"
+  Description = "container | Bind mount volume to container"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker container create --name <container_name> --mount type=bind,source=<source_path>,target=<target_path> <image_name>:<tag>"
 
 [[Snippets]]
-Description = "container | Create container with environment variable and publish port and network"
-Output = ""
-Tag = ["docker"]
-command = "docker container create --env <ENVIRONMENT_VARIABLE=VARIABLE>=<environment_value> --publish <port_host>:<port_container> --network <custom_network_name> --name <custom_container_name> <image_name>:<tag>"
+  Description = "container | Create container with environment variable and publish port and network"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker container create --env <ENVIRONMENT_VARIABLE=VARIABLE>=<environment_value> --publish <port_host>:<port_container> --network <custom_network_name> --name <custom_container_name> <image_name>:<tag>"
 
 [[Snippets]]
-Description = "container | Exec CLI interactive command in container"
-Output = ""
-Tag = ["docker"]
-command = "docker container exec -it <container_name> <shell_type=/bin/bash>"
+  Description = "container | Exec CLI interactive command in container"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker container exec -it <container_name> <shell_type=/bin/bash>"
 
 [[Snippets]]
-Description = "container | List all containers"
-Output = ""
-Tag = ["docker"]
-command = "docker container ls"
+  Description = "container | List all containers"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker container ls"
 
 [[Snippets]]
-Description = "container | List all running containers"
-Output = ""
-Tag = ["docker"]
-command = "docker container ps"
+  Description = "container | List all running containers"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker container ps"
 
 [[Snippets]]
-Description = "container | List all stopped containers"
-Output = ""
-Tag = ["docker"]
-command = "docker container ps -a"
+  Description = "container | List all stopped containers"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker container ps -a"
 
 [[Snippets]]
-Description = "container | Logs container"
-Output = ""
-Tag = ["docker"]
-command = "docker container logs <container_name>"
+  Description = "container | Logs container"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker container logs <container_name>"
 
 [[Snippets]]
-Description = "container | Logs realtime container"
-Output = ""
-Tag = ["docker"]
-command = "docker logs -f <container_name>"
+  Description = "container | Logs realtime container"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker logs -f <container_name>"
 
 [[Snippets]]
-Description = "container | Remove container"
-Output = ""
-Tag = ["docker"]
-command = "docker container rm <container_name>"
+  Description = "container | Remove container"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker container rm <container_name>"
 
 [[Snippets]]
-Description = "container | Remove unused container"
-Output = ""
-Tag = ["docker"]
-command = "docker container prune"
+  Description = "container | Remove unused container"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker container prune"
 
 [[Snippets]]
-Description = "container | Restart container"
-Output = ""
-Tag = ["docker"]
-command = "docker container restart <container_name>"
+  Description = "container | Restart container"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker container restart <container_name>"
 
 [[Snippets]]
-Description = "container | Start container"
-Output = ""
-Tag = ["docker"]
-command = "docker container start <container_name>"
+  Description = "container | Start container"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker container start <container_name>"
 
 [[Snippets]]
-Description = "container | Stop container"
-Output = ""
-Tag = ["docker"]
-command = "docker container stop <container_name>"
+  Description = "container | Stop container"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker container stop <container_name>"
 
 [[Snippets]]
-Description = "container | Run database"
-Output = ""
-Tag = ["docker"]
-command = "docker run --name <container_name> -e POSTGRES_PASSWORD=<password> -p <port_host>:<port_container> -v <volume_name>:/var/lib/postgresql/data -d postgres"
+  Description = "container | Run database"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker run --name <container_name> -e POSTGRES_PASSWORD=<password> -p <port_host>:<port_container> -v <volume_name>:/var/lib/postgresql/data -d postgres"
 
 [[Snippets]]
-Description = "image | Pull image"
-Output = ""
-Tag = ["docker"]
-command = "docker image pull <image_name>:<tag>"
+  Description = "image | Pull image"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker image pull <image_name>:<tag>"
 
 [[Snippets]]
-Description = "image | Remove image"
-Output = ""
-Tag = ["docker"]
-command = "docker image rm <image_name>:<tag>"
+  Description = "image | Remove image"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker image rm <image_name>:<tag>"
 
 [[Snippets]]
-Description = "image | Remove unused image"
-Output = ""
-Tag = ["docker"]
-command = "docker image prune"
+  Description = "image | Remove unused image"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker image prune"
 
 [[Snippets]]
-Description = "image | List all images"
-Output = ""
-Tag = ["docker"]
-command = "docker image ls"
+  Description = "image | List all images"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker image ls"
 
 [[Snippets]]
-Description = "network | Connect to network"
-Output = ""
-Tag = ["docker"]
-command = "docker network connect <container_name> <network_name>"
+  Description = "network | Connect to network"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker network connect <container_name> <network_name>"
 
 [[Snippets]]
-Description = "network | Create network"
-Output = ""
-Tag = ["docker"]
-command = "docker network create <network_name>"
+  Description = "network | Create network"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker network create <network_name>"
 
 [[Snippets]]
-Description = "network | Disconnect from network"
-Output = ""
-Tag = ["docker"]
-command = "docker network disconnect <container_name> <network_name>"
+  Description = "network | Disconnect from network"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker network disconnect <container_name> <network_name>"
 
 [[Snippets]]
-Description = "network | List all networks"
-Output = ""
-Tag = ["docker"]
-command = "docker network ls"
+  Description = "network | List all networks"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker network ls"
 
 [[Snippets]]
-Description = "network | Remove network"
-Output = ""
-Tag = ["docker"]
-command = "docker network rm <network_name>"
+  Description = "network | Remove network"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker network rm <network_name>"
 
 [[Snippets]]
-Description = "network | Remove unused network"
-Output = ""
-Tag = ["docker"]
-command = "docker network prune"
+  Description = "network | Remove unused network"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker network prune"
 
 [[Snippets]]
-Description = "volume | Create volume"
-Output = ""
-Tag = ["docker"]
-command = "docker volume create <volume_name=volume-database>"
+  Description = "volume | Create volume"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker volume create <volume_name=volume-database>"
 
 [[Snippets]]
-Description = "volume | List all volumes"
-Output = ""
-Tag = ["docker"]
-command = "docker volume ls"
+  Description = "volume | List all volumes"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker volume ls"

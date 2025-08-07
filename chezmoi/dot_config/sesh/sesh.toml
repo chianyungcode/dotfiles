@@ -1,18 +1,18 @@
 [[session]]
-name = "Downloads 📥"
-path = "~/Downloads"
-# startup_command = "ls"
+  name = "Downloads 📥"
+  path = "~/Downloads"
+  # startup_command = "ls"
 
 [[session]]
-name = "Tmux Config"
-path = "~/.local/share/chezmoi/chezmoi/dot_config/tmux/"
-# startup_command = "nvim tmux.conf"
-# preview_command = "bat --color=always ~/.dotfiles/tmux/tmux.conf"
+  name = "Tmux Config"
+  path = "~/.local/share/chezmoi/chezmoi/dot_config/tmux/"
+  # startup_command = "nvim tmux.conf"
+  # preview_command = "bat --color=always ~/.dotfiles/tmux/tmux.conf"
 
 [[session]]
-name = "Note Taking Sesh"
-path = "~/Desktop/vault-obsidian"
+  name = "Note Taking Sesh"
+  path = "~/Desktop/vault-obsidian"
 
 [[session]]
-name = "Dotfiles"
-path = "~/.local/share/chezmoi"
+  name = "Dotfiles"
+  path = "~/.local/share/chezmoi"

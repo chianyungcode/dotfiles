@@ -1,18 +1,18 @@
 # --- PUEUE SHELL SCRIPT ---
 [[Snippets]]
-Description = "Pueue Shell Script | Web Project With PROJECT_DIR env variable"
-Output = ""
-Tag = ["shell-script", "pueue"]
-command = 'PROJECT_DIR=<path_dir> SESSION_NAME="<tmux-session-name>" PUEUE_GROUP=<pueue-group-name=tmux> /Users/chianyung/.local/share/chezmoi/others/macos/shell-script/pueue/<shell-script=|_frontend-layout_||_backend-layout_|>.sh'
+  Description = "Pueue Shell Script | Web Project With PROJECT_DIR env variable"
+  Output = ""
+  Tag = ["shell-script", "pueue"]
+  command = 'PROJECT_DIR=<path_dir> SESSION_NAME="<tmux-session-name>" PUEUE_GROUP=<pueue-group-name=tmux> /Users/chianyung/.local/share/chezmoi/others/macos/shell-script/pueue/<shell-script=|_frontend-layout_||_backend-layout_|>.sh'
 
 [[Snippets]]
-Description = "Pueue Shell Script | Web Project Without PROJECT_DIR env variable"
-Output = ""
-Tag = ["shell-script", "pueue"]
-command = 'SESSION_NAME="<tmux-session-name>" PUEUE_GROUP=<pueue-group-name=tmux> /Users/chianyung/.local/share/chezmoi/others/macos/shell-script/pueue/<shell-script=config-layout>.sh'
+  Description = "Pueue Shell Script | Web Project Without PROJECT_DIR env variable"
+  Output = ""
+  Tag = ["shell-script", "pueue"]
+  command = 'SESSION_NAME="<tmux-session-name>" PUEUE_GROUP=<pueue-group-name=tmux> /Users/chianyung/.local/share/chezmoi/others/macos/shell-script/pueue/<shell-script=config-layout>.sh'
 
 [[Snippets]]
-Description = "Pueue Shell Script | Orbstack VM"
-Output = ""
-Tag = ["shell-script", "pueue"]
-command = 'SESSION_NAME="<tmux-session-name>" ORBSTACK_MACHINE_NAME="<orbstack-machine-name=nix-mesin>" PUEUE_GROUP=<pueue-group-name=tmux> PROJECT_DIR=<path_dir=/Users/chianyung/Downloads/> /Users/chianyung/.local/share/chezmoi/others/macos/shell-script/pueue/<shell-script=orbstack>.sh'
+  Description = "Pueue Shell Script | Orbstack VM"
+  Output = ""
+  Tag = ["shell-script", "pueue"]
+  command = 'SESSION_NAME="<tmux-session-name>" ORBSTACK_MACHINE_NAME="<orbstack-machine-name=nix-mesin>" PUEUE_GROUP=<pueue-group-name=tmux> PROJECT_DIR=<path_dir=/Users/chianyung/Downloads/> /Users/chianyung/.local/share/chezmoi/others/macos/shell-script/pueue/<shell-script=orbstack>.sh'

@@ -1,108 +1,108 @@
 [[Snippets]]
-Description = "Show current linux distros used (with cat)"
-Output = ""
-Tag = ["unix"]
-command = "cat /etc/*release"
+  Description = "Show current linux distros used (with cat)"
+  Output = ""
+  Tag = ["unix"]
+  command = "cat /etc/*release"
 
 [[Snippets]]
-Description = "Check kernel details"
-Output = ""
-Tag = ["unix"]
-command = "uname -a"
+  Description = "Check kernel details"
+  Output = ""
+  Tag = ["unix"]
+  command = "uname -a"
 
 [[Snippets]]
-Description = "Search binary location"
-Output = ""
-Tag = ["unix"]
-command = 'whereis -a <binary_name>'
+  Description = "Search binary location"
+  Output = ""
+  Tag = ["unix"]
+  command = 'whereis -a <binary_name>'
 
 [[Snippets]]
-Description = "Show if env_variable exported(export) or not(typeset)"
-Output = ""
-Tag = ["unix"]
-command = 'declare -p <env_variable>'
+  Description = "Show if env_variable exported(export) or not(typeset)"
+  Output = ""
+  Tag = ["unix"]
+  command = 'declare -p <env_variable>'
 
 [[Snippets]]
-Description = "Switch to superuser (root) account"
-Output = "Changes terminal prompt to root (#)"
-Tag = ["unix"]
-command = 'sudo su'
+  Description = "Switch to superuser (root) account"
+  Output = "Changes terminal prompt to root (#)"
+  Tag = ["unix"]
+  command = 'sudo su'
 
 [[Snippets]]
-Description = "Use user environment nvim configuration"
-Output = ""
-Tag = ["unix"]
-command = 'sudo -E nvim'
+  Description = "Use user environment nvim configuration"
+  Output = ""
+  Tag = ["unix"]
+  command = 'sudo -E nvim'
 
 [[Snippets]]
-Description = "Change Shell"
-Output = ""
-Tag = ["unix"]
-command = 'chsh -s <path-to-binary>'
+  Description = "Change Shell"
+  Output = ""
+  Tag = ["unix"]
+  command = 'chsh -s <path-to-binary>'
 
 [[Snippets]]
-Description = "Change Shell with binary_name"
-Output = ""
-Tag = ["unix"]
-command = 'chsh -s $(which <shell=|_zsh_||_bash_||_fish_|>)'
+  Description = "Change Shell with binary_name"
+  Output = ""
+  Tag = ["unix"]
+  command = 'chsh -s $(which <shell=|_zsh_||_bash_||_fish_|>)'
 
 [[Snippets]]
-Description = "Backup all applications in MacOS"
-Output = ""
-Tag = ["unix"]
-command = 'find /Applications -type d -name "*.app" -maxdepth 2 > $HOME/.local/share/chezmoi/others/macos/manual-backup/list-apps.txt'
+  Description = "Backup all applications in MacOS"
+  Output = ""
+  Tag = ["unix"]
+  command = 'find /Applications -type d -name "*.app" -maxdepth 2 > $HOME/.local/share/chezmoi/others/macos/manual-backup/list-apps.txt'
 
 [[Snippets]]
-Description = "Change permission to read only"
-Output = ""
-Tag = ["unix"]
-command = 'chmod 400 <path-to-file>'
+  Description = "Change permission to read only"
+  Output = ""
+  Tag = ["unix"]
+  command = 'chmod 400 <path-to-file>'
 
 [[Snippets]]
-Description = "Change permission shell script file for user can execute the shell scipt"
-Output = ""
-Tag = ["unix"]
-command = 'chmod u+x <path-to-file>'
+  Description = "Change permission shell script file for user can execute the shell scipt"
+  Output = ""
+  Tag = ["unix"]
+  command = 'chmod u+x <path-to-file>'
 
 [[Snippets]]
-Description = "Initiate connect to ssh, with specifying path to private key"
-Output = ""
-Tag = ["unix", "ssh"]
-command = 'ssh -i <path-to-file> <username=ubuntu>@<hostname>'
+  Description = "Initiate connect to ssh, with specifying path to private key"
+  Output = ""
+  Tag = ["unix", "ssh"]
+  command = 'ssh -i <path-to-file> <username=ubuntu>@<hostname>'
 
 [[Snippets]]
-Description = "Connect to ssh"
-Output = ""
-Tag = ["unix", "ssh"]
-command = 'ssh <username=ubuntu>@<hostname>'
+  Description = "Connect to ssh"
+  Output = ""
+  Tag = ["unix", "ssh"]
+  command = 'ssh <username=ubuntu>@<hostname>'
 
 [[Snippets]]
-Description = "Copy public key to destination"
-Output = ""
-Tag = ["unix", "ssh"]
-command = 'ssh-copy-id -i ~/.ssh_keys/<filename=key>.pub <username>@<hostname>'
+  Description = "Copy public key to destination"
+  Output = ""
+  Tag = ["unix", "ssh"]
+  command = 'ssh-copy-id -i ~/.ssh_keys/<filename=key>.pub <username>@<hostname>'
 
 [[Snippets]]
-Description = "Generate SSH Keys Pair for Physical Security Key like Yubikey"
-Output = ""
-Tag = ["unix", "ssh"]
-command = 'ssh-keygen -t ed25519-sk -f ~/.ssh/<nama-file>'
+  Description = "Generate SSH Keys Pair for Physical Security Key like Yubikey"
+  Output = ""
+  Tag = ["unix", "ssh"]
+  command = 'ssh-keygen -t ed25519-sk -f ~/.ssh/<nama-file>'
 
 [[Snippets]]
-Description = "Generate SSH Keys Pair (private & public key)"
-Output = ""
-Tag = ["unix", "ssh"]
-command = 'ssh-keygen -t <type=|_rsa_||_ed25519_||_ed25519-sk_||_ecdsa-sk_||_dsa_|> -f ~/.ssh/<nama-file>'
+  Description = "Generate SSH Keys Pair (private & public key)"
+  Output = ""
+  Tag = ["unix", "ssh"]
+  command = 'ssh-keygen -t <type=|_rsa_||_ed25519_||_ed25519-sk_||_ecdsa-sk_||_dsa_|> -f ~/.ssh/<nama-file>'
 
 # Untuk menggunakan command ini Yubikey wajib tercolok
 [[Snippets]]
-Description = "Start/Stop SSH Service"
-Output = ""
-Tag = ["unix", "ssh"]
-command = 'sudo launchctl <command=|_stop_||_start_|> com.openssh.sshd'
+  Description = "Start/Stop SSH Service"
+  Output = ""
+  Tag = ["unix", "ssh"]
+  command = 'sudo launchctl <command=|_stop_||_start_|> com.openssh.sshd'
 
 [[Snippets]]
-Description = "Create shell script file"
-Output = ""
-Tag = ["unix", "shell"]
-command = 'touch <filename>.sh && nvim .'
+  Description = "Create shell script file"
+  Output = ""
+  Tag = ["unix", "shell"]
+  command = 'touch <filename>.sh && nvim .'

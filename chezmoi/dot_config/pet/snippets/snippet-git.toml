@@ -1,29 +1,29 @@
 [[Snippets]]
-Description = "Update remote url to use SSH"
-Output = ""
-Tag = ["git"]
-command = 'git remote set-url <remote_alias=origin> <host(user@hostname / alias)=git@github.com>:<username/workplace=|_chianyungcode_||_seraphynee_|>/<repo>.git'
+  Description = "Update remote url to use SSH"
+  Output = ""
+  Tag = ["git"]
+  command = 'git remote set-url <remote_alias=origin> <host(user@hostname / alias)=git@github.com>:<username/workplace=|_chianyungcode_||_seraphynee_|>/<repo>.git'
 
 [[Snippets]]
-Description = "Clone repository with SSH"
-Output = ""
-Tag = ["git"]
-command = 'git clone <host=git@github.com>:<username/workplace>/<repo>.git'
+  Description = "Clone repository with SSH"
+  Output = ""
+  Tag = ["git"]
+  command = 'git clone <host=git@github.com>:<username/workplace>/<repo>.git'
 
 [[Snippets]]
-Description = "Check local branch connect to which remote branch"
-Output = ""
-Tag = ["git"]
-command = 'git branch -vv'
+  Description = "Check local branch connect to which remote branch"
+  Output = ""
+  Tag = ["git"]
+  command = 'git branch -vv'
 
 [[Snippets]]
-Description = "List all branch in local and remote"
-Output = ""
-Tag = ["git"]
-command = 'git branch --all'
+  Description = "List all branch in local and remote"
+  Output = ""
+  Tag = ["git"]
+  command = 'git branch --all'
 
 [[Snippets]]
-Description = "Set remote upstream for local branch"
-Output = ""
-Tag = ["git"]
-command = 'git branch --set-upstream-to=<remote_alias=origin>/<remote_branch> <local_branch>'
+  Description = "Set remote upstream for local branch"
+  Output = ""
+  Tag = ["git"]
+  command = 'git branch --set-upstream-to=<remote_alias=origin>/<remote_branch> <local_branch>'

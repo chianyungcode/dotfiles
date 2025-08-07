@@ -2,46 +2,46 @@
 # https://developer.1password.com/docs/cli/reference/
 
 [[Snippets]]
-Description = "Item | get the detail about the item"
-Output = ""
-Tag = ["op"]
-command = 'op item get <item-id>'
+  Description = "Item | get the detail about the item"
+  Output = ""
+  Tag = ["op"]
+  command = 'op item get <item-id>'
 
 [[Snippets]]
-Description = "Read | Read the value about some field"
-Output = ""
-Tag = ["op"]
-command = 'op read "op://<vault-id=lprwq74nsfjujjc2r2upmde2x4>/<item-id=mldcjwxq57p65cg663sj5rf5hq>/<field=public key>"'
+  Description = "Read | Read the value about some field"
+  Output = ""
+  Tag = ["op"]
+  command = 'op read "op://<vault-id=lprwq74nsfjujjc2r2upmde2x4>/<item-id=mldcjwxq57p65cg663sj5rf5hq>/<field=public key>"'
 
 [[Snippets]]
-Description = "Vault | List all vault"
-Output = ""
-Tag = ["op"]
-command = 'op vault list'
+  Description = "Vault | List all vault"
+  Output = ""
+  Tag = ["op"]
+  command = 'op vault list'
 
 [[Snippets]]
-Description = "Account | List all account that already login"
-Output = ""
-Tag = ["op"]
-command = 'op account list'
+  Description = "Account | List all account that already login"
+  Output = ""
+  Tag = ["op"]
+  command = 'op account list'
 
 [[Snippets]]
-Description = "Item | List item by tags"
-Output = ""
-Tag = ["op"]
-command = 'op item ls --tags <tag-name>'
+  Description = "Item | List item by tags"
+  Output = ""
+  Tag = ["op"]
+  command = 'op item ls --tags <tag-name>'
 
 [[Snippets]]
-Description = "Plugin | Initiate plugin"
-Output = ""
-Tag = ["op"]
-command = 'op plugin init <plugin-name=aws>'
+  Description = "Plugin | Initiate plugin"
+  Output = ""
+  Tag = ["op"]
+  command = 'op plugin init <plugin-name=aws>'
 
 [[Snippets]]
-Description = "Item create (remote server template)"
-Output = ""
-Tag = ["op"]
-command = '''op item create \
+  Description = "Item create (remote server template)"
+  Output = ""
+  Tag = ["op"]
+  command = '''op item create \
   --category="SSH Key" \
   --title="<item_title>" \
   --vault="<vault=Programming>" \
@@ -50,10 +50,10 @@ command = '''op item create \
   port[string]=<field_port_value=22>'''
 
 [[Snippets]]
-Description = "Item create (remote server template with tailscale connection)"
-Output = ""
-Tag = ["op"]
-command = '''op item create \
+  Description = "Item create (remote server template with tailscale connection)"
+  Output = ""
+  Tag = ["op"]
+  command = '''op item create \
   --category="SSH Key" \
   --title="<item_title=Tailscale>" \
   --tags="ssh-tailscale" \

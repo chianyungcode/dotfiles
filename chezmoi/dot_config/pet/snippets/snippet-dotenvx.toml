@@ -1,5 +1,5 @@
 [[Snippets]]
-Description = "Dotenvx | Run based on selected environment file"
-Output = ""
-Tag = []
-command = "dotenvx run -f <env_file_name=.env.local> -- <command=bun dev>"
+  Description = "Dotenvx | Run based on selected environment file"
+  Output = ""
+  Tag = []
+  command = "dotenvx run -f <env_file_name=.env.local> -- <command=bun dev>"

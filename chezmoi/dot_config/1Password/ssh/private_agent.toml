@@ -29,16 +29,16 @@
 # More examples can be found here:
 #  https://developer.1password.com/docs/ssh/agent/config
 [[ssh-keys]]
-vault = "Personal"
+  vault = "Personal"
 
 [[ssh-keys]]
-vault = "Programming"
+  vault = "Programming"
 
 [[ssh-keys]]
-vault = "UI / UX"
+  vault = "UI / UX"
 
 [[ssh-keys]]
-vault = "Productive"
+  vault = "Productive"
 
 [[ssh-keys]]
-vault = "Business"
+  vault = "Business"
