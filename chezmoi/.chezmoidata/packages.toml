@@ -1,6 +1,7 @@
 [packages]
   [packages.homebrew]
     to_remove = ["htop"]
+
     [packages.homebrew.common]
       # packages that needed in every computer
       casks = [
@@ -172,7 +173,6 @@
         "yamlfmt",                             # YAML formatter
         "yamllint",                            # YAML linter
       ]
-
       taps = []
 
     [packages.homebrew.personal_computer]
@@ -244,14 +244,16 @@
       formulae = ["ffmpeg", "iperf", "nmap", "tailspin"]
       taps     = []
 
-
   [packages.mas]
     [packages.mas.common]
       apps = []
+
     [packages.mas.dev_computer]
       apps = []
+
     [packages.mas.homelab_member]
       apps = []
+
     [packages.mas.personal_computer]
       apps = [
         "1355679052", # Dropover
@@ -275,6 +277,7 @@
 
   [packages.apt]
     to_remove = []
+
     [packages.apt.common]
       packages = [
         "apt-transport-https",
@@ -305,10 +308,13 @@
         "wget",
         "zsh",
       ]
+
     [packages.apt.dev_computer]
       packages = []
+
     [packages.apt.homelab_member]
       packages = ["iperf"]
+
     [packages.apt.personal_computer]
       packages = []
 
@@ -343,6 +349,7 @@
         "wget",
         "zsh",
       ]
+
     [packages.pacman.dev_computer]
       packages = [
         "biome",             # JS/TS linter, formatter
@@ -388,17 +395,21 @@
 
     [packages.pacman.homelab_member]
       packages = ["iperf"]
+
     [packages.pacman.personal_computer]
       packages = []
 
-
   [packages.python]
     to_remove = []
+
     [packages.python.common]
       packages = ["halper", "pygments"]
+
     [packages.python.dev_computer]
       packages = ["ansible-core", "cookiecutter"]
+
     [packages.python.homelab_member]
       packages = []
+
     [packages.python.personal_computer]
       packages = ["vid-cleaner"]

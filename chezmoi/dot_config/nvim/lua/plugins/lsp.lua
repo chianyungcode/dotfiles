@@ -81,12 +81,27 @@ return {
         typescript = { "biome", "biome-organize-imports", "prettier" },
         typescriptreact = { "biome", "biome-organize-imports", "prettier" },
         yaml = { "yamlfmt", "prettier" },
-        -- toml = { "taplo" }, -- Bug when using with taplo, [[rule]] array are ignored when using format on save
+        toml = { "taplo_fmt" }, -- Using custom formatters, to prevent use default config for taplo in conform that can causing bug
+        -- toml = { "taplo" }, -- Bug when using with default `taplo`, [[rule]] array are ignored when using format on save
         -- Use the "*" filetype to run formatters on all filetypes.
         -- ["*"] = { "codespell" },
         -- Use the "_" filetype to run formatters on filetypes that don't
         -- have other formatters configured.
         ["_"] = { "trim_whitespace" },
+      },
+    },
+    -- Conform will notify you when a formatter errors
+    notify_on_error = true,
+    -- Conform will notify you when no formatters are available for the buffer
+    notify_no_formatters = true,
+    -- Custom formatters and overrides for built-in formatters
+    formatters = {
+      taplo_fmt = {
+        command = "taplo", -- CLI taplo
+        args = { "format", "-" }, -- "-" supaya baca dari stdin
+        stdin = true, -- kirim isi file lewat stdin
+        cwd = require("conform.util").root_file({ ".taplo.toml", "taplo.toml" }), -- opsional, kalau mau deteksi root
+        require_cwd = false, -- kalau root nggak ketemu tetap jalan
       },
     },
   },
