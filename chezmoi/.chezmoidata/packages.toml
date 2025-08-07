@@ -17,17 +17,17 @@
         "visual-studio-code",
       ]
       formulae = [
-        "atuin", # Better shell history
-        "bat",   # cat with syntax highlighting and git integration
+        # "cliclick",                  # macOS CLI tool for emulating mouse and keyboard events
         # "berkeley-db",               # Oracle berkeley-db
-        "bfg", # Remove large files or passwords from Git history like git-filter-branch
         # "brew-gem",
+        # "dotter", # dotfile manager and templater.
+        "atuin",                     # Better shell history
+        "bat",                       # cat with syntax highlighting and git integration
+        "bfg",                       # Remove large files or passwords from Git history like git-filter-branch
         "btop",
         "chezmoi",
-        # "cliclick",                  # macOS CLI tool for emulating mouse and keyboard events
-        "cocoapods", # depedency manager for switft
-        "coreutils", # GNU coreutils
-        # "dotter", # dotfile manager and templater.
+        "cocoapods",                 # dependency manager for switft
+        "coreutils",                 # GNU coreutils
         "eza",                       # Better ls
         "fd",                        # Better find
         "findutils",                 # GNU find
@@ -46,7 +46,7 @@
         "gping",                     # Ping with graph
         "grep",                      # GNU grep
         "gzip",                      # Popular GNU data compression program
-        "halp",                      # Better help
+        "help",                      # Better help
         "icu4c@76",
         "imagemagick",               # Image processing
         "jq",                        # Lightweight and flexible command-line JSON processor
@@ -119,9 +119,12 @@
       formulae = [
         "act",                                 # runs GitHub Actions locally
         "awscli",
+        "biome",                               # JS/TS linter, formatter
+        "codespell",                           # Fix common misspellings in source code and text files
         "direnv",                              # Environment manager for shell based current working directory
         "dopplerhq/cli/doppler",               # Secret manager
         "dotenvx/brew/dotenvx",                # Env manager
+        "eslint",                              # JS/TS linter
         "fastfetch",                           # Better system info
         "ffmpegthumbnailer",                   # Video thumbnail for yazi cli
         "fish",                                # Alternative shell for zsh
@@ -144,15 +147,20 @@
         "koyeb/tap/koyeb",                     # Koyeb CLI
         "luarocks",                            # Lua package manager
         "mongosh",                             # MongoDB shell
+        "nixfmt",                              # Nix formatter
         "nushell",                             # Alternative shell
         "pngpaste",                            # Paste PNG into files on MacOS, much like pbpaste does for text.
         "poppler",                             # PDF rendering library
+        "prettier",                            # JS/TS formatter
         "pueue",                               # Task runner and scheduler
+        "ruff",                                # Python linter
         "sesh",                                # Tmux session manager
+        "shellcheck",                          # bash, sh linter
         "shellcheck",
         "sshs",                                # Graphical command-line client for SSH
         "stow",                                # Symlink manager
         "stripe/stripe-cli/stripe",
+        "stylua",                              # Lua formatter
         "stylua",                              # Lua formatter
         "tectonic",                            # render LaTex math
         "television",                          # Alternative to yazi
@@ -160,6 +168,7 @@
         "tmuxp",                               # Tmux session manager
         "vladkens/tap/macmon",                 # Mac monitor
       ]
+
       taps = []
 
     [packages.homebrew.personal_computer]
@@ -332,9 +341,12 @@
       ]
     [packages.pacman.dev_computer]
       packages = [
+        "biome",           # JS/TS linter, formatter
+        "codespell",       # Fix common misspellings in source code and text files
         "docker",
         "dpkg",
-        "entr",            # depdency for tmux-autoreload
+        "entr",            # dependency for tmux-autoreload
+        "eslint",          # JS/TS linter
         "espanso-wayland",
         "eza",
         "fprintd",         # fingerprint
@@ -347,9 +359,14 @@
         "httpie",          # HTTP client
         "hurl",            # runs HTTP requests defined in a simple plain text format.
         "neovim",
+        "nixfmt",          # Nix formatter
         "pet",
+        "prettier",        # JS/TS formatter
         "pueue",           # Task runner and scheduler
+        "ruff",            # Python linter
+        "shellcheck",      # bash, sh linter
         "starship",
+        "stylua",          # Lua formatter
         "stylua",          # Lua formatter
         "tailscale",
         "taplo",           # TOML formatter
