@@ -66,9 +66,15 @@
 (defchordsv2
   {{- if eq .chezmoi.os "darwin" }}
   (m ,) A-bspc $input-chord-time all-released ()
+  (o p) A-right $input-chord-time all-released ()
+  (i o) A-left $input-chord-time all-released ()
+
   {{- else if eq .chezmoi.os "linux" }}
   (m ,) C-bspc $input-chord-time all-released ()
-  {{- end }}
+  (o p) C-right $input-chord-time all-released ()
+  (i o) C-left $input-chord-time all-released ()
+  {{- end -}}
+
   (l r) lrld $input-chord-time all-released () ;; live reload kanata, press this after changing kanata configuration
   (l ;) C-a $input-chord-time all-released () ;; tmux prefix
 )
