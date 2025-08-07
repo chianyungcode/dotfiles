@@ -353,6 +353,7 @@
       "tailscale",
       "tectonic",
       "hurl",       # runs HTTP requests defined in a simple plain text format.
+      "vivid",      # Color generator for LS_COLORS env variable
     ]
     [packages.pacman.homelab_member]
     packages = ["iperf"]
