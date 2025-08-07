@@ -2,5 +2,5 @@
 -- Cara menggunakannya dengan masuk ke cmdline lalu ketik DiffviewOpen
 -- https://github.com/sindrets/diffview.nvim
 return {
-	"sindrets/diffview.nvim",
+  "sindrets/diffview.nvim",
 }

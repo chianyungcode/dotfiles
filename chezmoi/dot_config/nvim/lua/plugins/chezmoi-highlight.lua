@@ -1,4 +1,4 @@
 return {
-	"alker0/chezmoi.vim",
-	enabled = false,
+  "alker0/chezmoi.vim",
+  enabled = false,
 }

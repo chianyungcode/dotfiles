@@ -1,7 +1,7 @@
 if true then
-	return {}
+  return {}
 end
 
 return {
-	"Pocco81/auto-save.nvim",
+  "Pocco81/auto-save.nvim",
 }

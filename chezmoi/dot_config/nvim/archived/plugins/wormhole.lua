@@ -1,11 +1,11 @@
 if true then
-	return {}
+  return {}
 end
 
 -- Sering error-error
 
 return {
-	"NStefan002/wormhole.nvim",
-	lazy = false,
-	version = "*",
+  "NStefan002/wormhole.nvim",
+  lazy = false,
+  version = "*",
 }

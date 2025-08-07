@@ -10,7 +10,7 @@ vim.keymap.set("n", "<leader>i", ":FloatermToggle<CR>", { noremap = true, silent
 
 -- Related to plugin 'tiny-code-action'
 vim.keymap.set("n", "<leader>cb", function()
-	require("tiny-code-action").code_action()
+  require("tiny-code-action").code_action()
 end, { noremap = true, silent = true })
 
 -- Fix keymap behavior:

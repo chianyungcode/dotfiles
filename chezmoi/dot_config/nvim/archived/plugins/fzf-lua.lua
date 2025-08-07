@@ -1,4 +1,4 @@
 return {
-	"ibhagwan/fzf-lua",
-	enabled = false,
+  "ibhagwan/fzf-lua",
+  enabled = false,
 }

@@ -1,8 +1,8 @@
 if true then
-	return {}
+  return {}
 end
 
 return {
-	"renerocksai/telekasten.nvim",
-	dependencies = { "nvim-telescope/telescope.nvim" },
+  "renerocksai/telekasten.nvim",
+  dependencies = { "nvim-telescope/telescope.nvim" },
 }

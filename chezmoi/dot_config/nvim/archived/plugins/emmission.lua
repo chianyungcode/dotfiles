@@ -2,8 +2,8 @@
 -- https://github.com/aileot/emission.nvim
 --
 return {
-	"aileot/emission.nvim",
-	enabled = false,
-	event = "VeryLazy",
-	opts = {},
+  "aileot/emission.nvim",
+  enabled = false,
+  event = "VeryLazy",
+  opts = {},
 }

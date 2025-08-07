@@ -1,14 +1,14 @@
 if true then
-	return {}
+  return {}
 end
 
 return {
-	{
-		"MrSloth-dev/Switcheroo.nvim",
-		dependencies = { "rktjmp/lush.nvim", "nvim-telescope/telescope.nvim" },
-		opts = {},
-	},
-	{
-		"rktjmp/lush.nvim",
-	},
+  {
+    "MrSloth-dev/Switcheroo.nvim",
+    dependencies = { "rktjmp/lush.nvim", "nvim-telescope/telescope.nvim" },
+    opts = {},
+  },
+  {
+    "rktjmp/lush.nvim",
+  },
 }

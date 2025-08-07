@@ -1,10 +1,10 @@
 if true then
-	return {}
+  return {}
 end
 
 return {
-	{ "tiagovla/scope.nvim", config = true },
-	config = function()
-		require("scope").setup({})
-	end,
+  { "tiagovla/scope.nvim", config = true },
+  config = function()
+    require("scope").setup({})
+  end,
 }
