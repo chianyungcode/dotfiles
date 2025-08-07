@@ -139,6 +139,7 @@
         "hyperfine",                           # A command-line benchmarking tool
         "jesseduffield/lazydocker/lazydocker", # Docker manager
         "jesseduffield/lazygit/lazygit",
+        "kanata",                              # Cross-platform software keyboard remapper for Linux, macOS and Windows
         "knqyf263/pet/pet",                    # CLI snippet manager
         "koyeb/tap/koyeb",                     # Koyeb CLI
         "luarocks",                            # Lua package manager
@@ -184,7 +185,6 @@
         "hazeover",                  # dim your inactive window
         "homerow",                   # Keyboard shortcuts for every button on your screen
         "iina",
-        "kanata",                    # Cross-platform software keyboard remapper for Linux, macOS and Windows
         "karabiner-elements",
         "keyboard-cowboy",           # Keyboard shortcut utility
         "kindavim",
