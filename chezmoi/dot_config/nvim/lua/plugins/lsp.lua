@@ -2,7 +2,7 @@ return {
   -- == Language Server Protocol ==
   {
     "mason-org/mason-lspconfig.nvim", -- Ini yang memberitahu ke nvim-lspconfig mana LSP yang harus dijalankan
-    version = "1.32.0",
+    version = "1.32.0", -- Pinning this version because lazyvim doesn't work with mason 2.0
     dependencies = {
       { "mason-org/mason.nvim", opts = {} },
       "neovim/nvim-lspconfig",
