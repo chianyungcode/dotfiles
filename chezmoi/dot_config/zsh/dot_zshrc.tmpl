@@ -13,6 +13,11 @@ case $- in
 esac
 [ -z "$PS1" ] && return
 
+# Custom completion path (tambahan manual)
+if [ -d "${HOME}/.config/zsh-source/completions" ]; then
+  fpath+=("${HOME}/.config/zsh-source/completions")
+fi
+
 # duplicates slow down searching
 #############################################
 builtin declare -aU fpath
