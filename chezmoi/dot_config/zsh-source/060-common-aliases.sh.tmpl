@@ -4,7 +4,7 @@ alias fier="tmuxifier"
 alias nv="nvim"
 alias lzg="lazygit"
 alias lzd="lazydocker"
-alias clrnvses="cd ~/.local/share/nvim/sessions/ && rm -f *"
+alias clrnvses="rm -rf ~/.local/share/nvim/sessions"
 alias ax='chmod a+x'                   # system: make file executable
 alias path='echo -e ${PATH//:/\\n}'    # system: Echo all executable Paths
 alias fpath='echo -e ${FPATH//:/\\n}'  # system: Echo fpath
@@ -12,8 +12,19 @@ alias untar='tar -zxvf'                # Extract tar.gz file
 alias mktar='tar -cvzf'                # Create a tar.gz file
 alias numfiles='echo $(ls -1 | wc -l)' # Count of non-hidden files in current di
 
+# === START OF CHEZMOI MANAGED ===
+{{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") (lookPath "wl-copy")}}
+alias cpwd="pwd | tr -d '\n' | wl-copy"
+{{- end }}
+{{- if eq .chezmoi.os "darwin" }}
+alias cpwd="pwd | tr -d '\n' | pbcopy"
+{{ end }}
+# === END OF CHEZMOI MANAGED ===
+
 # pueue
 alias pue="pueue"
+
+alias upabbr="rm -rf ~/.config/zsh-abbr && abbr import-aliases"
 
 # bun
 alias bfzf="bun run \"\$(jq -r '.scripts | keys[]' package.json | fzf --no-border)\""
@@ -23,8 +34,8 @@ alias pexec="pet exec -t"
 alias psc="pet search"
 
 # Directories
-alias dotf="cd $DOTFILES"
-alias config="cd $HOME/.config/"
+alias dotf="cd ~/.local/share/chezmoi"
+alias config="cd ~/.config/"
 
 alias exz="exec zsh"
 
@@ -32,7 +43,6 @@ alias exz="exec zsh"
 {{- if lookPath "eza" }}
 # List filenames on one line
 alias cyh='eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions'
-
 
 # List filenames with long format
 alias l='eza -l --classify=auto --icon=autos {{- if not (and (eq .chezmoi.os "linux") (eq .chezmoi.arch "arm64")) }} --git{{ end }}'
