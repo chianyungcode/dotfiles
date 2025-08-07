@@ -7,13 +7,13 @@
         "1password",
         "1password-cli",
         "android-platform-tools",
-        "git-credential-manager",
         "ghostty",
+        "git-credential-manager",
         "jordanbaird-ice",           # Menu bar customization
-        "termius",
         "mocki-toki/formulae/barik",
         "orbstack",                  # Docker replacement
         "tailscale",
+        "termius",
         "visual-studio-code",
       ]
       formulae = [
@@ -34,17 +34,17 @@
         "fzf",                       # Fuzzy finder
         "gawk",                      # GNU awk
         "git",
-        "gitleaks",                  # Find secrets that leaks in your repo
         "git-delta",                 # Git diff viewer or pager
+        "git-filter-repo",
+        "git-lfs",
+        "gitleaks",                  # Find secrets that leaks in your repo
         "gnu-getopt",
         "gnu-sed",                   # GNU implementation of the famous stream editor
         "gnu-tar",                   # GNU version of the tar archiving utility
-        "gnutls",                    # GNU Transport Layer Security (TLS) Library
-        "git-filter-repo",
-        "git-lfs",
         "gnupg",                     # GPG
-        "grep",                      # GNU grep
+        "gnutls",                    # GNU Transport Layer Security (TLS) Library
         "gping",                     # Ping with graph
+        "grep",                      # GNU grep
         "gzip",                      # Popular GNU data compression program
         "halp",                      # Better help
         "icu4c@76",
@@ -112,9 +112,9 @@
       casks = [
         "amazon-q",
         "apidog",
-        "fork",     # "sourcetree", alternative to fork
-        "datagrip",
         "cursor",
+        "datagrip",
+        "fork",     # "sourcetree", alternative to fork
       ]
       formulae = [
         "act",                                 # runs GitHub Actions locally
@@ -148,24 +148,23 @@
         "poppler",                             # PDF rendering library
         "pueue",                               # Task runner and scheduler
         "sesh",                                # Tmux session manager
-        "sshs",                                # Graphical command-line client for SSH
         "shellcheck",
+        "sshs",                                # Graphical command-line client for SSH
         "stow",                                # Symlink manager
         "stripe/stripe-cli/stripe",
         "tectonic",                            # render LaTex math
+        "television",                          # Alternative to yazi
         "tmuxinator",                          # Tmux session manager
         "tmuxp",                               # Tmux session manager
-        "television",                          # Alternative to yazi
         "vladkens/tap/macmon",                 # Mac monitor
       ]
       taps = []
 
     [packages.homebrew.personal_computer]
       casks = [
-        "nikitabobko/tap/aerospace",
         "anki",
-        "arc",
         "apparency",                 # Showing detail app in finder
+        "arc",
         "bettertouchtool",
         "blip",                      # Send any size file between devices
         "bunch",
@@ -174,10 +173,9 @@
         "cloudmounter",              # Mounts cloud storages as local discs
         "cursor",                    # IDE : Write, edit, and chat about your code with AI
         "datagrip",                  # Databases and SQL IDE
-        "discord",
         "dbngin",                    # Lightweight DB GUI, Database version management tool
+        "discord",
         "dockdoor",
-        "ogdesign-eagle",            # Organise all your reference images in one place
         "espanso",
         "folo",                      # Follow the organized information
         "google-chrome",
@@ -185,10 +183,12 @@
         "hazeover",                  # dim your inactive window
         "homerow",                   # Keyboard shortcuts for every button on your screen
         "iina",
+        "nikitabobko/tap/aerospace",
+        "ogdesign-eagle",            # Organise all your reference images in one place
         # "kanata",             # Cross-platform software keyboard remapper for Linux, macOS and Windows
         "karabiner-elements",
-        "kindavim",
         "keyboard-cowboy",    # Keyboard shortcut utility
+        "kindavim",
         "leader-key",
         "linear-linear",      # App to manage software development and track bugs
         "lookaway",           # App for maintaining your eye rest
@@ -202,8 +202,8 @@
         "obsidian",
         "ollama",             # Run local LLM
         "qspace-pro",         # Better finder
-        "raycast",
         "raindropio",
+        "raycast",
         "readdle-spark",      # Spark mail
         "rectangle",
         "remnote",
@@ -220,8 +220,8 @@
       formulae = [
         "felixkratz/formulae/borders",
         "presenterm",                  # Presentation in CLI
-        "yubico-piv-tool",             # Yubikey PIV tool
         "qmk/qmk/qmk",                 # QMK CLI
+        "yubico-piv-tool",             # Yubikey PIV tool
       ]
       taps = []
 
@@ -240,21 +240,21 @@
       apps = []
     [packages.mas.personal_computer]
       apps = [
-        "6746757189", # Corner Time
         "1355679052", # Dropover
-        "6698876601", # Folder preview
-        "6739802604", # Folo
         "1502839586", # Hand mirror
-        "6444667067", # Hyperduck
-        "1609960918", # Jomo
-        "6474854386", # Launchpallete
-        "1551462255", # Mouseboost
-        "6739781207", # Pieoneer
-        "6451349778", # Rapidmg
-        "1666327168", # Spaced
-        "966085870",  # Ticktick
-        "497799835",  # Velja
         "1516894961", # Codye
+        "1551462255", # Mouseboost
+        "1609960918", # Jomo
+        "1666327168", # Spaced
+        "497799835",  # Velja
+        "6444667067", # Hyperduck
+        "6451349778", # Rapidmg
+        "6474854386", # Launchpallete
+        "6698876601", # Folder preview
+        "6739781207", # Pieoneer
+        "6739802604", # Folo
+        "6746757189", # Corner Time
+        "966085870",  # Ticktick
       ]
 
       # === APT PACKAGE MANAGER ===
@@ -303,8 +303,8 @@
       packages = [
         "base-devel",    # Equivalent to apt-transport-https and build essentials
         "bat",           # cat with syntax highlighting and Git integration
-        "curl",
         "bind-tools",    # Equivalent to dnsutils
+        "curl",
         "fd",            # Equivalent to fd-find
         "figlet",
         "fzf",
@@ -331,30 +331,30 @@
       ]
     [packages.pacman.dev_computer]
       packages = [
+        "docker",
         "dpkg",
-        "pueue",           # Task runner and scheduler
-        "starship",
-        "github-cli",      # Github CLI
+        "entr",            # depdency for tmux-autoreload
+        "espanso-wayland",
+        "eza",
+        "fprintd",         # fingerprint
         "git-delta",       # Pager for git
         "git-extras",      # Add extra command to default git
+        "github-cli",      # Github CLI
         "glab",            # GitLab CLI
         "glow",            # Render markdown in CLI
         "helix",           # Alternative neovim
         "httpie",          # HTTP client
-        "yq",
-        "eza",
+        "hurl",            # runs HTTP requests defined in a simple plain text format.
         "neovim",
-        "tmux",
         "pet",
-        "docker",
-        "usbutils",        # check fingerprint info
-        "fprintd",         # fingerprint
-        "entr",            # depdency for tmux-autoreload
+        "pueue",           # Task runner and scheduler
+        "starship",
         "tailscale",
         "tectonic",
-        "hurl",            # runs HTTP requests defined in a simple plain text format.
+        "tmux",
+        "usbutils",        # check fingerprint info
         "vivid",           # Color generator for LS_COLORS env variable
-        "espanso-wayland",
+        "yq",
       ]
     [packages.pacman.homelab_member]
       packages = ["iperf"]

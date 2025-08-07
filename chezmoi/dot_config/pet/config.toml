@@ -12,8 +12,8 @@
   # snippetfile ini tidak bisa di uncomment karena dibutuhkan, jadi semua snippets baru yang dilakukan dengan command'pet new' di terminal akan masuk ke snippet-general.toml
   backend = "gist" # specify backend service to sync snippets (gist, ghe or gitlab, default: gist)
   cmd = [
-    "sh",
     "-c",
+    "sh",
   ] # specify the command to execute the snippet with | bisa diganti dengan shell lain seperti "zsh" atau "bash". Perlu diingat meskipun memakai shell "zsh" semua alias tidak akan bekerja seperti yang ada pada konfigurasi kita, ini dikarenakan menggunakan zsh murni tanpa meload dulu file konfigurasi.
   color = false # enables output coloring with fzf, same as '--color' flag
   column = 40 # column size for list command

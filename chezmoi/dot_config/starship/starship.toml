@@ -155,7 +155,7 @@ $character"""
   symbol = " "
 
 [nodejs]
-  detect_files = ['package.json', '.node-version', '!bunfig.toml', '!bun.lockb']
+  detect_files = ['!bun.lockb', '!bunfig.toml', '.node-version', 'package.json']
   symbol = " "
 
 [bun]

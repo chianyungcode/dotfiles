@@ -67,42 +67,42 @@
 [[Snippets]]
   Description = "Initiate connect to ssh, with specifying path to private key"
   Output = ""
-  Tag = ["unix", "ssh"]
+  Tag = ["ssh", "unix"]
   command = 'ssh -i <path-to-file> <username=ubuntu>@<hostname>'
 
 [[Snippets]]
   Description = "Connect to ssh"
   Output = ""
-  Tag = ["unix", "ssh"]
+  Tag = ["ssh", "unix"]
   command = 'ssh <username=ubuntu>@<hostname>'
 
 [[Snippets]]
   Description = "Copy public key to destination"
   Output = ""
-  Tag = ["unix", "ssh"]
+  Tag = ["ssh", "unix"]
   command = 'ssh-copy-id -i ~/.ssh_keys/<filename=key>.pub <username>@<hostname>'
 
 [[Snippets]]
   Description = "Generate SSH Keys Pair for Physical Security Key like Yubikey"
   Output = ""
-  Tag = ["unix", "ssh"]
+  Tag = ["ssh", "unix"]
   command = 'ssh-keygen -t ed25519-sk -f ~/.ssh/<nama-file>'
 
 [[Snippets]]
   Description = "Generate SSH Keys Pair (private & public key)"
   Output = ""
-  Tag = ["unix", "ssh"]
+  Tag = ["ssh", "unix"]
   command = 'ssh-keygen -t <type=|_rsa_||_ed25519_||_ed25519-sk_||_ecdsa-sk_||_dsa_|> -f ~/.ssh/<nama-file>'
 
 # Untuk menggunakan command ini Yubikey wajib tercolok
 [[Snippets]]
   Description = "Start/Stop SSH Service"
   Output = ""
-  Tag = ["unix", "ssh"]
+  Tag = ["ssh", "unix"]
   command = 'sudo launchctl <command=|_stop_||_start_|> com.openssh.sshd'
 
 [[Snippets]]
   Description = "Create shell script file"
   Output = ""
-  Tag = ["unix", "shell"]
+  Tag = ["shell", "unix"]
   command = 'touch <filename>.sh && nvim .'
