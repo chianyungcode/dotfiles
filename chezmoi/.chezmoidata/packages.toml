@@ -152,6 +152,7 @@
         "sshs",                                # Graphical command-line client for SSH
         "stow",                                # Symlink manager
         "stripe/stripe-cli/stripe",
+        "stylua",                              # Lua formatter
         "tectonic",                            # render LaTex math
         "television",                          # Alternative to yazi
         "tmuxinator",                          # Tmux session manager
@@ -183,39 +184,39 @@
         "hazeover",                  # dim your inactive window
         "homerow",                   # Keyboard shortcuts for every button on your screen
         "iina",
-        "nikitabobko/tap/aerospace",
-        "ogdesign-eagle",            # Organise all your reference images in one place
-        # "kanata",             # Cross-platform software keyboard remapper for Linux, macOS and Windows
+        "kanata",                    # Cross-platform software keyboard remapper for Linux, macOS and Windows
         "karabiner-elements",
-        "keyboard-cowboy",    # Keyboard shortcut utility
+        "keyboard-cowboy",           # Keyboard shortcut utility
         "kindavim",
         "leader-key",
-        "linear-linear",      # App to manage software development and track bugs
-        "lookaway",           # App for maintaining your eye rest
-        "lulu",               # Firewall
-        "lunar",              # Configure your display management
-        "mediamate",          # UI replacement for volume, brightness and now playing controls
+        "linear-linear",             # App to manage software development and track bugs
+        "lookaway",                  # App for maintaining your eye rest
+        "lulu",                      # Firewall
+        "lunar",                     # Configure your display management
+        "mediamate",                 # UI replacement for volume, brightness and now playing controls
         "menuwhere",
-        "moom",               # Manage saved layout window for better workflow
+        "moom",                      # Manage saved layout window for better workflow
         "mouseless",
+        "nikitabobko/tap/aerospace",
         "notion",
         "obsidian",
-        "ollama",             # Run local LLM
-        "qspace-pro",         # Better finder
+        "ogdesign-eagle",            # Organise all your reference images in one place
+        "ollama",                    # Run local LLM
+        "qspace-pro",                # Better finder
         "raindropio",
         "raycast",
-        "readdle-spark",      # Spark mail
+        "readdle-spark",             # Spark mail
         "rectangle",
         "remnote",
-        "replacicon",         # Replace your app icon
-        "swift-shift",        # Drag window with ctl + shift
-        "transnomino",        # Batch rename utility
+        "replacicon",                # Replace your app icon
+        "swift-shift",               # Drag window with ctl + shift
+        "transnomino",               # Batch rename utility
         "via",
         "vial",
         "warp",
         "wezterm",
-        "zed",                # IDE
-        "zen",                # Browser
+        "zed",                       # IDE
+        "zen",                       # Browser
       ]
       formulae = [
         "felixkratz/formulae/borders",
@@ -349,12 +350,14 @@
         "pet",
         "pueue",           # Task runner and scheduler
         "starship",
+        "stylua",          # Lua formatter
         "tailscale",
+        "taplo",           # TOML formatter
         "tectonic",
         "tmux",
         "usbutils",        # check fingerprint info
         "vivid",           # Color generator for LS_COLORS env variable
-        "yq",
+        "yq",              # YAML processor
       ]
     [packages.pacman.homelab_member]
       packages = ["iperf"]
