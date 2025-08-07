@@ -28,7 +28,7 @@
 # but you may want to try the "Clipboard" or "Inject" backend in case of issues.
 # backend: Clipboard
 inject_delay: 0
-# inject simulating like keypresses, clipboard is like copy-pasting
+# The mechanism used to perform the injection. Espanso can either inject text by simulating keypresses (Inject backend) or by using the clipboard (Clipboard backend)
 backend: clipboard # inject | clipboard | auto
 # --- Auto-restart
 
@@ -38,7 +38,7 @@ backend: clipboard # inject | clipboard | auto
 # --- Clipboard threshold
 
 # Because injecting long texts char-by-char is a slow operation, espanso automatically
-# uses the clipboard if the text is longer than 'clipboard_threshold' characters.
+# uses the 'clipboard' (this clipboard_threshold only work when you choose backend: auto) backend if the text is longer than 'clipboard_threshold' characters.
 # clipboard_threshold: 100
 
 # For a list of all the available options, visit the official docs at: https://espanso.org/docs/
