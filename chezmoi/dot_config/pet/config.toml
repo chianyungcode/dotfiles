@@ -10,19 +10,19 @@
 
 [General]
   # snippetfile ini tidak bisa di uncomment karena dibutuhkan, jadi semua snippets baru yang dilakukan dengan command'pet new' di terminal akan masuk ke snippet-general.toml
-  snippetfile = "~/.config/pet/snippet-general.toml" # specify snippet directory
-  snippetdirs = ["~/.config/pet/snippets/"] # all separated files snippets
-  editor = "nvim" # your favorite text editor
-  column = 40 # column size for list command
-  selectcmd = "fzf --ansi --layout=reverse --border --height=90% --cycle --prompt=Snippets:" # selector command for edit command (fzf or peco)
   backend = "gist" # specify backend service to sync snippets (gist, ghe or gitlab, default: gist)
-  sortby = "description" # specify how snippets get sorted (recency (default), -recency, description, -description, command, -command, output, -output)
   cmd = [
     "sh",
     "-c",
   ] # specify the command to execute the snippet with | bisa diganti dengan shell lain seperti "zsh" atau "bash". Perlu diingat meskipun memakai shell "zsh" semua alias tidak akan bekerja seperti yang ada pada konfigurasi kita, ini dikarenakan menggunakan zsh murni tanpa meload dulu file konfigurasi.
   color = false # enables output coloring with fzf, same as '--color' flag
+  column = 40 # column size for list command
+  editor = "nvim" # your favorite text editor
   format = "[$description]: $command $tags"
+  selectcmd = "fzf --ansi --layout=reverse --border --height=90% --cycle --prompt=Snippets:" # selector command for edit command (fzf or peco)
+  snippetdirs = ["~/.config/pet/snippets/"] # all separated files snippets
+  snippetfile = "~/.config/pet/snippet-general.toml" # specify snippet directory
+  sortby = "description" # specify how snippets get sorted (recency (default), -recency, description, -description, command, -command, output, -output)
 
 [Gist]
   Public = false

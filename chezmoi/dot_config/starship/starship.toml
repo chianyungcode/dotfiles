@@ -25,25 +25,25 @@ $character"""
 
 # Replace the '❯' symbol in the prompt with '➜'
 [character]
-  success_symbol = '[➜](bold green)'
   error_symbol = '[➜](bold red)'
+  success_symbol = '[➜](bold green)'
 
 [time]
-  format = '[$time]($style) '
   disabled = false
-  time_format = "%T"          # 24 Hour format HH:mm:ss
+  format = '[$time]($style) '
   style = "bold gray"
-  utc_time_offset = "+7"      # Timezone
+  time_format = "%T"          # 24 Hour format HH:mm:ss
   use_12hr = false
+  utc_time_offset = "+7"      # Timezone
 
 [fill]
   symbol = " "
 
 [jobs]
-  symbol = ""
-  style = "bold red"
-  number_threshold = 1
   format = "[$symbol]($style)"
+  number_threshold = 1
+  style = "bold red"
+  symbol = ""
 
 [git_state]
   format = '\([$state( $progress_current/$progress_total)]($style)\) '
@@ -57,18 +57,18 @@ $character"""
   style = "yellow"
 
 [custom.stunnel]
-  when = "ps aux | grep stunnel | grep -v grep"
   command = "ps -o etime= -p $(ps aux | grep stunnel | grep -v grep | awk '{print $2}')"
-  style = "red"
   format = "[TUNNEL OPEN for $output]($style)"
+  style = "red"
+  when = "ps aux | grep stunnel | grep -v grep"
 
   # ---------------------------------
   # CUSTOM CONFIG
 
 # Disable the package module, hiding it from the prompt completely
 [package]
-  symbol = "󰏗 "
   disabled = true
+  symbol = "󰏗 "
 
 [aws]
   symbol = "  "
@@ -125,10 +125,10 @@ $character"""
   symbol = " "
 
 [hostname]
-  ssh_symbol = "🌏 "
-  ssh_only = true
-  format = '[$ssh_symbol](bold blue) on [$hostname](bold red) '
   disabled = false
+  format = '[$ssh_symbol](bold blue) on [$hostname](bold red) '
+  ssh_only = true
+  ssh_symbol = "🌏 "
 
 [java]
   symbol = " "
@@ -155,8 +155,8 @@ $character"""
   symbol = " "
 
 [nodejs]
-  symbol = " "
   detect_files = ['package.json', '.node-version', '!bunfig.toml', '!bun.lockb']
+  symbol = " "
 
 [bun]
   format = 'via [🍔 $version](bold green) '
@@ -165,9 +165,9 @@ $character"""
   symbol = " "
 
 [os.symbols]
+  AlmaLinux = " "
   Alpaquita = " "
   Alpine = " "
-  AlmaLinux = " "
   Amazon = " "
   Android = " "
   Arch = " "
@@ -194,20 +194,20 @@ $character"""
   NetBSD = " "
   NixOS = " "
   OpenBSD = "󰈺 "
-  openSUSE = " "
   OracleLinux = "󰌷 "
   Pop = " "
   Raspbian = " "
-  Redhat = " "
   RedHatEnterprise = " "
-  RockyLinux = " "
+  Redhat = " "
   Redox = "󰀘 "
-  Solus = "󰠳 "
+  RockyLinux = " "
   SUSE = " "
+  Solus = "󰠳 "
   Ubuntu = " "
   Unknown = " "
   Void = " "
   Windows = "󰍲 "
+  openSUSE = " "
 
 [perl]
   symbol = " "

@@ -3,36 +3,6 @@
     to_remove = ["htop"]
     [packages.homebrew.common]
       # packages that needed in every computer
-      taps = [
-        "arl/arl",                  # Taps for gitmux
-        "chase/tap",
-        "dopplerhq/cli",
-        "dotenvx/brew",
-        "felixkratz/formulae",
-        "grishka/grishka",
-        "homebrew/bundle",
-        "homebrew/services",
-        "jesseduffield/lazydocker",
-        "jesseduffield/lazygit",
-        "jstkdng/programs",
-        "knqyf263/pet",
-        "koekeishiya/formulae",
-        "koyeb/tap",
-        "nikitabobko/tap",
-        "olets/tap",
-        "osx-cross/arm",
-        "osx-cross/avr",
-        "pablopunk/brew",
-        "pkgxdev/made",
-        "qmk/qmk",
-        "skiptools/skip",
-        "stripe/stripe-cli",
-        "supabase/tap",
-        "teamookla/speedtest",
-        "vladkens/tap",
-        "waydabber/betterdisplay",
-        "withgraphite/tap",
-      ]
       casks = [
         "1password",
         "1password-cli",
@@ -107,9 +77,38 @@
         "yq",                        # YAML processor
         "zoxide",                    # Better cd
       ]
+      taps = [
+        "arl/arl",                  # Taps for gitmux
+        "chase/tap",
+        "dopplerhq/cli",
+        "dotenvx/brew",
+        "felixkratz/formulae",
+        "grishka/grishka",
+        "homebrew/bundle",
+        "homebrew/services",
+        "jesseduffield/lazydocker",
+        "jesseduffield/lazygit",
+        "jstkdng/programs",
+        "knqyf263/pet",
+        "koekeishiya/formulae",
+        "koyeb/tap",
+        "nikitabobko/tap",
+        "olets/tap",
+        "osx-cross/arm",
+        "osx-cross/avr",
+        "pablopunk/brew",
+        "pkgxdev/made",
+        "qmk/qmk",
+        "skiptools/skip",
+        "stripe/stripe-cli",
+        "supabase/tap",
+        "teamookla/speedtest",
+        "vladkens/tap",
+        "waydabber/betterdisplay",
+        "withgraphite/tap",
+      ]
 
     [packages.homebrew.dev_computer]
-      taps = []
       casks = [
         "amazon-q",
         "apidog",
@@ -159,6 +158,7 @@
         "television",                          # Alternative to yazi
         "vladkens/tap/macmon",                 # Mac monitor
       ]
+      taps = []
 
     [packages.homebrew.personal_computer]
       casks = [
@@ -217,18 +217,18 @@
         "zed",                # IDE
         "zen",                # Browser
       ]
-      taps = []
       formulae = [
         "felixkratz/formulae/borders",
         "presenterm",                  # Presentation in CLI
         "yubico-piv-tool",             # Yubikey PIV tool
         "qmk/qmk/qmk",                 # QMK CLI
       ]
+      taps = []
 
     [packages.homebrew.homelab_member]
-      taps = []
       casks = ["arc"]
       formulae = ["ffmpeg", "iperf", "nmap", "tailspin"]
+      taps = []
 
 
   [packages.mas]
