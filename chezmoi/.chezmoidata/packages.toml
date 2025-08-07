@@ -147,6 +147,7 @@
         "koyeb/tap/koyeb",                     # Koyeb CLI
         "luarocks",                            # Lua package manager
         "markdownlint-cli2",                   # Linter for markdown file
+        "mermaid-cli",                         # LaTex math
         "mongosh",                             # MongoDB shell
         "nixfmt",                              # Nix formatter
         "nushell",                             # Alternative shell
@@ -362,6 +363,7 @@
         "httpie",            # HTTP client
         "hurl",              # runs HTTP requests defined in a simple plain text format.
         "markdownlint-cli2", # Linter for markdown file
+        "mermaid-cli",       # LaTex math
         "neovim",
         "nixfmt",            # Nix formatter
         "pet",
@@ -383,6 +385,7 @@
         "yamllint",          # YAML linter
         "yq",                # YAML processor
       ]
+
     [packages.pacman.homelab_member]
       packages = ["iperf"]
     [packages.pacman.personal_computer]
