@@ -93,4 +93,36 @@ return {
       enable = false, -- Need to disable because using render-markdown.nvim plugin
     },
   },
+
+  config = function(_, opts)
+    require("obsidian").setup(opts)
+
+    local map = vim.keymap.set
+    local opts = { noremap = true, silent = true }
+
+    map("n", "<leader>yn", "<cmd>ObsidianNew<CR>", { desc = "New note" })
+    map("n", "<leader>ym", "<cmd>ObsidianToday<CR>", { desc = "Today" })
+    map("n", "<leader>yy", "<cmd>ObsidianYesterday<CR>", { desc = "Yesterday" })
+    map("n", "<leader>yu", "<cmd>ObsidianTomorrow<CR>", { desc = "Tomorrow" })
+    map("n", "<leader>y.", "<cmd>ObsidianDailies<CR>", { desc = "List daily notes" })
+    map("n", "<leader>yi", "<cmd>ObsidianPasteImg<CR>", { desc = "Paste image" })
+    map("n", "<leader>yl", "<cmd>ObsidianLinks<CR>", { desc = "All links in note" })
+    map("n", "<leader>yr", "<cmd>ObsidianRename<CR>", { desc = "Rename note" })
+    map("n", "<leader>yb", "<cmd>ObsidianBacklinks<CR>", { desc = "Backlinks" })
+    map("n", "<leader>yk", "<cmd>ObsidianTOC<CR>", { desc = "Table of Contents" })
+    map("n", "<leader>ys", "<cmd>ObsidianSearch<CR>", { desc = "Search notes" })
+    map("n", "<leader>yw", "<cmd>ObsidianWorkspace<CR>", { desc = "Switch workspace" })
+    map("n", "<leader>yq", "<cmd>ObsidianQuickSwitch<CR>", { desc = "Quick switch note" })
+    map("n", "<leader>yt", "<cmd>ObsidianTemplate<CR>", { desc = "Insert template" })
+    map("n", "<leader>yv", "<cmd>ObsidianFollowLink vsplit<CR>", { desc = "Follow link (vsplit)" })
+    map("n", "<leader>yh", "<cmd>ObsidianFollowLink hsplit<CR>", { desc = "Follow link (hsplit)" })
+    map("v", "<leader>yx", "<cmd>ObsidianExtractNote<CR>", { desc = "Extract to new note" })
+    map("n", "<leader>yj", "<cmd>ObsidianToggleCheckbox<CR>", { desc = "Toggle checkbox" })
+    map("v", "<leader>y,", "<cmd>ObsidianLink<CR>", { desc = "Link to existing note" })
+    map("v", "<leader>y/", "<cmd>ObsidianLinkNew<CR>", { desc = "Link to new note" })
+    map("n", "<leader>yo", "<cmd>ObsidianOpen<CR>", { desc = "Open in Obsidian app" })
+    map("n", "<leader>yg", "<cmd>ObsidianTags<CR>", { desc = "List tags" })
+    map("n", "<leader>yf", "<cmd>ObsidianFollowLink<CR>", { desc = "Follow link" })
+    map("n", "<leader>yz", "<cmd>ObsidianNewFromTemplate<CR>", { desc = "New from template" })
+  end,
 }
