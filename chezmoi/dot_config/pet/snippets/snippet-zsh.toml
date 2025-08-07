@@ -3,3 +3,9 @@
   Output      = ""
   Tag         = ["zsh"]
   command     = 'bindkey | fzf'
+
+[[Snippets]]
+  Description = "Generate completions for cli tools"
+  Output      = ""
+  Tag         = ["zsh"]
+  command     = '<cli_command_to_generate_completion> > ~/.local/share/chezmoi/chezmoi/dot_config/zsh-source/completions/_<cli_name>'
