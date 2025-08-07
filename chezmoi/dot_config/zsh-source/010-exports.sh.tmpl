@@ -7,7 +7,6 @@ export GITHUB_TOKEN={{ if .use_secrets }}{{ onepasswordRead .secrets.github_pers
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml" # Change default location for starship configuration
 export PROTO_HOME="$HOME/.config/proto"
 export LM_STUDIO_BIN="$HOME/.lmstudio/bin"
-export BUN_NEOVIM="$HOME/.cache/.bun/bin"
 {{- if .use_secrets }}
 export SSH_AUTH_SOCK={{ index (dict
     "darwin" "~/Library/Group\\ Containers/2BUA8C4S2C.com.1password/t/agent.sock"

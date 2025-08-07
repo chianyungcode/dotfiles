@@ -11,7 +11,6 @@ _myPaths=(
   "$PROTO_HOME/bin"
   "$HOME/.tmuxifier/bin"
   "$LM_STUDIO_BIN"
-  "$BUN_NEOVIM",
 )
 
 for _path in "${_myPaths[@]}"; do
