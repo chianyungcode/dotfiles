@@ -81,7 +81,7 @@ return {
         typescript = { "biome", "biome-organize-imports", "prettier" },
         typescriptreact = { "biome", "biome-organize-imports", "prettier" },
         yaml = { "yamlfmt", "prettier" },
-        toml = { "taplo" },
+        -- toml = { "taplo" }, -- Bug when using with taplo, [[rule]] array are ignored when using format on save
         -- Use the "*" filetype to run formatters on all filetypes.
         -- ["*"] = { "codespell" },
         -- Use the "_" filetype to run formatters on filetypes that don't
