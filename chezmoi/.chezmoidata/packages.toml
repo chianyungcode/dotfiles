@@ -226,9 +226,9 @@
       taps = []
 
     [packages.homebrew.homelab_member]
-      casks = ["arc"]
+      casks    = ["arc"]
       formulae = ["ffmpeg", "iperf", "nmap", "tailspin"]
-      taps = []
+      taps     = []
 
 
   [packages.mas]

@@ -1,59 +1,59 @@
 [[Snippets]]
   Description = "Removes mise CLI and all related data, Skips config directory by default."
-  Output = ""
-  Tag = ["mise"]
-  command = 'mise implode <also_delete_config=|_--config_||_ _|> <dry_run=|_-n --dry-run||_ _|>'
+  Output      = ""
+  Tag         = ["mise"]
+  command     = 'mise implode <also_delete_config=|_--config_||_ _|> <dry_run=|_-n --dry-run||_ _|>'
 
 [[Snippets]]
   Description = "Use tool as a global tool"
-  Output = ""
-  Tag = ["mise"]
-  command = 'mise use --global <tool@version>'
+  Output      = ""
+  Tag         = ["mise"]
+  command     = 'mise use --global <tool@version>'
 
 [[Snippets]]
   Description = "List all available versions of a tool."
-  Output = ""
-  Tag = ["mise"]
-  command = 'mise ls-remote <tool>'
+  Output      = ""
+  Tag         = ["mise"]
+  command     = 'mise ls-remote <tool>'
 
 [[Snippets]]
   Description = "List all tool that already installed"
-  Output = ""
-  Tag = ["mise"]
-  command = 'mise ls'
+  Output      = ""
+  Tag         = ["mise"]
+  command     = 'mise ls'
 
 [[Snippets]]
   Description = "Uninstall a tool."
-  Output = ""
-  Tag = ["mise"]
-  command = 'mise rm <tool>'
+  Output      = ""
+  Tag         = ["mise"]
+  command     = 'mise rm <tool>'
 
 [[Snippets]]
   Description = "Update mise to the latest version. Don't use this if you installed mise via a package manager."
-  Output = ""
-  Tag = ["mise"]
-  command = 'mise self-update'
+  Output      = ""
+  Tag         = ["mise"]
+  command     = 'mise self-update'
 
 [[Snippets]]
   Description = "Informs you of any tools with newer versions available."
-  Output = ""
-  Tag = ["mise"]
-  command = 'mise outdated'
+  Output      = ""
+  Tag         = ["mise"]
+  command     = 'mise outdated'
 
 [[Snippets]]
   Description = "Install a tool"
-  Output = ""
-  Tag = ["mise"]
-  command = 'mise install <tool>'
+  Output      = ""
+  Tag         = ["mise"]
+  command     = 'mise install <tool>'
 
 [[Snippets]]
   Description = "Generates things like git hooks, task documentation, GitHub actions, and more for your project."
-  Output = ""
-  Tag = ["mise"]
-  command = 'mise generate'
+  Output      = ""
+  Tag         = ["mise"]
+  command     = 'mise generate'
 
 [[Snippets]]
   Description = "A bunch of commands for working with mise.toml files via the CLI."
-  Output = ""
-  Tag = ["mise"]
-  command = 'mise config'
+  Output      = ""
+  Tag         = ["mise"]
+  command     = 'mise config'

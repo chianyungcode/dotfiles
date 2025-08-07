@@ -2,11 +2,11 @@
 # Format: cask_name = "App Name"
 
 [diff_name_apps]
-  "1password" = "1Password"
-  "folo" = "folo"
-  "google-chrome" = "Google Chrome"
-  "keyboard-cowboy" = "Keyboard Cowboy"
-  "linear-linear" = "Linear"
-  "ogdesign-eagle" = "Eagle"
-  "qspace-pro" = "QSpace Pro"
+  "1password"          = "1Password"
+  "folo"               = "folo"
+  "google-chrome"      = "Google Chrome"
+  "keyboard-cowboy"    = "Keyboard Cowboy"
+  "linear-linear"      = "Linear"
+  "ogdesign-eagle"     = "Eagle"
+  "qspace-pro"         = "QSpace Pro"
   "visual-studio-code" = "Visual Studio Code"

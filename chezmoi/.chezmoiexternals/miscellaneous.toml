@@ -1,6 +1,6 @@
 [".tmux/plugins/tpm"]
-  exact = true
-  refreshPeriod = "168h"
+  exact           = true
+  refreshPeriod   = "168h"
   stripComponents = 1
-  type = "git-repo"
-  url = "https://github.com/tmux-plugins/tpm.git"
+  type            = "git-repo"
+  url             = "https://github.com/tmux-plugins/tpm.git"

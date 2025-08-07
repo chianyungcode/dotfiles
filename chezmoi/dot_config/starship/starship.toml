@@ -25,42 +25,42 @@ $character"""
 
 # Replace the '❯' symbol in the prompt with '➜'
 [character]
-  error_symbol = '[➜](bold red)'
+  error_symbol   = '[➜](bold red)'
   success_symbol = '[➜](bold green)'
 
 [time]
-  disabled = false
-  format = '[$time]($style) '
-  style = "bold gray"
-  time_format = "%T"          # 24 Hour format HH:mm:ss
-  use_12hr = false
-  utc_time_offset = "+7"      # Timezone
+  disabled        = false
+  format          = '[$time]($style) '
+  style           = "bold gray"
+  time_format     = "%T"               # 24 Hour format HH:mm:ss
+  use_12hr        = false
+  utc_time_offset = "+7"               # Timezone
 
 [fill]
   symbol = " "
 
 [jobs]
-  format = "[$symbol]($style)"
+  format           = "[$symbol]($style)"
   number_threshold = 1
-  style = "bold red"
-  symbol = ""
+  style            = "bold red"
+  symbol           = ""
 
 [git_state]
   format = '\([$state( $progress_current/$progress_total)]($style)\) '
-  style = "bright-black"
+  style  = "bright-black"
 
 [git_metrics]
   disabled = false # Git metrics, example +21 -8
 
 [cmd_duration]
   format = "[$duration]($style)"
-  style = "yellow"
+  style  = "yellow"
 
 [custom.stunnel]
   command = "ps -o etime= -p $(ps aux | grep stunnel | grep -v grep | awk '{print $2}')"
-  format = "[TUNNEL OPEN for $output]($style)"
-  style = "red"
-  when = "ps aux | grep stunnel | grep -v grep"
+  format  = "[TUNNEL OPEN for $output]($style)"
+  style   = "red"
+  when    = "ps aux | grep stunnel | grep -v grep"
 
   # ---------------------------------
   # CUSTOM CONFIG
@@ -68,7 +68,7 @@ $character"""
 # Disable the package module, hiding it from the prompt completely
 [package]
   disabled = true
-  symbol = "󰏗 "
+  symbol   = "󰏗 "
 
 [aws]
   symbol = "  "
@@ -125,9 +125,9 @@ $character"""
   symbol = " "
 
 [hostname]
-  disabled = false
-  format = '[$ssh_symbol](bold blue) on [$hostname](bold red) '
-  ssh_only = true
+  disabled   = false
+  format     = '[$ssh_symbol](bold blue) on [$hostname](bold red) '
+  ssh_only   = true
   ssh_symbol = "🌏 "
 
 [java]
@@ -156,7 +156,7 @@ $character"""
 
 [nodejs]
   detect_files = ['!bun.lockb', '!bunfig.toml', '.node-version', 'package.json']
-  symbol = " "
+  symbol       = " "
 
 [bun]
   format = 'via [🍔 $version](bold green) '
@@ -165,49 +165,49 @@ $character"""
   symbol = " "
 
 [os.symbols]
-  AlmaLinux = " "
-  Alpaquita = " "
-  Alpine = " "
-  Amazon = " "
-  Android = " "
-  Arch = " "
-  Artix = " "
-  CentOS = " "
-  Debian = " "
-  DragonFly = " "
-  Emscripten = " "
-  EndeavourOS = " "
-  Fedora = " "
-  FreeBSD = " "
-  Garuda = "󰛓 "
-  Gentoo = " "
-  HardenedBSD = "󰞌 "
-  Illumos = "󰈸 "
-  Kali = " "
-  Linux = " "
-  Mabox = " "
-  Macos = " "
-  Manjaro = " "
-  Mariner = " "
-  MidnightBSD = " "
-  Mint = " "
-  NetBSD = " "
-  NixOS = " "
-  OpenBSD = "󰈺 "
-  OracleLinux = "󰌷 "
-  Pop = " "
-  Raspbian = " "
+  AlmaLinux        = " "
+  Alpaquita        = " "
+  Alpine           = " "
+  Amazon           = " "
+  Android          = " "
+  Arch             = " "
+  Artix            = " "
+  CentOS           = " "
+  Debian           = " "
+  DragonFly        = " "
+  Emscripten       = " "
+  EndeavourOS      = " "
+  Fedora           = " "
+  FreeBSD          = " "
+  Garuda           = "󰛓 "
+  Gentoo           = " "
+  HardenedBSD      = "󰞌 "
+  Illumos          = "󰈸 "
+  Kali             = " "
+  Linux            = " "
+  Mabox            = " "
+  Macos            = " "
+  Manjaro          = " "
+  Mariner          = " "
+  MidnightBSD      = " "
+  Mint             = " "
+  NetBSD           = " "
+  NixOS            = " "
+  OpenBSD          = "󰈺 "
+  OracleLinux      = "󰌷 "
+  Pop              = " "
+  Raspbian         = " "
   RedHatEnterprise = " "
-  Redhat = " "
-  Redox = "󰀘 "
-  RockyLinux = " "
-  SUSE = " "
-  Solus = "󰠳 "
-  Ubuntu = " "
-  Unknown = " "
-  Void = " "
-  Windows = "󰍲 "
-  openSUSE = " "
+  Redhat           = " "
+  Redox            = "󰀘 "
+  RockyLinux       = " "
+  SUSE             = " "
+  Solus            = "󰠳 "
+  Ubuntu           = " "
+  Unknown          = " "
+  Void             = " "
+  Windows          = "󰍲 "
+  openSUSE         = " "
 
 [perl]
   symbol = " "

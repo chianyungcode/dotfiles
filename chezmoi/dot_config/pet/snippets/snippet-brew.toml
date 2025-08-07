@@ -1,11 +1,11 @@
 [[Snippets]]
   Description = "Backup all brew formulae, casks and taps | with --force flag will overwrite the existing Brewfile in current file, remove this flag if you don't want this happens"
-  Output = ""
-  Tag = ["brew"]
-  command = 'brew bundle dump --force'
+  Output      = ""
+  Tag         = ["brew"]
+  command     = 'brew bundle dump --force'
 
 [[Snippets]]
   Description = "Backup all brew formulae, casks and taps with custom file name"
-  Output = ""
-  Tag = ["brew"]
-  command = 'brew bundle dump --file=$HOME/.local/share/chezmoi/others/macos/manual-backup/cli/brew/<file-name>'
+  Output      = ""
+  Tag         = ["brew"]
+  command     = 'brew bundle dump --file=$HOME/.local/share/chezmoi/others/macos/manual-backup/cli/brew/<file-name>'

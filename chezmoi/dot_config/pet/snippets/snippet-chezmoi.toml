@@ -1,53 +1,53 @@
 [[Snippets]]
   Description = "Apply"
-  Output = ""
-  Tag = ["chezmoi"]
-  command = 'chezmoi apply'
+  Output      = ""
+  Tag         = ["chezmoi"]
+  command     = 'chezmoi apply'
 
 [[Snippets]]
   Description = "Edit | and apply"
-  Output = ""
-  Tag = ["chezmoi"]
-  command = 'chezmoi edit --apply'
+  Output      = ""
+  Tag         = ["chezmoi"]
+  command     = 'chezmoi edit --apply'
 
 [[Snippets]]
   Description = "Init "
-  Output = ""
-  Tag = ["chezmoi"]
-  command = 'chezmoi init --apply --prompt'
+  Output      = ""
+  Tag         = ["chezmoi"]
+  command     = 'chezmoi init --apply --prompt'
 
 [[Snippets]]
   Description = "Diff"
-  Output = ""
-  Tag = ["chezmoi"]
-  command = 'chezmoi diff'
+  Output      = ""
+  Tag         = ["chezmoi"]
+  command     = 'chezmoi diff'
 
 [[Snippets]]
   Description = "Forget | Only delete in the source directory"
-  Output = ""
-  Tag = ["chezmoi"]
-  command = 'chezmoi forget <path-to-target-file>'
+  Output      = ""
+  Tag         = ["chezmoi"]
+  command     = 'chezmoi forget <path-to-target-file>'
 
 [[Snippets]]
   Description = "Destroy | Delete file between in source directory and target directory"
-  Output = ""
-  Tag = ["chezmoi"]
-  command = 'chezmoi destroy <path-to-target-file>'
+  Output      = ""
+  Tag         = ["chezmoi"]
+  command     = 'chezmoi destroy <path-to-target-file>'
 
 [[Snippets]]
   Description = "Force refresh download external"
-  Output = ""
-  Tag = ["chezmoi"]
-  command = 'chezmoi --refresh-externals apply'
+  Output      = ""
+  Tag         = ["chezmoi"]
+  command     = 'chezmoi --refresh-externals apply'
 
 [[Snippets]]
   Description = "Clear the state of run_onchange_ scripts"
-  Output = ""
-  Tag = ["chezmoi"]
-  command = 'chezmoi state delete-bucket --bucket=entryState'
+  Output      = ""
+  Tag         = ["chezmoi"]
+  command     = 'chezmoi state delete-bucket --bucket=entryState'
 
 [[Snippets]]
   Description = "Clear the state of run_once_ scripts"
-  Output = ""
-  Tag = ["chezmoi"]
-  command = 'chezmoi state delete-bucket --bucket=scriptState'
+  Output      = ""
+  Tag         = ["chezmoi"]
+  command     = 'chezmoi state delete-bucket --bucket=scriptState'

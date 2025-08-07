@@ -1,5 +1,5 @@
 [[Snippets]]
   Description = "Search all keybindings for zsh"
-  Output = ""
-  Tag = ["zsh"]
-  command = 'bindkey | fzf'
+  Output      = ""
+  Tag         = ["zsh"]
+  command     = 'bindkey | fzf'

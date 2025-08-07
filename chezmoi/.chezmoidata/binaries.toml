@@ -13,67 +13,67 @@
 
 [binaries]
   [binaries.bottom]
-    description = "A cross-platform graphical process/system monitor with a focus on performance, privacy, and a nice visual design"
-    executable_name = "btm"
-    install_filter = ""
-    name = "bottom"
-    remove_from_release = ""
-    repository = "ClementTsang/bottom"
+    description           = "A cross-platform graphical process/system monitor with a focus on performance, privacy, and a nice visual design"
+    executable_name       = "btm"
+    install_filter        = ""
+    name                  = "bottom"
+    remove_from_release   = ""
+    repository            = "ClementTsang/bottom"
     required_architecture = ""
-    systems = ["linux"]
-    version_regex = ""
+    systems               = ["linux"]
+    version_regex         = ""
 
   [binaries.doggo]
-    description = "Command-line DNS Client for Humans"
-    executable_name = ""
-    install_filter = ""
-    name = "doggo"
-    remove_from_release = "_web_"
-    repository = "mr-karan/doggo"
+    description           = "Command-line DNS Client for Humans"
+    executable_name       = ""
+    install_filter        = ""
+    name                  = "doggo"
+    remove_from_release   = "_web_"
+    repository            = "mr-karan/doggo"
     required_architecture = ""
-    systems = ["linux"]
-    version_regex = ""
+    systems               = ["linux"]
+    version_regex         = ""
 
   [binaries.git-delta]
-    description = "A syntax-highlighting pager for git and diff output"
-    executable_name = ""
-    install_filter = ""
-    name = "delta"
-    remove_from_release = ""
-    repository = "dandavison/delta"
+    description           = "A syntax-highlighting pager for git and diff output"
+    executable_name       = ""
+    install_filter        = ""
+    name                  = "delta"
+    remove_from_release   = ""
+    repository            = "dandavison/delta"
     required_architecture = ""
-    systems = ["linux"]
-    version_regex = ""
+    systems               = ["linux"]
+    version_regex         = ""
 
   [binaries.lazygit]
-    description = "A simple terminal UI for git commands"
-    executable_name = ""
-    install_filter = "dev_computer"
-    name = "lazygit"
-    remove_from_release = ""
-    repository = "jesseduffield/lazygit"
+    description           = "A simple terminal UI for git commands"
+    executable_name       = ""
+    install_filter        = "dev_computer"
+    name                  = "lazygit"
+    remove_from_release   = ""
+    repository            = "jesseduffield/lazygit"
     required_architecture = ""
-    systems = ["linux"]
-    version_regex = "version=(.*?),"
+    systems               = ["linux"]
+    version_regex         = "version=(.*?),"
 
   [binaries.rip2]
-    description = "A safe and ergonomic alternative to rm"
-    executable_name = ""
-    install_filter = ""
-    name = "rip"
-    remove_from_release = ""
-    repository = "MilesCranmer/rip2"
+    description           = "A safe and ergonomic alternative to rm"
+    executable_name       = ""
+    install_filter        = ""
+    name                  = "rip"
+    remove_from_release   = ""
+    repository            = "MilesCranmer/rip2"
     required_architecture = ""
-    systems = ["linux"]
-    version_regex = ""
+    systems               = ["linux"]
+    version_regex         = ""
 
   [binaries.zoxide]
-    description = "A fast, user-friendly alternative to cd"
-    executable_name = ""
-    install_filter = ""
-    name = "zoxide"
-    remove_from_release = ""
-    repository = "ajeetdsouza/zoxide"
+    description           = "A fast, user-friendly alternative to cd"
+    executable_name       = ""
+    install_filter        = ""
+    name                  = "zoxide"
+    remove_from_release   = ""
+    repository            = "ajeetdsouza/zoxide"
     required_architecture = ""
-    systems = ["linux"]
-    version_regex = ""
+    systems               = ["linux"]
+    version_regex         = ""
