@@ -26,6 +26,7 @@ fzf_zoxide_widget() {
   local selection dir
   selection=$(zoxide query -ls | sort -nr | fzf \
     --height=40% \
+    --no-sort \
     --reverse \
     --prompt="Zoxide > " \
     --preview 'exa -1 --color=always {2} 2>/dev/null || ls -la --color=always {2}' \
