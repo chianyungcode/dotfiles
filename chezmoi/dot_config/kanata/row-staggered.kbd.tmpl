@@ -1,6 +1,5 @@
 ;; This is for single line comment
 
-
 ;; Global configuration, this configuration applied globally
 (defcfg
   process-unmapped-keys yes
@@ -46,11 +45,19 @@
   / (tap-hold $tap-time $hold-time / lalt)
   hyperkey (tap-hold $tap-time $hold-time spc (multi lsft lctl lalt lmet))
   caps (tap-hold $tap-time $hold-time esc (layer-toggle layer1))
+
+  ;; macOS
   mc C-up ;; Mission Control
   sls M-spc ;; Spotlight Search
   dtn S-C-A-M-f5 ;; Dictation
   dnd S-C-A-M-f6 ;; Do Not Disturb
   lp S-C-A-M-l ;; Launchpad
+
+  {{ if eq .chezmoi.os "linux" -}}
+  ;; Change behavior for switch tab in browser in linux to matching with macOS behavior
+  tab-left C-S-tab
+  tab-right C-tab
+  {{- end }}
 )
 
 ;; == Input combos / chording ==
@@ -76,6 +83,8 @@
   (m ,) C-bspc $input-chord-time all-released ()
   (i o) C-left 80 all-released ()
   (o p) C-right 80 all-released ()
+  (lalt lsft [) C-S-tab 250 first-release ()
+  (lalt lsft ]) C-tab 250 first-release ()
   {{- end }}
 
   (l r) lrld $input-chord-time all-released () ;; live reload kanata, press this after changing kanata configuration
@@ -98,7 +107,7 @@
 (deflayer layer1
        🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  tab  q    w    e    r    t    y    u    i    o    p    @tab-left   @tab-right    \
   caps a    s    d    f    g    left    down    up    right    ;    '    ret
   lsft z    x    c    v    b    n    m    ,    .    /    rsft
   lctl lmet lalt           spc            ralt rmet rctl
