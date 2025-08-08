@@ -366,6 +366,7 @@
         "github-cli",        # Github CLI
         "glab",              # GitLab CLI
         "glow",              # Render markdown in CLI
+        "gum",               # Fuzzy finder
         "helix",             # Alternative neovim
         "httpie",            # HTTP client
         "hurl",              # runs HTTP requests defined in a simple plain text format.
@@ -385,6 +386,7 @@
         "tailscale",
         "taplo",             # TOML formatter
         "tectonic",
+        "ticktick",
         "tmux",
         "usbutils",          # check fingerprint info
         "vivid",             # Color generator for LS_COLORS env variable
