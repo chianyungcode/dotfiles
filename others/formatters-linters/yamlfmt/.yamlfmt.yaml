@@ -1,4 +1,4 @@
 formatter:
-  type: basic
+   type: basic
 include_document_start: true
 indent: 8

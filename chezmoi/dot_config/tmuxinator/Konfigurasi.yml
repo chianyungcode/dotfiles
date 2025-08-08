@@ -2,5 +2,5 @@ name: Konfigurasi
 root: ~/.dotfiles/
 
 windows:
-  - Neovim:
+   - Neovim:
       - nvim

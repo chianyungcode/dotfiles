@@ -1,4 +1,4 @@
 formatter:
-  type: basic
-include_document_start: true
-indent: 8
+   type: basic
+   retain_line_breaks_single: true
+   indent: 3
