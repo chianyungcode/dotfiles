@@ -10,10 +10,11 @@ ohmyzsh/ohmyzsh path:plugins/git-commit
 ohmyzsh/ohmyzsh path:plugins/npm
 ohmyzsh/ohmyzsh path:plugins/aliases
 ohmyzsh/ohmyzsh path:plugins/docker-compose
+ohmyzsh/ohmyzsh path:plugins/tmux # add aliases
 
 # Third Party Plugins (non-completion)
 olets/zsh-abbr kind:defer
 MichaelAquilina/zsh-you-should-use kind:zsh
-jeffreytse/zsh-vi-mode
+# jeffreytse/zsh-vi-mode
 zsh-users/zsh-autosuggestions
 zdharma-continuum/fast-syntax-highlighting kind:defer
