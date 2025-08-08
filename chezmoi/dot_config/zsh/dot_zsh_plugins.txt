@@ -10,7 +10,7 @@ ohmyzsh/ohmyzsh path:plugins/git-commit
 ohmyzsh/ohmyzsh path:plugins/npm
 ohmyzsh/ohmyzsh path:plugins/aliases
 ohmyzsh/ohmyzsh path:plugins/docker-compose
-ohmyzsh/ohmyzsh path:plugins/tmux # add aliases
+ohmyzsh/ohmyzsh path:plugins/tmux
 
 # Third Party Plugins (non-completion)
 olets/zsh-abbr kind:defer
