@@ -1,5 +1,4 @@
-# shellcheck disable=SC2154,SC2298,SC2296
-
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "garuda" )}}
 # shellcheck disable=SC2154,SC2298,SC2296
 
 # Fungsi: Tampilkan semua warna 256 di terminal
@@ -106,3 +105,4 @@ _setColors_
 
 # Ekspor variabel warna
 export bold underline reverse reset white blue yellow green red purple gray
+{{- end }}
