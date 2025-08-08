@@ -9,6 +9,10 @@ header "Installing antidote - Zsh plugin manager"
 if [[ -f "$HOME/.zshenv" ]]; then
   # Source zshenv in a subshell to extract ZDOTDIR
   ZDOTDIR=$(bash -c "source \"$HOME/.zshenv\" >/dev/null 2>&1 && echo \$ZDOTDIR")
+else
+  # If .zshenv doesn't exist, set a default ZDOTDIR
+  ZDOTDIR="$HOME/.config/zsh"
+  notice "~/.zshenv not found. Using default ZDOTDIR: $ZDOTDIR"
 fi
 
 # Set the installation directory
