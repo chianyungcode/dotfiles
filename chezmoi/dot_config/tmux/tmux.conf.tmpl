@@ -85,6 +85,9 @@ bind -N "Control+g (root mode) lazygit" -T root C-g new-window -c "#{pane_curren
 bind -N "Run btop" -T root C-m new-window -c "#{pane_current_path}" -n "📈" "btop"
 # bind -N "Run Yazi" -T root C-y new-window -c "#{pane_current_path}" -n "📁" "yazi"
 # bind -N "Run a script" Y split-window -v -l 10 "sleep 2 && bun run $(jq -r '.scripts | keys[]' package.json | fzf)"
+bind-key "K" display-popup -E -w 40% "sesh connect \"$(
+ sesh list -i | gum filter --limit 1 --no-sort --fuzzy --placeholder 'Pick a sesh' --height 50 --prompt='⚡'
+)\""
 
 
 # --- Add capabilites to copy and paste in mode: copy-mode-vi ---
