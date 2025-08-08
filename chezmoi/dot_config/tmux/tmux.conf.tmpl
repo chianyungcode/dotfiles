@@ -55,6 +55,8 @@ bind Q display-pane # rebinding 'display-pane' to Q
 
 bind q last-pane # bind q to switch between last-pane
 
+bind A switch-client -l
+
 # Pane navigation using hjkl (similar to Vim)
 bind-key h select-pane -L
 bind-key j select-pane -D
@@ -62,7 +64,7 @@ bind-key k select-pane -U
 bind-key l select-pane -R
 
 # --- RUN A CLI TOOL e.g sesh,lazygit,bun ---
-bind-key "A" run-shell "sesh connect \"$(
+bind-key "o" run-shell "sesh connect \"$(
   sesh list --icons | fzf-tmux -p 80%,70% \
     --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
     --header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ^f find' \
@@ -145,11 +147,11 @@ set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'tmux-plugins/tmux-cpu'
 set -g @plugin 'tmux-plugins/tmux-battery'
 set -g @plugin 'tmux-plugins/tmux-online-status'
-set -g @plugin 'omerxx/tmux-sessionx'
 set -g @plugin 'joshmedeski/tmux-nerd-font-window-name'
 set -g @plugin 'b0o/tmux-autoreload'
 
 # === UNUSED PLUGINS ===
+# set -g @plugin 'omerxx/tmux-sessionx'
 # set -g @plugin 'sainnhe/tmux-fzf'
 # set -g @plugin 'navahas/tmux-grimoire' # https://github.com/navahas/tmux-grimoire
 # set -g @plugin 'omerxx/tmux-floax' # Floating terminal window
@@ -162,7 +164,7 @@ set -g @plugin 'b0o/tmux-autoreload'
 
 # -> Custom config for tmux plugin 'omerxx/tmux-sessionx' <-
 # I recommend using `o` if not already in use, for least key strokes when launching
-set -g @sessionx-bind 'o'
+# set -g @sessionx-bind 'o'
 
 # -> Custom config for tmux plugin 'tmux-resurrect' and 'tmux-continuum' <-
 # set -g @resurrect-processes 'lazygit'
