@@ -60,22 +60,26 @@
 
   references:
   https://jtroo.github.io/config.html#input-chords-v2
+
+  timeoutN :
+  The maximum time (in milliseconds) between the first key press and the subsequent ones for them to be recognized as a "chord".
+  If the keys are not pressed within this time window, the system treats them as regular key presses (not a chord) and processes them according to the active layer.
 |#
 
 (defchordsv2
   {{- if eq .chezmoi.os "darwin" }}
   (m ,) A-bspc $input-chord-time all-released ()
-  (i o) A-left 2000 all-released ()
-  (o p) A-right 2000 all-released ()
+  (i o) A-left 80 all-released ()
+  (o p) A-right 80 all-released ()
 
   {{- else if eq .chezmoi.os "linux" }}
   (m ,) C-bspc $input-chord-time all-released ()
-  (i o) C-left 2000 all-released ()
-  (o p) C-right 2000 all-released ()
+  (i o) C-left 80 all-released ()
+  (o p) C-right 80 all-released ()
   {{- end }}
 
   (l r) lrld $input-chord-time all-released () ;; live reload kanata, press this after changing kanata configuration
-  (j k) C-a $input-chord-time all-released () ;; tmux prefix
+  (j k) C-a 80 all-released () ;; tmux prefix
 )
 
 ;; == Layers ==
