@@ -37,7 +37,6 @@
 ;;  Syntax for tap-hold
 ;;  (tap-hold TAP-TIME HOLD-TIME TAP-KEY HOLD-KEY)
 (defalias
-  e (tap-hold $tap-time $hold-time e lmet)
   s (tap-hold $tap-time $hold-time s lctl)
   d (tap-hold $tap-time $hold-time d lalt)
   f (tap-hold $tap-time $hold-time f lmet)
@@ -66,17 +65,17 @@
 (defchordsv2
   {{- if eq .chezmoi.os "darwin" }}
   (m ,) A-bspc $input-chord-time all-released ()
-  (o p) A-right $input-chord-time all-released ()
-  (i o) A-left $input-chord-time all-released ()
+  (i o) A-left 2000 all-released ()
+  (o p) A-right 2000 all-released ()
 
   {{- else if eq .chezmoi.os "linux" }}
   (m ,) C-bspc $input-chord-time all-released ()
-  (o p) C-right $input-chord-time all-released ()
-  (i o) C-left $input-chord-time all-released ()
-  {{- end -}}
+  (i o) C-left 2000 all-released ()
+  (o p) C-right 2000 all-released ()
+  {{- end }}
 
   (l r) lrld $input-chord-time all-released () ;; live reload kanata, press this after changing kanata configuration
-  (l ;) C-a $input-chord-time all-released () ;; tmux prefix
+  (j k) C-a $input-chord-time all-released () ;; tmux prefix
 )
 
 ;; == Layers ==
@@ -86,7 +85,7 @@
 (deflayer base
        🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab    q    w    @e    r    t    y    u    i    o    p    [    ]    \
+  tab    q    w    e    r    t    y    u    i    o    p    [    ]    \
   @caps  a    @s    @d    @f    g    h    @j    @k    @l    ;    '    ret
   lsft z    x    c    v    b    n    m    ,    .    @/    rsft ;; Tombol x sekarang punya fungsi ganda
   lctl lmet lalt           @hyperkey            ralt rmet rctl
