@@ -172,4 +172,11 @@ return {
       nohlcheck = true,
     },
   },
+  {
+    -- Show color for hexacode in Neovim, example: #FFFFFF
+    "catgoose/nvim-colorizer.lua",
+    event = "BufReadPre",
+    opts = { -- set to setup table
+    },
+  },
 }

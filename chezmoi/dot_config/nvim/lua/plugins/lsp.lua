@@ -57,54 +57,36 @@ return {
       },
     },
   },
-
-  -- == Formatters ==
   {
-    -- References :
-    -- https://www.reddit.com/r/NixOS/comments/1dsvg71/nix_formatter_neovim/
-    -- Need to install nixfmt separately https://github.com/NixOS/nixfmt
-    -- https://medium.com/@lysender/using-biome-with-neovim-and-conform-afcc0ea0524b
-
-    "stevearc/conform.nvim",
-    optional = true,
+    "neovim/nvim-lspconfig",
+    opts = function(_, opts)
+      local keys = require("lazyvim.plugins.lsp.keymaps").get()
+      -- disable a keymap
+      -- Ini adalah default untuk hover kode, keymap ini saya disable karena berbenturan dengan plugin hover.lua . Sebenarnya sama saja fungsinya sama-sama untuk menghover suatu kode, tetapi dengan plugin bisa di customize lebih lagi.
+      keys[#keys + 1] = { "K", false }
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    enabled = false,
+    event = "LazyFile",
     opts = {
-      -- Conform will execute the first available formatter, followed by the next ones sequentially.
-      -- If multiple formatters are defined and available, each will run in order without any visible transition.
-      -- For example, if the first formatter sets indentation to 2 and the second sets it to 6,
-      -- the final result will have an indentation of 6 — you won’t see the intermediate state of 2-space indentation.
-      -- Syntax : language = { "<first_formatter>", "second_formatter" }
-      formatters_by_ft = { -- https://github.com/stevearc/conform.nvim?tab=readme-ov-file#setup
-        nix = { "nixfmt" },
-        lua = { "stylua" },
-        python = { "ruff" },
-        rust = { "rustfmt" },
-        go = { "gofmt" },
-        javascript = { "biome", "biome-organize-imports", "prettier" },
-        javascriptreact = { "biome", "biome-organize-imports", "prettier" },
-        typescript = { "biome", "biome-organize-imports", "prettier" },
-        typescriptreact = { "biome", "biome-organize-imports", "prettier" },
-        yaml = { "yamlfmt" }, -- Using custom formatters, because yamlfmt default with mason bug with indentation that set in .yamlfmt in root of working directory
-        toml = { "taplo_fmt" }, -- Using custom formatters, to prevent use default config for taplo in conform that can causing bug
-        -- toml = { "taplo" }, -- Bug when using with default `taplo`, [[rule]] array are ignored when using format on save
-        -- Use the "*" filetype to run formatters on all filetypes.
-        -- ["*"] = { "codespell" },
-        -- Use the "_" filetype to run formatters on filetypes that don't
-        -- have other formatters configured.
-        ["_"] = { "trim_whitespace" },
-      },
+      mode = "cursor",
+      max_lines = 3,
     },
-    -- Conform will notify you when a formatter errors
-    notify_on_error = true,
-    -- Conform will notify you when no formatters are available for the buffer
-    notify_no_formatters = true,
-    -- Custom formatters and overrides for built-in formatters
-    formatters = {
-      taplo_fmt = {
-        command = "taplo", -- CLI taplo
-        args = { "format", "-" }, -- "-" supaya baca dari stdin
-        stdin = true, -- kirim isi file lewat stdin
-        cwd = require("conform.util").root_file({ ".taplo.toml", "taplo.toml" }), -- opsional, kalau mau deteksi root
-        require_cwd = false, -- kalau root nggak ketemu tetap jalan
+    keys = {
+      {
+        "<leader>ut",
+        function()
+          local tsc = require("treesitter-context")
+          tsc.toggle()
+          if LazyVim.inject.get_upvalue(tsc.toggle, "enabled") then
+            LazyVim.info("Enabled Treesitter Context", { title = "Option" })
+          else
+            LazyVim.warn("Disabled Treesitter Context", { title = "Option" })
+          end
+        end,
+        desc = "Toggle Treesitter Context",
       },
     },
   },
