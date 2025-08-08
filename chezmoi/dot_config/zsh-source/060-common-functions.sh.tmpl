@@ -10,6 +10,38 @@ ffs() {
     find . -name "$1"'*'
 }
 
+path() {
+  echo -e ${PATH//:/\\n}
+}
+
+fpath() {
+  echo -e ${FPATH//:/\\n}
+}
+
+# Fungsi untuk mereset dan memuat ulang zsh-abbr
+upabbr() {
+  echo "Resetting zsh-abbr..."
+
+  # 1. Hapus direktori konfigurasi/cache zsh-abbr
+  # Opsi -v (verbose) akan menampilkan file apa saja yang dihapus
+  rm -rfv ~/.config/zsh-abbr
+
+  # 2. Impor ulang alias dari file konfigurasi Anda
+  # Pastikan perintah `abbr` ada sebelum menjalankannya
+  if command -v abbr >/dev/null; then
+    echo "Importing aliases..."
+    abbr import-aliases
+  else
+    echo "Warning: 'abbr' command not found. Skipping import."
+  fi
+
+  # 3. Beri pesan bahwa proses selesai dan shell akan di-restart
+  echo "Reset complete. Reloading shell now..."
+
+  # 4. Ganti shell saat ini dengan sesi zsh yang baru (setelah semua selesai)
+  exec zsh
+}
+
 ffe() {
     # Find file whose name ends with a given string
     find . -name '*'"$1"

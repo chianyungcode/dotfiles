@@ -6,25 +6,21 @@ alias lzg='lazygit'
 alias lzd='lazydocker'
 alias clrnvses='rm -rf ~/.local/share/nvim/sessions/*'
 alias ax='chmod a+x'                   # system: make file executable
-alias path='echo -e ${PATH//:/\\n}'    # system: Echo all executable Paths
-alias fpath='echo -e ${FPATH//:/\\n}'  # system: Echo fpath
 alias untar='tar -zxvf'                # Extract tar.gz file
 alias mktar='tar -cvzf'                # Create a tar.gz file
 alias numfiles='echo $(ls -1 | wc -l)' # Count of non-hidden files in current directories
 
 # === START OF CHEZMOI MANAGED ===
 {{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") (lookPath "wl-copy")}}
-alias cpwd="pwd | tr -d '\n' | wl-copy"
+alias cpwd="echo -n $(pwd) | wl-copy"
 {{- end }}
 {{- if eq .chezmoi.os "darwin" }}
-alias cpwd='pwd | tr -d "\n" | pbcopy'
+alias cpwd="echo -n $(pwd) | pbcopy"
 {{ end }}
 # === END OF CHEZMOI MANAGED ===
 
 # pueue
 alias pue="pueue"
-
-alias upabbr="rm -rf ~/.config/zsh-abbr && abbr import-aliases"
 
 # bun
 alias bfzf="bun run \"\$(jq -r '.scripts | keys[]' package.json | fzf --no-border)\""
