@@ -24,10 +24,10 @@ return {
           },
           win = {
             list = {
-              wo = {
-                number = true, -- https://github.com/folke/snacks.nvim/discussions/1150#discussioncomment-12192637
-                relativenumber = true,
-              },
+              -- wo = {
+              --   number = true, -- https://github.com/folke/snacks.nvim/discussions/1150#discussioncomment-12192637
+              --   relativenumber = true,
+              -- },
             },
           },
         },
