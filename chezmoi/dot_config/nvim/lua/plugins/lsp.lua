@@ -68,19 +68,22 @@ return {
     "stevearc/conform.nvim",
     optional = true,
     opts = {
-      -- Conform will run the first available formatter
-      -- Conform will run multiple formatters sequentially
+      -- Conform will execute the first available formatter, followed by the next ones sequentially.
+      -- If multiple formatters are defined and available, each will run in order without any visible transition.
+      -- For example, if the first formatter sets indentation to 2 and the second sets it to 6,
+      -- the final result will have an indentation of 6 — you won’t see the intermediate state of 2-space indentation.
+      -- Syntax : language = { "<first_formatter>", "second_formatter" }
       formatters_by_ft = { -- https://github.com/stevearc/conform.nvim?tab=readme-ov-file#setup
         nix = { "nixfmt" },
         lua = { "stylua" },
         python = { "ruff" },
         rust = { "rustfmt" },
-        go = { "goimports", "gofmt" },
+        go = { "gofmt" },
         javascript = { "biome", "biome-organize-imports", "prettier" },
         javascriptreact = { "biome", "biome-organize-imports", "prettier" },
         typescript = { "biome", "biome-organize-imports", "prettier" },
         typescriptreact = { "biome", "biome-organize-imports", "prettier" },
-        yaml = { "yamlfmt", "prettier" }, -- Using custom formatters, because yamlfmt default with mason bug with indentation that set in .yamlfmt in root of working directory
+        yaml = { "yamlfmt" }, -- Using custom formatters, because yamlfmt default with mason bug with indentation that set in .yamlfmt in root of working directory
         toml = { "taplo_fmt" }, -- Using custom formatters, to prevent use default config for taplo in conform that can causing bug
         -- toml = { "taplo" }, -- Bug when using with default `taplo`, [[rule]] array are ignored when using format on save
         -- Use the "*" filetype to run formatters on all filetypes.
