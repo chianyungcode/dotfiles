@@ -5,20 +5,20 @@
 # Antidote Plugin Manager Setup
 # ======================================================
 
-# -- Source Antidote (default install via git clone) --
-{{ if stat "~/.config/zsh/antidote.zsh"}}
+{{ if stat (joinPath .chezmoi.homeDir ".config/zsh/.antidote/antidote.zsh") -}}
+# -- Source Antidote (installed via git clone) --
 source ${ZDOTDIR}/.antidote/antidote.zsh
-{{ end }}
+{{- end }}
 
-# -- Source Antidote (if installed via package manager) --
 {{ if and (eq .chezmoi.os "darwin") (stat "/opt/bin/opt/antidote/share/antidote/antidote.zsh") }}
+# -- Source Antidote (installed via package manager) --
 # Source Antidote if installed via Homebrew on macOS
 source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
 {{- else if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") (stat "/usr/share/zsh-antidote/antidote.zsh")}}
 # Antidote installed via AUR package `zsh-antidote` (use: paru -S zsh-antidote)
 # ⚠️ Note: Using the AUR version on Arch Linux is **not recommended**, as it may not work properly in some setups.
 source /usr/share/zsh-antidote/antidote.zsh
-{{ end }}
+{{- end -}}
 
 # ======================================================
 # Plugin Configuration
