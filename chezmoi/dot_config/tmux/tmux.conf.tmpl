@@ -50,6 +50,11 @@ bind c new-window -c '#{pane_current_path}'
 
 unbind C-w # Unbind this because conflicting with zsh shell keybind which i prefer to use
 
+unbind q # unbind 'display-pane' which the default is prefix + q
+bind Q display-pane # rebinding 'display-pane' to Q
+
+bind q last-pane # bind q to switch between last-pane
+
 # Pane navigation using hjkl (similar to Vim)
 bind-key h select-pane -L
 bind-key j select-pane -D
@@ -57,7 +62,7 @@ bind-key k select-pane -U
 bind-key l select-pane -R
 
 # --- RUN A CLI TOOL e.g sesh,lazygit,bun ---
-bind-key "T" run-shell "sesh connect \"$(
+bind-key "A" run-shell "sesh connect \"$(
   sesh list --icons | fzf-tmux -p 80%,70% \
     --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
     --header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ^f find' \
