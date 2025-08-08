@@ -1,198 +1,199 @@
+---
 name: "Automated Tests"
 
 on:
-   workflow_dispatch:
-   push:
-      paths:
-         - ".github/workflows/automated_tests.yml"
-         - ".github/actions/**"
-         - "chezmoi/**"
-      branches:
-         - master
-         - main
-   pull_request:
-      types:
-         - opened
-         - reopened
-         - synchronize
-      paths:
-         - ".github/workflows/automated_tests.yml"
-         - ".github/actions/**"
-         - "chezmoi/**"
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/automated_tests.yml"
+      - ".github/actions/**"
+      - "chezmoi/**"
+    branches:
+      - master
+      - main
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+    paths:
+      - ".github/workflows/automated_tests.yml"
+      - ".github/actions/**"
+      - "chezmoi/**"
 
 concurrency:
-   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-   cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
-   test-dotfiles:
-      # runs-on: ubuntu-latest
-      strategy:
-         fail-fast: true
-         matrix:
-            os: ["ubuntu-latest", "macos-latest"]
-      runs-on: ${{ matrix.os }}
-      steps:
-         # - name: Install APT dependencies
-         #   if: startsWith(matrix.os, 'ubuntu')
-         #   run: |
-         #       apt-get update
-         #       apt-get install -y git zsh
+  test-dotfiles:
+    # runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        os: ["ubuntu-latest", "macos-latest"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      # - name: Install APT dependencies
+      #   if: startsWith(matrix.os, 'ubuntu')
+      #   run: |
+      #       apt-get update
+      #       apt-get install -y git zsh
 
-         - name: Checkout repository
-           uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-         - name: Copy repository to /home/runner/
-           run: |
-            if [ -d /home/runner ]; then homedir="/home/runner"; else homedir="/Users/runner"; fi
+      - name: Copy repository to /home/runner/
+        run: |
+          if [ -d /home/runner ]; then homedir="/home/runner"; else homedir="/Users/runner"; fi
 
-            mkdir -p ${homedir}/.local/share/chezmoi
-            cp -a . ${homedir}/.local/share/chezmoi
+          mkdir -p ${homedir}/.local/share/chezmoi
+          cp -a . ${homedir}/.local/share/chezmoi
 
-         # ----------------------------------------------
-         # Create config file
-         # ----------------------------------------------
-         - name: Create config file
-           run: |
-            if [ -d /home/runner ]; then homedir="/home/runner"; else homedir="/Users/runner"; fi
+      # ----------------------------------------------
+      # Create config file
+      # ----------------------------------------------
+      - name: Create config file
+        run: |
+          if [ -d /home/runner ]; then homedir="/home/runner"; else homedir="/Users/runner"; fi
 
-            mkdir -p ${homedir}/.config/chezmoi
+          mkdir -p ${homedir}/.config/chezmoi
 
-            cat > ${homedir}/.config/chezmoi/chezmoi.toml<< EOF
-            [data]
-                git_user          = "chianyungcode"
-                git_email         = "test@test.com"
-                github_user       = "chianyungcode"
-                machine_username  = "test"
-                machine_hostname  = "machine-test"
-                dev_computer      = false
-                homelab_member    = false
-                is_ci_workflow    = true # Set true only in CI test
-                personal_computer = false
-                use_secrets       = false
-                xdgCacheDir       = "${homedir}/.cache"
-                xdgConfigDir      = "${homedir}/.config"
-                xdgDataDir        = "${homedir}/.local/share"
-                xdgStateDir       = "${homedir}/.local/state"
-            EOF
+          cat > ${homedir}/.config/chezmoi/chezmoi.toml<< EOF
+          [data]
+              git_user          = "chianyungcode"
+              git_email         = "test@test.com"
+              github_user       = "chianyungcode"
+              machine_username  = "test"
+              machine_hostname  = "machine-test"
+              dev_computer      = false
+              homelab_member    = false
+              is_ci_workflow    = true # Set true only in CI test
+              personal_computer = false
+              use_secrets       = false
+              xdgCacheDir       = "${homedir}/.cache"
+              xdgConfigDir      = "${homedir}/.config"
+              xdgDataDir        = "${homedir}/.local/share"
+              xdgStateDir       = "${homedir}/.local/state"
+          EOF
 
-         # ----------------------------------------------
-         # Install chezmoi
-         # ----------------------------------------------
-         - name: Install chezmoi
-           run: |
-            sh -c "$(curl -fsLS get.chezmoi.io)"
+      # ----------------------------------------------
+      # Install chezmoi
+      # ----------------------------------------------
+      - name: Install chezmoi
+        run: |
+          sh -c "$(curl -fsLS get.chezmoi.io)"
 
-         # ----------------------------------------------
-         # Run chezmoi apply
-         # ----------------------------------------------
-         - name: Run chezmoi apply
-           run: |
-            ./bin/chezmoi apply
+      # ----------------------------------------------
+      # Run chezmoi apply
+      # ----------------------------------------------
+      - name: Run chezmoi apply
+        run: |
+          ./bin/chezmoi apply
 
-         # ----------------------------------------------
-         # UBUNTU: Confirm dotfiles are installed
-         # ----------------------------------------------
-         - name: Confirm dotfiles are installed
-           if: startsWith(matrix.os, 'ubuntu')
-           run: |
-            if [ -d /home/runner ]; then homedir="/home/runner"; else homedir="/Users/runner"; fi
-            echo "------- Testing files -------"
-            cd /home/runner
-            # echo "pwd: $(pwd)"
-            # ls -al
+      # ----------------------------------------------
+      # UBUNTU: Confirm dotfiles are installed
+      # ----------------------------------------------
+      - name: Confirm dotfiles are installed
+        if: startsWith(matrix.os, 'ubuntu')
+        run: |
+          if [ -d /home/runner ]; then homedir="/home/runner"; else homedir="/Users/runner"; fi
+          echo "------- Testing files -------"
+          cd /home/runner
+          # echo "pwd: $(pwd)"
+          # ls -al
 
-            existing_files=(
-              .config/zsh/.zshrc
-              .bashrc
-              .config/git/config
-              .ssh/config
-              .config/zsh-source/080-linux.sh
-            )
+          existing_files=(
+            .config/zsh/.zshrc
+            .bashrc
+            .config/git/config
+            .ssh/config
+            .config/zsh-source/080-linux.sh
+          )
 
-            missing_files=(
-              .config/dotfile_source/080-macos.sh
-              Library
-            )
+          missing_files=(
+            .config/dotfile_source/080-macos.sh
+            Library
+          )
 
-            installed_packages=(
-              jq
-              pygmentize
-            )
+          installed_packages=(
+            jq
+            pygmentize
+          )
 
-            # Confirm files exist
-            for file in ${existing_files[@]}; do
-              if [ ! -e "${homedir}/$file" ]; then
-                  echo "$file not found"
+          # Confirm files exist
+          for file in ${existing_files[@]}; do
+            if [ ! -e "${homedir}/$file" ]; then
+                echo "$file not found"
+                exit 1
+            fi
+          done
+
+          # Confirm files don't exist
+          for file in ${missing_files[@]} ; do
+            if [ -e "${homedir}/$file" ]; then
+                echo "$file found"
+                exit 1
+            fi
+          done
+
+          # Confirm packages are installed
+          for package in ${installed_packages[@]}; do
+              if [ ! $(command -v $package) ]; then
+                  echo "$package not found"
                   exit 1
               fi
-            done
+          done
 
-            # Confirm files don't exist
-            for file in ${missing_files[@]} ; do
-              if [ -e "${homedir}/$file" ]; then
-                  echo "$file found"
+      # ----------------------------------------------
+      # MACOS: Confirm dotfiles are installed
+      # ----------------------------------------------
+      - name: Confirm dotfiles are installed
+        if: startsWith(matrix.os, 'macos')
+        run: |
+          if [ -d /home/runner ]; then homedir="/home/runner"; else homedir="/Users/runner"; fi
+
+          echo "------- Testing files -------"
+          cd ${homedir}
+
+          existing_files=(
+            .config/zsh/.zshrc
+            .bashrc
+            .config/git/config
+            .config/nano/nanorc
+            .ssh/config
+            .config/zsh-source/080-macos.sh
+          )
+
+          missing_files=(
+            .config/zsh-source/080-linux.sh
+          )
+
+          installed_packages=(
+            jq
+            pygmentize
+          )
+
+          # Confirm files exist
+          for file in ${existing_files[@]}; do
+            if [ ! -e "${homedir}/$file" ]; then
+                echo "$file not found"
+                exit 1
+            fi
+          done
+
+          # Confirm files don't exist
+          for file in ${missing_files[@]} ; do
+            if [ -e "${homedir}/$file" ]; then
+                echo "$file found"
+                exit 1
+            fi
+          done
+
+          # Confirm packages are installed
+          for package in ${installed_packages[@]}; do
+              if [ ! $(command -v $package) ]; then
+                  echo "$package not found"
                   exit 1
               fi
-            done
-
-            # Confirm packages are installed
-            for package in ${installed_packages[@]}; do
-                if [ ! $(command -v $package) ]; then
-                    echo "$package not found"
-                    exit 1
-                fi
-            done
-
-         # ----------------------------------------------
-         # MACOS: Confirm dotfiles are installed
-         # ----------------------------------------------
-         - name: Confirm dotfiles are installed
-           if: startsWith(matrix.os, 'macos')
-           run: |
-            if [ -d /home/runner ]; then homedir="/home/runner"; else homedir="/Users/runner"; fi
-
-            echo "------- Testing files -------"
-            cd ${homedir}
-
-            existing_files=(
-              .config/zsh/.zshrc
-              .bashrc
-              .config/git/config
-              .config/nano/nanorc
-              .ssh/config
-              .config/zsh-source/080-macos.sh
-            )
-
-            missing_files=(
-              .config/zsh-source/080-linux.sh
-            )
-
-            installed_packages=(
-              jq
-              pygmentize
-            )
-
-            # Confirm files exist
-            for file in ${existing_files[@]}; do
-              if [ ! -e "${homedir}/$file" ]; then
-                  echo "$file not found"
-                  exit 1
-              fi
-            done
-
-            # Confirm files don't exist
-            for file in ${missing_files[@]} ; do
-              if [ -e "${homedir}/$file" ]; then
-                  echo "$file found"
-                  exit 1
-              fi
-            done
-
-            # Confirm packages are installed
-            for package in ${installed_packages[@]}; do
-                if [ ! $(command -v $package) ]; then
-                    echo "$package not found"
-                    exit 1
-                fi
-            done
+          done

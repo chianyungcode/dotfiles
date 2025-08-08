@@ -1,3 +1,4 @@
+---
 # /Users/chianyung/.config/tmuxinator/Website.yml
 
 name: Backend Weezy
@@ -45,10 +46,10 @@ root: ~/Code/Personal/Projects/Backend/allweezy-backend/
 # attach: false
 
 windows:
-   - IDE:
+  - IDE:
       - nvim .
-   - Tools:
+  - Tools:
       panes:
-         - lazygit
-         - lazydocker
-         - yazi
+        - lazygit
+        - lazydocker
+        - yazi

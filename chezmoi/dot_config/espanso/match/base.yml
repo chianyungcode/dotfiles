@@ -1,3 +1,4 @@
+---
 # espanso match file
 
 # For a complete introduction, visit the official docs at: https://espanso.org/docs/
@@ -11,38 +12,38 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/espanso/espanso/dev/schemas/match.schema.json
 
 matches:
-   # Simple text replacement
-   - trigger: ":espanso"
-     replace: "Hi there!"
+  # Simple text replacement
+  - trigger: ":espanso"
+    replace: "Hi there!"
 
-   # NOTE: espanso uses YAML to define matches, so pay attention to the indentation!
+  # NOTE: espanso uses YAML to define matches, so pay attention to the indentation!
 
-   # But matches can also be dynamic:
+  # But matches can also be dynamic:
 
-   # Print the current date
-   - trigger: ":date"
-     replace: "{{mydate}}"
-     vars:
+  # Print the current date
+  - trigger: ":date"
+    replace: "{{mydate}}"
+    vars:
       - name: mydate
         type: date
         params:
-         format: "%m/%d/%Y"
+          format: "%m/%d/%Y"
 
-   # Print the output of a shell command
-   - trigger: ":shell"
-     replace: "{{output}}"
-     vars:
+  # Print the output of a shell command
+  - trigger: ":shell"
+    replace: "{{output}}"
+    vars:
       - name: output
         type: shell
         params:
-         cmd: "echo 'Hello from your shell'"
+          cmd: "echo 'Hello from your shell'"
 
-   - trigger: ":form"
-     replace: "Hey {{form1.name}}, how are you?"
-     vars:
+  - trigger: ":form"
+    replace: "Hey {{form1.name}}, how are you?"
+    vars:
       - name: "form1"
         type: form
         params:
-         layout: "Hey [[name]], how are you?"
+          layout: "Hey [[name]], how are you?"
 
 # And much more! For more information, visit the docs: https://espanso.org/docs/

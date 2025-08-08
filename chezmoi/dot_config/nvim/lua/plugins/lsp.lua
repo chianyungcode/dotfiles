@@ -80,7 +80,7 @@ return {
         javascriptreact = { "biome", "biome-organize-imports", "prettier" },
         typescript = { "biome", "biome-organize-imports", "prettier" },
         typescriptreact = { "biome", "biome-organize-imports", "prettier" },
-        yaml = { "yamlfmt", "prettier" },
+        yaml = { "yamlfmt", "prettier" }, -- Using custom formatters, because yamlfmt default with mason bug with indentation that set in .yamlfmt in root of working directory
         toml = { "taplo_fmt" }, -- Using custom formatters, to prevent use default config for taplo in conform that can causing bug
         -- toml = { "taplo" }, -- Bug when using with default `taplo`, [[rule]] array are ignored when using format on save
         -- Use the "*" filetype to run formatters on all filetypes.
