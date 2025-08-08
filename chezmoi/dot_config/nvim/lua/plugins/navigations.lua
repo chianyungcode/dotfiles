@@ -1,19 +1,35 @@
 return {
   {
+    "leath-dub/snipe.nvim",
+    enabled = true,
+    keys = {
+      {
+        "gb",
+        function()
+          require("snipe").open_buffer_menu()
+        end,
+        desc = "Open Snipe buffer menu",
+      },
+    },
+    --- @type snipe.DefaultConfig
+    opts = {
+      ui = {
+        position = "center",
+        open_win_override = {
+          border = "rounded",
+        },
+        text_align = "file-first",
+      },
+      hints = {
+        dictionary = "asdflewcmpghio",
+      },
+    },
+  },
+  {
     -- Ini hanya untuk tambahan custom options saja, untuk defaultnya diinstall via LazyExtras di file lazy.lua
     "echasnovski/mini.files",
     enabled = true,
     version = false,
-    -- keys = {
-    -- 	-- Buatan sendiri
-    -- 	{
-    -- 		"<leader>fm",
-    -- 		function()
-    -- 			require("mini.files").open(vim.api.nvim_buf_get_name(0))
-    -- 		end,
-    -- 		desc = "Open mini files",
-    -- 	},
-    -- },
     opts = {
       -- No need to copy this inside `setup()`. Will be used automatically.
 
@@ -67,5 +83,58 @@ return {
         width_preview = 75,
       },
     },
+  },
+  {
+    "hedyhli/outline.nvim",
+    config = function()
+      -- Example mapping to toggle outline
+      vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
+
+      require("outline").setup({
+        -- Your setup opts here (leave empty to use defaults)
+      })
+    end,
+  },
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    ---@type Flash.Config
+    opts = {
+      modes = {
+        search = {
+          enabled = true,
+        },
+        char = {
+          jump_labels = true,
+        },
+      },
+      search = {
+        multi_window = false,
+      },
+    },
+    -- stylua: ignore
+  },
+  {
+    "smoka7/multicursors.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "nvimtools/hydra.nvim",
+    },
+    opts = {},
+    cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
+    keys = {
+      {
+        mode = { "v", "n" },
+        "<Leader>m",
+        "<cmd>MCstart<cr>",
+        desc = "Create a selection for selected text or word under the cursor",
+      },
+    },
+  },
+  {
+    "chentoast/marks.nvim",
+    enabled = true,
+    event = "VeryLazy",
+    opts = {},
   },
 }

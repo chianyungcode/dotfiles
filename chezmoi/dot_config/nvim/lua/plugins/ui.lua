@@ -1,7 +1,112 @@
--- Plugin for dimming another window
-
 return {
   {
+    -- Breadcrumb menunjukkan file path diatas
+    -- https://github.com/Bekaboo/dropbar.nvim
+    "Bekaboo/dropbar.nvim",
+    enabled = false,
+    -- Changed this
+  },
+  {
+    -- Buffer tab line on top
+    "akinsho/bufferline.nvim",
+    enabled = true,
+    keys = {
+      {
+        "<A-1>",
+        "<cmd>BufferLineGoToBuffer 1<CR>",
+      },
+      {
+        "<A-2>",
+        "<cmd>BufferLineGoToBuffer 2<CR>",
+      },
+      {
+        "<A-3>",
+        "<cmd>BufferLineGoToBuffer 3<CR>",
+      },
+      {
+        "<A-4>",
+        "<cmd>BufferLineGoToBuffer 4<CR>",
+      },
+      {
+        "<A-5>",
+        "<cmd>BufferLineGoToBuffer 5<CR>",
+      },
+      {
+        "<A-6>",
+        "<cmd>BufferLineGoToBuffer 6<CR>",
+      },
+      {
+        "<A-7>",
+        "<cmd>BufferLineGoToBuffer 7<CR>",
+      },
+      {
+        "<A-8>",
+        "<cmd>BufferLineGoToBuffer 8<CR>",
+      },
+      {
+        "<A-9>",
+        "<cmd>BufferLineGoToBuffer 9<CR>",
+      },
+    },
+    config = function()
+      require("bufferline").setup({
+        options = {
+          numbers = function(opts)
+            return string.format("%s", opts.ordinal)
+          end,
+          show_buffer_close_icons = false,
+          show_close_icon = false,
+        },
+      })
+    end,
+  },
+  {
+    -- Lua line in bottom
+    -- https://github.com/meuter/lualine-so-fancy.nvim
+    "nvim-lualine/lualine.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "meuter/lualine-so-fancy.nvim",
+    },
+    opts = {
+      options = {
+        -- theme = "seoul256",
+        component_separators = { left = "│", right = "│" },
+        section_separators = { left = "", right = "" },
+        globalstatus = true,
+        refresh = {
+          statusline = 100,
+        },
+      },
+      sections = {
+        lualine_a = {
+          { "fancy_mode", width = 3 },
+        },
+        lualine_b = {
+          { "fancy_branch" },
+          -- { "fancy_diff" }, -- showing the diff for text added, modified and removed
+        },
+        lualine_c = {
+          { "filename", path = 4 }, -- path = 4 (only showing path for the filename and parent directory, not the entire path, the option is 0,1,2,3,4)
+        },
+        lualine_x = {
+          { "fancy_macro" },
+          { "fancy_diagnostics" },
+          { "fancy_searchcount" },
+          -- { "fancy_location" }, -- location of the current cursor -> $line_number | $character_position_number
+        },
+        lualine_y = {
+          -- { "fancy_filetype", ts_icon = "" }, -- Showing filetype for the current buffer
+          {},
+        },
+        lualine_z = {
+          { "fancy_lsp_servers" },
+        },
+      },
+    },
+  },
+  {
+    -- Dimming window
     "tadaa/vimade",
     enabled = true,
     -- default opts (you can partially set these or configure them however you like)
