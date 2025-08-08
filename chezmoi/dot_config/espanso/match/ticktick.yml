@@ -1,7 +1,7 @@
 ---
 matches:
   - trigger: ":titod"
-    form: "[[task]] [[[start_time]] to [[end_time]]] #intentional-task ~"
+    form: "[[task]] [today [[start_time]] to [[end_time]]] #intentional-task ~"
   - trigger: ":titor"
     form: "[[task]] [tomorrow [[start_time]] to [[end_time]]] #intentional-task ~"
   - trigger: ":tibac"
