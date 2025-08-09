@@ -29,6 +29,7 @@ export XDG_CACHE_HOME={{ .xdgCacheDir }}
 export GIT_CONFIG_GLOBAL="${XDG_CONFIG_HOME}/git/config"
 export PROTO_HOME="${XDG_CONFIG_HOME}/proto"
 export STARSHIP_CONFIG="${XDG_CONFIG_HOME}/starship/starship.toml" # Change default location for starship configuration
+export ZDOTDIR="${XDG_CONFIG_HOME}/zsh" # Used by antidote, must be set before intialize `antidote`
 
 # === DATA ===
 export _ZO_DATA_DIR="${XDG_DATA_HOME}/zoxide" # default for 'db.zo' file stored (database for zoxide)
