@@ -1,0 +1,44 @@
+{
+	"$schema": "https://opencode.ai/config.json",
+	"theme": "catppuccin",
+	"agent": {
+		"repiuwer": {
+			"description": "Reviews code for best practices and potential issues",
+			"model": "anthropic/claude-sonnet-4-20250514",
+			"prompt": "You are a code reviewer. Focus on security, performance, and maintainability.",
+			"tools": {
+				"write": false,
+				"edit": false
+			}
+		}
+	},
+  "provider": {
+    "openrouter" : {
+      "models": {
+        "moonshotai/kimi-k2":{
+          "name": "My Kimi Custom"
+        }
+      },
+      "options": {
+        "apiKey": "{env:OPENROUTER_OPENCODE_APIKEY}"
+      }
+    }
+
+    // "myprovider": {
+    //   "npm": "@ai-sdk/openai-compatible",
+    //   "name": "My AI ProviderDisplay Name",
+    //   "options": {
+    //     "baseURL": "https://api.myprovider.com/v1",
+    //     "apiKey": "{env:ANTHROPIC_API_KEY}",
+    //     "headers": {
+    //       "Authorization": "Bearer custom-token"
+    //     }
+    //   },
+    //   "models": {
+    //     "my-model-name": {
+    //       "name": "My Model Display Name"
+    //     }
+    //   }
+    // }
+  }
+}
