@@ -18,8 +18,9 @@ fpath() {
   echo -e ${FPATH//:/\\n}
 }
 
-# Fungsi untuk mereset dan memuat ulang zsh-abbr
 upabbr() {
+  # DESC: Remove all existing abbr and regenerate it
+
   echo "Resetting zsh-abbr..."
 
   # 1. Hapus direktori konfigurasi/cache zsh-abbr

@@ -9,6 +9,8 @@ alias ax='chmod a+x'                   # system: make file executable
 alias untar='tar -zxvf'                # Extract tar.gz file
 alias mktar='tar -cvzf'                # Create a tar.gz file
 alias numfiles='echo $(ls -1 | wc -l)' # Count of non-hidden files in current directories
+alias bkzsh='bindkey | fzf'
+alias bktmux='tmux list-keys | fzf'
 
 # === START OF CHEZMOI MANAGED ===
 {{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") (lookPath "wl-copy")}}
