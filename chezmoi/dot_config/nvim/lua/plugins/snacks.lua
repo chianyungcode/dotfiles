@@ -28,7 +28,9 @@ return {
             layout = {
               position = "left",
               box = "horizontal",
-              width = 0.2,
+              width = function()
+                return math.max(5, vim.o.columns * 0.35)
+              end,
               height = 0.2,
               {
                 box = "vertical",
