@@ -3,7 +3,7 @@
 # alt-x : insert last command result
 zmodload -i zsh/parameter
 insert-last-command-output() {
-    LBUFFER+="$(eval ${history[$((HISTCMD - 1))]})"
+	LBUFFER+="$(eval ${history[$((HISTCMD - 1))]})"
 }
 zle -N insert-last-command-output
 bindkey '^[x' insert-last-command-output
@@ -21,23 +21,23 @@ bindkey "^[^[[D" backward-word
 
 # [PageUp] - Up a line of history
 if [[ -n "$terminfo[kpp]" ]]; then
-    bindkey "$terminfo[kpp]" up-line-or-history
+	bindkey "$terminfo[kpp]" up-line-or-history
 fi
 # [PageDown] - Down a line of history
 if [[ -n "$terminfo[knp]" ]]; then
-    bindkey "$terminfo[knp]" down-line-or-history
+	bindkey "$terminfo[knp]" down-line-or-history
 fi
 
 if [[ -n "$terminfo[khome]" ]]; then
-    # [Home] - Go to beginning of line
-    bindkey "$terminfo[khome]" beginning-of-line
+	# [Home] - Go to beginning of line
+	bindkey "$terminfo[khome]" beginning-of-line
 
-    # OPTION+left
-    bindkey '[D' beginning-of-line
+	# OPTION+left
+	bindkey '[D' beginning-of-line
 fi
 if [[ -n "$terminfo[kend]" ]]; then
-    # [End] - Go to end of line
-    bindkey "$terminfo[kend]" end-of-line
-    # OPTION+right
-    bindkey '[C' end-of-line
+	# [End] - Go to end of line
+	bindkey "$terminfo[kend]" end-of-line
+	# OPTION+right
+	bindkey '[C' end-of-line
 fi

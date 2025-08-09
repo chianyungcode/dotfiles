@@ -9,18 +9,18 @@ SUBJECT="%s"
 FORMAT="$HASH $RELATIVE_TIME{$AUTHOR{$REFS $SUBJECT"
 
 pretty_git_log() {
-  git log --graph --pretty="tformat:$FORMAT" |
-    column -t -s '{' |
-    \less -XRS --quit-if-one-screen
+	git log --graph --pretty="tformat:$FORMAT" |
+		column -t -s '{' |
+		\less -XRS --quit-if-one-screen
 }
 
 alias prgl="pretty_git_log" # A nicer Git Log
 
 gurl() {
-  # DESC:		Print URL of current git repository
-  git remote get-url origin |
-    sed 's/\.git$//' |
-    sed 's/^ssh:\/\/git@/https:\/\//' |
-    sed -E 's/:[0-9]+//' |
-    sed 's/git@github.com:/https:\/\/github.com\//'
+	# DESC:		Print URL of current git repository
+	git remote get-url origin |
+		sed 's/\.git$//' |
+		sed 's/^ssh:\/\/git@/https:\/\//' |
+		sed -E 's/:[0-9]+//' |
+		sed 's/git@github.com:/https:\/\/github.com\//'
 }

@@ -23,7 +23,7 @@ return {
 
           auto_close = true,
           layout = {
-            preset = "ivy", -- other options is "ivy", "select"
+            preset = "sidebar", -- other options is "ivy", "select"
             preview = "main",
           },
           win = {

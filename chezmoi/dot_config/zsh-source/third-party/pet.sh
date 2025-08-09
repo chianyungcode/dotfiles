@@ -1,12 +1,12 @@
 function pet-select() {
-  BUFFER=$(pet search --query "$LBUFFER")
-  CURSOR=$#BUFFER
-  zle redisplay
+	BUFFER=$(pet search --query "$LBUFFER")
+	CURSOR=$#BUFFER
+	zle redisplay
 }
 zle -N pet-select
 
 if [ -t 0 ]; then
-  stty -ixon
+	stty -ixon
 fi
 
 # Bind di emacs mode

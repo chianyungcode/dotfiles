@@ -1,50 +1,50 @@
 # shellcheck disable=SC2154
 
 _alert_() {
-  # DESC:   Controls all printing of messages to stdout.
-  # ARGS:   $1 (required) - The type of alert to print
-  #                         (success, header, notice, dryrun, debug, warning, error,
-  #                         fatal, info, input)
-  #         $2 (required) - The message to be printed to stdout
-  # OUTS:   None
-  # USAGE:  [ALERTTYPE] "[MESSAGE]"
+	# DESC:   Controls all printing of messages to stdout.
+	# ARGS:   $1 (required) - The type of alert to print
+	#                         (success, header, notice, dryrun, debug, warning, error,
+	#                         fatal, info, input)
+	#         $2 (required) - The message to be printed to stdout
+	# OUTS:   None
+	# USAGE:  [ALERTTYPE] "[MESSAGE]"
 
-  local color
-  local alertType="${1}"
-  local message="${2}"
+	local color
+	local alertType="${1}"
+	local message="${2}"
 
-  if [[ ${alertType} =~ ^(error|fatal) ]]; then
-    color="${bold}${red}"
-  elif [[ ${alertType} == "info" ]]; then
-    color="${gray}"
-  elif [[ ${alertType} == "warning" ]]; then
-    color="${red}"
-  elif [[ ${alertType} == "success" ]]; then
-    color="${green}"
-  elif [[ ${alertType} == "debug" ]]; then
-    color="${purple}"
-  elif [[ ${alertType} == "header" ]]; then
-    color="${bold}${yellow}"
-  elif [[ ${alertType} == "notice" ]]; then
-    color="${bold}"
-  elif [[ ${alertType} == "input" ]]; then
-    color="${bold}${underline}"
-  elif [[ ${alertType} == "dryrun" ]]; then
-    color="${blue}"
-  else
-    color=""
-  fi
+	if [[ ${alertType} =~ ^(error|fatal) ]]; then
+		color="${bold}${red}"
+	elif [[ ${alertType} == "info" ]]; then
+		color="${gray}"
+	elif [[ ${alertType} == "warning" ]]; then
+		color="${red}"
+	elif [[ ${alertType} == "success" ]]; then
+		color="${green}"
+	elif [[ ${alertType} == "debug" ]]; then
+		color="${purple}"
+	elif [[ ${alertType} == "header" ]]; then
+		color="${bold}${yellow}"
+	elif [[ ${alertType} == "notice" ]]; then
+		color="${bold}"
+	elif [[ ${alertType} == "input" ]]; then
+		color="${bold}${underline}"
+	elif [[ ${alertType} == "dryrun" ]]; then
+		color="${blue}"
+	else
+		color=""
+	fi
 
-  _writeToScreen_() {
+	_writeToScreen_() {
 
-    if ! [[ -t 1 ]]; then # Don't use colors on non-recognized terminals
-      color=""
-      reset=""
-    fi
+		if ! [[ -t 1 ]]; then # Don't use colors on non-recognized terminals
+			color=""
+			reset=""
+		fi
 
-    echo -e "${color}$(printf "[%7s]" "${alertType}") ${message}${reset}"
-  }
-  _writeToScreen_
+		echo -e "${color}$(printf "[%7s]" "${alertType}") ${message}${reset}"
+	}
+	_writeToScreen_
 
 } # /_alert_
 
