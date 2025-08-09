@@ -11,14 +11,16 @@
 vim.opt.spelllang = { "en", "id" }
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
--- Enable this option to avoid conflicts with Prettier. https://www.lazyvim.org/extras/formatting/biome
+-- Uncomment the code below, if only use prettier if the config file `.prettierrc` or `prettier.json` exist in the root project directory
 -- vim.g.lazyvim_prettier_needs_config = true
 
+-- Uncomment this if want to show cool inline diagnostic
 -- vim.diagnostic.config({
--- 	virtual_text = true,
--- 	virtual_lines = { current_line = true },
--- 	underline = true,
--- 	update_in_insert = false,
+--   virtual_text = true,
+--   virtual_lines = { current_line = true },
+--   underline = true,
+--   update_in_insert = false,
 -- })
+
 -- vim.opt_local.spell = false
 -- vim.opt_global.spell = false

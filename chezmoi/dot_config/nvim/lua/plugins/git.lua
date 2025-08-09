@@ -8,9 +8,10 @@ return {
         current_line_blame_opts = {
           virt_text = true,
           virt_text_priority = 100,
+          delay = 300,
         },
         signs = {
-          add = { text = "+" },
+          add = { text = "┃" },
           change = { text = "┃" },
           delete = { text = "_" },
           topdelete = { text = "‾" },
@@ -30,7 +31,7 @@ return {
     end,
   },
   {
-    -- Menampilkan inline blame last git hash commit and author out of the box
+    -- Menampilkan inline blame out of the box secara default
     "tanvirtin/vgit.nvim",
     enabled = false,
     branch = "v1.0.x",
