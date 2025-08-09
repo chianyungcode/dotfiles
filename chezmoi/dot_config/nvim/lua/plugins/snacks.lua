@@ -8,6 +8,10 @@ return {
   opts = {
     -- Snacks.picker() ini adalah snacks.picker custom configuration
     picker = {
+      ui_select = false,
+      layout = {
+        preset = "ivy",
+      },
       sources = {
         -- files = { ignored = true, hidden = true },
         -- grep = { ignored = true, hidden = true },
@@ -16,10 +20,25 @@ return {
         explorer = {
           -- ignored = true,
           -- hidden = true,
+          auto_close = true,
+
           layout = {
-            preset = "sidebar", -- other options is "ivy", "select"
+            -- preset = "sidebar", -- other options is "ivy", "select"
+            preview = "main",
             layout = {
               position = "left",
+              box = "horizontal",
+              width = 0.2,
+              height = 0.2,
+              {
+                box = "vertical",
+                border = "rounded",
+                title = "{source} {live} {flags}",
+                title_pos = "center",
+                { win = "input", height = 1, border = "bottom" },
+                { win = "list", border = "none" },
+              },
+              { win = "preview", border = "rounded", width = 0.7, title = "{preview}" },
             },
           },
           win = {
