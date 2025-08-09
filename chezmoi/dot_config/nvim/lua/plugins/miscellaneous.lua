@@ -23,6 +23,7 @@ return {
   },
   {
     "HakonHarnes/img-clip.nvim",
+    enabled = false,
     event = "VeryLazy",
     opts = {
       -- add options here
