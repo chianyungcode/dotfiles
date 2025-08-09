@@ -27,6 +27,7 @@ return {
   },
   {
     -- Ini hanya untuk tambahan custom options saja, untuk defaultnya diinstall via LazyExtras di file lazy.lua
+    -- NOTE: Install mini.files with LazyExtras, because it preconfigured open mini.files where's directories in the current buffer and showing the preview
     "echasnovski/mini.files",
     enabled = true,
     version = false,
@@ -76,7 +77,7 @@ return {
         -- Whether to show preview of file/directory under cursor
         preview = true,
         -- Width of focused window
-        width_focus = 30,
+        width_focus = 20,
         -- Width of non-focused window
         width_nofocus = 15,
         -- Width of preview window
