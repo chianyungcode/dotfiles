@@ -373,7 +373,6 @@
         "markdownlint-cli2", # Linter for markdown file
         "mermaid-cli",       # LaTex math
         "neovim",
-        "nixfmt",            # Nix formatter
         "pet",
         "prettier",          # JS/TS formatter
         "pueue",             # Task runner and scheduler
@@ -399,7 +398,7 @@
       packages = ["iperf"]
 
     [packages.pacman.personal_computer]
-      packages = []
+      packages = ["opencode-bin"]
 
   [packages.python]
     to_remove = []
