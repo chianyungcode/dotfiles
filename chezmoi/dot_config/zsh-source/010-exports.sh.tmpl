@@ -1,13 +1,8 @@
 # == CONFIGURATION ENV VARIABLE ===
-export ANTIDOTE_HOME=~/.cache/antidote
 export BAT_THEME="OneHalfDark"
 export DOTFILES="$HOME/.local/share/chezmoi"
 export EDITOR="nvim"
-export GIT_CONFIG_GLOBAL="$HOME/.config/git/config"
 export LM_STUDIO_BIN="$HOME/.lmstudio/bin"
-export PROTO_HOME="$HOME/.config/proto"
-export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml" # Change default location for starship configuration
-export _ZO_DATA_DIR="$XDG_DATA_HOME" # default for 'db.zo' file stored (database for zoxide)
 
 # === START OF CHEZMOI MANAGED ===
 {{- if .use_secrets }}
