@@ -103,7 +103,7 @@ return {
     opts = {
       modes = {
         search = {
-          enabled = false, -- Set to 'true' if want a labels when searching with '/' or '?'
+          enabled = true, -- Set to 'true' if want a labels when searching with '/' or '?'
         },
         char = {
           jump_labels = true,

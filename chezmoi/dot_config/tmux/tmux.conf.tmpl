@@ -79,8 +79,8 @@ bind-key "o" run-shell "sesh connect \"$(
     --preview-window 'right:55%' \
     --preview 'sesh preview {}'
 )\""
+# bind -N "Control+g (root mode) lazygit" -T root C-g new-window -c "#{pane_current_path}" -n "🌳" "lazygit 2> /dev/null" # Lazygit
 bind -N "Run last sessions" -T prefix L run-shell "sesh last || tmux display-message -d 1000 'Oops, no last sessions found'"
-bind -N "Control+g (root mode) lazygit" -T root C-g new-window -c "#{pane_current_path}" -n "🌳" "lazygit 2> /dev/null" # Lazygit
 # bind -N "Control-d (root mode) lazydocker" -T prefix C-d new-window -c "#{pane_current_path}" -n "🐳" "lazydocker 2> /dev/null" # Lazydocker
 bind -N "Run btop" -T root C-m new-window -c "#{pane_current_path}" -n "📈" "btop"
 # bind -N "Run Yazi" -T root C-y new-window -c "#{pane_current_path}" -n "📁" "yazi"
