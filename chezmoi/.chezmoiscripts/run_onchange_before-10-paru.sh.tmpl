@@ -5,33 +5,21 @@
 {{ template "shared_script_utils.bash" . }}
 
 packages=(
-    {{ range $package := .packages.pacman.common.cli }}
-    "{{ $package }}"
-    {{ end }}
-    {{ range $package := .packages.pacman.common.apps }}
+    {{ range $package := .packages.pacman.common.packages }}
     "{{ $package }}"
     {{ end }}
     {{ if .dev_computer }}
-    {{ range $package := .packages.pacman.dev_computer.cli }}
-    "{{ $package }}"
-    {{ end }}
-    {{ range $package := .packages.pacman.dev_computer.apps }}
+    {{ range $package := .packages.pacman.dev_computer.packages }}
     "{{ $package }}"
     {{ end }}
     {{ end }}
     {{ if .homelab_member }}
-    {{ range $package := .packages.pacman.homelab_member.cli }}
-    "{{ $package }}"
-    {{ end }}
-    {{ range $package := .packages.pacman.homelab_member.apps }}
+    {{ range $package := .packages.pacman.homelab_member.packages }}
     "{{ $package }}"
     {{ end }}
     {{ end }}
     {{ if .personal_computer }}
-    {{ range $package := .packages.pacman.personal_computer.cli }}
-    "{{ $package }}"
-    {{ end }}
-    {{ range $package := .packages.pacman.personal_computer.apps }}
+    {{ range $package := .packages.pacman.personal_computer.packages }}
     "{{ $package }}"
     {{ end }}
     {{ end }}

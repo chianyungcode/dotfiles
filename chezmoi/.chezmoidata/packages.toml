@@ -320,7 +320,7 @@
 
   [packages.pacman]
     [packages.pacman.common]
-      cli = [
+      packages = [
         "base-devel",    # Equivalent to apt-transport-https and build essentials
         "bat",           # cat with syntax highlighting and Git integration
         "bind-tools",    # Equivalent to dnsutils
@@ -330,6 +330,7 @@
         "fzf",
         "git",
         "git-extras",
+        "gnome-keyring", # For 1password two factor auth
         "gnupg",
         "jq",
         "logrotate",
@@ -340,6 +341,7 @@
         "net-tools",
         "openssh",       # Equivalent to openssh-server
         "p7zip",         # Equivalent to p7zip-full
+        "polkit-gnome",  # For 1password prompt available
         "ripgrep",       # search tool like grep and the silver searcher
         "sudo",
         "tzdata",
@@ -347,21 +349,20 @@
         "wget",
         "zsh",
       ]
-      apps = [
-        "gnome-keyring", # For 1password two factor auth
-        "polkit-gnome",  # For 1password prompt available
-      ]
 
     [packages.pacman.dev_computer]
-      cli = [
+      packages = [
         "biome",             # JS/TS linter, formatter
         "codespell",         # Fix common misspellings in source code and text files
         "docker",
         "dpkg",
         "entr",              # dependency for tmux-autoreload
         "eslint",            # JS/TS linter
+        "espanso-wayland",
         "eza",
+        "fprintd",           # fingerprint
         "git-delta",         # Pager for git
+        "git-extras",        # Add extra command to default git
         "github-cli",        # Github CLI
         "glab",              # GitLab CLI
         "glow",              # Render markdown in CLI
@@ -382,29 +383,23 @@
         "starship",
         "stylua",            # Lua formatter
         "stylua",            # Lua formatter
+        "tailscale",
         "taplo",             # TOML formatter
         "tectonic",
+        "ticktick",
         "tmux",
+        "usbutils",          # check fingerprint info
         "vivid",             # Color generator for LS_COLORS env variable
         "yamlfmt",           # YAML formatter
         "yamllint",          # YAML linter
         "yq",                # YAML processor
       ]
-      apps = [
-        "espanso-wayland",
-        "fprintd",           # fingerprint
-        "tailscale",
-        "ticktick",
-        "usbutils",          # check fingerprint info
-      ]
 
     [packages.pacman.homelab_member]
-      cli = ["iperf"]
-      apps = []
+      packages = ["iperf"]
 
     [packages.pacman.personal_computer]
-      cli = []
-      apps = []
+      packages = []
 
   [packages.python]
     to_remove = []
