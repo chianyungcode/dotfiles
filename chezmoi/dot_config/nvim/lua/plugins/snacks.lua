@@ -8,7 +8,6 @@ return {
   opts = {
     -- Snacks.picker() ini adalah snacks.picker custom configuration
     picker = {
-      ui_select = false,
       layout = {
         preset = "ivy",
       },
@@ -17,31 +16,15 @@ return {
         -- grep = { ignored = true, hidden = true },
         -- grep_word = { ignored = true, hidden = true },
         -- grep_buffers = { ignored = true, hidden = true },
+
         explorer = {
           -- ignored = true,
           -- hidden = true,
-          auto_close = true,
 
+          auto_close = true,
           layout = {
-            -- preset = "sidebar", -- other options is "ivy", "select"
+            preset = "ivy", -- other options is "ivy", "select"
             preview = "main",
-            layout = {
-              position = "left",
-              box = "horizontal",
-              width = function()
-                return math.max(5, vim.o.columns * 0.35)
-              end,
-              height = 0.2,
-              {
-                box = "vertical",
-                border = "rounded",
-                title = "{source} {live} {flags}",
-                title_pos = "center",
-                { win = "input", height = 1, border = "bottom" },
-                { win = "list", border = "none" },
-              },
-              { win = "preview", border = "rounded", width = 0.7, title = "{preview}" },
-            },
           },
           win = {
             list = {
