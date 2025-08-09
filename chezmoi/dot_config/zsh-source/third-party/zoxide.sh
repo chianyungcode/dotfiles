@@ -29,7 +29,7 @@ fzf_zoxide_widget() {
     --no-sort \
     --reverse \
     --prompt="Zoxide > " \
-    --preview 'exa -1 --color=always {2} 2>/dev/null || ls -la --color=always {2}' \
+    --preview 'eza -TL 2 --color=always --icons=always {2} 2>/dev/null || ls -la --color=always {2}' \
     --preview-window=right:40%:wrap)
 
   # Ambil kolom path saja (kolom kedua)

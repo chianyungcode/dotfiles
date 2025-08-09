@@ -48,7 +48,10 @@ ffe() {
 }
 
 function alias-select() {
-  BUFFER=$(alias | fzf --prompt="Select Alias > " | awk -F'=' '{print $1}' | sed "s/alias //")
+  BUFFER=$(alias | fzf --prompt="Select Alias > " \
+    --preview="echo {} | awk -F'=' '{print \$2}' | sed 's/^.\(.*\).$/\1/'" \
+    --preview-window=right:50%:wrap \
+    | awk -F'=' '{print $1}' | sed "s/alias //")
   CURSOR=$#BUFFER
   zle redisplay
 }
