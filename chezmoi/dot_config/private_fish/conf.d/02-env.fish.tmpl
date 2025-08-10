@@ -1,0 +1,27 @@
+# ███████╗███╗   ██╗██╗   ██╗
+# ██╔════╝████╗  ██║██║   ██║
+# █████╗  ██╔██╗ ██║██║   ██║
+# ██╔══╝  ██║╚██╗██║╚██╗ ██╔╝
+# ███████╗██║ ╚████║ ╚████╔╝
+# ╚══════╝╚═╝  ╚═══╝  ╚═══╝
+# https://fishshell.com/docs/current/cmds/set.html
+# https://fishshell.com/docs/current/cmds/export.html
+
+
+# == CONFIGURATION ENV VARIABLE ===
+set -gx DOTFILES "$HOME/.local/share/chezmoi"
+set -gx EDITOR nvim
+set -gx LM_STUDIO_BIN "$HOME/.lmstudio/bin"
+set -gx BAT_THEME OneHalfDark
+
+# === START OF CHEZMOI MANAGED ===
+{{- if .use_secrets }}
+# == SECRETS ENV VARIABLE ==
+set -gx GITHUB_TOKEN "{{ onepasswordRead .secrets.github_personal_access_token }}"
+set -gx OPENROUTER_OPENCODE_APIKEY "{{ onepasswordRead .secrets.opencode_apikey }}"
+set -gx SSH_AUTH_SOCK "{{ index (dict
+    "darwin" "~/Library/Group\\ Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+    "linux"  "~/.1password/agent.sock"
+) .chezmoi.os }}
+{{- end }}"
+# === END OF CHEZMOI MANAGED ===
