@@ -6,3 +6,9 @@ set -U fish_color_param cyan
 set -U fish_color_redirections yellow
 set -U fish_color_terminators white
 set -U fish_color_valid_path purple
+
+set fish_pager_color_prefix black
+set fish_pager_color_completion black
+set fish_pager_color_description black
+set fish_pager_color_background --background=green
+set fish_pager_color_secondary_background --background=red
