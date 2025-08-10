@@ -1,0 +1,35 @@
+# ██████╗  █████╗ ████████╗██╗  ██╗
+# ██╔══██╗██╔══██╗╚══██╔══╝██║  ██║
+# ██████╔╝███████║   ██║   ███████║
+# ██╔═══╝ ██╔══██║   ██║   ██╔══██║
+# ██║     ██║  ██║   ██║   ██║  ██║
+# ╚═╝     ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝
+# https://fishshell.com/docs/current/language.html#path-variables
+# All variables that end in “PATH” (case-sensitive) become PATH variables by default. Example: set -gx PATH <path/to/bin> $PATH
+#
+# https://fishshell.com/docs/current/cmds/fish_add_path.html#fish-add-path-add-to-the-path
+#
+# Add directories to PATH can achieve with 2 ways :
+# set -gx PATH <path/to/bin> $PATH
+# -- or --
+# fish_add_path <custom_flags> <path/to/bin>
+
+# macOS default binaries
+fish_add_path -g /bin
+fish_add_path -g /usr/bin
+fish_add_path -g /usr/sbin
+fish_add_path -g /sbin
+
+# Additional tools binaries
+fish_add_path -g /opt/homebrew/bin
+fish_add_path -g /opt/homebrew/sbin
+fish_add_path -g /usr/local/bin
+fish_add_path -g $PROTO_HOME/shims
+fish_add_path -g $PROTO_HOME/bin
+fish_add_path -g $HOME/.local/bin
+fish_add_path -g {{ .xdgDataDir }}/cargo/bin
+fish_add_path -g $HOME/bin # personal bin directories
+fish_add_path -g /usr/bin/snap
+fish_add_path -g $HOME/.atuin/bin
+fish_add_path -g $HOME/.tmuxifier/bin
+fish_add_path -g $LM_STUDIO_BIN
