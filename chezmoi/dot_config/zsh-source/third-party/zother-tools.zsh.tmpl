@@ -1,11 +1,3 @@
-{{if lookPath "starship" -}}
-# Starship prompt
-eval "$(starship init zsh)"
-{{- end }}
-
-# Zoxide
-eval "$(zoxide init zsh)"
-
 # Tmuxifier
 eval "$(tmuxifier init -)"
 
@@ -21,8 +13,3 @@ eval "$(direnv hook zsh)"
 
 # FZF Git integration
 source $HOME/.config/fzf-git/fzf-git.sh
-
-# 1Password
-{{- if stat (joinPath .chezmoi.homeDir ".config" "op" "plugins.sh") }}
-source $HOME/.config/op/plugins.sh
-{{- end }}

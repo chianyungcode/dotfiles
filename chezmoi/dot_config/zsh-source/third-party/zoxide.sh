@@ -21,24 +21,27 @@
 # fi
 #
 
+# Initialize tools
+eval "$(zoxide init zsh)"
+
 # Widget Zsh: pilih direktori dari zoxide dengan preview dan langsung cd
 fzf_zoxide_widget() {
-	local selection dir
-	selection=$(zoxide query -ls | sort -nr | fzf \
-		--height=40% \
-		--no-sort \
-		--reverse \
-		--prompt="Zoxide > " \
-		--preview 'eza -TL 2 --color=always --icons=always {2} 2>/dev/null || ls -la --color=always {2}' \
-		--preview-window=right:40%:wrap)
+  local selection dir
+  selection=$(zoxide query -ls | sort -nr | fzf \
+    --height=40% \
+    --no-sort \
+    --reverse \
+    --prompt="Zoxide > " \
+    --preview 'eza -TL 2 --color=always --icons=always {2} 2>/dev/null || ls -la --color=always {2}' \
+    --preview-window=right:40%:wrap)
 
-	# Ambil kolom path saja (kolom kedua)
-	dir=$(echo "$selection" | awk '{ $1=""; sub(/^ /,""); print }')
+  # Ambil kolom path saja (kolom kedua)
+  dir=$(echo "$selection" | awk '{ $1=""; sub(/^ /,""); print }')
 
-	if [[ -n $dir ]]; then
-		builtin cd "$dir" || return
-		zle accept-line
-	fi
+  if [[ -n $dir ]]; then
+    builtin cd "$dir" || return
+    zle accept-line
+  fi
 }
 
 zle -N fzf_zoxide_widget
