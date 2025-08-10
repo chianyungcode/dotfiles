@@ -1,0 +1,5 @@
+[[Snippets]]
+  Description = "Skip some git hook"
+  Output      = ""
+  Tag         = ["pre_commit"]
+  command     = "SKIP=<hook_to_skip> git commit -m <commit_message>"
