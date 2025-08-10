@@ -7,8 +7,15 @@ set -U fish_color_redirections yellow
 set -U fish_color_terminators white
 set -U fish_color_valid_path purple
 
+set fish_pager_color_background black
 set fish_pager_color_prefix black
 set fish_pager_color_completion black
 set fish_pager_color_description black
-set fish_pager_color_background --background=green
-set fish_pager_color_secondary_background --background=red
+
+set fish_pager_color_selected_background white
+set fish_pager_color_selected_prefix yellow
+set fish_pager_color_selected_completion red
+set fish_pager_color_selected_description yellow
+
+set fish_pager_color_background --background=EAE4D5
+set fish_pager_color_secondary_background --background=B8CFCE
