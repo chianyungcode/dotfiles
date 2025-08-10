@@ -1,0 +1,17 @@
+[[Snippets]]
+  Description = "Check if bindkey are used"
+  Output      = ""
+  Tag         = ["fish"]
+  command     = "fish_key_reader"
+
+[[Snippets]]
+  Description = "List all bindkey"
+  Output      = ""
+  Tag         = ["fish"]
+  command     = "bind"
+
+[[Snippets]]
+  Description = "Generate completions for cli tools"
+  Output      = ""
+  Tag         = ["fish"]
+  command     = '<cli_command_to_generate_completion> > ~/.local/share/chezmoi/chezmoi/dot_config/fish/completions/<cli_name>.fish'
