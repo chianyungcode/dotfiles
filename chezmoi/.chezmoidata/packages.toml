@@ -167,6 +167,7 @@
         "stylua",                              # Lua formatter
         "tectonic",                            # render LaTex math
         "television",                          # Alternative to yazi
+        "thefuck",                             # Fix typos
         "tmuxinator",                          # Tmux session manager
         "tmuxp",                               # Tmux session manager
         "vladkens/tap/macmon",                 # Mac monitor
@@ -385,6 +386,7 @@
         "tailscale",
         "taplo",             # TOML formatter
         "tectonic",
+        "thefuck",           # Fix typos
         "ticktick",
         "tmux",
         "usbutils",          # check fingerprint info
