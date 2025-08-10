@@ -1,0 +1,51 @@
+# Load fzf
+if type -q fzf
+    # Fish tidak pakai deteksi $ZSH_NAME atau $BASH, langsung jalankan completions-nya
+    fzf --fish | source
+end
+
+# Configure fzf
+if type -q fzf
+    # Preferred implementation requires fd, bat, and eza to be installed
+    if type -q fd; and type -q bat; and type -q eza
+        set show_file_or_dir_preview 'if test -d {}; eza --tree --color=always {} | head -200; else; bat -n --color=always --line-range :500 {}; end'
+
+        set -gx FZF_ALT_C_COMMAND "fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+        set -gx FZF_ALT_C_OPTS "--preview 'eza --tree --color=always {} | head -200'"
+        set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
+        set -gx FZF_CTRL_T_OPTS "--preview '$show_file_or_dir_preview'"
+        set -gx FZF_DEFAULT_COMMAND "fd --hidden --strip-cwd-prefix --exclude .git"
+        set -gx FZF_DEFAULT_OPTS "--preview 'bat --color=always --line-range :500 {}'"
+
+        # Use fd for listing path candidates
+        function _fzf_compgen_path
+            fd --hidden --follow --exclude ".git" . $argv[1]
+        end
+
+        # Use fd for directory completion
+        function _fzf_compgen_dir
+            fd --type d --hidden --follow --exclude ".git" . $argv[1]
+        end
+
+        function _fzf_comprun
+            set command $argv[1]
+            set --erase argv[1]
+
+            switch $command
+                case cd
+                    fzf --preview 'eza --tree --color=always {} | head -200' $argv
+                case export unset
+                    fzf --preview "eval 'echo \$'{}" $argv
+                case ssh
+                    fzf --preview 'dig {}' $argv
+                case '*'
+                    fzf --preview "$show_file_or_dir_preview" $argv
+            end
+        end
+    end
+end
+
+# override ctrl-r fzf, i prefer using atuin for searching command history
+# bind to ctrl-r in normal and insert mode, add any other bindings you want here too
+bind \cr _atuin_search
+bind -M insert \cr _atuin_search

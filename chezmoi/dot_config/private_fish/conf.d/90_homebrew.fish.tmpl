@@ -1,0 +1,45 @@
+{{- if and (eq .chezmoi.os "darwin") (lookPath "brew") }}
+
+# Set Exports
+set -gx HOMEBREW_CASK_OPTS "--appdir=/Applications"
+set -gx HOMEBREW_NO_INSTALL_CLEANUP 1
+
+# Aliases
+alias brwe="brew"                      # Fix common typo
+alias brewtop="brew leaves -r"         # Show only top-level manually installed packages
+alias brewuses="brew uses --installed" # Show all packages depending on a [package]
+alias brewdeps="brew deps --tree"      # Show all dependencies of a [package]
+
+function bups --description 'Update Homebrew and installed formulas/casks'
+    # If brewup (third-party helper) exists, prefer it
+    if type -q brewup
+        if test (count $argv) -eq 0
+            sh brewup
+        else
+            sh brewup $argv
+        end
+
+    # Otherwise, fall back to brew + optional helper script
+    else if type -q brew
+        # Prefer a chezmoi-provided script if you have one.
+        # If you want to use chezmoi's directory variable, replace the next line with:
+        #   set brewScript "{{ .directories.user_bin_dir }}/updateHomebrew"
+        set brewScript "$HOME/bin/updateHomebrew"
+
+        # Only run the script if it exists and is executable; otherwise run direct brew commands
+        if test -x "$brewScript"
+            "$brewScript" $argv
+        else
+            # explicit, one-per-line makes debugging easier
+            brew update
+            brew upgrade
+            brew cleanup
+            brew autoremove
+        end
+
+    else
+        echo "brew not found"
+    end
+end
+
+{{ end }}
