@@ -17,8 +17,11 @@
   name            = "Dotfiles"
   path            = "~/.local/share/chezmoi"
   startup_command = "nvim"
-  windows         = ["git"]
+  windows         = ["applying", "lazygit"]
 
 [[window]]
-  name           = "git"
+  name           = "lazygit"
   startup_script = "lazygit"
+
+[[window]]
+  name = "applying"
