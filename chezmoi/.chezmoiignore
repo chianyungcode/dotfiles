@@ -10,3 +10,11 @@ Library/Application Support
 Library
 .config/applications
 {{ end }}
+
+
+# Ignore .config/hypr unless the OS is Linux and the distro is Arch.
+# This means:
+# If the OS is NOT Linux OR the distro is NOT Arch, then ignore .config/hypr.
+{{ if or (ne .chezmoi.os "linux") (ne .chezmoi.osRelease.id "arch") }}
+.config/hypr
+{{ end }}
