@@ -57,3 +57,9 @@
   Output      = ""
   Tag         = ["chezmoi"]
   command     = 'chezmoi apply --parent-dirs <path-to-target-file/directory>'
+
+[[Snippets]]
+  Description = "Copy target path"
+  Output      = ""
+  Tag         = ["chezmoi"]
+  command     = 'chezmoi target-path <paste_current_buffer_neovim> | pbcopy'
