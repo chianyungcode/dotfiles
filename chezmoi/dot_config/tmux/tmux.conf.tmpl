@@ -171,9 +171,9 @@ set -g @plugin 'tmux-plugins/tmux-continuum'
 # set -g @sessionx-bind 'o'
 
 # -> Custom config for tmux plugin 'tmux-resurrect' and 'tmux-continuum' <-
-# set -g @resurrect-processes 'lazygit'
+# set -g @resurrect-processes 'nvim' # the option for program can be reuserrected is LIMITED / https://github.com/tmux-plugins/tmux-resurrect/blob/master/docs/restoring_programs.md
 # set -g @resurrect-processes-debug 'on' # Debugging resurrect
-# set -g @continuum-restore 'on' # Auto restore when starting tmux without pressing <prefix>+<C+r>
+set -g @continuum-restore 'on' # Auto restore when starting tmux without pressing <prefix>+<C+r>
 
 # -> Custom config for tmux plugin 'catppuccin' <-
 # set -g @catppuccin_flavor "mocha"
