@@ -31,6 +31,7 @@ set -gx LM_STUDIO_BIN "$HOME/.lmstudio/bin"
 # == SECRETS ENV VARIABLE ==
 set -gx GITHUB_TOKEN "{{ onepasswordRead .secrets.github_personal_access_token }}"
 set -gx OPENROUTER_OPENCODE_APIKEY "{{ onepasswordRead .secrets.opencode_apikey }}"
+set -gx WAKATIME_API_KEY "{{ onepasswordRead .secrets.wakatime_apikey }}"
 set -gx SSH_AUTH_SOCK "{{ index (dict
     "darwin" "~/Library/Group\\ Containers/2BUA8C4S2C.com.1password/t/agent.sock"
     "linux"  "~/.1password/agent.sock"
