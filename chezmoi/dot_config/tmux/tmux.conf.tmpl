@@ -173,7 +173,7 @@ set -g @plugin 'tmux-plugins/tmux-continuum'
 # -> Custom config for tmux plugin 'tmux-resurrect' and 'tmux-continuum' <-
 # set -g @resurrect-processes 'nvim' # the option for program can be reuserrected is LIMITED / https://github.com/tmux-plugins/tmux-resurrect/blob/master/docs/restoring_programs.md
 # set -g @resurrect-processes-debug 'on' # Debugging resurrect
-set -g @continuum-restore 'on' # Auto restore when starting tmux without pressing <prefix>+<C+r>
+# set -g @continuum-restore 'on' # Auto restore when starting tmux without pressing <prefix>+<C+r>
 
 # -> Custom config for tmux plugin 'catppuccin' <-
 # set -g @catppuccin_flavor "mocha"
@@ -187,7 +187,8 @@ set -g @continuum-restore 'on' # Auto restore when starting tmux without pressin
 # Status bar style 1 ===
 set -g status-left " session: #[fg=yellow,bold]#S "
 set -g status-left-length 50    # increase length (from 10)
-set -g status-right "#[fg=white,nobold]#(gitmux -cfg $HOME/.config/tmux/gitmux.yml)"
+# set -g status-right "#[fg=white,nobold]#(gitmux -cfg $HOME/.config/tmux/gitmux.yml)"
+set -g status-right ""
 set -g status-position top       # macOS / darwin style
 set -g status-style 'bg=default' # transparent
 set -g status-interval 1  # Refresh the status line every second
