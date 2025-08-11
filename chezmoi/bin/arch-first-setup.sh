@@ -48,8 +48,6 @@ echo "Done."
 # █▀▀ █▀█ █▄░█ ▀█▀ █▀
 # █▀░ █▄█ █░▀█ ░█░ ▄█
 
-mkdir -p ~/.local/share/fonts
-
 src_dir=~/Documents/my-fonts
 dest_base=~/.local/share/fonts
 
@@ -59,6 +57,12 @@ for font_folder in "$src_dir"/*; do
   if [ -d "$font_folder" ]; then
     folder_name=$(basename "$font_folder")
     dest_folder="$dest_base/$folder_name"
+
+    if [ -d "$dest_folder" ]; then
+      echo "Skipping $folder_name (already exists)"
+      continue
+    fi
+
     mkdir -p "$dest_folder"
     cp "$font_folder"/*.otf "$dest_folder"/
     echo "Copied fonts from $font_folder to $dest_folder"
@@ -72,9 +76,12 @@ fc-cache -fv
 #
 # https://docs.zen-browser.app/guides/1password
 
-sudo mkdir /etc/1password
+sudo mkdir -p /etc/1password
 sudo touch /etc/1password/custom_allowed_browsers
-echo "zen-bin" | sudo tee -a /etc/1password/custom_allowed_browsers
+
+if ! grep -qxF "zen-bin" /etc/1password/custom_allowed_browsers; then
+  echo "zen-bin" | sudo tee -a /etc/1password/custom_allowed_browsers >/dev/null
+fi
 
 # █▀▀ █ █▄░█ █▀▀ █▀▀ █▀█ █▀█ █▀█ █ █▄░█ ▀█▀
 # █▀░ █ █░▀█ █▄█ ██▄ █▀▄ █▀▀ █▀▄ █ █░▀█ ░█░
