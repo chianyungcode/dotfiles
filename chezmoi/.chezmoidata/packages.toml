@@ -161,12 +161,12 @@
         "shellcheck",                          # bash, sh linter
         "shfmt",                               # bash, sh formatter
         "sshs",                                # Graphical command-line client for SSH
-        "stow",                                # Symlink manager
+        # "stow",                                # Symlink manager
         # "stripe/stripe-cli/stripe",
-        "stylua",     # Lua formatter
-        "tectonic",   # render LaTex math
-        "television", # Alternative to yazi
-        "thefuck",    # Fix typos
+        "stylua",   # Lua formatter
+        "tectonic", # render LaTex math
+        # "television", # Alternative to yazi
+        "thefuck", # Fix typos
         # "tmuxinator", # Tmux session manager
         "tmuxp",               # Tmux session manager
         "vladkens/tap/macmon", # Mac monitor
