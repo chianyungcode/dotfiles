@@ -71,3 +71,10 @@ for font_folder in "$src_dir"/*; do
 done
 
 fc-cache -fv
+
+# === 1Password Zen Browser ===
+sudo mkdir /etc/1password
+sudo touch /etc/1password/custom_allowed_browsers
+echo "zen-bin" | sudo tee -a /etc/1password/custom_allowed_browsers
+
+# === FINGERPRINT ===
