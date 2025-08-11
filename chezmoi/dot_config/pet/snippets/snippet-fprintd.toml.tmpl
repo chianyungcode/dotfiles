@@ -1,0 +1,25 @@
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") }}
+[[Snippets]]
+  Description = "Verify if the selected finger has been registered"
+  Output      = ""
+  Tag         = ["fprintd"]
+  command     = 'fprint-verify'
+
+[[Snippets]]
+  Description = "List fingerprint in the current user"
+  Output      = ""
+  Tag         = ["fprintd"]
+  command     = 'fprint-list $(whoami)'
+
+[[Snippets]]
+  Description = "Register fingerprint"
+  Output      = ""
+  Tag         = ["fprintd"]
+  command     = 'fprintd-enroll'
+
+[[Snippets]]
+  Description = "Delete fingerprint for current user"
+  Output      = ""
+  Tag         = ["fprintd"]
+  command     = 'fprint-delete $USER'
+{{ end }}
