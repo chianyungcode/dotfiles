@@ -1,7 +1,7 @@
 {{ if .use_secrets }}
 OCO_API_KEY={{ onepasswordRead .secrets.oco_apikey }}
 OCO_API_URL={{ onepasswordRead .secrets.oco_apiurl }}
-{{ end }}
+{{- end }}
 OCO_AI_PROVIDER=openai
 OCO_MODEL=gpt-4.1
 OCO_TOKENS_MAX_OUTPUT=500
