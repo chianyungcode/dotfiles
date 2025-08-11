@@ -33,10 +33,17 @@ for package in "${packages[@]}"; do
         info "Package ${package} is already installed"
         continue
     fi
-    if paru -Ss "^${package}$" &>/dev/null; then
-        paru -S --noconfirm "${package}"
+
+    # Coba install dari repo resmi dulu, jika gagal install dari AUR
+    if paru -S --repo --noconfirm "${package}"; then
+        info "Installed ${package} from Arch repo"
     else
-        warning "Package ${package} is not available"
+        warning "${package} not found in Arch repository, Trying to install ${package} from AUR"
+        if paru -S --aur --noconfirm "${package}"; then
+            info "Installed ${package} from AUR"
+        else
+            warning "Package ${package} not found in Arch repo or AUR"
+        fi
     fi
 done
 

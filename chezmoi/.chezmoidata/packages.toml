@@ -322,28 +322,31 @@
   [packages.pacman]
     [packages.pacman.common]
       packages = [
-        "base-devel",    # Equivalent to apt-transport-https and build essentials
-        "bat",           # cat with syntax highlighting and Git integration
-        "bind-tools",    # Equivalent to dnsutils
+        "1password",
+        "1password-cli",
+        "base-devel",      # Equivalent to apt-transport-https and build essentials
+        "bat",             # cat with syntax highlighting and Git integration
+        "bind-tools",      # Equivalent to dnsutils
         "curl",
-        "fd",            # Equivalent to fd-find
+        "espanso-wayland",
+        "fd",              # Equivalent to fd-find
         "figlet",
         "fzf",
         "git",
         "git-extras",
-        "gnome-keyring", # For 1password two factor auth
+        "gnome-keyring",   # For 1password two factor auth
         "gnupg",
         "jq",
         "logrotate",
         "lolcat",
-        "mc",            # Midnight Commander
+        "mc",              # Midnight Commander
         "nano",
-        "ncdu",          # NCurses Disk Usage
+        "ncdu",            # NCurses Disk Usage
         "net-tools",
-        "openssh",       # Equivalent to openssh-server
-        "p7zip",         # Equivalent to p7zip-full
-        "polkit-gnome",  # For 1password prompt available
-        "ripgrep",       # search tool like grep and the silver searcher
+        "openssh",         # Equivalent to openssh-server
+        "p7zip",           # Equivalent to p7zip-full
+        "polkit-gnome",    # For 1password prompt available
+        "ripgrep",         # search tool like grep and the silver searcher
         "sudo",
         "tzdata",
         "unzip",
@@ -359,9 +362,9 @@
         "dpkg",
         "entr",              # dependency for tmux-autoreload
         "eslint",            # JS/TS linter
-        "espanso-wayland",
         "eza",
         "fprintd",           # fingerprint
+        "ghostty",
         "git-delta",         # Pager for git
         "git-extras",        # Add extra command to default git
         "github-cli",        # Github CLI
@@ -371,10 +374,13 @@
         "helix",             # Alternative neovim
         "httpie",            # HTTP client
         "hurl",              # runs HTTP requests defined in a simple plain text format.
+        "lazydocker",
+        "lazygit",
         "markdownlint-cli2", # Linter for markdown file
         "mermaid-cli",       # LaTex math
         "neovim",
-        "pet",
+        "nix",
+        "pet-bin",
         "prettier",          # JS/TS formatter
         "pueue",             # Task runner and scheduler
         "ruff",              # Python linter
