@@ -20,11 +20,8 @@ set -Ux XDG_CACHE_HOME "{{ .xdgCacheDir }}"
 # any CLI tools, so the tools can read the customized locations.
 #
 # Example:
-# - `eval "$(starship init zsh)"` in `zother-tools.zsh` will read `STARSHIP_CONFIG`
-# - If a CLI is initialized from a subdirectory (e.g., "third-party"), this order
-#   ensures the correct configuration is applied before the process starts.
-#   This is because `.zshrc` loads files in sequence, and numbering the file names
-#   guarantees the correct load order.
+# - `atuin init fish | source` in `90_atuin.fish` will read `STARSHIP_CONFIG`
+# - Making `90_<name>` prefix ensures the correct order because environment variable that used in cli later in `90_` prefix are already exported in `10_04-env.fish` this ensures the correct configuration is applied before the process starts.
 
 # === CONFIGURATION ===
 set -Ux GIT_CONFIG_GLOBAL "$XDG_CONFIG_HOME/git/config"

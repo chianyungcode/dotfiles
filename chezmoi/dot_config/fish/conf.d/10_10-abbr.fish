@@ -8,6 +8,7 @@
 # https://fishshell.com/docs/current/cmds/abbr.html
 # cSpell:disable
 
+abbr --add ax "chmod a+x"
 abbr --add b bun
 abbr --add ba "bun add"
 abbr --add bad "bun add --dev"
