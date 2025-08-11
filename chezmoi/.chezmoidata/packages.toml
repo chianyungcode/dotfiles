@@ -384,6 +384,7 @@
         "prettier",          # JS/TS formatter
         "pueue",             # Task runner and scheduler
         "ruff",              # Python linter
+        "sesh",
         "shellcheck",        # bash, sh linter
         "shfmt",             # bash, sh formatter
         "starship",
@@ -399,6 +400,7 @@
         "vivid",             # Color generator for LS_COLORS env variable
         "yamlfmt",           # YAML formatter
         "yamllint",          # YAML linter
+        "yazi",
         "yq",                # YAML processor
       ]
 
