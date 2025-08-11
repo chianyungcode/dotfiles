@@ -51,3 +51,9 @@
   Output      = ""
   Tag         = ["chezmoi"]
   command     = 'chezmoi state delete-bucket --bucket=scriptState'
+
+[[Snippets]]
+  Description = "Apply all file only in maximum 1 above parent directory"
+  Output      = ""
+  Tag         = ["chezmoi"]
+  command     = 'chezmoi apply --parent-dirs <path-to-target-file/directory>'
