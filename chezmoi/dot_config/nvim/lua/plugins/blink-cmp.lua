@@ -2,6 +2,7 @@
 return {
   {
     "saghen/blink.cmp",
+    version = "*",
     dependencies = { "saghen/blink.compat", version = false },
 
     opts = {
