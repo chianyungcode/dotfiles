@@ -370,6 +370,7 @@
         "github-cli",        # Github CLI
         "glab",              # GitLab CLI
         "glow",              # Render markdown in CLI
+        "google-chrome",
         "gum",               # Fuzzy finder
         "helix",             # Alternative neovim
         "httpie",            # HTTP client
@@ -402,6 +403,7 @@
         "yamllint",          # YAML linter
         "yazi",
         "yq",                # YAML processor
+        "zen-browser",
       ]
 
     [packages.pacman.homelab_member]
