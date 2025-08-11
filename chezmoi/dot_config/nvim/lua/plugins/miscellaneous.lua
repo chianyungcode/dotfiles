@@ -2,7 +2,7 @@ return {
   {
     -- Syntax highlighting for .tmpl in chezmoi
     "alker0/chezmoi.vim",
-    enabled = false,
+    enabled = true,
   },
   { "meznaric/key-analyzer.nvim", opts = {} },
   -- Plugin for tracking your time in Neovim
