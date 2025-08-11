@@ -22,39 +22,39 @@
         # "berkeley-db",               # Oracle berkeley-db
         # "brew-gem",
         # "dotter", # dotfile manager and templater.
-        "atuin",                     # Better shell history
-        "bat",                       # cat with syntax highlighting and git integration
-        "bfg",                       # Remove large files or passwords from Git history like git-filter-branch
+        "atuin",           # Better shell history
+        "bat",             # cat with syntax highlighting and git integration
+        "bfg",             # Remove large files or passwords from Git history like git-filter-branch
         "btop",
         "chezmoi",
-        "cocoapods",                 # dependency manager for switft
-        "coreutils",                 # GNU coreutils
-        "eza",                       # Better ls
-        "fd",                        # Better find
-        "findutils",                 # GNU find
-        "fzf",                       # Fuzzy finder
-        "gawk",                      # GNU awk
+        "cocoapods",       # dependency manager for switft
+        "coreutils",       # GNU coreutils
+        "eza",             # Better ls
+        "fd",              # Better find
+        "findutils",       # GNU find
+        "fzf",             # Fuzzy finder
+        "gawk",            # GNU awk
         "git",
-        "git-delta",                 # Git diff viewer or pager
+        "git-delta",       # Git diff viewer or pager
         "git-filter-repo",
         "git-lfs",
-        "gitleaks",                  # Find secrets that leaks in your repo
+        "gitleaks",        # Find secrets that leaks in your repo
         "gnu-getopt",
-        "gnu-sed",                   # GNU implementation of the famous stream editor
-        "gnu-tar",                   # GNU version of the tar archiving utility
-        "gnupg",                     # GPG
-        "gnutls",                    # GNU Transport Layer Security (TLS) Library
-        "gping",                     # Ping with graph
-        "grep",                      # GNU grep
-        "gzip",                      # Popular GNU data compression program
-        "halp",                      # Better help
+        "gnu-sed",         # GNU implementation of the famous stream editor
+        "gnu-tar",         # GNU version of the tar archiving utility
+        "gnupg",           # GPG
+        "gnutls",          # GNU Transport Layer Security (TLS) Library
+        "gping",           # Ping with graph
+        "grep",            # GNU grep
+        "gzip",            # Popular GNU data compression program
+        "halp",            # Better help
         "icu4c@76",
-        "imagemagick",               # Image processing
-        "jq",                        # Lightweight and flexible command-line JSON processor
-        "libfido2",                  # Provides library functionality for FIDO U2F & FIDO 2.0, including USB
-        "most",                      # Pager
-        "navi",                      # An interactive cheatsheet tool for the command-line
-        "neonctl",                   # Neon CLI
+        "imagemagick",     # Image processing
+        "jq",              # Lightweight and flexible command-line JSON processor
+        "libfido2",        # Provides library functionality for FIDO U2F & FIDO 2.0, including USB
+        "most",            # Pager
+        "navi",            # An interactive cheatsheet tool for the command-line
+        # "neonctl",                   # Neon CLI
         "neovim",                    # Text
         "openssh",                   # SSH
         "pkgconf",                   # package compiler and linker metadata toolkit
@@ -101,11 +101,11 @@
         "pkgxdev/made",
         "qmk/qmk",
         "skiptools/skip",
-        "stripe/stripe-cli",
-        "supabase/tap",
+        # "stripe/stripe-cli",
+        # "supabase/tap",
         "teamookla/speedtest",
         "vladkens/tap",
-        "waydabber/betterdisplay",
+        # "waydabber/betterdisplay",
         "withgraphite/tap",
       ]
 
@@ -118,6 +118,7 @@
         "fork",     # "sourcetree", alternative to fork
       ]
       formulae = [
+        # "flyctl",                              # Fly.io CLI
         "act",                                 # runs GitHub Actions locally
         "awscli",
         "biome",                               # JS/TS linter, formatter
@@ -129,7 +130,6 @@
         "fastfetch",                           # Better system info
         "ffmpegthumbnailer",                   # Video thumbnail for yazi cli
         "fish",                                # Alternative shell for zsh
-        "flyctl",                              # Fly.io CLI
         "fx",                                  # Better grep
         "gh",                                  # Github CLI
         "git-delta",                           # Pager for git
@@ -162,17 +162,16 @@
         "shfmt",                               # bash, sh formatter
         "sshs",                                # Graphical command-line client for SSH
         "stow",                                # Symlink manager
-        "stripe/stripe-cli/stripe",
-        "stylua",                              # Lua formatter
-        "stylua",                              # Lua formatter
-        "tectonic",                            # render LaTex math
-        "television",                          # Alternative to yazi
-        "thefuck",                             # Fix typos
-        "tmuxinator",                          # Tmux session manager
-        "tmuxp",                               # Tmux session manager
-        "vladkens/tap/macmon",                 # Mac monitor
-        "yamlfmt",                             # YAML formatter
-        "yamllint",                            # YAML linter
+        # "stripe/stripe-cli/stripe",
+        "stylua",     # Lua formatter
+        "tectonic",   # render LaTex math
+        "television", # Alternative to yazi
+        "thefuck",    # Fix typos
+        # "tmuxinator", # Tmux session manager
+        "tmuxp",               # Tmux session manager
+        "vladkens/tap/macmon", # Mac monitor
+        "yamlfmt",             # YAML formatter
+        "yamllint",            # YAML linter
       ]
       taps = []
 
@@ -397,6 +396,7 @@
         "thefuck",           # Fix typos
         "ticktick",
         "tmux",
+        "tmuxp",             # tmux session manager
         "usbutils",          # check fingerprint info
         "vivid",             # Color generator for LS_COLORS env variable
         "yamlfmt",           # YAML formatter
