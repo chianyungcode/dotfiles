@@ -14,9 +14,10 @@
   path = "~/Desktop/vault-obsidian"
 
 [[session]]
-  name    = "Dotfiles"
-  path    = "~/.local/share/chezmoi"
-  windows = ["git"]
+  name            = "Dotfiles"
+  path            = "~/.local/share/chezmoi"
+  startup_command = "nvim"
+  windows         = ["git"]
 
 [[window]]
   name           = "git"
