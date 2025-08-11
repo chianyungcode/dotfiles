@@ -23,7 +23,10 @@
 # $TERMINAL = kitty
 # $EDITOR = code
 # $EXPLORER = dolphin
-# $BROWSER = firefox
+$BROWSER = firefox
+$ZEN_BROWSER = zen-browser
+$TICKTICK = ticktick
+$GHOSTTY = ghostty
 
 $wm=Window Management
 $d=[$wm]
@@ -83,6 +86,8 @@ bindd = $mainMod Alt, T, $d dropdown terminal , exec, [float; move 20% 5%; size 
 bindd = $mainMod, E, $d file explorer , exec, $EXPLORER
 bindd = $mainMod, C, $d text editor , exec, $EDITOR
 bindd = $mainMod, B, $d web browser , exec, $BROWSER
+bindd = $mainMod, Z, $d web browser , exec, $ZEN_BROWSER
+bindd = $mainMod, G, $d ghostty terminal , exec, $GHOSTTY
 bindd = Control Shift, Escape, $d system monitor , exec, $scrPath/sysmonlaunch.sh
 
 $d=[$l|Rofi menus]
