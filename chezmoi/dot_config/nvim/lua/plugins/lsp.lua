@@ -24,7 +24,7 @@ return {
         "html",
         "jsonls", -- JSON: Language server protocol (LSP)
         "nil_ls", -- Nix: Language server protocol (LSP)
-        "taplo", -- TOML: Language server protocol (LSP) and formatters
+        -- "taplo", -- TOML: Language server protocol (LSP) and formatters
         "yamlls", -- YAML: Language server protocol (LSP)
         "ast_grep",
         "ruff", -- Python: Language server protocol (LSP), linters and formatters

@@ -21,11 +21,13 @@ return {
           -- ignored = true,
           -- hidden = true,
 
-          auto_close = true,
-          layout = {
-            preset = "sidebar", -- other options is "ivy", "select"
-            preview = "main",
-          },
+          -- uncomment this if want preview on select
+          -- auto_close = true,
+          -- layout = {
+          --   preset = "sidebar", -- other options is "ivy", "select"
+          --   preview = "main",
+          -- },
+
           win = {
             list = {
               -- wo = {
