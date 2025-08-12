@@ -8,8 +8,8 @@ alias ping="prettyping --nolegend"
 alias cat="bat" # Prefer `bat` over `cat`
 {{- end }}
 
-function cd --wraps=cd
-    # Always print contents of directory when entering
-    builtin cd $argv; or return 1
-    ll
-end
+# Add aliases for directory navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
