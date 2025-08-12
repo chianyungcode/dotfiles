@@ -45,3 +45,8 @@ pueue add -g "$PUEUE_GROUP" "tmux selectw -t \"$SESSION_NAME\":1"
 pueue add -g "$PUEUE_GROUP" sleep 2
 
 pueue add -g "$PUEUE_GROUP" "osascript -e 'display notification \"Success running all command with pueue cli\" with title \"backend-layout.sh\"'"
+
+sleep 2
+clear
+
+tmux a
