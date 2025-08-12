@@ -39,7 +39,7 @@
           environment.systemPackages = [
             pkgs.php
             pkgs.chezmoi
-            pkgs.proto
+            # pkgs.proto
             pkgs.rainfrog
             pkgs.nixfmt-rfc-style
             # pkgs.chezmoi
