@@ -23,56 +23,53 @@ alias bkfsh 'bind | fzf'
 alias bktmux 'tmux list-keys | fzf'
 
 # pueue
-alias pue="pueue"
+alias pue "pueue"
+alias pueon "pueued -d"
 
 # bun
-alias bfzf="bun run \"\$(jq -r '.scripts | keys[]' package.json | fzf --no-border)\""
-
-# pet
-alias pexec="pet exec -t"
-alias psc="pet search"
+alias bfzf "bun run \"\$(jq -r '.scripts | keys[]' package.json | fzf --no-border)\""
 
 # Directories
-alias dotf="cd ~/.local/share/chezmoi"
-alias config="cd ~/.config/"
+alias dotf "cd ~/.local/share/chezmoi"
+alias config "cd ~/.config/"
 
-alias exz="exec zsh"
+alias exf "exec fish"
 
 # === START OF CHEZMOI MANAGED ===
 {{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") (lookPath "wl-copy")}}
-alias cpwd="echo -n $(pwd) | wl-copy"
+alias cpwd "echo -n $(pwd) | wl-copy"
 {{- end }}
 {{- if eq .chezmoi.os "darwin" }}
-alias cpwd="echo -n $(pwd) | pbcopy"
+alias cpwd "echo -n $(pwd) | pbcopy"
 {{ end }}
 
 ####################### LIST DIRECTORY CONTENTS #######################
 {{- if lookPath "eza" }}
 # List filenames on one line
-alias cyh='eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions'
+alias cyh 'eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions'
 
 # List filenames with long format
-alias l='eza -l --classify=auto --icon=autos {{- if not (and (eq .chezmoi.os "linux") (eq .chezmoi.arch "arm64")) }} --git{{ end }}'
+alias l 'eza -l --classify=auto --icon=autos {{- if not (and (eq .chezmoi.os "linux") (eq .chezmoi.arch "arm64")) }} --git{{ end }}'
 
 # List all files
-alias ll='eza -lah --classify=auto --icons=auto {{- if not (and (eq .chezmoi.os "linux") (eq .chezmoi.arch "arm64")) }} --git{{ end }}'
+alias ll 'eza -lah --classify=auto --icons=auto {{- if not (and (eq .chezmoi.os "linux") (eq .chezmoi.arch "arm64")) }} --git{{ end }}'
 
 # List files by last modified
-alias llm='ll --sort=modified'
+alias llm 'll --sort=modified'
 
 # List files with attributes
-alias la='eza -lbhHigUmuSa --icons=auto {{- if not (and (eq .chezmoi.os "linux") (eq .chezmoi.arch "arm64")) }} --git{{ end }}'
+alias la 'eza -lbhHigUmuSa --icons=auto {{- if not (and (eq .chezmoi.os "linux") (eq .chezmoi.arch "arm64")) }} --git{{ end }}'
 
 # List files with extended attributes
-alias lx='eza -lbhHigUmuSa@ --icons=auto {{- if not (and (eq .chezmoi.os "linux") (eq .chezmoi.arch "arm64")) }} --git{{ end }}'
+alias lx 'eza -lbhHigUmuSa@ --icons=auto {{- if not (and (eq .chezmoi.os "linux") (eq .chezmoi.arch "arm64")) }} --git{{ end }}'
 
 # List files in a tree view
-alias lt='eza --tree --level=2 --icons=auto'
+alias lt 'eza --tree --level=2 --icons=auto'
 
 # List files in a tree view with long format
-alias llt='eza -lah --classify=always --tree --level=2 --icons=auto'
+alias llt 'eza -lah --classify=always --tree --level=2 --icons=auto'
 
-alias ls='eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions'
+alias ls 'eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions'
 {{- end }}
 
 # === END OF CHEZMOI MANAGED ===

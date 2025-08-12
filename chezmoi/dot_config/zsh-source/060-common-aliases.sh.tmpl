@@ -23,13 +23,10 @@ alias cpwd="echo -n $(pwd) | pbcopy"
 
 # pueue
 alias pue="pueue"
+alias pueon="pueued -d"
 
 # bun
 alias bfzf="bun run \"\$(jq -r '.scripts | keys[]' package.json | fzf --no-border)\""
-
-# pet
-alias pexec="pet exec -t"
-alias psc="pet search"
 
 # Directories
 alias dotf="cd ~/.local/share/chezmoi"
