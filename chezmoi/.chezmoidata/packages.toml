@@ -235,6 +235,7 @@
         "felixkratz/formulae/borders",
         "presenterm",                  # Presentation in CLI
         "qmk/qmk/qmk",                 # QMK CLI
+        "superfile",                   # file manager in terminal
         "yubico-piv-tool",             # Yubikey PIV tool
       ]
       taps = []
@@ -410,7 +411,10 @@
       packages = ["iperf"]
 
     [packages.pacman.personal_computer]
-      packages = ["opencode-bin"]
+      packages = [
+        "opencode-bin",
+        "superfile",    # file manager in terminal
+      ]
 
   [packages.python]
     to_remove = []
