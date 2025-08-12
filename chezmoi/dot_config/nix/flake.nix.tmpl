@@ -101,7 +101,7 @@
       # Build darwin flake using:
       # $ darwin-rebuild build --flake .#mbp-m1-chianyung
       # darwinConfiguration."$HOSTNAME"
-      darwinConfigurations."Macbook-Pro" = nix-darwin.lib.darwinSystem {
+      darwinConfigurations.{{ .chezmoi.hostname }} = nix-darwin.lib.darwinSystem {
         modules = [
           configuration
           mac-app-util.darwinModules.default
