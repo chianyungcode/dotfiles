@@ -115,7 +115,7 @@ set -g default-terminal "tmux-256color" # 'xterm-256color' is widely used by ter
 # set -ga terminal-overrides ",xterm-256color:Tc"
 set -g allow-rename off # Allow programs in the pane to change the window name a terminal escape sequence (\ek...\e\\).
 set -gq allow-passthrough on
-set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q'
+# set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q' # set cursor style to back set by the terminal app
 # set-option -g automatic-rename off # Control automatic window renaming.  When this setting enabled, tmux will rename the window automatically the format specified by automatic-rename-format.
 
 # --- Define colour scheme --- #

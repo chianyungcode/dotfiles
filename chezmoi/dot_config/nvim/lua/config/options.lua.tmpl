@@ -22,13 +22,13 @@ vim.opt.shell = "/usr/bin/zsh"
 
 -- set cursor back to terminal cursor style after quitting neovim
 -- https://neovim.io/doc/user/faq.html#faq
-vim.api.nvim_create_autocmd({"VimEnter", "VimResume"}, {
-  command = "set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
-})
-
-vim.api.nvim_create_autocmd({"VimLeave", "VimSuspend"}, {
-  command = "set guicursor=a:block-blinkon0"
-})
+-- vim.api.nvim_create_autocmd({"VimEnter", "VimResume"}, {
+--   command = "set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
+-- })
+--
+-- vim.api.nvim_create_autocmd({"VimLeave", "VimSuspend"}, {
+--   command = "set guicursor=a:block-blinkon0"
+-- })
 
 -- Uncomment the code below, if only use prettier if the config file `.prettierrc` or `prettier.json` exist in the root project directory
 -- vim.g.lazyvim_prettier_needs_config = true
