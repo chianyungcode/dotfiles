@@ -78,7 +78,7 @@ abbr --add cl clear
 abbr --add cleanupLS "/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
 abbr --add clrnvses "rm -rf ~/.local/share/nvim/sessions/*"
 abbr --add config "cd ~/.config/"
-abbr --add cpwd "echo -n /Users/chianyung/.local/share/chezmoi | pbcopy"
+abbr --add cpwd "echo $(pwd) | pbcopy"
 abbr --add cyh "eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
 abbr --add dbl "docker build"
 abbr --add dcb "docker-compose build"
