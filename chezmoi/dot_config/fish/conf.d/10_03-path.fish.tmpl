@@ -15,21 +15,24 @@
 # fish_add_path <custom_flags> <path/to/bin>
 
 # macOS default binaries
-fish_add_path -g /bin
-fish_add_path -g /usr/bin
-fish_add_path -g /usr/sbin
-fish_add_path -g /sbin
+fish_add_path -gP /bin
+fish_add_path -gP /usr/bin
+fish_add_path -gP /usr/sbin
+fish_add_path -gP /sbin
 
 # Additional tools binaries
-fish_add_path -g /opt/homebrew/bin
-fish_add_path -g /opt/homebrew/sbin
-fish_add_path -g /usr/local/bin
-fish_add_path -g $PROTO_HOME/shims
-fish_add_path -g $PROTO_HOME/bin
-fish_add_path -g $HOME/.local/bin
-fish_add_path -g {{ .xdgDataDir }}/cargo/bin
-fish_add_path -g $HOME/bin # personal bin directories
-fish_add_path -g /usr/bin/snap
-fish_add_path -g $HOME/.atuin/bin
-fish_add_path -g $HOME/.tmuxifier/bin
-fish_add_path -g $LM_STUDIO_BIN
+fish_add_path -gP /opt/homebrew/bin
+fish_add_path -gP /opt/homebrew/sbin
+fish_add_path -gP /usr/local/bin
+fish_add_path -gP $PROTO_HOME/shims
+fish_add_path -gP $PROTO_HOME/bin
+fish_add_path -gP $HOME/.local/bin
+fish_add_path -gP {{ .xdgDataDir }}/cargo/bin
+fish_add_path -gP $HOME/bin # personal bin directories
+fish_add_path -gP /usr/bin/snap
+fish_add_path -gP $HOME/.atuin/bin
+fish_add_path -gP $HOME/.tmuxifier/bin
+fish_add_path -gP $LM_STUDIO_BIN
+
+# Remove duplicate paths from PATH variable
+set -gx PATH (string split ':' $PATH | sort -u | string join ':')
