@@ -11,6 +11,17 @@
 vim.opt.spelllang = { "en", "id" }
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
+-- force to use zsh shell in neovim intance
+-- needed because of this https://github.com/NickvanDyke/opencode.nvim/issues/18#issue-3312038123
+{{ if eq .chezmoi.os "darwin" -}}
+vim.opt.shell = "/bin/zsh"
+{{ else if eq .chezmoi.os "linux" -}}
+vim.opt.shell = "/usr/bin/zsh"
+
+{{ end -}}
+
+
+
 -- Uncomment the code below, if only use prettier if the config file `.prettierrc` or `prettier.json` exist in the root project directory
 -- vim.g.lazyvim_prettier_needs_config = true
 
