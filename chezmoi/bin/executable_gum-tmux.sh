@@ -10,7 +10,7 @@ directories=(
 )
 
 tmux_session_names=(
-  "tmux"
+  "dotfiles"
   "backend"
   "frontend"
 )
