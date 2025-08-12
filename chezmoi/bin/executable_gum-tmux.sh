@@ -5,8 +5,14 @@ set -e
 directories=(
   "$HOME/.local/share/chezmoi"
   "$HOME/Downloads"
-  "$HOME/Code/Personal/Projects/Backend/allweezy-backend/"
-  "$HOME/Code/Personal/Projects/Backend/allweezy"
+  "$HOME/Code/Personal/Projects/Backend/allweezy-backend"
+  "$HOME/Code/Personal/Projects/Frontend/allweezy"
+)
+
+tmux_session_names=(
+  "tmux"
+  "backend"
+  "frontend"
 )
 
 # Loop array jadi input untuk gum filter
@@ -18,7 +24,9 @@ clear
 PUEUE_GROUP="tmux"
 clear
 
-SESSION_NAME=$(gum input --placeholder "What is the tmux session name?")
+SESSION_NAME=$(for sesion_name in "${tmux_session_names[@]}"; do
+  echo "$sesion_name"
+done | gum filter --placeholder "What is the tmux sesion name? ")
 clear
 
 # Exit jika salah satu variable kosong
@@ -45,8 +53,3 @@ pueue add -g "$PUEUE_GROUP" "tmux selectw -t \"$SESSION_NAME\":1"
 pueue add -g "$PUEUE_GROUP" sleep 2
 
 pueue add -g "$PUEUE_GROUP" "osascript -e 'display notification \"Success running all command with pueue cli\" with title \"backend-layout.sh\"'"
-
-sleep 2
-clear
-
-tmux a
