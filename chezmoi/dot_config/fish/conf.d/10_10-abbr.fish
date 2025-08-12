@@ -8,13 +8,7 @@
 # https://fishshell.com/docs/current/cmds/abbr.html
 # cSpell:disable
 
-abbr --add ax "chmod a+x"
-abbr --add b bun
-abbr --add ba "bun add"
-abbr --add bad "bun add --dev"
-abbr --add bb "bun run build"
-abbr --add bbd "bun build"
-abbr --add bc "bun create"
+# brew
 abbr --add bci "brew info --cask"
 abbr --add bcin "brew install --cask"
 abbr --add bcl "brew list --cask"
@@ -24,6 +18,35 @@ abbr --add bcrin "brew reinstall --cask"
 abbr --add bcubc "brew upgrade --cask && brew cleanup"
 abbr --add bcubo "brew update && brew outdated --cask"
 abbr --add bcup "brew upgrade --cask"
+abbr --add bl "brew list"
+abbr --add bo "brew outdated"
+abbr --add brewdeps "brew deps --tree"
+abbr --add brewp "brew pin"
+abbr --add brewsp "brew list --pinned"
+abbr --add brewtop "brew leaves -r"
+abbr --add brewuses "brew uses --installed"
+abbr --add brwe brew
+abbr --add bsl "brew services list"
+abbr --add bsoff "brew services stop"
+abbr --add bsoffa "bsoff --all"
+abbr --add bson "brew services start"
+abbr --add bsona "bson --all"
+abbr --add bsr "brew services run"
+abbr --add bubc "brew upgrade && brew cleanup"
+abbr --add bubo "brew update && brew outdated"
+abbr --add bubu "bubo && bubc"
+abbr --add bubug "bubo && bugbc"
+abbr --add bugbc "brew upgrade --greedy && brew cleanup"
+abbr --add bup "brew upgrade"
+abbr --add buz "brew uninstall --zap"
+
+# bun
+abbr --add b bun
+abbr --add ba "bun add"
+abbr --add bad "bun add --dev"
+abbr --add bb "bun run build"
+abbr --add bbd "bun build"
+abbr --add bc "bun create"
 abbr --add bd "bun run dev"
 abbr --add bdocs "bun run docs"
 abbr --add bfmt "bun run format"
@@ -36,50 +59,19 @@ abbr --add bgu "bun update --global"
 abbr --add bi "bun init"
 abbr --add bin "bun install"
 abbr --add biny "bun install --yarn"
-abbr --add bktmux "tmux list-keys | fzf"
-abbr --add bkzsh "bindkey | fzf"
-abbr --add bl "brew list"
 abbr --add bln "bun run lint"
 abbr --add bls "bun pm ls"
-abbr --add bo "brew outdated"
 abbr --add br "bun run"
-abbr --add brewdeps "brew deps --tree"
-abbr --add brewp "brew pin"
-abbr --add brewsp "brew list --pinned"
-abbr --add brewtop "brew leaves -r"
-abbr --add brewuses "brew uses --installed"
 abbr --add brm "bun remove"
 abbr --add brun "bun run"
-abbr --add brwe brew
 abbr --add bs "bun run serve"
-abbr --add bsl "brew services list"
-abbr --add bsoff "brew services stop"
-abbr --add bsoffa "bsoff --all"
-abbr --add bson "brew services start"
-abbr --add bsona "bson --all"
-abbr --add bsr "brew services run"
-abbr --add bsra "bsr --all"
 abbr --add bst "bun run start"
 abbr --add bt "bun run test"
 abbr --add btc "bun run test --coverage"
 abbr --add bu "bun update"
-abbr --add bubc "brew upgrade && brew cleanup"
-abbr --add bubo "brew update && brew outdated"
-abbr --add bubu "bubo && bubc"
-abbr --add bubug "bubo && bugbc"
-abbr --add bugbc "brew upgrade --greedy && brew cleanup"
-abbr --add bup "brew upgrade"
-abbr --add buz "brew uninstall --zap"
 abbr --add bx "bun x"
-abbr --add caff "caffeinate -ism"
-abbr --add cat bat
-abbr --add chez chezmoi
-abbr --add cl clear
-abbr --add cleanupLS "/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
-abbr --add clrnvses "rm -rf ~/.local/share/nvim/sessions/*"
-abbr --add config "cd ~/.config/"
-abbr --add cpwd "echo $(pwd) | pbcopy"
-abbr --add cyh "eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+
+# docker
 abbr --add dbl "docker build"
 abbr --add dcb "docker-compose build"
 abbr --add dcdn "docker-compose down"
@@ -137,10 +129,70 @@ abbr --add dvls "docker volume ls"
 abbr --add dvprune "docker volume prune"
 abbr --add dxc "docker container exec"
 abbr --add dxcit "docker container exec -it"
-abbr --add exz "exec zsh"
-abbr --add fier tmuxifier
-abbr --add fixmounts "sudo automount -vcu"
-abbr --add fsh-alias fast-theme
+
+# eza
+abbr --add l "eza -l --classify=auto --icon=autos --git"
+abbr --add la "eza -lbhHigUmuSa --icons=auto --git"
+abbr --add ll "eza -lah --classify=auto --icons=auto --git"
+abbr --add llm "ll --sort=modified"
+abbr --add llt "eza -lah --classify=always --tree --level=2 --icons=auto"
+abbr --add ls "eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+abbr --add lt "eza --tree --level=2 --icons=auto"
+abbr --add lx "eza -lbhHigUmuSa@ --icons=auto --git"
+abbr --add cyh "eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+
+# npm
+abbr --add npmD "npm i -D "
+# abbr "npmE"="PATH=\"\$(npm bin)\":\"\$PATH\""
+abbr --add npmF "npm i -f"
+abbr --add npmg "npm i -g "
+abbr --add npmI "npm init"
+abbr --add npmi "npm info"
+abbr --add npmL "npm list"
+abbr --add npmL0 "npm ls --depth=0"
+abbr --add npmO "npm outdated"
+abbr --add npmP "npm publish"
+abbr --add npmR "npm run"
+abbr --add npmrb "npm run build"
+abbr --add npmrd "npm run dev"
+abbr --add npmS "npm i -S "
+abbr --add npmSe "npm search"
+abbr --add npmst "npm start"
+abbr --add npmt "npm test"
+abbr --add npmU "npm update"
+abbr --add npmV "npm -v"
+
+# ssh
+abbr --add mbp "ssh mbp"
+abbr --add ghcny "ssh ghcny"
+abbr --add ghphyne "ssh ghphyne"
+
+# pet
+abbr --add psc "pet search"
+abbr --add pexec "pet exec -t"
+
+# macos
+abbr --add showdot "defaults write com.apple.finder AppleShowAllFiles TRUE"
+abbr --add spot-file "lsof -c '/mds\$/'"
+abbr --add spot-off "sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist"
+abbr --add spot-on "sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist"
+abbr --add tailacer "ssh tailacer"
+abbr --add tailmbp "ssh tailmbp"
+abbr --add tailprefs "tailscale debug prefs"
+abbr --add ax "chmod a+x"
+abbr --add bktmux "tmux list-keys | fzf"
+abbr --add bkfish "bind | fzf"
+abbr --add hidedot "defaults write com.apple.finder AppleShowAllFiles FALSE"
+abbr --add cpwd "echo $(pwd) | pbcopy"
+abbr --add bsra "bsr --all"
+abbr --add caff "caffeinate -ism"
+abbr --add cleanupLS "/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
+
+# pueue
+abbr --add pue pueue
+abbr pueon "pueued -d"
+
+# git
 abbr --add g git
 abbr --add ga "git add"
 abbr --add gaa "git add --all"
@@ -223,10 +275,6 @@ abbr --add gga "git gui citool --amend"
 abbr --add ggpur ggu
 # abbr "ggpush"="git push origin \"\$(git_current_branch)\""
 abbr --add ggsup "git branch --set-upstream-to=origin/\$(git_current_branch)"
-abbr --add gh "op plugin run -- gh"
-abbr --add ghcny "ssh ghcny"
-abbr --add ghh "git help"
-abbr --add ghphyne "ssh ghphyne"
 abbr --add gignore "git update-index --assume-unchanged"
 # abbr "gignored"="git ls-files -v | grep \"^[[:lower:]]\""
 abbr --add git-svn-dcommit-push "git svn dcommit && git push github \$(git_main_branch):svntrunk"
@@ -365,61 +413,40 @@ abbr --add gwta "git worktree add"
 abbr --add gwtls "git worktree list"
 abbr --add gwtmv "git worktree move"
 abbr --add gwtrm "git worktree remove"
-abbr --add hidedot "defaults write com.apple.finder AppleShowAllFiles FALSE"
-abbr --add l "eza -l --classify=auto --icon=autos --git"
-abbr --add la "eza -lbhHigUmuSa --icons=auto --git"
-abbr --add ll "eza -lah --classify=auto --icons=auto --git"
-abbr --add llm "ll --sort=modified"
-abbr --add llt "eza -lah --classify=always --tree --level=2 --icons=auto"
-abbr --add ls "eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
-abbr --add lt "eza --tree --level=2 --icons=auto"
-abbr --add lx "eza -lbhHigUmuSa@ --icons=auto --git"
-abbr --add lzd lazydocker
-abbr --add lzg lazygit
-abbr --add mbp "ssh mbp"
-abbr --add mktar "tar -cvzf"
-abbr --add mux tmuxinator
-abbr --add npmD "npm i -D "
-# abbr "npmE"="PATH=\"\$(npm bin)\":\"\$PATH\""
-abbr --add npmF "npm i -f"
-abbr --add npmg "npm i -g "
-abbr --add npmI "npm init"
-abbr --add npmi "npm info"
-abbr --add npmL "npm list"
-abbr --add npmL0 "npm ls --depth=0"
-abbr --add npmO "npm outdated"
-abbr --add npmP "npm publish"
-abbr --add npmR "npm run"
-abbr --add npmrb "npm run build"
-abbr --add npmrd "npm run dev"
-abbr --add npmS "npm i -S "
-abbr --add npmSe "npm search"
-abbr --add npmst "npm start"
-abbr --add npmt "npm test"
-abbr --add npmU "npm update"
-abbr --add npmV "npm -v"
-abbr --add numfiles "echo \$(ls -1 | wc -l)"
-abbr --add nv nvim
-abbr --add nvdot "nvim /Users/chianyung/.local/share/chezmoi"
-abbr --add pexec "pet exec -t"
-abbr --add ping gping
-abbr --add prgl pretty_git_log
-abbr --add psc "pet search"
-abbr --add pue pueue
-abbr --add run-help man
-abbr --add showdot "defaults write com.apple.finder AppleShowAllFiles TRUE"
-abbr --add spot-file "lsof -c '/mds\$/'"
-abbr --add spot-off "sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist"
-abbr --add spot-on "sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist"
-abbr --add tailacer "ssh tailacer"
-abbr --add tailmbp "ssh tailmbp"
-abbr --add tailprefs "tailscale debug prefs"
-abbr --add tds _tmux_directory_session
+
+# tmux
 abbr --add tksv "tmux kill-server"
 abbr --add tl "tmux list-sessions"
-# abbr --add tmux _zsh_tmux_plugin_run
-abbr --add tmuxconf "\$EDITOR \$ZSH_TMUX_CONFIG"
+abbr ts "tmux new -s"
+
+# 1password
+abbr --add vercel "op plugin run -- vercel"
+abbr --add gh "op plugin run -- gh"
+
 abbr --add untar "tar -zxvf"
 # abbr "urldecode"="python -c \"import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])\""
-abbr --add vercel "op plugin run -- vercel"
 abbr --add which-command whence
+
+# Personal abbreviations
+abbr --add tmuxconf "\$EDITOR ~/.local/share/chezmoi/chezmoi/dot_config/tmux/tmux.conf.tmpl"
+abbr restart-kanata sudo launchctl kickstart -k system/com.example.kanata
+abbr --add nv nvim
+abbr --add nvdot "nvim ~/.local/share/chezmoi"
+abbr --add numfiles "echo \$(ls -1 | wc -l)"
+abbr --add exf "exec fish"
+abbr --add cat bat
+abbr --add chez chezmoi
+abbr --add cl clear
+abbr --add clrnvses "rm -rf ~/.local/share/nvim/sessions/*"
+abbr --add config "cd ~/.config/"
+abbr --add fier tmuxifier
+abbr --add fixmounts "sudo automount -vcu"
+abbr --add fsh-alias fast-theme
+abbr --add ghh "git help"
+abbr --add lzd lazydocker
+abbr --add lzg lazygit
+abbr --add mktar "tar -cvzf"
+abbr --add mux tmuxinator
+abbr --add ping gping
+abbr --add prgl pretty_git_log
+abbr --add run-help man
