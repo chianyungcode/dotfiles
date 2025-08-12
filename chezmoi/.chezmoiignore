@@ -10,6 +10,7 @@ Library/Application Support
 Library
 .config/applications
 .config/nix
+.config/aerospace
 {{ end }}
 
 
