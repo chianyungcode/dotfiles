@@ -1,5 +1,3 @@
-{{ if eq .chezmoi.os "linux" -}}
-
 [Unit]
 Description=Kanata keyboard remapper
 Documentation=https://github.com/jtroo/kanata
@@ -13,5 +11,3 @@ Restart=no
 
 [Install]
 WantedBy=default.target
-
-{{- end }}

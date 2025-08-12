@@ -17,4 +17,5 @@ Library
 # If the OS is NOT Linux OR the distro is NOT Arch, then ignore .config/hypr.
 {{ if or (ne .chezmoi.os "linux") (ne .chezmoi.osRelease.id "arch") }}
 .config/hypr
+.config/systemd/user
 {{ end }}
