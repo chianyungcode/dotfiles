@@ -14,14 +14,16 @@ function gen_completion
     # DESC: Generate completion for zsh and fish shell
     # USAGE: gen_completion "<cli_command_to_generate_completions>" "<cli_name>"
 
-    set base_cmd $argv[1]   # arg1: base command, e.g. 'proto completions --shell'
-    set filename $argv[2]   # arg2: completion file name without extension
+    set -l base_cmd $argv[1]   # arg1: base command, e.g. 'proto completions --shell'
+    set -l filename $argv[2]   # arg2: completion file name without extension
 
-    set dest_zsh ~/.local/share/chezmoi/chezmoi/dot_config/zsh-source/completions/_$filename
-    set dest_fish ~/.local/share/chezmoi/chezmoi/dot_config/fish/completions/$filename.fish
+    set -l dest_zsh ~/.local/share/chezmoi/chezmoi/dot_config/zsh-source/completions/_$filename
+    set -l dest_fish ~/.local/share/chezmoi/chezmoi/dot_config/fish/completions/$filename.fish
 
-    $base_cmd zsh  > $dest_zsh
-    $base_cmd fish > $dest_fish
+    # Generate for Zsh
+    eval "$base_cmd zsh"  > "$dest_zsh"
+    # Generate for Fish
+    eval "$base_cmd fish" > "$dest_fish"
 
     echo "Generated:"
     echo "  Zsh  -> $dest_zsh"
