@@ -208,4 +208,10 @@ return {
       "folke/snacks.nvim",
     },
   },
+
+  {
+    -- Bullets.vim is a Vim/NeoVim plugin for automated bullet lists.
+    -- https://github.com/bullets-vim/bullets.vim
+    "bullets-vim/bullets.vim",
+  },
 }
