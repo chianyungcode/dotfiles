@@ -52,20 +52,8 @@ return {
         },
       },
 
-      -- Ini untuk ignore type file tertentu
-      -- enabled = function()
-      -- 	return not vim.tbl_contains({ "lua", "markdown" }, vim.bo.filetype)
-      -- 		and vim.bo.buftype ~= "prompt"
-      -- 		and vim.b.completion ~= false
-      -- end,
-
-      -- This keymap is for auto select for completion. For example <A-1> (opt + 1) will select first completion
-      -- For reference check this https://github.com/Saghen/blink.cmp?tab=readme-ov-file#select-nth-item-from-the-list
-      -- 2 line diatas saya adalah tulisan sendiri
       keymap = {
         preset = "default", -- Opsi ini bisa dilihat disini https://github.com/Saghen/blink.cmp?tab=readme-ov-file#configuration khususnya bagian default-configuration toggle
-        ["<Tab>"] = {},
-
         ["<A-1>"] = {
           function(cmp)
             cmp.accept({ index = 1 })
