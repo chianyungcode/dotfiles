@@ -1,4 +1,5 @@
-background = #212121
+# favorite background color: #212121
+background = #0F1015
 foreground = #DAD7CD
 selection-background = #706B4E
 selection-foreground = #F3D9C4
@@ -19,4 +20,3 @@ palette = 6=#E0E1DD
 palette = 14=#89DDFF
 palette = 7=#E0E1DD
 palette = 15=#FFFFFF
-
