@@ -97,6 +97,7 @@ return {
     end,
   },
   {
+    -- youtube videos: https://www.youtube.com/watch?v=p_sVgHS2zcA
     "folke/flash.nvim",
     event = "VeryLazy",
     ---@type Flash.Config
