@@ -31,7 +31,10 @@ return {
             opts = {
               paths = {
                 -- "path_to_your_words.txt", -- add your owned word files before dictionary.
-                "/usr/share/dict/words", -- This file is included by default on Linux/macOS.
+                "~/.local/share/chezmoi/others/dictionary/combined_root_words.txt",
+                "~/.local/share/chezmoi/others/dictionary/combined_slang_words.txt",
+                "~/.local/share/chezmoi/others/dictionary/combined_stop_words.txt",
+                -- "/usr/share/dict/words", -- This file is included by default on Linux/macOS.
               },
             },
 
