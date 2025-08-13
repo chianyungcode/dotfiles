@@ -59,11 +59,14 @@ return {
     ft = { "go", "gomod" },
     build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
   },
+
   {
     "folke/noice.nvim",
     event = "VeryLazy",
     opts = {
-      -- add any options here
+      presets = {
+        bottom_search = false,
+      },
       views = {
         -- This sets for cmdline position
         cmdline_popup = {
@@ -75,6 +78,7 @@ return {
       },
     },
   },
+
   {
     "you-n-g/navigate-note.nvim",
     enabled = false,
