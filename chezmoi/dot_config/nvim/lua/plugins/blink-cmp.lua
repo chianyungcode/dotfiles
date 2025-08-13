@@ -3,15 +3,23 @@ return {
   {
     "saghen/blink.cmp",
     version = "*",
-    dependencies = { "saghen/blink.compat", version = false },
+    dependencies = {
+      { "saghen/blink.compat", version = false },
+      { "xieyonn/blink-cmp-dat-word" },
+    },
 
     opts = {
+      cmdline = {
+        keymap = { preset = "inherit" },
+        completion = { menu = { auto_show = true } },
+      },
+
       sources = {
         -- compat = { "obsidian", "obsidian_new", "obsidian_tags" },
 
         -- Uncomment dibawah jika ingin kembali ke setinggan sebelumnya
         -- default = { "obsidian", "obsidian_new", "obsidian_tags" },
-        default = { "ecolog", "lsp", "path", "snippets", "buffer" },
+        default = { "ecolog", "lsp", "path", "snippets", "buffer", "datword" },
         providers = {
           -- 	obsidian = {
           -- 		name = "obsidian",
@@ -26,6 +34,16 @@ return {
           -- 		module = "blink.compat.source",
           -- 	},
           ecolog = { name = "ecolog", module = "ecolog.integrations.cmp.blink_cmp" },
+          datword = {
+            name = "DatWord",
+            module = "blink-cmp-dat-word",
+            opts = {
+              paths = {
+                -- "path_to_your_words.txt", -- add your owned word files before dictionary.
+                "/usr/share/dict/words", -- This file is included by default on Linux/macOS.
+              },
+            },
+          },
         },
       },
 
