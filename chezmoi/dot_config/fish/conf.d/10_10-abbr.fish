@@ -131,7 +131,7 @@ abbr --add dxc "docker container exec"
 abbr --add dxcit "docker container exec -it"
 
 # eza
-abbr --add l "eza -l --classify=auto --icon=autos --git"
+abbr --add l "eza -l --classify=auto --icons=auto --git"
 abbr --add la "eza -lbhHigUmuSa --icons=auto --git"
 abbr --add ll "eza -lah --classify=auto --icons=auto --git"
 abbr --add llm "ll --sort=modified"
