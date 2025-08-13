@@ -119,6 +119,11 @@
       ]
       formulae = [
         # "flyctl",                              # Fly.io CLI
+        # "stow",                                # Symlink manager
+        # "stripe/stripe-cli/stripe",
+        # "television", # Alternative to yazi
+        # "tmuxinator", # Tmux session manager
+
         "act",                                 # runs GitHub Actions locally
         "awscli",
         "biome",                               # JS/TS linter, formatter
@@ -160,18 +165,17 @@
         "sesh",                                # Tmux session manager
         "shellcheck",                          # bash, sh linter
         "shfmt",                               # bash, sh formatter
+        "sqlite3",                             # for building python
         "sshs",                                # Graphical command-line client for SSH
-        # "stow",                                # Symlink manager
-        # "stripe/stripe-cli/stripe",
-        "stylua",   # Lua formatter
-        "tectonic", # render LaTex math
-        # "television", # Alternative to yazi
-        "thefuck", # Fix typos
-        # "tmuxinator", # Tmux session manager
-        "tmuxp",               # Tmux session manager
-        "vladkens/tap/macmon", # Mac monitor
-        "yamlfmt",             # YAML formatter
-        "yamllint",            # YAML linter
+        "stylua",                              # Lua formatter
+        "tcl-tk",                              # for building python
+        "tectonic",                            # render LaTex math
+        "thefuck",                             # Fix typos
+        "tmuxp",                               # Tmux session manager
+        "vladkens/tap/macmon",                 # Mac monitor
+        "yamlfmt",                             # YAML formatter
+        "yamllint",                            # YAML linter
+        "zlib",                                # for building python
       ]
       taps = []
 
@@ -388,11 +392,13 @@
         "sesh",
         "shellcheck",        # bash, sh linter
         "shfmt",             # bash, sh formatter
+        "sqlite3",           # for building python
         "starship",
         "stylua",            # Lua formatter
         "stylua",            # Lua formatter
         "tailscale",
         "taplo",             # TOML formatter
+        "tcl-tk",            # for building python
         "tectonic",
         "thefuck",           # Fix typos
         "ticktick",
@@ -405,6 +411,7 @@
         "yazi",
         "yq",                # YAML processor
         "zen-browser",
+        "zlib",              # for building python
       ]
 
     [packages.pacman.homelab_member]
