@@ -5,27 +5,6 @@ ff() {
     find . -name "$1"
 }
 
-    # DESC: Generate completion for zsh and fish shell
-    # USAGE: gen_completion "<cli_command_to_generate_completions>" "<cli_name>"
-
-gen_completion() {
-    # DESC: Generate completion for zsh and fish shell
-    # USAGE: gen_completion "<cli_command_to_generate_completions>" "<cli_name>"
-
-    base_cmd="$1"      # arg1: base command, e.g. 'proto completions --shell'
-    filename="$2"      # arg2: completion file name without extension
-
-    dest_zsh="$HOME/.local/share/chezmoi/chezmoi/dot_config/zsh-source/completions/_$filename"
-    dest_fish="$HOME/.local/share/chezmoi/chezmoi/dot_config/fish/completions/$filename.fish"
-
-    eval "$base_cmd zsh"  > "$dest_zsh"
-    eval "$base_cmd fish" > "$dest_fish"
-
-    printf "Generated:\n"
-    printf "  Zsh  -> %s\n" "$dest_zsh"
-    printf "  Fish -> %s\n" "$dest_fish"
-}
-
 ffs() {
     # Find file whose name starts with a given string
     find . -name "$1"'*'
