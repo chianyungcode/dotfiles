@@ -4,35 +4,25 @@ return {
     "saghen/blink.cmp",
     version = "*",
     dependencies = {
-      { "saghen/blink.compat", version = false },
+      -- { "saghen/blink.compat", version = false },
       { "xieyonn/blink-cmp-dat-word" },
     },
 
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
     opts = {
       cmdline = {
+        enabled = true,
         keymap = { preset = "inherit" },
-        completion = { menu = { auto_show = true } },
+        completion = { menu = { auto_show = true }, ghost_text = { enabled = true } },
       },
-
       sources = {
+        -- NOTE: this is for obsidian.nvim, back before when it not supported blink.cmp, so it uses blink.compat to make it sources from nvim.cmp
         -- compat = { "obsidian", "obsidian_new", "obsidian_tags" },
-
-        -- Uncomment dibawah jika ingin kembali ke setinggan sebelumnya
         -- default = { "obsidian", "obsidian_new", "obsidian_tags" },
+
         default = { "ecolog", "lsp", "path", "snippets", "buffer", "datword" },
         providers = {
-          -- 	obsidian = {
-          -- 		name = "obsidian",
-          -- 		module = "blink.compat.source",
-          -- 	},
-          -- 	obsidian_new = {
-          -- 		name = "obsidian_new",
-          -- 		module = "blink.compat.source",
-          -- 	},
-          -- 	obsidian_tags = {
-          -- 		name = "obsidian_tags",
-          -- 		module = "blink.compat.source",
-          -- 	},
           ecolog = { name = "ecolog", module = "ecolog.integrations.cmp.blink_cmp" },
           datword = {
             name = "DatWord",
@@ -43,6 +33,20 @@ return {
                 "/usr/share/dict/words", -- This file is included by default on Linux/macOS.
               },
             },
+
+            -- NOTE: this is for obsidian.nvim, back before when it not supported blink.cmp, so it uses blink.compat to make it sources from nvim.cmp
+            -- 	obsidian = {
+            -- 		name = "obsidian",
+            -- 		module = "blink.compat.source",
+            -- 	},
+            -- 	obsidian_new = {
+            -- 		name = "obsidian_new",
+            -- 		module = "blink.compat.source",
+            -- 	},
+            -- 	obsidian_tags = {
+            -- 		name = "obsidian_tags",
+            -- 		module = "blink.compat.source",
+            -- 	},
           },
         },
       },
@@ -108,17 +112,64 @@ return {
         },
       },
 
+      -- completion = {
+      --   documentation = {
+      --     window = {
+      --       border = "single",
+      --     },
+      --   },
+      --   menu = {
+      --     border = "single",
+      --     scrollbar = false,
+      --     draw = {
+      --       columns = { { "item_idx" }, { "kind_icon" }, { "label", "label_description", gap = 1 } },
+      --       components = {
+      --         item_idx = {
+      --           text = function(ctx)
+      --             return tostring(ctx.idx)
+      --           end,
+      --           highlight = "BlinkCmpItemIdx", -- optional, only if you want to change its color
+      --           width = { fill = false },
+      --         },
+      --         -- label = { width = { fill = false } }, -- default is true
+      --         label_description = { width = { fill = true } },
+      --         -- kind_icon = { width = { fill = false } },
+      --       },
+      --     },
+      --   },
+      -- },
+
       completion = {
         documentation = {
           window = {
-            border = "single",
+            border = {
+              { "╭", "FloatBorder" },
+              { "─", "FloatBorder" },
+              { "╮", "FloatBorder" },
+              { "│", "FloatBorder" },
+              { "╯", "FloatBorder" },
+              { "─", "FloatBorder" },
+              { "╰", "FloatBorder" },
+              { "│", "FloatBorder" },
+            },
           },
         },
         menu = {
-          border = "single",
           scrollbar = false,
+          border = {
+            { "╭", "FloatBorder" },
+            { "─", "FloatBorder" },
+            { "╮", "FloatBorder" },
+            { "│", "FloatBorder" },
+            { "╯", "FloatBorder" },
+            { "─", "FloatBorder" },
+            { "╰", "FloatBorder" },
+            { "│", "FloatBorder" },
+          },
           draw = {
-            columns = { { "item_idx" }, { "kind_icon" }, { "label", "label_description", gap = 1 } },
+            columns = { { "item_idx" }, { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
+            -- columns = { { "item_idx" }, { "kind_icon" }, { "label", "label_description", gap = 1 } },
+            -- columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
             components = {
               item_idx = {
                 text = function(ctx)
@@ -127,60 +178,13 @@ return {
                 highlight = "BlinkCmpItemIdx", -- optional, only if you want to change its color
                 width = { fill = false },
               },
-              -- label = { width = { fill = false } }, -- default is true
+              label = { width = { fill = false } }, -- default is true
               label_description = { width = { fill = true } },
-              -- kind_icon = { width = { fill = false } },
+              kind_icon = { width = { fill = false } },
             },
           },
         },
       },
-
-      -- completion = {
-      -- 	documentation = {
-      -- 		window = {
-      -- 			border = {
-      -- 				{ "╭", "FloatBorder" },
-      -- 				{ "─", "FloatBorder" },
-      -- 				{ "╮", "FloatBorder" },
-      -- 				{ "│", "FloatBorder" },
-      -- 				{ "╯", "FloatBorder" },
-      -- 				{ "─", "FloatBorder" },
-      -- 				{ "╰", "FloatBorder" },
-      -- 				{ "│", "FloatBorder" },
-      -- 			},
-      -- 		},
-      -- 	},
-      -- menu = {
-      -- 	scrollbar = false,
-      -- 	border = {
-      -- 		{ "╭", "FloatBorder" },
-      -- 		{ "─", "FloatBorder" },
-      -- 		{ "╮", "FloatBorder" },
-      -- 		{ "│", "FloatBorder" },
-      -- 		{ "╯", "FloatBorder" },
-      -- 		{ "─", "FloatBorder" },
-      -- 		{ "╰", "FloatBorder" },
-      -- 		{ "│", "FloatBorder" },
-      -- 	},
-      -- 	draw = {
-      -- 		-- columns = { { "item_idx" }, { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
-      -- 		columns = { { "item_idx" }, { "kind_icon" }, { "label", "label_description", gap = 1 } },
-      -- 		-- columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
-      -- 		components = {
-      -- 			item_idx = {
-      -- 				text = function(ctx)
-      -- 					return tostring(ctx.idx)
-      -- 				end,
-      -- 				highlight = "BlinkCmpItemIdx", -- optional, only if you want to change its color
-      -- 				width = { fill = false },
-      -- 			},
-      -- 			label = { width = { fill = false } }, -- default is true
-      -- 			label_description = { width = { fill = true } },
-      -- 			kind_icon = { width = { fill = false } },
-      -- 		},
-      -- 	},
-      -- },
-      -- },
     },
   },
 }
