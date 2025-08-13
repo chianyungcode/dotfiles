@@ -1,10 +1,11 @@
--- Completion plugin
+-- https://cmp.saghen.dev/
+
 return {
   {
     "saghen/blink.cmp",
     version = "*",
     dependencies = {
-      -- { "saghen/blink.compat", version = false },
+      -- { "saghen/blink.compat", version = false }, -- NOTE: this is for obsidian.nvim, back before when it not supported blink.cmp, so it uses blink.compat to make it sources from nvim.cmp
       { "xieyonn/blink-cmp-dat-word" },
     },
 

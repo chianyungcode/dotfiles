@@ -4,6 +4,7 @@ return {
   priority = 1000,
   lazy = false,
   -- kode type dibawah adalah agar adanya completion, jika dihapus maka completion akan hilang
+  ---@module 'snacks'
   ---@type snacks.Config
   opts = {
     -- Snacks.picker() ini adalah snacks.picker custom configuration
@@ -12,12 +13,14 @@ return {
         preset = "ivy",
       },
       sources = {
+        -- NOTE: showing hidden and ignore files
         -- files = { ignored = true, hidden = true },
         -- grep = { ignored = true, hidden = true },
         -- grep_word = { ignored = true, hidden = true },
         -- grep_buffers = { ignored = true, hidden = true },
 
         explorer = {
+          -- NOTE: showing hidden and ignore files
           -- ignored = true,
           -- hidden = true,
 
