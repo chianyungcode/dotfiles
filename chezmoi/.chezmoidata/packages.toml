@@ -361,6 +361,7 @@
     [packages.pacman.dev_computer]
       packages = [
         "biome",             # JS/TS linter, formatter
+        "btop",
         "codespell",         # Fix common misspellings in source code and text files
         "docker",
         "dpkg",
@@ -411,6 +412,7 @@
         "yamllint",          # YAML linter
         "yazi",
         "yq",                # YAML processor
+        "yubico-piv-tool",
         "zen-browser",
         "zlib",              # for building python
       ]
