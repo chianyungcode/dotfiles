@@ -16,6 +16,9 @@ set -l xdg_data_dir "$HOME/.local/share" # Replace with actual template value
 set -l xdg_state_dir "$HOME/.local/state" # Replace with actual template value
 set -l xdg_config_dir "$HOME/.config" # Replace with actual template value
 
+# enable fish vi keybinding on startup
+fish_vi_key_bindings
+
 for dir in "$xdg_cache_dir/fish" "$xdg_data_dir/fish" "$xdg_state_dir/fish"
     if not test -d $dir
         mkdir -p $dir
