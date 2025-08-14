@@ -379,6 +379,7 @@
         "helix",             # Alternative neovim
         "httpie",            # HTTP client
         "hurl",              # runs HTTP requests defined in a simple plain text format.
+        "kanata",
         "lazydocker",
         "lazygit",
         "markdownlint-cli2", # Linter for markdown file
