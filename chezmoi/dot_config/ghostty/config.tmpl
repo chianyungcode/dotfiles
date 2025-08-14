@@ -47,13 +47,14 @@ macos-icon-ghost-color = white
 macos-icon-screen-color = black
 
 # --- Font Styles ---
+font-family = Dank Mono
 {{- if eq .chezmoi.os "darwin" }}
 font-size = 18
-font-family = Dank Mono
 font-thicken = true
 font-thicken-strength = 150
 {{- else if eq .chezmoi.os "linux" }}
 # Keybinds
+# note: disable this because conflicting with neovim
 keybind = alt+one=unbind
 keybind = alt+two=unbind
 keybind = alt+three=unbind
@@ -65,7 +66,6 @@ keybind = alt+eight=unbind
 keybind = alt+nine=unbind
 
 font-size = 12
-font-family = CommitMono
 font-thicken = true
 font-thicken-strength = 150
 {{- end }}
