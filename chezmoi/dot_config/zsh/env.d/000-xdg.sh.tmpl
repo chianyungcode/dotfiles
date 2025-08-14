@@ -68,6 +68,11 @@ fi
 # ===============================
 # Application-specific paths
 # ===============================
+# Important: These environment variables must be exported **before** initializing
+# any CLI tools, so the tools can read the customized locations.
+#
+# Example:
+# - `eval "$(starship init zsh)"` in third-party/starship.sh will read `STARSHIP_CONFIG`
 
 # --- Configuration ---
 setenv GIT_CONFIG_GLOBAL "${XDG_CONFIG_HOME}/git/config"
