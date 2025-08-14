@@ -1,6 +1,6 @@
 # zmodload zsh/zprof # uncomment this for profiling function take time so it will slow startup
 
-{{ if eq .chezmoi.os "darwin" }}
+{{ if eq .chezmoi.os "darwin" -}}
 # Amazon Q pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 {{ end }}
@@ -95,24 +95,14 @@ fi
 # SOURCE Dotfiles
 #############################################
 
-# Files containing files *.zsh or *.sh to be sourced to your environment
-configFileLocations=(
-    "{{ .xdgConfigDir }}/zsh/conf.d"
-)
+config_dirs=("$HOME/.config/zsh/conf.d")
 
-for configFileLocation in "${configFileLocations[@]}"; do
-    if [ -d "${configFileLocation}" ]; then
-        while read -r configFile; do
-            # echo "Sourcing ${configFile}"  # Tambahkan ini untuk debugging
-            source "${configFile}"
-        done < <(find "${configFileLocation}" \
-            -maxdepth 2 \
-            -type f \
-            -name '*.zsh' \
-            -o -name '*.sh' | sort)
-    fi
+for dir in "${config_dirs[@]}"; do
+    [ -d "$dir" ] || continue
+    for file in "$dir"/*.{zsh,sh}(.N) "$dir"/*/*.{zsh,sh}(.N); do
+        source "$file"
+    done
 done
-
 
 # --- zsh-abbr ---
 # abbr import-aliases
