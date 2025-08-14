@@ -1,9 +1,9 @@
 # zmodload zsh/zprof # uncomment this for profiling function take time so it will slow startup
 
-{{ if eq .chezmoi.os "darwin" }}
+{{ if eq .chezmoi.os "darwin" -}}
 # Amazon Q pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
-{{ end }}
+{{ end -}}
 
 # Custom completion path (tambahan manual)
 if [ -d "${HOME}/.config/zsh/completions" ]; then
