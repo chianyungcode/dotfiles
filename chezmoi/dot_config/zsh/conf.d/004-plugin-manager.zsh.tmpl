@@ -5,10 +5,7 @@
 # Antidote Plugin Manager Setup
 # ======================================================
 
-{{ if stat (joinPath .chezmoi.homeDir ".config/zsh/.antidote/antidote.zsh") -}}
-# -- Source Antidote (installed via git clone) --
 source ${ZDOTDIR}/.antidote/antidote.zsh
-{{- end }}
 
 {{ if and (eq .chezmoi.os "darwin") (stat "/opt/bin/opt/antidote/share/antidote/antidote.zsh") }}
 # -- Source Antidote (installed via package manager) --
