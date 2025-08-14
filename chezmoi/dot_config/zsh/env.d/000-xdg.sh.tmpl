@@ -1,0 +1,98 @@
+# Configures XDG specification environment variables.
+# https://specifications.freedesktop.org/basedir-spec/latest/
+
+# ===============================
+# Helper functions
+# ===============================
+export_vars=()
+
+setenv() {
+  local var="$1"
+  local value="$2"
+
+  # Expand ~ menjadi $HOME
+  value="${value/#\~/$HOME}"
+
+  # Warning jika kosong
+  if [ -z "$value" ]; then
+    printf 'Warning: %s is being set to an empty value\n' "$var" >&2
+  fi
+
+  # Jika path terlihat seperti direktori dan belum ada, buat
+  if [[ "$value" == /* && ! -e "$value" ]]; then
+    mkdir -p "$value" 2>/dev/null || true
+  fi
+
+  # Debug mode
+  # USAGE: ZSHENV_DEBUG=1 zsh (run this is terminal)
+  if [ -n "$ZSHENV_DEBUG" ]; then
+    printf '\033[34m[setenv]\033[0m %-20s = %s\n' "$var" "$value" >&2
+  fi
+
+  printf -v "$var" '%s' "$value"
+  export_vars+=("$var")
+}
+
+export_all() {
+  export "${export_vars[@]}"
+}
+
+# ===============================
+# XDG Base Directories (Spec)
+# ===============================
+setenv XDG_DATA_HOME "{{ .xdgDataDir }}"     # A single base directory relative to which user-specific data files should be written
+setenv XDG_CONFIG_HOME "{{ .xdgConfigDir }}" # A single base directory relative to which user-specific configuration files should be written
+setenv XDG_STATE_HOME "{{ .xdgStateDir }}"   # A single base directory relative to which user-specific state data should be written
+setenv XDG_CACHE_HOME "{{ .xdgCacheDir }}"   # A single base directory relative to which user-specific non-essential (cached) data should be written
+setenv XDG_DATA_DIRS "${XDG_DATA_DIRS:-$XDG_DATA_HOME:/usr/local/share:/usr/share}"
+
+# ===============================
+# Basic PATH prepend
+# ===============================
+setenv PATH "$HOME/.local/bin:$PATH"
+
+# ===============================
+# XDG User Directories
+# ===============================
+if command -v xdg-user-dir >/dev/null 2>&1; then
+  setenv XDG_DESKTOP_DIR "${XDG_DESKTOP_DIR:-$(xdg-user-dir DESKTOP)}"
+  setenv XDG_DOWNLOAD_DIR "${XDG_DOWNLOAD_DIR:-$(xdg-user-dir DOWNLOAD)}"
+  setenv XDG_TEMPLATES_DIR "${XDG_TEMPLATES_DIR:-$(xdg-user-dir TEMPLATES)}"
+  setenv XDG_PUBLICSHARE_DIR "${XDG_PUBLICSHARE_DIR:-$(xdg-user-dir PUBLICSHARE)}"
+  setenv XDG_DOCUMENTS_DIR "${XDG_DOCUMENTS_DIR:-$(xdg-user-dir DOCUMENTS)}"
+  setenv XDG_MUSIC_DIR "${XDG_MUSIC_DIR:-$(xdg-user-dir MUSIC)}"
+  setenv XDG_PICTURES_DIR "${XDG_PICTURES_DIR:-$(xdg-user-dir PICTURES)}"
+  setenv XDG_VIDEOS_DIR "${XDG_VIDEOS_DIR:-$(xdg-user-dir VIDEOS)}"
+fi
+
+# ===============================
+# Application-specific paths
+# ===============================
+
+# --- Configuration ---
+setenv GIT_CONFIG_GLOBAL "${XDG_CONFIG_HOME}/git/config"
+setenv PROTO_HOME "${XDG_CONFIG_HOME}/proto"
+setenv STARSHIP_CONFIG "${XDG_CONFIG_HOME}/starship/starship.toml"
+setenv PARALLEL_HOME "${XDG_CONFIG_HOME}/parallel"
+setenv SCREENRC "${XDG_CONFIG_HOME}/screen/screenrc"
+setenv WGETRC "${XDG_CONFIG_HOME}/wgetrc"
+
+# --- Data ---
+setenv HYPRLAND_CONFIG "${XDG_DATA_HOME:-$HOME/.local/share}/hypr/hyprland.conf"
+setenv _ZO_DATA_DIR "${XDG_DATA_HOME}/zoxide"
+setenv TERMINFO "${XDG_DATA_HOME}/terminfo"
+setenv TERMINFO_DIRS "${XDG_DATA_HOME}/terminfo:/usr/share/terminfo"
+
+# --- Cache ---
+setenv ANTIDOTE_HOME "${XDG_CACHE_HOME}/antidote"
+
+# --- State & Misc ---
+setenv LESSHISTFILE "${LESSHISTFILE:-/tmp/less-hist}"
+setenv PYTHON_HISTORY "${XDG_STATE_HOME}/python_history"
+
+setenv CHANYUNG "chan"
+
+# ===============================
+# Final export
+# ===============================
+export_all

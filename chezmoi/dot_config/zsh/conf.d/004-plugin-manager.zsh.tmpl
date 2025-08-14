@@ -1,0 +1,46 @@
+# Exclude ~/Library/Caches/antidote/ in Clean MyMac to prevent deletions
+# https://arc.net/l/quote/ejwiyzxh
+
+# ======================================================
+# Antidote Plugin Manager Setup
+# ======================================================
+
+{{ if stat (joinPath .chezmoi.homeDir ".config/zsh/.antidote/antidote.zsh") -}}
+# -- Source Antidote (installed via git clone) --
+source ${ZDOTDIR}/.antidote/antidote.zsh
+{{- end }}
+
+{{ if and (eq .chezmoi.os "darwin") (stat "/opt/bin/opt/antidote/share/antidote/antidote.zsh") }}
+# -- Source Antidote (installed via package manager) --
+# Source Antidote if installed via Homebrew on macOS
+source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
+{{- else if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") (stat "/usr/share/zsh-antidote/antidote.zsh")}}
+# Antidote installed via AUR package `zsh-antidote` (use: paru -S zsh-antidote)
+# ⚠️ Note: Using the AUR version on Arch Linux is **not recommended**, as it may not work properly in some setups.
+source /usr/share/zsh-antidote/antidote.zsh
+{{- end -}}
+
+# ======================================================
+# Plugin Configuration
+# ======================================================
+
+# Instead of calling `antidote load` on every startup (which can be slow),
+# the code below loads a pre-generated static plugin file for faster startup time.
+
+# Set the base path for Antidote plugin files (.txt and .zsh)
+zsh_plugins=${ZDOTDIR:-~}/.zsh_plugins
+
+# Ensure the .zsh_plugins.txt file exists for defining plugin list
+[[ -f ${zsh_plugins}.txt ]] || touch ${zsh_plugins}.txt
+
+# Add Antidote function directory to $fpath for lazy loading
+fpath=(/path/to/antidote/functions $fpath)
+autoload -Uz antidote
+
+# Regenerate static plugin file if .txt is newer than .zsh
+if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.txt ]]; then
+  antidote bundle <${zsh_plugins}.txt >|${zsh_plugins}.zsh
+fi
+
+# Source the generated static plugin file
+source ${zsh_plugins}.zsh

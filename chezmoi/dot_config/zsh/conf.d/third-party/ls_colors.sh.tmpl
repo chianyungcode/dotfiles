@@ -1,0 +1,5 @@
+# *vivid* is a generator for the `LS_COLORS` environment variable that controls the colorized output of `eza`, `ls`, `tree`, `fd`, `bfs`, `dust` and many other tools
+
+{{- if lookPath "vivid" }}
+export LS_COLORS="$(vivid generate catppuccin-mocha)"
+{{ end }}

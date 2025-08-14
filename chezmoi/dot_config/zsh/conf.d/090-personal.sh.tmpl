@@ -1,0 +1,11 @@
+{{ if .use_secrets -}}
+# SSH Shortcuts
+{{ range .remote_servers -}}
+{{- if not (lookPath .name) }}
+alias {{ .name }}="ssh {{ .name }}"
+{{- if .tailscale_ip }}
+alias tail{{ .name }}="ssh tail{{ .name }}"
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}

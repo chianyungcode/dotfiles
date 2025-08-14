@@ -1,0 +1,26 @@
+#!/usr/bin/env zsh
+
+#! ██████╗░░█████╗░  ███╗░░██╗░█████╗░████████╗  ███████╗██████╗░██╗████████╗
+#! ██╔══██╗██╔══██╗  ████╗░██║██╔══██╗╚══██╔══╝  ██╔════╝██╔══██╗██║╚══██╔══╝
+#! ██║░░██║██║░░██║  ██╔██╗██║██║░░██║░░░██║░░░  █████╗░░██║░░██║██║░░░██║░░░
+#! ██║░░██║██║░░██║  ██║╚████║██║░░██║░░░██║░░░  ██╔══╝░░██║░░██║██║░░░██║░░░
+#! ██████╔╝╚█████╔╝  ██║░╚███║╚█████╔╝░░░██║░░░  ███████╗██████╔╝██║░░░██║░░░
+#! ╚═════╝░░╚════╝░  ╚═╝░░╚══╝░╚════╝░░░░╚═╝░░░  ╚══════╝╚═════╝░╚═╝░░░╚═╝░░░
+
+# Load all custom module files // Directories are ignored
+# As Directories are ignored, we can store a bunch of boilerplate script in a ``./conf.d/custom-directory``
+# then we can make an entry point script: `./conf.d/custom-directory.zsh`managing all the files in that directory
+
+env_dir="${ZDOTDIR:-$HOME/.config/zsh}/env.d"
+
+# Pastikan direktori ada
+[ -d "$env_dir" ] || return 0
+
+# Aktifkan nullglob agar pattern tanpa match menjadi kosong
+setopt null_glob
+
+for file in "$env_dir"/*.zsh "$env_dir"/*.sh; do
+  [ -r "$file" ] && source "$file"
+done
+
+unsetopt null_glob

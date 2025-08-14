@@ -5,17 +5,9 @@
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 {{ end }}
 
-# If not running interactively, don't do anything
-#############################################
-case $- in
-    *i*) ;;
-    *) return ;;
-esac
-[ -z "$PS1" ] && return
-
 # Custom completion path (tambahan manual)
-if [ -d "${HOME}/.config/zsh-source/completions" ]; then
-  fpath+=("${HOME}/.config/zsh-source/completions")
+if [ -d "${HOME}/.config/zsh/completions" ]; then
+  fpath+=("${HOME}/.config/zsh/completions")
 fi
 
 # duplicates slow down searching
@@ -31,91 +23,25 @@ fpath=(${(u)fpath})
 path=(${(u)path})
 manpath=(${(u)manpath})
 
-# If zsh is emulating another shell, don't source .zshrc
-#############################################
-if [[ $0 == 'ksh' ]] || [[ $0 == 'sh' ]]; then
-    source "${HOME}/.shrc"
-    exit
-elif [[ $0 == 'bash' ]]; then
-    source "${HOME}/.bashrc"
-    exit
-fi
-
-unset _myPaths _path
-
-# Create XDG directories
-#############################################
-if [ ! -d "{{ .xdgCacheDir }}/zsh" ]; then
-    mkdir -p "{{ .xdgCacheDir }}/zsh"
-fi
-if [ ! -d "{{ .xdgDataDir }}/zsh" ]; then
-    mkdir -p "{{ .xdgDataDir }}/zsh"
-fi
-if [ ! -d "{{ .xdgStateDir }}/zsh" ]; then
-    mkdir -p "{{ .xdgStateDir }}/zsh"
-fi
-
-# Source completions
-if [ -d "{{ .xdgDataDir }}/zsh/completions" ]; then
-    fpath+={{ .xdgDataDir }}/zsh/completions
-fi
-
-if [ -d "{{ .xdgDataDir }}/zsh/zsh-completions/src" ]; then
-    fpath+={{ .xdgDataDir }}/zsh/zsh-completions/src
-fi
-
-{{ if eq .chezmoi.os "darwin" -}}
-if type brew &>/dev/null; then
-    fpath+="$(brew --prefix)/share/zsh/site-functions"
-fi
-{{- end }}
-
 # Load Completions
 #############################################
 # Load all fpath completions first
 autoload -Uz compinit
 
-# Use cached dump if fresh (<24h)
-zcdump="{{ .xdgCacheDir }}/zsh/zcompdump-${ZSH_VERSION}"
-# More portable zsh-native way to check file age
-if [[ -r "$zcdump" && (! -f "${zcdump}.zwc" || "$zcdump" -nt "${zcdump}.zwc") ]]; then
-  # If dump exists but compiled version doesn't or is older
-  zcompile "$zcdump"
-fi
+# Load all configuration
+conf_dir="${ZDOTDIR:-$HOME/.config/zsh}/conf.d"
 
-# Check if file exists and is less than 24h old using zsh's built-in file age check
-if [[ -r "$zcdump" && -n "$zcdump"(#qN.mh-24) ]]; then
-  # Less than 24 hours old - skip security check
-  compinit -C -d "$zcdump"
-else
-  # More than 24 hours old or doesn't exist - do full init
-  compinit -d "$zcdump"
-fi
+# Pastikan direktori ada
+[ -d "$conf_dir" ] || return 0
 
-# SOURCE Dotfiles
-#############################################
+# Aktifkan nullglob agar pattern tanpa match menjadi kosong
+setopt null_glob
 
-# Files containing files *.zsh or *.sh to be sourced to your environment
-configFileLocations=(
-    "{{ .xdgConfigDir }}/zsh-source"
-)
-
-for configFileLocation in "${configFileLocations[@]}"; do
-    if [ -d "${configFileLocation}" ]; then
-        while read -r configFile; do
-            # echo "Sourcing ${configFile}"  # Tambahkan ini untuk debugging
-            source "${configFile}"
-        done < <(find "${configFileLocation}" \
-            -maxdepth 2 \
-            -type f \
-            -name '*.zsh' \
-            -o -name '*.sh' | sort)
-    fi
+for file in "$conf_dir"/*.zsh "$conf_dir"/*.sh; do
+  [ -r "$file" ] && source "$file"
 done
 
-
-# --- zsh-abbr ---
-# abbr import-aliases
+unsetopt null_glob
 
 {{ if eq .chezmoi.os "darwin" }}
 # Amazon Q post block. Keep at the bottom of this file.

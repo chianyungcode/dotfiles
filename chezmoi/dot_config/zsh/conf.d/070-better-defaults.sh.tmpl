@@ -1,0 +1,15 @@
+{{- if lookPath "gping" }}
+alias ping="gping"
+{{- else if lookPath "prettyping" }}
+alias ping="prettyping --nolegend"
+{{- end }}
+
+{{- if lookPath "bat" }}
+alias cat="bat" # Prefer `bat` over `cat`
+{{- end }}
+
+# cd() {
+#     # Always print contents of directory when entering
+#     builtin cd "$@" || return 1
+#     ll
+# }
