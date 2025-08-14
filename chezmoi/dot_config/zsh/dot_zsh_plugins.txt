@@ -13,6 +13,7 @@ ohmyzsh/ohmyzsh path:plugins/docker-compose
 ohmyzsh/ohmyzsh path:plugins/tmux
 
 # Third Party Plugins (non-completion)
+hlissner/zsh-autopair kind:defer
 olets/zsh-abbr kind:defer
 MichaelAquilina/zsh-you-should-use kind:zsh
 # jeffreytse/zsh-vi-mode
