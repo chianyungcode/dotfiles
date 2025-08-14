@@ -78,10 +78,13 @@ setenv SCREENRC "${XDG_CONFIG_HOME}/screen/screenrc"
 setenv WGETRC "${XDG_CONFIG_HOME}/wgetrc"
 
 # --- Data ---
-setenv HYPRLAND_CONFIG "${XDG_DATA_HOME:-$HOME/.local/share}/hypr/hyprland.conf"
 setenv _ZO_DATA_DIR "${XDG_DATA_HOME}/zoxide"
+
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") -}}
+setenv HYPRLAND_CONFIG "${XDG_DATA_HOME:-$HOME/.local/share}/hypr/hyprland.conf"
 setenv TERMINFO "${XDG_DATA_HOME}/terminfo"
 setenv TERMINFO_DIRS "${XDG_DATA_HOME}/terminfo:/usr/share/terminfo"
+{{ end -}}
 
 # --- Cache ---
 setenv ANTIDOTE_HOME "${XDG_CACHE_HOME}/antidote"
