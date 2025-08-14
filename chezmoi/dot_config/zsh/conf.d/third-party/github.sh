@@ -3,9 +3,10 @@
 # If the github cli extension `gh-copilot` is installed, this will enable it.
 # More info: https://docs.github.com/en/copilot/using-github-copilot/using-github-copilot-in-the-command-line
 
-if [[ $(command -v gh) ]]; then
-	if gh auth status &>/dev/null && gh extension list | grep -q "copilot"; then
-		[[ -n ${ZSH_NAME} ]] && eval "$(gh copilot alias -- zsh)"
-		[[ -n ${BASH} ]] && eval "$(gh copilot alias -- bash)"
-	fi
-fi
+# disable this because making unresponsive when startup
+# if [[ $(command -v gh) ]]; then
+# 	if gh auth status &>/dev/null && gh extension list | grep -q "copilot"; then
+# 		[[ -n ${ZSH_NAME} ]] && eval "$(gh copilot alias -- zsh)"
+# 		[[ -n ${BASH} ]] && eval "$(gh copilot alias -- bash)"
+# 	fi
+# fi
