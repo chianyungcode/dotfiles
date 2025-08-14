@@ -100,6 +100,7 @@ config_dirs=("$HOME/.config/zsh/conf.d")
 for dir in "${config_dirs[@]}"; do
     [ -d "$dir" ] || continue
     for file in "$dir"/*.{zsh,sh}(.N) "$dir"/*/*.{zsh,sh}(.N); do
+        # echo "Loading config file: $file" >&2 # uncomment this for debugging
         source "$file"
     done
 done
