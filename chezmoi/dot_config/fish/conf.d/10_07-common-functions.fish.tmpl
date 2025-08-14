@@ -47,15 +47,28 @@ function upabbr
 end
 
 function alias-select
-    set buffer (alias | fzf \
-        --prompt="Select Alias > " \
-        --preview="string split -m1 '=' {} | string sub -s 2 | string trim" \
-        --preview-window=right:50%:wrap \
-        | string replace -r '^alias ' '')
-    commandline --replace $buffer
+    set -l picked (
+        alias | fzf \
+            --prompt="Select Alias > " \
+            --preview="string split -m1 -f2 \"'\" -- {} | string trim --chars=\"'\"" \
+            --preview-window=right:50%:wrap
+    )
+
+    # keluar kalau dibatalkan
+    test -n "$picked"; or return
+
+    # Ambil 'word' (nama alias) dari baris: alias word 'command...'
+    set -l name (string match -r --groups-only '^alias[[:space:]]+(\S+)' -- $picked)
+
+    if test -n "$name"
+        commandline --replace -- $name
+        # Jika lebih suka menambah di posisi kursor (bukan replace):
+        # commandline --insert -- $name
+    end
 end
 
 bind \ce alias-select
+
 
 # Bind ke Ctrl+E
 bind \ce alias-select
