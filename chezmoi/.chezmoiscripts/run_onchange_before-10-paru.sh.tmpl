@@ -1,9 +1,88 @@
 {{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") -}}
-
 #!/usr/bin/env bash
 
 {{ template "shared_script_utils.bash" . }}
 
+LOG_FILE="./paru_install_log.txt"
+success_count=0
+fail_count=0
+notfound_count=0
+
+#=== Colors ===#
+BLUE="\033[1;34m"
+GREEN="\033[1;32m"
+RED="\033[1;31m"
+CYAN="\033[1;36m"
+YELLOW="\033[1;33m"
+RESET="\033[0m"
+
+#=== Spinner ===#
+spinner() {
+    local pid=$1
+    local spin='|/-\'
+    local i=0
+    while kill -0 "$pid" 2>/dev/null; do
+        i=$(( (i+1) % 4 ))
+        printf "\r  %s " "${spin:$i:1}"
+        sleep 0.1
+    done
+}
+
+#=== Get package source ===#
+get_package_source() {
+    local pkg=$1
+    local repo
+    repo=$(pacman -Si "$pkg" 2>/dev/null | awk '/^Repository/ {print $3}')
+    if [[ -n "$repo" ]]; then
+        echo "Arch Repo: $repo"
+        return
+    fi
+    echo "AUR"
+}
+
+#=== Check if package exists ===#
+check_package_exists() {
+    local pkg=$1
+    pacman -Si "$pkg" &>/dev/null || paru -Si "$pkg" &>/dev/null
+}
+
+#=== Install package ===#
+install_package() {
+    local pkg=$1
+
+    if ! check_package_exists "$pkg"; then
+        printf "${RED}✘${RESET} %-20s ${YELLOW}(package not found)${RESET}\n" "$pkg"
+        notfound_count=$((notfound_count+1))
+        return
+    fi
+
+    local source_info
+    source_info=$(get_package_source "$pkg")
+    printf "${BLUE}📦 Installing${RESET} %-20s ${YELLOW}(%s)${RESET}" "$pkg" "$source_info"
+
+    if pacman -Qq "$pkg" &>/dev/null; then
+        printf "\r${GREEN}✔${RESET} %-20s ${YELLOW}(%s)${RESET} (already installed)\n" "$pkg" "$source_info"
+        success_count=$((success_count+1))
+        return
+    fi
+
+    (paru -S --noconfirm --needed --skipreview --batchinstall "$pkg" >>"$LOG_FILE" 2>&1) &
+    local cmd_pid=$!
+    spinner $cmd_pid
+    wait $cmd_pid
+    local exit_code=$?
+
+    if [ $exit_code -eq 0 ]; then
+        printf "\r${GREEN}✔${RESET} %-20s ${YELLOW}(%s)${RESET} (installed)\n" "$pkg" "$source_info"
+        success_count=$((success_count+1))
+    else
+        printf "\r${RED}✘${RESET} %-20s ${YELLOW}(%s)${RESET} (failed)\n" "$pkg" "$source_info"
+        tail -n 5 "$LOG_FILE" | sed "s/^/    /"
+        fail_count=$((fail_count+1))
+    fi
+}
+
+#=== Package list from chezmoi ===#
 packages=(
     {{ range $package := .packages.pacman.common.packages }}
     "{{ $package }}"
@@ -25,29 +104,22 @@ packages=(
     {{ end }}
 )
 
+#=== Main ===#
 header "Installing packages with paru"
-paru -Syu --noconfirm
+paru -Syu --noconfirm --skipreview --batchinstall
 
 for package in "${packages[@]}"; do
-    if paru -Qi "${package}" &>/dev/null; then
-        info "Package ${package} is already installed"
-        continue
-    fi
-
-    # Coba install dari repo resmi dulu, jika gagal install dari AUR
-    if paru -S --repo --noconfirm "${package}"; then
-        info "Installed ${package} from Arch repo"
-    else
-        warning "${package} not found in Arch repository, Trying to install ${package} from AUR"
-        if paru -S --aur --noconfirm "${package}"; then
-            info "Installed ${package} from AUR"
-        else
-            warning "Package ${package} not found in Arch repo or AUR"
-        fi
-    fi
+    install_package "$package"
 done
+
+#=== Summary ===#
+echo -e "\n${CYAN}========== Installation Summary ==========${RESET}"
+echo -e "${GREEN}✔ Success:${RESET} $success_count"
+echo -e "${RED}✘ Failed:${RESET} $fail_count"
+echo -e "${YELLOW}! Not found:${RESET} $notfound_count"
+echo -e "Log saved to: ${LOG_FILE}"
+echo -e "${CYAN}==========================================${RESET}\n"
 
 success "Paru packages installed"
 _safeExit_
-
 {{- end }}
