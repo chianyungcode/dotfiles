@@ -3,7 +3,7 @@
 {{ if eq .chezmoi.os "darwin" -}}
 # Amazon Q pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
-{{ end }}
+{{ end -}}
 
 # If not running interactively, don't do anything
 #############################################
@@ -100,7 +100,7 @@ config_dirs=("$HOME/.config/zsh/conf.d")
 for dir in "${config_dirs[@]}"; do
     [ -d "$dir" ] || continue
     for file in "$dir"/*.{zsh,sh}(.N) "$dir"/*/*.{zsh,sh}(.N); do
-        # echo "Loading config file: $file" >&2 # uncomment this for debugging
+        [[ -n "$ZSH_DEBUG" ]] && echo "Loading config file: $file" >&2
         source "$file"
     done
 done
