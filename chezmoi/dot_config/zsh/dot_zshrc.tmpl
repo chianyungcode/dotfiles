@@ -1,117 +1,115 @@
-# zmodload zsh/zprof # uncomment this for profiling function take time so it will slow startup
+# ============================================
+# Zsh Configuration
+# ============================================
 
-{{ if eq .chezmoi.os "darwin" -}}
-# Amazon Q pre block. Keep at the top of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
-{{ end -}}
+# -- Profiling (optional) --------------------
+# zmodload zsh/zprof  # Uncomment to enable startup profiling (slows startup)
+# zprof               # Uncomment at the bottom to view profiling results
 
-# If not running interactively, don't do anything
-#############################################
+{{if eq .chezmoi.os "darwin" -}}
+# ============================================
+# Amazon Q - Keep at the top of this file
+# ============================================
+[[ -f "$HOME/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] \
+  && builtin source "$HOME/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
+{{- end }}
+
+# ============================================
+# Exit early for non-interactive shells
+# ============================================
 case $- in
-    *i*) ;;
-    *) return ;;
+  *i*) ;;   # interactive
+  *) return ;;
 esac
 [ -z "$PS1" ] && return
 
-# Custom completion path (tambahan manual)
-if [ -d "${HOME}/.config/zsh/completions" ]; then
-  fpath+=("${HOME}/.config/zsh/completions")
+# ============================================
+# Paths & Fpath Setup
+# ============================================
+
+# Add custom completions
+if [ -d "$HOME/.config/zsh/completions" ]; then
+  fpath+=("$HOME/.config/zsh/completions")
 fi
 
-# duplicates slow down searching
-#############################################
-builtin declare -aU fpath
-builtin declare -aU path
-builtin declare -aU manpath
-# FPATH should not be exported
-builtin declare +x FPATH
-# duplicates slow down searching and
-# mess up OMZ fpath check if should remove zcompdump
+# Remove duplicates to speed up search
+builtin declare -aU fpath path manpath
+builtin declare +x FPATH  # FPATH should not be exported
 fpath=(${(u)fpath})
 path=(${(u)path})
 manpath=(${(u)manpath})
 
-# If zsh is emulating another shell, don't source .zshrc
-#############################################
-if [[ $0 == 'ksh' ]] || [[ $0 == 'sh' ]]; then
-    source "${HOME}/.shrc"
-    exit
-elif [[ $0 == 'bash' ]]; then
-    source "${HOME}/.bashrc"
-    exit
-fi
+# ============================================
+# Emulation Checks
+# ============================================
+case "$0" in
+  ksh|sh)   source "$HOME/.shrc" && exit ;;
+  bash)     source "$HOME/.bashrc" && exit ;;
+esac
 
 unset _myPaths _path
 
-# Create XDG directories
-#############################################
-if [ ! -d "{{ .xdgCacheDir }}/zsh" ]; then
-    mkdir -p "{{ .xdgCacheDir }}/zsh"
-fi
-if [ ! -d "{{ .xdgDataDir }}/zsh" ]; then
-    mkdir -p "{{ .xdgDataDir }}/zsh"
-fi
-if [ ! -d "{{ .xdgStateDir }}/zsh" ]; then
-    mkdir -p "{{ .xdgStateDir }}/zsh"
-fi
+# ============================================
+# Ensure XDG Directories Exist
+# ============================================
+xdg_dirs=(
+  "$HOME/.cache/zsh"
+  "$HOME/.local/share/zsh"
+  "$HOME/.local/state/zsh"
+)
+for dir in $xdg_dirs; do
+  [ -d "$dir" ] || mkdir -p "$dir"
+done
 
-# Source completions
-if [ -d "{{ .xdgDataDir }}/zsh/completions" ]; then
-    fpath+={{ .xdgDataDir }}/zsh/completions
+# ============================================
+# Completions Paths
+# ============================================
+if [ -d "$HOME/.local/share/zsh/completions" ]; then
+  fpath+=("$HOME/.local/share/zsh/completions")
 fi
-
-if [ -d "{{ .xdgDataDir }}/zsh/zsh-completions/src" ]; then
-    fpath+={{ .xdgDataDir }}/zsh/zsh-completions/src
+if [ -d "$HOME/.local/share/zsh/zsh-completions/src" ]; then
+  fpath+=("$HOME/.local/share/zsh/zsh-completions/src")
 fi
-
-{{ if eq .chezmoi.os "darwin" -}}
 if type brew &>/dev/null; then
-    fpath+="$(brew --prefix)/share/zsh/site-functions"
+  fpath+=("$(brew --prefix)/share/zsh/site-functions")
 fi
-{{- end }}
 
-# Load Completions
-#############################################
-# Load all fpath completions first
+# ============================================
+# Initialize Completions
+# ============================================
 autoload -Uz compinit
+zcdump="$HOME/.cache/zsh/zcompdump-${ZSH_VERSION}"
 
-# Use cached dump if fresh (<24h)
-zcdump="{{ .xdgCacheDir }}/zsh/zcompdump-${ZSH_VERSION}"
-# More portable zsh-native way to check file age
+# Compile if needed
 if [[ -r "$zcdump" && (! -f "${zcdump}.zwc" || "$zcdump" -nt "${zcdump}.zwc") ]]; then
-  # If dump exists but compiled version doesn't or is older
   zcompile "$zcdump"
 fi
 
-# Check if file exists and is less than 24h old using zsh's built-in file age check
+# Use cache if fresh (<24h), else rebuild
 if [[ -r "$zcdump" && -n "$zcdump"(#qN.mh-24) ]]; then
-  # Less than 24 hours old - skip security check
   compinit -C -d "$zcdump"
 else
-  # More than 24 hours old or doesn't exist - do full init
   compinit -d "$zcdump"
 fi
 
-# SOURCE Dotfiles
-#############################################
-
+# ============================================
+# Source Config Files
+# ============================================
 config_dirs=("$HOME/.config/zsh/conf.d")
-
 for dir in "${config_dirs[@]}"; do
-    [ -d "$dir" ] || continue
-    for file in "$dir"/*.{zsh,sh}(.N) "$dir"/*/*.{zsh,sh}(.N); do
-        [[ -n "$ZSH_DEBUG" ]] && echo "Loading config file: $file" >&2
-        source "$file"
-    done
+  [ -d "$dir" ] || continue
+  for file in "$dir"/*.{zsh,sh}(.N) "$dir"/*/*.{zsh,sh}(.N); do
+    [[ -n "$ZSH_DEBUG" ]] && echo "Loading config file: $file" >&2
+    source "$file"
+  done
 done
 
-# --- zsh-abbr ---
-# abbr import-aliases
+{{if eq .chezmoi.os "darwin" -}}
+# ============================================
+# Amazon Q - Keep at the bottom of this file
+# ============================================
+[[ -f "$HOME/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] \
+  && builtin source "$HOME/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
+{{- end }}
 
-{{ if eq .chezmoi.os "darwin" }}
-# Amazon Q post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
-{{ end }}
-
-# zprof # uncomment this for profiling function take time so it will slow startup
-
+# zprof               # Uncomment at the bottom to view profiling results
