@@ -86,64 +86,69 @@ fi
 # █▀▀ █ █▄░█ █▀▀ █▀▀ █▀█ █▀█ █▀█ █ █▄░█ ▀█▀
 # █▀░ █ █░▀█ █▄█ ██▄ █▀▄ █▀▀ █▀▄ █ █░▀█ ░█░
 
-echo "[1/5] Installing fingerprint packages..."
-sudo pacman -Syu --noconfirm fprintd
+# echo "[1/5] Installing fingerprint packages..."
+# sudo pacman -Syu --noconfirm fprintd
+#
+# echo "[2/5] Enabling fprintd service..."
+# sudo systemctl enable fprintd.service --now
+#
+# echo "[3/5] Setting up PAM for fingerprint authentication..."
+#
+# # Backup PAM configs if not backed up before
+# backup_file() {
+#   local file="$1"
+#   if [ -f "$file" ] && [ ! -f "$file.bak" ]; then
+#     sudo cp "$file" "$file.bak"
+#     echo "  → Backup created: $file.bak"
+#   fi
+# }
+#
+# backup_file /etc/pam.d/login
+# backup_file /etc/pam.d/sudo
+# [ -f /etc/pam.d/swaylock ] && backup_file /etc/pam.d/swaylock
+# [ -f /etc/pam.d/gtklock ] && backup_file /etc/pam.d/gtklock
+#
+# # Function to add pam_fprintd at the very top (before other auth rules)
+# add_pam_fprintd() {
+#   local file="$1"
+#   if ! grep -q "pam_fprintd.so" "$file"; then
+#     sudo awk '
+#             BEGIN {inserted=0}
+#             /^#/ {print; next}
+#             inserted==0 && /^auth/ {
+#                 print "auth      sufficient    pam_fprintd.so"
+#                 inserted=1
+#             }
+#             {print}
+#         ' "$file" | sudo tee "$file.tmp" >/dev/null
+#     sudo mv "$file.tmp" "$file"
+#     echo "  → Added pam_fprintd to top of $file"
+#   else
+#     echo "  → pam_fprintd already present in $file"
+#   fi
+# }
+#
+# add_pam_fprintd /etc/pam.d/login
+# add_pam_fprintd /etc/pam.d/sudo
+#
+# if [ -f /etc/pam.d/swaylock ]; then
+#   add_pam_fprintd /etc/pam.d/swaylock
+# elif [ -f /etc/pam.d/gtklock ]; then
+#   add_pam_fprintd /etc/pam.d/gtklock
+# fi
+#
+# echo "[4/5] Checking existing fingerprints..."
+# if fprintd-list "$USER" 2>/dev/null | grep -q "Finger"; then
+#   echo "  → Fingerprint already enrolled for user '$USER'. Skipping enrollment."
+# else
+#   echo "  → No fingerprint found. Starting enrollment..."
+#   fprintd-enroll
+# fi
+#
+# echo "[5/5] ✅ Fingerprint setup complete."
+# echo "Test with: sudo -k && sudo ls"
 
-echo "[2/5] Enabling fprintd service..."
-sudo systemctl enable fprintd.service --now
+# █▀▄ █▀█ █▀▀ █▄▀ █▀▀ █▀█
+# █▄▀ █▄█ █▄▄ █░█ ██▄ █▀▄
 
-echo "[3/5] Setting up PAM for fingerprint authentication..."
-
-# Backup PAM configs if not backed up before
-backup_file() {
-  local file="$1"
-  if [ -f "$file" ] && [ ! -f "$file.bak" ]; then
-    sudo cp "$file" "$file.bak"
-    echo "  → Backup created: $file.bak"
-  fi
-}
-
-backup_file /etc/pam.d/login
-backup_file /etc/pam.d/sudo
-[ -f /etc/pam.d/swaylock ] && backup_file /etc/pam.d/swaylock
-[ -f /etc/pam.d/gtklock ] && backup_file /etc/pam.d/gtklock
-
-# Function to add pam_fprintd at the very top (before other auth rules)
-add_pam_fprintd() {
-  local file="$1"
-  if ! grep -q "pam_fprintd.so" "$file"; then
-    sudo awk '
-            BEGIN {inserted=0}
-            /^#/ {print; next}
-            inserted==0 && /^auth/ {
-                print "auth      sufficient    pam_fprintd.so"
-                inserted=1
-            }
-            {print}
-        ' "$file" | sudo tee "$file.tmp" >/dev/null
-    sudo mv "$file.tmp" "$file"
-    echo "  → Added pam_fprintd to top of $file"
-  else
-    echo "  → pam_fprintd already present in $file"
-  fi
-}
-
-add_pam_fprintd /etc/pam.d/login
-add_pam_fprintd /etc/pam.d/sudo
-
-if [ -f /etc/pam.d/swaylock ]; then
-  add_pam_fprintd /etc/pam.d/swaylock
-elif [ -f /etc/pam.d/gtklock ]; then
-  add_pam_fprintd /etc/pam.d/gtklock
-fi
-
-echo "[4/5] Checking existing fingerprints..."
-if fprintd-list "$USER" 2>/dev/null | grep -q "Finger"; then
-  echo "  → Fingerprint already enrolled for user '$USER'. Skipping enrollment."
-else
-  echo "  → No fingerprint found. Starting enrollment..."
-  fprintd-enroll
-fi
-
-echo "[5/5] ✅ Fingerprint setup complete."
-echo "Test with: sudo -k && sudo ls"
+sudo usermod -aG docker $USER
