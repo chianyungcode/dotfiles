@@ -1,0 +1,10 @@
+[Unit]
+Description=Pueue Daemon
+
+[Service]
+ExecStart=/bin/pueued pueued -d
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
