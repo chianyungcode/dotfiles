@@ -435,7 +435,6 @@ abbr --add nvdot "nvim ~/.local/share/chezmoi"
 abbr --add numfiles "echo \$(ls -1 | wc -l)"
 abbr --add exf "exec fish"
 abbr --add cat bat
-abbr --add chez chezmoi
 abbr --add cl clear
 abbr --add clrnvses "rm -rf ~/.local/share/nvim/sessions/*"
 abbr --add config "cd ~/.config/"
