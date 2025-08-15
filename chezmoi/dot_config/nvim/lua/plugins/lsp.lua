@@ -28,6 +28,7 @@ return {
         "yamlls", -- YAML: Language server protocol (LSP)
         "ast_grep",
         "ruff", -- Python: Language server protocol (LSP), linters and formatters
+        "prismals", -- prisma orm
       },
       automatic_enable = {
         exclude = {
