@@ -203,6 +203,7 @@ return {
   },
   {
     "brianhuster/live-preview.nvim",
+    enabled = false,
     dependencies = {
       -- You can choose one of the following pickers
       "folke/snacks.nvim",
