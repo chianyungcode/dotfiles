@@ -1,77 +1,100 @@
-# Appearance
+# ==========================
+#   APPEARANCE
+# ==========================
 shell-integration = detect
 shell-integration-features = cursor,sudo,title
 
-# --- General Appearance ---
+# General
 background-opacity = 0.8
 background-blur-radius = 10
 theme = custom
 
-# Keybinds
-keybind = alt+shift+t=toggle_quick_terminal
-keybind = ctrl+shift+h=new_split:left
-keybind = ctrl+shift+j=new_split:down
-keybind = ctrl+shift+k=new_split:up
-keybind = ctrl+shift+l=new_split:right
-keybind = alt+shift+h=goto_split:left
-keybind = alt+shift+j=goto_split:down
-keybind = alt+shift+k=goto_split:up
-keybind = alt+shift+l=goto_split:right
-
-
-# Miscellaneous
-macos-option-as-alt = true
-mouse-hide-while-typing = true
-cursor-color=#00FF98
-# I use block style for better clarity position when using zsh vi mode
-cursor-style=bar
+# Cursor
+cursor-color = #00FF98
+cursor-style = bar          # dipilih bar untuk Zsh vi mode
 cursor-style-blink = false
-copy-on-select = clipboard
-confirm-close-surface = false
-window-save-state = always
-# auto-update-channel is for using nightly update
-# auto-update-channel = tip
 
-# --- Window Title and Styles ---
-# -- Padding
+
+# ==========================
+#   WINDOW & TITLE
+# ==========================
+# Padding
 window-padding-x = 11
 window-padding-y = 11
-# -- Title and Tabs
+
+# Title & Tabs
 window-title-font-family = Cascadia Code
 macos-titlebar-style = hidden
 macos-titlebar-proxy-icon = hidden
 
-# --- Customize Ghostty App Icon ---
+# App Icon (macOS)
 macos-icon = custom-style
 macos-icon-ghost-color = white
 macos-icon-screen-color = black
 
-# --- Font Styles ---
-font-family = Dank Mono
+
+# ==========================
+#   FONT
+# ==========================
+font-family = CommitMono
+
 {{- if eq .chezmoi.os "darwin" }}
-font-size = 18
+font-size = 16
 font-thicken = true
 font-thicken-strength = 150
 {{- else if eq .chezmoi.os "linux" }}
-# Keybinds
-# note: disable this because conflicting with neovim
-keybind = alt+one=unbind
-keybind = alt+two=unbind
-keybind = alt+three=unbind
-keybind = alt+four=unbind
-keybind = alt+five=unbind
-keybind = alt+six=unbind
-keybind = alt+seven=unbind
-keybind = alt+eight=unbind
-keybind = alt+nine=unbind
-
 font-size = 12
 font-thicken = true
 font-thicken-strength = 150
 {{- end }}
+
+# Optional Font Settings
 # font-style-bold = true
 # font-style-italic = true
 # font-style-bold-italic = true
 # font-synthetic-style = italic
 # bold-is-bright = false
 # window-colorspace = display-p3
+
+
+# ==========================
+#   KEYBINDINGS
+# ==========================
+# Quick Terminal
+keybind = alt+shift+t=toggle_quick_terminal
+
+# Split Management
+keybind = ctrl+shift+h=new_split:left
+keybind = ctrl+shift+j=new_split:down
+keybind = ctrl+shift+k=new_split:up
+keybind = ctrl+shift+l=new_split:right
+
+# Navigation Between Splits
+keybind = alt+shift+h=goto_split:left
+keybind = alt+shift+j=goto_split:down
+keybind = alt+shift+k=goto_split:up
+keybind = alt+shift+l=goto_split:right
+
+{{- if eq .chezmoi.os "linux" }}
+    # Disable alt+number (conflict with Neovim)
+    keybind = alt+one=unbind
+    keybind = alt+two=unbind
+    keybind = alt+three=unbind
+    keybind = alt+four=unbind
+    keybind = alt+five=unbind
+    keybind = alt+six=unbind
+    keybind = alt+seven=unbind
+    keybind = alt+eight=unbind
+    keybind = alt+nine=unbind
+{{- end }}
+
+
+# ==========================
+#   MISCELLANEOUS
+# ==========================
+macos-option-as-alt = true
+mouse-hide-while-typing = true
+copy-on-select = clipboard
+confirm-close-surface = false
+window-save-state = always
+# auto-update-channel = tip   # nightly update
