@@ -161,6 +161,7 @@
         "poppler",                             # PDF rendering library
         "prettier",                            # JS/TS formatter
         "pueue",                               # Task runner and scheduler
+        "redis",                               # Redis CLI
         "ruff",                                # Python linter
         "sesh",                                # Tmux session manager
         "shellcheck",                          # bash, sh linter
@@ -391,6 +392,7 @@
         "pet-bin",
         "prettier",            # JS/TS formatter
         "pueue",               # Task runner and scheduler
+        "redis",               # Redis CLI
         "ruff",                # Python linter
         "sesh",
         "shellcheck",          # bash, sh linter
