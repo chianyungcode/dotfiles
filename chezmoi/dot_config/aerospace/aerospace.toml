@@ -245,11 +245,11 @@ automatically-unhide-macos-hidden-apps = false
 
 [[on-window-detected]]
   if.app-id = 'notion.id'
-  run       = 'move-node-to-workspace G'
+  run       = 'move-node-to-workspace R'
 
 [[on-window-detected]]
   if.app-id = 'md.obsidian'
-  run       = 'move-node-to-workspace G'
+  run       = 'move-node-to-workspace R'
 
 [[on-window-detected]]
   if.app-id = 'com.github.wez.wezterm'
