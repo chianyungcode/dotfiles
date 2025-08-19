@@ -129,7 +129,6 @@
         "biome",                               # JS/TS linter, formatter
         "codespell",                           # Fix common misspellings in source code and text files
         "direnv",                              # Environment manager for shell based current working directory
-        "dopplerhq/cli/doppler",               # Secret manager
         "dotenvx/brew/dotenvx",                # Env manager
         "eslint",                              # JS/TS linter
         "fastfetch",                           # Better system info
