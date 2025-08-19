@@ -3,14 +3,14 @@ OCO_API_KEY={{ onepasswordRead .secrets.oco_apikey }}
 OCO_API_URL={{ onepasswordRead .secrets.oco_apiurl }}
 {{- end }}
 OCO_AI_PROVIDER=openai
-OCO_MODEL=qwen/qwen3-coder
+OCO_MODEL=moonshotai/kimi-k2
 OCO_TOKENS_MAX_OUTPUT=500
-OCO_DESCRIPTION=true
+OCO_DESCRIPTION=false
 OCO_EMOJI=false
 OCO_LANGUAGE=en
 OCO_MESSAGE_TEMPLATE_PLACEHOLDER=$msg
 OCO_PROMPT_MODULE=conventional-commit
-OCO_ONE_LINE_COMMIT=false
+OCO_ONE_LINE_COMMIT=true
 OCO_TEST_MOCK_TYPE=commit-message
 OCO_WHY=false
 OCO_OMIT_SCOPE=false
