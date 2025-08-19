@@ -449,3 +449,4 @@ abbr --add mux tmuxinator
 abbr --add ping gping
 abbr --add prgl pretty_git_log
 abbr --add run-help man
+abbr dopr "doppler run -- "
