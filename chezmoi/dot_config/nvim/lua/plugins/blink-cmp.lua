@@ -6,6 +6,11 @@ return {
     version = "*",
     dependencies = {
       -- { "saghen/blink.compat", version = false }, -- NOTE: this is for obsidian.nvim, back before when it not supported blink.cmp, so it uses blink.compat to make it sources from nvim.cmp
+      {
+        "L3MON4D3/LuaSnip",
+        -- follow latest release.
+        version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+      },
       { "xieyonn/blink-cmp-dat-word" },
     },
 
@@ -17,6 +22,7 @@ return {
         keymap = { preset = "inherit" },
         completion = { menu = { auto_show = true }, ghost_text = { enabled = true } },
       },
+      -- snippets = { preset = "luasnip" },
       sources = {
         -- NOTE: this is for obsidian.nvim, back before when it not supported blink.cmp, so it uses blink.compat to make it sources from nvim.cmp
         -- compat = { "obsidian", "obsidian_new", "obsidian_tags" },

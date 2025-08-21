@@ -84,7 +84,7 @@ return {
         },
         lualine_b = {
           { "fancy_branch" },
-          -- { "fancy_diff" }, -- showing the diff for text added, modified and removed
+          { "fancy_diff" }, -- showing the diff for text added, modified and removed
         },
         lualine_c = {
           { "filename", path = 4 }, -- path = 4 (only showing path for the filename and parent directory, not the entire path, the option is 0,1,2,3,4)
@@ -93,7 +93,7 @@ return {
           { "fancy_macro" },
           { "fancy_diagnostics" },
           { "fancy_searchcount" },
-          -- { "fancy_location" }, -- location of the current cursor -> $line_number | $character_position_number
+          { "fancy_location" }, -- location of the current cursor -> $line_number | $character_position_number
         },
         lualine_y = {
           -- { "fancy_filetype", ts_icon = "" }, -- Showing filetype for the current buffer
