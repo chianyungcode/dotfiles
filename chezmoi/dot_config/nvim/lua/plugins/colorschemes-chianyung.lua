@@ -107,7 +107,7 @@ return {
   },
   {
     "webhooked/kanso.nvim",
-    enabled = false,
+    enabled = true,
     lazy = false,
     priority = 1000,
     config = function()
@@ -169,6 +169,7 @@ return {
   },
   {
     "Skardyy/makurai-nvim",
+    enabled = false,
   },
   {
     "metalelf0/black-metal-theme-neovim",
@@ -184,7 +185,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "night-owl",
+      colorscheme = "kanso",
     },
   },
 }
