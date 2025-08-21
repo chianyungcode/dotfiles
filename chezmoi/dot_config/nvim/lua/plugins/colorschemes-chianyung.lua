@@ -6,7 +6,7 @@ return {
   -- { "killitar/obscure.nvim" },
   {
     "oxfist/night-owl.nvim",
-    enabled = false,
+    enabled = true,
     lazy = false,
     priority = 1000,
   },
@@ -43,7 +43,7 @@ return {
     -- 	})
     -- end,
   },
-  { "datsfilipe/vesper.nvim" },
+  { "datsfilipe/vesper.nvim", enabled = false },
   -- {
   -- 	"vague2k/vague.nvim",
   -- 	config = function()
@@ -54,7 +54,7 @@ return {
   -- },
   {
     "dgox16/oldworld.nvim",
-    enabled = true,
+    enabled = false,
     lazy = false,
     priority = 1000,
     config = function()
@@ -184,7 +184,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "oldworld",
+      colorscheme = "night-owl",
     },
   },
 }
