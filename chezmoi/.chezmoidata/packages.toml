@@ -413,6 +413,7 @@
         "yamlfmt",             # YAML formatter
         "yamllint",            # YAML linter
         "yazi",
+        "auto-cpufreq",        # CPU frequency auto
         "yq",                  # YAML processor
         "yubico-piv-tool",
         "zen-browser",
