@@ -228,34 +228,7 @@ automatically-unhide-macos-hidden-apps = false
   shift-down = ['volume set 0', 'mode main']
   up         = 'volume up'
 
-[[on-window-detected]]
-  if.app-id = 'company.thebrowser.Browser'
-  run       = 'move-node-to-workspace F'
-
-[[on-window-detected]]
-  if.app-id = 'com.todesktop.230313mzl4w4u92'
-  run       = 'move-node-to-workspace C'
-
-[[on-window-detected]]
-  if.app-id = 'com.jetbrains.WebStorm'
-  run       = 'move-node-to-workspace C'
-
-[[on-window-detected]]
-  if.app-id = 'com.figma.Desktop'
-  run       = 'move-node-to-workspace D'
-
-[[on-window-detected]]
-  if.app-id = 'notion.id'
-  run       = 'move-node-to-workspace R'
-
-[[on-window-detected]]
-  if.app-id = 'md.obsidian'
-  run       = 'move-node-to-workspace R'
-
-[[on-window-detected]]
-  if.app-id = 'com.github.wez.wezterm'
-  run       = 'move-node-to-workspace D'
-
+# Workspace A - Development Tools
 [[on-window-detected]]
   if.app-id = 'com.apidog.app'
   run       = 'move-node-to-workspace A'
@@ -265,90 +238,115 @@ automatically-unhide-macos-hidden-apps = false
   run       = 'move-node-to-workspace A'
 
 [[on-window-detected]]
-  if.app-id = 'com.linear'
-  run       = 'move-node-to-workspace T'
+  if.app-id = 'com.jetbrains.datagrip'
+  run       = 'move-node-to-workspace A'
 
-# App with floating layout
-[[on-window-detected]]
-  if.app-id = 'com.1password.1password'
-  run       = 'layout floating'
-
-[[on-window-detected]]
-  if.app-id = 'com.apple.ActivityMonitor'
-  run       = ['layout floating', 'move-node-to-workspace W']
-
-[[on-window-detected]]
-  if.app-id = 'com.apple.finder'
-  run       = 'layout floating'
-
+# Workspace B - Time Tracking
 [[on-window-detected]]
   if.app-id = 'com.catforce.timemator-setapp'
-  run       = ['layout floating', 'move-node-to-workspace W']
+  run       = ['layout floating', 'move-node-to-workspace B']
+
+# Workspace C - Communication
+[[on-window-detected]]
+  if.app-id = 'com.tinyspeck.slackmacgap'
+  run       = 'move-node-to-workspace C'
 
 [[on-window-detected]]
-  if.app-id = 'com.macpaw.CleanMyMac-setapp'
-  run       = ['layout floating', 'move-node-to-workspace W']
+  if.app-id = 'com.hnc.Discord'
+  run       = 'move-node-to-workspace C'
 
+[[on-window-detected]]
+  if.app-id = 'net.coldx.App-for-WhatsApp-setapp'
+  run       = 'move-node-to-workspace C'
+
+[[on-window-detected]]
+  if.app-id = 'com.tdesktop.Telegram'
+  run       = ['layout floating', 'move-node-to-workspace C']
+
+# Workspace D - Design & Terminal
+[[on-window-detected]]
+  if.app-id = 'com.figma.Desktop'
+  run       = 'move-node-to-workspace D'
+
+[[on-window-detected]]
+  if.app-id = 'com.github.wez.wezterm'
+  run       = 'move-node-to-workspace D'
+
+[[on-window-detected]]
+  if.app-id = 'com.mitchellh.ghostty'
+  run       = 'move-node-to-workspace D'
+
+# Workspace E - Media & Utilities
 [[on-window-detected]]
   if.app-id = 'com.apple.Music'
   run       = ['layout floating', 'move-node-to-workspace E']
+
+[[on-window-detected]]
+  if.app-id = 'com.manytricks.Moom'
+  run       = ['layout floating', 'move-node-to-workspace E']
+
+# Workspace F - Browsers
+[[on-window-detected]]
+  if.app-id = 'company.thebrowser.Browser'
+  run       = 'move-node-to-workspace F'
 
 [[on-window-detected]]
   if.app-id = 'com.apple.Safari'
   run       = 'move-node-to-workspace F'
 
 [[on-window-detected]]
-  if.app-id = 'com.TickTick.task.mac'
-  run       = 'move-node-to-workspace T'
-
-[[on-window-detected]]
   if.app-id = 'app.zen-browser.zen'
   run       = 'move-node-to-workspace F'
 
 [[on-window-detected]]
-  if.app-id = 'com.tinyspeck.slackmacgap'
-  run       = 'move-node-to-workspace W'
+  if.app-id = 'company.thebrowser.dia'
+  run       = 'move-node-to-workspace F'
 
-[[on-window-detected]]
-  if.app-id = 'com.manytricks.Moom'
-  run       = ['layout floating', 'move-node-to-workspace Q']
-
-[[on-window-detected]]
-  if.app-id = 'com.hnc.Discord'
-  run       = 'move-node-to-workspace S'
-
-[[on-window-detected]]
-  if.app-id = 'net.coldx.App-for-WhatsApp-setapp'
-  run       = 'move-node-to-workspace S'
-
-[[on-window-detected]]
-  if.app-id = 'com.tdesktop.Telegram'
-  run       = ['layout floating', 'move-node-to-workspace S']
-
-[[on-window-detected]]
-  if.app-id = 'com.mitchellh.ghostty'
-  run       = 'move-node-to-workspace D'
-
-[[on-window-detected]]
-  if.app-id = 'com.jetbrains.datagrip'
-  run       = 'move-node-to-workspace A'
-
-[[on-window-detected]]
-  if.app-id = 'com.google.Chrome'
-  run       = 'move-node-to-workspace S'
-
-[[on-window-detected]]
-  if.app-id = 'com.electron.wispr-flow'
-  run       = ['layout floating']
-
+# Workspace R - File Management
 [[on-window-detected]]
   if.app-id = 'com.jinghaoshe.qspace.pro'
   run       = ['layout floating', 'move-node-to-workspace R']
 
+# Workspace S - Chrome Browser
 [[on-window-detected]]
-  if.app-id = 'company.thebrowser.dia'
-  run       = ['move-node-to-workspace F']
+  if.app-id = 'com.google.Chrome'
+  run       = 'move-node-to-workspace S'
+
+# Workspace T - Task Management
+[[on-window-detected]]
+  if.app-id = 'com.linear'
+  run       = 'move-node-to-workspace T'
+
+[[on-window-detected]]
+  if.app-id = 'com.TickTick.task.mac'
+  run       = 'move-node-to-workspace T'
 
 [[on-window-detected]]
   if.app-id = 'com.philipyoungg.session-setapp'
   run       = ['layout floating', 'move-node-to-workspace T']
+
+# Workspace V - Development Environment
+[[on-window-detected]]
+  if.app-id = 'com.todesktop.230313mzl4w4u92'
+  run       = 'move-node-to-workspace V'
+
+[[on-window-detected]]
+  if.app-id = 'com.jetbrains.WebStorm'
+  run       = 'move-node-to-workspace V'
+
+# Workspace W - Writing & System
+[[on-window-detected]]
+  if.app-id = 'notion.id'
+  run       = 'move-node-to-workspace W'
+
+[[on-window-detected]]
+  if.app-id = 'md.obsidian'
+  run       = 'move-node-to-workspace W'
+
+[[on-window-detected]]
+  if.app-id = 'com.apple.ActivityMonitor'
+  run       = ['layout floating', 'move-node-to-workspace W']
+
+[[on-window-detected]]
+  if.app-id = 'com.macpaw.CleanMyMac-setapp'
+  run       = ['layout floating', 'move-node-to-workspace W']
