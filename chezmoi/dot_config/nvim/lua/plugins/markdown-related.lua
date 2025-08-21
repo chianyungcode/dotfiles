@@ -85,6 +85,11 @@ return {
       preferred_link_style = "wiki",
 
       templates = {
+        customizations = {
+          learn = {
+            notes_subdir = "Learn/05-rough-notes",
+          },
+        },
         folder = "_templates",
         date_format = "%Y-%m-%d-%a",
         time_format = "%H:%M",
