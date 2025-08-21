@@ -10,6 +10,7 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
+after-startup-command = ["layout accordion"]
 
 # # Borders by FelixKratz https://github.com/FelixKratz/JankyBorders
 # after-startup-command = [
@@ -17,7 +18,7 @@ after-login-command = []
 # ]
 
 # Start AeroSpace at login
-start-at-login = false
+start-at-login = true
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers                         = true
@@ -265,7 +266,7 @@ automatically-unhide-macos-hidden-apps = false
 
 [[on-window-detected]]
   if.app-id = 'com.linear'
-  run       = 'move-node-to-workspace W'
+  run       = 'move-node-to-workspace T'
 
 # App with floating layout
 [[on-window-detected]]
@@ -298,7 +299,7 @@ automatically-unhide-macos-hidden-apps = false
 
 [[on-window-detected]]
   if.app-id = 'com.TickTick.task.mac'
-  run       = 'move-node-to-workspace W'
+  run       = 'move-node-to-workspace T'
 
 [[on-window-detected]]
   if.app-id = 'app.zen-browser.zen'
