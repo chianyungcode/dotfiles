@@ -26,7 +26,7 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    enabled = true,
+    enabled = false,
     priority = 1000,
     -- config = function()
     -- 	require("catppuccin").setup({
@@ -54,7 +54,7 @@ return {
   -- },
   {
     "dgox16/oldworld.nvim",
-    enabled = false,
+    enabled = true,
     lazy = false,
     priority = 1000,
     config = function()
@@ -107,6 +107,7 @@ return {
   },
   {
     "webhooked/kanso.nvim",
+    enabled = false,
     lazy = false,
     priority = 1000,
     config = function()
@@ -183,7 +184,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-mocha",
+      colorscheme = "oldworld",
     },
   },
 }
