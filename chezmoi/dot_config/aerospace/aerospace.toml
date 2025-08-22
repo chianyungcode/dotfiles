@@ -278,6 +278,10 @@ automatically-unhide-macos-hidden-apps = false
 
 # Workspace E - Media & Utilities
 [[on-window-detected]]
+  if.app-id = 'com.1password.1password'
+  run       = ['layout floating', 'move-node-to-workspace Z']
+
+[[on-window-detected]]
   if.app-id = 'com.apple.Music'
   run       = ['layout floating', 'move-node-to-workspace E']
 
