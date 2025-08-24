@@ -43,7 +43,9 @@ return {
             else
               gitsigns.nav_hunk("next")
             end
-          end)
+          end, {
+            desc = "Navigate to next hunk - moves to next diff change in diff mode or next Git hunk otherwise",
+          })
 
           map("n", "[c", function()
             if vim.wo.diff then
@@ -51,7 +53,9 @@ return {
             else
               gitsigns.nav_hunk("prev")
             end
-          end)
+          end, {
+            desc = "Navigate to previous hunk - moves to previous diff change in diff mode or previous Git hunk otherwise",
+          })
 
           -- Actions
           map("n", "<leader>hs", gitsigns.stage_hunk, {
