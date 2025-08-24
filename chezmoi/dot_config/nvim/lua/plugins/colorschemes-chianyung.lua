@@ -9,6 +9,9 @@ return {
     enabled = true,
     lazy = false,
     priority = 1000,
+    opts = {
+      transparent_background = true,
+    },
   },
 
   { "yorumicolors/yorumi.nvim", enabled = false, lazy = false, priority = 1000 },
@@ -28,6 +31,9 @@ return {
     name = "catppuccin",
     enabled = false,
     priority = 1000,
+    config = function()
+      require("catppuccin.groups.integrations.bufferline").get_theme()
+    end,
     -- config = function()
     -- 	require("catppuccin").setup({
     -- 		flavour = "mocha",
@@ -185,7 +191,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "kanso",
+      colorscheme = "night-owl",
     },
   },
 }
