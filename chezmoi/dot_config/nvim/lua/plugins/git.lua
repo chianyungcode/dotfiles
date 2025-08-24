@@ -27,6 +27,103 @@ return {
           untracked = { text = "┆" },
         },
         current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+        on_attach = function(bufnr)
+          local gitsigns = require("gitsigns")
+
+          local function map(mode, l, r, opts)
+            opts = opts or {}
+            opts.buffer = bufnr
+            vim.keymap.set(mode, l, r, opts)
+          end
+
+          -- Navigation
+          map("n", "]c", function()
+            if vim.wo.diff then
+              vim.cmd.normal({ "]c", bang = true })
+            else
+              gitsigns.nav_hunk("next")
+            end
+          end)
+
+          map("n", "[c", function()
+            if vim.wo.diff then
+              vim.cmd.normal({ "[c", bang = true })
+            else
+              gitsigns.nav_hunk("prev")
+            end
+          end)
+
+          -- Actions
+          map("n", "<leader>hs", gitsigns.stage_hunk, {
+            desc = "Stage current hunk", -- Stage the currently active hunk for commit
+          })
+          map("n", "<leader>hr", gitsigns.reset_hunk, {
+            desc = "Reset current hunk", -- Revert changes in the currently active hunk
+          })
+
+          map("v", "<leader>hs", function()
+            gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+          end, {
+            desc = "Stage selected hunks", -- Stage hunks selected in visual mode for commit
+          })
+
+          map("v", "<leader>hr", function()
+            gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+          end, {
+            desc = "Reset selected hunks", -- Revert changes in hunks selected in visual mode
+          })
+
+          map("n", "<leader>hS", gitsigns.stage_buffer, {
+            desc = "Stage entire buffer", -- Stage all changes in the current buffer/file for commit
+          })
+          map("n", "<leader>hR", gitsigns.reset_buffer, {
+            desc = "Reset entire buffer", -- Revert all changes in the current buffer/file
+          })
+          map("n", "<leader>hp", gitsigns.preview_hunk, {
+            desc = "Preview current hunk", -- Show a preview of the changes in the current hunk
+          })
+          map("n", "<leader>hi", gitsigns.preview_hunk_inline, {
+            desc = "Preview current hunk inline", -- Show inline preview of the current hunk changes on the current line
+          })
+
+          map("n", "<leader>hb", function()
+            gitsigns.blame_line({ full = true })
+          end, {
+            desc = "Show full git blame for current line", -- Display full git blame info for the current line
+          })
+
+          map("n", "<leader>hd", gitsigns.diffthis, {
+            desc = "Show diff of current buffer", -- Show the diff of the current file against HEAD
+          })
+
+          map("n", "<leader>hD", function()
+            gitsigns.diffthis("~")
+          end, {
+            desc = "Show diff of current buffer against previous commit", -- Show the diff of the current file against the previous commit
+          })
+
+          map("n", "<leader>hQ", function()
+            gitsigns.setqflist("all")
+          end, {
+            desc = "Set quickfix list with all hunks", -- Populate the quickfix list with all hunks
+          })
+          map("n", "<leader>hq", gitsigns.setqflist, {
+            desc = "Set quickfix list with hunks", -- Populate the quickfix list with selected hunks
+          })
+
+          -- Toggles
+          map("n", "<leader>tb", gitsigns.toggle_current_line_blame, {
+            desc = "Toggle current line blame", -- Toggle the git blame display for the current line
+          })
+          map("n", "<leader>tw", gitsigns.toggle_word_diff, {
+            desc = "Toggle word diff", -- Toggle the word-level diff display
+          })
+
+          -- Text object
+          map({ "o", "x" }, "ih", gitsigns.select_hunk, {
+            desc = "Select current hunk", -- Select the current hunk as a text object for visual or operator mode
+          })
+        end,
       })
     end,
   },
