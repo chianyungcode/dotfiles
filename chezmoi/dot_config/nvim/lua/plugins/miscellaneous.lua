@@ -24,7 +24,7 @@ return {
   },
   {
     "HakonHarnes/img-clip.nvim",
-    enabled = false,
+    enabled = true,
     event = "VeryLazy",
     opts = {
       -- add options here
@@ -32,7 +32,7 @@ return {
     },
     keys = {
       -- suggested keymap
-      { "<leader>p", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
+      -- { "<leader>p", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
     },
   },
   {
@@ -136,6 +136,8 @@ return {
         {
           mode = { "n", "v" },
           { "<leader>O", group = "Ecolog" },
+          { "<leader>o", group = "Opencode and Outline" },
+          { "<leader>h", group = "Gitsigns" },
         },
       },
     },
