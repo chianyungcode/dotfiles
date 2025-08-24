@@ -526,17 +526,17 @@
 						]
 					},
 					{
-						"description": "Pressing 'y' and 'u' simultanoeusly make a 'ctrl' + 'a' (tmux prefix) ",
+						"description": "Pressing 'u' and 'i' simultanoeusly make a 'ctrl' + 'a' (tmux prefix) ",
 						"manipulators": [
 							{
 								"type": "basic",
 								"from": {
 									"simultaneous": [
 										{
-											"key_code": "y"
+											"key_code": "u"
 										},
 										{
-											"key_code": "u"
+											"key_code": "i"
 										}
 									],
 									"modifiers": {
