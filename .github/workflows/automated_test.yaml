@@ -108,7 +108,7 @@ jobs:
             .bashrc
             .config/git/config
             .ssh/config
-            .config/zsh-source/080-linux.sh
+            .config/zsh/conf.d/080-linux.sh
           )
 
           missing_files=(
@@ -162,11 +162,11 @@ jobs:
             .config/git/config
             .config/nano/nanorc
             .ssh/config
-            .config/zsh-source/080-macos.sh
+            .config/zsh/conf.d/080-macos.sh
           )
 
           missing_files=(
-            .config/zsh-source/080-linux.sh
+            .config/zsh/conf.d/080-linux.sh
           )
 
           installed_packages=(
