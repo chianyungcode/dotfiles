@@ -9,9 +9,6 @@ return {
     enabled = true,
     lazy = false,
     priority = 1000,
-    opts = {
-      transparent_background = true,
-    },
   },
 
   { "yorumicolors/yorumi.nvim", enabled = false, lazy = false, priority = 1000 },
@@ -29,11 +26,9 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    enabled = false,
+    enabled = true,
+    lazy = false,
     priority = 1000,
-    config = function()
-      require("catppuccin.groups.integrations.bufferline").get_theme()
-    end,
     -- config = function()
     -- 	require("catppuccin").setup({
     -- 		flavour = "mocha",
@@ -49,7 +44,7 @@ return {
     -- 	})
     -- end,
   },
-  { "datsfilipe/vesper.nvim", enabled = false },
+  { "datsfilipe/vesper.nvim", enabled = true },
   -- {
   -- 	"vague2k/vague.nvim",
   -- 	config = function()
@@ -60,7 +55,7 @@ return {
   -- },
   {
     "dgox16/oldworld.nvim",
-    enabled = false,
+    enabled = true,
     lazy = false,
     priority = 1000,
     config = function()
@@ -191,7 +186,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "night-owl",
+      colorscheme = "oldworld",
     },
   },
 }
