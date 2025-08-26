@@ -1,0 +1,3 @@
+[mgr]
+ratio = [1, 3, 5]
+sort_by = "mtime" # sort by last modified time
