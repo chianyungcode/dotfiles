@@ -30,7 +30,7 @@ return {
         "ast_grep",
         "ruff", -- Python: Language server protocol (LSP), linters and formatters
         "prismals", -- prisma orm
-        "sqlls", -- SQL LSP
+        -- "sqlls", -- SQL LSP
       },
       automatic_enable = {
         exclude = {

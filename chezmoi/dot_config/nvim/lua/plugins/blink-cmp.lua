@@ -28,12 +28,12 @@ return {
         -- compat = { "obsidian", "obsidian_new", "obsidian_tags" },
         -- default = { "obsidian", "obsidian_new", "obsidian_tags" },
 
-        default = { "lsp", "path", "snippets", "buffer", "datword", "ecolog", "dadbod" },
+        default = { "ecolog", "dadbod", "lsp", "path", "snippets", "buffer", "datword" },
         per_filetype = {
           sql = { "dadbod" },
         },
         providers = {
-          dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink", score_offset = 10 }, -- make score_offset bigger for prioritize dadbod completion over other completion
+          dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink", score_offset = 50 }, -- make score_offset bigger for prioritize dadbod completion over other completion
           ecolog = { name = "ecolog", module = "ecolog.integrations.cmp.blink_cmp" },
           datword = {
             name = "DatWord",
