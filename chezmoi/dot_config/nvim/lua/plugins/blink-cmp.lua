@@ -33,7 +33,7 @@ return {
           sql = { "dadbod" },
         },
         providers = {
-          dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink", score_offset = 10 },
+          dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink", score_offset = 10 }, -- make score_offset bigger for prioritize dadbod completion over other completion
           ecolog = { name = "ecolog", module = "ecolog.integrations.cmp.blink_cmp" },
           datword = {
             name = "DatWord",
