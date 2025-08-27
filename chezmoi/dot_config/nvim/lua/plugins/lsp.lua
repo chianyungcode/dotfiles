@@ -8,6 +8,7 @@ return {
       "neovim/nvim-lspconfig",
     },
     opts = {
+      -- Only LSP can be listed here, for formatters and linters provide in mason.nvim plugin
       ensure_installed = {
         -- Yang bisa ditambahkan disini hanya yang memiliki category LSP
         -- Semua dibawah ini dinamakan registries
@@ -29,6 +30,7 @@ return {
         "ast_grep",
         "ruff", -- Python: Language server protocol (LSP), linters and formatters
         "prismals", -- prisma orm
+        "sqlls", -- SQL LSP
       },
       automatic_enable = {
         exclude = {
@@ -48,6 +50,9 @@ return {
     "mason-org/mason.nvim", -- Ini seperti UI nya di Neovim untuk menginstall berbagai LSP, formatters, linters dsb
     version = "1.11.0", -- Pinning this version because lazyvim doesn't work with mason 2.0
     opts = {
+      ensure_installed = {
+        "sqlfluff", -- SQL Linter
+      },
       ui = {
         icons = {
           package_installed = "✓",
