@@ -28,8 +28,12 @@ return {
         -- compat = { "obsidian", "obsidian_new", "obsidian_tags" },
         -- default = { "obsidian", "obsidian_new", "obsidian_tags" },
 
-        default = { "ecolog", "lsp", "path", "snippets", "buffer", "datword" },
+        default = { "lsp", "path", "snippets", "buffer", "datword", "ecolog", "dadbod" },
+        per_filetype = {
+          sql = { "dadbod" },
+        },
         providers = {
+          dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink", score_offset = 10 },
           ecolog = { name = "ecolog", module = "ecolog.integrations.cmp.blink_cmp" },
           datword = {
             name = "DatWord",
