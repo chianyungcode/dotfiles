@@ -51,7 +51,7 @@ return {
     version = "1.11.0", -- Pinning this version because lazyvim doesn't work with mason 2.0
     opts = {
       ensure_installed = {
-        "sqlfluff", -- SQL Linter
+        -- "sqlfluff", -- SQL Linter
       },
       ui = {
         icons = {
