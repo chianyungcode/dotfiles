@@ -418,6 +418,9 @@
         "yubico-piv-tool",
         "zen-browser",
         "zlib",                # for building python
+        "fuse2",               # apidog depedency
+        "appimagelauncher",    # for integrating .AppImage 
+        "lsof",                # opencode-bin depedency
       ]
 
     [packages.pacman.homelab_member]

@@ -9,6 +9,9 @@ return {
     enabled = true,
     lazy = false,
     priority = 1000,
+    -- opts = {
+    --   transparent_background = true,
+    -- },
   },
 
   { "yorumicolors/yorumi.nvim", enabled = false, lazy = false, priority = 1000 },
@@ -26,8 +29,8 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    enabled = true,
     lazy = false,
+    enabled = false,
     priority = 1000,
     -- config = function()
     -- 	require("catppuccin").setup({
