@@ -30,7 +30,7 @@ return {
         "ast_grep",
         "ruff", -- Python: Language server protocol (LSP), linters and formatters
         "prismals", -- prisma orm
-        -- "sqlls", -- SQL LSP
+        "sqls", -- SQL LSP
       },
       automatic_enable = {
         exclude = {
@@ -51,7 +51,7 @@ return {
     version = "1.11.0", -- Pinning this version because lazyvim doesn't work with mason 2.0
     opts = {
       ensure_installed = {
-        -- "sqlfluff", -- SQL Linter
+        -- "sqruff", -- SQL Formatter
       },
       ui = {
         icons = {
