@@ -33,6 +33,7 @@ fish_add_path -gP /usr/bin/snap
 fish_add_path -gP $HOME/.atuin/bin
 fish_add_path -gP $HOME/.tmuxifier/bin
 fish_add_path -gP $LM_STUDIO_BIN
+fish_add_path -gP $XDG_CACHE_HOME/.bun/bin
 
 # Remove duplicate paths from PATH variable
 set -gx PATH (string split ':' $PATH | sort -u | string join ':')
