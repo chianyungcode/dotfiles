@@ -1,5 +1,14 @@
 return {
   {
+    "oribarilan/lensline.nvim",
+    enabled = false,
+    tag = "1.0.0", -- or: branch = 'release/1.x' for latest non-breaking updates
+    event = "LspAttach",
+    config = function()
+      require("lensline").setup()
+    end,
+  },
+  {
     -- Displays a sign git next to line numbers
     "lewis6991/gitsigns.nvim",
     enabled = true,
