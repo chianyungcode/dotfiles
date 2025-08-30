@@ -30,7 +30,7 @@ return {
 
         default = { "ecolog", "dadbod", "lsp", "path", "snippets", "buffer", "datword" },
         per_filetype = {
-          sql = { "snippets", "dadbod", "buffer" },
+          sql = { "snippets", "dadbod", "lsp", "buffer" },
         },
         providers = {
           dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink", score_offset = 50 }, -- make score_offset bigger for prioritize dadbod completion over other completion
