@@ -30,8 +30,15 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     lazy = false,
-    enabled = false,
+    enabled = true,
     priority = 1000,
+    opts = function(_, opts)
+      local module = require("catppuccin.groups.integrations.bufferline")
+      if module then
+        module.get = module.get_theme
+      end
+      return opts
+    end,
     -- config = function()
     -- 	require("catppuccin").setup({
     -- 		flavour = "mocha",
@@ -189,7 +196,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "oldworld",
+      colorscheme = "catppuccin-mocha",
     },
   },
 }
