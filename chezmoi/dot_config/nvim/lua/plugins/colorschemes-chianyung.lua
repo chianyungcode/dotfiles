@@ -32,6 +32,7 @@ return {
     lazy = false,
     enabled = true,
     priority = 1000,
+    -- https://github.com/LazyVim/LazyVim/issues/6355#issuecomment-3212986215
     opts = function(_, opts)
       local module = require("catppuccin.groups.integrations.bufferline")
       if module then
