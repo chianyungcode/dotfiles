@@ -421,6 +421,7 @@
         "fuse2",               # apidog depedency
         "appimagelauncher",    # for integrating .AppImage 
         "lsof",                # opencode-bin depedency
+        "localsend",
       ]
 
     [packages.pacman.homelab_member]
