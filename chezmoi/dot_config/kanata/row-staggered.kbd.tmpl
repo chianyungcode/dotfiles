@@ -5,14 +5,17 @@
   process-unmapped-keys yes
   concurrent-tap-hold yes ;; for input chording/combos
 
-  macos-dev-names-exclude (
-    "Corne"
-    "kbdksp/geulisv1"
-  )
+;; uncomment this code below if you using kanata in macos, to prevent bugs that causing kanata doesn't work after sleep
+
+;;  macos-dev-names-exclude (
+;;    "Corne"
+;;    "kbdksp/geulisv1"
+;;  )
 
 ;;  macos-dev-names-include (
 ;;      "Chian's Magic Keyboard"
 ;;  )
+
 )
 
 ;; Variable for storing a constant value
@@ -43,6 +46,7 @@
   k (tap-hold $tap-time $hold-time k lalt)
   j (tap-hold $tap-time $hold-time j lmet)
   sglquot (tap-hold $tap-time $hold-time ' lalt)
+  slash (tap-hold $tap-time $hold-time / lalt)
   smcol (tap-hold $tap-time $hold-time ; lalt)
   hyperkey (tap-hold $tap-time $hold-time spc (multi lsft lctl lalt lmet))
   caps (tap-hold $tap-time $hold-time esc (layer-toggle layer1))
@@ -98,7 +102,7 @@
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab    q    w    e    r    t    y    u    i    o    p    [    ]    \
   @caps  a    @s    @d    @f    g    h    @j    @k    @l    @smcol    @sglquot    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft ;; Tombol x sekarang punya fungsi ganda
+  lsft z    x    c    v    b    n    m    ,    .    @slash    rsft ;; Tombol x sekarang punya fungsi ganda
   lctl lmet lalt           @hyperkey            ralt rmet rctl
 )
 
