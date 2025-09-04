@@ -11,6 +11,7 @@ Library
 .config/applications
 .config/nix
 .config/aerospace
+.config/borders
 {{ end }}
 
 
