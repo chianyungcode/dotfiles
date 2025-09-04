@@ -278,8 +278,12 @@ automatically-unhide-macos-hidden-apps = false
 
 # Workspace E - Media & Utilities
 [[on-window-detected]]
-  if.app-id = 'com.1password.1password'
-  run       = ['layout floating', 'move-node-to-workspace Z']
+  if.app-id = 'com.linear'
+  run       = 'move-node-to-workspace E'
+
+[[on-window-detected]]
+  if.app-id = 'com.TickTick.task.mac'
+  run       = 'move-node-to-workspace E'
 
 [[on-window-detected]]
   if.app-id = 'com.apple.Music'
@@ -317,13 +321,6 @@ automatically-unhide-macos-hidden-apps = false
   run       = 'move-node-to-workspace S'
 
 # Workspace T - Task Management
-[[on-window-detected]]
-  if.app-id = 'com.linear'
-  run       = 'move-node-to-workspace T'
-
-[[on-window-detected]]
-  if.app-id = 'com.TickTick.task.mac'
-  run       = 'move-node-to-workspace T'
 
 [[on-window-detected]]
   if.app-id = 'com.philipyoungg.session-setapp'
@@ -354,3 +351,7 @@ automatically-unhide-macos-hidden-apps = false
 [[on-window-detected]]
   if.app-id = 'com.macpaw.CleanMyMac-setapp'
   run       = ['layout floating', 'move-node-to-workspace W']
+
+[[on-window-detected]]
+  if.app-id = 'com.1password.1password'
+  run       = ['layout floating', 'move-node-to-workspace Z']
