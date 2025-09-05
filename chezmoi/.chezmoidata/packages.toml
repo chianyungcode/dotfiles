@@ -274,6 +274,7 @@
         "6698876601", # Folder preview
         "6739781207", # Pieoneer
         "6739802604", # Folo
+        "6743316600", # Subscription Day
         "6746757189", # Corner Time
         "966085870",  # Ticktick
       ]
@@ -360,6 +361,8 @@
 
     [packages.pacman.dev_computer]
       packages = [
+        "appimagelauncher",    # for integrating .AppImage
+        "auto-cpufreq",        # CPU frequency auto
         "biome",               # JS/TS linter, formatter
         "btop",
         "cloudflare-warp-bin",
@@ -370,6 +373,7 @@
         "eslint",              # JS/TS linter
         "eza",
         "fprintd",             # fingerprint
+        "fuse2",               # apidog depedency
         "ghostty",
         "git-delta",           # Pager for git
         "git-extras",          # Add extra command to default git
@@ -384,6 +388,8 @@
         "kanata",
         "lazydocker",
         "lazygit",
+        "localsend",
+        "lsof",                # opencode-bin depedency
         "markdownlint-cli2",   # Linter for markdown file
         "mermaid-cli",         # LaTex math
         "neovim",
@@ -413,15 +419,10 @@
         "yamlfmt",             # YAML formatter
         "yamllint",            # YAML linter
         "yazi",
-        "auto-cpufreq",        # CPU frequency auto
         "yq",                  # YAML processor
         "yubico-piv-tool",
         "zen-browser",
         "zlib",                # for building python
-        "fuse2",               # apidog depedency
-        "appimagelauncher",    # for integrating .AppImage 
-        "lsof",                # opencode-bin depedency
-        "localsend",
       ]
 
     [packages.pacman.homelab_member]
