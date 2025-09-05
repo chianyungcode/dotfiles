@@ -1,0 +1,13 @@
+{{ if .use_secrets }}
+matches:
+  - trigger: "!em1"
+    replace: "{{ onepasswordRead .secrets.espanso.em1 }}"
+  - trigger: "!em2"
+    replace: "{{ onepasswordRead .secrets.espanso.em2 }}"
+  - trigger: "!em3"
+    replace: "{{ onepasswordRead .secrets.espanso.em3 }}"
+  - trigger: "!em4"
+    replace: "{{ onepasswordRead .secrets.espanso.em4 }}"
+  - trigger: "!em5"
+    replace: "{{ onepasswordRead .secrets.espanso.em5 }}"
+{{- end }}
