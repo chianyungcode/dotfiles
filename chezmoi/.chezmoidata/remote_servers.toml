@@ -3,6 +3,13 @@
     add_to_ssh_config        = true
     generate_public_key_only = true
     name                     = "ghcny"
+    op_id                    = "5b2sfyzvwpuzcjcp2wfa7ablk4"
+    tailscale_ip             = false
+
+  [remote_servers.glcny]
+    add_to_ssh_config        = true
+    generate_public_key_only = true
+    name                     = "glcny"
     op_id                    = "nhczmzrx5uazmizwj6yzkjqohi"
     tailscale_ip             = false
 
