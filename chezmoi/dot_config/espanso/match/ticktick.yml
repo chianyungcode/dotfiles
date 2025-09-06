@@ -12,3 +12,34 @@ matches:
     replace: "> Detail at Notion"
   - regex: ":greet\\((?P<person>.*)\\)"
     replace: "Hi {{person}}!"
+  - trigger: ":cphfisdjfsdaifjasd"
+    replace: "{{clip}}" # empty string so nothing gets inserted
+    vars:
+      - name: clip
+        type: shell
+        params:
+          cmd: "echo -n 'Hello World' | pbcopy"
+  - trigger: ":ttssdfssfsa"
+    replace: "{{copy_line}}"
+    vars:
+      - name: f
+        type: form
+        params:
+          layout: "[[task]] [today [[start_time]] to [[end_time]]] #intentional-task ~"
+      - name: copy_line
+        type: shell
+        params:
+          cmd: |
+            text="{{f.task}} [today {{f.start_time}} to {{f.end_time}}] #intentional-task ~"
+            if command -v pbcopy >/dev/null 2>&1; then
+              printf '%s' "$text" | pbcopy
+            elif command -v wl-copy >/dev/null 2>&1; then
+              printf '%s' "$text" | wl-copy
+            elif command -v xclip >/dev/null 2>&1; then
+              printf '%s' "$text" | xclip -selection clipboard
+            else
+              # Fallback: keluarkan ke stdout saja (tidak menempel di editor)
+              printf '%s' "$text" >/dev/null
+            fi
+            # Kembalikan string kosong agar tidak ada teks muncul di editor
+            printf ''
