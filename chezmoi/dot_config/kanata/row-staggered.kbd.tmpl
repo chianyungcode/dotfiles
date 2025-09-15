@@ -45,7 +45,11 @@
   l (tap-hold $tap-time $hold-time l lctl)
   k (tap-hold $tap-time $hold-time k lalt)
   j (tap-hold $tap-time $hold-time j lmet)
-  sglquot (tap-hold $tap-time $hold-time ' lalt)
+  {{- if eq .chezmoi.os "darwin"}}
+  sglquot (tap-hold $tap-time $hold-time ' rmet)
+  {{- else if eq .chezmoi.os "linux" }}
+  sglquot (tap-hold $tap-time $hold-time ' lmet)
+  {{- end }}
   hyperkey (tap-hold $tap-time $hold-time spc (multi lsft lctl lalt lmet))
   caps (tap-hold $tap-time $hold-time esc (layer-toggle layer1))
 
