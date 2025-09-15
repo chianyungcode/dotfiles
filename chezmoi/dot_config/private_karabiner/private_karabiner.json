@@ -232,7 +232,7 @@
 					},
 					{
 						"description": "Command + a when held, just 'a' when tapped",
-						"enabled": false,
+						"enabled": true,
 						"manipulators": [
 							{
 								"from": {
@@ -242,8 +242,8 @@
 									}
 								},
 								"parameters": {
-									"basic.to_delayed_action_delay_milliseconds": 200,
-									"basic.to_if_held_down_threshold_milliseconds": 200
+									"basic.to_delayed_action_delay_milliseconds": 130,
+									"basic.to_if_held_down_threshold_milliseconds": 130
 								},
 								"to_delayed_action": {
 									"to_if_canceled": [
