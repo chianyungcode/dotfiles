@@ -6,6 +6,7 @@ export LM_STUDIO_BIN="$HOME/.lmstudio/bin"
 # === START OF CHEZMOI MANAGED ===
 {{ if .use_secrets }}
 # == SECRETS ENV VARIABLE ==
+export OPENAI_CODEX_MCP_KEY={{ onepasswordRead .secrets.openai_codex_mcp }}
 export GITHUB_TOKEN={{ onepasswordRead .secrets.github_personal_access_token }}
 export OPENROUTER_OPENCODE_APIKEY={{ onepasswordRead .secrets.opencode_apikey }}
 export WAKATIME_API_KEY={{ onepasswordRead .secrets.wakatime_apikey }}
