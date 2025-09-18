@@ -36,7 +36,24 @@
 	},
 	"provider": {
 		"openrouter": {
-			"models": {},
+			"models": {
+				"qwen/qwen3-coder": {
+					"options": {
+						"provider": {
+							"order": ["cerebras", "baseten"],
+							"allow_fallbacks": false
+						}
+					}
+				},
+				"moonshotai/kimi-k2-0905": {
+					"options": {
+						"provider": {
+							"order": ["chutes", "moonshotai"],
+							"allow_fallbacks": false
+						}
+					}
+				}
+			},
 			"options": {
 				"apiKey": "{env:OPENROUTER_OPENCODE_APIKEY}"
 			}
