@@ -2,7 +2,6 @@ return {
   -- == Language Server Protocol ==
   {
     "mason-org/mason-lspconfig.nvim", -- Ini yang memberitahu ke nvim-lspconfig mana LSP yang harus dijalankan
-    version = "1.32.0", -- Pinning this version because lazyvim doesn't work with mason 2.0
     dependencies = {
       { "mason-org/mason.nvim", opts = {} },
       "neovim/nvim-lspconfig",
@@ -41,12 +40,8 @@ return {
     },
   },
 
-  -- mason 2.0 problem with lazyvim
-  -- https://github.com/LazyVim/LazyVim/issues/6039#issuecomment-2856227817
-  -- https://github.com/LazyVim/LazyVim/pull/6053
   {
     "mason-org/mason.nvim", -- Ini seperti UI nya di Neovim untuk menginstall berbagai LSP, formatters, linters dsb
-    version = "1.11.0", -- Pinning this version because lazyvim doesn't work with mason 2.0
     opts = {
       ensure_installed = {
         -- "sqruff", -- SQL Formatter
