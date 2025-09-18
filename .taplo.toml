@@ -3,7 +3,7 @@
   align_entries  = true
   indent_entries = true
   indent_tables  = true
-  reorder_arrays = true # Be caution with reorder_arrays when set to true
+  reorder_arrays = false # Be caution with reorder_arrays when set to true
   reorder_keys   = true
 
 [[rule]]
