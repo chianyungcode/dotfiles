@@ -28,7 +28,7 @@ return {
   {
     -- Ini hanya untuk tambahan custom options saja, untuk defaultnya diinstall via LazyExtras di file lazy.lua
     -- NOTE: Install mini.files with LazyExtras, because it preconfigured open mini.files where's directories in the current buffer and showing the preview
-    "echasnovski/mini.files",
+    "nvim-mini/mini.files",
     enabled = true,
     version = false,
     opts = {
