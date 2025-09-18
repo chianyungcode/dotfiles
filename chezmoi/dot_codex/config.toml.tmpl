@@ -1,5 +1,5 @@
 {{- if .use_secrets}}
 [mcp_servers.context7]
-  args = ["-y", "@upstash/context7-mcp", "--api-key", "{{ onepasswordRead .secrets.openai_codex_mcp }}"]
+  args = ["-y", "@upstash/context7-mcp", "--api-key", "{{ onepasswordRead .secrets.context7_api_key }}"]
   command = "npx"
 {{- end }}
