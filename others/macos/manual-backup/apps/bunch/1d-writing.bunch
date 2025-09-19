@@ -1,0 +1,5 @@
+---
+title: 1D - Writing (Chrome & Notion)
+---
+@@
+* tell application "Moom" to arrange windows according to snapshot "Chrome - Notion"

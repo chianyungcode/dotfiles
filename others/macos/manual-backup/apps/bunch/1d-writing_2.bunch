@@ -1,0 +1,5 @@
+---
+title: 1D - Writing (Zen & Notion)
+---
+@@
+* tell application "Moom" to arrange windows according to snapshot "Zen - Notion"
