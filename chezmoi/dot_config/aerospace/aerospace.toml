@@ -320,7 +320,7 @@ automatically-unhide-macos-hidden-apps = false
   if.app-id = 'com.google.Chrome'
   run       = 'move-node-to-workspace S'
 
-# Workspace T - Task Management
+  # Workspace T - Task Management
 
 [[on-window-detected]]
   if.app-id = 'com.philipyoungg.session-setapp'
@@ -354,4 +354,4 @@ automatically-unhide-macos-hidden-apps = false
 
 [[on-window-detected]]
   if.app-id = 'com.1password.1password'
-  run       = ['layout floating', 'move-node-to-workspace Z']
+  run       = ['layout floating']
