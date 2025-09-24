@@ -45,11 +45,6 @@
   l (tap-hold $tap-time $hold-time l lctl)
   k (tap-hold $tap-time $hold-time k lalt)
   j (tap-hold $tap-time $hold-time j lmet)
-  {{- if eq .chezmoi.os "darwin"}}
-  sglquot (tap-hold $tap-time $hold-time ' rmet)
-  {{- else if eq .chezmoi.os "linux" }}
-  sglquot (tap-hold $tap-time $hold-time ' lmet)
-  {{- end }}
   hyperkey (tap-hold $tap-time $hold-time spc (multi lsft lctl lalt lmet))
   caps (tap-hold $tap-time $hold-time esc (layer-toggle layer1))
 
@@ -57,6 +52,11 @@
   ;; smcol (tap-hold $tap-time $hold-time ; lalt)
   smcol (tap-hold $tap-time $hold-time ; (layer-toggle layer2))
   slash (tap-hold $tap-time $hold-time / (layer-toggle layer3))
+  {{- if eq .chezmoi.os "darwin"}}
+  sglquot (tap-hold $tap-time $hold-time ' (layer-toggle layer4))
+  {{- else if eq .chezmoi.os "linux" }}
+  sglquot (tap-hold $tap-time $hold-time ' (layer-toggle layer4))
+  {{- end }}
 
 
   ;; macOS
@@ -130,7 +130,7 @@
        🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  f1   f2   f3   f4   f5    f6    f7    f8    f9    f10    @tab-left   @tab-right    \
-  caps S-1  S-2  S-3  S-4  S-5    left    down    up    lsft    ;    '    ret
+  caps 1    2    3    4    5    6    7    8    9    ;    '    ret
   lsft S-6  S-7  S-8  S-9  S-0    n    rctl    ,    .    /    rsft
   lctl lmet lalt           spc            ralt rmet rctl
 )
@@ -139,7 +139,16 @@
        🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  @tab-left   @tab-right    \
-  caps 1    2    3    4    5    left    down    up    lsft    ;    '    ret
+  caps S-1  S-2  S-3  S-4  S-5    S-6    S-7    S-8    S-9    S-0    '    ret
+  lsft 6    7    8    9    0    XX    rctl    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
+)
+
+(deflayer layer4
+       🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  @tab-left   @tab-right    \
+  caps S-1  S-2  S-3  S-4  S-5    S-6    S-7    S-8    S-9    S-0    '    ret
   lsft 6    7    8    9    0    XX    rctl    ,    .    /    rsft
   lctl lmet lalt           spc            ralt rmet rctl
 )
