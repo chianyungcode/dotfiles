@@ -39,6 +39,10 @@
 ;;  Syntax for tap-hold
 ;;  (tap-hold TAP-TIME HOLD-TIME TAP-KEY HOLD-KEY)
 (defalias
+  l_2 (layer-toggle layer2)
+  l_3 (layer-toggle layer3)
+  l_4 (layer-toggle layer4)
+
   s (tap-hold $tap-time $hold-time s lctl)
   d (tap-hold $tap-time $hold-time d lalt)
   f (tap-hold $tap-time $hold-time f lmet)
@@ -50,12 +54,12 @@
 
   ;; slash (tap-hold $tap-time $hold-time / lalt)
   ;; smcol (tap-hold $tap-time $hold-time ; lalt)
-  smcol (tap-hold $tap-time $hold-time ; (layer-toggle layer2))
-  slash (tap-hold $tap-time $hold-time / (layer-toggle layer3))
+  smcol (tap-hold $tap-time $hold-time ; @l_2)
+  slash (tap-hold $tap-time $hold-time / @l_3)
   {{- if eq .chezmoi.os "darwin"}}
-  sglquot (tap-hold $tap-time $hold-time ' (layer-toggle layer4))
+  sglquot (tap-hold $tap-time $hold-time ' @l_4)
   {{- else if eq .chezmoi.os "linux" }}
-  sglquot (tap-hold $tap-time $hold-time ' (layer-toggle layer4))
+  sglquot (tap-hold $tap-time $hold-time ' @l_4)
   {{- end }}
 
 
