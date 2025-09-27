@@ -33,13 +33,6 @@ return {
     enabled = true,
     priority = 1000,
     -- https://github.com/LazyVim/LazyVim/issues/6355#issuecomment-3212986215
-    opts = function(_, opts)
-      local module = require("catppuccin.groups.integrations.bufferline")
-      if module then
-        module.get = module.get_theme
-      end
-      return opts
-    end,
     -- config = function()
     -- 	require("catppuccin").setup({
     -- 		flavour = "mocha",
@@ -197,7 +190,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "kanso",
+      colorscheme = "catppuccin-mocha",
     },
   },
 }
