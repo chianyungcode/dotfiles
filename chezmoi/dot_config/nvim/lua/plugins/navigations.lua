@@ -1,5 +1,11 @@
 return {
   {
+    "A7Lavinraj/fyler.nvim",
+    enabled = false,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = { icon_provider = "nvim_web_devicons" },
+  },
+  {
     "leath-dub/snipe.nvim",
     enabled = true,
     keys = {
