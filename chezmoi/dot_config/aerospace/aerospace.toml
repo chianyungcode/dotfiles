@@ -354,12 +354,12 @@ automatically-unhide-macos-hidden-apps = false
 
 [[on-window-detected]]
   if.app-id = 'com.1password.1password'
-  run       = ['move-node-to-workspace Z', 'layout floating']
-
-[[on-window-detected]]
-  if.app-id = 'com.alienator88.Pearcleaner'
-  run       = ['layout-floating']
+  run       = ['layout floating', 'move-node-to-workspace Z']
 
 [[on-window-detected]]
   if.app-id = 'com.electron.wispr-flow'
-  run       = ['move-node-to-workspace Z', 'layout-floating']
+  run       = ['layout floating', 'move-node-to-workspace Z']
+
+[[on-window-detected]]
+  if.app-id = 'com.alienator88.Pearcleaner'
+  run       = ['layout floating']
