@@ -26,7 +26,7 @@ clear
 
 SESSION_NAME=$(for session_name in "${tmux_session_names[@]}"; do
   echo "$session_name"
-done | gum filter --placeholder "What is the tmux sesion name? ")
+done | gum filter --placeholder "What is the tmux session name? ")
 clear
 
 # Exit jika salah satu variable kosong
@@ -50,10 +50,10 @@ pueue add -g "$PUEUE_GROUP" "tmux send-keys -t \"$SESSION_NAME\":2.1 opencode C-
 pueue add -g "$PUEUE_GROUP" sleep 5
 
 # WINDOW 3
-pueue add -g "$PUEUE_GROUP" "tmux new-window -t \"$SESSION_NAME\":2 -n \"codex\" -c \"$PROJECT_DIR\""
+pueue add -g "$PUEUE_GROUP" "tmux new-window -t \"$SESSION_NAME\":3 -n \"codex\" -c \"$PROJECT_DIR\""
 pueue add -g "$PUEUE_GROUP" sleep 5
 
-pueue add -g "$PUEUE_GROUP" "tmux send-keys -t \"$SESSION_NAME\":2.1 codex C-m"
+pueue add -g "$PUEUE_GROUP" "tmux send-keys -t \"$SESSION_NAME\":3.1 codex C-m"
 pueue add -g "$PUEUE_GROUP" sleep 5
 
 pueue add -g "$PUEUE_GROUP" "tmux selectw -t \"$SESSION_NAME\":1"
