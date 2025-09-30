@@ -24,8 +24,8 @@ clear
 PUEUE_GROUP="tmux"
 clear
 
-SESSION_NAME=$(for sesion_name in "${tmux_session_names[@]}"; do
-  echo "$sesion_name"
+SESSION_NAME=$(for session_name in "${tmux_session_names[@]}"; do
+  echo "$session_name"
 done | gum filter --placeholder "What is the tmux sesion name? ")
 clear
 
@@ -35,7 +35,7 @@ if [[ -z "$PROJECT_DIR" || -z "$PUEUE_GROUP" || -z "$SESSION_NAME" ]]; then
   exit 1
 fi
 
-pueue add -g "$PUEUE_GROUP" "tmux new-session -d -s \"$SESSION_NAME\" -n IDE -c \"$PROJECT_DIR\""
+pueue add -g "$PUEUE_GROUP" "tmux new-session -d -s \"$SESSION_NAME\" -n nvim -c \"$PROJECT_DIR\""
 pueue add -g "$PUEUE_GROUP" sleep 5
 
 # WINDOW 1
@@ -43,10 +43,17 @@ pueue add -g "$PUEUE_GROUP" "tmux send-keys -t \"$SESSION_NAME\":1.1 nvim C-m"
 pueue add -g "$PUEUE_GROUP" sleep 3
 
 # WINDOW 2
-pueue add -g "$PUEUE_GROUP" "tmux new-window -t \"$SESSION_NAME\":2 -n \"󰊢 \" -c \"$PROJECT_DIR\""
+pueue add -g "$PUEUE_GROUP" "tmux new-window -t \"$SESSION_NAME\":2 -n \"opencode\" -c \"$PROJECT_DIR\""
 pueue add -g "$PUEUE_GROUP" sleep 5
 
-pueue add -g "$PUEUE_GROUP" "tmux send-keys -t \"$SESSION_NAME\":2.1 lazygit C-m"
+pueue add -g "$PUEUE_GROUP" "tmux send-keys -t \"$SESSION_NAME\":2.1 opencode C-m"
+pueue add -g "$PUEUE_GROUP" sleep 5
+
+# WINDOW 3
+pueue add -g "$PUEUE_GROUP" "tmux new-window -t \"$SESSION_NAME\":2 -n \"codex\" -c \"$PROJECT_DIR\""
+pueue add -g "$PUEUE_GROUP" sleep 5
+
+pueue add -g "$PUEUE_GROUP" "tmux send-keys -t \"$SESSION_NAME\":2.1 codex C-m"
 pueue add -g "$PUEUE_GROUP" sleep 5
 
 pueue add -g "$PUEUE_GROUP" "tmux selectw -t \"$SESSION_NAME\":1"
