@@ -1,5 +1,5 @@
-# favorite background color: #212121
-background = #0F1015
+# favorite background color: #212121, #0F1015
+background = #212121
 foreground = #DAD7CD
 selection-background = #706B4E
 selection-foreground = #F3D9C4
