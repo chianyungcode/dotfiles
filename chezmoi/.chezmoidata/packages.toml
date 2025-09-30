@@ -329,29 +329,28 @@
       packages = [
         "1password",
         "1password-cli",
-        "base-devel",      # Equivalent to apt-transport-https and build essentials
-        "bat",             # cat with syntax highlighting and Git integration
-        "bind-tools",      # Equivalent to dnsutils
+        "base-devel",    # Equivalent to apt-transport-https and build essentials
+        "bat",           # cat with syntax highlighting and Git integration
+        "bind-tools",    # Equivalent to dnsutils
         "curl",
-        "espanso-wayland",
-        "fd",              # Equivalent to fd-find
+        "fd",            # Equivalent to fd-find
         "figlet",
         "fzf",
         "git",
         "git-extras",
-        "gnome-keyring",   # For 1password two factor auth
+        "gnome-keyring", # For 1password two factor auth
         "gnupg",
         "jq",
         "logrotate",
         "lolcat",
-        "mc",              # Midnight Commander
+        "mc",            # Midnight Commander
         "nano",
-        "ncdu",            # NCurses Disk Usage
+        "ncdu",          # NCurses Disk Usage
         "net-tools",
-        "openssh",         # Equivalent to openssh-server
-        "p7zip",           # Equivalent to p7zip-full
-        "polkit-gnome",    # For 1password prompt available
-        "ripgrep",         # search tool like grep and the silver searcher
+        "openssh",       # Equivalent to openssh-server
+        "p7zip",         # Equivalent to p7zip-full
+        "polkit-gnome",  # For 1password prompt available
+        "ripgrep",       # search tool like grep and the silver searcher
         "sudo",
         "tzdata",
         "unzip",
