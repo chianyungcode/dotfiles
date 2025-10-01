@@ -327,7 +327,6 @@
   [packages.pacman]
     [packages.pacman.common]
       packages = [
-        "1password",
         "1password-cli",
         "base-devel",    # Equivalent to apt-transport-https and build essentials
         "bat",           # cat with syntax highlighting and Git integration
@@ -390,7 +389,6 @@
         "localsend",
         "lsof",                # opencode-bin depedency
         "markdownlint-cli2",   # Linter for markdown file
-        "mermaid-cli",         # LaTex math
         "neovim",
         "nix",
         "pet-bin",
@@ -420,7 +418,6 @@
         "yazi",
         "yq",                  # YAML processor
         "yubico-piv-tool",
-        "zen-browser",
         "zlib",                # for building python
       ]
 
