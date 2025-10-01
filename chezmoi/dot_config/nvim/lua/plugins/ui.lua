@@ -15,7 +15,7 @@ return {
   {
     -- Buffer tab line on top
     "akinsho/bufferline.nvim",
-    enabled = false,
+    enabled = true,
     keys = {
       {
         "<A-1>",
