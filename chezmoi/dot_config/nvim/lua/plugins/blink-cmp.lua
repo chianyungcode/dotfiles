@@ -67,16 +67,16 @@ return {
 
       keymap = {
         preset = "default", -- Opsi ini bisa dilihat disini https://github.com/Saghen/blink.cmp?tab=readme-ov-file#configuration khususnya bagian default-configuration toggle
-        ["<Tab>"] = {
-          "snippet_forward",
-          function() -- sidekick next edit suggestion
-            return require("sidekick").nes_jump_or_apply()
-          end,
-          function() -- if you are using Neovim's native inline completions
-            return vim.lsp.inline_completion.get()
-          end,
-          "fallback",
-        },
+        -- ["<Tab>"] = {
+        --   "snippet_forward",
+        --   function() -- sidekick next edit suggestion
+        --     return require("sidekick").nes_jump_or_apply()
+        --   end,
+        --   function() -- if you are using Neovim's native inline completions
+        --     return vim.lsp.inline_completion.get()
+        --   end,
+        --   "fallback",
+        -- },
         ["<A-1>"] = {
           function(cmp)
             cmp.accept({ index = 1 })
