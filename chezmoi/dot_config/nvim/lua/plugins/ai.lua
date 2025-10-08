@@ -60,6 +60,7 @@ return {
     enabled = true,
     opts = {
       -- add any options here
+      nes = { enable = false },
       cli = {
         mux = {
           backend = "tmux",
