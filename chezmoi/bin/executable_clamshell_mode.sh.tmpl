@@ -1,0 +1,23 @@
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch" )}}
+
+#!/usr/bin/env zsh
+
+# Ada monitor eksternal DP-* ?
+if hyprctl monitors | grep -qE '^Monitor DP-[0-9]+'; then
+  case "$1" in
+    open)
+      # Aktifkan panel laptop & posisikan di kanan DP-3
+      # (sesuaikan scale sesuai preferensi mata kamu: 1.5–1.6 biasanya enak untuk 14" 2880x1800)
+      hyprctl keyword monitor "eDP-1, 2880x1800, 0x0, 2"
+      ;;
+    close|*)
+      # Matikan panel laptop (clamshell)
+      hyprctl keyword monitor "eDP-1,disable"
+      ;;
+  esac
+else
+  # Tidak ada eksternal -> pakai panel laptop sebagai utama
+  hyprctl keyword monitor "eDP-1, 2880x1800, 0x0, 2"
+fi
+
+{{- end }}
