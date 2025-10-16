@@ -4,6 +4,8 @@ set -e
 
 # █▄▀ ▄▀█ █▄░█ ▄▀█ ▀█▀ ▄▀█
 # █░█ █▀█ █░▀█ █▀█ ░█░ █▀█
+#
+# ASCII FONTS
 
 echo "Starting uinput configuration and kanata service setup..."
 
@@ -152,3 +154,8 @@ fi
 # █▄▀ █▄█ █▄▄ █░█ ██▄ █▀▄
 
 sudo usermod -aG docker $USER
+
+# █▀▀ █▀ █▀█ ▄▀█ █▄░█ █▀ █▀█
+# ██▄ ▄█ █▀▀ █▀█ █░▀█ ▄█ █▄█
+
+systemctl --user enable espanso.service
