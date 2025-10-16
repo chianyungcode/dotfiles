@@ -2,5 +2,9 @@
 
 # Mise
 {{- if lookPath "mise" }}
+{{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch")}}
+eval "$(/usr/bin/mise activate zsh)"
+{{- else if eq .chezmoi.os "darwin" }}
 eval "$(~/.local/bin/mise activate zsh)"
+{{- end}}
 {{- end }}
