@@ -5,23 +5,21 @@
 
 [[session]]
   name            = "Tmux Config"
-  path            = "~/.config/tmux/tmux.conf"
-  preview_command = "bat --color=always ~/.config/tmux/tmux.conf" # startup_command = "nvim tmux.conf"
-  startup_command = "nvim tmux.conf"
+  path            = "~/.local/share/chezmoi/chezmoi/dot_config/tmux"
+  preview_command = "bat --color=always ~/.config/tmux/tmux.conf"    # startup_command = "nvim tmux.conf"
+  startup_command = "nvim tmux.conf.tmpl"
 
 [[session]]
-  name = "Note Taking Sesh"
-  path = "~/Desktop/vault-obsidian"
+  name = "Obsidian"
+  path = "~/Documents/vault-obsidian"
 
 [[session]]
   name            = "Dotfiles"
   path            = "~/.local/share/chezmoi"
   startup_command = "nvim"
-  windows         = ["applying", "lazygit"]
+  windows         = [".config"]
 
 [[window]]
-  name           = "lazygit"
-  startup_script = "lazygit"
-
-[[window]]
-  name = "applying"
+  name           = ".config"
+  path           = "~/.config"
+  startup_script = "nvim"
