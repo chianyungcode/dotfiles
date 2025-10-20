@@ -1,5 +1,6 @@
 return {
   {
+    -- Combination of nvim-tree and oil.nvim, file explorer with tree view and vim operations
     "A7Lavinraj/fyler.nvim",
     enabled = true,
     dependencies = { "nvim-tree/nvim-web-devicons" },
