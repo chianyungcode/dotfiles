@@ -1,5 +1,12 @@
 return {
   {
+    "m4xshen/hardtime.nvim",
+    enabled = true,
+    dependencies = { "MunifTanjim/nui.nvim" },
+    opts = {},
+  },
+
+  {
     -- Syntax highlighting for .tmpl in chezmoi
     "alker0/chezmoi.vim",
     enabled = false,
