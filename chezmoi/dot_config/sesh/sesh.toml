@@ -23,3 +23,21 @@
   name           = ".config"
   path           = "~/.config"
   startup_script = "nvim"
+
+[[session]]
+  name            = "Backend"
+  path            = "~/Code/Personal/Projects/Backend/allweezy-backend"
+  startup_command = "nvim"
+  windows         = ["opencode", "codex", "terminal"]
+
+[[window]]
+  name           = "opencode"
+  startup_script = "opencode"
+
+[[window]]
+  name           = "codex"
+  startup_script = "codex"
+
+[[window]]
+  name           = "terminal"
+  startup_script = "doppler run -- bun run dev"
