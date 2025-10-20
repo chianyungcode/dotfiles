@@ -12,6 +12,9 @@ return {
     enabled = false,
     dependencies = "nvzone/volt",
     opts = {},
+    keys = {
+      vim.keymap.set("n", "<leader>i", ":FloatermToggle<CR>", { noremap = true, silent = true }),
+    },
     cmd = "FloatermToggle",
   },
   {

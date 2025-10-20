@@ -6,7 +6,6 @@
 vim.keymap.set("n", "<leader>wl", "<Plug>(WormholeLabels)", { desc = "Wormhole Labels" })
 vim.keymap.set("n", "<Esc>", "<Plug>(WormholeCloseLabels)", { desc = "Wormhole Close Labels" })
 -- vim.keymap.set("n", "<leader>e", function() end, { desc = "Chian" })
--- vim.keymap.set("n", "<leader>i", ":FloatermToggle<CR>", { noremap = true, silent = true })
 
 -- Related to plugin 'tiny-code-action'
 vim.keymap.set("n", "<leader>cb", function()
