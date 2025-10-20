@@ -1,1 +1,1 @@
-thefuck --alias | source
+# thefuck --alias | source
