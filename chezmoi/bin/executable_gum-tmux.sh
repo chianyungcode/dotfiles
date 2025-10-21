@@ -36,27 +36,27 @@ if [[ -z "$PROJECT_DIR" || -z "$PUEUE_GROUP" || -z "$SESSION_NAME" ]]; then
 fi
 
 pueue add -g "$PUEUE_GROUP" "tmux new-session -d -s \"$SESSION_NAME\" -n nvim -c \"$PROJECT_DIR\""
-pueue add -g "$PUEUE_GROUP" sleep 5
+pueue add -g "$PUEUE_GROUP" sleep 1
 
 # WINDOW 1
 pueue add -g "$PUEUE_GROUP" "tmux send-keys -t \"$SESSION_NAME\":1.1 nvim C-m"
-pueue add -g "$PUEUE_GROUP" sleep 3
+pueue add -g "$PUEUE_GROUP" sleep 1
 
 # WINDOW 2
 pueue add -g "$PUEUE_GROUP" "tmux new-window -t \"$SESSION_NAME\":2 -n \"opencode\" -c \"$PROJECT_DIR\""
-pueue add -g "$PUEUE_GROUP" sleep 5
+pueue add -g "$PUEUE_GROUP" sleep 1
 
 pueue add -g "$PUEUE_GROUP" "tmux send-keys -t \"$SESSION_NAME\":2.1 opencode C-m"
-pueue add -g "$PUEUE_GROUP" sleep 5
+pueue add -g "$PUEUE_GROUP" sleep 1
 
 # WINDOW 3
 pueue add -g "$PUEUE_GROUP" "tmux new-window -t \"$SESSION_NAME\":3 -n \"codex\" -c \"$PROJECT_DIR\""
-pueue add -g "$PUEUE_GROUP" sleep 5
+pueue add -g "$PUEUE_GROUP" sleep 1
 
 pueue add -g "$PUEUE_GROUP" "tmux send-keys -t \"$SESSION_NAME\":3.1 codex C-m"
-pueue add -g "$PUEUE_GROUP" sleep 5
+pueue add -g "$PUEUE_GROUP" sleep 1
 
 pueue add -g "$PUEUE_GROUP" "tmux selectw -t \"$SESSION_NAME\":1"
-pueue add -g "$PUEUE_GROUP" sleep 2
+pueue add -g "$PUEUE_GROUP" sleep 1
 
 pueue add -g "$PUEUE_GROUP" "osascript -e 'display notification \"Success running all command with pueue cli\" with title \"gum-tmux.sh\"'"
