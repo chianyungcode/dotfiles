@@ -7,11 +7,10 @@ config:
 icons:
   btop: "📈"
   bun: "🥟"
-  docker: "🐳"
+  lazydocker: "🐳"
   fish: "🐠"
   fx: "📄"
-  nvim: "✒️"
-  # nvim: ""
+  nvim: " "
   ollama: "🦙"
   overmind: "👀"
   stripe-mock: "💳"
