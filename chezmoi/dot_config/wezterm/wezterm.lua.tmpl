@@ -26,7 +26,7 @@ config.colors = {
 -- ### Config font ###
 -- Alternative font: Geist Mono/Fira Code/JetBrains Mono/MonoLisa/MesloLGS Nerd Font Mono/Maple Mono/Cartograph CF
 {{- if eq .chezmoi.os "darwin"}}
-config.font_size = 16.5
+config.font_size = 18
 config.font = wezterm.font("Dank Mono")
 {{ else if eq .chezmoi.os "linux"}}
 config.font_size = 12.5
