@@ -22,5 +22,6 @@
 - Hack
 - Monaspace {Neon / Argon / Xenon / Radon / Krypton}
 - Martian Mono
+- Google Sans Mono
 
 [[../README.md]]
