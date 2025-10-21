@@ -33,20 +33,19 @@ return {
     enabled = true,
     priority = 1000,
     -- https://github.com/LazyVim/LazyVim/issues/6355#issuecomment-3212986215
-    -- config = function()
-    -- 	require("catppuccin").setup({
-    -- 		flavour = "mocha",
-    -- 		color_overrides = {
-    -- 			mocha = {
-    -- 				base = "#2C2C2C",
-    -- 				mantle = "#2C2C2C",
-    -- 				crust = "#2C2C2C",
-    -- 			},
-    -- 		},
-    --
-    -- 		transparent_background = false, -- disables setting the background color.
-    -- 	})
-    -- end,
+    config = function()
+      require("catppuccin").setup({
+        flavour = "mocha",
+        color_overrides = {
+          mocha = {
+            base = "#212121",
+            mantle = "#212121",
+            crust = "#212121",
+          },
+        },
+        transparent_background = true, -- disables setting the background color.
+      })
+    end,
   },
   { "datsfilipe/vesper.nvim", enabled = true },
   -- {
@@ -190,7 +189,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-mocha",
+      colorscheme = "oldworld",
     },
   },
 }
