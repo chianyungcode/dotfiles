@@ -41,3 +41,13 @@
 [[window]]
   name           = "terminal"
   startup_script = "doppler run -- bun run dev"
+
+[[session]]
+  name            = "OS"
+  path            = "~"
+  startup_command = "yazi"
+  windows         = ["monitoring"]
+
+[[window]]
+  name           = "monitoring"
+  startup_script = "btop"
