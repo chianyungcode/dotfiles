@@ -1,5 +1,16 @@
 return {
   {
+    "akinsho/toggleterm.nvim",
+    enabled = false,
+    version = "*",
+    config = function()
+      require("toggleterm").setup({
+        open_mapping = [[<c-\>]], -- default key untuk toggle
+        direction = "float",
+      })
+    end,
+  },
+  {
     -- Combination of nvim-tree and oil.nvim, file explorer with tree view and vim operations
     "A7Lavinraj/fyler.nvim",
     enabled = true,
