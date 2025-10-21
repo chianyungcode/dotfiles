@@ -64,6 +64,11 @@ return {
     config = function()
       require("oldworld").setup({
         variants = "default",
+        -- highlight_overrides = {
+        --   Normal = { bg = "NONE" },
+        --   NormalNC = { bg = "NONE" },
+        --   CursorLine = { bg = "NONE" },
+        -- },
       })
     end,
   },
