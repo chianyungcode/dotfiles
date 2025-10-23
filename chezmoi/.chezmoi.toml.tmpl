@@ -5,8 +5,6 @@
 {{- $personal_computer := promptBoolOnce . "personal_computer" "Is this a personal computer for daily driving? (true/false)" -}}
 {{- $dev_computer := promptBoolOnce . "dev_computer" "Do you do development on this computer? (true/false)" -}}
 {{- $homelab_member := promptBoolOnce . "homelab_member" "Is this computer part of your homelab? (true/false)" -}}
-{{- $machine_hostname := promptStringOnce . "machine_hostname" "What's your machine hostname" -}}
-{{- $machine_username := promptStringOnce . "machine_username" "What's your machine username" -}}
 
 # NOTE
 # 'use_secrets' ensures whether you are using 1Password; if so, all 1Password functions like 'onePasswordRead' can be used because the "op" CLI is installed
