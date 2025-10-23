@@ -1,7 +1,7 @@
 # Mise
 {{- if lookPath "mise" }}
 {{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch" )}}
-/bin/mise activate fish | source
+~/.local/bin/mise activate fish | source
 {{ else if eq .chezmoi.os "darwin" }}
 ~/.local/bin/mise activate fish | source
 {{- end }}
