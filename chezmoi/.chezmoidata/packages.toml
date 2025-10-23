@@ -330,7 +330,7 @@
         "1password-cli",
         "base-devel",    # Equivalent to apt-transport-https and build essentials
         "bat",           # cat with syntax highlighting and Git integration
-        "bind-tools",    # Equivalent to dnsutils
+        # "bind-tools",    # Equivalent to dnsutils
         "curl",
         "fd",            # Equivalent to fd-find
         "figlet",
@@ -347,9 +347,9 @@
         "ncdu",          # NCurses Disk Usage
         "net-tools",
         "openssh",       # Equivalent to openssh-server
-        "p7zip",         # Equivalent to p7zip-full
-        "polkit-gnome",  # For 1password prompt available
-        "ripgrep",       # search tool like grep and the silver searcher
+        # "p7zip",         # Equivalent to p7zip-full
+        "polkit-gnome", # For 1password prompt available
+        "ripgrep",      # search tool like grep and the silver searcher
         "sudo",
         "tzdata",
         "unzip",
@@ -396,29 +396,28 @@
         "pueue",               # Task runner and scheduler
         "redis",               # Redis CLI
         "ruff",                # Python linter
-        "sesh",
+        "sesh-bin",            # tmux session manager
         "shellcheck",          # bash, sh linter
         "shfmt",               # bash, sh formatter
-        "sqlite3",             # for building python
+        # "sqlite3",             # for building python
         "starship",
-        "stylua",              # Lua formatter
-        "stylua",              # Lua formatter
+        "stylua",    # Lua formatter
+        "stylua",    # Lua formatter
         "tailscale",
-        "taplo",               # TOML formatter
-        "tcl-tk",              # for building python
+        # "tcl-tk",              # for building python
         "tectonic",
-        "thefuck",             # Fix typos
+        "thefuck",         # Fix typos
         "ticktick",
         "tmux",
-        "tmuxp",               # tmux session manager
-        "usbutils",            # check fingerprint info
-        "vivid",               # Color generator for LS_COLORS env variable
-        "yamlfmt",             # YAML formatter
-        "yamllint",            # YAML linter
+        "tmuxp",           # tmux session manager
+        "usbutils",        # check fingerprint info
+        "vivid",           # Color generator for LS_COLORS env variable
+        "yamlfmt",         # YAML formatter
+        "yamllint",        # YAML linter
         "yazi",
-        "yq",                  # YAML processor
+        "yq",              # YAML processor
         "yubico-piv-tool",
-        "zlib",                # for building python
+        "zlib",            # for building python
       ]
 
     [packages.pacman.homelab_member]
