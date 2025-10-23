@@ -1,5 +1,7 @@
-{{- if and (lookPath "cargo") (.dev_computer) }}
-#!/usr/bin/env bash
+{{- if lookPath "cargo"  }}
+{{ if .dev_computer }}
+#!/usr/bin/env zsh
+
 cargo install kanata
 
 {{- $os := .chezmoi.os -}}
@@ -33,5 +35,6 @@ sudo launchctl enable system/com.example.karabiner-vhiddaemon.plist
 sudo launchctl bootstrap system /Library/LaunchDaemons/com.example.karabiner-vhidmanager.plist
 sudo launchctl enable system/com.example.karabiner-vhidmanager.plist
 
+{{- end }}
 {{- end }}
 {{- end }}
