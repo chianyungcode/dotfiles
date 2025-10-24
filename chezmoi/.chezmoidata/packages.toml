@@ -413,6 +413,7 @@
         "usbutils",        # check fingerprint info
         "vivid",           # Color generator for LS_COLORS env variable
         "yamlfmt",         # YAML formatter
+        "fish",
         "yamllint",        # YAML linter
         "yazi",
         "yq",              # YAML processor
