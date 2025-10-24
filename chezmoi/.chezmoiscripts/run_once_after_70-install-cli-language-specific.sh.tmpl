@@ -1,5 +1,5 @@
-{{ if .dev_computer }}
 #!/usr/bin/env bash
+{{ if .dev_computer }}
 set -euo pipefail
 
 {{ template "shared_script_utils.bash" . }}
@@ -33,14 +33,15 @@ if command -v npm >/dev/null 2>&1; then
     install_npm_global opencommit
     install_npm_global @openai/codex
 else
-    warn "npm not found; skipping npm CLI installation"
+    warning "npm not found; skipping npm CLI installation"
 fi
 
 if command -v cargo >/dev/null 2>&1; then
     install_cargo_crate kanata --locked
 else
-    warn "cargo not found; skipping Rust CLI installation"
+    warning "cargo not found; skipping Rust CLI installation"
 fi
 
 success "Finished installing language-specific CLI tooling"
+_safeExit_ 0
 {{- end }}
