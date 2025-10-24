@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+{{ template "shared_script_utils.bash" . }}
+
+header "Installing cargo packages"
+
+packages=(
+    {{ range $package := .packages.cargo.common.packages }}
+    "{{ $package }}"
+    {{ end }}
+
+    {{ if .dev_computer }}
+    {{ range $package := .packages.cargo.dev_computer.packages }}
+    "{{ $package }}"
+    {{ end }}
+    {{ end }}
+
+    {{ if .homelab_member }}
+    {{ range $package := .packages.cargo.homelab_member.packages }}
+    "{{ $package }}"
+    {{ end }}
+    {{ end }}
+
+    {{ if .personal_computer }}
+    {{ range $package := .packages.cargo.personal_computer.packages }}
+    "{{ $package }}"
+    {{ end }}
+    {{ end }}
+)
+
+if [[ ${#packages[@]} -eq 0 ]]; then
+    info "No cargo packages configured"
+    _safeExit_
+fi
+
+CARGO_BIN="$(command -v cargo || true)"
+
+if [[ -z ${CARGO_BIN} ]]; then
+    error "cargo is not installed"
+    _safeExit_ 1
+fi
+
+installed_crates="$(
+    "${CARGO_BIN}" install --list 2>/dev/null | awk '$2 ~ /^v/ {print $1}'
+)"
+
+for package in "${packages[@]}"; do
+    [[ -z ${package} ]] && continue
+
+    if printf '%s\n' "${installed_crates}" | grep -Fxq "${package}"; then
+        info "cargo crate '${package}' already installed"
+        continue
+    fi
+
+    info "Installing cargo crate '${package}'"
+    "${CARGO_BIN}" install "${package}"
+    success "cargo crate '${package}' installed"
+    installed_crates+=$'\n'"${package}"
+done
+
+success "Cargo packages installed"
+
+_safeExit_

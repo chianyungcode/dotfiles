@@ -239,7 +239,6 @@
       formulae = [
         "felixkratz/formulae/borders",
         "presenterm",                  # Presentation in CLI
-        "gromgit/brewtils/taproom",    # TUI for searching homebrew package
         "qmk/qmk/qmk",                 # QMK CLI
         "superfile",                   # file manager in terminal
         "yubico-piv-tool",             # Yubikey PIV tool
@@ -449,3 +448,31 @@
 
     [packages.python.personal_computer]
       packages = ["vid-cleaner", "smassh"]
+  [packages.cargo]
+    to_remove = []
+
+    [packages.cargo.common]
+      packages = []
+
+    [packages.cargo.dev_computer]
+      packages = []
+
+    [packages.cargo.homelab_member]
+      packages = []
+
+    [packages.cargo.personal_computer]
+      packages = ['cargo-seek']
+  [packages.node]
+    to_remove = []
+
+    [packages.node.common]
+      packages = []
+
+    [packages.node.dev_computer]
+      packages = []
+
+    [packages.node.homelab_member]
+      packages = []
+
+    [packages.node.personal_computer]
+      packages = ['@openai/codex', 'opencommit']

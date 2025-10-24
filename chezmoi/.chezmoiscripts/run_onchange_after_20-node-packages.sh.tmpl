@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+{{ template "shared_script_utils.bash" . }}
+
+header "Installing node packages with npm"
+
+packages=(
+    {{ range $package := .packages.node.common.packages }}
+    "{{ $package }}"
+    {{ end }}
+
+    {{ if .dev_computer }}
+    {{ range $package := .packages.node.dev_computer.packages }}
+    "{{ $package }}"
+    {{ end }}
+    {{ end }}
+
+    {{ if .homelab_member }}
+    {{ range $package := .packages.node.homelab_member.packages }}
+    "{{ $package }}"
+    {{ end }}
+    {{ end }}
+
+    {{ if .personal_computer }}
+    {{ range $package := .packages.node.personal_computer.packages }}
+    "{{ $package }}"
+    {{ end }}
+    {{ end }}
+)
+
+if [[ ${#packages[@]} -eq 0 ]]; then
+    info "No npm packages configured"
+    _safeExit_
+fi
+
+NPM_BIN="$(command -v npm || true)"
+
+if [[ -z ${NPM_BIN} ]]; then
+    error "npm is not installed"
+    _safeExit_ 1
+fi
+
+for package in "${packages[@]}"; do
+    [[ -z ${package} ]] && continue
+
+    if "${NPM_BIN}" list -g --depth=0 "${package}" >/dev/null 2>&1; then
+        info "npm package '${package}' already installed"
+        continue
+    fi
+
+    info "Installing npm package '${package}'"
+    "${NPM_BIN}" install -g "${package}"
+    success "npm package '${package}' installed"
+done
+
+success "npm packages installed"
+
+_safeExit_
