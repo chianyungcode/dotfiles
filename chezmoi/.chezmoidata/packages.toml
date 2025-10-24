@@ -147,35 +147,35 @@
         "hyperfine",                           # A command-line benchmarking tool
         "jesseduffield/lazydocker/lazydocker", # Docker manager
         "jesseduffield/lazygit/lazygit",
-        "kanata",                              # Cross-platform software keyboard remapper for Linux, macOS and Windows
-        "knqyf263/pet/pet",                    # CLI snippet manager
-        "koyeb/tap/koyeb",                     # Koyeb CLI
-        "luarocks",                            # Lua package manager
-        "markdownlint-cli2",                   # Linter for markdown file
-        "mermaid-cli",                         # LaTex math
-        "mongosh",                             # MongoDB shell
-        "nixfmt",                              # Nix formatter
-        "nushell",                             # Alternative shell
-        "pngpaste",                            # Paste PNG into files on MacOS, much like pbpaste does for text.
-        "poppler",                             # PDF rendering library
-        "prettier",                            # JS/TS formatter
-        "pueue",                               # Task runner and scheduler
-        "redis",                               # Redis CLI
-        "ruff",                                # Python linter
-        "sesh",                                # Tmux session manager
-        "shellcheck",                          # bash, sh linter
-        "shfmt",                               # bash, sh formatter
-        "sqlite3",                             # for building python
-        "sshs",                                # Graphical command-line client for SSH
-        "stylua",                              # Lua formatter
-        "tcl-tk",                              # for building python
-        "tectonic",                            # render LaTex math
-        "thefuck",                             # Fix typos
-        "tmuxp",                               # Tmux session manager
-        "vladkens/tap/macmon",                 # Mac monitor
-        "yamlfmt",                             # YAML formatter
-        "yamllint",                            # YAML linter
-        "zlib",                                # for building python
+        # "kanata",                              # Cross-platform software keyboard remapper for Linux, macOS and Windows
+        "knqyf263/pet/pet",    # CLI snippet manager
+        "koyeb/tap/koyeb",     # Koyeb CLI
+        "luarocks",            # Lua package manager
+        "markdownlint-cli2",   # Linter for markdown file
+        "mermaid-cli",         # LaTex math
+        "mongosh",             # MongoDB shell
+        "nixfmt",              # Nix formatter
+        "nushell",             # Alternative shell
+        "pngpaste",            # Paste PNG into files on MacOS, much like pbpaste does for text.
+        "poppler",             # PDF rendering library
+        "prettier",            # JS/TS formatter
+        "pueue",               # Task runner and scheduler
+        "redis",               # Redis CLI
+        "ruff",                # Python linter
+        "sesh",                # Tmux session manager
+        "shellcheck",          # bash, sh linter
+        "shfmt",               # bash, sh formatter
+        "sqlite3",             # for building python
+        "sshs",                # Graphical command-line client for SSH
+        "stylua",              # Lua formatter
+        "tcl-tk",              # for building python
+        "tectonic",            # render LaTex math
+        "thefuck",             # Fix typos
+        "tmuxp",               # Tmux session manager
+        "vladkens/tap/macmon", # Mac monitor
+        "yamlfmt",             # YAML formatter
+        "yamllint",            # YAML linter
+        "zlib",                # for building python
       ]
       taps = []
 
@@ -383,22 +383,22 @@
         "helix",               # Alternative neovim
         "httpie",              # HTTP client
         "hurl",                # runs HTTP requests defined in a simple plain text format.
-        "kanata",
+        # "kanata",
         "lazydocker",
         "lazygit",
         "localsend",
-        "lsof",                # opencode-bin depedency
-        "markdownlint-cli2",   # Linter for markdown file
+        "lsof",              # opencode-bin depedency
+        "markdownlint-cli2", # Linter for markdown file
         "neovim",
         "nix",
         "pet-bin",
-        "prettier",            # JS/TS formatter
-        "pueue",               # Task runner and scheduler
-        "redis",               # Redis CLI
-        "ruff",                # Python linter
-        "sesh-bin",            # tmux session manager
-        "shellcheck",          # bash, sh linter
-        "shfmt",               # bash, sh formatter
+        "prettier",          # JS/TS formatter
+        "pueue",             # Task runner and scheduler
+        "redis",             # Redis CLI
+        "ruff",              # Python linter
+        "sesh-bin",          # tmux session manager
+        "shellcheck",        # bash, sh linter
+        "shfmt",             # bash, sh formatter
         # "sqlite3",             # for building python
         "starship",
         "stylua",    # Lua formatter
