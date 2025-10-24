@@ -3,9 +3,9 @@ Description=Kanata keyboard remapper
 Documentation=https://github.com/jtroo/kanata
 
 [Service]
-Environment=PATH=$HOME/.cargo/bin:/usr/local/bin:/usr/bin:/bin
+Environment=PATH=%h/.cargo/bin:/usr/local/bin:/usr/bin:/bin
 Type=simple
-ExecStart=kanata -c $HOME/.config/kanata/row-staggered.kbd
+ExecStart=kanata -c %h/.config/kanata/row-staggered.kbd
 Restart=no
 
 [Install]
