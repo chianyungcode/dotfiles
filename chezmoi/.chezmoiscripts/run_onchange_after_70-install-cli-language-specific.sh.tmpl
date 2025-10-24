@@ -38,6 +38,7 @@ fi
 
 if command -v cargo >/dev/null 2>&1; then
     install_cargo_crate kanata --locked
+    install_cargo_crate cargo-seek --locked
 else
     warning "cargo not found; skipping Rust CLI installation"
 fi
