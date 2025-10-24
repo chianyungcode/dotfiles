@@ -239,6 +239,7 @@
       formulae = [
         "felixkratz/formulae/borders",
         "presenterm",                  # Presentation in CLI
+        "gromgit/brewtils/taproom",    # TUI for searching homebrew package
         "qmk/qmk/qmk",                 # QMK CLI
         "superfile",                   # file manager in terminal
         "yubico-piv-tool",             # Yubikey PIV tool
