@@ -469,7 +469,9 @@
       packages = []
 
     [packages.node.dev_computer]
-      packages = []
+      packages = [
+        "@go-task/cli", # modern makefile alternative - https://taskfile.dev/
+      ]
 
     [packages.node.homelab_member]
       packages = []
