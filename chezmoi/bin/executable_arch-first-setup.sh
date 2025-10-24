@@ -12,7 +12,7 @@ echo "Starting uinput configuration and kanata service setup..."
 # 1. Create uinput group if it doesn't exist
 if ! getent group uinput >/dev/null; then
   echo "Creating group 'uinput'..."
-  sudo groupadd uinput
+  sudo groupadd --system uinput
 else
   echo "Group 'uinput' already exists."
 fi
