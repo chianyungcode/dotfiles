@@ -63,7 +63,7 @@
         "ssh-copy-id",               # Add a public key to a remote machine's authorized_keys file
         "starship",                  # Configure shell prompt appearance
         "taplo",                     # TOML formatter
-        "tlrc",                      # TLDR client
+        "tlrc",                      # TLDR client, alternative tealdeer
         "tmux",                      # Terminal multiplexer
         "unzip",
         "vim",                       # Alternative neovim
@@ -127,6 +127,7 @@
         "act",                                 # runs GitHub Actions locally
         "awscli",
         "biome",                               # JS/TS linter, formatter
+        "pastel",                              # converter color in terminal
         "codespell",                           # Fix common misspellings in source code and text files
         "direnv",                              # Environment manager for shell based current working directory
         "dotenvx/brew/dotenvx",                # Env manager
@@ -362,6 +363,7 @@
         "appimagelauncher",    # for integrating .AppImage
         "auto-cpufreq",        # CPU frequency auto
         "biome",               # JS/TS linter, formatter
+        "pastel",              # converter color in terminal
         "btop",
         "cloudflare-warp-bin",
         "codespell",           # Fix common misspellings in source code and text files
@@ -402,6 +404,7 @@
         # "sqlite3",             # for building python
         "starship",
         "stylua",    # Lua formatter
+        "tlrc",      # TLDR client, alternative tealdeer
         "stylua",    # Lua formatter
         "tailscale",
         # "tcl-tk",              # for building python
@@ -444,4 +447,4 @@
       packages = []
 
     [packages.python.personal_computer]
-      packages = ["vid-cleaner"]
+      packages = ["vid-cleaner", "smassh"]
