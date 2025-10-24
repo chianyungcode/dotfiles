@@ -6,10 +6,47 @@
 {{- $homeDir := .chezmoi.homeDir -}}
 
 {{- if and (eq $os "linux") (eq .chezmoi.osRelease.id "arch") }}
+echo "Starting uinput configuration and kanata service setup..."
+
+# 1. Create uinput group if it doesn't exist
+if ! getent group uinput >/dev/null; then
+  echo "Creating group 'uinput'..."
+  sudo groupadd --system uinput
+else
+  echo "Group 'uinput' already exists."
+fi
+
+# 2. Add current user to 'input' and 'uinput' groups
+echo "Adding user $USER to groups 'input' and 'uinput'..."
+sudo usermod -aG input "$USER"
+sudo usermod -aG uinput "$USER"
+
+# 3. Write udev rule for uinput device
+echo "Writing udev rule for uinput..."
+echo 'KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"' | sudo tee /etc/udev/rules.d/99-input.rules >/dev/null
+
+# 4. Reload udev rules and trigger
+echo "Reloading udev rules and triggering..."
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+
+# 5. Load uinput kernel module
+echo "Loading uinput kernel module..."
+sudo modprobe uinput
+
+# 6. Ensure kanata systemd service is installed and running
 mkdir -p "{{ $homeDir }}/.config/systemd/user"
 install -m 644 "{{ $sourceDir }}/dot_config/kanata/service-manager/linux/kanata.service" "{{ $homeDir }}/.config/systemd/user/kanata.service"
+echo "Reloading systemd user daemon and managing kanata.service..."
 systemctl --user daemon-reload
-systemctl --user enable --now kanata.service
+systemctl --user enable kanata.service
+systemctl --user start kanata.service
+
+# 7. Show status of kanata.service
+echo "Status of kanata.service:"
+systemctl --user status kanata.service --no-pager
+
+echo "Done."
 
 {{- else if eq $os "darwin" }}
 # https://github.com/jtroo/kanata/discussions/1537
