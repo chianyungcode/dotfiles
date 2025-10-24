@@ -415,6 +415,7 @@
         "yamlfmt",         # YAML formatter
         "fish",
         "yamllint",        # YAML linter
+        "less",
         "yazi",
         "yq",              # YAML processor
         "yubico-piv-tool",
