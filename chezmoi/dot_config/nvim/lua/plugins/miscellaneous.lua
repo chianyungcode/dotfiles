@@ -33,6 +33,7 @@ return {
     },
   },
   {
+    -- Paste image to neovim in normal mode, just press cmd + v in macos or ctrl + v in linux
     "HakonHarnes/img-clip.nvim",
     enabled = true,
     event = "VeryLazy",
@@ -47,9 +48,23 @@ return {
   },
   {
     "3rd/image.nvim",
-    opts = {
-      hererocks = true,
-    },
+    enabled = true,
+    -- opts = {
+    --   hererocks = true,
+    -- },
+    config = function()
+      require("image").setup({
+        backend = "kitty",
+        kitty_method = "normal",
+        integrations = {
+          markdown = {
+            only_render_image_at_cursor = true,
+            only_render_image_at_cursor_mode = "popup",
+            floating_windows = true,
+          },
+        },
+      })
+    end,
   },
   {
     "OXY2DEV/helpview.nvim",
