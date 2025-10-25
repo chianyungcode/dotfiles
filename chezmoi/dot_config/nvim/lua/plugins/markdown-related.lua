@@ -1,5 +1,5 @@
-local function default_note_id()
-  return require("obsidian.builtin").zettel_id()
+local function default_note_id(...)
+  return require("obsidian.builtin").zettel_id(...)
 end
 
 return {
