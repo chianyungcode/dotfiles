@@ -7,6 +7,33 @@ return {
   ---@module 'snacks'
   ---@type snacks.Config
   opts = {
+    styles = {
+      snacks_image = {
+        relative = "cursor",
+        border = true,
+        focusable = false,
+        backdrop = false,
+        row = 1,
+        col = 1,
+        -- width/height are automatically set by the image size unless specified below
+      },
+    },
+    image = {
+      doc = {
+        -- enable image viewer for documents
+        -- a treesitter parser must be available for the enabled languages.
+        enabled = true,
+        -- render the image inline in the buffer
+        -- if your env doesn't support unicode placeholders, this will be disabled
+        -- takes precedence over `opts.float` on supported terminals
+        inline = false,
+        -- render the image in a floating window
+        -- only used if `opts.inline` is disabled, if `float` set to true then `inline` need to set to false
+        float = true,
+        max_width = 60,
+        max_height = 30,
+      },
+    },
     -- Snacks.picker() ini adalah snacks.picker custom configuration
     picker = {
       layout = {

@@ -48,7 +48,7 @@ return {
   },
   {
     "3rd/image.nvim",
-    enabled = true,
+    enabled = false,
     -- opts = {
     --   hererocks = true,
     -- },
