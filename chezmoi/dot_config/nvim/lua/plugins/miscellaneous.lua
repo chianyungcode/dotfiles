@@ -1,7 +1,7 @@
 return {
   {
     "m4xshen/hardtime.nvim",
-    enabled = true,
+    enabled = false,
     dependencies = { "MunifTanjim/nui.nvim" },
     opts = {},
   },
@@ -43,7 +43,7 @@ return {
     },
     keys = {
       -- suggested keymap
-      -- { "<leader>p", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
+      { "<leader>p", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
     },
   },
   {
