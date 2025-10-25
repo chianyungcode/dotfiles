@@ -13,8 +13,8 @@ return {
         border = true,
         focusable = false,
         backdrop = false,
-        row = 1,
-        col = 1,
+        row = 2,
+        col = 2,
         -- width/height are automatically set by the image size unless specified below
       },
     },
