@@ -1,3 +1,7 @@
+local function default_note_id()
+  return require("obsidian.builtin").zettel_id()
+end
+
 return {
   {
     -- https://github.com/apdot/doodle
@@ -5,6 +9,7 @@ return {
     enabled = false,
   },
   {
+    -- https://github.com/obsidian-nvim/obsidian.nvim
     "obsidian-nvim/obsidian.nvim",
     version = "*", -- recommended, use latest release instead of latest commit
     lazy = true,
@@ -50,7 +55,7 @@ return {
         -- Trigger completion at 2 chars.
         min_chars = 2,
         -- Set to false to disable new note creation in the picker
-        create_new = false,
+        create_new = true,
       },
 
       -- Set your preferred picker. Can be one of 'telescope.nvim', 'fzf-lua', 'mini.pick' or 'snacks.pick'.
@@ -89,10 +94,12 @@ return {
       -- Either 'wiki' or 'markdown'.
       preferred_link_style = "wiki",
 
+      -- references: https://github.com/obsidian-nvim/obsidian.nvim/wiki/Template
       templates = {
         customizations = {
           learn = {
-            notes_subdir = "Learn/05-rough-notes",
+            notes_subdir = "Learn/10-rough-notes",
+            note_id_func = default_note_id,
           },
         },
         folder = "_templates",
