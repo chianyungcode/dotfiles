@@ -129,7 +129,6 @@
         "biome",                               # JS/TS linter, formatter
         "pastel",                              # converter color in terminal
         "codespell",                           # Fix common misspellings in source code and text files
-        "go-task",                             # modern makefile alternative - https://taskfile.dev/
         "direnv",                              # Environment manager for shell based current working directory
         "dotenvx/brew/dotenvx",                # Env manager
         "eslint",                              # JS/TS linter
@@ -362,7 +361,6 @@
     [packages.pacman.dev_computer]
       packages = [
         "appimagelauncher",    # for integrating .AppImage
-        "go-task",             # modern makefile alternative - https://taskfile.dev/
         "auto-cpufreq",        # CPU frequency auto
         "biome",               # JS/TS linter, formatter
         "pastel",              # converter color in terminal
@@ -471,7 +469,9 @@
       packages = []
 
     [packages.node.dev_computer]
-      packages = []
+      packages = [
+        "@go-task/cli", # modern makefile alternative - https://taskfile.dev/
+      ]
 
     [packages.node.homelab_member]
       packages = []
