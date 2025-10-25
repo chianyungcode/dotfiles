@@ -97,7 +97,7 @@ return {
       -- references: https://github.com/obsidian-nvim/obsidian.nvim/wiki/Template
       templates = {
         customizations = {
-          learn = {
+          learn_notes = {
             notes_subdir = "Learn/10-rough-notes",
             note_id_func = default_note_id,
           },
