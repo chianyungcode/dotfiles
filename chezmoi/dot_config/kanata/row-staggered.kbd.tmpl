@@ -69,6 +69,7 @@
   l (tap-hold $tap-time $hold-time l lctl)
   k (tap-hold $tap-time $hold-time k lalt)
   j (tap-hold $tap-time $hold-time j lmet)
+  slash (tap-hold $tap-time $hold-time / rmet)
   hyperkey (tap-hold $tap-time $hold-time spc (multi lsft lctl lalt lmet))
 
   ;; ==== OS SPECIFIC ====
@@ -125,7 +126,7 @@
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   @lmet_tab    q    w    e    r    t    y    u    i    o    p    [    ]    \
   @caps  a    @s    @d    @f    g    h    @j    @k    @l    @smcol    @sglquot    @rtn
-  lsft z    x    c    v    b    n    m    ,    .   /    rsft ;; Tombol x sekarang punya fungsi ganda
+  lsft z    x    c    v    b    n    m    ,    .   @slash    rsft ;; Tombol x sekarang punya fungsi ganda
   lctl lmet lalt           @spc_ly3            ralt rmet rctl
 )
 
