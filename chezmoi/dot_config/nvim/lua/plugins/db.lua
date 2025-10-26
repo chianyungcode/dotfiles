@@ -9,6 +9,7 @@ return {
       require("sqlua").setup()
     end,
   },
+
   {
     "kristijanhusak/vim-dadbod-ui",
     dependencies = {
@@ -26,6 +27,7 @@ return {
       vim.g.db_ui_use_nerd_fonts = 1
     end,
   },
+
   {
     "kndndrj/nvim-dbee",
     enabled = false,
