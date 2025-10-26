@@ -101,6 +101,13 @@
   ;; kill window/pane
   tx-kill-window (macro @tmux-prefix S-7)
   tx-kill-pane (macro @tmux-prefix x)
+
+  ;; switch window to {number}
+  tx-wdw-1 (macro @tmux-prefix Digit1)
+  tx-wdw-2 (macro @tmux-prefix Digit2)
+  tx-wdw-3 (macro @tmux-prefix Digit3)
+  tx-wdw-4 (macro @tmux-prefix Digit4)
+  tx-wdw-5 (macro @tmux-prefix Digit5)
 )
 
 ;; == Input combos / chording ==
@@ -176,7 +183,7 @@
 
 (deflayer tmux
        🔅        🔆        @mc            @sls           @dtn           @dnd           ◀◀        ▶⏸          ▶▶                    🔇        🔉        🔊
-  grv  1         2         3              4              5              6              7         8           9                     0         -         =         bspc
+  grv  @tx-wdw-1         @tx-wdw-2         @tx-wdw-3              @tx-wdw-4              @tx-wdw-5              6              7         8           9                     0         -         =         bspc
   tab  @tx-slcsession     @tx-slcwindow   f3             XX             f5             f6        f7          f8                    XX        XX        @tab-left  @tab-right  \
   caps @tx-sw-session     @tx-sw-window   @tx-sw-pane    4              5              6         @tx-splith  8                     @tx-splitv  0         '         ret
   lsft @tx-kill-window    @tx-kill-pane   @tx-new-window XX             0              XX        rctl        @tx-rn-window         .         /         rsft
