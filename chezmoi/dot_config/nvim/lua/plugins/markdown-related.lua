@@ -3,13 +3,16 @@ local function default_note_id(...)
 end
 
 return {
+  -- https://github.com/apdot/doodle
+  -- DESC: obsidian similar
   {
-    -- https://github.com/apdot/doodle
     "apdot/doodle",
     enabled = false,
   },
+
+  -- https://github.com/obsidian-nvim/obsidian.nvim
+  -- DESC: obsidian in neovim
   {
-    -- https://github.com/obsidian-nvim/obsidian.nvim
     "obsidian-nvim/obsidian.nvim",
     version = "*", -- recommended, use latest release instead of latest commit
     lazy = true,
@@ -144,6 +147,9 @@ return {
     --   map("n", "<leader>yz", "<cmd>ObsidianNewFromTemplate<CR>", { desc = "New from template" })
     -- end,
   },
+
+  -- https://github.com/MeanderingProgrammer/render-markdown.nvim
+  -- DESC: fancy visual markdown in neovim
   {
     "MeanderingProgrammer/render-markdown.nvim",
     -- dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
@@ -218,6 +224,7 @@ return {
       })
     end,
   },
+
   {
     "brianhuster/live-preview.nvim",
     enabled = false,
@@ -227,9 +234,9 @@ return {
     },
   },
 
+  -- Bullets.vim is a Vim/NeoVim plugin for automated bullet lists.
+  -- https://github.com/bullets-vim/bullets.vim
   {
-    -- Bullets.vim is a Vim/NeoVim plugin for automated bullet lists.
-    -- https://github.com/bullets-vim/bullets.vim
     "bullets-vim/bullets.vim",
   },
 }
