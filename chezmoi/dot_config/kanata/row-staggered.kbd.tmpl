@@ -1,4 +1,4 @@
-;; This is for single line comment
+;; https://jtroo.github.io/config.html
 
 ;; Global configuration, this configuration applied globally
 (defcfg
@@ -42,17 +42,17 @@
   ;; ==== LAYERS ====
   l_2 (layer-toggle nums)
   l_3 (layer-toggle symbols)
-  l_4 (layer-toggle layer4)
+  l_4 (layer-toggle tmux)
 
   smcol (tap-hold $tap-time $hold-time ; @l_2)
   spc_ly3 (tap-hold $tap-time $hold-time spc @l_3)
 
   {{- if eq .chezmoi.os "darwin"}}
   sglquot (tap-hold $tap-time $hold-time ' @l_4)
-  lmet_tab (tap-hold $tap-time $hold-time tab (multi lmet tab))
+  lmet_tab (tap-hold $tap-time $hold-time tab M-tab)
   {{- else if eq .chezmoi.os "linux" }}
   sglquot (tap-hold $tap-time $hold-time ' @l_4)
-  lmet_tab (tap-hold $tap-time $hold-time tab (multi lctl tab))
+  lmet_tab (tap-hold $tap-time $hold-time tab A-tab )
   {{- end }}
 
   ;; ==== MODIFIER KEYS + LETTER KEYS ====
@@ -66,7 +66,7 @@
   caps (tap-hold $tap-time $hold-time esc (layer-toggle nav))
 
   ;; ==== OS SPECIFIC ====
-  ;; macOS
+  ;; - macOS -
   mc C-up ;; Mission Control
   sls M-spc ;; Spotlight Search
   dtn S-C-A-M-f5 ;; Dictation
@@ -78,6 +78,13 @@
 
   tab-left C-S-tab
   tab-right C-tab
+
+  ;; ==== TMUX ====
+  tmux-prefix C-a
+
+  tx-session (macro @tmux-prefix S-a)
+  tx-window (macro @tmux-prefix a)
+  tx-pane (macro @tmux-prefix q)
 )
 
 ;; == Input combos / chording ==
@@ -151,11 +158,11 @@
   lctl lmet lalt           spc            ralt rmet rctl
 )
 
-(deflayer layer4
+(deflayer tmux
        🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  @tab-left   @tab-right    \
-  caps 1  2  3  4  5    6    7    8    9    0    '    ret
+  tab  @tx-pane   f2   f3   f4   f5   f6   f7   f8   f9   f10  @tab-left   @tab-right    \
+  caps @tx-window  @tx-session  3  4  5    6    7    8    9    0    '    ret
   lsft XX    XX    XX    XX    0    XX    rctl    ,    .    /    rsft
   lctl lmet lalt           spc            ralt rmet rctl
 )
