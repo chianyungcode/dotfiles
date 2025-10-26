@@ -4,6 +4,7 @@
 (defcfg
   process-unmapped-keys yes
   concurrent-tap-hold yes ;; for input chording/combos
+  danger-enable-cmd yes
 
 ;; uncomment this code below if you using kanata in macos, to prevent bugs that causing kanata doesn't work after sleep
 
@@ -42,15 +43,18 @@
   cw (caps-word 1000)
 
   ;; ==== LAYERS ====
-  lt_nums (layer-toggle nums)
-  lt_symbols (layer-toggle symbols)
-  lt_tmux (layer-toggle tmux)
-  lt_nav  (layer-toggle nav)
+  ;; You may also use `layer-toggle` in place of `layer-while-held`; they behave exactly the same. The `layer-toggle` name is slightly shorter but is a bit inaccurate with regards to its meaning.
+  lwh_nums (layer-while-held nums)
+  lwh_symbols (layer-while-held symbols)
+  lwh_tmux (layer-while-held tmux)
+  lwh_nav  (layer-while-held nav)
+  lwh_sublayers (layer-while-held sublayers)
 
-  smcol (tap-hold $tap-time $hold-time ; @lt_nums)
-  spc_ly3 (tap-hold $tap-time $hold-time spc @lt_symbols)
-  sglquot (tap-hold $tap-time $hold-time ' @lt_tmux)
-  caps (tap-hold $tap-time $hold-time esc @lt_nav)
+  smcol (tap-hold $tap-time $hold-time ; @lwh_nums)
+  spc_ly3 (tap-hold $tap-time $hold-time spc @lwh_symbols)
+  sglquot (tap-hold $tap-time $hold-time ' @lwh_tmux)
+  caps (tap-hold $tap-time $hold-time esc @lwh_nav)
+  rtn (tap-hold $tap-time $hold-time ret @lwh_sublayers)
 
   {{- if eq .chezmoi.os "darwin"}}
   lmet_tab (tap-hold $tap-time $hold-time tab M-tab)
@@ -120,7 +124,7 @@
        🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   @lmet_tab    q    w    e    r    t    y    u    i    o    p    [    ]    \
-  @caps  a    @s    @d    @f    g    h    @j    @k    @l    @smcol    @sglquot    ret
+  @caps  a    @s    @d    @f    g    h    @j    @k    @l    @smcol    @sglquot    @rtn
   lsft z    x    c    v    b    n    m    ,    .   /    rsft ;; Tombol x sekarang punya fungsi ganda
   lctl lmet lalt           @spc_ly3            ralt rmet rctl
 )
@@ -152,6 +156,18 @@
   lctl lmet lalt           spc            ralt rmet rctl
 )
 
+(defalias
+  ly-rayc (tap-hold $tap-time $hold-time r (layer-while-held raycast))
+)
+
+(deflayer sublayers
+       🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
+  grv  o   XX   XX    XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  tab  XX   XX   XX   @ly-rayc   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  caps XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  lsft XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  lctl lmet lalt           spc            ralt rmet rctl
+)
 
 ;; == TMUX ==
 (defalias
@@ -193,4 +209,20 @@
   caps @tx-sw-session     @tx-sw-window   @tx-sw-pane    4              5              6         @tx-splith  8                     @tx-splitv  0         '         ret
   lsft @tx-kill-window    @tx-kill-pane   @tx-new-window XX             0              XX        @cw        @tx-rn-window         .         /         rsft
   lctl lmet               lalt                             spc                                            ralt            rmet              rctl
+)
+
+
+(defalias
+  rrain (cmd open "raycast://extensions/lardissone/raindrop-io/search")
+  remoj (cmd open "raycast://extensions/raycast/emoji-symbols/search-emoji-symbols")
+  rspot (cmd open "raycast://extensions/mattisssa/spotify-player/search")
+)
+
+(deflayer raycast
+       🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
+  grv  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  tab  XX   XX   @remoj   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  caps XX   XX   XX   XX   XX   XX   @rspot   @rrain   XX   XX   XX   XX
+  lsft XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  lctl lmet lalt           spc            ralt rmet rctl
 )
