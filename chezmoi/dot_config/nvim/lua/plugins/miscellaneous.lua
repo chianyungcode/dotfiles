@@ -72,11 +72,8 @@ return {
         -- In my case, I want images to be where the file is, so I set it to true
         relative_to_current_file = false, ---@type boolean
 
-        -- dir_path = "_assets", ---@type string | fun(): string -- default is 'assets/' but i want use '_assets'
+        dir_path = "_assets", ---@type string | fun(): string -- default is 'assets/' but i want use '_assets'
         -- sementara seperti ini karena untuk membuka dengan system app `gx` , path nya sepertinya bergantung pada cwd, misalnya jika path nya '../../_assets/file.png' tidak akan bisa dibuka muncul error, karena ini sepertinya mengganggap membukanya keluar dari root directory saat ini jadi naik 2 tingkat dari root directory saat ini. Padahal yang diharapkan adalah membuka directory 2 tingkah dibawahnya
-        dir_path = function()
-          return "_assets"
-        end,
 
         -- If you want to get prompted for the filename when pasting an image
         -- This is the actual name that the physical file will have

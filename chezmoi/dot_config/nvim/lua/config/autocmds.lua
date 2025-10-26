@@ -6,3 +6,16 @@
 --
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+
+-- The disabled autocmd below keeps img-clip.nvim's `gx` behavior relative to the file,
+-- not the project root. Example: ![my-image](../../_assets/file.png) in
+-- /Users/chianyung/Documents/vault-obsidian/note.md would otherwise make `gx` walk two
+-- directories up and fail to locate the image.
+-- local group = vim.api.nvim_create_augroup("LocalMdCwd", { clear = true })
+-- vim.api.nvim_create_autocmd("BufEnter", {
+--   group = group,
+--   pattern = "*.md",
+--   callback = function()
+--     vim.cmd("silent! lcd %:p:h")
+--   end,
+-- })
