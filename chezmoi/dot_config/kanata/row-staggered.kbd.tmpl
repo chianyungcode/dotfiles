@@ -82,9 +82,25 @@
   ;; ==== TMUX ====
   tmux-prefix C-a
 
-  tx-session (macro @tmux-prefix S-a)
-  tx-window (macro @tmux-prefix a)
-  tx-pane (macro @tmux-prefix q)
+  ;; new window
+  tx-new-window (macro @tmux-prefix c)
+
+  ;; switch between last session/window/pane
+  tx-sw-session (macro @tmux-prefix S-a)
+  tx-sw-window (macro @tmux-prefix a)
+  tx-sw-pane (macro @tmux-prefix q)
+
+  ;; split pane
+  tx-splith (macro @tmux-prefix -)
+  tx-splitv (macro @tmux-prefix S-\)
+
+  ;; select session/window
+  tx-slcsession (macro @tmux-prefix s)
+  tx-slcwindow (macro @tmux-prefix w)
+
+  ;; kill window/pane
+  tx-kill-window (macro @tmux-prefix S-7)
+  tx-kill-pane (macro @tmux-prefix x)
 )
 
 ;; == Input combos / chording ==
@@ -115,7 +131,6 @@
   {{- end }}
 
   (l =) lrld $input-chord-time all-released () ;; live reload kanata, press this after changing kanata configuration
-  (j i) C-a 80 all-released () ;; tmux prefix
 )
 
 ;; == Layers ==
@@ -159,10 +174,10 @@
 )
 
 (deflayer tmux
-       🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  @tx-pane   f2   f3   f4   f5   f6   f7   f8   f9   f10  @tab-left   @tab-right    \
-  caps @tx-window  @tx-session  3  4  5    6    7    8    9    0    '    ret
-  lsft XX    XX    XX    XX    0    XX    rctl    ,    .    /    rsft
-  lctl lmet lalt           spc            ralt rmet rctl
+       🔅     🔆     @mc     @sls    @dtn    @dnd    ◀◀     ▶⏸     ▶▶     🔇     🔉     🔊
+  grv  1      2      3      4       5       6       7       8       9       0       -       =       bspc
+  tab    @tx-slcsession @tx-slcwindow     f3     f4     f5     f6     f7     f8     @tx-splith   @tx-splitv   @tab-left   @tab-right   \
+  caps @tx-sw-session @tx-sw-window @tx-sw-pane     4       5       6       7       8       9       0       '       ret
+  lsft @tx-kill-window     @tx-kill-pane     @tx-new-window     XX     0      XX      rctl    ,       .       /       rsft
+  lctl lmet   lalt             spc             ralt   rmet   rctl
 )
