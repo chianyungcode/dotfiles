@@ -1,4 +1,13 @@
 return {
+  -- https://github.com/chentoast/marks.nvim
+  -- DESC: A better user experience for interacting with and manipulating Vim marks.
+  {
+    "chentoast/marks.nvim",
+    enabled = true,
+    event = "VeryLazy",
+    opts = {},
+  },
+
   {
     "akinsho/toggleterm.nvim",
     enabled = false,
@@ -10,8 +19,10 @@ return {
       })
     end,
   },
+
+  -- https://github.com/A7Lavinraj/fyler.nvim
+  -- DESC: Combination of nvim-tree and oil.nvim, file explorer with tree view and vim operations
   {
-    -- Combination of nvim-tree and oil.nvim, file explorer with tree view and vim operations
     "A7Lavinraj/fyler.nvim",
     enabled = true,
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -122,6 +133,7 @@ return {
       },
     },
   },
+
   {
     "hedyhli/outline.nvim",
     config = function()
@@ -171,12 +183,5 @@ return {
         desc = "Create a selection for selected text or word under the cursor",
       },
     },
-  },
-
-  {
-    "chentoast/marks.nvim",
-    enabled = true,
-    event = "VeryLazy",
-    opts = {},
   },
 }
