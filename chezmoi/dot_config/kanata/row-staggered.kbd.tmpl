@@ -84,6 +84,7 @@
 
   tx-new-window (macro @tmux-prefix c) ;; new window
   tx-rn-window (macro @tmux-prefix ,) ;; rename window
+  tx-plg-sesh  (macro @tmux-prefix o) ;; sesh plugin
 
   ;; switch between last session/window/pane
   tx-sw-session (macro @tmux-prefix S-a)
@@ -183,8 +184,8 @@
 
 (deflayer tmux
        🔅        🔆        @mc            @sls           @dtn           @dnd           ◀◀        ▶⏸          ▶▶                    🔇        🔉        🔊
-  grv  @tx-wdw-1         @tx-wdw-2         @tx-wdw-3              @tx-wdw-4              @tx-wdw-5              6              7         8           9                     0         -         =         bspc
-  tab  @tx-slcsession     @tx-slcwindow   f3             XX             f5             f6        f7          f8                    XX        XX        @tab-left  @tab-right  \
+  grv  @tx-wdw-1          @tx-wdw-2       @tx-wdw-3      @tx-wdw-4      @tx-wdw-5      6         7           8                     9         0         -         =         bspc
+  tab  @tx-slcsession     @tx-slcwindow   f3             XX             f5             f6        f7          f8                    @tx-plg-sesh        XX        @tab-left  @tab-right  \
   caps @tx-sw-session     @tx-sw-window   @tx-sw-pane    4              5              6         @tx-splith  8                     @tx-splitv  0         '         ret
   lsft @tx-kill-window    @tx-kill-pane   @tx-new-window XX             0              XX        rctl        @tx-rn-window         .         /         rsft
   lctl lmet               lalt                             spc                                            ralt            rmet              rctl
