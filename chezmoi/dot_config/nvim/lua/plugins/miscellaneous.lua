@@ -6,14 +6,22 @@ return {
     opts = {},
   },
 
+  -- https://github.com/alker0/chezmoi.vim
+  -- DESC: syntax highlighting for .tmpl in chezmoi
   {
-    -- Syntax highlighting for .tmpl in chezmoi
     "alker0/chezmoi.vim",
     enabled = false,
   },
+
+  -- https://github.com/meznaric/key-analyzer.nvim
+  -- Ever wondered which mappings are free to be mapped? Now it's a easier to figure it out.
   { "meznaric/key-analyzer.nvim", opts = {} },
+
   -- Plugin for tracking your time in Neovim
   { "wakatime/vim-wakatime", lazy = false },
+
+  -- https://github.com/nvzone/floaterm
+  -- DESC: multiple floating terminal inside neovim
   {
     "nvzone/floaterm",
     enabled = false,
@@ -24,16 +32,20 @@ return {
     },
     cmd = "FloatermToggle",
   },
+
   {
     "cdmill/focus.nvim",
+    enabled = false,
     cmd = { "Focus", "Zen", "Narrow" },
     opts = { -- your configuration comes here
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
     },
   },
+
+  -- https://github.com/hakonharnes/img-clip.nvim
+  -- DESC: Paste image to neovim in normal mode, just press cmd + v in macos or ctrl + v in linux
   {
-    -- Paste image to neovim in normal mode, just press cmd + v in macos or ctrl + v in linux
     "HakonHarnes/img-clip.nvim",
     enabled = true,
     event = "VeryLazy",
@@ -96,6 +108,9 @@ return {
       { "<leader>p", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
     },
   },
+
+  -- https://github.com/3rd/image.nvim
+  -- DESC: show image in neovim
   {
     "3rd/image.nvim",
     enabled = false,
@@ -116,10 +131,16 @@ return {
       })
     end,
   },
+
+  -- https://github.com/OXY2DEV/helpview.nvimj
+  -- DESC: A hackable & fancy vimdoc viewer for Neovim
   {
     "OXY2DEV/helpview.nvim",
     lazy = false,
   },
+
+  -- https://github.com/ray-x/go.nvim
+  -- DESC: A modern go neovim plugin based on treesitter, nvim-lsp and dap debugger.
   {
     "ray-x/go.nvim",
     dependencies = { -- optional packages
@@ -136,6 +157,8 @@ return {
     build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
   },
 
+  -- https://github.com/folke/noice.nvim
+  -- DESC: an ui for notification in neovim
   {
     "folke/noice.nvim",
     event = "VeryLazy",
@@ -188,12 +211,17 @@ return {
       },
     },
   },
+
+  -- https://github.com/nvzone/showkeys
+  -- DESC: Eye-candy keys screencaster for Neovim
   {
     "nvzone/showkeys",
     cmd = "ShowkeysToggle",
   },
+
+  -- https://github.com/Goose97/timber.nvim
+  -- DESC: Neovim plugin to quickly insert log statements and capture log output
   {
-    -- Neovim plugin to quickly insert log statements and capture log output
     "Goose97/timber.nvim",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
@@ -203,6 +231,7 @@ return {
       })
     end,
   },
+
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
@@ -217,6 +246,9 @@ return {
       },
     },
   },
+
+  -- https://github.com/ph1losof/ecolog.nvim
+  -- DESC: Your environment guardian in Neovim.
   {
     "t3ntxcl3s/ecolog.nvim",
     -- Optional: you can add some keybindings
