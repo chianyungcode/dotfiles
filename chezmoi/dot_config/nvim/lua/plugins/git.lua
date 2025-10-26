@@ -1,4 +1,6 @@
 return {
+  -- https://github.com/oribarilan/lensline.nvim
+  -- DESC: A lightweight Neovim plugin that displays customizable, contextual information directly above (or beside) functions, like references and authorship.
   {
     "oribarilan/lensline.nvim",
     enabled = false,
@@ -8,6 +10,9 @@ return {
       require("lensline").setup()
     end,
   },
+
+  -- https://github.com/lewis6991/gitsigns.nvim
+  -- DESC: Deep buffer integration for Git
   {
     -- Displays a sign git next to line numbers
     "lewis6991/gitsigns.nvim",
@@ -140,6 +145,9 @@ return {
       })
     end,
   },
+
+  -- https://github.com/tanvirtin/vgit.nvim
+  -- DESC: VGit's feature views are designed to be lightning-fast. Whether you're diving into a file's history, comparing changes, or managing stashes.
   {
     -- Menampilkan inline blame out of the box secara default
     "tanvirtin/vgit.nvim",
