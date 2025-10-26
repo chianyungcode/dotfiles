@@ -52,7 +52,7 @@
 
   smcol (tap-hold $tap-time $hold-time ; @lwh_nums)
   spc_ly3 (tap-hold $tap-time $hold-time spc @lwh_symbols)
-  sglquot (tap-hold $tap-time $hold-time ' @lwh_tmux)
+  slash (tap-hold $tap-time $hold-time ' @lwh_tmux)
   caps (tap-hold $tap-time $hold-time esc @lwh_nav)
   rtn (tap-hold $tap-time $hold-time ret @lwh_sublayers)
 
@@ -69,7 +69,6 @@
   l (tap-hold $tap-time $hold-time l lctl)
   k (tap-hold $tap-time $hold-time k lalt)
   j (tap-hold $tap-time $hold-time j lmet)
-  slash (tap-hold $tap-time $hold-time / rmet)
   {{ if eq .chezmoi.os "darwin" -}}
   m (tap-hold $tap-time $hold-time m rmet)
   v (tap-hold $tap-time $hold-time v rmet)
@@ -132,7 +131,7 @@
        🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   @lmet_tab    q    w    e    r    t    y    u    i    o    p    [    ]    \
-  @caps  a    @s    @d    @f    g    h    @j    @k    @l    @smcol    @sglquot    @rtn
+  @caps  a    @s    @d    @f    g    h    @j    @k    @l    @smcol    '    @rtn
   lsft z    x    c    @v    b    n    @m    ,    .   @slash    rsft ;; Tombol x sekarang punya fungsi ganda
   lctl lmet lalt           @spc_ly3            ralt rmet rctl
 )
@@ -212,14 +211,20 @@
   tx-wdw-3 (macro @tmux-prefix Digit3)
   tx-wdw-4 (macro @tmux-prefix Digit4)
   tx-wdw-5 (macro @tmux-prefix Digit5)
+
+  ;; pane navigation
+  tx-p-left (macro @tmux-prefix h)
+  tx-p-bottom (macro @tmux-prefix j)
+  tx-p-top (macro @tmux-prefix k)
+  tx-p-right (macro @tmux-prefix l)
 )
 
 (deflayer tmux
-       🔅        🔆        @mc            @sls           @dtn           @dnd           ◀◀        ▶⏸          ▶▶                    🔇        🔉        🔊
-  grv  @tx-wdw-1          @tx-wdw-2       @tx-wdw-3      @tx-wdw-4      @tx-wdw-5      6         7           8                     9         0         -         =         bspc
-  tab  @tx-slcsession     @tx-slcwindow   f3             XX             f5             f6        f7          f8                    @tx-plg-sesh        XX        @tab-left  @tab-right  \
-  caps @tx-sw-session     @tx-sw-window   @tx-sw-pane    4              5              6         @tx-splith  8                     @tx-splitv  0         '         ret
-  lsft @tx-kill-window    @tx-kill-pane   @tx-new-window XX             0              XX        @cw        @tx-rn-window         .         /         rsft
+       🔅        🔆        @mc            @sls           @dtn           @dnd           ◀◀        ▶⏸          ▶▶                    🔇            🔉            🔊
+  grv  @tx-wdw-1          @tx-wdw-2       @tx-wdw-3      @tx-wdw-4      @tx-wdw-5      6         7           8                     9             0             @tx-splith         @tx-splitv         bspc
+  tab  @tx-slcsession     @tx-slcwindow   f3             XX             f5             f6        f7          f8                    @tx-plg-sesh  XX            XX                 XX                \
+  caps @tx-sw-session     @tx-sw-window   @tx-sw-pane    4              5              @tx-p-left  @tx-p-bottom          @tx-p-top     @tx-p-right   ;      '                  ret
+  lsft @tx-kill-window    @tx-kill-pane   @tx-new-window XX             0              XX        @cw         @tx-rn-window         .             /             rsft
   lctl lmet               lalt                             spc                                            ralt            rmet              rctl
 )
 
