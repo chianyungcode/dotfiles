@@ -45,15 +45,16 @@
   lt_nums (layer-toggle nums)
   lt_symbols (layer-toggle symbols)
   lt_tmux (layer-toggle tmux)
+  lt_nav  (layer-toggle nav)
 
   smcol (tap-hold $tap-time $hold-time ; @lt_nums)
   spc_ly3 (tap-hold $tap-time $hold-time spc @lt_symbols)
+  sglquot (tap-hold $tap-time $hold-time ' @lt_tmux)
+  caps (tap-hold $tap-time $hold-time esc @lt_nav)
 
   {{- if eq .chezmoi.os "darwin"}}
-  sglquot (tap-hold $tap-time $hold-time ' @lt_tmux)
   lmet_tab (tap-hold $tap-time $hold-time tab M-tab)
   {{- else if eq .chezmoi.os "linux" }}
-  sglquot (tap-hold $tap-time $hold-time ' @lt_tmux)
   lmet_tab (tap-hold $tap-time $hold-time tab A-tab )
   {{- end }}
 
@@ -65,7 +66,6 @@
   k (tap-hold $tap-time $hold-time k lalt)
   j (tap-hold $tap-time $hold-time j lmet)
   hyperkey (tap-hold $tap-time $hold-time spc (multi lsft lctl lalt lmet))
-  caps (tap-hold $tap-time $hold-time esc (layer-toggle nav))
 
   ;; ==== OS SPECIFIC ====
   ;; - macOS -
