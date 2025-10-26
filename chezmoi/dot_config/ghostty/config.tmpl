@@ -42,15 +42,16 @@ macos-icon-screen-color = black
 # ==========================
 #   FONT
 # ==========================
-font-family = Google Sans Mono
 
 {{- if eq .chezmoi.os "darwin" }}
+font-family = Google Sans Mono
 font-size = 16.5
-font-thicken = true
+font-thicken = false
 font-thicken-strength = 150
 {{- else if eq .chezmoi.os "linux" }}
-font-size = 12
-font-thicken = true
+font-family = CommitMono
+font-size = 13
+font-thicken = false
 font-thicken-strength = 150
 {{- end }}
 
