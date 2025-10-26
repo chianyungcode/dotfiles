@@ -10,7 +10,7 @@ return {
       -- Only LSP can be listed here, for formatters and linters provide in mason.nvim plugin
       ensure_installed = {
         "templ", -- An HTML templating language for Go that has great developer tooling.
-        "markdown_oxide", -- Markdown: Language server protocol (LSP). Markdown language server with advanced linking support made to be completely compatible with Obsidian; An Obsidian Language Server.
+        -- "markdown_oxide", -- Markdown: Language server protocol (LSP). Markdown language server with advanced linking support made to be completely compatible with Obsidian; An Obsidian Language Server.
         "ts_ls", -- Javascript, Typescript: Language server protocol (LSP). Kode error diagnostic 'ts'
         "eslint", -- Javascript, Typescript: Language server protocol (LSP). Linters (eslint). Error code: typescript-eslint
         "biome", -- Javascript, Typescript: Language server protocol (LSP), formatters and linters
