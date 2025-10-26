@@ -441,7 +441,7 @@
       packages = ["halper", "pygments"]
 
     [packages.python.dev_computer]
-      packages = ["ansible-core", "cookiecutter", "pre-commit"]
+      packages = ["ansible-core", "cookiecutter", "pre-commit", "pynvim"]
 
     [packages.python.homelab_member]
       packages = []
@@ -471,6 +471,7 @@
     [packages.node.dev_computer]
       packages = [
         "@go-task/cli", # modern makefile alternative - https://taskfile.dev/
+        "neovim",
       ]
 
     [packages.node.homelab_member]
