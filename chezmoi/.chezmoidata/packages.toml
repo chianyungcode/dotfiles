@@ -441,7 +441,7 @@
       packages = ["halper", "pygments"]
 
     [packages.python.dev_computer]
-      packages = ["ansible-core", "cookiecutter"]
+      packages = ["ansible-core", "cookiecutter", "pre-commit"]
 
     [packages.python.homelab_member]
       packages = []
