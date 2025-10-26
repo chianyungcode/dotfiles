@@ -39,19 +39,21 @@
 ;;  Syntax for tap-hold
 ;;  (tap-hold TAP-TIME HOLD-TIME TAP-KEY HOLD-KEY)
 (defalias
-  ;; ==== LAYERS ====
-  l_2 (layer-toggle nums)
-  l_3 (layer-toggle symbols)
-  l_4 (layer-toggle tmux)
+  cw (caps-word 1000)
 
-  smcol (tap-hold $tap-time $hold-time ; @l_2)
-  spc_ly3 (tap-hold $tap-time $hold-time spc @l_3)
+  ;; ==== LAYERS ====
+  lt_nums (layer-toggle nums)
+  lt_symbols (layer-toggle symbols)
+  lt_tmux (layer-toggle tmux)
+
+  smcol (tap-hold $tap-time $hold-time ; @lt_nums)
+  spc_ly3 (tap-hold $tap-time $hold-time spc @lt_symbols)
 
   {{- if eq .chezmoi.os "darwin"}}
-  sglquot (tap-hold $tap-time $hold-time ' @l_4)
+  sglquot (tap-hold $tap-time $hold-time ' @lt_tmux)
   lmet_tab (tap-hold $tap-time $hold-time tab M-tab)
   {{- else if eq .chezmoi.os "linux" }}
-  sglquot (tap-hold $tap-time $hold-time ' @l_4)
+  sglquot (tap-hold $tap-time $hold-time ' @lt_tmux)
   lmet_tab (tap-hold $tap-time $hold-time tab A-tab )
   {{- end }}
 
@@ -187,6 +189,6 @@
   grv  @tx-wdw-1          @tx-wdw-2       @tx-wdw-3      @tx-wdw-4      @tx-wdw-5      6         7           8                     9         0         -         =         bspc
   tab  @tx-slcsession     @tx-slcwindow   f3             XX             f5             f6        f7          f8                    @tx-plg-sesh        XX        @tab-left  @tab-right  \
   caps @tx-sw-session     @tx-sw-window   @tx-sw-pane    4              5              6         @tx-splith  8                     @tx-splitv  0         '         ret
-  lsft @tx-kill-window    @tx-kill-pane   @tx-new-window XX             0              XX        rctl        @tx-rn-window         .         /         rsft
+  lsft @tx-kill-window    @tx-kill-pane   @tx-new-window XX             0              XX        @cw        @tx-rn-window         .         /         rsft
   lctl lmet               lalt                             spc                                            ralt            rmet              rctl
 )
