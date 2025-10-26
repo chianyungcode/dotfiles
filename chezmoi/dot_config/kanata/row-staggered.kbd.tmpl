@@ -56,7 +56,7 @@
   caps (tap-hold $tap-time $hold-time esc @lwh_nav)
   rtn (tap-hold $tap-time $hold-time ret @lwh_sublayers)
 
-  {{- if eq .chezmoi.os "darwin"}}
+  {{ if eq .chezmoi.os "darwin" -}}
   lmet_tab (tap-hold $tap-time $hold-time tab M-tab)
   {{- else if eq .chezmoi.os "linux" }}
   lmet_tab (tap-hold $tap-time $hold-time tab A-tab )
@@ -157,7 +157,11 @@
 )
 
 (defalias
+  {{ if eq .chezmoi.os "darwin" }}
   ly-rayc (tap-hold $tap-time $hold-time r (layer-while-held raycast))
+  {{ else if eq .chezmoi.os "linux" }}
+  ly-rayc r
+  {{- end }}
 )
 
 (deflayer sublayers
@@ -211,7 +215,8 @@
   lctl lmet               lalt                             spc                                            ralt            rmet              rctl
 )
 
-
+{{ if eq .chezmoi.os "darwin" -}}
+;; == RAYCAST ==
 (defalias
   rrain (cmd open "raycast://extensions/lardissone/raindrop-io/search")
   remoj (cmd open "raycast://extensions/raycast/emoji-symbols/search-emoji-symbols")
@@ -227,3 +232,4 @@
   lsft XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   lctl lmet lalt           spc            ralt rmet rctl
 )
+{{ end }}
