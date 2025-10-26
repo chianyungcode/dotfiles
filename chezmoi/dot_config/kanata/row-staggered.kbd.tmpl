@@ -63,7 +63,7 @@
   k (tap-hold $tap-time $hold-time k lalt)
   j (tap-hold $tap-time $hold-time j lmet)
   hyperkey (tap-hold $tap-time $hold-time spc (multi lsft lctl lalt lmet))
-  caps (tap-hold $tap-time $hold-time esc (layer-toggle layer1))
+  caps (tap-hold $tap-time $hold-time esc (layer-toggle nav))
 
   ;; ==== OS SPECIFIC ====
   ;; macOS
@@ -124,7 +124,7 @@
   lctl lmet lalt           @spc_ly3            ralt rmet rctl
 )
 
-(deflayer layer1
+(deflayer nav
        🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  f1   f2   f3   f4   f5    f6    f7    f8    f9    f10    @tab-left   @tab-right    \
