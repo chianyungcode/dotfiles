@@ -28,6 +28,7 @@ return {
         "ruff", -- Python: Language server protocol (LSP), linters and formatters
         "prismals", -- prisma orm
         "sqls", -- SQL LSP
+        --"copilot-language-server", -- LSP for NES (next edit suggestion in sidekick.nvim plugin)
       },
       automatic_enable = {
         exclude = {
