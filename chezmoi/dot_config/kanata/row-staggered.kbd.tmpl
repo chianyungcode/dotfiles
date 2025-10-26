@@ -82,8 +82,8 @@
   ;; ==== TMUX ====
   tmux-prefix C-a
 
-  ;; new window
-  tx-new-window (macro @tmux-prefix c)
+  tx-new-window (macro @tmux-prefix c) ;; new window
+  tx-rn-window (macro @tmux-prefix ,) ;; rename window
 
   ;; switch between last session/window/pane
   tx-sw-session (macro @tmux-prefix S-a)
@@ -176,8 +176,8 @@
 (deflayer tmux
        🔅     🔆     @mc     @sls    @dtn    @dnd    ◀◀     ▶⏸     ▶▶     🔇     🔉     🔊
   grv  1      2      3      4       5       6       7       8       9       0       -       =       bspc
-  tab    @tx-slcsession @tx-slcwindow     f3     f4     f5     f6     f7     f8     @tx-splith   @tx-splitv   @tab-left   @tab-right   \
-  caps @tx-sw-session @tx-sw-window @tx-sw-pane     4       5       6       7       8       9       0       '       ret
+  tab    @tx-slcsession @tx-slcwindow     f3     @tx-rn-window     f5     f6     f7     f8     XX   XX   @tab-left   @tab-right   \
+  caps @tx-sw-session @tx-sw-window @tx-sw-pane     4       5       6       @tx-splith       8       @tx-splitv       0       '       ret
   lsft @tx-kill-window     @tx-kill-pane     @tx-new-window     XX     0      XX      rctl    ,       .       /       rsft
   lctl lmet   lalt             spc             ralt   rmet   rctl
 )
