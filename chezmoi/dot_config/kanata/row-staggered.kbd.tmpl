@@ -80,37 +80,6 @@
 
   tab-left C-S-tab
   tab-right C-tab
-
-  ;; ==== TMUX ====
-  tmux-prefix C-a
-
-  tx-new-window (macro @tmux-prefix c) ;; new window
-  tx-rn-window (macro @tmux-prefix ,) ;; rename window
-  tx-plg-sesh  (macro @tmux-prefix o) ;; sesh plugin
-
-  ;; switch between last session/window/pane
-  tx-sw-session (macro @tmux-prefix S-a)
-  tx-sw-window (macro @tmux-prefix a)
-  tx-sw-pane (macro @tmux-prefix q)
-
-  ;; split pane
-  tx-splith (macro @tmux-prefix -)
-  tx-splitv (macro @tmux-prefix S-\)
-
-  ;; select session/window
-  tx-slcsession (macro @tmux-prefix s)
-  tx-slcwindow (macro @tmux-prefix w)
-
-  ;; kill window/pane
-  tx-kill-window (macro @tmux-prefix S-7)
-  tx-kill-pane (macro @tmux-prefix x)
-
-  ;; switch window to {number}
-  tx-wdw-1 (macro @tmux-prefix Digit1)
-  tx-wdw-2 (macro @tmux-prefix Digit2)
-  tx-wdw-3 (macro @tmux-prefix Digit3)
-  tx-wdw-4 (macro @tmux-prefix Digit4)
-  tx-wdw-5 (macro @tmux-prefix Digit5)
 )
 
 ;; == Input combos / chording ==
@@ -183,6 +152,39 @@
   lctl lmet lalt           spc            ralt rmet rctl
 )
 
+
+;; == TMUX ==
+(defalias
+  tmux-prefix C-a
+
+  tx-new-window (macro @tmux-prefix c) ;; new window
+  tx-rn-window (macro @tmux-prefix ,) ;; rename window
+  tx-plg-sesh  (macro @tmux-prefix o) ;; sesh plugin
+
+  ;; switch between last session/window/pane
+  tx-sw-session (macro @tmux-prefix S-a)
+  tx-sw-window (macro @tmux-prefix a)
+  tx-sw-pane (macro @tmux-prefix q)
+
+  ;; split pane
+  tx-splith (macro @tmux-prefix -)
+  tx-splitv (macro @tmux-prefix S-\)
+
+  ;; select session/window
+  tx-slcsession (macro @tmux-prefix s)
+  tx-slcwindow (macro @tmux-prefix w)
+
+  ;; kill window/pane
+  tx-kill-window (macro @tmux-prefix S-7)
+  tx-kill-pane (macro @tmux-prefix x)
+
+  ;; switch window to {number}
+  tx-wdw-1 (macro @tmux-prefix Digit1)
+  tx-wdw-2 (macro @tmux-prefix Digit2)
+  tx-wdw-3 (macro @tmux-prefix Digit3)
+  tx-wdw-4 (macro @tmux-prefix Digit4)
+  tx-wdw-5 (macro @tmux-prefix Digit5)
+)
 
 (deflayer tmux
        🔅        🔆        @mc            @sls           @dtn           @dnd           ◀◀        ▶⏸          ▶▶                    🔇        🔉        🔊
