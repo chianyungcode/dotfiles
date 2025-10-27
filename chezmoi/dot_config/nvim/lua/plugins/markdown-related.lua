@@ -104,6 +104,10 @@ return {
             notes_subdir = "Learn/10-rough-notes",
             note_id_func = default_note_id,
           },
+          quote = {
+            notes_subdir = "notes/quotes",
+            note_id_func = default_note_id,
+          },
         },
         folder = "_templates",
         date_format = "%Y-%m-%d-%a",
