@@ -168,7 +168,6 @@
         "shfmt",               # bash, sh formatter
         "sqlite3",             # for building python
         "sshs",                # Graphical command-line client for SSH
-        "stylua",              # Lua formatter
         "tcl-tk",              # for building python
         "tectonic",            # render LaTex math
         "thefuck",             # Fix typos
@@ -362,6 +361,7 @@
       packages = [
         "appimagelauncher",    # for integrating .AppImage
         "auto-cpufreq",        # CPU frequency auto
+        "gitleaks",
         "biome",               # JS/TS linter, formatter
         "pastel",              # converter color in terminal
         "btop",
@@ -405,7 +405,6 @@
         "starship",
         "stylua",    # Lua formatter
         "tlrc",      # TLDR client, alternative tealdeer
-        "stylua",    # Lua formatter
         "tailscale",
         # "tcl-tk",              # for building python
         "tectonic",
@@ -455,7 +454,10 @@
       packages = []
 
     [packages.cargo.dev_computer]
-      packages = []
+      packages = [
+        "typos-cli",
+        "stylua",    # Lua formatter
+      ]
 
     [packages.cargo.homelab_member]
       packages = []
