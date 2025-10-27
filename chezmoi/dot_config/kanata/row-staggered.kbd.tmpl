@@ -52,9 +52,10 @@
 
   smcol (tap-hold $tap-time $hold-time ; @lwh_nums)
   spc_ly3 (tap-hold $tap-time $hold-time spc @lwh_symbols)
-  slash (tap-hold $tap-time $hold-time / @lwh_tmux)
   caps (tap-hold $tap-time $hold-time esc @lwh_nav)
   rtn (tap-hold $tap-time $hold-time ret @lwh_sublayers)
+  slash (tap-hold $tap-time $hold-time / @lwh_tmux)
+  z (tap-hold $tap-time $hold-time z @lwh_tmux)
 
   {{ if eq .chezmoi.os "darwin" -}}
   lmet_tab (tap-hold $tap-time $hold-time tab M-tab)
@@ -132,7 +133,7 @@
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   @lmet_tab    q    w    e    r    t    y    u    i    o    p    [    ]    \
   @caps  a    @s    @d    @f    g    h    @j    @k    @l    @smcol    '    @rtn
-  lsft z    x    c    @v    b    n    @m    ,    .   @slash    rsft ;; Tombol x sekarang punya fungsi ganda
+  lsft @z    x    c    @v    b    n    @m    ,    .   @slash    rsft ;; Tombol x sekarang punya fungsi ganda
   lctl lmet lalt           @spc_ly3            ralt rmet rctl
 )
 
