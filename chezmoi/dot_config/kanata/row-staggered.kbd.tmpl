@@ -74,8 +74,8 @@
   m (tap-hold $tap-time $hold-time m rmet)
   v (tap-hold $tap-time $hold-time v rmet)
   {{- else if eq .chezmoi.os "linux" }}
-  m m
-  v v
+  m (tap-hold $tap-time $hold-time m lmet)
+  v (tap-hold $tap-time $hold-time v lmet)
   {{- end }}
   hyperkey (tap-hold $tap-time $hold-time spc (multi lsft lctl lalt lmet))
 
