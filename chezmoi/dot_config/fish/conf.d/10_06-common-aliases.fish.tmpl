@@ -8,11 +8,14 @@
 # https://fishshell.com/docs/current/cmds/alias.html
 
 alias cl 'clear'
-alias mux 'tmuxinator'
-alias fier 'tmuxifier'
+
+# = CLI TUI =
 alias nv 'nvim'
 alias lzg 'lazygit'
 alias lzd 'lazydocker'
+alias mux 'tmuxinator'
+alias fier 'tmuxifier'
+
 alias clrnvses 'rm -rf ~/.local/share/nvim/sessions/*'
 alias ax 'chmod a+x' # system: make file executable
 alias untar 'tar -zxvf' # Extract tar.gz file
@@ -25,6 +28,7 @@ alias bktmux 'tmux list-keys | fzf'
 # pueue
 alias pue "pueue"
 alias pueon "pueued -d"
+alias puer "pueue reset"
 
 # bun
 alias bfzf "bun run \"\$(jq -r '.scripts | keys[]' package.json | fzf --no-border)\""
@@ -42,34 +46,4 @@ alias cpwd "echo -n $(pwd) | wl-copy"
 {{- if eq .chezmoi.os "darwin" }}
 alias cpwd "echo -n $(pwd) | pbcopy"
 {{ end }}
-
-####################### LIST DIRECTORY CONTENTS #######################
-{{- if lookPath "eza" }}
-# List filenames on one line
-alias cyh 'eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions'
-
-# List filenames with long format
-alias l 'eza -l --classify=auto --icon=autos {{- if not (and (eq .chezmoi.os "linux") (eq .chezmoi.arch "arm64")) }} --git{{ end }}'
-
-# List all files
-alias ll 'eza -lah --classify=auto --icons=auto {{- if not (and (eq .chezmoi.os "linux") (eq .chezmoi.arch "arm64")) }} --git{{ end }}'
-
-# List files by last modified
-alias llm 'll --sort=modified'
-
-# List files with attributes
-alias la 'eza -lbhHigUmuSa --icons=auto {{- if not (and (eq .chezmoi.os "linux") (eq .chezmoi.arch "arm64")) }} --git{{ end }}'
-
-# List files with extended attributes
-alias lx 'eza -lbhHigUmuSa@ --icons=auto {{- if not (and (eq .chezmoi.os "linux") (eq .chezmoi.arch "arm64")) }} --git{{ end }}'
-
-# List files in a tree view
-alias lt 'eza --tree --level=2 --icons=auto'
-
-# List files in a tree view with long format
-alias llt 'eza -lah --classify=always --tree --level=2 --icons=auto'
-
-alias ls 'eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions'
-{{- end }}
-
 # === END OF CHEZMOI MANAGED ===

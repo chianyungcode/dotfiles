@@ -1,0 +1,26 @@
+{{- if lookPath "eza" }}
+# List filenames on one line
+alias ls='eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions'
+
+# List filenames with long format
+alias l='eza -l --classify=auto --icon=autos {{- if not (and (eq .chezmoi.os "linux") (eq .chezmoi.arch "arm64")) }} --git{{ end }}'
+
+# List all files
+alias ll='eza -lah --classify=auto --icons=auto {{- if not (and (eq .chezmoi.os "linux") (eq .chezmoi.arch "arm64")) }} --git{{ end }}'
+
+# List files by last modified
+alias llm='ll --sort=modified'
+
+# List files with attributes
+alias la='eza -lbhHigUmuSa --icons=auto {{- if not (and (eq .chezmoi.os "linux") (eq .chezmoi.arch "arm64")) }} --git{{ end }}'
+
+# List files with extended attributes
+alias lx='eza -lbhHigUmuSa@ --icons=auto {{- if not (and (eq .chezmoi.os "linux") (eq .chezmoi.arch "arm64")) }} --git{{ end }}'
+
+# List files in a tree view
+alias lt='eza --tree --level=2 --icons=auto'
+
+# List files in a tree view with long format
+alias llt='eza -lah --classify=always --tree --level=2 --icons=auto'
+
+{{- end }}
