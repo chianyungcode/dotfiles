@@ -73,9 +73,11 @@
   {{ if eq .chezmoi.os "darwin" -}}
   m (tap-hold $tap-time $hold-time m rmet)
   v (tap-hold $tap-time $hold-time v rmet)
+  a (tap-hold $tap-time $hold-time a lmet)
   {{- else if eq .chezmoi.os "linux" }}
   m (tap-hold $tap-time $hold-time m lmet)
   v (tap-hold $tap-time $hold-time v lmet)
+  a (tap-hold $tap-time $hold-time a lctl)
   {{- end }}
   hyperkey (tap-hold $tap-time $hold-time spc (multi lsft lctl lalt lmet))
 
@@ -132,7 +134,7 @@
        🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   @lmet_tab    q    w    e    r    t    y    u    i    o    p    [    ]    \
-  @caps  a    @s    @d    @f    g    h    @j    @k    @l    @smcol    '    @rtn
+  @caps  @a    @s    @d    @f    g    h    @j    @k    @l    @smcol    '    @rtn
   lsft @z    x    c    @v    b    n    @m    ,    .   @slash    rsft ;; Tombol x sekarang punya fungsi ganda
   lctl lmet lalt           @spc_ly3            ralt rmet rctl
 )
