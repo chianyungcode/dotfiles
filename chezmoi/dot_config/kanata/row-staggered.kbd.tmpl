@@ -58,9 +58,9 @@
   z (tap-hold $tap-time $hold-time z @lwh_tmux)
 
   {{ if eq .chezmoi.os "darwin" -}}
-  lmet_tab (tap-hold $tap-time $hold-time tab M-tab)
+  lmet_tab (tap-hold $tap-time $hold-time tab (macro M-tab))
   {{- else if eq .chezmoi.os "linux" }}
-  lmet_tab (tap-hold $tap-time $hold-time tab A-tab )
+  lmet_tab (tap-hold $tap-time $hold-time tab (macro A-tab))
   {{- end }}
 
   ;; ==== MODIFIER KEYS + LETTER KEYS ====
