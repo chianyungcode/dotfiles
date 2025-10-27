@@ -1,4 +1,12 @@
 return {
+  -- https://github.com/mluders/comfy-line-numbers.nvim
+  -- DESC: change line numbers to more left-handed, example instead of 6j it will be 11j
+  {
+    "mluders/comfy-line-numbers.nvim",
+    enabled = false,
+    opts = {},
+  },
+
   {
     "m4xshen/hardtime.nvim",
     enabled = false,
@@ -14,7 +22,7 @@ return {
   },
 
   -- https://github.com/meznaric/key-analyzer.nvim
-  -- Ever wondered which mappings are free to be mapped? Now it's a easier to figure it out.
+  -- DESC: Ever wondered which mappings are free to be mapped? Now it's a easier to figure it out.
   { "meznaric/key-analyzer.nvim", opts = {} },
 
   -- Plugin for tracking your time in Neovim
