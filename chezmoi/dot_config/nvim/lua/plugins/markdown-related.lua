@@ -2,6 +2,26 @@ local function default_note_id(...)
   return require("obsidian.builtin").zettel_id(...)
 end
 
+-- Use the provided title for the note id when possible, falling back to the default generator.
+local function title_note_id(title, ...)
+  if title and title ~= "" then
+    -- Trim whitespace and guard against accidental path separators.
+    local normalized = title:gsub("^%s+", ""):gsub("%s+$", "")
+    normalized = normalized:gsub("[/\\]", "-")
+    if normalized ~= "" then
+      return normalized
+    end
+  end
+
+  return default_note_id(title, ...)
+end
+
+local function distraction_sheet_note_id(...)
+  -- Always name distraction sheets after the current date.
+  local today = os.date("%Y-%m-%d")
+  return string.format("Distraction Sheet - %s", today)
+end
+
 return {
   -- https://github.com/apdot/doodle
   -- DESC: obsidian similar
@@ -108,8 +128,16 @@ return {
             notes_subdir = "notes/quotes",
             note_id_func = default_note_id,
           },
+          people = {
+            notes_subdir = "000 - Objects/010 - People",
+            note_id_func = title_note_id,
+          },
+          distraction_sheet = {
+            notes_subdir = "005 - Brain Dump/010 - Distraction Sheet",
+            note_id_func = distraction_sheet_note_id,
+          },
         },
-        folder = "_templates",
+        folder = "_templates/from_neovim",
         date_format = "%Y-%m-%d-%a",
         time_format = "%H:%M",
       },
