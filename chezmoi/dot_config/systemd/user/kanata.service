@@ -1,0 +1,12 @@
+[Unit]
+Description=Kanata keyboard remapper
+Documentation=https://github.com/jtroo/kanata
+
+[Service]
+Environment=PATH=%h/.cargo/bin:/usr/local/bin:/usr/bin:/bin
+Type=simple
+ExecStart=kanata -c %h/.config/kanata/row-staggered.kbd
+Restart=no
+
+[Install]
+WantedBy=default.target
