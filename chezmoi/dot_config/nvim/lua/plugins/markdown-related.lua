@@ -64,7 +64,7 @@ return {
       -- dir = "~/vaults/work",
 
       -- Optional, if you keep notes in a specific subdirectory of your vault.
-      notes_subdir = "notes",
+      notes_subdir = "000 - Objects/000 - Zettels",
 
       -- Where to put new notes. Valid options are
       -- _ "current_dir" - put new notes in same directory as the current buffer.
@@ -121,7 +121,7 @@ return {
       templates = {
         customizations = {
           learn_notes = {
-            notes_subdir = "Learn/10-rough-notes",
+            notes_subdir = "000 - Objects/090 - Learn/020-learn-notes",
             note_id_func = default_note_id,
           },
           quote = {
