@@ -136,6 +136,10 @@ return {
             notes_subdir = "005 - Brain Dump/010 - Distraction Sheet",
             note_id_func = distraction_sheet_note_id,
           },
+          weblinks = {
+            notes_subdir = "000 - Objects/020 - Weblinks",
+            note_id_func = default_note_id,
+          },
         },
         folder = "_templates/from_neovim",
         date_format = "%Y-%m-%d-%a",
