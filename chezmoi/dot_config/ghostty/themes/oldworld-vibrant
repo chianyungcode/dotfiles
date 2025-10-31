@@ -1,0 +1,22 @@
+# Oldworld (vibrant variant) palette
+background = #161617
+foreground = #C9C7CD
+cursor-color = #C9C7CD
+selection-background = #2A2A2C
+selection-foreground = #C9C7CD
+palette = 0=#27272A
+palette = 8=#706E72
+palette = 1=#FF6B93
+palette = 9=#FF8CAD
+palette = 2=#7BC99A
+palette = 10=#9FD9B8
+palette = 3=#FFB380
+palette = 11=#FFD1A8
+palette = 4=#7A93E8
+palette = 12=#A0B3F0
+palette = 5=#B88FE5
+palette = 13=#D0ADF5
+palette = 6=#5DC2CC
+palette = 14=#85D9E3
+palette = 7=#C9C7CD
+palette = 15=#C9C7CD
