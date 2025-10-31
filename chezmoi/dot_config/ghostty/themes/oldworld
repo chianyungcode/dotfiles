@@ -1,0 +1,23 @@
+# Oldworld (default variant) palette
+  background = #161617
+  foreground = #C9C7CD
+  cursor-color = #C9C7CD
+  selection-background = #2A2A2C
+  selection-foreground = #C9C7CD
+
+  palette = 0=#27272A
+  palette = 8=#706E72
+  palette = 1=#EA83A5
+  palette = 9=#DAA5B9
+  palette = 2=#90B99F
+  palette = 10=#ACC0B6
+  palette = 3=#E6B99D
+  palette = 11=#D8C0B5
+  palette = 4=#92A2D5
+  palette = 12=#AEB4D1
+  palette = 5=#ACA1CF
+  palette = 13=#BAB4CE
+  palette = 6=#85B5BA
+  palette = 14=#A7BEC4
+  palette = 7=#C9C7CD
+  palette = 15=#C9C7CD
