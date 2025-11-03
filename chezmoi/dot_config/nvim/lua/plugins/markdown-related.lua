@@ -23,6 +23,16 @@ local function distraction_sheet_note_id(...)
 end
 
 return {
+  -- https://github.com/OXY2DEV/markview.nvim
+  -- DESC: fancy visual markdown in neovim
+  {
+    -- For `plugins.lua` users.
+    "OXY2DEV/markview.nvim",
+    lazy = false,
+
+    -- Completion for `blink.cmp`
+    dependencies = { "saghen/blink.cmp" },
+  },
   -- https://github.com/apdot/doodle
   -- DESC: obsidian similar
   {
@@ -188,6 +198,7 @@ return {
   -- DESC: fancy visual markdown in neovim
   {
     "MeanderingProgrammer/render-markdown.nvim",
+    enabled = false,
     -- dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
