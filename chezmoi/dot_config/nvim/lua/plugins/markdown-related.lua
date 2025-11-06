@@ -22,12 +22,19 @@ local function distraction_sheet_note_id(...)
   return string.format("Distraction Sheet - %s", today)
 end
 
+local function dev_note_id(...)
+  -- Always name distraction sheets after the current date.
+  local today = os.date("%Y-%m-%d")
+  return string.format("Dev Note - %s", today)
+end
+
 return {
   -- https://github.com/OXY2DEV/markview.nvim
   -- DESC: fancy visual markdown in neovim
   {
     -- For `plugins.lua` users.
     "OXY2DEV/markview.nvim",
+    enabled = false,
     lazy = false,
 
     -- Completion for `blink.cmp`
@@ -150,6 +157,10 @@ return {
             notes_subdir = "000 - Objects/020 - Weblinks",
             note_id_func = default_note_id,
           },
+          dev_note = {
+            notes_subdir = "000 - Objects/030 - Dev Note",
+            note_id_func = dev_note_id,
+          },
         },
         folder = "_templates/from_neovim",
         date_format = "%Y-%m-%d-%a",
@@ -198,7 +209,7 @@ return {
   -- DESC: fancy visual markdown in neovim
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    enabled = false,
+    enabled = true,
     -- dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
