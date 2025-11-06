@@ -20,12 +20,6 @@
               "type": "url",
               "value": "raycast://extensions/mackopes/quit-applications/index",
               "label": "Quit selected apps"
-            },
-            {
-              "key": "q",
-              "type": "url",
-              "value": "workspaces://start/50D75D01-0BD7-4356-97D4-85B63F1EFA92",
-              "label": "Quit all apps (workspace)"
             }
           ]
         }
