@@ -64,6 +64,12 @@ bind-key j select-pane -D
 bind-key k select-pane -U
 bind-key l select-pane -R
 
+# Resize pane dengan prefix + arrow keys
+bind Left resize-pane -L 5
+bind Right resize-pane -R 5
+bind Up resize-pane -U 5
+bind Down resize-pane -D 5
+
 # --- RUN A CLI TOOL e.g sesh,lazygit,bun ---
 bind-key "o" run-shell "sesh connect \"$(
   sesh list --icons | fzf-tmux -p 80%,70% \

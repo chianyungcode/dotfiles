@@ -221,14 +221,19 @@
   tx-p-bottom (macro @tmux-prefix j)
   tx-p-top (macro @tmux-prefix k)
   tx-p-right (macro @tmux-prefix l)
+
+  tmux-rsz-right (macro @tmux-prefix right)
+  tmux-rsz-left (macro @tmux-prefix left)
+  tmux-rsz-up (macro @tmux-prefix up)
+  tmux-rsz-bottom (macro @tmux-prefix down)
 )
 
 (deflayer tmux
        🔅        🔆        @mc            @sls           @dtn           @dnd           ◀◀        ▶⏸          ▶▶                    🔇            🔉            🔊
   grv  @tx-wdw-1          @tx-wdw-2       @tx-wdw-3      @tx-wdw-4      @tx-wdw-5      6         7           8                     9             0             @tx-splith         @tx-splitv         bspc
-  tab  @tx-slcsession     @tx-slcwindow   @tx-detach             XX             f5             f6        f7          f8                    @tx-plg-sesh  XX            XX                 XX                \
+  tab  @tx-slcsession     @tx-slcwindow   @tx-detach             XX             f5     @tmux-rsz-left        @tmux-rsz-bottom         @tmux-rsz-up         @tmux-rsz-right  @tx-plg-sesh            XX                 XX                \
   caps @tx-sw-session     @tx-sw-window   @tx-sw-pane    4              5              @tx-p-left  @tx-p-bottom          @tx-p-top     @tx-p-right   ;      '                  ret
-  lsft @tx-kill-window    @tx-kill-pane   @tx-new-window XX             0              XX        @cw         @tx-rn-window         .             /             rsft
+  lsft @tx-kill-window    @tx-kill-pane   @tx-new-window XX             0              XX XX @tx-rn-window XX             /             rsft
   lctl lmet               lalt                             spc                                            ralt            rmet              rctl
 )
 
