@@ -30,7 +30,7 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     lazy = false,
-    enabled = true,
+    enabled = false,
     priority = 1000,
     -- https://github.com/LazyVim/LazyVim/issues/6355#issuecomment-3212986215
     config = function()
@@ -38,12 +38,12 @@ return {
         flavour = "mocha",
         color_overrides = {
           mocha = {
-            base = "#212121",
-            mantle = "#212121",
-            crust = "#212121",
+            base = "#161617",
+            mantle = "#161617",
+            crust = "#161617",
           },
         },
-        transparent_background = true, -- disables setting the background color.
+        transparent_background = false, -- disables setting the background color.
       })
     end,
   },
@@ -182,6 +182,7 @@ return {
   },
   {
     "metalelf0/black-metal-theme-neovim",
+    enabled = false,
     lazy = false,
     priority = 1000,
     -- config = function()
