@@ -48,6 +48,7 @@ return {
   },
 
   -- https://github.com/obsidian-nvim/obsidian.nvim
+  -- default config: https://github.com/obsidian-nvim/obsidian.nvim/blob/main/lua/obsidian/config/default.lua
   -- DESC: obsidian in neovim
   {
     "obsidian-nvim/obsidian.nvim",
@@ -65,6 +66,9 @@ return {
     ---@module 'obsidian'
     ---@type obsidian.config
     opts = {
+      checkbox = {
+        order = { "x", " " },
+      },
       workspaces = {
         {
           name = "personal",
