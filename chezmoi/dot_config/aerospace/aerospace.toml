@@ -363,3 +363,7 @@ automatically-unhide-macos-hidden-apps = false
 [[on-window-detected]]
   if.app-id = 'com.alienator88.Pearcleaner'
   run       = ['layout floating']
+
+[[on-window-detected]]
+  if.app-id = 'io.capacities.app'
+  run       = ['move-node-to-workspace W']
