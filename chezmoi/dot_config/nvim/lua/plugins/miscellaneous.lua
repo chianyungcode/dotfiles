@@ -1,4 +1,34 @@
 return {
+  {
+    "gbprod/substitute.nvim",
+    config = function()
+      require("substitute").setup({})
+
+      -- Lua
+      vim.keymap.set("n", "gs", require("substitute").operator, { noremap = true })
+      vim.keymap.set("n", "gss", require("substitute").line, { noremap = true })
+      vim.keymap.set("n", "gS", require("substitute").eol, { noremap = true })
+      vim.keymap.set("x", "gs", require("substitute").visual, { noremap = true })
+    end,
+  },
+
+  {
+    "gbprod/yanky.nvim",
+    config = function()
+      require("yanky").setup({})
+
+      vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
+      vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
+      vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
+      vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
+      vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
+      vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
+
+      vim.keymap.set("n", "<c-p>", "<Plug>(YankyPreviousEntry)")
+      vim.keymap.set("n", "<c-n>", "<Plug>(YankyNextEntry)")
+    end,
+  },
+
   -- https://github.com/mluders/comfy-line-numbers.nvim
   -- DESC: change line numbers to more left-handed, example instead of 6j it will be 11j
   {
