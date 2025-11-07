@@ -22,10 +22,10 @@ local function distraction_sheet_note_id(...)
   return string.format("Distraction Sheet - %s", today)
 end
 
-local function dev_note_id(...)
+local function running_note_id(...)
   -- Always name distraction sheets after the current date.
   local today = os.date("%Y-%m-%d")
-  return string.format("Dev Note - %s", today)
+  return string.format("Running Note - %s", today)
 end
 
 return {
@@ -157,9 +157,9 @@ return {
             notes_subdir = "000 - Objects/020 - Weblinks",
             note_id_func = default_note_id,
           },
-          dev_note = {
-            notes_subdir = "000 - Objects/030 - Dev Note",
-            note_id_func = dev_note_id,
+          running_note = {
+            notes_subdir = "000 - Objects/030 - Running Notes",
+            note_id_func = running_note_id,
           },
         },
         folder = "_templates/from_neovim",
