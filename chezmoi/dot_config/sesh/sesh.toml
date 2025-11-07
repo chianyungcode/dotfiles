@@ -4,17 +4,17 @@
   # startup_command = "ls"
 
 [[session]]
-  name            = "Tmux Config"
+  name            = "tmux Config"
   path            = "~/.local/share/chezmoi/chezmoi/dot_config/tmux"
   preview_command = "bat --color=always ~/.config/tmux/tmux.conf"    # startup_command = "nvim tmux.conf"
   startup_command = "nvim tmux.conf.tmpl"
 
 [[session]]
-  name = "Obsidian"
+  name = "obsidian"
   path = "~/Documents/vault-obsidian"
 
 [[session]]
-  name            = "Dotfiles"
+  name            = "dotfiles"
   path            = "~/.local/share/chezmoi"
   startup_command = "nvim"
   windows         = [".config"]
@@ -25,7 +25,7 @@
   startup_script = "nvim"
 
 [[session]]
-  name            = "Backend"
+  name            = "backend"
   path            = "~/Code/Personal/Projects/Backend/allweezy-backend"
   startup_command = "nvim"
   windows         = ["opencode", "codex", "terminal"]
