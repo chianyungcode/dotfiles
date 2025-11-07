@@ -19,8 +19,11 @@ return {
     end,
   },
 
+  -- https://github.com/gbprod/yanky.nvim
+  -- DESC: add more capabilities to yank
   {
     "gbprod/yanky.nvim",
+    enabled = false,
     config = function()
       require("yanky").setup({})
 
