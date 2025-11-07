@@ -1,14 +1,21 @@
 return {
   {
     "gbprod/substitute.nvim",
+    enabled = false,
     config = function()
       require("substitute").setup({})
 
+      -- masih bentrok dengan flash.nvim masih bingung untuk keymapping yang sesuai nantinya
       -- Lua
-      vim.keymap.set("n", "gs", require("substitute").operator, { noremap = true })
-      vim.keymap.set("n", "gss", require("substitute").line, { noremap = true })
-      vim.keymap.set("n", "gS", require("substitute").eol, { noremap = true })
-      vim.keymap.set("x", "gs", require("substitute").visual, { noremap = true })
+      vim.keymap.set("n", "s", require("substitute").operator, { noremap = true })
+      vim.keymap.set("n", "ss", require("substitute").line, { noremap = true })
+      vim.keymap.set("n", "Z", require("substitute").eol, { noremap = true }) -- end of line
+      vim.keymap.set("x", "z", require("substitute").visual, { noremap = true })
+
+      vim.keymap.set("n", "sx", require("substitute.exchange").operator, { noremap = true })
+      vim.keymap.set("n", "sxx", require("substitute.exchange").line, { noremap = true })
+      vim.keymap.set("x", "X", require("substitute.exchange").visual, { noremap = true })
+      vim.keymap.set("n", "sxc", require("substitute.exchange").cancel, { noremap = true })
     end,
   },
 
@@ -20,12 +27,10 @@ return {
       vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
       vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
       vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
-      vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
-      vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
       vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
 
-      vim.keymap.set("n", "<c-p>", "<Plug>(YankyPreviousEntry)")
-      vim.keymap.set("n", "<c-n>", "<Plug>(YankyNextEntry)")
+      vim.keymap.set("n", "<C-p>", "<Plug>(YankyPreviousEntry)")
+      vim.keymap.set("n", "<C-n>", "<Plug>(YankyNextEntry)")
     end,
   },
 
