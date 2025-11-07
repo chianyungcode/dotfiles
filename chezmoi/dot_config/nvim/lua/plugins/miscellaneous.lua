@@ -311,4 +311,23 @@ return {
       provider_patterns = true, -- true by default, when false will not check provider patterns
     },
   },
+
+  {
+    "rachartier/tiny-glimmer.nvim",
+    enabled = false,
+    event = "VeryLazy",
+    priority = 10, -- Low priority to catch other plugins' keybindings
+    config = function()
+      require("tiny-glimmer").setup({
+        overwrite = {
+          undo = {
+            enabled = true,
+          },
+          redo = {
+            enabled = true,
+          },
+        },
+      })
+    end,
+  },
 }
