@@ -1,0 +1,4 @@
+if [ -f "$HOME/.config/bash/bashrc" ]; then
+  # shellcheck disable=SC1090,SC1091 # path is generated at apply time and guarded above
+  source "$HOME/.config/bash/bashrc"
+fi

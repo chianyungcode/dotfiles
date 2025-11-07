@@ -1,0 +1,13 @@
+# Reuse the same env + PATH builders that zsh uses so bash login shells
+# discover identical binaries without duplicating logic.
+_zsh_env_dir="${XDG_CONFIG_HOME:-$HOME/.config}/zsh/env.d"
+
+for _env_file in 010-env-var.sh 020-path.sh; do
+  _env_path="$_zsh_env_dir/${_env_file}"
+  if [ -r "$_env_path" ]; then
+    # shellcheck disable=SC1090 # path is constructed above and guarded by -r
+    . "$_env_path"
+  fi
+done
+
+unset _env_file _env_path _zsh_env_dir
