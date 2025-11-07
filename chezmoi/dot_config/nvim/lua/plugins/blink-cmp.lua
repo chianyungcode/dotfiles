@@ -1,6 +1,15 @@
 -- https://cmp.saghen.dev/
 
 return {
+  -- https://github.com/saghen/blink.indent
+  -- DESC: indent guide for neovim, alternative to snacks.indent
+  {
+    "saghen/blink.indent",
+    --- @module 'blink.indent'
+    --- @type blink.indent.Config
+    -- opts = {},
+  },
+
   {
     "saghen/blink.cmp",
     version = "*",

@@ -7,6 +7,10 @@ return {
   ---@module 'snacks'
   ---@type snacks.Config
   opts = {
+    -- disable snacks.indent because i prefer using blink.indent for better performance
+    indent = {
+      enabled = false,
+    },
     styles = {
       snacks_image = {
         relative = "cursor",
