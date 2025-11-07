@@ -29,8 +29,8 @@ return {
       vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
       vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
 
-      vim.keymap.set("n", "<C-p>", "<Plug>(YankyPreviousEntry)")
-      vim.keymap.set("n", "<C-n>", "<Plug>(YankyNextEntry)")
+      vim.keymap.set("n", "<C-p>", "<Plug>(YankyPreviousEntry)") -- ctrl + shift + p
+      vim.keymap.set("n", "<C-n>", "<Plug>(YankyNextEntry)") -- ctrl + shift + n
     end,
   },
 
