@@ -24,18 +24,21 @@ fish_add_path -gP /sbin
 # Additional tools binaries
 fish_add_path -gP /opt/homebrew/bin
 fish_add_path -gP /opt/homebrew/sbin
-fish_add_path -gP $HOME/.cargo/bin # for binary installed by cargo
 fish_add_path -gP /usr/local/bin
+
+fish_add_path -gP $HOME/go/bin                  # go binary
+fish_add_path -gP $HOME/.cargo/bin              # cargo binary
+fish_add_path -gP {{ .xdgDataDir }}/cargo/bin   # cargo (xdg) binary
+
 fish_add_path -gP $PROTO_HOME/shims
 fish_add_path -gP $PROTO_HOME/bin
 fish_add_path -gP $HOME/.local/bin
-fish_add_path -gP {{ .xdgDataDir }}/cargo/bin
-fish_add_path -gP $HOME/bin # personal bin directories
-fish_add_path -gP /usr/bin/snap
+fish_add_path -gP $HOME/bin                     # personal bin
+fish_add_path -gP $XDG_CACHE_HOME/.bun/bin
 fish_add_path -gP $HOME/.atuin/bin
 fish_add_path -gP $HOME/.tmuxifier/bin
 fish_add_path -gP $LM_STUDIO_BIN
-fish_add_path -gP $XDG_CACHE_HOME/.bun/bin
+fish_add_path -gP /usr/bin/snap
 
 # Remove duplicate paths from PATH variable
 set -gx PATH (string split ':' $PATH | sort -u | string join ':')
