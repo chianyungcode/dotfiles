@@ -7,21 +7,22 @@
 [ProgrammingFonts](https://www.programmingfonts.org/#twilio-sans-mono)
 
 ## List of fonts
+Sorted by best to worse (in my opinion)
 
-- Geist Mono
-- JetBrains Mono
-- Berkeley Mono
-- 0xProto
-- Dank Mono
-- Cartograph CF
-- Monolisa
-- Maple Mono
-- Fira Code
-- Cascadia Code
-- Menlo
-- Hack
-- Monaspace {Neon / Argon / Xenon / Radon / Krypton}
 - Martian Mono
 - Google Sans Mono
+- 0xProto
+- Berkeley Mono (TX-01)
+- Dank Mono
+- Monolisa
+- Cartograph CF
+- JetBrains Mono
+- Maple Mono
+- Fira Code
+- Geist Mono
+- Cascadia Code
+- Menlo
+- Monaspace {Neon / Argon / Xenon / Radon / Krypton}
+- Hack
 
 [[../README.md]]
