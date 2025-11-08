@@ -1,7 +1,5 @@
 return {
 
-
-
   -- https://github.com/alker0/chezmoi.vim
   -- DESC: syntax highlighting for .tmpl in chezmoi
   {
@@ -203,6 +201,4 @@ return {
       provider_patterns = true, -- true by default, when false will not check provider patterns
     },
   },
-
-  ,
 }
