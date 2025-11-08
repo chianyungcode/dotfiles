@@ -353,6 +353,7 @@ return {
   {
     "rachartier/tiny-glimmer.nvim",
     enabled = true,
+    -- dependencies = { "gbprod/yanky.nvim" },
     event = "VeryLazy",
     priority = 10, -- Low priority to catch other plugins' keybindings
     config = function()
