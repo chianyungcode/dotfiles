@@ -415,9 +415,10 @@ abbr --add gwtmv "git worktree move"
 abbr --add gwtrm "git worktree remove"
 
 # tmux
+abbr --add tx tmux
 abbr --add tksv "tmux kill-server"
 abbr --add tl "tmux list-sessions"
-abbr ts "tmux new -s"
+abbr --add ts "tmux new -s"
 
 # 1password
 abbr --add vercel "op plugin run -- vercel"
@@ -428,6 +429,7 @@ abbr --add untar "tar -zxvf"
 abbr --add which-command whence
 
 # Personal abbreviations
+abbr --add ch chezmoi
 abbr --add tmuxconf "\$EDITOR ~/.local/share/chezmoi/chezmoi/dot_config/tmux/tmux.conf.tmpl"
 abbr restart-kanata sudo launchctl kickstart -k system/com.example.kanata
 abbr --add nv nvim

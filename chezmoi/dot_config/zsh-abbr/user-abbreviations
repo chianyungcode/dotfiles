@@ -416,3 +416,5 @@ abbr "urldecode"="python -c \"import sys, urllib as ul; print ul.unquote_plus(sy
 abbr "vercel"="op plugin run -- vercel"
 abbr "which-command"="whence"
 abbr "dopr"="doppler run -- "
+abbr "ch"="chezmoi"
+abbr "tx"="tmux"
