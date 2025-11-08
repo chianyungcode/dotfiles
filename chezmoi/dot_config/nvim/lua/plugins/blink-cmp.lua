@@ -49,10 +49,28 @@ return {
           sql = { "snippets", "dadbod", "lsp", "buffer" },
         },
         providers = {
+          snippets = {
+            min_keyword_length = 2,
+            score_offset = 4,
+          },
+          lsp = {
+            min_keyword_length = 3,
+            score_offset = 3,
+          },
+          path = {
+            min_keyword_length = 3,
+            score_offset = 2,
+          },
+          buffer = {
+            min_keyword_length = 5,
+            score_offset = 1,
+          },
           dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink", score_offset = 50 }, -- make score_offset bigger for prioritize dadbod completion over other completion
           ecolog = { name = "ecolog", module = "ecolog.integrations.cmp.blink_cmp" },
           datword = {
             name = "DatWord",
+            min_keyword_length = 3,
+            score_offset = 1,
             module = "blink-cmp-dat-word",
             opts = {
               paths = {
