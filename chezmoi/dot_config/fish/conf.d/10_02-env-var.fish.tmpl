@@ -21,11 +21,13 @@
 #   Exported variables are also often called “environment variables”.
 
 
+set -Ua fish_features no-query-term # https://fishshell.com/docs/current/relnotes.html#:~:text=%2311342).-,fish,-no%20longer%20reads
+
 # == CONFIGURATION ENV VARIABLE ===
 set -gx DOTFILES "$HOME/.local/share/chezmoi"
 set -gx EDITOR nvim
 set -gx LM_STUDIO_BIN "$HOME/.lmstudio/bin"
-set -Ua fish_features no-query-term # https://fishshell.com/docs/current/relnotes.html#:~:text=%2311342).-,fish,-no%20longer%20reads
+set -gx TMUXIFIER_LAYOUT_PATH "$HOME/.config/tmuxifier/layouts"
 
 # === START OF CHEZMOI MANAGED ===
 {{- if .use_secrets }}
