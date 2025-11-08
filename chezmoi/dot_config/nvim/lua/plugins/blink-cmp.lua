@@ -62,7 +62,7 @@ return {
             score_offset = 2,
           },
           buffer = {
-            min_keyword_length = 5,
+            min_keyword_length = 3,
             score_offset = 1,
           },
           dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink", score_offset = 50 }, -- make score_offset bigger for prioritize dadbod completion over other completion
