@@ -30,15 +30,16 @@ fish_add_path -gP $HOME/go/bin                  # go binary
 fish_add_path -gP $HOME/.cargo/bin              # cargo binary
 fish_add_path -gP {{ .xdgDataDir }}/cargo/bin   # cargo (xdg) binary
 
-fish_add_path -gP $PROTO_HOME/shims
-fish_add_path -gP $PROTO_HOME/bin
 fish_add_path -gP $HOME/.local/bin
 fish_add_path -gP $HOME/bin                     # personal bin
-fish_add_path -gP $XDG_CACHE_HOME/.bun/bin
-fish_add_path -gP $HOME/.atuin/bin
-fish_add_path -gP $HOME/.tmuxifier/bin
-fish_add_path -gP $LM_STUDIO_BIN
 fish_add_path -gP /usr/bin/snap
+
+fish_add_path -gP $PROTO_HOME/shims
+fish_add_path -gP $PROTO_HOME/bin
+fish_add_path -gP $HOME/.atuin/bin              # atuin (shell history)
+fish_add_path -gP $XDG_CACHE_HOME/.bun/bin
+fish_add_path -gP $HOME/.tmuxifier/bin          # tmuxifier (tmux session manager)
+fish_add_path -gP $LM_STUDIO_BIN
 
 # Remove duplicate paths from PATH variable
 set -gx PATH (string split ':' $PATH | sort -u | string join ':')
