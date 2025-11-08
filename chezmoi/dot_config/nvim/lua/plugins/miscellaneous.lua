@@ -266,6 +266,7 @@ return {
   -- DESC: Neovim plugin to quickly insert log statements and capture log output
   {
     "Goose97/timber.nvim",
+    enabled = false,
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
     config = function()
