@@ -62,6 +62,15 @@ return {
     end,
   },
 
+  -- https://github.com/m4xshen/hardtime.nvim
+  -- DESC: Break bad habits, master Vim motions
+  {
+    "m4xshen/hardtime.nvim",
+    enabled = false,
+    dependencies = { "MunifTanjim/nui.nvim" },
+    opts = {},
+  },
+
   {
     "atiladefreitas/lazyclip",
     enabled = false,

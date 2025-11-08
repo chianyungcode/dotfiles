@@ -1,7 +1,44 @@
 return {
+  -- https://github.com/rachartier/tiny-glimmer.nvim
+  -- DESC: A Neovim plugin that adds smooth, customizable animations to text operations like yank, paste, search, undo/redo, and more.
   {
-    -- Breadcrumb menunjukkan file path diatas
+    "rachartier/tiny-glimmer.nvim",
+    enabled = false,
+    -- dependencies = { "gbprod/yanky.nvim" },
+    event = "VeryLazy",
+    priority = 10, -- Low priority to catch other plugins' keybindings
+    keys = {
+      "n",
+      "N",
+    },
+    config = function()
+      require("tiny-glimmer").setup({
+        overwrite = {
+          search = {
+            enabled = true,
+          },
+          undo = {
+            enabled = true,
+          },
+          redo = {
+            enabled = true,
+          },
+        },
+      })
+    end,
+  },
+
+  -- https://github.com/mluders/comfy-line-numbers.nvim
+  -- DESC: change line numbers to more left-handed, example instead of 6j it will be 11j
+  {
+    "mluders/comfy-line-numbers.nvim",
+    enabled = false,
+    opts = {},
+  },
+
+  {
     -- https://github.com/Bekaboo/dropbar.nvim
+    -- DESC: Breadcrumb menunjukkan file path diatas
     "Bekaboo/dropbar.nvim",
     enabled = true,
     config = function()
