@@ -47,6 +47,14 @@ return {
       })
     end,
   },
+
+  {
+    "abhilash26/mapledark.nvim",
+    enabled = true,
+    lazy = false,
+    priority = 1000,
+  },
+
   { "datsfilipe/vesper.nvim", enabled = true },
   -- {
   -- 	"vague2k/vague.nvim",
@@ -101,6 +109,7 @@ return {
     -- 	},
     -- },
   },
+
   {
     "olivercederborg/poimandres.nvim",
     lazy = false,
@@ -114,6 +123,7 @@ return {
       })
     end,
   },
+
   {
     "webhooked/kanso.nvim",
     enabled = true,
@@ -148,6 +158,7 @@ return {
       })
     end,
   },
+
   {
     "olimorris/onedarkpro.nvim",
     enabled = false,
@@ -160,6 +171,7 @@ return {
       })
     end,
   },
+
   {
     "nickkadutskyi/jb.nvim",
     enabled = false,
@@ -167,19 +179,23 @@ return {
     priority = 1000,
     opts = {},
   },
+
   {
     "rebelot/kanagawa.nvim",
     enabled = false,
   },
+
   {
     "rose-pine/neovim",
     name = "rose-pine",
     enabled = false,
   },
+
   {
     "Skardyy/makurai-nvim",
     enabled = false,
   },
+
   {
     "metalelf0/black-metal-theme-neovim",
     enabled = false,
@@ -192,10 +208,11 @@ return {
     -- 	require("black-metal").load()
     -- end,
   },
+
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "oldworld",
+      colorscheme = "mapledark",
     },
   },
 }
