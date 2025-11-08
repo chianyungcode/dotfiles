@@ -50,7 +50,7 @@ return {
 
   {
     "abhilash26/mapledark.nvim",
-    enabled = true,
+    enabled = false,
     lazy = false,
     priority = 1000,
   },
@@ -212,7 +212,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "mapledark",
+      colorscheme = "oldworld",
     },
   },
 }
