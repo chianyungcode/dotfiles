@@ -428,6 +428,10 @@ abbr --add untar "tar -zxvf"
 # abbr "urldecode"="python -c \"import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])\""
 abbr --add which-command whence
 
+# tmuxifier
+abbr --add txi tmuxifier
+abbr --add txis "tmuxifier s "
+
 # Personal abbreviations
 abbr --add ch chezmoi
 abbr --add tmuxconf "\$EDITOR ~/.local/share/chezmoi/chezmoi/dot_config/tmux/tmux.conf.tmpl"
