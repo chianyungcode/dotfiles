@@ -1,4 +1,32 @@
 return {
+  -- https://github.com/rachartier/tiny-glimmer.nvim
+  -- DESC: A Neovim plugin that adds smooth, customizable animations to text operations like yank, paste, search, undo/redo, and more.
+  {
+    "rachartier/tiny-glimmer.nvim",
+    enabled = false,
+    -- dependencies = { "gbprod/yanky.nvim" },
+    event = "VeryLazy",
+    priority = 10, -- Low priority to catch other plugins' keybindings
+    keys = {
+      "n",
+      "N",
+    },
+    config = function()
+      require("tiny-glimmer").setup({
+        overwrite = {
+          search = {
+            enabled = true,
+          },
+          undo = {
+            enabled = true,
+          },
+          redo = {
+            enabled = true,
+          },
+        },
+      })
+    end,
+  },
 
   -- https://github.com/mluders/comfy-line-numbers.nvim
   -- DESC: change line numbers to more left-handed, example instead of 6j it will be 11j
@@ -8,6 +36,8 @@ return {
     opts = {},
   },
 
+  -- https://github.com/m4xshen/hardtime.nvim
+  -- DESC: Break bad habits, master Vim motions
   {
     "m4xshen/hardtime.nvim",
     enabled = false,
@@ -26,7 +56,8 @@ return {
   -- DESC: Ever wondered which mappings are free to be mapped? Now it's a easier to figure it out.
   { "meznaric/key-analyzer.nvim", opts = {} },
 
-  -- Plugin for tracking your time in Neovim
+  -- https://github.com/wakatime/vim-wakatime
+  -- DESC: Plugin for tracking your time in Neovim
   { "wakatime/vim-wakatime", lazy = false },
 
   -- https://github.com/nvzone/floaterm
@@ -42,6 +73,8 @@ return {
     cmd = "FloatermToggle",
   },
 
+  -- https://github.com/casedami/focus.nvim
+  -- DESC: Distraction-free coding
   {
     "cdmill/focus.nvim",
     enabled = false,
@@ -300,30 +333,5 @@ return {
     },
   },
 
-  {
-    "rachartier/tiny-glimmer.nvim",
-    enabled = false,
-    -- dependencies = { "gbprod/yanky.nvim" },
-    event = "VeryLazy",
-    priority = 10, -- Low priority to catch other plugins' keybindings
-    keys = {
-      "n",
-      "N",
-    },
-    config = function()
-      require("tiny-glimmer").setup({
-        overwrite = {
-          search = {
-            enabled = true,
-          },
-          undo = {
-            enabled = true,
-          },
-          redo = {
-            enabled = true,
-          },
-        },
-      })
-    end,
-  },
+  ,
 }
