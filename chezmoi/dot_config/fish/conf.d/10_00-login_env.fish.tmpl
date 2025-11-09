@@ -1,0 +1,84 @@
+status --is-login; or exit
+if set -q __fish_login_env_loaded
+    exit
+end
+set -g __fish_login_env_loaded 1
+
+# XDG Base Directory - Environment Variable
+set -gx XDG_DATA_HOME "$HOME/.local/share"
+set -gx XDG_CONFIG_HOME "$HOME/.config"
+set -gx XDG_STATE_HOME "$HOME/.local/state"
+set -gx XDG_CACHE_HOME "$HOME/.cache"
+set -gx XDG_DATA_DIRS "$XDG_DATA_HOME:/usr/local/share:/usr/share"
+
+# XDG User Directories - Environment Variable
+if type -q xdg-user-dir
+    set -gx XDG_DESKTOP_DIR (xdg-user-dir DESKTOP)
+    set -gx XDG_DOWNLOAD_DIR (xdg-user-dir DOWNLOAD)
+    set -gx XDG_TEMPLATES_DIR (xdg-user-dir TEMPLATES)
+    set -gx XDG_PUBLICSHARE_DIR (xdg-user-dir PUBLICSHARE)
+    set -gx XDG_DOCUMENTS_DIR (xdg-user-dir DOCUMENTS)
+    set -gx XDG_MUSIC_DIR (xdg-user-dir MUSIC)
+    set -gx XDG_PICTURES_DIR (xdg-user-dir PICTURES)
+    set -gx XDG_VIDEOS_DIR (xdg-user-dir VIDEOS)
+end
+
+# Common - Environment Variable
+set -gx EDITOR nvim
+set -gx LM_STUDIO_BIN "$HOME/.lmstudio/bin"
+set -gx TMUXIFIER_LAYOUT_PATH "$HOME/.config/tmuxifier/layouts"
+
+# --- Configuration ---
+set -gx GIT_CONFIG_GLOBAL "$XDG_CONFIG_HOME/git/config"
+set -gx PROTO_HOME "$XDG_CONFIG_HOME/proto"
+set -gx STARSHIP_CONFIG "$XDG_CONFIG_HOME/starship/starship.toml"
+set -gx PARALLEL_HOME "$XDG_CONFIG_HOME/parallel"
+set -gx SCREENRC "$XDG_CONFIG_HOME/screen/screenrc"
+set -gx WGETRC "$XDG_CONFIG_HOME/wgetrc"
+
+# --- Data ---
+set -gx _ZO_DATA_DIR "$XDG_DATA_HOME/zoxide"
+
+# --- Cache ---
+set -gx ANTIDOTE_HOME "$XDG_CACHE_HOME/antidote"
+
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") -}}
+set -gx HYPRLAND_CONFIG "$XDG_DATA_HOME/hypr/hyprland.conf"
+set -gx TERMINFO "$XDG_DATA_HOME/terminfo"
+set -gx TERMINFO_DIRS "$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
+{{ end -}}
+
+# --- State & Misc ---
+set -gx LESSHISTFILE /tmp/less-hist
+set -gx PYTHON_HISTORY "$XDG_STATE_HOME/python_history"
+
+# Secret - Environment Variable
+# === START OF CHEZMOI MANAGED ===
+{{- if .use_secrets }}
+# == SECRETS ENV VARIABLE ==
+set -gx CONTEXT7_MCP_API_KEY "{{ onepasswordRead .secrets.context7_api_key }}"
+set -gx GITHUB_TOKEN "{{ onepasswordRead .secrets.github_personal_access_token }}"
+set -gx OPENROUTER_OPENCODE_APIKEY "{{ onepasswordRead .secrets.opencode_apikey }}"
+set -gx WAKATIME_API_KEY "{{ onepasswordRead .secrets.wakatime_apikey }}"
+set -gx SSH_AUTH_SOCK "{{ index (dict
+    "darwin" "~/Library/Group\\ Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+    "linux"  "~/.1password/agent.sock"
+) .chezmoi.os }}
+{{- end }}"
+# === END OF CHEZMOI MANAGED ===
+
+# PATH - Environment Variable
+set -l __login_paths /bin /usr/bin /usr/sbin /sbin \
+    /opt/homebrew/bin /opt/homebrew/sbin /usr/local/bin \
+    $HOME/go/bin $HOME/.cargo/bin {{ .xdgDataDir }}/cargo/bin \
+    $HOME/.local/bin $HOME/bin /usr/bin/snap \
+    $PROTO_HOME/shims $PROTO_HOME/bin \
+    $HOME/.atuin/bin $XDG_CACHE_HOME/.bun/bin \
+    $HOME/.tmuxifier/bin $LM_STUDIO_BIN
+for dir in $__login_paths
+    test -d $dir; or continue
+    fish_add_path -gP $dir
+end
+
+# Mencegah duplikasi
+set -gx PATH (string split ':' $PATH | sort -u | string join ':')
