@@ -1,5 +1,5 @@
 # Third Party Plugins (load ez-compinit first)
-mattmc3/ez-compinit
+# mattmc3/ez-compinit # disable this because already implementing my own compinit in .zshrc
 zsh-users/zsh-completions kind:fpath path:src
 
 # oh-my-zsh plugins bawaan (setelah completion plugins)
@@ -15,7 +15,7 @@ ohmyzsh/ohmyzsh path:plugins/tmux
 # Third Party Plugins (non-completion)
 hlissner/zsh-autopair kind:defer
 olets/zsh-abbr kind:defer
-MichaelAquilina/zsh-you-should-use kind:zsh
+MichaelAquilina/zsh-you-should-use kind:zsh kind:defer
 # jeffreytse/zsh-vi-mode
 zsh-users/zsh-autosuggestions
 zdharma-continuum/fast-syntax-highlighting kind:defer
