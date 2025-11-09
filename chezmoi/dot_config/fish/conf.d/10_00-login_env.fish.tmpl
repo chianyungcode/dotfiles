@@ -1,15 +1,23 @@
-status --is-login; or exit
+status --is-login; or return
 if set -q __fish_login_env_loaded
-    exit
+    return
 end
 set -g __fish_login_env_loaded 1
 
 # XDG Base Directory - Environment Variable
-set -gx XDG_DATA_HOME "$HOME/.local/share"
-set -gx XDG_CONFIG_HOME "$HOME/.config"
-set -gx XDG_STATE_HOME "$HOME/.local/state"
-set -gx XDG_CACHE_HOME "$HOME/.cache"
-set -gx XDG_DATA_DIRS "$XDG_DATA_HOME:/usr/local/share:/usr/share"
+set -q XDG_DATA_HOME; or set -gx XDG_DATA_HOME "$HOME/.local/share"
+set -q XDG_CONFIG_HOME; or set -gx XDG_CONFIG_HOME "$HOME/.config"
+set -q XDG_STATE_HOME; or set -gx XDG_STATE_HOME "$HOME/.local/state"
+set -q XDG_CACHE_HOME; or set -gx XDG_CACHE_HOME "$HOME/.cache"
+set -q XDG_DATA_DIRS; or set -gx XDG_DATA_DIRS "/usr/local/share:/usr/share"
+set -l __xdg_data_dirs (string split : $XDG_DATA_DIRS)
+if test (count $__xdg_data_dirs) -eq 0
+    set __xdg_data_dirs /usr/local/share /usr/share
+end
+if not contains -- $XDG_DATA_HOME $__xdg_data_dirs
+    set __xdg_data_dirs $XDG_DATA_HOME $__xdg_data_dirs
+end
+set -gx XDG_DATA_DIRS (string join : $__xdg_data_dirs)
 
 # XDG User Directories - Environment Variable
 if type -q xdg-user-dir
@@ -101,10 +109,11 @@ set -gx OPENROUTER_OPENCODE_APIKEY "{{ $openrouter }}"
 {{- if $wakatime -}}
 set -gx WAKATIME_API_KEY "{{ $wakatime }}"
 {{ end -}}
-set -gx SSH_AUTH_SOCK "{{ index (dict
-    "darwin" "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-    "linux"  "~/.1password/agent.sock"
-) .chezmoi.os }}"
+{{- if eq .chezmoi.os "darwin" }}
+set -gx SSH_AUTH_SOCK "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+{{- else if eq .chezmoi.os "linux" }}
+set -gx SSH_AUTH_SOCK "$HOME/.1password/agent.sock"
+{{- end }}
 {{- end }}
 
 # PATH - Environment Variable

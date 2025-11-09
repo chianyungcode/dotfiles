@@ -4,7 +4,7 @@ end
 
 # Create XDG directories
 for dir in "$XDG_CACHE_HOME/fish" "$XDG_DATA_HOME/fish" "$XDG_STATE_HOME/fish"
-    test -d $dir; or mkdir -p $dir
+    test -d "$dir"; or mkdir -p "$dir"
 end
 
 fish_vi_key_bindings # enable fish vi keybinding on startup
