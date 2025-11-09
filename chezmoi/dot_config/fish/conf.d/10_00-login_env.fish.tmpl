@@ -92,7 +92,7 @@ set -gx LESSHISTFILE /tmp/less-hist
 set -gx PYTHON_HISTORY "$XDG_STATE_HOME/python_history"
 
 # Secret - Environment Variable
-{{ if .use_secrets }}
+{{ if .use_secrets -}}
 {{ $context7 := onepasswordRead .secrets.context7_api_key -}}
 {{- if $context7 -}}
 set -gx CONTEXT7_MCP_API_KEY "{{ $context7 }}"
@@ -108,7 +108,7 @@ set -gx OPENROUTER_OPENCODE_APIKEY "{{ $openrouter }}"
 {{ $wakatime := onepasswordRead .secrets.wakatime_apikey -}}
 {{- if $wakatime -}}
 set -gx WAKATIME_API_KEY "{{ $wakatime }}"
-{{ end -}}
+{{- end -}}
 {{- if eq .chezmoi.os "darwin" }}
 set -gx SSH_AUTH_SOCK "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 {{- else if eq .chezmoi.os "linux" }}
