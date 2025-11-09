@@ -35,7 +35,7 @@ set -gx HOMEBREW_CELLAR "/opt/homebrew/Cellar"
 set -gx HOMEBREW_REPOSITORY "/opt/homebrew"
 
 # Add Homebrew paths
-# fish_add_path -g --move --path "/opt/homebrew/bin" "/opt/homebrew/sbin"
+fish_add_path -g --move --path "/opt/homebrew/bin" "/opt/homebrew/sbin" # using --move , to ensure the order precedence, so this directory will be check first any others directory
 
 # Set MANPATH
 if test -n "$MANPATH[1]"
@@ -110,6 +110,3 @@ for dir in $__login_paths
     test -d $dir; or continue
     fish_add_path -gP $dir
 end
-
-# Mencegah duplikasi
-set -gx PATH (string split ':' $PATH | sort -u | string join ':')
