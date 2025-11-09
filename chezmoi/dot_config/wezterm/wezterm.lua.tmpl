@@ -9,25 +9,27 @@ local config = wezterm.config_builder()
 -- This is where you actually apply your config choices
 
 -- For example, changing the color scheme:
-config.colors = {
-	foreground = "#DAD7CD",
-	background = "#212121", -- Ubah background menjadi #212121
-	cursor_bg = "#47FF9C",
-	cursor_border = "#47FF9C",
-	cursor_fg = "#011423",
-	selection_bg = "#706B4E",
-	selection_fg = "#F3D9C4",
-	ansi = { "#214969", "#F07178", "#C3E88D", "#FFE073", "#6B6B6B", "#DAD7CD", "#E0E1DD", "#89DDFF" },
-	brights = { "#6B6B6B", "#F07178", "#C3E88D", "#FFE073", "#C792E9", "#9F86C0", "#E0E1DD", "#89DDFF" },
-}
+-- config.colors = {
+-- 	foreground = "#DAD7CD",
+-- 	background = "#212121", -- Ubah background menjadi #212121
+-- 	cursor_bg = "#47FF9C",
+-- 	cursor_border = "#47FF9C",
+-- 	cursor_fg = "#011423",
+-- 	selection_bg = "#706B4E",
+-- 	selection_fg = "#F3D9C4",
+-- 	ansi = { "#214969", "#F07178", "#C3E88D", "#FFE073", "#6B6B6B", "#DAD7CD", "#E0E1DD", "#89DDFF" },
+-- 	brights = { "#6B6B6B", "#F07178", "#C3E88D", "#FFE073", "#C792E9", "#9F86C0", "#E0E1DD", "#89DDFF" },
+-- }
+
+config.colors = dofile(wezterm.config_dir .. "/themes/oldworld-vibrant.lua")
 
 -- config.color_scheme = 'Colorful Colors (terminal.sexy)'
 
 -- ### Config font ###
 -- Alternative font: Geist Mono/Fira Code/JetBrains Mono/MonoLisa/MesloLGS Nerd Font Mono/Maple Mono/Cartograph CF
 {{- if eq .chezmoi.os "darwin"}}
-config.font_size = 18
-config.font = wezterm.font("Dank Mono")
+config.font_size = 16.7
+config.font = wezterm.font("Martian Mono")
 {{ else if eq .chezmoi.os "linux"}}
 config.font_size = 12.5
 config.font = wezterm.font("TX-02")
