@@ -23,6 +23,37 @@ if type -q xdg-user-dir
     set -gx XDG_VIDEOS_DIR (xdg-user-dir VIDEOS)
 end
 
+{{ if eq .chezmoi.os "darwin" }}
+# Homebrew - Environment Variable
+
+# This block below equal to `eval $(/opt/homebrew/bin/brew shellenv)` . Instead use that i prefer to statically put the output of that command to reduce startup time
+
+# ==== START OF `eval $(/opt/homebrew/bin/brew shellenv)` ====
+# Set Homebrew environment variables
+set -gx HOMEBREW_PREFIX "/opt/homebrew"
+set -gx HOMEBREW_CELLAR "/opt/homebrew/Cellar"
+set -gx HOMEBREW_REPOSITORY "/opt/homebrew"
+
+# Add Homebrew paths
+# fish_add_path -g --move --path "/opt/homebrew/bin" "/opt/homebrew/sbin"
+
+# Set MANPATH
+if test -n "$MANPATH[1]"
+    set -gx MANPATH '' $MANPATH
+end
+
+# Set INFOPATH
+if not contains "/opt/homebrew/share/info" $INFOPATH
+    set -gx INFOPATH "/opt/homebrew/share/info" $INFOPATH
+end
+# ==== END OF `eval $(/opt/homebrew/bin/brew shellenv)` ====
+
+set -l brew_prefix /opt/homebrew
+set fish_complete_path $fish_complete_path \
+    $brew_prefix/share/fish/completions \
+    $brew_prefix/share/fish/vendor_completions.d
+{{- end }}
+
 # Common - Environment Variable
 set -gx EDITOR nvim
 set -gx LM_STUDIO_BIN "$HOME/.lmstudio/bin"

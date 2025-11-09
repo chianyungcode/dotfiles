@@ -2,35 +2,10 @@ if not status is-interactive
     exit
 end
 
-{{ if eq .chezmoi.os "darwin" }}
-# Only when you genuinely need the full Homebrew shellenv:
-status is-login; and eval (/opt/homebrew/bin/brew shellenv)
-# Otherwise configure PATH yourself and remove shellenv for a simpler setup
-
-set -l brew_prefix /opt/homebrew
-
-# PATH bootstrap if it's not already set:
-set -gx PATH $brew_prefix/bin $brew_prefix/sbin $PATH
-
-# Completions without calling `brew`:
-set fish_complete_path $fish_complete_path \
-    $brew_prefix/share/fish/completions \
-    $brew_prefix/share/fish/vendor_completions.d
-{{ end -}}
-
 # Create XDG directories
-set -l xdg_cache_dir "$HOME/.cache" # Replace with actual template value
-set -l xdg_data_dir "$HOME/.local/share" # Replace with actual template value
-set -l xdg_state_dir "$HOME/.local/state" # Replace with actual template value
-set -l xdg_config_dir "$HOME/.config" # Replace with actual template value
-
-# enable fish vi keybinding on startup
-fish_vi_key_bindings
-
-for dir in "$xdg_cache_dir/fish" "$xdg_data_dir/fish" "$xdg_state_dir/fish"
-    if not test -d $dir
-        mkdir -p $dir
-    end
+for dir in "$XDG_CACHE_HOME/fish" "$XDG_DATA_HOME/fish" "$XDG_STATE_HOME/fish"
+    test -d $dir; or mkdir -p $dir
 end
 
+fish_vi_key_bindings # enable fish vi keybinding on startup
 set -U fish_greeting # disable fish greeting
