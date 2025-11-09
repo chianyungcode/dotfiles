@@ -85,12 +85,23 @@ set -gx PYTHON_HISTORY "$XDG_STATE_HOME/python_history"
 
 # Secret - Environment Variable
 # === START OF CHEZMOI MANAGED ===
-{{- if .use_secrets }}
-# == SECRETS ENV VARIABLE ==
-set -gx CONTEXT7_MCP_API_KEY "{{ onepasswordRead .secrets.context7_api_key }}"
-set -gx GITHUB_TOKEN "{{ onepasswordRead .secrets.github_personal_access_token }}"
-set -gx OPENROUTER_OPENCODE_APIKEY "{{ onepasswordRead .secrets.opencode_apikey }}"
-set -gx WAKATIME_API_KEY "{{ onepasswordRead .secrets.wakatime_apikey }}"
+{{ if .use_secrets }}
+{{ $context7 := onepasswordRead .secrets.context7_api_key -}}
+{{- if $context7 -}}
+set -gx CONTEXT7_MCP_API_KEY "{{ $context7 }}"
+{{ end -}}
+{{ $github := onepasswordRead .secrets.github_personal_access_token -}}
+{{- if $github -}}
+set -gx GITHUB_TOKEN "{{ $github }}"
+{{ end -}}
+{{ $openrouter := onepasswordRead .secrets.opencode_apikey -}}
+{{- if $openrouter -}}
+set -gx OPENROUTER_OPENCODE_APIKEY "{{ $openrouter }}"
+{{ end -}}
+{{ $wakatime := onepasswordRead .secrets.wakatime_apikey -}}
+{{- if $wakatime -}}
+set -gx WAKATIME_API_KEY "{{ $wakatime }}"
+{{ end -}}
 set -gx SSH_AUTH_SOCK "{{ index (dict
     "darwin" "~/Library/Group\\ Containers/2BUA8C4S2C.com.1password/t/agent.sock"
     "linux"  "~/.1password/agent.sock"
