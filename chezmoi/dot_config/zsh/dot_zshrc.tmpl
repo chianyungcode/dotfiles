@@ -6,14 +6,6 @@
 # zmodload zsh/zprof  # Uncomment to enable startup profiling (slows startup)
 # zprof               # Uncomment at the bottom to view profiling results
 
-{{if eq .chezmoi.os "darwin" -}}
-# ============================================
-# Amazon Q - Keep at the top of this file
-# ============================================
-# [[ -f "$HOME/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] \
-#  && builtin source "$HOME/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
-{{- end }}
-
 # ============================================
 # Exit early for non-interactive shells
 # ============================================
@@ -43,8 +35,8 @@ manpath=(${(u)manpath})
 # Emulation Checks
 # ============================================
 case "$0" in
-  ksh|sh)   source "$HOME/.shrc" && exit ;;
-  bash)     source "$HOME/.bashrc" && exit ;;
+  ksh|sh)   source "$HOME/.shrc" && return ;;
+  bash)     source "$HOME/.bashrc" && return ;;
 esac
 
 unset _myPaths _path
@@ -71,7 +63,7 @@ if [ -d "$HOME/.local/share/zsh/zsh-completions/src" ]; then
   fpath+=("$HOME/.local/share/zsh/zsh-completions/src")
 fi
 if type brew &>/dev/null; then
-  fpath+=("$(brew --prefix)/share/zsh/site-functions")
+  fpath+=("/opt/homebrew/share/zsh/site-functions")
 fi
 
 # ============================================
@@ -103,13 +95,5 @@ for dir in "${config_dirs[@]}"; do
     source "$file"
   done
 done
-
-{{if eq .chezmoi.os "darwin" -}}
-# ============================================
-# Amazon Q - Keep at the bottom of this file
-# ============================================
-# [[ -f "$HOME/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] \
-#  && builtin source "$HOME/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
-{{- end }}
 
 # zprof               # Uncomment at the bottom to view profiling results
