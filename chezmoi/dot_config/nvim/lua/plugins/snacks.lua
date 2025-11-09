@@ -9,7 +9,7 @@ return {
   opts = {
     -- disable snacks.indent because i prefer using blink.indent for better performance
     indent = {
-      enabled = false,
+      enabled = true,
     },
     styles = {
       snacks_image = {

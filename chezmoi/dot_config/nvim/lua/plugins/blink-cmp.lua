@@ -5,6 +5,7 @@ return {
   -- DESC: indent guide for neovim, alternative to snacks.indent
   {
     "saghen/blink.indent",
+    enabled = false,
     --- @module 'blink.indent'
     --- @type blink.indent.Config
     opts = {
