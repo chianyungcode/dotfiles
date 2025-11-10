@@ -180,7 +180,7 @@ automatically-unhide-macos-hidden-apps = false
   alt-shift-e = 'move-node-to-workspace E'
   alt-shift-f = 'move-node-to-workspace F'
   alt-shift-g = 'move-node-to-workspace G'
-  alt-shift-i = 'move-node-to-workspace I'
+  # alt-shift-i = 'move-node-to-workspace I'
   alt-shift-m = 'move-node-to-workspace M'
   alt-shift-n = 'move-node-to-workspace N'
   alt-shift-o = 'move-node-to-workspace O'
@@ -276,14 +276,7 @@ automatically-unhide-macos-hidden-apps = false
   if.app-id = 'com.mitchellh.ghostty'
   run       = 'move-node-to-workspace D'
 
-# Workspace E - Media & Utilities
-[[on-window-detected]]
-  if.app-id = 'com.linear'
-  run       = 'move-node-to-workspace T'
-
-[[on-window-detected]]
-  if.app-id = 'com.TickTick.task.mac'
-  run       = 'move-node-to-workspace T'
+  # Workspace E - Media & Utilities
 
 [[on-window-detected]]
   if.app-id = 'com.apple.Music'
@@ -320,7 +313,14 @@ automatically-unhide-macos-hidden-apps = false
   if.app-id = 'com.google.Chrome'
   run       = 'move-node-to-workspace S'
 
-  # Workspace T - Task Management
+# Workspace T - Task Management
+[[on-window-detected]]
+  if.app-id = 'com.linear'
+  run       = 'move-node-to-workspace T'
+
+[[on-window-detected]]
+  if.app-id = 'com.TickTick.task.mac'
+  run       = 'move-node-to-workspace T'
 
 [[on-window-detected]]
   if.app-id = 'com.philipyoungg.session-setapp'
@@ -363,7 +363,3 @@ automatically-unhide-macos-hidden-apps = false
 [[on-window-detected]]
   if.app-id = 'com.alienator88.Pearcleaner'
   run       = ['layout floating']
-
-[[on-window-detected]]
-  if.app-id = 'io.capacities.app'
-  run       = ['move-node-to-workspace W']
