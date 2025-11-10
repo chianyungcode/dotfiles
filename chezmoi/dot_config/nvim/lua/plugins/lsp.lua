@@ -16,7 +16,7 @@ return {
         "biome", -- Javascript, Typescript: Language server protocol (LSP), formatters and linters
         -- "denols", -- Javascript, Typescript: Language server protocol (LSP), runtime and linters
         "lua_ls", -- Lua: Language server protocol (LSP)
-        "tailwindcss",
+        -- "tailwindcss",
         "astro",
         "gopls", -- Go: Language server protocol (LSP)
         "html",
