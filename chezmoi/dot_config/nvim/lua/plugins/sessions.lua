@@ -1,7 +1,7 @@
 return {
   {
     "rmagatti/auto-session",
-    enabled = true,
+    enabled = false,
     lazy = false,
 
     ---enables autocomplete for opts
