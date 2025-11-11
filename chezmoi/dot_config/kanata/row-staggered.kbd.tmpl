@@ -216,6 +216,9 @@
   tx-wdw-3 (macro @tmux-prefix Digit3)
   tx-wdw-4 (macro @tmux-prefix Digit4)
   tx-wdw-5 (macro @tmux-prefix Digit5)
+  tx-wdw-6 (macro @tmux-prefix Digit6)
+  tx-wdw-7 (macro @tmux-prefix Digit7)
+  tx-wdw-8 (macro @tmux-prefix Digit8)
 
   ;; pane navigation
   tx-p-left (macro @tmux-prefix h)
@@ -231,7 +234,7 @@
 
 (deflayer tmux
        🔅        🔆        @mc            @sls           @dtn           @dnd           ◀◀        ▶⏸          ▶▶                    🔇            🔉            🔊
-  grv  @tx-wdw-1          @tx-wdw-2       @tx-wdw-3      @tx-wdw-4      @tx-wdw-5      6         7           8                     9             0             @tx-splith         @tx-splitv         bspc
+  grv  @tx-wdw-1          @tx-wdw-2       @tx-wdw-3      @tx-wdw-4      @tx-wdw-5      @tx-wdw-6         @tx-wdw-7           @tx-wdw-8                     9             0             @tx-splith         @tx-splitv         bspc
   lrld  @tx-slcsession     @tx-slcwindow   @tx-detach     XX             f5             @tx-rsz-left          @tx-rsz-bottom        @tx-rsz-up    @tx-rsz-right @tx-plg-sesh       XX                 XX                \
   @cw  @tx-sw-session     @tx-sw-window   @tx-sw-pane    4              5              @tx-p-left            @tx-p-bottom          @tx-p-top     @tx-p-right   ;                  '                  ret
   lsft @tx-kill-window    @tx-kill-pane   @tx-new-window XX             0              XX                    XX                    @tx-rn-window @tx-rn-session  /             rsft
