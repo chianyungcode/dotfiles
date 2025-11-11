@@ -66,7 +66,12 @@ return {
             min_keyword_length = 3,
             score_offset = 1,
           },
-          dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink", score_offset = 50 }, -- make score_offset bigger for prioritize dadbod completion over other completion
+          dadbod = {
+            name = "Dadbod",
+            module = "vim_dadbod_completion.blink",
+            score_offset = 50,
+            min_keyword_length = 1,
+          }, -- make score_offset bigger for prioritize dadbod completion over other completion
           ecolog = { name = "ecolog", module = "ecolog.integrations.cmp.blink_cmp" },
           datword = {
             name = "DatWord",
