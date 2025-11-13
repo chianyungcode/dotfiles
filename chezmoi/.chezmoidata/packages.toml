@@ -359,8 +359,8 @@
 
     [packages.pacman.dev_computer]
       packages = [
-        "appimagelauncher",    # for integrating .AppImage
-        "auto-cpufreq",        # CPU frequency auto
+        "appimagelauncher", # for integrating .AppImage
+        # "auto-cpufreq",        # CPU frequency auto, disable this because can causing slow perfomance. This slow perfomance appear in startup time in terminal
         "gitleaks",
         "biome",               # JS/TS linter, formatter
         "pastel",              # converter color in terminal
