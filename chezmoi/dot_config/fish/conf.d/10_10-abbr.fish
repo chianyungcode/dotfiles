@@ -431,7 +431,7 @@ abbr --add zld "zellij delete-session"
 abbr --add zlda "zellij delete-all-sessions"
 abbr --add zlk "zellij kill-session"
 abbr --add zlka "zellij kill-all-sessions"
-abbr --add zlls "zellij kill-list-sessions"
+abbr --add zlls "zellij list-sessions"
 
 # 1password
 abbr --add vercel "op plugin run -- vercel"
