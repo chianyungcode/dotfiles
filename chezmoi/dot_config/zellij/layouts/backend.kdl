@@ -11,7 +11,7 @@ layout {
   tab name="1.backend" split_direction="horizontal" {
     pane split_direction="vertical" {
          pane size="70%" command="nvim" name="editor"
-         pane size="30%" name="terminal"
+         pane size="30%" name="running_notes"
     }
   }
 
@@ -21,4 +21,16 @@ layout {
          pane size="30%" cwd="~/Documents/vault-obsidian/" name="terminal"
     }
   }
+
+  tab name="3.opencode" split_direction="horizontal" {
+    pane name="opencode" command="opencode"
+  }
+
+  tab name="4.runner" split_direction="horizontal" {
+    pane name="task" cwd="~/Code/Personal/Projects/Backend/allweezy-backend/" command="task" {
+      args "dev"
+      start_suspended true
+    }
+  }
+
 }
