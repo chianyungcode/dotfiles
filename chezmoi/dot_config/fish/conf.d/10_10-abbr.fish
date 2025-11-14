@@ -416,9 +416,13 @@ abbr --add gwtrm "git worktree remove"
 
 # tmux
 abbr --add tx tmux
-abbr --add tksv "tmux kill-server"
 abbr --add tl "tmux list-sessions"
 abbr --add ts "tmux new -s"
+abbr --add tksv "tmux kill-server"
+
+# tmuxifier
+abbr --add txi tmuxifier
+abbr --add txis "tmuxifier s"
 
 # 1password
 abbr --add vercel "op plugin run -- vercel"
@@ -427,10 +431,6 @@ abbr --add gh "op plugin run -- gh"
 abbr --add untar "tar -zxvf"
 # abbr "urldecode"="python -c \"import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])\""
 abbr --add which-command whence
-
-# tmuxifier
-abbr --add txi tmuxifier
-abbr --add txis "tmuxifier s "
 
 # Personal abbreviations
 abbr --add ch chezmoi
