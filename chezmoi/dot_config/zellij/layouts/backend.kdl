@@ -1,0 +1,24 @@
+session_name "dev_backend"
+
+layout {
+  default_tab_template {
+    children
+    pane size=1 borderless=true {
+      plugin location="zellij:compact-bar"
+    }
+  }
+
+  tab name="1.backend" split_direction="horizontal" {
+    pane split_direction="vertical" {
+         pane size="70%" command="nvim" name="editor"
+         pane size="30%" name="terminal"
+    }
+  }
+
+  tab name="2.codex" split_direction="horizontal" {
+    pane split_direction="vertical" {
+         pane size="60%" cwd="~/Documents/vault-obsidian/" name="editor" command="nvim"
+         pane size="30%" cwd="~/Documents/vault-obsidian/" name="terminal"
+    }
+  }
+}
