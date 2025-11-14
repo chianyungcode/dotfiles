@@ -368,6 +368,7 @@
         "cloudflare-warp-bin",
         "codespell",           # Fix common misspellings in source code and text files
         "docker",
+        "docker-compose",
         "dpkg",
         "entr",                # dependency for tmux-autoreload
         "eslint",              # JS/TS linter
