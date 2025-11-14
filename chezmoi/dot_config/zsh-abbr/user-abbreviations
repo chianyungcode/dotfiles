@@ -419,7 +419,7 @@ abbr "tksv"="tmux kill-server"
 abbr "tl"="tmux list-sessions"
 abbr "tx"="tmux"
 abbr "txi"="tmuxifier"
-abbr "txis"="tmuxifier s "
+abbr "txis"="tmuxifier s"
 
 abbr "zl"="zellij"
 abbr "zla"="zellij attach"
