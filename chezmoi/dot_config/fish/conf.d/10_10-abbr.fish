@@ -424,6 +424,15 @@ abbr --add tksv "tmux kill-server"
 abbr --add txi tmuxifier
 abbr --add txis "tmuxifier s"
 
+# zellij
+abbr --add zl zellij
+abbr --add zla "zellij attach"
+abbr --add zld "zellij delete-session"
+abbr --add zlda "zellij delete-all-sessions"
+abbr --add zlk "zellij kill-session"
+abbr --add zlka "zellij kill-all-sessions"
+abbr --add zlls "zellij kill-list-sessions"
+
 # 1password
 abbr --add vercel "op plugin run -- vercel"
 abbr --add gh "op plugin run -- gh"
