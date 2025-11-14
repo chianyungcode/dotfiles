@@ -50,12 +50,14 @@
   lwh_nav  (layer-while-held nav)
   lwh_sublayers (layer-while-held sublayers)
 
-  smcol (tap-hold $tap-time $hold-time ; @lwh_nums)
   spc_ly3 (tap-hold $tap-time $hold-time spc @lwh_symbols)
   thl-cap-nav (tap-hold $tap-time $hold-time esc @lwh_nav)
   thl-ret-sublayers (tap-hold $tap-time $hold-time ret @lwh_sublayers)
   thl-sls-tmux (tap-hold $tap-time $hold-time / @lwh_tmux)
   thl-z-tmux (tap-hold $tap-time $hold-time z @lwh_tmux)
+
+  thl-x-zlj (tap-hold $tap-time $hold-time a (layer-while-held zellij))
+  thl-dot-zlj (tap-hold $tap-time $hold-time ; (layer-while-held zellij))
 
   {{ if eq .chezmoi.os "darwin" -}}
   lmet_tab (tap-hold $tap-time $hold-time tab (macro M-tab))
@@ -73,11 +75,9 @@
   {{ if eq .chezmoi.os "darwin" -}}
   m (tap-hold $tap-time $hold-time m rmet)
   v (tap-hold $tap-time $hold-time v rmet)
-  a (tap-hold $tap-time $hold-time a lmet)
   {{- else if eq .chezmoi.os "linux" }}
   m (tap-hold $tap-time $hold-time m lmet)
   v (tap-hold $tap-time $hold-time v lmet)
-  a (tap-hold $tap-time $hold-time a lctl)
   {{- end }}
   hyperkey (tap-hold $tap-time $hold-time spc (multi lsft lctl lalt lmet))
 
@@ -132,7 +132,7 @@
        🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   @lmet_tab    q    w    e    r    t    y    u    i    o    p    [    ]    \
-  @thl-cap-nav  @a    @s    @d    @f    g    h    @j    @k    @l    @smcol    '    @thl-ret-sublayers
+  @thl-cap-nav  @thl-x-zlj    @s    @d    @f    g    h    @j    @k    @l    @thl-dot-zlj    '    @thl-ret-sublayers
   lsft @thl-z-tmux    x    c    @v    b    n    @m    ,    .   @thl-sls-tmux    rsft ;; Tombol x sekarang punya fungsi ganda
   lctl lmet lalt           @spc_ly3            ralt rmet rctl
 )
@@ -237,6 +237,24 @@
   @cw  @tx-sw-session     @tx-sw-window   @tx-sw-pane    4              5              @tx-p-left            @tx-p-bottom          @tx-p-top     @tx-p-right   ;                  '                  ret
   lsft @tx-kill-window    @tx-kill-pane   @tx-new-window XX             0              XX                    XX                    @tx-rn-window @tx-rn-session  /             rsft
   lctl lmet               lalt                             spc                                            ralt            rmet              rctl
+)
+
+(defalias
+  zlj-prefix C-a
+
+  zlj-rsz (macro @zlj-prefix r)
+  zlj-tab (macro @zlj-prefix t)
+  zlj-ses (macro @zlj-prefix o)
+  zlj-pane (macro @zlj-prefix p)
+)
+
+(deflayer zellij
+       🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
+  grv  XX   XX   XX    XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  tab  XX   XX   XX   @zlj-rsz  @zlj-tab  XX        XX   XX   @zlj-ses @zlj-pane     XX   XX XX
+  caps XX   XX   XX   XX   XX        XX        XX        XX   XX   XX       XX            XX
+  lsft XX   XX   XX   XX   XX        XX        XX        XX   XX   XX       XX
+  lctl lmet lalt           spc            ralt rmet rctl
 )
 
 {{ if eq .chezmoi.os "darwin" -}}
