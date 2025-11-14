@@ -6,7 +6,7 @@
 {{- $homeDir := .chezmoi.homeDir -}}
 
 {{- if and (eq $os "linux") (eq .chezmoi.osRelease.id "arch") }}
-arch_first_setup_script="{{ $sourceDir }}/chezmoi/bin/executable_arch-first-setup.sh"
+arch_first_setup_script="{{ $homeDir }}/bin/arch-first-setup.sh"
 
 if [ -f "$arch_first_setup_script" ]; then
   if [ ! -x "$arch_first_setup_script" ]; then
@@ -26,9 +26,9 @@ fi
 
 sudo mkdir -p /Library/LaunchDaemons/
 for plist in \
-  "{{ $sourceDir }}/dot_config/kanata/service-manager/macos/com.example.kanata.plist" \
-  "{{ $sourceDir }}/dot_config/kanata/service-manager/macos/com.example.karabiner-vhiddaemon.plist" \
-  "{{ $sourceDir }}/dot_config/kanata/service-manager/macos/com.example.karabiner-vhidmanager.plist"
+  "{{ $homeDir }}/.config/kanata/service-manager/macos/com.example.kanata.plist" \
+  "{{ $homeDir }}/.config/kanata/service-manager/macos/com.example.karabiner-vhiddaemon.plist" \
+  "{{ $homeDir }}/.config/kanata/service-manager/macos/com.example.karabiner-vhidmanager.plist"
 do
   sudo install -m 644 "$plist" "/Library/LaunchDaemons/$(basename "$plist")"
 done
