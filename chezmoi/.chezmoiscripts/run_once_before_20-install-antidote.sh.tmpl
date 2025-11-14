@@ -8,7 +8,7 @@ header "Installing antidote - Zsh plugin manager"
 # Try to get ZDOTDIR from zshenv if it exists
 if [[ -f "$HOME/.zshenv" ]]; then
   # Source zshenv in a subshell to extract ZDOTDIR
-  ZDOTDIR=$(bash -c "source \"$HOME/.zshenv\" >/dev/null 2>&1 && echo \$ZDOTDIR")
+  ZDOTDIR=$(zsh -c "source \"$HOME/.zshenv\" >/dev/null 2>&1 && echo \$ZDOTDIR")
 else
   # If .zshenv doesn't exist, set a default ZDOTDIR
   ZDOTDIR="$HOME/.config/zsh"
