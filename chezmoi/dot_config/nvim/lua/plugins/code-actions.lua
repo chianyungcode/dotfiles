@@ -1,4 +1,12 @@
 return {
+  --
+  {
+    "stevearc/quicker.nvim",
+    ft = "qf",
+    ---@module "quicker"
+    ---@type quicker.SetupOptions
+    opts = {},
+  },
   -- https://github.com/lewis6991/hover.nvim
   -- DESC: fancy hover for neovim
   {
