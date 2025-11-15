@@ -1,7 +1,7 @@
 return {
   {
     "rmagatti/auto-session",
-    enabled = false, -- disable this plugin for faster startup time
+    enabled = true, -- disable this plugin for faster startup time
     lazy = false,
 
     ---enables autocomplete for opts
