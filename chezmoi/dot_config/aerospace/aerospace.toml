@@ -345,6 +345,10 @@ automatically-unhide-macos-hidden-apps = false
   run       = 'move-node-to-workspace W'
 
 [[on-window-detected]]
+  if.app-id = 'io.capacities.app'
+  run       = 'move-node-to-workspace W'
+
+[[on-window-detected]]
   if.app-id = 'com.apple.ActivityMonitor'
   run       = ['layout floating', 'move-node-to-workspace Z']
 
