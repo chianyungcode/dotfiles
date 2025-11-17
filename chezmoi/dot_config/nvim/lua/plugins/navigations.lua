@@ -82,10 +82,19 @@ return {
       },
     },
     opts = {
-      icon_provider = "nvim_web_devicons",
-      icon = {
-        directory_collapsed = " ",
-        directory_expanded = " ",
+      views = {
+        finder = {
+          icon = {
+            directory_collapsed = " ",
+            directory_expanded = " ",
+          },
+          win = {
+            win_opts = {
+              number = true,
+              relativenumber = true,
+            },
+          },
+        },
       },
     },
   },
