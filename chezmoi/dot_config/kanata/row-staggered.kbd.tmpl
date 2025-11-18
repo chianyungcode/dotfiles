@@ -56,8 +56,8 @@
   thl-sls-tmux (tap-hold $tap-time $hold-time / @lwh_tmux)
   thl-z-tmux (tap-hold $tap-time $hold-time z @lwh_tmux)
 
-  thl-x-zlj (tap-hold $tap-time $hold-time a (layer-while-held zellij))
-  thl-dot-zlj (tap-hold $tap-time $hold-time ; (layer-while-held zellij))
+  thl-v-zlj (tap-hold $tap-time $hold-time v (layer-while-held zellij))
+  thl-m-zlj (tap-hold $tap-time $hold-time m (layer-while-held zellij))
 
   {{ if eq .chezmoi.os "darwin" -}}
   lmet_tab (tap-hold $tap-time $hold-time tab (macro M-tab))
@@ -133,7 +133,7 @@
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   @lmet_tab    q    w    e    r    t    y    u    i    o    p    [    ]    \
   @thl-cap-nav  a    @s    @d    @f    g    h    @j    @k    @l    ;    '    @thl-ret-sublayers
-  lsft @thl-z-tmux    x    c    @v    b    n    @m    ,    .   @thl-sls-tmux    rsft ;; Tombol x sekarang punya fungsi ganda
+  lsft @thl-z-tmux    x    c    @thl-v-zlj    b    n    @thl-m-zlj    ,    .   @thl-sls-tmux    rsft ;; Tombol x sekarang punya fungsi ganda
   lctl lmet lalt           @spc_ly3            ralt rmet rctl
 )
 
@@ -246,11 +246,21 @@
   zlj-tab (macro @zlj-prefix t)
   zlj-ses (macro @zlj-prefix o)
   zlj-pane (macro @zlj-prefix p)
+
+  zlj-t-1 (macro @zlj-prefix t Digit1)
+  zlj-t-2 (macro @zlj-prefix t Digit2)
+  zlj-t-3 (macro @zlj-prefix t Digit3)
+  zlj-t-4 (macro @zlj-prefix t Digit4)
+  zlj-t-5 (macro @zlj-prefix t Digit5)
+  zlj-t-6 (macro @zlj-prefix t Digit6)
+  zlj-t-7 (macro @zlj-prefix t Digit7)
+  zlj-t-8 (macro @zlj-prefix t Digit8)
+  zlj-t-9 (macro @zlj-prefix t Digit9)
 )
 
 (deflayer zellij
        🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
-  grv  XX   XX   XX    XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  grv  @zlj-t-1  @zlj-t-2  @zlj-t-3  @zlj-t-4  @zlj-t-5  @zlj-t-6  @zlj-t-7  @zlj-t-8  @zlj-t-9   XX   XX   XX   XX
   tab  XX   XX   XX   @zlj-rsz  @zlj-tab  XX        XX   XX   @zlj-ses @zlj-pane     XX   XX XX
   caps XX   XX   XX   XX   XX        XX        XX        XX   XX   XX       XX            XX
   lsft XX   XX   XX   XX   XX        XX        XX        XX   XX   XX       XX
