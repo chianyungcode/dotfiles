@@ -10,16 +10,13 @@ layout {
 
   tab name="1.backend" split_direction="horizontal" {
     pane split_direction="vertical" {
-         pane size="70%" command="nvim" name="editor"
-         pane size="30%" name="running_notes"
+         pane size="70%" cwd="~/Code/Personal/Projects/Backend/allweezy-backend/" command="nvim" name="editor"
+         pane size="30%" cwd="~/Documents/vault-obsidian/" name="running_notes"
     }
   }
 
   tab name="2.codex" split_direction="horizontal" {
-    pane split_direction="vertical" {
-         pane size="60%" cwd="~/Documents/vault-obsidian/" name="editor" command="nvim"
-         pane size="30%" cwd="~/Documents/vault-obsidian/" name="terminal"
-    }
+    pane name="2.codex" command="codex"
   }
 
   tab name="3.opencode" split_direction="horizontal" {
