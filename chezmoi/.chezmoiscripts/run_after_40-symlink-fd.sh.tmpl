@@ -1,4 +1,4 @@
-{{- if eq .chezmoi.os "linux" -}}
+{{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "debian") -}}
 #!/usr/bin/env bash
 
 {{ template "shared_script_utils.bash" . }}
