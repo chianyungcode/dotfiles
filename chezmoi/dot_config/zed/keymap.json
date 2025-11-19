@@ -11,7 +11,15 @@
   {
     "context": "Workspace",
     "bindings": {
-      "ctrl-s": "workspace::Save"
+      "ctrl-s": "workspace::Save",
+      "space space": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      ".": "project_panel::ToggleHideHidden",
+      "space e": ["workspace::CloseActiveDock", "project_panel::ToggleFocus"]
     }
   },
   {
@@ -20,8 +28,17 @@
       "space space": "file_finder::Toggle",
       "space ,": "tab_switcher::Toggle",
       "space b d": "pane::CloseActiveItem",
+      "space b o": "pane::CloseInactiveItems",
+      "space w o": "workspace::CloseInactiveTabsAndPanes",
       "space |": "pane::SplitVertical",
-      "space -": "pane::SplitHorizontal"
+      "space -": "pane::SplitHorizontal",
+      "space e": "project_panel::ToggleFocus",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-l": "pane::ActivateNextItem"
     }
   },
   {
