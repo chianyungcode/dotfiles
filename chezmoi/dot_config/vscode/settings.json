@@ -53,7 +53,7 @@
     "fontSize": 12
   },
 
-  // Cusom css
+  // Custom css
   "apc.stylesheet": {
     ".sidebar > .composite": "height: 12px !important",
     ".title-label": "display: none !important",
@@ -130,7 +130,7 @@
 
   // Neovim
   "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
-  // "vscode-neovim.neovimInitVimPaths.darwin": "$HOME/.config/nvim-vscode/init.vim",
+  "vscode-neovim.neovimInitVimPaths.darwin": "$HOME/.config/nvim-vscode/init.vim",
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
   },
