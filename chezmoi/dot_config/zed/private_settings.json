@@ -35,7 +35,12 @@
 
     "catppuccin-icons": true,
     "jetbrains-new-ui-icons": true,
-    "colored-zed-icons-theme": true
+    "colored-zed-icons-theme": true,
+
+    "react-typescript-snippets": true,
+    "python-snippets": true,
+    "go-snippets": true,
+    "nextjs-react-snippets": true
   },
   "icon_theme": {
     "mode": "system",
