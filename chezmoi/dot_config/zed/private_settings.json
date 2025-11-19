@@ -62,10 +62,16 @@
   },
 
   "autosave": "on_focus_change",
+  "close_on_file_delete": true,
+  "hide_mouse": "on_typing_and_movement",
   "format_on_save": "on",
-  "ui_font_size": 18,
-  "buffer_font_size": 17,
-  "buffer_font_family": "Dank Mono",
+  "minimap": {
+    "show": "always",
+    "thumb": "always",
+    "thumb_border": "left_open",
+    "current_line_highlight": null
+  },
+
   "enable_language_server": true,
   "formatter": {
     "external": {
