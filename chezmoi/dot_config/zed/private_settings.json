@@ -1,20 +1,43 @@
-// Zed settings
-//
-// For information on how to configure Zed, see the Zed
-// documentation: https://zed.dev/docs/configuring-zed
-//
-// To see all of Zed's default settings without changing your
-// custom settings, run the `open default settings` command
-// from the command palette or from `Zed` application menu.
 {
   "base_keymap": "VSCode",
   "theme": "Catppuccin Mocha",
+
   "vim_mode": true,
-  "vim":  {
+  "vim": {
     "toggle_relative_line_numbers": true
   },
-  "ui_font_size": 16,
-  "buffer_font_size": 15.5,
+
+  "auto_install_extensions": {
+    "dockerfile": true,
+    "html": true,
+    "sql": true,
+    "java": true,
+    "nix": true,
+    "lua": true,
+    "make": true,
+    "latex": true,
+    "prisma": true,
+    "biome": true,
+    "astro": true,
+    "vue": true,
+    "markdown-oxide": true,
+    "wakatime": true,
+
+    "mcp-server-context7": true,
+    "postgres-context-server": true,
+    "mcp-server-github": true,
+    "mcp-server-exa-search": true,
+    "mcp-server-firecrawl": true,
+    "prisma-mcp": true,
+    "mcp-server-resend": true,
+    "mcp-server-buildkite": true,
+    "shadcn-mcp": true
+  },
+
+  "autosave": "on_focus_change",
+  "format_on_save": "on",
+  "ui_font_size": 18,
+  "buffer_font_size": 17,
   "buffer_font_family": "Dank Mono",
   "enable_language_server": true,
   "formatter": {
@@ -24,7 +47,7 @@
     }
   },
   "code_actions_on_format": {
-      "source.fixAll.biome": true,
-      "source.organizeImports.biome": true
-    }
+    "source.fixAll.biome": true,
+    "source.organizeImports.biome": true
+  }
 }
