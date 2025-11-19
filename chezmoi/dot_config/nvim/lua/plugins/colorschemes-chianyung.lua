@@ -6,7 +6,7 @@ return {
   -- { "killitar/obscure.nvim" },
   {
     "oxfist/night-owl.nvim",
-    enabled = true,
+    enabled = false,
     lazy = false,
     priority = 1000,
     -- opts = {
@@ -50,7 +50,7 @@ return {
 
   {
     "abhilash26/mapledark.nvim",
-    enabled = false,
+    enabled = true,
     lazy = false,
     priority = 1000,
   },
@@ -66,7 +66,7 @@ return {
   -- },
   {
     "dgox16/oldworld.nvim",
-    enabled = true,
+    enabled = false,
     lazy = false,
     priority = 1000,
     config = function()
@@ -161,7 +161,7 @@ return {
 
   {
     "olimorris/onedarkpro.nvim",
-    enabled = false,
+    enabled = true,
     priority = 1000, -- Ensure it loads first
     config = function()
       require("onedarkpro").setup({
@@ -212,7 +212,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "oldworld",
+      colorscheme = "mapledark",
     },
   },
 }
