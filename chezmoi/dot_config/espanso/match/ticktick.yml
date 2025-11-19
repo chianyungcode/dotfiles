@@ -1,6 +1,8 @@
 ---
 matches:
-  - trigger: ":ttd"
+  - trigger: ":ttdn"
+    form: "[[task]] [today] #intentional-task ~"
+  - trigger: ":ttds"
     form: "[[task]] [today [[start_time]] to [[end_time]]] #intentional-task ~"
   - trigger: ":ttr"
     form: "[[task]] [tomorrow [[start_time]] to [[end_time]]] #intentional-task ~"
