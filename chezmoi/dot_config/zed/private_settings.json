@@ -33,6 +33,8 @@
     "mcp-server-buildkite": true,
     "shadcn-mcp": true,
 
+    "catppuccin-blur": true,
+
     "catppuccin-icons": true,
     "jetbrains-new-ui-icons": true,
     "colored-zed-icons-theme": true,
