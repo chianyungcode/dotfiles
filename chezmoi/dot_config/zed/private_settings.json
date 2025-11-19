@@ -31,7 +31,16 @@
     "prisma-mcp": true,
     "mcp-server-resend": true,
     "mcp-server-buildkite": true,
-    "shadcn-mcp": true
+    "shadcn-mcp": true,
+
+    "catppuccin-icons": true,
+    "jetbrains-new-ui-icons": true,
+    "colored-zed-icons-theme": true
+  },
+  "icon_theme": {
+    "mode": "system",
+    "light": "Catppuccin Macchiato",
+    "dark": "Catppuccin Macchiato"
   },
 
   "autosave": "on_focus_change",
