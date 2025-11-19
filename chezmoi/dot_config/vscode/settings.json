@@ -1,0 +1,200 @@
+{
+  /* -----------------------------------------------------
+   *  FORMATTER & LINTING
+   * --------------------------------------------------- */
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+
+  /* Biome disabled (keep for later)
+  "[typescript]": { "editor.defaultFormatter": "biomejs.biome" },
+  "[typescriptreact]": { "editor.defaultFormatter": "biomejs.biome" },
+  "[json]": { "editor.defaultFormatter": "biomejs.biome" },
+  "[javascript]": { "editor.defaultFormatter": "biomejs.biome" },
+  "[javascriptreact]": { "editor.defaultFormatter": "biomejs.biome" },
+  "editor.codeActionsOnSave": {
+    "quickfix.biome": "explicit",
+    "source.organizeImports.biome": "explicit"
+  },
+  */
+
+  /* -----------------------------------------------------
+   *  EDITOR APPEARANCE & BEHAVIOR
+   * --------------------------------------------------- */
+  "editor.accessibilitySupport": "off",
+  "editor.autoClosingBrackets": "always",
+
+  "editor.fontFamily": "Dank Mono",
+  "editor.fontWeight": "800",
+  "editor.fontSize": 12.7,
+  "editor.fontLigatures": "'calt', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'ss09', 'liga'",
+
+  "editor.inlineSuggest.suppressSuggestions": true,
+  "editor.quickSuggestions": { "strings": true },
+
+  "editor.wordWrap": "on",
+  "editor.cursorBlinking": "solid",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.smoothScrolling": true,
+
+  "editor.scrollbar.vertical": "hidden",
+  "editor.scrollbar.horizontal": "hidden",
+
+  "editor.lineNumbers": "relative",
+
+  /* -----------------------------------------------------
+   *  SYNTAX HIGHLIGHTING (Italic / Bold Rules)
+   * --------------------------------------------------- */
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": [
+          "comment",
+          "keyword.control.import.js",
+          "keyword.control.export.js",
+          "keyword.control.from.js",
+          "storage.modifier",
+          "storage.type.class",
+          "storage.type.php",
+          "keyword.other.new.php",
+          "entity.other.attribute-name",
+          "fenced_code.block.language.markdown"
+        ],
+        "settings": { "fontStyle": "italic" }
+      },
+      {
+        "scope": ["entity.name.type.class"],
+        "settings": { "fontStyle": "bold" }
+      },
+      {
+        "scope": ["entity.name.section.markdown"],
+        "settings": { "fontStyle": "italic bold" }
+      },
+      {
+        "scope": [
+          "invalid",
+          "keyword.operator",
+          "constant.numeric.css",
+          "keyword.other.unit.px.css",
+          "constant.numeric.decimal.js",
+          "constant.numeric.json",
+          "comment.block",
+          "entity.other.attribute-name.class.css"
+        ],
+        "settings": { "fontStyle": "" }
+      }
+    ]
+  },
+
+  /* -----------------------------------------------------
+   *  EMMET & CSS
+   * --------------------------------------------------- */
+  "emmet.includeLanguages": { "postcss": "css" },
+  "emmet.useInlineCompletions": true,
+  "css.lint.unknownAtRules": "ignore",
+
+  /* -----------------------------------------------------
+   *  EXPLORER & FILE MANAGEMENT
+   * --------------------------------------------------- */
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+
+  /* -----------------------------------------------------
+   *  JAVASCRIPT & TYPESCRIPT
+   * --------------------------------------------------- */
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+
+  /* -----------------------------------------------------
+   *  PRISMA
+   * --------------------------------------------------- */
+  "prisma.showPrismaDataPlatformNotification": false,
+
+  /* -----------------------------------------------------
+   *  SUPERMAVEN
+   * --------------------------------------------------- */
+  "supermaven.enable": {
+    "*": false,
+    "typescript": false
+  },
+
+  /* -----------------------------------------------------
+   *  TAILWINDCSS
+   * --------------------------------------------------- */
+  "tailwindCSS.experimental.classRegex": [
+    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
+
+  /* -----------------------------------------------------
+   *  TERMINAL
+   * --------------------------------------------------- */
+  "terminal.external.osxExec": "Warp.app",
+  "terminal.integrated.env.osx": {
+    "FIG_NEW_SESSION": "1",
+    "Q_NEW_SESSION": "1"
+  },
+  "terminal.integrated.fontFamily": "Geist Mono",
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.allowedLinkSchemes": [
+    "file",
+    "http",
+    "https",
+    "mailto",
+    "vscode",
+    "vscode-insiders",
+    "docker-desktop"
+  ],
+
+  /* -----------------------------------------------------
+   *  UI / THEMES / ICONS
+   * --------------------------------------------------- */
+  "window.titleBarStyle": "custom",
+  "window.zoomLevel": 1,
+
+  "workbench.colorTheme": "Minimal Kiwi",
+  "workbench.iconTheme": "symbols",
+  "workbench.statusBar.visible": true,
+
+  "vscode-office.editorTheme": "Github Dark",
+  "vsicons.dontShowNewVersionMessage": true,
+
+  /* -----------------------------------------------------
+   *  GIT & GITLENS AI
+   * --------------------------------------------------- */
+  "gitlens.ai.experimental.model": "openai:gpt-4o-mini",
+  "gitlens.ai.model": "openai:gpt-4o-mini",
+
+  /* -----------------------------------------------------
+   *  CURSOR / NEOVIM / UTILITIES
+   * --------------------------------------------------- */
+  "cursor.cpp.disabledLanguages": ["postcss", "prisma", "html", "javascript"],
+  "cursor.composer.shouldAllowCustomModes": true,
+
+  "kilo-code.allowedCommands": [
+    "npm test",
+    "npm install",
+    "tsc",
+    "git log",
+    "git diff",
+    "git show"
+  ],
+
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+
+  "biome.suggestInstallingGlobally": false,
+
+  /* -----------------------------------------------------
+   *  OTHER
+   * --------------------------------------------------- */
+  "diffEditor.ignoreTrimWhitespace": false,
+  "go.toolsManagement.autoUpdate": true
+}
