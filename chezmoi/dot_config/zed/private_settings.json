@@ -1,5 +1,4 @@
 {
-  "base_keymap": "VSCode",
   "theme": "Catppuccin Mocha",
   "icon_theme": {
     "mode": "system",
@@ -11,12 +10,18 @@
   "ui_font_size": 18,
   "buffer_font_family": "Geist Mono",
   "buffer_font_size": 16,
+  "scrollbar": {
+    "show": "never"
+  },
+  "scroll_beyond_last_line": "off",
 
   "base_keymap": "VSCode",
   "vim_mode": true,
   "vim": {
     "toggle_relative_line_numbers": true
   },
+  "relative_line_numbers": "enabled",
+  "cursor_blink": false,
 
   "auto_install_extensions": {
     "dockerfile": true,
@@ -54,11 +59,6 @@
     "python-snippets": true,
     "go-snippets": true,
     "nextjs-react-snippets": true
-  },
-  "icon_theme": {
-    "mode": "system",
-    "light": "Catppuccin Macchiato",
-    "dark": "Catppuccin Macchiato"
   },
 
   "autosave": "on_focus_change",
