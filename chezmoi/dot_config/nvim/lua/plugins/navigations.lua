@@ -195,6 +195,13 @@ return {
 
       require("outline").setup({
         -- Your setup opts here (leave empty to use defaults)
+        outline_window = {
+          width = 35,
+          auto_jump = true,
+
+          show_numbers = true,
+          show_relative_numbers = true,
+        },
       })
     end,
   },
