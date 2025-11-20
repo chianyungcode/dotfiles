@@ -118,6 +118,7 @@ set -g base-index 1 # Set base index for windows
 set -g pane-base-index 1 # Set base index for panes
 set -g mouse on # Enable mouse support
 set -g default-terminal "tmux-256color" # 'xterm-256color' is widely used by terminal emulator but you can change to 'tmux-256color' is specifically designed for tmux and is optimized for use within tmux sessions.
+set -as terminal-overrides ",*:Tc"
 # set -ga terminal-overrides ",xterm-256color:Tc"
 set -g allow-rename off # Allow programs in the pane to change the window name a terminal escape sequence (\ek...\e\\).
 set -gq allow-passthrough on
