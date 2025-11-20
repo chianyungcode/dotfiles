@@ -1,13 +1,129 @@
 {
   // open json editor for settings
   "workbench.settings.editor": "json",
+  "workbench.activityBar.location": "hidden",
+  "workbench.editor.showTabs": "none", // showing tabs
+  "workbench.statusBar.visible": false, // status bar in the bottom
+  "workbench.startupEditor": "none",
+  "workbench.tips.enabled": false,
+  "breadcrumbs.enabled": false, // breadcrumbs in the top
+
+  // Sidebars and File Explorer
+  "workbench.tree.enableStickyScroll": false, // folder in file explorer will sticky
+  "workbench.tree.renderIndentGuides": "none", // showing indent guide in file explorer
+  "workbench.tree.indent": 10,
+  "explorer.compactFolders": false, // when parent of the nested folder only have 1 it still will be expand insted of showing it in compact
+  "symbols.hidesExplorerArrows": false, // show/hide folder explorer arrows when expand the folder
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "explorer.decorations.badges": true, // showing a badge when error / warning appear in a file
+  "git.decorations.enabled": true, // showing a status of a file if this repo is a git repo, example, when a file tracked and modified it will be showing 'M' in file explorer
+
+  // UI
+ "window.zoomLevel": 1,
+ "window.titleBarStyle": "custom",
+"custom-ui-style.electron": {
+    "titleBarStyle": "hiddenInset",
+    "trafficLightPosition": {
+      "x": 20,
+      "y": 16
+    }
+  },
+  "custom-ui-style.stylesheet": {
+    ".notification-toast": "box-shadow: none !important",
+    ".quick-input-widget.show-file-icons": "box-shadow: none !important",
+    ".quick-input-widget": "top: 25vh !important",
+    ".quick-input-list .scrollbar": "display: none",
+    ".monaco-action-bar.quick-input-inline-action-bar": "display: none",
+    ".editor-widget.find-widget": "box-shadow: none; border-radius: 4px",
+    ".quick-input-titlebar": "background: #100B15 !important",
+    ".monaco-workbench .part.editor > .content .editor-group-container > .title.title-border-bottom:after": "display: none",
+    ".monaco-scrollable-element > .shadow.top": "display: none",
+    ".sidebar .title-label": "padding: 0 !important",
+    ".sidebar": "border: none !important",
+    ".monaco-workbench .monaco-list:not(.element-focused):focus:before": "outline: none !important",
+    ".monaco-list-row.focused": "outline: none !important",
+    ".monaco-editor .scroll-decoration": "display: none",
+    ".title-actions": "display: none !important",
+    ".title.show-file-icons .label-container .monaco-icon-label.file-icon": "justify-content: center; padding: 0 !important",
+    ".title .monaco-icon-label:after": "margin-right: 0",
+    ".monaco-workbench .part.editor > .content .editor-group-container > .title > .label-container > .title-label": "padding-left: 60px",
+    ".title .monaco-icon-label.file-icon": "margin: 0 60px",
+    ".monaco-editor .cursors-layer .cursor": "background-image: linear-gradient(135deg, #ffaffc 10%, #DA70D6 100%)"
+  },
+  "custom-ui-style.font.sansSerif": "Martian Mono",
+
+  // Cursor
+  "editor.multiCursorModifier": "ctrlCmd", // the default is alt, but now remapping to ctrlCmd which in Windows and Linux is `ctrl` and macOS `cmd`
+  "editor.cursorBlinking": "solid",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.cursorStyle": "line",
+
+
+   // Decorations and hints
+   "editor.tokenColorCustomizations": {
+     "textMateRules": [
+       {
+         "scope": "comment",
+         "settings": {
+           "fontStyle": "italic" // make a comment italic
+         }
+       }
+     ]
+   },
+   "editor.stickyScroll.enabled": false, // disable sticky scroll
+   "editor.colorDecorators": false, // disable color decorators, example when in css file background: red, if enabled it will be showing a color in box
+   "editor.codeLens": false, // example in package.json, it will showing an action "Debug" if this option enabled
+   "editor.links": true, // When any links detected, it will showing underline
+   "editor.matchBrackets": "never", // sets to never so if highlighted the match brackets the others bracket will be highlighted too
+   "editor.parameterHints.enabled": true,
+   "editor.lightbulb.enabled": "off", // showing a code actions in lightbulb, can be trigger by keyboard shortcuts so i disabled this
+   "editor.hover.enabled": false, // disable hints when hover with mouse
+   "files.trimTrailingWhitespace": true,
+   "files.insertFinalNewline": true, // insert empty new line in the end of file for most coding standards
+   "scm.diffDecorations": "all", // showing indicators in number line about git status
+
+   // 8. Guides and Highlights
+   "editor.lineNumbers": "relative",
+   "editor.tabSize": 2, // indentation tab size
+   "editor.detectIndentation": false, // disable detect indentation by file, so it will be stick to 2 that i have cnofigured above
+   "editor.showFoldingControls": "always", // show folding control in the line number
+   "editor.guides.indentation": true,
+   "editor.renderWhitespace": "selection",
+   "editor.renderLineHighlight": "none", // highlight the current line, i prefer set to "none"
+   "editor.occurrencesHighlight": "singleFile", // if the word is under cursor and the other same word will be highlighted
+   "editor.selectionHighlight": true, // if we select the word, example blocking the word with cursor or visual line in vim, it will be highlighted the same word
+
+   // 9. Scrollbars
+  "editor.scrollbar.vertical": "hidden",
+  "editor.scrollbar.horizontal": "hidden",
+  "editor.overviewRulerBorder": false, // the line in scrollbar will be hide
+  "editor.hideCursorInOverviewRuler": true,
+
+  // 10. Code Completions
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": "off",
+    "strings": "off"
+  },
+  "editor.suggestOnTriggerCharacters": true, // example if we type `functions.` after the dot will be showing suggestions
+  "editor.tabCompletion": "on",
+  "editor.snippetSuggestions": "top", // position of suggestions box
+  "emmet.triggerExpansionOnTab": true, // example typing `div.h1` in html and press tab will be expanded
+  "files.autoSave": "afterDelay",
+  "update.mode": "none", // disable auto update, bcs something break with some extension
+  "extensions.ignoreRecommendations": true,
+
+  // ----
 
   // Theme
   "workbench.colorTheme": "Aura Dark",
-  "workbench.iconTheme": "symbols",
+  "workbench.iconTheme": "material-icon-theme",
 
   // Change font
   "editor.fontFamily": "Geist Mono",
+  "editor.fontLigatures": true,
+  // "editor.lineHeight": 1.1,
   "scm.inputFontFamily": "Geist Mono",
   "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
   "chat.editor.fontFamily": "Geist Mono",
@@ -21,49 +137,12 @@
   "editor.fontSize": 14,
   "terminal.integrated.fontSize": 14,
 
+
   // ui
   "editor.minimap.enabled": false,
   "window.commandCenter": false,
-  "editor.scrollbar.vertical": "hidden",
-  "window.titleBarStyle": "custom",
-  "editor.scrollbar.horizontal": "hidden",
-  "editor.cursorBlinking": "solid",
-  "editor.cursorSmoothCaretAnimation": "on",
   "editor.smoothScrolling": true,
-  "editor.lineNumbers": "relative",
 
-  // // APC
-  // "apc.activityBar": {
-  //   "position": "bottom",
-  //   "hideSettings": true,
-  //   "size": 28
-  // },
-  // "apc.electron": {
-  //   "titleBarStyle": "hiddenInset",
-  //   "trafficLightPosition": {
-  //     "x": 12,
-  //     "y": 10
-  //   }
-  // },
-  // "apc.font.family": "Geist Mono",
-  // "apc.monospace.font.family": "Geist Mono",
-  // "apc.statusBar": {
-  //   "position": "editor-bottom",
-  //   "height": 28,
-  //   "fontSize": 12
-  // },
-
-  // Custom css
-  // "apc.stylesheet": {
-  //   ".sidebar > .composite": "height: 12px !important",
-  //   ".title-label": "display: none !important",
-  //   ".title-actions": "display: none !important",
-  //   ".tabs-and-actions-container > .editor-actions": "display: none !important",
-  //   ".titlebar-center": "display: none !important",
-  //   ".titlebar-right": "display: none !important",
-  //   ".inline-tabs-placeholder": "display: none !important",
-  //   ".split-view-view .visible": "background-color: #110f17 !important"
-  // },
 
   // Aura theme customisation
   "workbench.colorCustomizations": {
@@ -73,8 +152,23 @@
       "activityBar.background": "#110f17",
       "statusBar.background": "#110f17",
       "editorGroupHeader.tabsBackground": "#110f17",
-      "tab.inactiveBackground": "#110f17"
-    }
+      "tab.inactiveBackground": "#110f17",
+      "editorSuggestWidget.selectedBackground" : "#3A334B"
+    },
+    "editorCursor.background": "#0000",
+    "editorOverviewRuler.wordHighlightStrongForeground": "#0000",
+    "editorOverviewRuler.selectionHighlightForeground": "#0000",
+    "editorOverviewRuler.rangeHighlightForeground": "#0000",
+    "editorOverviewRuler.wordHighlightForeground": "#0000",
+    "editorOverviewRuler.bracketMatchForeground": "#0000",
+    "editorOverviewRuler.findMatchForeground": "#0000",
+    "editorOverviewRuler.modifiedForeground": "#0000",
+    "editorOverviewRuler.deletedForeground": "#0000",
+    "editorOverviewRuler.warningForeground": "#0000",
+    "editorOverviewRuler.addedForeground": "#0000",
+    "editorOverviewRuler.errorForeground": "#0000",
+    "editorOverviewRuler.infoForeground": "#0000",
+    "editorOverviewRuler.border": "#0000",
   },
 
   // Toggle excluded files
@@ -115,18 +209,13 @@
   },
 
   // Misc
-  "workbench.startupEditor": "none",
-  "explorer.compactFolders": false,
-  "editor.tabSize": 2,
   "editor.linkedEditing": true,
   "breadcrumbs.filePath": "off",
-  "files.trimTrailingWhitespace": true,
   "[markdown]": {
     "files.trimTrailingWhitespace": false
   },
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": true,
-  "window.zoomLevel": 0.75,
 
   // Neovim
   "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
@@ -1115,3 +1204,5 @@
   },
   "editor.accessibilitySupport": "off"
 }
+
+
