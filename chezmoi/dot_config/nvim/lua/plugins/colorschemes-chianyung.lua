@@ -4,6 +4,15 @@
 
 return {
   -- { "killitar/obscure.nvim" },
+
+  -- https://github.com/uhs-robert/oasis.nvim
+  {
+    "uhs-robert/oasis.nvim",
+    enabled = false,
+    lazy = false,
+    priority = 1000,
+  },
+
   {
     "oxfist/night-owl.nvim",
     enabled = false,
@@ -100,7 +109,7 @@ return {
   -- },
   {
     "folke/tokyonight.nvim",
-    enabled = false,
+    enabled = true,
     -- opts = {
     -- 	transparent = true,
     -- 	styles = {
@@ -207,6 +216,11 @@ return {
     -- 	})
     -- 	require("black-metal").load()
     -- end,
+  },
+
+  {
+    "tiagovla/tokyodark.nvim",
+    enabled = false,
   },
 
   {
