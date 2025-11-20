@@ -20,9 +20,62 @@
   "git.decorations.enabled": true, // showing a status of a file if this repo is a git repo, example, when a file tracked and modified it will be showing 'M' in file explorer
 
   // UI
- "window.zoomLevel": 1,
- "window.titleBarStyle": "custom",
-"custom-ui-style.electron": {
+
+  // theme
+  "workbench.colorTheme": "Aura Dark",
+  "workbench.iconTheme": "symbols",
+
+  // fonts
+  "editor.fontFamily": "Geist Mono",
+  "editor.fontLigatures": true,
+  // "editor.lineHeight": 1.1,
+  "scm.inputFontFamily": "Geist Mono",
+  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
+  "chat.editor.fontFamily": "Geist Mono",
+  "debug.console.fontFamily": "Geist Mono",
+  "editor.codeLensFontFamily": "Geist Mono",
+  "notebook.output.fontFamily": "Geist Mono",
+  "markdown.preview.fontFamily": "Geist Mono",
+  "editor.inlayHints.fontFamily": "Geist Mono",
+  "editor.fontSize": 14,
+  "terminal.integrated.fontSize": 14,
+
+  // misc
+  "editor.minimap.enabled": false,
+  "window.commandCenter": false,
+  "editor.smoothScrolling": true,
+  "window.zoomLevel": 1,
+  "window.titleBarStyle": "custom",
+
+  // Aura theme customisation
+  "workbench.colorCustomizations": {
+    "[Aura Dark]": {
+      "editor.background": "#110f17",
+      "terminal.background": "#110f17",
+      "activityBar.background": "#110f17",
+      "statusBar.background": "#110f17",
+      "editorGroupHeader.tabsBackground": "#110f17",
+      "tab.inactiveBackground": "#110f17",
+      "editorSuggestWidget.selectedBackground" : "#3A334B"
+    },
+    "editorCursor.background": "#0000",
+    "editorOverviewRuler.wordHighlightStrongForeground": "#0000",
+    "editorOverviewRuler.selectionHighlightForeground": "#0000",
+    "editorOverviewRuler.rangeHighlightForeground": "#0000",
+    "editorOverviewRuler.wordHighlightForeground": "#0000",
+    "editorOverviewRuler.bracketMatchForeground": "#0000",
+    "editorOverviewRuler.findMatchForeground": "#0000",
+    "editorOverviewRuler.modifiedForeground": "#0000",
+    "editorOverviewRuler.deletedForeground": "#0000",
+    "editorOverviewRuler.warningForeground": "#0000",
+    "editorOverviewRuler.addedForeground": "#0000",
+    "editorOverviewRuler.errorForeground": "#0000",
+    "editorOverviewRuler.infoForeground": "#0000",
+    "editorOverviewRuler.border": "#0000"
+  },
+
+  // custom ui plugin
+ "custom-ui-style.electron": {
     "titleBarStyle": "hiddenInset",
     "trafficLightPosition": {
       "x": 20,
@@ -83,7 +136,7 @@
    "files.insertFinalNewline": true, // insert empty new line in the end of file for most coding standards
    "scm.diffDecorations": "all", // showing indicators in number line about git status
 
-   // 8. Guides and Highlights
+   // Guides and Highlights
    "editor.lineNumbers": "relative",
    "editor.tabSize": 2, // indentation tab size
    "editor.detectIndentation": false, // disable detect indentation by file, so it will be stick to 2 that i have cnofigured above
@@ -94,13 +147,13 @@
    "editor.occurrencesHighlight": "singleFile", // if the word is under cursor and the other same word will be highlighted
    "editor.selectionHighlight": true, // if we select the word, example blocking the word with cursor or visual line in vim, it will be highlighted the same word
 
-   // 9. Scrollbars
+   // Scrollbars
   "editor.scrollbar.vertical": "hidden",
   "editor.scrollbar.horizontal": "hidden",
   "editor.overviewRulerBorder": false, // the line in scrollbar will be hide
   "editor.hideCursorInOverviewRuler": true,
 
-  // 10. Code Completions
+  // Code Completions
   "editor.quickSuggestions": {
     "other": "on",
     "comments": "off",
@@ -113,63 +166,6 @@
   "files.autoSave": "afterDelay",
   "update.mode": "none", // disable auto update, bcs something break with some extension
   "extensions.ignoreRecommendations": true,
-
-  // ----
-
-  // Theme
-  "workbench.colorTheme": "Aura Dark",
-  "workbench.iconTheme": "symbols",
-
-  // Change font
-  "editor.fontFamily": "Geist Mono",
-  "editor.fontLigatures": true,
-  // "editor.lineHeight": 1.1,
-  "scm.inputFontFamily": "Geist Mono",
-  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
-  "chat.editor.fontFamily": "Geist Mono",
-  "debug.console.fontFamily": "Geist Mono",
-  "editor.codeLensFontFamily": "Geist Mono",
-  "notebook.output.fontFamily": "Geist Mono",
-  "markdown.preview.fontFamily": "Geist Mono",
-  "editor.inlayHints.fontFamily": "Geist Mono",
-
-  // Font size
-  "editor.fontSize": 14,
-  "terminal.integrated.fontSize": 14,
-
-
-  // ui
-  "editor.minimap.enabled": false,
-  "window.commandCenter": false,
-  "editor.smoothScrolling": true,
-
-
-  // Aura theme customisation
-  "workbench.colorCustomizations": {
-    "[Aura Dark]": {
-      "editor.background": "#110f17",
-      "terminal.background": "#110f17",
-      "activityBar.background": "#110f17",
-      "statusBar.background": "#110f17",
-      "editorGroupHeader.tabsBackground": "#110f17",
-      "tab.inactiveBackground": "#110f17",
-      "editorSuggestWidget.selectedBackground" : "#3A334B"
-    },
-    "editorCursor.background": "#0000",
-    "editorOverviewRuler.wordHighlightStrongForeground": "#0000",
-    "editorOverviewRuler.selectionHighlightForeground": "#0000",
-    "editorOverviewRuler.rangeHighlightForeground": "#0000",
-    "editorOverviewRuler.wordHighlightForeground": "#0000",
-    "editorOverviewRuler.bracketMatchForeground": "#0000",
-    "editorOverviewRuler.findMatchForeground": "#0000",
-    "editorOverviewRuler.modifiedForeground": "#0000",
-    "editorOverviewRuler.deletedForeground": "#0000",
-    "editorOverviewRuler.warningForeground": "#0000",
-    "editorOverviewRuler.addedForeground": "#0000",
-    "editorOverviewRuler.errorForeground": "#0000",
-    "editorOverviewRuler.infoForeground": "#0000",
-    "editorOverviewRuler.border": "#0000",
-  },
 
   // Toggle excluded files
   "files.exclude": {
