@@ -261,6 +261,12 @@
       "command": "workbench.action.quickOpen"
     },
     {
+      "key": ",",
+      "name": "Show all buffers open",
+      "type": "command",
+      "command": "workbench.action.showAllEditors"
+    },
+    {
       "key": "b",
       "name": "Buffers/Editors...",
       "type": "bindings",
