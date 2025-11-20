@@ -1,9 +1,9 @@
 {
   // open json editor for settings
-  "workbench.settings.editor": "json",
+  "workbench.settings.editor": "json", // when pressing `cmd + .` on mac this doesn't opening gui instead will open json file
   "workbench.activityBar.location": "hidden",
   "workbench.editor.showTabs": "none", // showing tabs
-  "workbench.statusBar.visible": false, // status bar in the bottom
+  "workbench.statusBar.visible": true, // status bar in the bottom
   "workbench.startupEditor": "none",
   "workbench.tips.enabled": false,
   "breadcrumbs.enabled": false, // breadcrumbs in the top
@@ -118,7 +118,7 @@
 
   // Theme
   "workbench.colorTheme": "Aura Dark",
-  "workbench.iconTheme": "material-icon-theme",
+  "workbench.iconTheme": "symbols",
 
   // Change font
   "editor.fontFamily": "Geist Mono",
@@ -259,6 +259,12 @@
       "when": "editorHasReferenceProvider"
     },
     {
+      "key": " ",
+      "name": "Search file",
+      "type": "command",
+      "command": "workbench.action.quickOpen"
+    },
+    {
       "key": "b",
       "name": "Buffers/Editors...",
       "type": "bindings",
@@ -300,7 +306,7 @@
           "command": "workbench.action.moveEditorToRightGroup"
         },
         {
-          "key": "m",
+          "key": "o",
           "name": "Close other editors",
           "type": "command",
           "command": "workbench.action.closeOtherEditors"
