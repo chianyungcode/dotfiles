@@ -104,7 +104,7 @@
     ".title .monaco-icon-label.file-icon": "margin: 0 60px",
     ".monaco-editor .cursors-layer .cursor": "background-image: linear-gradient(135deg, #ffaffc 10%, #DA70D6 100%)"
   },
-  "custom-ui-style.font.sansSerif": "Martian Mono",
+  "custom-ui-style.font.sansSerif": "Dank Mono",
 
   // Cursor
   "editor.multiCursorModifier": "ctrlCmd", // the default is alt, but now remapping to ctrlCmd which in Windows and Linux is `ctrl` and macOS `cmd`
