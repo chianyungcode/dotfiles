@@ -157,6 +157,7 @@
         "mongosh",             # MongoDB shell
         "nixfmt",              # Nix formatter
         "nushell",             # Alternative shell
+        "kitty",               # terminal
         "pngpaste",            # Paste PNG into files on MacOS, much like pbpaste does for text.
         "poppler",             # PDF rendering library
         "prettier",            # JS/TS formatter
@@ -182,6 +183,8 @@
     [packages.homebrew.personal_computer]
       casks = [
         "anki",
+        "gromgit/brewtils/taproom",  # TUI for search homebrew package
+        "eget",                      # Easily install prebuilt binaries from GitHub.
         "apparency",                 # Showing detail app in finder
         "arc",
         "bettertouchtool",
@@ -219,6 +222,10 @@
         "obsidian",
         "ogdesign-eagle",            # Organise all your reference images in one place
         "ollama",                    # Run local LLM
+        "setapp",
+        "localsend",
+        "superwhisper",
+        "utm",                       # Virtual Machine Emulator
         "qspace-pro",                # Better finder
         "raindropio",
         "raycast",
@@ -263,7 +270,6 @@
       apps = [
         "1355679052", # Dropover
         "1502839586", # Hand mirror
-        "1516894961", # Codye
         "1551462255", # Mouseboost
         "1609960918", # Jomo
         "1666327168", # Spaced
@@ -272,6 +278,7 @@
         "6451349778", # Rapidmg
         "6474854386", # Launchpallete
         "6698876601", # Folder preview
+        "1604176982", # Onething
         "6739781207", # Pieoneer
         "6739802604", # Folo
         "6743316600", # Subscription Day
