@@ -464,7 +464,7 @@
       packages = []
 
     [packages.cargo.personal_computer]
-      packages = ['cargo-seek']
+      packages = ['cargo-seek', 'gitlogue']
   [packages.node]
     to_remove = []
 
