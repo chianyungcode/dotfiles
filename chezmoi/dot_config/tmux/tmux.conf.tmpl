@@ -127,14 +127,15 @@ set -gq allow-passthrough on
 # set-option -g automatic-rename off # Control automatic window renaming.  When this setting enabled, tmux will rename the window automatically the format specified by automatic-rename-format.
 
 # --- Define colour scheme --- #
-# _tmux_white=colour15
-# _tmux_black=colour232
-# _tmux_red=colour1
-# _tmux_purple=colour54
-# _tmux_grey_l=colour145
-# _tmux_grey_d=colour236
-# _tmux_blue=colour5
-# _tmux_blue_d=colour17
+_tmux_white=colour15
+_tmux_black=colour232
+_tmux_red=colour1
+_tmux_purple=colour54
+_tmux_grey_l=colour145
+_tmux_grey_d=colour236
+_tmux_blue=colour5
+_tmux_blue_d=colour17
+_tmux_green=colour2
 # ---------------------------- #
 
 # --- Panes ---
@@ -150,27 +151,25 @@ set -gq allow-passthrough on
 # == pane style 1 ==
 
 # == pane style 2 ==
-# set -g pane-border-status off        # tidak tampilkan title
-# set -g pane-border-format ""         # format dikosongkan agar benar-benar tidak muncul
-#
-# set -g pane-border-style "fg=white"  # warna pane normal
-# set -g pane-active-border-style "fg=green"  # active pane jadi hijau
-#
+set -g pane-border-status off        # tidak tampilkan title
+set -g pane-border-format ""         # format dikosongkan agar benar-benar tidak muncul
+
+set -g pane-border-style "fg=white"  # warna pane normal
+set -g pane-active-border-style "fg=green"  # active pane jadi hijau
+
 # set -g message-style "fg=$_tmux_grey_l,bg=$_tmux_grey_d"
-# set -g display-panes-colour "black"
-# set -g display-panes-active-colour "white"
+set -g display-panes-colour "black"
+set -g display-panes-active-colour "white"
 # == pane style 2 ==
 
 # == pane style 3 ==
-_tmux_green=colour2
-
-set -g pane-border-status top
-set -g pane-border-style "fg=white"
-set -g pane-active-border-style "fg=$_tmux_green"
-
-set -g pane-border-format " #[fg=green,bold]#{?@mytitle,#{@mytitle},pane #P}#[default] "
-
-bind u command-prompt -p "Enter new pane title:" "set-option -p @mytitle '%%'"
+# set -g pane-border-status top
+# set -g pane-border-style "fg=white"
+# set -g pane-active-border-style "fg=$_tmux_green"
+#
+# set -g pane-border-format " #[fg=green,bold]#{?@mytitle,#{@mytitle},pane #P}#[default] "
+#
+# bind u command-prompt -p "Enter new pane title:" "set-option -p @mytitle '%%'"
 # == pane style 3 ==
 
 # Auto hide pane-border-status line when only one pane is displayed (see tmux/tmux#566)
