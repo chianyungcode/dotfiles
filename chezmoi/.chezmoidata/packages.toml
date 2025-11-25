@@ -439,6 +439,8 @@
       packages = [
         "opencode-bin",
         "superfile",    # file manager in terminal
+        "datagrip",
+        "datagrip-jre", # runtime for datagrip can work
       ]
 
   [packages.python]
