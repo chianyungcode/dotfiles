@@ -1,5 +1,10 @@
 [
   {
+    "bindings": {
+      "cmd-alt-c": ["agent::NewExternalAgentThread", { "agent": "codex" }]
+    }
+  },
+  {
     "context": "Dock",
     "bindings": {
       "ctrl-w h": "workspace::ActivatePaneLeft",
