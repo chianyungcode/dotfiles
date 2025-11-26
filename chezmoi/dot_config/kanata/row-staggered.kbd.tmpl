@@ -186,12 +186,14 @@
   tmux-prefix C-a
 
   tx-new-window (macro @tmux-prefix c) ;; new window
-  tx-rn-session (macro @tmux-prefix S-4) ;; rename session
-  tx-rn-window (macro @tmux-prefix ,) ;; rename window
-  tx-rn-pane (macro @tmux-prefix u) ;; rename pane
   tx-plg-sesh  (macro @tmux-prefix o) ;; sesh plugin
   tx-detach (macro @tmux-prefix d) ;; detach tmux
   tx-vi-mode (macro @tmux-prefix [) ;; switch to tmux vi mode
+
+  ;; rename session/window/pane
+  tx-rn-session (macro @tmux-prefix S-4) ;; rename session
+  tx-rn-window (macro @tmux-prefix ,) ;; rename window
+  tx-rn-pane (macro @tmux-prefix u) ;; rename pane
 
   ;; switch between last session/window/pane
   tx-sw-session (macro @tmux-prefix S-a)
@@ -206,7 +208,8 @@
   tx-slcsession (macro @tmux-prefix s)
   tx-slcwindow (macro @tmux-prefix w)
 
-  ;; kill window/pane
+  ;; kill session/window/pane
+  tx-kill-session (macro @tmux-prefix g)
   tx-kill-window (macro @tmux-prefix S-7)
   tx-kill-pane (macro @tmux-prefix x)
 
@@ -226,6 +229,7 @@
   tx-p-top (macro @tmux-prefix k)
   tx-p-right (macro @tmux-prefix l)
 
+  ;; resize pane
   tx-rsz-right (macro @tmux-prefix right)
   tx-rsz-left (macro @tmux-prefix left)
   tx-rsz-up (macro @tmux-prefix up)
@@ -233,11 +237,11 @@
 )
 
 (deflayer tmux
-       🔅        🔆        @mc            @sls           @dtn           @dnd           ◀◀        ▶⏸          ▶▶                    🔇            🔉            🔊
-  grv  @tx-wdw-1          @tx-wdw-2       @tx-wdw-3      @tx-wdw-4      @tx-wdw-5      @tx-wdw-6         @tx-wdw-7           @tx-wdw-8                     9             0             @tx-splith         @tx-splitv         bspc
-  lrld  @tx-slcsession     @tx-slcwindow   @tx-detach     XX             f5             @tx-rsz-left          @tx-rsz-bottom        @tx-rsz-up    @tx-rsz-right @tx-plg-sesh       XX                 XX                \
-  @cw  @tx-sw-session     @tx-sw-window   @tx-sw-pane    4              5              @tx-p-left            @tx-p-bottom          @tx-p-top     @tx-p-right   ;                  '                  ret
-  lsft @tx-kill-window    @tx-kill-pane   @tx-new-window @tx-vi-mode             0              XX                    @tx-rn-session             @tx-rn-window @tx-rn-pane  /             rsft
+       🔅        🔆        @mc              @sls           @dtn           @dnd           ◀◀        ▶⏸          ▶▶                    🔇            🔉            🔊
+  grv  @tx-wdw-1          @tx-wdw-2         @tx-wdw-3      @tx-wdw-4      @tx-wdw-5      @tx-wdw-6             @tx-wdw-7           @tx-wdw-8                     9             0             @tx-splith         @tx-splitv         bspc
+  lrld @tx-slcsession     @tx-slcwindow     @tx-detach     XX             f5             @tx-rsz-left          @tx-rsz-bottom        @tx-rsz-up    @tx-rsz-right @tx-plg-sesh       XX                 XX                \
+  @cw  @tx-sw-session     @tx-sw-window     @tx-sw-pane    4              5              @tx-p-left            @tx-p-bottom          @tx-p-top     @tx-p-right   ;                  '                  ret
+  lsft @tx-kill-session   @tx-kill-window   @tx-kill-pane  @tx-vi-mode    XX             @tx-new-window        @tx-rn-session             @tx-rn-window @tx-rn-pane  /             rsft
   lctl lmet               lalt                             spc                                            ralt            rmet              rctl
 )
 
