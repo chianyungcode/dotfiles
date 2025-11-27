@@ -288,13 +288,13 @@ abbr --add glgga "git log --graph --decorate --all"
 abbr --add glgm "git log --graph --max-count=10"
 abbr --add glgp "git log --stat --patch"
 abbr --add glo "git log --oneline --decorate"
-# abbr "glod"="git log --graph --pretty=\"%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset\""
-# abbr "glods"="git log --graph --pretty=\"%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset\" --date=short"
+abbr --add glod 'git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset"'
+abbr --add glods 'git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset" --date=short'
 abbr --add glog "git log --oneline --decorate --graph"
 abbr --add gloga "git log --oneline --decorate --graph --all"
-# abbr "glol"="git log --graph --pretty=\"%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset\""
-# abbr "glola"="git log --graph --pretty=\"%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset\" --all"
-# abbr "glols"="git log --graph --pretty=\"%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset\" --stat"
+abbr --add glol 'git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset"'
+abbr --add glola 'git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --all'
+abbr --add glols 'git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --stat'
 abbr --add glp _git_log_prettily
 abbr --add gluc "git pull upstream \$(git_current_branch)"
 abbr --add glum "git pull upstream \$(git_main_branch)"
@@ -379,8 +379,8 @@ abbr --add gstu "gsta --include-untracked"
 abbr --add gsu "git submodule update"
 abbr --add gsw "git switch"
 abbr --add gswc "git switch --create"
-abbr --add gswd "git switch \$(git_develop_branch)"
-abbr --add gswm "git switch \$(git_main_branch)"
+abbr --add gswd "git switch develop"
+abbr --add gswm "git switch main"
 abbr --add gta "git tag --annotate"
 # abbr "gtl"="gtl(){ git tag --sort=-v:refname -n --list \"\${1}*\" }; noglob gtl"
 abbr --add gts "git tag --sign"
