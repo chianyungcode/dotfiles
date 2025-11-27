@@ -225,13 +225,13 @@ abbr --add gbso "git bisect old"
 abbr --add gbsr "git bisect reset"
 abbr --add gbss "git bisect start"
 abbr --add gc "git commit --verbose"
-# abbr --add gc\! "git commit --verbose --amend"
+abbr --add gc\! "git commit --verbose --amend"
 abbr --add gca "git commit --verbose --all"
-# abbr --add gca\! "git commit --verbose --all --amend"
+abbr --add gca\! "git commit --verbose --all --amend"
 abbr --add gcam "git commit --all --message"
-# abbr --add gcan\! "git commit --verbose --all --no-edit --amend"
-# abbr --add gcann\! "git commit --verbose --all --date=now --no-edit --amend"
-# abbr --add gcans\! "git commit --verbose --all --signoff --no-edit --amend"
+abbr --add gcan\! 'git commit --verbose --all --no-edit --amend'
+abbr --add gcann\! 'git commit --verbose --all --date=now --no-edit --amend'
+abbr --add gcans\! 'git commit --verbose --all --signoff --no-edit --amend'
 abbr --add gcas "git commit --all --signoff"
 abbr --add gcasm "git commit --all --signoff --message"
 abbr --add gcB "git checkout -B"
