@@ -4,3 +4,13 @@
 
 [ui]
   default-command = "log"
+
+[git]
+  push-new-bookmarks = true
+
+[aliases]
+  fetch = ["git", "fetch"]
+  init = ["git", "init", "--colocate"]
+  mark = ["bookmark", "set", "-r", "@"]
+  push = ["git", "push", "--allow-new"]
+  track = ["bookmark", "track"]
