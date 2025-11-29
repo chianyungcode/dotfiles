@@ -125,6 +125,8 @@
         # "tmuxinator", # Tmux session manager
 
         "act",                                 # runs GitHub Actions locally
+        "jj",                                  # jujutsu version controll
+        "jjui",                                # jujutsu tui
         "awscli",
         "biome",                               # JS/TS linter, formatter
         "pastel",                              # converter color in terminal
@@ -369,6 +371,8 @@
         "appimagelauncher", # for integrating .AppImage
         # "auto-cpufreq",        # CPU frequency auto, disable this because can causing slow perfomance. This slow perfomance appear in startup time in terminal
         "gitleaks",
+        "jujutsu",             # jujutsu version control
+        "jjui-bin",            # jujutsu tui
         "biome",               # JS/TS linter, formatter
         "pastel",              # converter color in terminal
         "btop",
@@ -466,7 +470,8 @@
     [packages.cargo.dev_computer]
       packages = [
         "typos-cli",
-        "stylua",    # Lua formatter
+        "stylua",      # Lua formatter
+        "starship-jj", # https://gitlab.com/lanastara_foss/starship-jj
       ]
 
     [packages.cargo.homelab_member]

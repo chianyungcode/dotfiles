@@ -16,12 +16,21 @@ $git_branch\
 $git_state\
 $git_status\
 $git_metrics\
+${custom.jj}\
 $nodejs\
 $bun\
 $fill\
 $cmd_duration $jobs $time\
 $line_break\
 $character"""
+
+[custom.jj]
+  command        = "prompt"
+  format         = "$output"
+  ignore_timeout = true
+  shell          = ["starship-jj", "--ignore-working-copy", "starship"]
+  use_stdin      = false
+  when           = true
 
 # Replace the '❯' symbol in the prompt with '➜'
 [character]
