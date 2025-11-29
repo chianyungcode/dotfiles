@@ -4,10 +4,19 @@
 
 [ui]
   default-command = "log"
-  diff-formatter = "delta"
+  pager = "delta"
+  diff-formatter = ":git"
+  editor = "nvim"
 
 [git]
   push-new-bookmarks = true
+
+[templates]
+  git_push_bookmark = '"chianyung/push-" ++ change_id.short()'
+
+[template-aliases]
+  # 'format_short_id(id)' = 'id.shortest()'
+  # 'format_short_id(id)' = 'id.shortest(12).prefix() ++ "[" ++ id.shortest(12).rest() ++ "]"'
 
 [aliases]
   ed = ["edit"]
@@ -17,3 +26,4 @@
   markc = ["bookmark", "set", "-r", "@"]
   push = ["git", "push", "--allow-new"]
   track = ["bookmark", "track"]
+  la = ["log", "-r", "all()"]
