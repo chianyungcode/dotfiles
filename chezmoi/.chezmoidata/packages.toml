@@ -246,6 +246,7 @@
       ]
       formulae = [
         "felixkratz/formulae/borders",
+        "asciinema",                   # record your terminal
         "presenterm",                  # Presentation in CLI
         "qmk/qmk/qmk",                 # QMK CLI
         "superfile",                   # file manager in terminal
@@ -443,6 +444,7 @@
       packages = [
         "opencode-bin",
         "superfile",    # file manager in terminal
+        "asciinema",    # record your terminal
         "datagrip",
         "datagrip-jre", # runtime for datagrip can work
       ]
