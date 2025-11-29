@@ -5,6 +5,7 @@
 [ui]
   default-command = "log"
   pager = "delta"
+  diff-editor = "editdiff3"
   diff-formatter = ":git"
   editor = "nvim"
 
@@ -20,10 +21,11 @@
 
 [aliases]
   ed = ["edit"]
+  la = ["log", "-r", "all()"]
+  abd = ["abandon"]
   fetch = ["git", "fetch"]
   init = ["git", "init", "--colocate"]
   mark = ["bookmark", "set", "-r"]
   markc = ["bookmark", "set", "-r", "@"]
   push = ["git", "push", "--allow-new"]
   track = ["bookmark", "track"]
-  la = ["log", "-r", "all()"]
