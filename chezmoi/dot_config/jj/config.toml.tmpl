@@ -7,11 +7,12 @@
 
 [git]
   push-new-bookmarks = true
+  diff-formatter = "delta"
 
 [aliases]
+  ed = ["edit"]
   fetch = ["git", "fetch"]
   init = ["git", "init", "--colocate"]
-  ed = ["edit"]
   mark = ["bookmark", "set", "-r"]
   markc = ["bookmark", "set", "-r", "@"]
   push = ["git", "push", "--allow-new"]
