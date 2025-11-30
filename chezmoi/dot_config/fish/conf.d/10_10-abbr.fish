@@ -414,28 +414,53 @@ abbr --add gwtls "git worktree list"
 abbr --add gwtmv "git worktree move"
 abbr --add gwtrm "git worktree remove"
 
+# Jujutsu
+abbr -a j jj # I use `jj` to exit insert mode
+abbr -a jbl 'jj bookmark list -a'
+abbr -a jbm --set-cursor 'jj bookmark move % --to @-'
+abbr -a jbmm 'jj bookmark move main --to @-'
+abbr -a jc 'jj commit'
+abbr -a jcc 'jj commit -m "$(koji --stdout)"'
+abbr -a jd --set-cursor 'jj desc -m "%"'
+abbr -a jdf 'jj diff'
+abbr -a je --set-cursor 'jj edit %'
+abbr -a jgf 'jj git fetch'
+abbr -a jgp 'jj git push'
+abbr -a jdk 'jj desc -m "$(koji --stdout)"'
+abbr -a jl 'jj log'
+abbr -a jla "jj log 'all()'"
+abbr -a jn --set-cursor 'jj new %'
+abbr -a jr --set-cursor 'jj rebase -s % -d @-'
+abbr -a js 'jj status'
+abbr -a jsh --set-cursor 'jj show %'
+abbr -a jsp 'jj split'
+abbr -a jspi 'jj split -i'
+abbr -a jab --set-cursor 'jj abandon %'
+
 # tmux
 abbr --add tx tmux
 abbr --add tl "tmux list-sessions"
-abbr --add ts "tmux new -s"
+abbr --add ts --set-cursor 'tmux new -s "%"'
 abbr --add tksv "tmux kill-server"
 
 # tmuxifier
 abbr --add txi tmuxifier
-abbr --add txis "tmuxifier s"
+abbr --add txis --set-cursor 'tmuxifier s "%"'
 
 # zellij
 abbr --add zl zellij
 abbr --add zla "zellij attach"
-abbr --add zld "zellij delete-session"
+abbr --add zld --set-cursor 'zellij delete-session "%"'
 abbr --add zlda "zellij delete-all-sessions"
-abbr --add zlk "zellij kill-session"
+abbr --add zlk --set-cursor 'zellij kill-session "%"'
 abbr --add zlka "zellij kill-all-sessions"
 abbr --add zlls "zellij list-sessions"
 
 # 1password
 abbr --add vercel "op plugin run -- vercel"
 abbr --add gh "op plugin run -- gh"
+
+abbr --add chp --set-cursor 'chezmoi apply -P ~/.config/%'
 
 abbr --add untar "tar -zxvf"
 # abbr "urldecode"="python -c \"import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])\""
