@@ -284,16 +284,19 @@ abbr --add gl "git pull"
 abbr --add glab "op plugin run -- glab"
 abbr --add glg "git log --stat"
 abbr --add glgg "git log --graph"
-abbr --add glgga "git log --graph --decorate --all"
+abbr --add glgga "git log --graph --decorate --branches --remotes --tags"
+abbr --add glggaa "git log --graph --decorate --all"
 abbr --add glgm "git log --graph --max-count=10"
 abbr --add glgp "git log --stat --patch"
 abbr --add glo "git log --oneline --decorate"
 abbr --add glod 'git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset"'
 abbr --add glods 'git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset" --date=short'
 abbr --add glog "git log --oneline --decorate --graph"
-abbr --add gloga "git log --oneline --decorate --graph --all"
+abbr --add glogaa "git log --oneline --decorate --graph --all"
+abbr --add gloga "git log --oneline --decorate --graph --branches --remotes --tags"
 abbr --add glol 'git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset"'
-abbr --add glola 'git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --all'
+abbr --add glolaa 'git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --all'
+abbr --add glola 'git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --branches --remotes --tags'
 abbr --add glols 'git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --stat'
 abbr --add glp _git_log_prettily
 abbr --add gluc "git pull upstream \$(git_current_branch)"
@@ -434,13 +437,12 @@ abbr -a jr --set-cursor 'jj rebase -s % -d @-'
 abbr -a js 'jj status'
 abbr -a jsh --set-cursor 'jj show %'
 abbr -a jsp 'jj split'
+abbr -a jspi 'jj split -i'
 abbr -a jsq 'jj squash'
 abbr -a jsqi 'jj squash -i'
 abbr -a jsqc --set-cursor 'jj squash -t %'
-abbr -a jdk 'jj desc -m "$(koji --stdout)"'
-abbr -a jspi 'jj split -i'
 abbr -a jab --set-cursor 'jj abandon %'
-abbr -a jdk 'jj desc -m "$(koji --stdout)"'
+abbr -a jdc 'jj desc -m "$(koji --stdout)"'
 abbr -a jcc 'jj commit -m "$(koji --stdout)"'
 abbr -a jnc 'jj new -m "$(koji --stdout)"'
 
