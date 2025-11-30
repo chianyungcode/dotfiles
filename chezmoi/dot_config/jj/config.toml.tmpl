@@ -19,6 +19,15 @@
   # 'format_short_id(id)' = 'id.shortest()'
   # 'format_short_id(id)' = 'id.shortest(12).prefix() ++ "[" ++ id.shortest(12).rest() ++ "]"'
 
+[signing]
+  behavior = "own"
+  backend = "ssh"
+  {{- if and .use_secrets (eq .git_user "chianyungcode") }}
+  key = "{{ onepasswordRead .secrets.git_signing_key_cny }}"
+  {{- else if and .use_secrets (eq .git_user "seraphynee") }}
+  key = "{{ onepasswordRead .secrets.git_signing_key_phyne }}"
+  {{- end }}
+
 [aliases]
   ed = ["edit"]
   la = ["log", "-r", "all()"]
