@@ -1,1 +1,1 @@
-COMPLETE=fish jj | source
+# COMPLETE=fish jj | source

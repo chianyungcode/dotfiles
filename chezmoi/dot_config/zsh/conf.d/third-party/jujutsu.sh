@@ -1,3 +1,3 @@
 #!/usr/bin/env zsh
 
-source <(COMPLETE=zsh jj)
+# source <(COMPLETE=zsh jj)
