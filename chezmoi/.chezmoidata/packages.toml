@@ -456,7 +456,13 @@
       packages = ["halper", "pygments"]
 
     [packages.python.dev_computer]
-      packages = ["ansible-core", "cookiecutter", "pre-commit", "pynvim"]
+      packages = [
+        "ansible-core",
+        "commitizen",
+        "cookiecutter",
+        "pre-commit",
+        "pynvim",
+      ]
 
     [packages.python.homelab_member]
       packages = []
@@ -474,6 +480,7 @@
         "typos-cli",
         "stylua",      # Lua formatter
         "starship-jj", # https://gitlab.com/lanastara_foss/starship-jj
+        "koji",        # conventional commit cli alternative fo commitizen
       ]
 
     [packages.cargo.homelab_member]
