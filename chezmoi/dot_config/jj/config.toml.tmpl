@@ -45,6 +45,14 @@
 [template-aliases]
   # 'format_short_id(id)' = 'id.shortest()'
   # 'format_short_id(id)' = 'id.shortest(12).prefix() ++ "[" ++ id.shortest(12).rest() ++ "]"'
+  'commit_change_ids' = '''
+      concat(
+        format_field("Change ID", change_id.short(8)),
+        format_field("Commit ID", commit_id.short(7)),
+      )
+    '''
+  'oneline_log' = 'separate(" ", change_id.shortest(8), description.first_line(), commit_id.shortest(7))'
+
 
 [aliases]
   ed = ["edit"]

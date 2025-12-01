@@ -432,6 +432,7 @@ abbr -a jgpa 'jj git push'
 abbr -a jgps --set-cursor 'jj git push -b %'
 abbr -a jl 'jj log'
 abbr -a jla "jj log 'all()'"
+abbr -a jlt --set-cursor "jj log -T %"
 abbr -a jn --set-cursor 'jj new %'
 abbr -a jr --set-cursor 'jj rebase -s % -d @-'
 abbr -a js 'jj status'
