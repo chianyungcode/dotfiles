@@ -11,6 +11,13 @@ export EDITOR="nvim"
 export LM_STUDIO_BIN="$HOME/.lmstudio/bin"
 export TMUXIFIER_LAYOUT_PATH="$HOME/.config/tmuxifier/layouts"
 
+# Let zsh-abbr leave the cursor at the end of the expanded text
+export ABBR_SET_EXPANSION_CURSOR=1
+
+# Enable multiple-cursor placeholder support in zsh-abbr
+# (required if you use more than one “cursor stop” in an abbreviation)
+export ABBR_SET_LINE_CURSOR=1
+
 # === START OF CHEZMOI MANAGED ===
 {{ if .use_secrets }}
 # == SECRETS ENV VARIABLE ==
