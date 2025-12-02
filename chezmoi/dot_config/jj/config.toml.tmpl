@@ -40,7 +40,7 @@
   {{- end }}
 
 [templates]
-  git_push_bookmark = '"chianyung/push-" ++ change_id.short()'
+  git_push_bookmark = '"{{ .git_user }}/push-" ++ change_id.short()'
 
 [template-aliases]
   # 'format_short_id(id)' = 'id.shortest()'
