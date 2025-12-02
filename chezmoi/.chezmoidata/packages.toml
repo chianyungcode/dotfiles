@@ -477,10 +477,12 @@
 
     [packages.cargo.dev_computer]
       packages = [
+        "cargo-update",
+        "cargo-binstall",
         "typos-cli",
-        "stylua",      # Lua formatter
-        "starship-jj", # https://gitlab.com/lanastara_foss/starship-jj
-        "koji",        # conventional commit cli alternative fo commitizen
+        "stylua",         # Lua formatter
+        "starship-jj",    # https://gitlab.com/lanastara_foss/starship-jj
+        "koji",           # conventional commit cli alternative fo commitizen
       ]
 
     [packages.cargo.homelab_member]
