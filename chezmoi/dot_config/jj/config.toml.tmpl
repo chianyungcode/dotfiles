@@ -45,6 +45,7 @@
 [template-aliases]
   # 'format_short_id(id)' = 'id.shortest()'
   # 'format_short_id(id)' = 'id.shortest(12).prefix() ++ "[" ++ id.shortest(12).rest() ++ "]"'
+  # 'format_short_change_id(id)' = 'id.shortest()'
   'commit_change_ids' = '''
       concat(
         format_field("Change ID", change_id.short(8)),
