@@ -126,5 +126,5 @@ set -l __login_paths /bin /usr/bin /usr/sbin /sbin \
     $HOME/.tmuxifier/bin $LM_STUDIO_BIN
 for dir in $__login_paths
     test -d $dir; or continue
-    fish_add_path -gP $dir
+    fish_add_path -ga $dir
 end
