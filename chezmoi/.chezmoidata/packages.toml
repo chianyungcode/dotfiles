@@ -115,7 +115,8 @@
         "apidog",
         "cursor",
         "datagrip",
-        "fork",     # "sourcetree", alternative to fork
+        "fork",       # "sourcetree", alternative to fork
+        "difftastic", # diff tools
       ]
       formulae = [
         # "flyctl",                              # Fly.io CLI
@@ -372,6 +373,7 @@
         "appimagelauncher", # for integrating .AppImage
         # "auto-cpufreq",        # CPU frequency auto, disable this because can causing slow perfomance. This slow perfomance appear in startup time in terminal
         "gitleaks",
+        "difftastic",          # diff tools
         "jujutsu",             # jujutsu version control
         "jjui-bin",            # jujutsu tui
         "biome",               # JS/TS linter, formatter
