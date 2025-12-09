@@ -362,6 +362,8 @@ abbr jspi="jj split -i"
 abbr jab="jj abandon %"
 abbr jcc='jj commit -m "$(koji --stdout)"'
 abbr jnc='jj new -m "$(koji --stdout)"'
+abbr jh='jj -h'
+abbr jun='jj undo'
 
 # --- Homebrew ---
 abbr "bci"="brew info --cask"

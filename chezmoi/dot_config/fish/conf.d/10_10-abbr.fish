@@ -446,6 +446,8 @@ abbr -a jab --set-cursor 'jj abandon %'
 abbr -a jdc 'jj desc -m "$(koji --stdout)"'
 abbr -a jcc 'jj commit -m "$(koji --stdout)"'
 abbr -a jnc 'jj new -m "$(koji --stdout)"'
+abbr -a jh 'jj -h'
+abbr -a jun 'jj undo'
 
 # tmux
 abbr --add tx tmux
