@@ -9,6 +9,12 @@ model_reasoning_effort = "medium"
 [mcp_servers.Ref]
   url = "https://api.ref.tools/mcp?apiKey={{ if .use_secrets }}{{ onepasswordRead .secrets.ref_api_key }}{{ end }}"
 
+[mcp_servers.deepwiki]
+  url = "https://mcp.deepwiki.com/mcp"
+
+[mcp_servers.exa]
+  url = "https://mcp.exa.ai/mcp"
+
 [projects."/Users/chianyung/.local/share/chezmoi"]
 trust_level = "trusted"
 
