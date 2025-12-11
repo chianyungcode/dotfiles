@@ -6,6 +6,9 @@ model_reasoning_effort = "medium"
   args = ["-y", "@upstash/context7-mcp", "--api-key", "{{ onepasswordRead .secrets.context7_api_key }}"]
   command = "npx"
 
+[mcp_servers.Ref]
+  url = "https://api.ref.tools/mcp?apiKey={{ if .use_secrets }}{{ onepasswordRead .secrets.ref_api_key }}{{ end }}"
+
 [projects."/Users/chianyung/.local/share/chezmoi"]
 trust_level = "trusted"
 
