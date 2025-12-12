@@ -1,0 +1,10 @@
+[preview]
+ show_at_start = true
+
+[ui.tracer]
+enabled = true
+
+[leader.bn]
+help = "Set new bookmark"
+send = [ "$", "jj bookmark set -r \"$change_id\" $(gum input --placeholder \"Name of the new bookmark\")", "enter" ]
+
