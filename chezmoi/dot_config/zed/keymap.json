@@ -24,7 +24,8 @@
     "context": "ProjectPanel",
     "bindings": {
       ".": "project_panel::ToggleHideHidden",
-      "space e": ["workspace::CloseActiveDock", "project_panel::ToggleFocus"]
+      "space e": ["workspace::CloseActiveDock", "project_panel::ToggleFocus"],
+      "a": "project_panel::NewFile"
     }
   },
   {
@@ -35,6 +36,9 @@
       "space b d": "pane::CloseActiveItem",
       "space b o": "pane::CloseInactiveItems",
       "space w o": "workspace::CloseInactiveTabsAndPanes",
+      "space s f": "pane::DeploySearch",
+      "space c r": "editor::Rename",
+      "space /": "pane::DeploySearch",
       "space |": "pane::SplitVertical",
       "space -": "pane::SplitHorizontal",
       "space e": "project_panel::ToggleFocus",
@@ -45,6 +49,12 @@
       "shift-h": "pane::ActivatePreviousItem",
       "shift-l": "pane::ActivateNextItem",
       "ctrl-/": "terminal_panel::Toggle"
+    }
+  },
+  {
+    "context": "ProjectSearchBar",
+    "bindings": {
+      "space /": "pane::CloseActiveItem"
     }
   },
   {
