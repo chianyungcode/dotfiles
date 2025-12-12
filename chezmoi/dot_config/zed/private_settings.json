@@ -1,11 +1,17 @@
 {
-  "theme": "Catppuccin Mocha",
+  "theme": "Catppuccin Espresso (Blur)",
   "icon_theme": {
     "mode": "system",
     "light": "Catppuccin Macchiato",
     "dark": "Catppuccin Macchiato"
   },
 
+  "agent_buffer_font_size": 17.0,
+  "colorize_brackets": true,
+  "terminal": {
+    "default_height": 480,
+    "font_size": 18
+  },
   "ui_font_family": "Geist Mono",
   "ui_font_size": 18,
   "buffer_font_family": "Geist Mono",
@@ -66,7 +72,7 @@
   "hide_mouse": "on_typing_and_movement",
   "format_on_save": "on",
   "minimap": {
-    "show": "always",
+    "show": "never",
     "thumb": "always",
     "thumb_border": "left_open",
     "current_line_highlight": null
