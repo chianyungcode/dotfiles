@@ -54,10 +54,14 @@
       "space h p": "editor::ToggleSelectedDiffHunks",
       "space h i": "editor::BlameHover",
       "space h s": "git::StageAndNext",
-      "space h shift-s": "git::StageFile",
       "space h r": "git::UnstageAndNext",
       "space h shift-r": "git::UnstageAll",
-      "space g g": "git_panel::ToggleFocus"
+      "space g g": "git_panel::ToggleFocus",
+
+      "space x x": "diagnostics::Deploy",
+      "space x p": "editor::GoToPreviousDiagnostic",
+      "space x n": "editor::GoToDiagnostic",
+      "space x T": ["workspace::SendKeystrokes", "space / shift-TODO enter"]
     }
   },
   {
