@@ -1,4 +1,4 @@
-session_name "allweezy-backend"
+session_name "allweezy-frontend"
 
 layout {
   default_tab_template {
@@ -10,21 +10,21 @@ layout {
 
   tab name="nvim" split_direction="horizontal" {
     pane split_direction="vertical" {
-         pane size="70%" cwd="~/Code/Personal/Projects/Backend/allweezy-backend/" command="nvim" name="editor"
-         pane size="30%" cwd="~/Code/Personal/Projects/Backend/allweezy-backend/" name="terminal"
+         pane size="70%" cwd="~/Code/Personal/Projects/Frontend/allweezy/" command="nvim" name="editor"
+         pane size="30%" cwd="~/Code/Personal/Projects/Frontend/allweezy/" name="terminal"
     }
   }
 
   tab name="codex" split_direction="horizontal" {
-    pane name="codex" cwd="~/Code/Personal/Projects/Backend/allweezy-backend/" command="codex"
+    pane name="codex" cwd="~/Code/Personal/Projects/Frontend/allweezy/" command="codex"
   }
 
   tab name="opencode" split_direction="horizontal" {
-    pane name="opencode" cwd="~/Code/Personal/Projects/Backend/allweezy-backend/" command="opencode"
+  pane name="opencode" cwd="~/Code/Personal/Projects/Frontend/allweezy/" command="opencode"
   }
 
   tab name="runner" split_direction="horizontal" {
-    pane name="task" cwd="~/Code/Personal/Projects/Backend/allweezy-backend/" command="task" {
+    pane name="task" cwd="~/Code/Personal/Projects/Frontend/allweezy/" command="task" {
       args "dev"
       start_suspended true
     }
