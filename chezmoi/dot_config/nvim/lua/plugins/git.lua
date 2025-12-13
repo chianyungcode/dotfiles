@@ -1,4 +1,14 @@
 return {
+  -- https://github.com/NicolasGB/jj.nvim
+  -- DESC: jj vcs integration with neovim
+  {
+    "nicolasgb/jj.nvim",
+    enabled = false,
+    config = function()
+      require("jj").setup({})
+    end,
+  },
+
   -- https://github.com/oribarilan/lensline.nvim
   -- DESC: A lightweight Neovim plugin that displays customizable, contextual information directly above (or beside) functions, like references and authorship.
   {
