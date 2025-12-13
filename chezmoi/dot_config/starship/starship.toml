@@ -9,6 +9,8 @@ add_newline = true
 # ---------------------------------
 
 format = """
+${custom.jj}\
+$line_break\
 $username\
 $hostname\
 $directory\
@@ -16,7 +18,6 @@ $git_branch\
 $git_state\
 $git_status\
 $git_metrics\
-${custom.jj}\
 $nodejs\
 $bun\
 $fill\
