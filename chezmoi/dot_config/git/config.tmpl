@@ -36,7 +36,7 @@
 # CORE SETTINGS
 # =============================================================================
 [core]
-    pager = delta
+    # pager = delta
     excludesFile = ~/.config/git/ignore
     # sshCommand = ssh -i {{ .directories.ssh_keys_dir | replaceAllRegex "\\${HOME}" "~" }}/git
 
@@ -131,6 +131,7 @@
 
 [diff]
     colorMoved = default
+    external = difft
 
 [apply]
     whitespace = fix
