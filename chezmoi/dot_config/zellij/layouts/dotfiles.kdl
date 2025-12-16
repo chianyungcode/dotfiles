@@ -11,7 +11,7 @@ layout {
   tab name="chezmoi" split_direction="horizontal" {
     pane split_direction="vertical" {
       pane size="70%" command="nvim" name="editor" cwd="~/.local/share/chezmoi"
-      pane size="30%" name="jjui" command="jjui"
+      pane size="30%" name="jjui" command="jjui" cwd="~/.local/share/chezmoi"
     }
   }
 
