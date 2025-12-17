@@ -9,9 +9,6 @@ add_newline = true
 # ---------------------------------
 
 format = """
-${custom.jj}\
-$line_break\
-$username\
 $hostname\
 $directory\
 $git_branch\
@@ -25,13 +22,13 @@ $cmd_duration $jobs $time\
 $line_break\
 $character"""
 
-[custom.jj]
-  command        = "prompt"
-  format         = "$output"
-  ignore_timeout = true
-  shell          = ["starship-jj", "--ignore-working-copy", "starship"]
-  use_stdin      = false
-  when           = true
+# [custom.jj]
+#   command        = "prompt"
+#   format         = "$output"
+#   ignore_timeout = true
+#   shell          = ["starship-jj", "--ignore-working-copy", "starship"]
+#   use_stdin      = false
+#   when           = true
 
 # Replace the '❯' symbol in the prompt with '➜'
 [character]
