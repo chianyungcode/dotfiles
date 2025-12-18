@@ -36,7 +36,7 @@
 # CORE SETTINGS
 # =============================================================================
 [core]
-    # pager = delta
+    pager = delta
     excludesFile = ~/.config/git/ignore
     # sshCommand = ssh -i {{ .directories.ssh_keys_dir | replaceAllRegex "\\${HOME}" "~" }}/git
 
@@ -82,6 +82,15 @@
     co = checkout
     pf = !git push --force-with-lease "$@"
     cam = commit --amend --no-edit
+
+    # `git log` with patches shown with difftastic.
+    dl = -c diff.external=difft log -p --ext-diff
+
+    # Show the most recent commit with difftastic.
+    ds = -c diff.external=difft show --ext-diff
+
+    # `git diff` with difftastic.
+    dft = -c diff.external=difft diff
 
     # Conventional commit aliases
     build = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"build${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
@@ -132,6 +141,15 @@
 [diff]
     colorMoved = default
     external = difft
+    tool = difftastic
+
+[difftool]
+    # Run the difftool immediately, don't ask 'are you sure' each time.
+    prompt = false
+
+[difftool "difftastic"]
+    # See `man git-difftool` for a description of MERGED, LOCAL and REMOTE.
+    cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
 
 [apply]
     whitespace = fix
@@ -183,6 +201,9 @@
 [pager]
     status = true
     show-branch = true
+    # Use a pager if the difftool output is larger than one screenful,
+    # consistent with the behaviour of `git diff`.
+    difftool = true
 
 # =============================================================================
 # LFS (Large File Storage)
