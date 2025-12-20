@@ -1,0 +1,10 @@
+[
+  {
+    "label": "lazygit",
+    "command": "lazygit -p $ZED_WORKTREE_ROOT"
+  },
+  {
+    "label": "jjui",
+    "command": "jjui"
+  }
+]

@@ -14,7 +14,7 @@
     }
   },
   {
-    "context": "Workspace",
+    "context": "Editor",
     "bindings": {
       "ctrl-s": "workspace::Save",
       "ctrl-/": "terminal_panel::Toggle",
@@ -114,7 +114,19 @@
       "space h R": "git::RestoreFile",
       "space h d": "git::Diff",
 
-      "space g g": "git_panel::ToggleFocus",
+      "space g g": [
+        "task::Spawn",
+        { "task_name": "lazygit", "reveal_target": "center" }
+      ],
+      "space g b": "editor::OpenGitBlameCommit",
+      "space g B": "git::Blame",
+      "space g d": "git::Diff",
+      "space g f": "git::FileHistory",
+
+      "space j j": [
+        "task::Spawn",
+        { "task_name": "jjui", "reveal_target": "center" }
+      ],
 
       "space x x": "diagnostics::Deploy",
       "space x T": ["workspace::SendKeystrokes", "space / shift-TODO enter"]
