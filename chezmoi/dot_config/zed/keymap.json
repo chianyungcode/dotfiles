@@ -109,7 +109,8 @@
       "space h i": "editor::BlameHover",
       "space h s": "git::StageAndNext",
       "space h r": "editor::RevertSelectedHunks",
-      "space h shift-r": "git::UnstageAll",
+      "space h R": "git::RestoreFile",
+
       "space g g": "git_panel::ToggleFocus",
 
       "space x x": "diagnostics::Deploy",
