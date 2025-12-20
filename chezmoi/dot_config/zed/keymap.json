@@ -118,6 +118,19 @@
     }
   },
   {
+    "context": "(FileFinder || FileFinder > Picker > Editor)",
+    "bindings": {
+      "ctrl-m": "file_finder::ToggleSplitMenu"
+    }
+  },
+  {
+    "context": "((FileFinder || FileFinder > Picker > Editor) || FileFinder > Picker > menu)",
+    "bindings": {
+      "ctrl-v": "pane::SplitVertical",
+      "ctrl-h": "pane::SplitHorizontal"
+    }
+  },
+  {
     "context": "ProjectSearchBar",
     "bindings": {
       "space /": "pane::CloseActiveItem"
