@@ -9,7 +9,13 @@ reset_color      = false
   type = "Symbol"
   # symbol = "󱗆 "
   color  = "Blue"
-  symbol = "|  󱗆"
+  symbol = "󱗆 "
+
+[[module]]
+  type = "Symbol"
+  # symbol = "󱗆 "
+  color  = "White"
+  symbol = "on"
 
 [[module]]
   behind_symbol        = "⇡"

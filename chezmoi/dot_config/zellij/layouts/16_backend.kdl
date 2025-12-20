@@ -1,4 +1,4 @@
-session_name "dev_backend"
+session_name "allweezy-backend"
 
 layout {
   default_tab_template {
@@ -8,26 +8,30 @@ layout {
     }
   }
 
-  tab name="1.backend" split_direction="horizontal" {
+  tab name="nvim" split_direction="horizontal" {
     pane split_direction="vertical" {
          pane size="70%" cwd="~/Code/Personal/Projects/Backend/allweezy-backend/" command="nvim" name="editor"
-         pane size="30%" cwd="~/Documents/vault-obsidian/" name="running_notes"
     }
   }
 
-  tab name="2.codex" split_direction="horizontal" {
-    pane name="2.codex" cwd="~/Code/Personal/Projects/Backend/allweezy-backend/" command="codex"
+  tab name="codex" split_direction="horizontal" {
+    pane name="codex" cwd="~/Code/Personal/Projects/Backend/allweezy-backend/" command="codex"
   }
 
-  tab name="3.opencode" split_direction="horizontal" {
+  tab name="opencode" split_direction="horizontal" {
     pane name="opencode" cwd="~/Code/Personal/Projects/Backend/allweezy-backend/" command="opencode"
   }
 
-  tab name="4.runner" split_direction="horizontal" {
+  tab name="runner" split_direction="horizontal" {
     pane name="task" cwd="~/Code/Personal/Projects/Backend/allweezy-backend/" command="task" {
       args "dev"
       start_suspended true
     }
   }
 
+  tab name="running_notes" split_direction="horizontal" {
+    pane name="obsidian" cwd="~/Documents/vault-obsidian/" command="nvim"
+  }
+
 }
+

@@ -8,20 +8,27 @@ layout {
     }
   }
 
-  tab name="1.chezmoi" split_direction="horizontal" {
+  tab name="chezmoi" split_direction="horizontal" {
     pane split_direction="vertical" {
       pane size="70%" command="nvim" name="editor" cwd="~/.local/share/chezmoi"
-      pane size="30%" name="terminal"
     }
   }
 
-  tab name="2.config dir" split_direction="horizontal" {
+  tab name="config" split_direction="horizontal" {
     pane split_direction="vertical" {
        pane cwd="~/.config" name="editor" command="nvim"
     }
   }
 
-  tab name="3.yazi" split_direction="horizontal" {
+  tab name="codex" split_direction="horizontal" {
+    pane cwd="~/.local/share/chezmoi" command="codex"
+  }
+
+  tab name="opencode" split_direction="horizontal" {
+    pane cwd="~/.local/share/chezmoi" command="opencode"
+  }
+
+  tab name="yazi" split_direction="horizontal" {
     pane cwd="~" command="yazi"
   }
 }

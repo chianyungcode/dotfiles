@@ -2,9 +2,24 @@
 model = "gpt-5.1-codex-max"
 model_reasoning_effort = "medium"
 
+[features]
+rmcp_client = true
+
 [mcp_servers.context7]
   args = ["-y", "@upstash/context7-mcp", "--api-key", "{{ onepasswordRead .secrets.context7_api_key }}"]
   command = "npx"
+
+[mcp_servers.Ref]
+  url = "https://api.ref.tools/mcp?apiKey={{ if .use_secrets }}{{ onepasswordRead .secrets.ref_api_key }}{{ end }}"
+
+[mcp_servers.deepwiki]
+  url = "https://mcp.deepwiki.com/mcp"
+
+[mcp_servers.exa]
+  url = "https://mcp.exa.ai/mcp"
+
+[mcp_servers.linear]
+  url = "https://mcp.linear.app/mcp"
 
 [projects."/Users/chianyung/.local/share/chezmoi"]
 trust_level = "trusted"

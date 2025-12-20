@@ -110,6 +110,7 @@
       "space h s": "git::StageAndNext",
       "space h r": "editor::RevertSelectedHunks",
       "space h R": "git::RestoreFile",
+
       "space g g": "git_panel::ToggleFocus",
 
       "space x x": "diagnostics::Deploy",
