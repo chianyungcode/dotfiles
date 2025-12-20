@@ -114,8 +114,6 @@
       "space g g": "git_panel::ToggleFocus",
 
       "space x x": "diagnostics::Deploy",
-      "space x p": "editor::GoToPreviousDiagnostic",
-      "space x n": "editor::GoToDiagnostic",
       "space x T": ["workspace::SendKeystrokes", "space / shift-TODO enter"]
     }
   },
