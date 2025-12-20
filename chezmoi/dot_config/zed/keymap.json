@@ -105,11 +105,14 @@
       "shift-l": "pane::ActivateNextItem",
       "ctrl-/": "terminal_panel::Toggle",
 
-      "space h p": "editor::ToggleSelectedDiffHunks",
-      "space h i": "editor::BlameHover",
-      "space h s": "git::StageAndNext",
-      "space h r": "editor::RevertSelectedHunks",
+      "space h p": "editor::BlameHover",
+      "space h P": "editor::OpenGitBlameCommit",
+      "space h i": "editor::ToggleSelectedDiffHunks",
+      "space h s": "git::ToggleStaged",
+      "space h S": "git::StageFile",
+      "space h r": "git::Restore",
       "space h R": "git::RestoreFile",
+      "space h d": "git::Diff",
 
       "space g g": "git_panel::ToggleFocus",
 
