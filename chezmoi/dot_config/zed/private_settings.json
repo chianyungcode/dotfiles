@@ -69,6 +69,8 @@
     "nextjs-react-snippets": true
   },
 
+  "enable_language_server": true,
+
   "autosave": "on_focus_change",
   "close_on_file_delete": true,
   "hide_mouse": "on_typing_and_movement",
@@ -78,17 +80,5 @@
     "thumb": "always",
     "thumb_border": "left_open",
     "current_line_highlight": null
-  },
-
-  "enable_language_server": true,
-  "formatter": {
-    "external": {
-      "command": "./node_modules/@biomejs/biome/bin/biome",
-      "arguments": ["format", "--write", "--stdin-file-path", "{buffer_path}"]
-    }
-  },
-  "code_actions_on_format": {
-    "source.fixAll.biome": true,
-    "source.organizeImports.biome": true
   }
 }
