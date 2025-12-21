@@ -69,8 +69,10 @@
       ],
       "space a g": ["agent::NewExternalAgentThread", { "agent": "gemini" }],
 
+      "space ;": "outline::Toggle",
+
       "space b d": "pane::CloseActiveItem",
-      "space b o": "pane::CloseInactiveItems",
+      "space b o": "pane::CloseOtherItems",
       "space b b": "pane::AlternateFile",
       "space `": "pane::AlternateFile",
       "alt-1": ["pane::ActivateItem", 0],
@@ -109,7 +111,7 @@
       "space h P": "editor::OpenGitBlameCommit",
       "space h i": "editor::ToggleSelectedDiffHunks",
       "space h s": "git::ToggleStaged",
-      "space h S": "git::StageFile",
+      "space h S": ["task::Spawn", { "task_name": "git: stage current file" }],
       "space h r": "git::Restore",
       "space h R": "git::RestoreFile",
       "space h d": "git::Diff",

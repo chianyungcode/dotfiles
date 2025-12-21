@@ -6,5 +6,13 @@
   {
     "label": "jjui",
     "command": "jjui"
+  },
+  {
+    "label": "git: stage current file",
+    "command": "git",
+    "args": ["add", "$ZED_FILE"],
+    "reveal": "never",
+    "hide": "on_success",
+    "shell": "system"
   }
 ]

@@ -6,6 +6,8 @@
     "dark": "Catppuccin Macchiato"
   },
 
+  "vertical_scroll_margin": 0,
+
   "agent_buffer_font_size": 17.0,
   "colorize_brackets": true,
   "terminal": {
