@@ -135,6 +135,19 @@
     }
   },
   {
+    "context": "Editor && showing_completions",
+    "bindings": {
+      "ctrl-1": ["workspace::SendKeystrokes", "pageup enter"],
+      "ctrl-2": ["workspace::SendKeystrokes", "pageup down enter"],
+      "ctrl-3": ["workspace::SendKeystrokes", "pageup down down enter"],
+      "ctrl-4": ["workspace::SendKeystrokes", "pageup down down down enter"],
+      "ctrl-5": [
+        "workspace::SendKeystrokes",
+        "pageup down down down down enter"
+      ]
+    }
+  },
+  {
     "context": "(FileFinder || FileFinder > Picker > Editor)",
     "bindings": {
       "ctrl-m": "file_finder::ToggleSplitMenu"
