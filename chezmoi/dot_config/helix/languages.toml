@@ -1,0 +1,22 @@
+[language-server.typescript-language-server]
+command = "typescript-language-server"
+args = ["--stdio"]
+
+[[language]]
+name = "javascript"
+scope = "source.js"
+injection-regex = "javascript"
+file-types = ["js", "cjs", "mjs"]
+indent = { tab-width = 2, unit = "  " }
+formatter = { command = "prettier", args = ["--stdin-filepath", "%val{buffer_name}"] }
+language-servers = ["typescript-language-server"]
+
+[[language]]
+name = "typescript"
+scope = "source.ts"
+injection-regex = "typescript"
+file-types = ["ts"]
+indent = { tab-width = 2, unit = "  " }
+formatter = { command = "prettier", args = ["--stdin-filepath", "%val{buffer_name}"] }
+language-servers = ["typescript-language-server"]
+
