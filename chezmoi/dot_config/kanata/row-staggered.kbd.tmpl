@@ -247,22 +247,18 @@
 
 (defalias
   zlj-prefix C-a
-
   zlj-rsz (macro @zlj-prefix r)
-  zlj-tab (macro @zlj-prefix t)
+
+  ;; session
   zlj-ses (macro @zlj-prefix o)
-  zlj-pane (macro @zlj-prefix p)
+  zlj-sessions (macro @zlj-prefix o w) ;; session list
+  zlj-ses-dtch (macro @zlj-prefix o d) ;; session detach
 
-  zlj-sessions (macro @zlj-prefix o w)
-  zlj-ses-dtch (macro @zlj-prefix o d)
-
-  ;; switch-last
-  zlj-tab-qs (macro @zlj-prefix t tab esc)
-  zlj-pane-qs (macro @zlj-prefix p tab esc)
-
-  ;; pane split
-  zlj-splith (macro @zlj-prefix p -)
-  zlj-splitv (macro @zlj-prefix p S-\)
+  ;; tab
+  zlj-tab (macro @zlj-prefix t)
+  zlj-new-tab (macro @zlj-prefix t n)
+  zlj-tab-qs (macro @zlj-prefix t tab esc) ;; switch last
+  zlj-tab-cls (macro @zlj-prefix t x)
 
   zlj-t-1 (macro @zlj-prefix 25 t 25 Digit1)
   zlj-t-2 (macro @zlj-prefix 25 t 25 Digit2)
@@ -273,6 +269,13 @@
   zlj-t-7 (macro @zlj-prefix 25 t 25 Digit7)
   zlj-t-8 (macro @zlj-prefix 25 t 25 Digit8)
   zlj-t-9 (macro @zlj-prefix 25 t 25 Digit9)
+
+  ;; pane
+  zlj-pane (macro @zlj-prefix p)
+  zlj-pane-cls (macro @zlj-prefix p x) ;; close pane
+  zlj-pane-qs (macro @zlj-prefix p tab esc) ;; switch last
+  zlj-splith (macro @zlj-prefix p -) ;; split horizontal
+  zlj-splitv (macro @zlj-prefix p S-\) ;; split vertical
 )
 
 (deflayer zellij
@@ -280,7 +283,7 @@
   grv  @zlj-t-1  @zlj-t-2  @zlj-t-3  @zlj-t-4  @zlj-t-5  @zlj-t-6  @zlj-t-7  @zlj-t-8  @zlj-t-9   XX   @zlj-splith   @zlj-splitv   XX
   tab  @zlj-sessions  XX   @zlj-ses-dtch   @zlj-rsz  @zlj-tab  XX        XX   XX   @zlj-ses @zlj-pane     XX   XX XX
   caps XX   @zlj-tab-qs   @zlj-pane-qs   XX   XX        XX        XX        XX   XX   XX       XX            XX
-  lsft XX   XX   XX   XX   XX        XX        XX        XX   XX   XX       XX
+  lsft @zlj-tab-cls   @zlj-pane-cls   @zlj-new-tab   XX   XX        XX        XX        XX   XX   XX       XX
   lctl lmet lalt           spc            ralt rmet rctl
 )
 
