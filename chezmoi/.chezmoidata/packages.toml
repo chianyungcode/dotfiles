@@ -185,6 +185,7 @@
 
     [packages.homebrew.personal_computer]
       casks = [
+        "tw93/tap/mole",             # https://github.com/tw93/Mole
         "anki",
         "gromgit/brewtils/taproom",  # TUI for search homebrew package
         "eget",                      # Easily install prebuilt binaries from GitHub.
