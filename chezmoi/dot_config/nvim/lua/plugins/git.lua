@@ -178,4 +178,19 @@ return {
     -- :Diffview
     "sindrets/diffview.nvim",
   },
+  {
+    "esmuellert/codediff.nvim",
+    enabled = false,
+    cmd = "CodeDiff",
+  },
+  {
+    "clabby/difftastic.nvim",
+    enabled = false,
+    dependencies = { "MunifTanjim/nui.nvim" },
+    config = function()
+      require("difftastic-nvim").setup({
+        download = true, -- Auto-download pre-built binary
+      })
+    end,
+  },
 }
