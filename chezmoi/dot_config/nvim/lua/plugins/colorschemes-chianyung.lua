@@ -39,7 +39,7 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     lazy = false,
-    enabled = true,
+    enabled = false,
     priority = 1000,
     -- https://github.com/LazyVim/LazyVim/issues/6355#issuecomment-3212986215
     config = function()
@@ -75,7 +75,7 @@ return {
   -- },
   {
     "dgox16/oldworld.nvim",
-    enabled = false,
+    enabled = true,
     lazy = false,
     priority = 1000,
     config = function()
@@ -97,16 +97,17 @@ return {
   -- 		theme = "dark-gray",
   -- 	},
   -- },
-  -- {
-  -- 	"rebelot/kanagawa.nvim",
-  -- 	lazy = false,
-  -- 	priority = 1000,
-  -- 	config = function()
-  -- 		require("kanagawa").setup({
-  -- 			theme = "lotus",
-  -- 		})
-  -- 	end,
-  -- },
+  {
+    "rebelot/kanagawa.nvim",
+    enabled = false,
+    lazy = false,
+    priority = 1000,
+    -- config = function()
+    --   require("kanagawa").setup({
+    --     theme = "dragon",
+    --   })
+    -- end,
+  },
   {
     "folke/tokyonight.nvim",
     enabled = false,
@@ -190,11 +191,6 @@ return {
   },
 
   {
-    "rebelot/kanagawa.nvim",
-    enabled = false,
-  },
-
-  {
     "rose-pine/neovim",
     name = "rose-pine",
     enabled = false,
@@ -230,7 +226,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-mocha",
+      colorscheme = "oldworld",
     },
   },
 }

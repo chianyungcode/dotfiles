@@ -98,18 +98,18 @@ return {
         },
       },
     },
-    terminal = {
-      win = {
-        style = "float",
-        width = 0.8, -- 90% lebar layar
-        height = 0.8, -- 90% tinggi layar
-        border = "rounded",
-        title = "Terminal",
-        title_pos = "center",
-        wo = {
-          winbar = "",
-        },
-      },
-    },
+    -- terminal = {
+    --   win = {
+    --     style = "float",
+    --     width = 0.8, -- 90% lebar layar
+    --     height = 0.8, -- 90% tinggi layar
+    --     border = "rounded",
+    --     title = "Terminal",
+    --     title_pos = "center",
+    --     wo = {
+    --       winbar = "",
+    --     },
+    --   },
+    -- },
   },
 }

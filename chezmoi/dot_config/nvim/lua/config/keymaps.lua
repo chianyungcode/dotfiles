@@ -19,5 +19,17 @@ end, { noremap = true, silent = true })
 vim.keymap.set("n", "n", "n", { noremap = true })
 vim.keymap.set("n", "N", "N", { noremap = true })
 
+-- Terminal: hide current terminal window instead of opening a new one/splitting
+vim.keymap.set("t", "<C-/>", function()
+  if vim.bo.buftype == "terminal" then
+    vim.api.nvim_win_hide(0)
+  end
+end, { noremap = true, silent = true, desc = "Hide terminal" })
+vim.keymap.set("t", "<C-_>", function()
+  if vim.bo.buftype == "terminal" then
+    vim.api.nvim_win_hide(0)
+  end
+end, { noremap = true, silent = true, desc = "Hide terminal" })
+
 -- Syntax
 -- vim.keymap.set("mode-vim", "keymaps", "command / function", { desc = "Wormhole Close Labels" })
