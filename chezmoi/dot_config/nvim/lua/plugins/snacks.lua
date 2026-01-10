@@ -7,6 +7,9 @@ return {
   ---@module 'snacks'
   ---@type snacks.Config
   opts = {
+    scroll = {
+      enabled = false,
+    },
     -- disable snacks.indent because i prefer using blink.indent for better performance
     indent = {
       enabled = true,
