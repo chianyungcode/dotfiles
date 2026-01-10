@@ -10,12 +10,12 @@ return {
     -- disable snacks.indent because i prefer using blink.indent for better performance
     indent = {
       enabled = true,
-      indent = {
-        char = "┃",
-      },
-      scope = {
-        char = "┃",
-      },
+      -- indent = {
+      --   char = "┃",
+      -- },
+      -- scope = {
+      --   char = "┃",
+      -- },
       animate = {
         enabled = false,
       },
