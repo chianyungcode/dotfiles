@@ -9,7 +9,7 @@ return {
 
   -- https://github.com/meznaric/key-analyzer.nvim
   -- DESC: Ever wondered which mappings are free to be mapped? Now it's a easier to figure it out.
-  { "meznaric/key-analyzer.nvim", opts = {} },
+  { "meznaric/key-analyzer.nvim", enabled = false, opts = {} },
 
   -- https://github.com/wakatime/vim-wakatime
   -- DESC: Plugin for tracking your time in Neovim

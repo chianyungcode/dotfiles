@@ -39,7 +39,7 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     lazy = false,
-    enabled = false,
+    enabled = true,
     priority = 1000,
     -- https://github.com/LazyVim/LazyVim/issues/6355#issuecomment-3212986215
     config = function()
@@ -59,12 +59,12 @@ return {
 
   {
     "abhilash26/mapledark.nvim",
-    enabled = true,
+    enabled = false,
     lazy = false,
     priority = 1000,
   },
 
-  { "datsfilipe/vesper.nvim", enabled = true },
+  { "datsfilipe/vesper.nvim", enabled = false },
   -- {
   -- 	"vague2k/vague.nvim",
   -- 	config = function()
@@ -109,7 +109,7 @@ return {
   -- },
   {
     "folke/tokyonight.nvim",
-    enabled = true,
+    enabled = false,
     -- opts = {
     -- 	transparent = true,
     -- 	styles = {
@@ -135,7 +135,7 @@ return {
 
   {
     "webhooked/kanso.nvim",
-    enabled = true,
+    enabled = false,
     lazy = false,
     priority = 1000,
     config = function()
@@ -170,7 +170,7 @@ return {
 
   {
     "olimorris/onedarkpro.nvim",
-    enabled = true,
+    enabled = false,
     priority = 1000, -- Ensure it loads first
     config = function()
       require("onedarkpro").setup({
@@ -230,7 +230,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "koda",
+      colorscheme = "catppuccin-mocha",
     },
   },
 }
