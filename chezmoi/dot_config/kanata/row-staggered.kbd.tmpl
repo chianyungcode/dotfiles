@@ -66,6 +66,9 @@
   {{- end }}
 
   ;; ==== MODIFIER KEYS + LETTER KEYS ====
+  a (tap-hold $tap-time $hold-time a lsft)
+  ; (tap-hold $tap-time $hold-time ; lsft)
+
   s (tap-hold $tap-time $hold-time s lctl)
   d (tap-hold $tap-time $hold-time d lalt)
   f (tap-hold $tap-time $hold-time f lmet)
@@ -132,7 +135,7 @@
        🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   @lmet_tab    q    w    e    r    t    y    u    i    o    p    [    ]    \
-  @thl-cap-nav  a    @s    @d    @f    g    h    @j    @k    @l    ;    '    @thl-ret-sublayers
+  @thl-cap-nav  @a    @s    @d    @f    g    h    @j    @k    @l    @;    '    @thl-ret-sublayers
   lsft @thl-z-tmux    x    c    @thl-v-zlj    b    n    @thl-m-zlj    ,    .   @thl-sls-tmux    rsft ;; Tombol x sekarang punya fungsi ganda
   lctl lmet lalt           @spc_ly3            ralt rmet rctl
 )
@@ -142,7 +145,7 @@
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  f1   f2   f3   f4   f5    f6    f7    f8    f9    f10    @tab-left   @tab-right    \
   caps a    @sprwhpr    @hmrwapp    f    g    left    down    up    right    ;    '    ret
-  lsft z    x    c    v    b    n    rctl    @hmrwapp    .    rmet    rsft
+  lsft z    x    c    v    b    j    rctl    @hmrwapp    .    rmet    rsft
   lctl lmet lalt           @hyperkey            ralt rmet rctl
 )
 
@@ -234,13 +237,16 @@
   tx-rsz-left (macro @tmux-prefix left)
   tx-rsz-up (macro @tmux-prefix up)
   tx-rsz-bottom (macro @tmux-prefix down)
+
+  ;; plugins
+  tx-flash (macro @tmux-prefix S-f)
 )
 
 (deflayer tmux
        🔅        🔆        @mc              @sls           @dtn           @dnd           ◀◀        ▶⏸          ▶▶                    🔇            🔉            🔊
   grv  @tx-wdw-1          @tx-wdw-2         @tx-wdw-3      @tx-wdw-4      @tx-wdw-5      @tx-wdw-6             @tx-wdw-7           @tx-wdw-8                     9             0             @tx-splith         @tx-splitv         bspc
   lrld @tx-slcsession     @tx-slcwindow     @tx-detach     XX             f5             @tx-rsz-left          @tx-rsz-bottom        @tx-rsz-up    @tx-rsz-right @tx-plg-sesh       XX                 XX                \
-  @cw  @tx-sw-session     @tx-sw-window     @tx-sw-pane    4              5              @tx-p-left            @tx-p-bottom          @tx-p-top     @tx-p-right   ;                  '                  ret
+  @cw  @tx-sw-session     @tx-sw-window     @tx-sw-pane    @tx-flash              5              @tx-p-left            @tx-p-bottom          @tx-p-top     @tx-p-right   ;                  '                  ret
   lsft @tx-kill-window    @tx-kill-pane     @tx-new-window @tx-vi-mode    XX             @tx-kill-session      @tx-rn-session        @tx-rn-window @tx-rn-pane  /             rsft
   lctl lmet               lalt                             spc                                            ralt            rmet              rctl
 )
