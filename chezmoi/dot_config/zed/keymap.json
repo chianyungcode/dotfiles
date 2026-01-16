@@ -5,6 +5,12 @@
     }
   },
   {
+    "context": "(VimControl && !menu)",
+    "bindings": {
+      "space": null
+    }
+  },
+  {
     "context": "Dock",
     "bindings": {
       "ctrl-w h": "workspace::ActivatePaneLeft",

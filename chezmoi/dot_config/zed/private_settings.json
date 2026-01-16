@@ -1,10 +1,12 @@
 {
-  "theme": "Github Dark",
+  "theme": "Catppuccin Espresso (Blur) [Heavy]",
   "icon_theme": {
     "mode": "system",
     "light": "Catppuccin Macchiato",
     "dark": "Catppuccin Macchiato"
   },
+
+  "which_key": { "enabled": true, "delay_ms": 50 },
 
   "vertical_scroll_margin": 0,
 
