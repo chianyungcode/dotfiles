@@ -119,6 +119,7 @@ set -gx SSH_AUTH_SOCK "$HOME/.1password/agent.sock"
 # PATH - Environment Variable
 set -l __login_paths /bin /usr/bin /usr/sbin /sbin \
     /opt/homebrew/bin /opt/homebrew/sbin /usr/local/bin \
+    /opt/zerobrew/prefix/bin/ \
     $HOME/go/bin $HOME/.cargo/bin {{ .xdgDataDir }}/cargo/bin \
     $HOME/.local/bin $HOME/bin /usr/bin/snap \
     $PROTO_HOME/shims $PROTO_HOME/bin \
