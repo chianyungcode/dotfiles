@@ -48,6 +48,7 @@
     "vue": true,
     "markdown-oxide": true,
     "wakatime": true,
+    "jj-lsp": true,
 
     "mcp-server-context7": true,
     "postgres-context-server": true,
