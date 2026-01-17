@@ -351,7 +351,7 @@ abbr jla="jj log 'all()'"
 abbr jlt="jj log -T %"
 abbr jn="jj new %"
 abbr jr="jj rebase -s % -d @-"
-abbr js="jj status"
+abbr jst="jj status"
 abbr jsh="jj show %"
 abbr jsp="jj split"
 abbr jsq="jj squash"
@@ -363,7 +363,9 @@ abbr jab="jj abandon %"
 abbr jcc='jj commit -m "$(koji --stdout)"'
 abbr jnc='jj new -m "$(koji --stdout)"'
 abbr jh='jj -h'
-abbr jun='jj undo'
+abbr judo='jj undo'
+abbr jopl='jj op log'
+abbr jevl='jj evolog'
 
 # --- Homebrew ---
 abbr "bci"="brew info --cask"
