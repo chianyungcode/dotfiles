@@ -115,8 +115,8 @@
 (defchordsv2
   {{- if eq .chezmoi.os "darwin" }}
   (m ,) C-a $input-chord-time all-released ()
-  (i o) A-left 20 all-released ()
-  (o p) A-right 20 all-released ()
+  ;; (i o) A-left 20 all-released ()
+  ;; (o p) A-right 20 all-released ()
 
   {{- else if eq .chezmoi.os "linux" }}
   (m ,) C-a $input-chord-time all-released ()
