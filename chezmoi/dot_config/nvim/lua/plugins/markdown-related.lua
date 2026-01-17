@@ -52,6 +52,7 @@ return {
   -- DESC: obsidian in neovim
   {
     "obsidian-nvim/obsidian.nvim",
+    enabled = false,
     version = "*", -- recommended, use latest release instead of latest commit
     lazy = true,
     ft = "markdown",
