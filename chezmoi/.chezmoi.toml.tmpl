@@ -25,6 +25,5 @@
   xdgStateDir       = "{{ .chezmoi.homeDir }}/.local/state"
 
 [diff]
-  {{ if lookPath "delta" -}}command = "delta"
-  {{ end -}}
-  pager = "delta"
+  command = "difft"
+  args = ["--color=always", "--skip-unchanged"]
