@@ -79,7 +79,7 @@
         "zoxide",                    # Better cd
       ]
       taps = [
-        "arl/arl",                  # Taps for gitmux
+        "arl/arl",                             # Taps for gitmux
         "chase/tap",
         "dopplerhq/cli",
         "dotenvx/brew",
@@ -87,7 +87,7 @@
         "grishka/grishka",
         "homebrew/bundle",
         "homebrew/services",
-        "jesseduffield/lazydocker",
+        "jesseduffield/lazydocker/lazydocker",
         "jesseduffield/lazygit",
         "jstkdng/programs",
         "knqyf263/pet",
@@ -115,16 +115,10 @@
         "apidog",
         "cursor",
         "datagrip",
-        "fork",       # "sourcetree", alternative to fork
-        "difftastic", # diff tools
+        "fork",     # "sourcetree", alternative to fork
       ]
       formulae = [
-        # "flyctl",                              # Fly.io CLI
-        # "stow",                                # Symlink manager
-        # "stripe/stripe-cli/stripe",
-        # "television", # Alternative to yazi
-        # "tmuxinator", # Tmux session manager
-
+        "difftastic",                          # diff tools
         "act",                                 # runs GitHub Actions locally
         "jj",                                  # jujutsu version controll
         "jjui",                                # jujutsu tui
@@ -145,50 +139,53 @@
         "gitmux",                              # Git status bar in tmux
         "glab",                                # GitLab CLI
         "glow",                                # Render markdown in CLI
-        "helix",                               # Alternative neovim
         "httpie",                              # HTTP client
         "hurl",                                # command line tool that runs HTTP requests defined in a simple plain text format.
         "hyperfine",                           # A command-line benchmarking tool
         "jesseduffield/lazydocker/lazydocker", # Docker manager
         "jesseduffield/lazygit/lazygit",
+        "knqyf263/pet/pet",                    # CLI snippet manager
+        "koyeb/tap/koyeb",                     # Koyeb CLI
+        "luarocks",                            # Lua package manager
+        "markdownlint-cli2",                   # Linter for markdown file
+        "mermaid-cli",                         # LaTex math
+        "mongosh",                             # MongoDB shell
+        "nixfmt",                              # Nix formatter
+        "nushell",                             # Alternative shell
+        "pngpaste",                            # Paste PNG into files on MacOS, much like pbpaste does for text.
+        "poppler",                             # PDF rendering library
+        "prettier",                            # JS/TS formatter
+        "pueue",                               # Task runner and scheduler
+        "redis",                               # Redis CLI
+        "ruff",                                # Python linter
+        "sesh",                                # Tmux session manager
+        "shellcheck",                          # bash, sh linter
+        "shfmt",                               # bash, sh formatter
+        "sqlite3",                             # for building python
+        "sshs",                                # Graphical command-line client for SSH
+        "tcl-tk",                              # for building python
+        "tectonic",                            # render LaTex math
+        "thefuck",                             # Fix typos
+        "tmuxp",                               # Tmux session manager
+        "vladkens/tap/macmon",                 # Mac monitor
+        "yamlfmt",                             # YAML formatter
+        "yamllint",                            # YAML linter
+        "zlib",                                # for building python
+        # "helix",                               # Alternative neovim
         # "kanata",                              # Cross-platform software keyboard remapper for Linux, macOS and Windows
-        "knqyf263/pet/pet",    # CLI snippet manager
-        "koyeb/tap/koyeb",     # Koyeb CLI
-        "luarocks",            # Lua package manager
-        "markdownlint-cli2",   # Linter for markdown file
-        "mermaid-cli",         # LaTex math
-        "mongosh",             # MongoDB shell
-        "nixfmt",              # Nix formatter
-        "nushell",             # Alternative shell
-        "kitty",               # terminal
-        "pngpaste",            # Paste PNG into files on MacOS, much like pbpaste does for text.
-        "poppler",             # PDF rendering library
-        "prettier",            # JS/TS formatter
-        "pueue",               # Task runner and scheduler
-        "redis",               # Redis CLI
-        "ruff",                # Python linter
-        "sesh",                # Tmux session manager
-        "shellcheck",          # bash, sh linter
-        "shfmt",               # bash, sh formatter
-        "sqlite3",             # for building python
-        "sshs",                # Graphical command-line client for SSH
-        "tcl-tk",              # for building python
-        "tectonic",            # render LaTex math
-        "thefuck",             # Fix typos
-        "tmuxp",               # Tmux session manager
-        "vladkens/tap/macmon", # Mac monitor
-        "yamlfmt",             # YAML formatter
-        "yamllint",            # YAML linter
-        "zlib",                # for building python
+        # "kitty",               # terminal
+        # "flyctl",                              # Fly.io CLI
+        # "stow",                                # Symlink manager
+        # "stripe/stripe-cli/stripe",
+        # "television", # Alternative to yazi
+        # "tmuxinator", # Tmux session manager
+
       ]
       taps = []
 
     [packages.homebrew.personal_computer]
       casks = [
-        "tw93/tap/mole",             # https://github.com/tw93/Mole
         "anki",
-        "gromgit/brewtils/taproom",  # TUI for search homebrew package
-        "eget",                      # Easily install prebuilt binaries from GitHub.
         "apparency",                 # Showing detail app in finder
         "arc",
         "bettertouchtool",
@@ -247,6 +244,9 @@
         "zen",                       # Browser
       ]
       formulae = [
+        "mole",                        # https://github.com/tw93/Mole
+        "eget",                        # Easily install prebuilt binaries from GitHub.
+        "gromgit/brewtils/taproom",    # TUI for search homebrew package
         "felixkratz/formulae/borders",
         "asciinema",                   # record your terminal
         "presenterm",                  # Presentation in CLI
