@@ -27,7 +27,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 30
+accordion-padding = 45
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'accordion'
@@ -358,19 +358,19 @@ automatically-unhide-macos-hidden-apps = false
 
 [[on-window-detected]]
   if.app-id = 'com.apple.ActivityMonitor'
-  run       = ['layout floating', 'move-node-to-workspace Z']
+  run       = ['layout floating', 'move-node-to-workspace R']
 
 [[on-window-detected]]
   if.app-id = 'com.macpaw.CleanMyMac-setapp'
-  run       = ['layout floating', 'move-node-to-workspace Z']
+  run       = ['layout floating', 'move-node-to-workspace R']
 
 [[on-window-detected]]
   if.app-id = 'com.1password.1password'
-  run       = ['layout floating', 'move-node-to-workspace Z']
+  run       = ['layout floating', 'move-node-to-workspace R']
 
 [[on-window-detected]]
   if.app-id = 'com.electron.wispr-flow'
-  run       = ['layout floating', 'move-node-to-workspace Z']
+  run       = ['layout floating', 'move-node-to-workspace R']
 
 [[on-window-detected]]
   if.app-id = 'com.alienator88.Pearcleaner'
