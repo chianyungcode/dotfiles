@@ -161,7 +161,7 @@ automatically-unhide-macos-hidden-apps = false
   alt-w = 'workspace W'
   alt-x = 'workspace X'
   alt-y = 'workspace Y'
-  alt-z = 'workspace Z'
+  # alt-z = 'workspace Z'
 
   # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
   # alt-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
@@ -194,11 +194,11 @@ automatically-unhide-macos-hidden-apps = false
   alt-shift-w = 'move-node-to-workspace W'
   alt-shift-x = 'move-node-to-workspace X'
   alt-shift-y = 'move-node-to-workspace Y'
-  alt-shift-z = 'move-node-to-workspace Z'
+  # alt-shift-z = 'move-node-to-workspace Z'
 
   # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-  alt-q   = 'focus-back-and-forth'
   alt-tab = 'workspace-back-and-forth'
+  alt-z   = 'focus-back-and-forth'
   # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
   alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
@@ -276,6 +276,10 @@ automatically-unhide-macos-hidden-apps = false
   if.app-id = 'com.mitchellh.ghostty'
   run       = 'move-node-to-workspace D'
 
+[[on-window-detected]]
+  if.app-id = 'dev.zed.Zed'
+  run       = 'move-node-to-workspace D'
+
   # Workspace E - Media & Utilities
 
 [[on-window-detected]]
@@ -346,6 +350,10 @@ automatically-unhide-macos-hidden-apps = false
 
 [[on-window-detected]]
   if.app-id = 'io.capacities.app'
+  run       = 'move-node-to-workspace W'
+
+[[on-window-detected]]
+  if.app-id = 'io.raindrop.macapp'
   run       = 'move-node-to-workspace W'
 
 [[on-window-detected]]
