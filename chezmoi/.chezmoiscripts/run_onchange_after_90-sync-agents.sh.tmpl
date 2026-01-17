@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+
+{{ template "shared_script_utils.bash" . }}
+
+# agents checksum (auto)
+{{ $src := .chezmoi.sourceDir -}}
+{{ range $path := glob (joinPath $src "dot_config/agents/**") -}}
+{{ $info := stat $path -}}
+{{ if not $info.isDir -}}
+{{ $rel := trimPrefix (print $src "/") $path -}}
+# {{ $rel }}: {{ include $rel | sha256sum }}
+{{ end -}}
+{{ end -}}
+
+header "Syncing agents config"
+
+RSYNC_BIN="$(command -v rsync || true)"
+
+if [[ -z ${RSYNC_BIN} ]]; then
+    error "rsync is not installed"
+    _safeExit_ 1
+fi
+
+SRC="{{ .xdgConfigDir }}/agents"
+CODEX_DIR="{{ .chezmoi.homeDir }}/.codex"
+OPENCODE_DIR="{{ .xdgConfigDir }}/opencode"
+
+if [[ ! -d ${SRC} ]]; then
+    info "Source directory not found: ${SRC}"
+    _safeExit_
+fi
+
+mkdir -p "${CODEX_DIR}" "${OPENCODE_DIR}"
+
+if [[ -f ${SRC}/AGENTS.md ]]; then
+    info "Syncing AGENTS.md"
+    "${RSYNC_BIN}" -a "${SRC}/AGENTS.md" "${CODEX_DIR}/AGENTS.md"
+    "${RSYNC_BIN}" -a "${SRC}/AGENTS.md" "${OPENCODE_DIR}/AGENTS.md"
+else
+    info "AGENTS.md not found in ${SRC}"
+fi
+
+if [[ -d ${SRC}/commands ]]; then
+    info "Syncing commands directory"
+    "${RSYNC_BIN}" -a "${SRC}/commands/" "${CODEX_DIR}/commands/"
+    "${RSYNC_BIN}" -a "${SRC}/commands/" "${OPENCODE_DIR}/commands/"
+else
+    info "commands directory not found in ${SRC}"
+fi
+
+if [[ -d ${SRC}/hooks ]]; then
+    info "Syncing hooks directory"
+    "${RSYNC_BIN}" -a "${SRC}/hooks/" "${CODEX_DIR}/hooks/"
+    "${RSYNC_BIN}" -a "${SRC}/hooks/" "${OPENCODE_DIR}/hooks/"
+else
+    info "hooks directory not found in ${SRC}"
+fi
+
+if [[ -d ${SRC}/skills ]]; then
+    info "Syncing skills directory"
+    "${RSYNC_BIN}" -a "${SRC}/skills/" "${CODEX_DIR}/skills/"
+    "${RSYNC_BIN}" -a "${SRC}/skills/" "${OPENCODE_DIR}/skills/"
+else
+    info "skills directory not found in ${SRC}"
+fi
+
+success "Agents config synced !"
+
+_safeExit_
