@@ -1,15 +1,15 @@
 ---
 matches:
   - trigger: ":ttdn"
-    form: "[[task]] [today] #intentional-task ~"
+    form: "[[task]] [today] #intentional ~"
   - trigger: ":ttds"
-    form: "[[task]] [today [[start_time]] to [[end_time]]] #intentional-task ~"
+    form: "[[task]] [today [[start_time]] to [[end_time]]] #intentional ~"
   - trigger: ":ttr"
-    form: "[[task]] [tomorrow [[start_time]] to [[end_time]]] #intentional-task ~"
+    form: "[[task]] [tomorrow [[start_time]] to [[end_time]]] #intentional ~"
   - trigger: ":tbc"
-    form: "[[task]] #intentional-task ~"
+    form: "[[task]] #intentional ~"
   - trigger: ":ttq"
-    form: "[[task]] [today] #intentional-task #quick-task #distraction-sheet ~"
+    form: "[[task]] [today] #intentional #quick-task #distraction-sheet ~"
   - trigger: ":tnt"
     replace: "> Detail at Notion"
   - regex: ":greet\\((?P<person>.*)\\)"
@@ -27,12 +27,12 @@ matches:
       - name: f
         type: form
         params:
-          layout: "[[task]] [today [[start_time]] to [[end_time]]] #intentional-task ~"
+          layout: "[[task]] [today [[start_time]] to [[end_time]]] #intentional ~"
       - name: copy_line
         type: shell
         params:
           cmd: |
-            text="{{f.task}} [today {{f.start_time}} to {{f.end_time}}] #intentional-task ~"
+            text="{{f.task}} [today {{f.start_time}} to {{f.end_time}}] #intentional ~"
             if command -v pbcopy >/dev/null 2>&1; then
               printf '%s' "$text" | pbcopy
             elif command -v wl-copy >/dev/null 2>&1; then

@@ -1,10 +1,10 @@
 ---
 matches:
-  - trigger: "ludc"
+  - trigger: "!ldcn"
     replace: "lunar disconnect "
-  - trigger: "ldwc"
+  - trigger: "!ldwc"
     replace: "lunar disconnect without-cursor"
-  - trigger: "lnc"
+  - trigger: "!lcn"
     replace: "lunar connect "
-  - trigger: "lunca"
+  - trigger: "!lcna"
     replace: "lunar connect all"
