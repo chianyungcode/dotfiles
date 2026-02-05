@@ -480,6 +480,7 @@
 
     [packages.cargo.dev_computer]
       packages = [
+        "rumdl",          # perfomance markdown linter
         "cargo-update",
         "cargo-binstall",
         "typos-cli",

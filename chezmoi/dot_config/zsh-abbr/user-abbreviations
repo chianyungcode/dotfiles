@@ -335,34 +335,46 @@ abbr "lzg"="lazygit"
 
 # --- Jujutsu --
 abbr j="jj"
+abbr jh='jj -h'
+
+abbr jr="jj rebase -s % -d @-"
+abbr jst="jj status"
+abbr jsh="jj show %"
+
+abbr jab="jj abandon %"
+
 abbr jbl="jj bookmark list -a"
 abbr jbm="jj bookmark move % --to @-"
 abbr jbmm="jj bookmark move main --to @-"
 abbr jbsc="jj bookmark set -r @"
+
 abbr jc="jj commit"
+abbr jcc='jj commit -m "$(koji --stdout)"'
+
 abbr jd='jj desc -m "%"'
 abbr jdf="jj diff"
+abbr jdc='jj desc -m "$(koji --stdout)"'
+
 abbr je="jj edit %"
+
 abbr jgf="jj git fetch"
 abbr jgpa="jj git push"
 abbr jgps="jj git push -b %"
+
 abbr jl="jj log"
 abbr jla="jj log 'all()'"
 abbr jlt="jj log -T %"
+
 abbr jn="jj new %"
-abbr jr="jj rebase -s % -d @-"
-abbr jst="jj status"
-abbr jsh="jj show %"
+abbr jnc='jj new -m "$(koji --stdout)"'
+
 abbr jsp="jj split"
+abbr jspi="jj split -i"
+
 abbr jsq="jj squash"
 abbr jsqi="jj squash -i"
 abbr jsqc="jj squash -t %"
-abbr jdk='jj desc -m "$(koji --stdout)"'
-abbr jspi="jj split -i"
-abbr jab="jj abandon %"
-abbr jcc='jj commit -m "$(koji --stdout)"'
-abbr jnc='jj new -m "$(koji --stdout)"'
-abbr jh='jj -h'
+
 abbr judo='jj undo'
 abbr jopl='jj op log'
 abbr jevl='jj evolog'
@@ -428,8 +440,9 @@ abbr "tksv"="tmux kill-server"
 abbr "tl"="tmux list-sessions"
 abbr "tmuxconf"="$EDITOR $ZSH_TMUX_CONFIG"
 abbr "tx"="tmux"
+abbr "ts"='tmux new -s "%"'
 abbr "txi"="tmuxifier"
-abbr "txis"="tmuxifier s"
+abbr "txis"='tmuxifier s "%"'
 
 # --- ls / file listing (eza) ---
 abbr "cyh"="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
