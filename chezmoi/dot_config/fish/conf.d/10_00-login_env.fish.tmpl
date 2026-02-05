@@ -110,9 +110,15 @@ set -gx OPENROUTER_OPENCODE_APIKEY "{{ $openrouter }}"
 set -gx WAKATIME_API_KEY "{{ $wakatime }}"
 {{- end -}}
 {{- if eq .chezmoi.os "darwin" }}
-set -gx SSH_AUTH_SOCK "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+# Pakai 1Password SSH agent hanya jika tidak sedang SSH-forwarding
+if not set -q SSH_CONNECTION; or not set -q SSH_AUTH_SOCK
+  set -gx SSH_AUTH_SOCK "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+end
 {{- else if eq .chezmoi.os "linux" }}
-set -gx SSH_AUTH_SOCK "$HOME/.1password/agent.sock"
+# Pakai 1Password SSH agent hanya jika tidak sedang SSH-forwarding
+if not set -q SSH_CONNECTION; or not set -q SSH_AUTH_SOCK
+  set -gx SSH_AUTH_SOCK "$HOME/.1password/agent.sock"
+end
 {{- end }}
 {{- end }}
 

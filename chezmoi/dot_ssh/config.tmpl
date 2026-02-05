@@ -23,6 +23,9 @@ Host {{ .name }}
     User {{ range (onepassword .op_id).fields }}{{ if eq .label "user" }}{{ .value }}{{ end }}{{ end }}
     Hostname {{ range (onepassword .op_id).fields }}{{ if eq .label "hostname" }}{{ .value }}{{ end }}{{ end }}
 {{-         end }}
+{{-         if .forward_agent }}
+    ForwardAgent yes
+{{-         end }}
     Port {{ range (onepassword .op_id).fields }}{{ if eq .label "port" }}{{ .value }}{{ end }}{{ end }}
     IdentityFile {{ if .generate_public_key_only }}{{ $.directories.ssh_keys_dir | replaceAllRegex "\\${HOME}" "~" }}/{{ .name }}.pub{{ else }}{{ $.directories.ssh_keys_dir | replaceAllRegex "\\${HOME}" "~" }}/{{ .name }}{{ end }}
     IdentitiesOnly yes
@@ -35,13 +38,18 @@ Host {{ .name }}
 
 
 Host *
-  {{- if eq .chezmoi.os "darwin" }}
-  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-  {{- else if eq .chezmoi.os "linux" }}
-  IdentityAgent ~/.1password/agent.sock
-  {{- end }}
 	ServerAliveInterval 30
 	ServerAliveCountMax 120
 	StrictHostKeyChecking no
 	Protocol 2
 	IdentitiesOnly yes
+
+Match exec "test -z \"$SSH_CONNECTION\""
+  {{- if eq .chezmoi.os "darwin" }}
+  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+  {{- else if eq .chezmoi.os "linux" }}
+  IdentityAgent ~/.1password/agent.sock
+  {{- end }}
+
+Match exec "test -n \"$SSH_CONNECTION\""
+  IdentityAgent $SSH_AUTH_SOCK

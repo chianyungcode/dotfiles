@@ -1,6 +1,7 @@
 [remote_servers]
   [remote_servers.ghcny]
     add_to_ssh_config        = true
+    forward_agent            = false
     generate_public_key_only = true
     name                     = "ghcny"
     op_id                    = "5b2sfyzvwpuzcjcp2wfa7ablk4"
@@ -8,6 +9,7 @@
 
   [remote_servers.glcny]
     add_to_ssh_config        = true
+    forward_agent            = false
     generate_public_key_only = true
     name                     = "glcny"
     op_id                    = "nhczmzrx5uazmizwj6yzkjqohi"
@@ -15,6 +17,7 @@
 
   [remote_servers.gcp1]
     add_to_ssh_config        = true
+    forward_agent            = false
     generate_public_key_only = true
     name                     = "gcp1"
     op_id                    = "cidpjacci3fjd65sj2ffuhcd3i"
@@ -22,6 +25,7 @@
 
   [remote_servers.ghphyne]
     add_to_ssh_config        = true
+    forward_agent            = false
     generate_public_key_only = true
     name                     = "ghphyne"
     op_id                    = "fzv7mncqpjjmezf47kloo4t6ji"
@@ -29,6 +33,7 @@
 
   [remote_servers.acer]
     add_to_ssh_config        = true
+    forward_agent            = true
     generate_public_key_only = true
     name                     = "acer"
     op_id                    = "h4zlfpcdlr3r64qjteoqwww6be"
@@ -36,6 +41,7 @@
 
   [remote_servers.mbp]
     add_to_ssh_config        = true
+    forward_agent            = true
     generate_public_key_only = true
     name                     = "mbp"
     op_id                    = "o3hurjw4rkl24c4msn22pzoele"
