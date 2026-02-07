@@ -110,6 +110,13 @@ set -gx OPENROUTER_OPENCODE_APIKEY "{{ $openrouter }}"
 set -gx WAKATIME_API_KEY "{{ $wakatime }}"
 {{- end -}}
 {{- end }}
+if not set -q SSH_TTY
+{{- if eq .chezmoi.os "darwin" }}
+  set -gx SSH_AUTH_SOCK "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+{{- else if .chezmoi.os "linux" }}
+  set -gx SSH_AUTH_SOCK "$HOME/.1password/agent.sock"
+{{- end }}
+end
 
 # PATH - Environment Variable
 set -l __login_paths /bin /usr/bin /usr/sbin /sbin \

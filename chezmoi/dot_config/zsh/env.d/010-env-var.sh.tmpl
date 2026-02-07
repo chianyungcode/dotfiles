@@ -26,6 +26,12 @@ export GITHUB_TOKEN={{ onepasswordRead .secrets.github_personal_access_token }}
 export OPENROUTER_OPENCODE_APIKEY={{ onepasswordRead .secrets.opencode_apikey }}
 export WAKATIME_API_KEY={{ onepasswordRead .secrets.wakatime_apikey }}
 {{ end }}
+if [[ -z "${SSH_TTY:-}" ]]; then
+  {{- if eq .chezmoi.os "darwin" }}
+  export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+  {{- else if eq .chezmoi.os "linux" }}
+  export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
+fi
 
 {{ if eq .chezmoi.os "darwin" }}
 export DISABLE_AUTO_TITLE='true' # Prevent auto update in title window macos

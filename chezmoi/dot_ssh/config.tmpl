@@ -33,7 +33,6 @@ Host {{ .name }}
 {{-     end }}
 {{- end }}
 {{- end }}
-
 # ##### End Chezmoi Managed #############
 
 
@@ -43,13 +42,3 @@ Host *
 	StrictHostKeyChecking no
 	Protocol 2
 	IdentitiesOnly yes
-
-Match exec "test -z \"$SSH_CONNECTION\""
-  {{- if eq .chezmoi.os "darwin" }}
-  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-  {{- else if eq .chezmoi.os "linux" }}
-  IdentityAgent ~/.1password/agent.sock
-  {{- end }}
-
-Match exec "test -n \"$SSH_CONNECTION\""
-  IdentityAgent $SSH_AUTH_SOCK
