@@ -23,8 +23,8 @@ layout {
   }
 
   tab name="runner" split_direction="horizontal" {
-    pane name="task" cwd="~/Code/Personal/Projects/Backend/allweezy-backend/" command="task" {
-      args "dev"
+    pane name="task" cwd="~/Code/Personal/Projects/Backend/allweezy-backend/" command="just" {
+      args "dev_local"
       start_suspended true
     }
   }
