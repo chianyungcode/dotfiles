@@ -8,6 +8,36 @@
 # https://fishshell.com/docs/current/cmds/abbr.html
 # cSpell:disable
 
+# better defaults
+abbr --add .. "cd .."
+abbr --add ... "cd ../.."
+abbr --add .... "cd ../../.."
+abbr --add ..... "cd ../../../.."
+abbr --add cat bat
+abbr --add cl clear
+abbr --add che chezmoi
+abbr --add nv nvim
+abbr --add lzg lazygit
+abbr --add lzd lazydocker
+abbr --add mux tmuxinator
+abbr --add fier tmuxifier
+abbr --add clrnvses 'rm -rf ~/.local/share/nvim/sessions/*'
+abbr --add ax 'chmod a+x'
+abbr --add untar 'tar -zxvf'
+abbr --add mktar 'tar -cvzf'
+abbr --add numfiles 'echo (ls -1 | wc -l)'
+abbr --add bkzsh 'bindkey | fzf'
+abbr --add bkfsh 'bind | fzf'
+abbr --add bktmux 'tmux list-keys | fzf'
+abbr --add dotf 'cd ~/.local/share/chezmoi'
+abbr --add conf 'cd ~/.config/'
+abbr --add exf 'exec fish'
+
+# pueue
+abbr --add pue pueue
+abbr --add pueon 'pueued -d'
+abbr --add puer 'pueue reset'
+
 # brew
 abbr --add bci "brew info --cask"
 abbr --add bcin "brew install --cask"

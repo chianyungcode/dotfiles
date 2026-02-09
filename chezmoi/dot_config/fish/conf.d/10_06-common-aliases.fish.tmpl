@@ -7,38 +7,8 @@
 # A simple wrapper for the function builtin, which creates a function wrapping a command
 # https://fishshell.com/docs/current/cmds/alias.html
 
-alias cl 'clear'
-alias chz 'chezmoi'
-
-# = CLI TUI =
-alias nv 'nvim'
-alias lzg 'lazygit'
-alias lzd 'lazydocker'
-alias mux 'tmuxinator'
-alias fier 'tmuxifier'
-
-alias clrnvses 'rm -rf ~/.local/share/nvim/sessions/*'
-alias ax 'chmod a+x' # system: make file executable
-alias untar 'tar -zxvf' # Extract tar.gz file
-alias mktar 'tar -cvzf' # Create a tar.gz file
-alias numfiles 'echo $(ls -1 | wc -l)' # Count of non-hidden files in current directories
-alias bkzsh 'bindkey | fzf'
-alias bkfsh 'bind | fzf'
-alias bktmux 'tmux list-keys | fzf'
-
-# pueue
-alias pue "pueue"
-alias pueon "pueued -d"
-alias puer "pueue reset"
-
 # bun
 alias bfzf "bun run \"\$(jq -r '.scripts | keys[]' package.json | fzf --no-border)\""
-
-# Directories
-alias dotf "cd ~/.local/share/chezmoi"
-alias config "cd ~/.config/"
-
-alias exf "exec fish"
 
 # === START OF CHEZMOI MANAGED ===
 {{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") (lookPath "wl-copy")}}

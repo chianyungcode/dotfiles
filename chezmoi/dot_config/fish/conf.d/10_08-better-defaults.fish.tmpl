@@ -3,13 +3,3 @@ alias ping="gping"
 {{- else if lookPath "prettyping" }}
 alias ping="prettyping --nolegend"
 {{- end }}
-
-{{- if lookPath "bat" }}
-alias cat="bat" # Prefer `bat` over `cat`
-{{- end }}
-
-# Add aliases for directory navigation
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
