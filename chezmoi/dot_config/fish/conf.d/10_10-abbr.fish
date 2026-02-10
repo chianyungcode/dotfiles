@@ -466,6 +466,7 @@ abbr -a je --set-cursor 'jj edit %'
 abbr -a jgf 'jj git fetch'
 abbr -a jgpa 'jj git push'
 abbr -a jgps --set-cursor 'jj git push -b %'
+abbr -a jgpsm --set-cursor 'jj git push -b main'
 
 abbr -a jl 'jj log'
 abbr -a jla "jj log 'all()'"
