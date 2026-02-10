@@ -46,3 +46,11 @@
     name                     = "mbp"
     op_id                    = "o3hurjw4rkl24c4msn22pzoele"
     tailscale_ip             = true
+
+  [remote_servers.shpvps]
+    add_to_ssh_config        = true
+    forward_agent            = false
+    generate_public_key_only = true
+    name                     = "shopee"
+    op_id                    = "jk5mex5epmzhag3hosq6ghgepa"
+    tailscale_ip             = false
