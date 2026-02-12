@@ -241,6 +241,7 @@ return {
   -- DESC: alternative to flash, leap, hop nvim
   {
     "FluxxField/smart-motion.nvim",
+    enabled = false,
     opts = {
       presets = {
         words = true, -- w, b, e, ge
