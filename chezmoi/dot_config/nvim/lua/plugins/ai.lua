@@ -8,12 +8,17 @@ return {
     opts = {
       -- add any options here
       nes = { enabled = false },
-      -- cli = {
-      --   mux = {
-      --     backend = "tmux",
-      --     enabled = true,
-      --   },
-      -- },
+      cli = {
+        mux = {
+          backend = "tmux", -- or `zellij`
+          enabled = true,
+          -- terminal: new sessions will be created for each CLI tool and shown in a Neovim terminal
+          -- window: when run inside a terminal multiplexer, new sessions will be created in a new tab
+          -- split: when run inside a terminal multiplexer, new sessions will be created in a new split
+          -- NOTE: zellij only supports `terminal`
+          -- create = "terminal", ---@type "terminal"|"window"|"split"
+        },
+      },
     },
     keys = {
       {
