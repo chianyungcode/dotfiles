@@ -2,13 +2,21 @@
 PATH="${HOME}/.atuin/bin/:${PATH}"
 {{- end }}
 
-if [ "$(command -v atuin)" ]; then
+if (( $+commands[atuin] )); then
     if [[ -n ${ZSH_NAME} ]]; then
-        export ATUIN_NOBIND="true"
-        eval "$(atuin init zsh)"
-        # bindkey '^r' _atuin_search_widget # already binding in `fzf.sh.tmpl` to override fzf_history_widget
-        bindkey '^[[A' atuin-up-search
-        bindkey '^[OA' atuin-up-search
+        _init_atuin_zsh() {
+            export ATUIN_NOBIND="true"
+            eval "$(atuin init zsh)"
+            bindkey '^[[A' atuin-up-search
+            bindkey '^[OA' atuin-up-search
+            (( $+widgets[_atuin_search_widget] )) && bindkey '^r' _atuin_search_widget
+        }
+
+        if (( $+functions[zsh-defer] )); then
+            zsh-defer _init_atuin_zsh
+        else
+            _init_atuin_zsh
+        fi
     elif [[ -n ${BASH} ]]; then
         # shellcheck disable=SC1091
         [[ -f ~/.bash-preexec.sh ]] && source "${HOME}/.bash-preexec.sh"

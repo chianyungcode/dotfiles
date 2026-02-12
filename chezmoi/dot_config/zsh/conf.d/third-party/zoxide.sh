@@ -22,7 +22,17 @@
 #
 
 # Initialize tools
-eval "$(zoxide init zsh)"
+if (( $+commands[zoxide] )); then
+  _init_zoxide_zsh() {
+    eval "$(zoxide init zsh)"
+  }
+
+  if (( $+functions[zsh-defer] )); then
+    zsh-defer _init_zoxide_zsh
+  else
+    _init_zoxide_zsh
+  fi
+fi
 
 # Widget Zsh: pilih direktori dari zoxide dengan preview dan langsung cd
 fzf_zoxide_widget() {

@@ -5,4 +5,10 @@
 {{- end }}
 
 # FZF Git integration
-source $HOME/.config/fzf-git/fzf-git.sh
+if [[ -r "$HOME/.config/fzf-git/fzf-git.sh" ]]; then
+  if (( $+functions[zsh-defer] )); then
+    zsh-defer source "$HOME/.config/fzf-git/fzf-git.sh"
+  else
+    source "$HOME/.config/fzf-git/fzf-git.sh"
+  fi
+fi

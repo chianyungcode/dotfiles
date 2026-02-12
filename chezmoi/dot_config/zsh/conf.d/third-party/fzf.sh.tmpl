@@ -1,26 +1,34 @@
 # Load fzf
-if [[ "$(command -v fzf)" ]] && [[ -n ${ZSH_NAME} ]]; then
-  fzf_version_minor=$(fzf --version | awk '{print $1}' | cut -d. -f2)
+if (( $+commands[fzf] )) && [[ -n ${ZSH_NAME} ]]; then
+  _init_fzf_zsh() {
+    local fzf_version_minor
+    fzf_version_minor=$(fzf --version | awk '{print $1}' | cut -d. -f2)
 
-  if [[ $fzf_version_minor -ge 47 ]]; then
-    eval "$(fzf --zsh)"
-  elif [ -f "/usr/share/doc/fzf/examples/key-bindings.zsh" ]; then
-    source /usr/share/doc/fzf/examples/key-bindings.zsh
+    if [[ $fzf_version_minor -ge 47 ]]; then
+      eval "$(fzf --zsh)"
+    elif [ -f "/usr/share/doc/fzf/examples/key-bindings.zsh" ]; then
+      source /usr/share/doc/fzf/examples/key-bindings.zsh
 
-    if [ -f "/usr/share/doc/fzf/examples/completion.zsh" ]; then
-      source /usr/share/doc/fzf/examples/completion.zsh
+      if [ -f "/usr/share/doc/fzf/examples/completion.zsh" ]; then
+        source /usr/share/doc/fzf/examples/completion.zsh
+      fi
     fi
-  fi
+  }
 
-elif [[ "$(command -v fzf)" ]] && [[ -n ${BASH} ]]; then
+  if (( $+functions[zsh-defer] )); then
+    zsh-defer _init_fzf_zsh
+  else
+    _init_fzf_zsh
+  fi
+elif (( $+commands[fzf] )) && [[ -n ${BASH} ]]; then
   eval "$(fzf --bash)"
 fi
 
 # Configure fzf
-if [ "$(command -v fzf)" ]; then
+if (( $+commands[fzf] )); then
   # Preferred implementation requires fd, bat, and eza to be installed
 
-  if [ "$(command -v fd)" ] && [ "$(command -v bat)" ] && [ "$(command -v eza)" ]; then
+  if (( $+commands[fd] )) && (( $+commands[bat] )) && (( $+commands[eza] )); then
     show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
 
     export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
@@ -56,8 +64,3 @@ if [ "$(command -v fzf)" ]; then
   fi
 
 fi
-
-{{ if lookPath "atuin" -}}
-# Override fzf_history_widget, i prefer use atuin
-bindkey '^r' _atuin_search_widget
-{{- end }}

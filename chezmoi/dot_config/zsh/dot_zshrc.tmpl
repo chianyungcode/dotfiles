@@ -87,7 +87,7 @@ fi
 # ============================================
 # Source Config Files
 # ============================================
-config_dirs=("$HOME/.config/zsh/conf.d")
+config_dirs=("${ZDOTDIR:-$HOME/.config/zsh}/conf.d")
 for dir in "${config_dirs[@]}"; do
   [ -d "$dir" ] || continue
   for file in "$dir"/*.{zsh,sh}(.N) "$dir"/*/*.{zsh,sh}(.N); do

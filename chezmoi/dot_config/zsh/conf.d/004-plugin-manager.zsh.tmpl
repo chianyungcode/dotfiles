@@ -4,40 +4,46 @@
 # ======================================================
 # Antidote Plugin Manager Setup
 # ======================================================
+#
+# Startup path:
+# 1) Source the static plugin bundle (.zsh) directly.
+# 2) Only load Antidote and regenerate bundle when needed.
+# This avoids paying Antidote initialization cost on every shell startup.
 
-source ${ZDOTDIR}/.antidote/antidote.zsh
+zsh_plugins=${ZDOTDIR:-$HOME/.config/zsh}/.zsh_plugins
+zsh_plugins_txt=${zsh_plugins}.txt
+zsh_plugins_zsh=${zsh_plugins}.zsh
+zsh_plugins_zwc=${zsh_plugins}.zwc
+zsh_config_root=${ZDOTDIR:-$HOME/.config/zsh}
+antidote_script=""
 
-{{ if and (eq .chezmoi.os "darwin") (stat "/opt/bin/opt/antidote/share/antidote/antidote.zsh") }}
-# -- Source Antidote (installed via package manager) --
-# Source Antidote if installed via Homebrew on macOS
-source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
-{{- else if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") (stat "/usr/share/zsh-antidote/antidote.zsh")}}
-# Antidote installed via AUR package `zsh-antidote` (use: paru -S zsh-antidote)
-# ⚠️ Note: Using the AUR version on Arch Linux is **not recommended**, as it may not work properly in some setups.
-source /usr/share/zsh-antidote/antidote.zsh
-{{- end -}}
+[[ -f "$zsh_plugins_txt" ]] || touch "$zsh_plugins_txt"
 
-# ======================================================
-# Plugin Configuration
-# ======================================================
+if [[ ! -s "$zsh_plugins_zsh" || ! "$zsh_plugins_zsh" -nt "$zsh_plugins_txt" ]]; then
+  if [[ -r "${zsh_config_root}/.antidote/antidote.zsh" ]]; then
+    antidote_script="${zsh_config_root}/.antidote/antidote.zsh"
+{{- if eq .chezmoi.os "darwin" }}
+  elif [[ -r "/opt/homebrew/opt/antidote/share/antidote/antidote.zsh" ]]; then
+    antidote_script="/opt/homebrew/opt/antidote/share/antidote/antidote.zsh"
+{{- else if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") }}
+  elif [[ -r "/usr/share/zsh-antidote/antidote.zsh" ]]; then
+    antidote_script="/usr/share/zsh-antidote/antidote.zsh"
+{{- end }}
+  fi
 
-# Instead of calling `antidote load` on every startup (which can be slow),
-# the code below loads a pre-generated static plugin file for faster startup time.
+  if [[ -n "$antidote_script" ]]; then
+    source "$antidote_script"
+    antidote bundle <"$zsh_plugins_txt" >|"$zsh_plugins_zsh"
 
-# Set the base path for Antidote plugin files (.txt and .zsh)
-zsh_plugins=${ZDOTDIR:-~}/.zsh_plugins
-
-# Ensure the .zsh_plugins.txt file exists for defining plugin list
-[[ -f ${zsh_plugins}.txt ]] || touch ${zsh_plugins}.txt
-
-# Add Antidote function directory to $fpath for lazy loading
-fpath=(/path/to/antidote/functions $fpath)
-autoload -Uz antidote
-
-# Regenerate static plugin file if .txt is newer than .zsh
-if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.txt ]]; then
-  antidote bundle <${zsh_plugins}.txt >|${zsh_plugins}.zsh
+    # Compile once after regeneration; zsh will auto-pick .zwc when valid.
+    if [[ ! -f "$zsh_plugins_zwc" || "$zsh_plugins_zsh" -nt "$zsh_plugins_zwc" ]]; then
+      zcompile "$zsh_plugins_zsh"
+    fi
+  else
+    print -u2 "warning: antidote.zsh not found; skipping plugin bundle regeneration"
+  fi
 fi
 
-# Source the generated static plugin file
-source ${zsh_plugins}.zsh
+[[ -r "$zsh_plugins_zsh" ]] && source "$zsh_plugins_zsh"
+
+unset antidote_script zsh_plugins zsh_plugins_txt zsh_plugins_zsh zsh_plugins_zwc zsh_config_root
