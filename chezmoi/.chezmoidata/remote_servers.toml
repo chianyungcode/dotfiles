@@ -47,6 +47,14 @@
     op_id                    = "o3hurjw4rkl24c4msn22pzoele"
     tailscale_ip             = true
 
+  [remote_servers.pc]
+    add_to_ssh_config        = true
+    forward_agent            = true
+    generate_public_key_only = true
+    name                     = "pc-nixos"
+    op_id                    = "5ulvmrvynchgsmlffm64spatn4"
+    tailscale_ip             = true
+
   [remote_servers.shpvps]
     add_to_ssh_config        = true
     forward_agent            = false

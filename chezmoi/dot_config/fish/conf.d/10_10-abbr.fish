@@ -208,6 +208,7 @@ abbr --add spot-off "sudo launchctl unload -w /System/Library/LaunchDaemons/com.
 abbr --add spot-on "sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist"
 abbr --add tailacer "ssh tailacer"
 abbr --add tailmbp "ssh tailmbp"
+abbr --add tailpc "ssh tailpc-nixos"
 abbr --add tailprefs "tailscale debug prefs"
 abbr --add ax "chmod a+x"
 abbr --add bktmux "tmux list-keys | fzf"

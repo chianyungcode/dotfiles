@@ -431,6 +431,7 @@ abbr "ghphyne"="ssh ghphyne"
 abbr "mbp"="ssh mbp"
 abbr "tailacer"="ssh tailacer"
 abbr "tailmbp"="ssh tailmbp"
+abbr "tailpc"="ssh tailpc-nixos"
 
 # --- Tmux / Tmuxifier / Tmuxinator ---
 abbr "bktmux"="tmux list-keys | fzf"
