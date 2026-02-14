@@ -17,7 +17,7 @@ return {
       -- Example : javascript = { "biome", "prettier" }, // This will run "biome" first, and after that will run "prettier"
 
       formatters_by_ft = { -- https://github.com/stevearc/conform.nvim?tab=readme-ov-file#setup
-        nix = { "nixfmt" },
+        nix = { "alejandra" },
         lua = { "stylua" },
         python = { "ruff" },
         rust = { "rustfmt" },
@@ -27,7 +27,7 @@ return {
         typescript = { "biome", "biome-organize-imports" },
         typescriptreact = { "biome", "biome-organize-imports" },
         yaml = { "yamlfmt" }, -- Using custom formatters, because yamlfmt default with mason bug with indentation that set in .yamlfmt in root of working directory
-        toml = { "taplo_fmt" }, -- Using custom formatters, to prevent use default config for taplo in conform that can causing bug
+        toml = { "taplo" }, -- Using custom formatters, to prevent use default config for taplo in conform that can causing bug
         json = { "biome" },
         jsonc = { "biome" },
         sql = { "sqruff" },
