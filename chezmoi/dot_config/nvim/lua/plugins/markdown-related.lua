@@ -210,6 +210,14 @@ return {
     -- end,
   },
 
+  -- https://github.com/zion-off/mole.nvim
+  -- DESC: annotation for personal docs, like running note
+  {
+    "zion-off/mole.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    opts = {},
+  },
+
   -- https://github.com/MeanderingProgrammer/render-markdown.nvim
   -- DESC: fancy visual markdown in neovim
   {
