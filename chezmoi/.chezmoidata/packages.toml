@@ -185,6 +185,7 @@
 
     [packages.homebrew.personal_computer]
       casks = [
+        "thaw",                      # fork of jordanbaird-ice menubar
         "thebrowsercompany-dia",     # Dia Browser
         "glide",                     # Tiling window manager
         "cap",                       # screen recording software
