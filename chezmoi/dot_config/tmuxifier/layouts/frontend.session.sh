@@ -1,4 +1,4 @@
-if initialize_session "allweezy"; then
+if initialize_session "frontend"; then
 
   # Create a new window inline within session layout definition.
   #new_window "misc"
