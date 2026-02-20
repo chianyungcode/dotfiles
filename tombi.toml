@@ -1,0 +1,6 @@
+[format]
+	[format.rules]
+		indent-style = "tab"  # or "space"
+		indent-sub-tables = true
+		indent-table-key-value-pairs = true
+		indent-width = 2

@@ -27,7 +27,7 @@ return {
         typescript = { "biome", "biome-organize-imports" },
         typescriptreact = { "biome", "biome-organize-imports" },
         yaml = { "yamlfmt" }, -- Using custom formatters, because yamlfmt default with mason bug with indentation that set in .yamlfmt in root of working directory
-        toml = { "taplo" }, -- Using custom formatters, to prevent use default config for taplo in conform that can causing bug
+        toml = { "tombi" }, -- Using custom formatters, to prevent use default config for taplo in conform that can causing bug
         json = { "biome" },
         jsonc = { "biome" },
         sql = { "sqruff" },
