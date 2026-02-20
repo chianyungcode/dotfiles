@@ -509,9 +509,9 @@ abbr --add txis --set-cursor 'tmuxifier s "%"'
 abbr --add zl zellij
 abbr --add zla "zellij attach"
 abbr --add zld --set-cursor 'zellij delete-session "%"'
-abbr --add zlda "zellij delete-all-sessions"
+abbr --add zlda "zellij delete-all-sessions --yes"
 abbr --add zlk --set-cursor 'zellij kill-session "%"'
-abbr --add zlka "zellij kill-all-sessions"
+abbr --add zlka "zellij kill-all-sessions --yes"
 abbr --add zlls "zellij list-sessions"
 
 # 1password

@@ -418,9 +418,9 @@ abbr "buz"="brew uninstall --zap"
 abbr "zl"="zellij"
 abbr "zla"="zellij attach"
 abbr "zld"="zellij delete-session"
-abbr "zlda"="zellij delete-all-sessions"
+abbr "zlda"="zellij delete-all-sessions --yes"
 abbr "zlk"="zellij kill-session"
-abbr "zlka"="zellij kill-all-sessions"
+abbr "zlka"="zellij kill-all-sessions --yes"
 abbr "zlls"="zellij list-sessions"
 
 # --- SSH / Remote hosts ---
