@@ -29,6 +29,11 @@ _myPaths=(
   "$LM_STUDIO_BIN"
   "$PROTO_HOME/bin"
   "$PROTO_HOME/shims"
+
+  # -- Nix
+  "/run/current-system/sw/bin"
+  "$HOME/.local/state/nix/profiles/profile/bin"
+  "$HOME/.nix-profile/bin"
 )
 
 for _path in "${_myPaths[@]}"; do

@@ -126,7 +126,10 @@ set -l __login_paths /bin /usr/bin /usr/sbin /sbin \
     $HOME/.local/bin $HOME/bin /usr/bin/snap \
     $PROTO_HOME/shims $PROTO_HOME/bin \
     $HOME/.atuin/bin $XDG_CACHE_HOME/.bun/bin \
-    $HOME/.tmuxifier/bin $LM_STUDIO_BIN
+    $HOME/.tmuxifier/bin $LM_STUDIO_BIN \
+    /run/current-system/sw/bin \
+    $HOME/.local/state/nix/profiles/profile/bin \
+    $HOME/.nix-profile/bin
 set -l __existing_login_paths
 for dir in $__login_paths
     test -d $dir; or continue
