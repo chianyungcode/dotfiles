@@ -304,8 +304,8 @@ set -g window-status-current-format ' #[fg=yellow]#I:#W'
 # # setw -g pane-border-lines single
 #
 # # window look and feel
-# set -wg automatic-rename on
-# set -g automatic-rename-format "#{pane_current_command}"
+set -g automatic-rename on
+set -g automatic-rename-format "#{b:pane_current_path}/#{pane_current_command}"
 #
 # set -g window-status-format " #I#{?#{!=:#{window_name},Window},: #W,} "
 # set -g window-status-style "bg=#{@thm_bg},fg=#{@thm_rosewater}"
