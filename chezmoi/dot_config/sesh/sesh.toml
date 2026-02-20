@@ -1,53 +1,53 @@
 [[session]]
-  name = "Downloads 📥"
-  path = "~/Downloads"
-  # startup_command = "ls"
+	name = "Downloads 📥"
+	path = "~/Downloads"
+	# startup_command = "ls"
 
 [[session]]
-  name            = "tmux Config"
-  path            = "~/.local/share/chezmoi/chezmoi/dot_config/tmux"
-  preview_command = "bat --color=always ~/.config/tmux/tmux.conf"    # startup_command = "nvim tmux.conf"
-  startup_command = "nvim tmux.conf.tmpl"
+	name = "backend"
+	path = "~/Code/Personal/Projects/Backend/allweezy-backend"
+	startup_command = "nvim"
+	windows = ["opencode", "codex", "terminal"]
 
 [[session]]
-  name = "obsidian"
-  path = "~/Documents/vault-obsidian"
+	name = "OS"
+	path = "~"
+	startup_command = "yazi"
+	windows = ["monitoring"]
 
 [[session]]
-  name            = "dotfiles"
-  path            = "~/.local/share/chezmoi"
-  startup_command = "nvim"
-  windows         = [".config"]
-
-[[window]]
-  name           = ".config"
-  path           = "~/.config"
-  startup_script = "nvim"
+	name = "tmux Config"
+	path = "~/.local/share/chezmoi/chezmoi/dot_config/tmux"
+	preview_command = "bat --color=always ~/.config/tmux/tmux.conf"  # startup_command = "nvim tmux.conf"
+	startup_command = "nvim tmux.conf.tmpl"
 
 [[session]]
-  name            = "backend"
-  path            = "~/Code/Personal/Projects/Backend/allweezy-backend"
-  startup_command = "nvim"
-  windows         = ["opencode", "codex", "terminal"]
-
-[[window]]
-  name           = "opencode"
-  startup_script = "opencode"
-
-[[window]]
-  name           = "codex"
-  startup_script = "codex"
-
-[[window]]
-  name           = "terminal"
-  startup_script = "doppler run -- bun run dev"
+	name = "obsidian"
+	path = "~/Documents/vault-obsidian"
 
 [[session]]
-  name            = "OS"
-  path            = "~"
-  startup_command = "yazi"
-  windows         = ["monitoring"]
+	name = "dotfiles"
+	path = "~/.local/share/chezmoi"
+	startup_command = "nvim"
+	windows = [".config"]
 
 [[window]]
-  name           = "monitoring"
-  startup_script = "btop"
+	name = ".config"
+	path = "~/.config"
+	startup_script = "nvim"
+
+[[window]]
+	name = "opencode"
+	startup_script = "opencode"
+
+[[window]]
+	name = "monitoring"
+	startup_script = "btop"
+
+[[window]]
+	name = "codex"
+	startup_script = "codex"
+
+[[window]]
+	name = "terminal"
+	startup_script = "doppler run -- bun run dev"
