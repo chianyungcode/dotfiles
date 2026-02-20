@@ -9,6 +9,11 @@
 # NOTE
 # 'use_secrets' ensures whether you are using 1Password; if so, all 1Password functions like 'onePasswordRead' can be used because the "op" CLI is installed
 
+encryption = "age"
+
+[age]
+ identity = "{{.chezmoi.homeDir}}/keys.txt"
+ recipients = "age1z9fpa8c4v4fmdu42myc6uyapvs9436tns9myss5yqv6p3cmrny2s4rs6kt"
 
 [data]
   git_email         = {{ $git_email | quote }}
