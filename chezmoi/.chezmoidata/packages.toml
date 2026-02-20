@@ -118,6 +118,7 @@
         "fork",     # "sourcetree", alternative to fork
       ]
       formulae = [
+        "sk",                                  # alternative for fzf fuzzy-finder
         "difftastic",                          # diff tools
         "act",                                 # runs GitHub Actions locally
         "jj",                                  # jujutsu version controll
@@ -376,6 +377,7 @@
 
     [packages.pacman.dev_computer]
       packages = [
+        "skim",             # alternative for fzf fuzzy-finder 
         "appimagelauncher", # for integrating .AppImage
         # "auto-cpufreq",        # CPU frequency auto, disable this because can causing slow perfomance. This slow perfomance appear in startup time in terminal
         "gitleaks",
