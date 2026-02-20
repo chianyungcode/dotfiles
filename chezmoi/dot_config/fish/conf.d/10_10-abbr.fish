@@ -195,7 +195,7 @@ abbr --add npmV "npm -v"
 # ssh
 abbr --add mbp "ssh mbp"
 abbr --add ghcny "ssh ghcny"
-abbr --add ghphyne "ssh ghphyne"
+abbr --add ghspy "ssh ghspy"
 
 # pet
 abbr --add psc "pet search"
