@@ -56,3 +56,6 @@ vendor/
 *.tmp
 *.bak
 *.swp
+
+# Ignore automatically generated direnv output
+.direnv
