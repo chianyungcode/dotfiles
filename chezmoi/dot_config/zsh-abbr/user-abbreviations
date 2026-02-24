@@ -337,7 +337,6 @@ abbr "lzg"="lazygit"
 abbr j="jj"
 abbr jh='jj -h'
 
-abbr jr="jj rebase -s % -d @-"
 abbr jst="jj status"
 abbr jsh="jj show %"
 
@@ -368,6 +367,11 @@ abbr jlt="jj log -T %"
 
 abbr jn="jj new %"
 abbr jnc='jj new -m "$(koji --stdout)"'
+
+
+abbr jrh="jj rebase -h"
+abbr jrs="jj rebase -s % -d @-"
+abbr jrr="jj rebase -r % -o %"
 
 abbr jsp="jj split"
 abbr jspi="jj split -i"

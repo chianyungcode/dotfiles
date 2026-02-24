@@ -452,7 +452,6 @@ abbr --add gwtrm "git worktree remove"
 abbr -a j jj # I use `jj` to exit insert mode
 abbr -a jh 'jj -h'
 
-abbr -a jr --set-cursor 'jj rebase -s % -d @-'
 abbr -a jst 'jj status'
 abbr -a jsh --set-cursor 'jj show %'
 
@@ -472,6 +471,10 @@ abbr -a jgpsm --set-cursor 'jj git push -b main'
 abbr -a jl 'jj log'
 abbr -a jla "jj log 'all()'"
 abbr -a jlt --set-cursor "jj log -T %"
+
+abbr -a jrh --set-cursor 'jj rebase -h'
+abbr -a jrs --set-cursor 'jj rebase -s % -d @-'
+abbr -a jrr --set-cursor 'jj rebase -r % -o '
 
 abbr -a jsp 'jj split'
 abbr -a jspi 'jj split -i'
