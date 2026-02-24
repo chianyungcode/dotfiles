@@ -1,6 +1,0 @@
----
-matches:
-  - trigger: "llh3"
-    replace: "http://localhost:3000"
-  - trigger: "llh8"
-    replace: "http://localhost:8000"
