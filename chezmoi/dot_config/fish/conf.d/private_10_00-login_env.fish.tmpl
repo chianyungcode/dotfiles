@@ -1,3 +1,10 @@
+{{ if eq .chezmoi.os "darwin" }}
+# Keep Homebrew binaries first even in non-login interactive shells.
+if test -d /opt/homebrew/bin
+    fish_add_path -g --move --path "/opt/homebrew/bin" "/opt/homebrew/sbin"
+end
+{{ end }}
+
 status --is-login; or return
 if set -q __fish_login_env_loaded
     return
@@ -78,9 +85,6 @@ set -gx WGETRC "$XDG_CONFIG_HOME/wgetrc"
 # --- Data ---
 set -gx _ZO_DATA_DIR "$XDG_DATA_HOME/zoxide"
 
-# --- Cache ---
-set -gx ANTIDOTE_HOME "$XDG_CACHE_HOME/antidote"
-
 {{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") -}}
 set -gx HYPRLAND_CONFIG "$XDG_DATA_HOME/hypr/hyprland.conf"
 set -gx TERMINFO "$XDG_DATA_HOME/terminfo"
@@ -119,9 +123,9 @@ if not set -q SSH_TTY
 end
 
 # PATH - Environment Variable
-set -l __login_paths /bin /usr/bin /usr/sbin /sbin \
-    /opt/homebrew/bin /opt/homebrew/sbin /usr/local/bin \
+set -l __login_paths /opt/homebrew/bin /opt/homebrew/sbin \
     /opt/zerobrew/prefix/bin/ \
+    /bin /usr/bin /usr/sbin /sbin /usr/local/bin \
     $HOME/go/bin $HOME/.cargo/bin {{ .xdgDataDir }}/cargo/bin \
     $HOME/.local/bin $HOME/bin /usr/bin/snap \
     $PROTO_HOME/shims $PROTO_HOME/bin \
