@@ -280,15 +280,22 @@
   zlj-pane (macro @zlj-prefix p)
   zlj-pane-cls (macro @zlj-prefix 25 p 25 x) ;; close pane
   zlj-pane-qs (macro @zlj-prefix 25 p 25 tab 25 esc) ;; switch last
+
+  ;; split pane
   zlj-splith (macro @zlj-prefix 25 p 25 -) ;; split horizontal
   zlj-splitv (macro @zlj-prefix 25 p 25 S-\) ;; split vertical
+
+  zlj-p-left (macro @zlj-prefix 25 p 25 left esc)
+  zlj-p-bottom (macro @zlj-prefix 25 p 25 down esc)
+  zlj-p-top (macro @zlj-prefix 25 p 25 up esc)
+  zlj-p-right (macro @zlj-prefix 25 p 25 right esc)
 )
 
 (deflayer zellij
        🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
   grv  @zlj-t-1  @zlj-t-2  @zlj-t-3  @zlj-t-4  @zlj-t-5  @zlj-t-6  @zlj-t-7  @zlj-t-8  @zlj-t-9   XX   @zlj-splith   @zlj-splitv   XX
   tab  @zlj-sessions  XX   @zlj-ses-dtch   @zlj-rsz  @zlj-tab  XX        XX   XX   @zlj-ses @zlj-pane     XX   XX XX
-  caps XX   @zlj-tab-qs   @zlj-pane-qs   XX   XX        XX        XX        XX   XX   XX       XX            XX
+  caps XX   @zlj-tab-qs   @zlj-pane-qs   XX   XX     @zlj-p-left    @zlj-p-bottom        @zlj-p-top   @zlj-p-right   XX       XX            XX
   lsft @zlj-tab-cls   @zlj-pane-cls   @zlj-new-tab   XX   XX        XX        XX        XX   XX   XX       XX
   lctl lmet lalt           spc            ralt rmet rctl
 )
