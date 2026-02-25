@@ -58,7 +58,7 @@
   {
     "context": "Editor && vim_mode == visual  && !menu && extension",
     "bindings": {
-      "space a s": "agent::AddSelectionToThread"
+      "space a t": "agent::AddSelectionToThread"
     }
   },
   {
