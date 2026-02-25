@@ -3,7 +3,6 @@ model = "gpt-5.3-codex"
 model_reasoning_effort = "medium"
 
 [features]
-rmcp_client = true
 
 [mcp_servers.context7]
   args = ["-y", "@upstash/context7-mcp", "--api-key", "{{ onepasswordRead .secrets.context7_api_key }}"]
@@ -31,6 +30,9 @@ rmcp_client = true
 
 [mcp_servers.linear]
   url = "https://mcp.linear.app/mcp"
+
+[mcp_servers.tavily]
+  url = "https://mcp.tavily.com/mcp/?tavilyApiKey={{ if .use_secrets }}{{ onepasswordRead .secrets.tavily_key }}{{ end }}"
 
 [projects."/Users/chianyung/.local/share/chezmoi"]
 trust_level = "trusted"

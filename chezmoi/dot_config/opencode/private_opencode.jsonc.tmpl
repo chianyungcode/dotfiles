@@ -40,10 +40,15 @@
 			"enabled": false
 		},
     "linear": {
-        "type": "local",
-        "command": ["bun", "x", "mcp-remote", "https://mcp.linear.app/mcp"],
-        "enabled": true
-      }
+      "type": "local",
+      "command": ["bun", "x", "mcp-remote", "https://mcp.linear.app/mcp"],
+      "enabled": true
+    },
+    "tavily": {
+      "type": "remote",
+			"url": "https://mcp.tavily.com/mcp/?tavilyApiKey={{ if .use_secrets }}{{ onepasswordRead .secrets.tavily_key }}{{ end }}",
+      "enabled": true
+    }
 	},
 	"agent": {
 		"code-reviewer": {
