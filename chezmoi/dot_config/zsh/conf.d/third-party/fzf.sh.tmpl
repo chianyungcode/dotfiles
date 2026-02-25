@@ -1,5 +1,8 @@
 # Load fzf
 if (( $+commands[fzf] )) && [[ -n ${ZSH_NAME} ]]; then
+  # Keep Ctrl+R owned by Atuin history search.
+  export FZF_CTRL_R_COMMAND=""
+
   _init_fzf_zsh() {
     local fzf_version_minor
     fzf_version_minor=$(fzf --version | awk '{print $1}' | cut -d. -f2)
