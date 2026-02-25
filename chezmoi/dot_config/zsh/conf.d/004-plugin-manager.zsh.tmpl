@@ -40,7 +40,12 @@ if [[ ! -s "$zsh_plugins_zsh" || ! "$zsh_plugins_zsh" -nt "$zsh_plugins_txt" ]];
       zcompile "$zsh_plugins_zsh"
     fi
   else
-    print -u2 "warning: antidote.zsh not found; skipping plugin bundle regeneration"
+    git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
+    source "$antidote_script"
+    antidote bundle <"$zsh_plugins_txt" >|"$zsh_plugins_zsh"
+    if [[ ! -f "$zsh_plugins_zwc" || "$zsh_plugins_zsh" -nt "$zsh_plugins_zwc" ]]; then
+      zcompile "$zsh_plugins_zsh"
+    fi
   fi
 fi
 
