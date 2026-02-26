@@ -462,7 +462,10 @@
 		to_remove = []
 
 		[packages.python.common]
-			packages = ["halper", "pygments"]
+			packages = [
+				"halper",
+				"pygments",
+			]
 
 		[packages.python.dev_computer]
 			packages = [
@@ -487,6 +490,7 @@
 
 		[packages.cargo.dev_computer]
 			packages = [
+				"wt",  # git worktree wrapper
 				"rumdl",  # perfomance markdown linter
 				"cargo-update",
 				"cargo-binstall",
