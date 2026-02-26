@@ -17,8 +17,9 @@ $bun\
 $nix_shell\
 $fill\
 $line_break\
-$time\
 $character"""
+
+# $time\
 
 # [custom.jj]
 #   command        = "prompt"
