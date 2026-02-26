@@ -490,7 +490,7 @@
 
 		[packages.cargo.dev_computer]
 			packages = [
-				"wt",  # git worktree wrapper
+				"worktrunk",  # git worktree wrapper
 				"rumdl",  # perfomance markdown linter
 				"cargo-update",
 				"cargo-binstall",
