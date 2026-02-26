@@ -17,7 +17,7 @@ return {
       -- Example : javascript = { "biome", "prettier" }, // This will run "biome" first, and after that will run "prettier"
 
       formatters_by_ft = { -- https://github.com/stevearc/conform.nvim?tab=readme-ov-file#setup
-        nix = { "alejandra" },
+        nix = { "nixfmt" },
         lua = { "stylua" },
         python = { "ruff" },
         rust = { "rustfmt" },

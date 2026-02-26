@@ -25,6 +25,7 @@ return {
         -- "taplo", -- TOML: Language server protocol (LSP) and formatters
         "tombi", -- TOML: Language server protocol (LSP) and formatters
         "yamlls", -- YAML: Language server protocol (LSP)
+        "nixfmt",
         "ast_grep",
         "ruff", -- Python: Language server protocol (LSP), linters and formatters
         "prismals", -- prisma orm
