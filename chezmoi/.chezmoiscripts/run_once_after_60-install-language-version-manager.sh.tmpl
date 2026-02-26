@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch" )}}
 
 # Set environment variables for non-interactive installation
 export TERM=${TERM:-dumb}
@@ -70,3 +71,4 @@ fi
 
 success "Language version manager setup completed"
 _safeExit_ 0
+{{ end }}
