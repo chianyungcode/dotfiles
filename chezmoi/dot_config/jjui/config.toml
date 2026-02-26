@@ -1,5 +1,6 @@
 [preview]
 	show_at_start = true
+	position      = "bottom"
 
 	# [ui]
 	#   theme = "onedark-dark"
