@@ -1,10 +1,10 @@
 [formatting]
 	align_comments = true
-	align_entries = true
+	align_entries  = true
 	indent_entries = true
-	indent_tables = true
+	indent_tables  = true
 	reorder_arrays = true  # Be caution with reorder_arrays
-	reorder_keys = true
+	reorder_keys   = true
 
 [[rule]]
 	include = ["chezmoi/dot_config/pet/**/*.toml"]

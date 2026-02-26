@@ -1,16 +1,16 @@
 [mgr]
-	ratio = [1, 3, 5]
-	sort_by = "mtime"  # sort by last modified time
+	ratio        = [1, 3, 5]
+	sort_by      = "mtime"    # sort by last modified time
 	sort_reverse = true
-	show_hidden = false
-	linemode = "mtime"
+	show_hidden  = false
+	linemode     = "mtime"
 
 [[plugin.prepend_fetchers]]
-	id = "git"
+	id   = "git"
 	name = "*"
-	run = "git"
+	run  = "git"
 
 [[plugin.prepend_fetchers]]
-	id = "git"
+	id   = "git"
 	name = "*/"
-	run = "git"
+	run  = "git"

@@ -3,11 +3,11 @@
 # options for field type : dmg | zip
 
 [[macos_external_app]]
-	app_name = "wisprflow"
+	app_name     = "wisprflow"
 	download_url = "https://dl.wisprflow.ai/mac-apple/latest"
-	type = "dmg"
+	type         = "dmg"
 
 [[macos_external_app]]
-	app_name = "tuna"
+	app_name     = "tuna"
 	download_url = "https://tunaformac.com/download/latest"
-	type = "dmg"
+	type         = "dmg"

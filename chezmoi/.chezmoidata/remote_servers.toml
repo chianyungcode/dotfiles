@@ -1,64 +1,64 @@
 [remote_servers]
 	[remote_servers.ghcny]
-		add_to_ssh_config = true
-		forward_agent = false
+		add_to_ssh_config        = true
+		forward_agent            = false
 		generate_public_key_only = true
-		name = "ghcny"
-		op_id = "5b2sfyzvwpuzcjcp2wfa7ablk4"
-		tailscale_ip = false
+		name                     = "ghcny"
+		op_id                    = "5b2sfyzvwpuzcjcp2wfa7ablk4"
+		tailscale_ip             = false
 
 	[remote_servers.glcny]
-		add_to_ssh_config = true
-		forward_agent = false
+		add_to_ssh_config        = true
+		forward_agent            = false
 		generate_public_key_only = true
-		name = "glcny"
-		op_id = "nhczmzrx5uazmizwj6yzkjqohi"
-		tailscale_ip = false
+		name                     = "glcny"
+		op_id                    = "nhczmzrx5uazmizwj6yzkjqohi"
+		tailscale_ip             = false
 
 	[remote_servers.gcp1]
-		add_to_ssh_config = true
-		forward_agent = false
+		add_to_ssh_config        = true
+		forward_agent            = false
 		generate_public_key_only = true
-		name = "gcp1"
-		op_id = "cidpjacci3fjd65sj2ffuhcd3i"
-		tailscale_ip = false
+		name                     = "gcp1"
+		op_id                    = "cidpjacci3fjd65sj2ffuhcd3i"
+		tailscale_ip             = false
 
 	[remote_servers.ghspy]
-		add_to_ssh_config = true
-		forward_agent = false
+		add_to_ssh_config        = true
+		forward_agent            = false
 		generate_public_key_only = true
-		name = "ghspy"
-		op_id = "fzv7mncqpjjmezf47kloo4t6ji"
-		tailscale_ip = false
+		name                     = "ghspy"
+		op_id                    = "fzv7mncqpjjmezf47kloo4t6ji"
+		tailscale_ip             = false
 
 	[remote_servers.acer]
-		add_to_ssh_config = true
-		forward_agent = true
+		add_to_ssh_config        = true
+		forward_agent            = true
 		generate_public_key_only = true
-		name = "acer"
-		op_id = "h4zlfpcdlr3r64qjteoqwww6be"
-		tailscale_ip = true
+		name                     = "acer"
+		op_id                    = "h4zlfpcdlr3r64qjteoqwww6be"
+		tailscale_ip             = true
 
 	[remote_servers.mbp]
-		add_to_ssh_config = true
-		forward_agent = true
+		add_to_ssh_config        = true
+		forward_agent            = true
 		generate_public_key_only = true
-		name = "mbp"
-		op_id = "o3hurjw4rkl24c4msn22pzoele"
-		tailscale_ip = true
+		name                     = "mbp"
+		op_id                    = "o3hurjw4rkl24c4msn22pzoele"
+		tailscale_ip             = true
 
 	[remote_servers.pc]
-		add_to_ssh_config = true
-		forward_agent = true
+		add_to_ssh_config        = true
+		forward_agent            = true
 		generate_public_key_only = true
-		name = "pc-nixos"
-		op_id = "5ulvmrvynchgsmlffm64spatn4"
-		tailscale_ip = true
+		name                     = "pc-nixos"
+		op_id                    = "5ulvmrvynchgsmlffm64spatn4"
+		tailscale_ip             = true
 
 	[remote_servers.shpvps]
-		add_to_ssh_config = true
-		forward_agent = false
+		add_to_ssh_config        = true
+		forward_agent            = false
 		generate_public_key_only = true
-		name = "shopee"
-		op_id = "jk5mex5epmzhag3hosq6ghgepa"
-		tailscale_ip = false
+		name                     = "shopee"
+		op_id                    = "jk5mex5epmzhag3hosq6ghgepa"
+		tailscale_ip             = false
