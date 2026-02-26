@@ -14,9 +14,10 @@ $git_status\
 $git_metrics\
 $nodejs\
 $bun\
+$nix_shell\
 $fill\
-$cmd_duration $jobs $time\
 $line_break\
+$time\
 $character"""
 
 # [custom.jj]
