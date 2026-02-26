@@ -1,5 +1,5 @@
 {
-  "theme": "Catppuccin Espresso (Blur) [Heavy]",
+  "theme": "Vitesse Refined Dark",
   "icon_theme": {
     "mode": "system",
     "light": "Catppuccin Macchiato",
@@ -83,5 +83,21 @@
     "thumb": "always",
     "thumb_border": "left_open",
     "current_line_highlight": null
+  },
+
+  "languages": {
+    "Nix": {
+      "language_servers": ["nil", "!nixd"]
+    }
+  },
+
+  "lsp": {
+    "nil": {
+      "initialization_options": {
+        "formatting": {
+          "command": ["nixfmt", "--quiet", "--"]
+        }
+      }
+    }
   }
 }
