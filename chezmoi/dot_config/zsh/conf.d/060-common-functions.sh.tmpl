@@ -18,6 +18,77 @@ fpath() {
   echo -e ${FPATH//:/\\n}
 }
 
+whichcli() {
+    # whichcli: show the active CLI binary and other installed locations.
+    local cli active active_real brew_prefix brew_cli_prefix npm_prefix
+    local -a candidates others
+    typeset -A seen
+
+    cli="$1"
+    if [[ -z "$cli" ]]; then
+        echo "Usage: whichcli <command>"
+        return 1
+    fi
+
+    active="$(command -v -- "$cli" 2>/dev/null)"
+    if [[ -z "$active" ]]; then
+        echo "Command '$cli' not found in PATH."
+        return 1
+    fi
+
+    active_real="$active"
+    if command -v realpath >/dev/null 2>&1; then
+        active_real="$(realpath "$active" 2>/dev/null || echo "$active")"
+    fi
+
+    echo "Command        : $cli"
+    echo "Active binary  : $active"
+    [[ "$active_real" != "$active" ]] && echo "Resolved active: $active_real"
+
+    while IFS= read -r p; do
+        [[ -n "$p" ]] && candidates+=("$p")
+    done < <(whence -ap -- "$cli" 2>/dev/null)
+
+    if command -v brew >/dev/null 2>&1; then
+        brew_prefix="$(brew --prefix 2>/dev/null)"
+        [[ -n "$brew_prefix" && -x "$brew_prefix/bin/$cli" ]] && candidates+=("$brew_prefix/bin/$cli")
+        [[ -n "$brew_prefix" && -x "$brew_prefix/sbin/$cli" ]] && candidates+=("$brew_prefix/sbin/$cli")
+
+        brew_cli_prefix="$(brew --prefix "$cli" 2>/dev/null)"
+        [[ -n "$brew_cli_prefix" && -x "$brew_cli_prefix/bin/$cli" ]] && candidates+=("$brew_cli_prefix/bin/$cli")
+    fi
+
+    if command -v npm >/dev/null 2>&1; then
+        npm_prefix="$(npm prefix -g 2>/dev/null)"
+        [[ -n "$npm_prefix" && -x "$npm_prefix/bin/$cli" ]] && candidates+=("$npm_prefix/bin/$cli")
+    fi
+
+    for p in "${candidates[@]}"; do
+        rp="$p"
+        if command -v realpath >/dev/null 2>&1; then
+            rp="$(realpath "$p" 2>/dev/null || echo "$p")"
+        fi
+
+        [[ -n "${seen[$rp]}" ]] && continue
+        seen[$rp]=1
+
+        [[ "$rp" != "$active_real" ]] && others+=("$p")
+    done
+
+    if (( ${#others[@]} == 0 )); then
+        echo "Other installs : none detected"
+        return 0
+    fi
+
+    echo "Other installs :"
+    for p in "${others[@]}"; do
+        local source_label="PATH"
+        [[ "$p" == *"/Cellar/"* || "$p" == /opt/homebrew/* || "$p" == /usr/local/* ]] && source_label="Homebrew?"
+        [[ -n "$npm_prefix" && "$p" == "$npm_prefix/bin/"* ]] && source_label="npm -g"
+        echo "  - [$source_label] $p"
+    done
+}
+
 upabbr() {
   # DESC: Remove all existing abbr and regenerate it
 
