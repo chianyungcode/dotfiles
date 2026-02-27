@@ -1,53 +1,53 @@
 [[session]]
-	name = "Downloads 📥"
-	path = "~/Downloads"
-	# startup_command = "ls"
+  name = "Downloads 📥"
+  path = "~/Downloads"
+  # startup_command = "ls"
 
 [[session]]
-	name            = "backend"
-	path            = "~/Code/Personal/Projects/Backend/allweezy-backend"
-	startup_command = "nvim"
-	windows         = ["opencode", "codex", "terminal"]
+  name            = "backend"
+  path            = "~/Code/Personal/Projects/Backend/allweezy-backend"
+  startup_command = "nvim"
+  windows         = ["opencode", "codex", "terminal"]
 
 [[session]]
-	name            = "OS"
-	path            = "~"
-	startup_command = "yazi"
-	windows         = ["monitoring"]
+  name            = "OS"
+  path            = "~"
+  startup_command = "yazi"
+  windows         = ["monitoring"]
 
 [[session]]
-	name            = "tmux Config"
-	path            = "~/.local/share/chezmoi/chezmoi/dot_config/tmux"
-	preview_command = "bat --color=always ~/.config/tmux/tmux.conf"     # startup_command = "nvim tmux.conf"
-	startup_command = "nvim tmux.conf.tmpl"
+  name            = "tmux Config"
+  path            = "~/.local/share/chezmoi/chezmoi/dot_config/tmux"
+  preview_command = "bat --color=always ~/.config/tmux/tmux.conf"    # startup_command = "nvim tmux.conf"
+  startup_command = "nvim tmux.conf.tmpl"
 
 [[session]]
-	name = "obsidian"
-	path = "~/Documents/vault-obsidian"
+  name = "obsidian"
+  path = "~/Documents/vault-obsidian"
 
 [[session]]
-	name            = "dotfiles"
-	path            = "~/.local/share/chezmoi"
-	startup_command = "nvim"
-	windows         = [".config"]
+  name            = "dotfiles"
+  path            = "~/.local/share/chezmoi"
+  startup_command = "nvim"
+  windows         = [".config"]
 
 [[window]]
-	name           = ".config"
-	path           = "~/.config"
-	startup_script = "nvim"
+  name           = ".config"
+  path           = "~/.config"
+  startup_script = "nvim"
 
 [[window]]
-	name           = "opencode"
-	startup_script = "opencode"
+  name           = "opencode"
+  startup_script = "opencode"
 
 [[window]]
-	name           = "monitoring"
-	startup_script = "btop"
+  name           = "monitoring"
+  startup_script = "btop"
 
 [[window]]
-	name           = "codex"
-	startup_script = "codex"
+  name           = "codex"
+  startup_script = "codex"
 
 [[window]]
-	name           = "terminal"
-	startup_script = "doppler run -- bun run dev"
+  name           = "terminal"
+  startup_script = "doppler run -- bun run dev"

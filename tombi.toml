@@ -1,16 +1,16 @@
 [format]
-	[format.rules]
-		indent-style                    = "tab"  # or "space"
-		indent-sub-tables               = true
-		indent-table-key-value-pairs    = true
-		indent-width                    = 2
-		key-value-equals-sign-alignment = true
-		trailing-comment-alignment      = true
-		trailing-comment-space-width    = 2
+  [format.rules]
+    indent-style                    = "tab" # or "space"
+    indent-sub-tables               = true
+    indent-table-key-value-pairs    = true
+    indent-width                    = 2
+    key-value-equals-sign-alignment = true
+    trailing-comment-alignment      = true
+    trailing-comment-space-width    = 2
 
 [[overrides]]
-	[overrides.files]
-		include = ["chezmoi/.chezmoidata/packages.toml"]
+  [overrides.files]
+    include = ["chezmoi/.chezmoidata/packages.toml"]
 
-	[overrides.format]
-		enabled = false
+  [overrides.format]
+    enabled = false

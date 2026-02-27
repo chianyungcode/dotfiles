@@ -2,86 +2,86 @@ module_separator = " "
 reset_color      = false
 
 [bookmarks]
-	exclude      = []
-	search_depth = 100
+  exclude      = []
+  search_depth = 100
 
 [[module]]
-	type   = "Symbol"
-	# symbol = "󱗆 "
-	color  = "Blue"
-	symbol = "󱗆 "
+  type = "Symbol"
+  # symbol = "󱗆 "
+  color  = "Blue"
+  symbol = "󱗆 "
 
 [[module]]
-	type   = "Symbol"
-	# symbol = "󱗆 "
-	color  = "White"
-	symbol = "on"
+  type = "Symbol"
+  # symbol = "󱗆 "
+  color  = "White"
+  symbol = "on"
 
 [[module]]
-	behind_symbol        = "⇡"
-	color                = "Magenta"
-	ignore_empty_commits = "None"
-	separator            = " "
-	surround_with_quotes = true
-	type                 = "Bookmarks"
+  behind_symbol        = "⇡"
+  color                = "Magenta"
+  ignore_empty_commits = "None"
+  separator            = " "
+  surround_with_quotes = true
+  type                 = "Bookmarks"
 
 [[module]]
-	empty_text              = "(no description set)"
-	max_length              = 24
-	previous_message_symbol = "⇣"
-	show_previous_if_empty  = false
-	surround_with_quotes    = true
-	type                    = "Commit"
+  empty_text              = "(no description set)"
+  max_length              = 24
+  previous_message_symbol = "⇣"
+  show_previous_if_empty  = false
+  surround_with_quotes    = true
+  type                    = "Commit"
 
-	[module.non_unique]
-		color = "Black"
-
-[[module]]
-	separator = " "
-	type      = "State"
-
-	[module.conflict]
-		color    = "Red"
-		disabled = false
-		text     = "(CONFLICT)"
-
-	[module.divergent]
-		color    = "Cyan"
-		disabled = false
-		text     = "(DIVERGENT)"
-
-	[module.empty]
-		color    = "Yellow"
-		disabled = false
-		text     = "(EMPTY)"
-
-	[module.immutable]
-		color    = "Yellow"
-		disabled = false
-		text     = "(IMMUTABLE)"
-
-	[module.hidden]
-		color    = "Yellow"
-		disabled = false
-		text     = "(HIDDEN)"
+  [module.non_unique]
+    color = "Black"
 
 [[module]]
-	color         = "Blue"
-	hide_if_empty = false
-	template      = " {changed} {added}{removed}"
-	type          = "Metrics"
+  separator = " "
+  type      = "State"
 
-	[module.changed_files]
-		color  = "Cyan"
-		prefix = ""
-		suffix = ""
+  [module.conflict]
+    color    = "Red"
+    disabled = false
+    text     = "(CONFLICT)"
 
-	[module.added_lines]
-		color  = "Green"
-		prefix = "+"
-		suffix = ""
+  [module.divergent]
+    color    = "Cyan"
+    disabled = false
+    text     = "(DIVERGENT)"
 
-	[module.removed_lines]
-		color  = "Red"
-		prefix = "-"
-		suffix = ""
+  [module.empty]
+    color    = "Yellow"
+    disabled = false
+    text     = "(EMPTY)"
+
+  [module.immutable]
+    color    = "Yellow"
+    disabled = false
+    text     = "(IMMUTABLE)"
+
+  [module.hidden]
+    color    = "Yellow"
+    disabled = false
+    text     = "(HIDDEN)"
+
+[[module]]
+  color         = "Blue"
+  hide_if_empty = false
+  template      = " {changed} {added}{removed}"
+  type          = "Metrics"
+
+  [module.changed_files]
+    color  = "Cyan"
+    prefix = ""
+    suffix = ""
+
+  [module.added_lines]
+    color  = "Green"
+    prefix = "+"
+    suffix = ""
+
+  [module.removed_lines]
+    color  = "Red"
+    prefix = "-"
+    suffix = ""

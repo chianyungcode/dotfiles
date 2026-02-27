@@ -1,13 +1,13 @@
 [".tmux/plugins/tpm"]
-	exact           = true
-	refreshPeriod   = "168h"
-	stripComponents = 1
-	type            = "git-repo"
-	url             = "https://github.com/tmux-plugins/tpm.git"
+  exact           = true
+  refreshPeriod   = "168h"
+  stripComponents = 1
+  type            = "git-repo"
+  url             = "https://github.com/tmux-plugins/tpm.git"
 
 [".tmuxifier"]
-	exact           = true
-	refreshPeriod   = "168h"
-	stripComponents = 1
-	type            = "git-repo"
-	url             = "https://github.com/jimeh/tmuxifier.git"
+  exact           = true
+  refreshPeriod   = "168h"
+  stripComponents = 1
+  type            = "git-repo"
+  url             = "https://github.com/jimeh/tmuxifier.git"

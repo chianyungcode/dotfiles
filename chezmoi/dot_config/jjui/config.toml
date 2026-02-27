@@ -1,17 +1,17 @@
 [preview]
-	show_at_start = true
-	position      = "bottom"
+  position      = "bottom"
+  show_at_start = true
 
-	# [ui]
-	#   theme = "onedark-dark"
+  # [ui]
+  #   theme = "onedark-dark"
 
 [ui.tracer]
-	enabled = true
+  enabled = true
 
 [leader.bn]
-	help = "Set new bookmark"
-	send = [
-		"$",
-		"jj bookmark set -r \"$change_id\" $(gum input --placeholder \"Name of the new bookmark\")",
-		"enter",
-	]
+  help = "Set new bookmark"
+  send = [
+    "$",
+    "jj bookmark set -r \"$change_id\" $(gum input --placeholder \"Name of the new bookmark\")",
+    "enter",
+  ]
