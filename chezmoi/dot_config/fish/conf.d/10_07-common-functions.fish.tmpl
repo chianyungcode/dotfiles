@@ -198,4 +198,26 @@ function urlencode
     end
 end
 
+function tmux --wraps tmux --description "Use current folder name as default session"
+    if test (count $argv) -eq 0
+        set -l dir (basename "$PWD")
+        set -l session (string replace -ra '[^A-Za-z0-9_.-]' '_' -- $dir)
+        test -n "$session"; or set session main
+
+        if set -q TMUX
+            if command tmux has-session -t "$session" 2>/dev/null
+                command tmux switch-client -t "$session"
+            else
+                command tmux new-session -d -s "$session" -c "$PWD"
+                command tmux switch-client -t "$session"
+            end
+        else
+            command tmux new-session -A -s "$session" -c "$PWD"
+        end
+        return
+    end
+
+    command tmux $argv
+end
+
 alias urldecode='python3 -c "import sys, urllib.parse as ul; print(ul.unquote_plus(sys.argv[1]))"'

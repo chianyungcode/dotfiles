@@ -396,4 +396,28 @@ urlencode() {
     done
 }
 
+# Start/attach tmux with current directory name when no args are given.
+tmux() {
+    if [[ $# -eq 0 ]]; then
+        local dir session
+        dir="${PWD:t}"
+        session="${dir//[^[:alnum:]_.-]/_}"
+        [[ -z "${session}" ]] && session="main"
+
+        if [[ -n "${TMUX}" ]]; then
+            if command tmux has-session -t "${session}" 2>/dev/null; then
+                command tmux switch-client -t "${session}"
+            else
+                command tmux new-session -d -s "${session}" -c "${PWD}"
+                command tmux switch-client -t "${session}"
+            fi
+        else
+            command tmux new-session -A -s "${session}" -c "${PWD}"
+        fi
+        return
+    fi
+
+    command tmux "$@"
+}
+
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"' # dev: Decode a URL [ULR]
