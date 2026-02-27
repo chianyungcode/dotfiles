@@ -11,6 +11,13 @@
     },
   },
   {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-shift-tab": "pane::ActivatePreviousItem",
+      "ctrl-tab": "pane::ActivateNextItem",
+    },
+  },
+  {
     "context": "Editor",
     "bindings": {
       "ctrl-s": "workspace::Save",
