@@ -16,43 +16,33 @@ return {
       -- Syntax : <LANGUAGE> = { "<first_formatter>", "<second_formatter>" }
       -- Example : javascript = { "biome", "prettier" }, // This will run "biome" first, and after that will run "prettier"
 
+      -- Formatter by Filetypes
       formatters_by_ft = { -- https://github.com/stevearc/conform.nvim?tab=readme-ov-file#setup
-        nix = { "nixfmt" },
-        lua = { "stylua" },
-        python = { "ruff" },
-        rust = { "rustfmt" },
         go = { "gofmt" },
         javascript = { "biome", "biome-organize-imports" },
         javascriptreact = { "biome", "biome-organize-imports" },
+        json = { "biome" },
+        jsonc = { "biome" },
+        lua = { "stylua" },
+        nix = { "nixfmt" },
+        python = { "ruff" },
+        rust = { "rustfmt" },
+        sql = { "sqruff" },
+        toml = { "taplo", "tombi" },
         typescript = { "biome", "biome-organize-imports" },
         typescriptreact = { "biome", "biome-organize-imports" },
         yaml = { "yamlfmt" }, -- Using custom formatters, because yamlfmt default with mason bug with indentation that set in .yamlfmt in root of working directory
-        toml = { "tombi" }, -- Using custom formatters, to prevent use default config for taplo in conform that can causing bug
-        json = { "biome" },
-        jsonc = { "biome" },
-        sql = { "sqruff" },
-        -- toml = { "taplo" }, -- Bug when using with default `taplo`, [[rule]] array are ignored when using format on save
         -- Use the "*" filetype to run formatters on all filetypes.
         -- ["*"] = { "codespell" },
         -- Use the "_" filetype to run formatters on filetypes that don't
         -- have other formatters configured.
-        ["_"] = { "trim_whitespace" },
+        -- ["_"] = { "trim_whitespace" },
       },
     },
     -- Conform will notify you when a formatter errors
     notify_on_error = true,
     -- Conform will notify you when no formatters are available for the buffer
     notify_no_formatters = true,
-    -- Custom formatters and overrides for built-in formatters
-    formatters = {
-      taplo_fmt = {
-        command = "taplo", -- CLI taplo
-        args = { "format", "-" }, -- "-" supaya baca dari stdin
-        stdin = true, -- kirim isi file lewat stdin
-        cwd = require("conform.util").root_file({ ".taplo.toml", "taplo.toml" }), -- opsional, kalau mau deteksi root
-        require_cwd = false, -- kalau root nggak ketemu tetap jalan
-      },
-    },
   },
   {
     -- https://github.com/mfussenegger/nvim-lint?tab=readme-ov-file
