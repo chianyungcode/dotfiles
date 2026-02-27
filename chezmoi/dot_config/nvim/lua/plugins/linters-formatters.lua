@@ -28,7 +28,7 @@ return {
         python = { "ruff" },
         rust = { "rustfmt" },
         sql = { "sqruff" },
-        toml = { "taplo", "tombi" },
+        toml = { "taplo" },
         typescript = { "biome", "biome-organize-imports" },
         typescriptreact = { "biome", "biome-organize-imports" },
         yaml = { "yamlfmt" }, -- Using custom formatters, because yamlfmt default with mason bug with indentation that set in .yamlfmt in root of working directory
