@@ -1,4 +1,15 @@
 {
+  "agent": {
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "gpt-5.3-codex",
+      "enable_thinking": true,
+      "effort": "medium"
+    },
+    "favorite_models": [],
+    "model_parameters": []
+  },
+
   "theme": "Vitesse Refined Dark",
   "icon_theme": {
     "mode": "system",
