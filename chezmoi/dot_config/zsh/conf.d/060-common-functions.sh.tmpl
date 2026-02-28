@@ -469,26 +469,36 @@ urlencode() {
 
 # Start/attach tmux with current directory name when no args are given.
 tmux() {
-    if [[ $# -eq 0 ]]; then
-        local dir session
-        dir="${PWD:t}"
-        session="${dir//[^[:alnum:]_.-]/_}"
-        [[ -z "${session}" ]] && session="main"
+    command -v tmux >/dev/null 2>&1 || {
+        echo "tmux command not found"
+        return 127
+    }
 
-        if [[ -n "${TMUX}" ]]; then
-            if command tmux has-session -t "${session}" 2>/dev/null; then
-                command tmux switch-client -t "${session}"
-            else
-                command tmux new-session -d -s "${session}" -c "${PWD}"
-                command tmux switch-client -t "${session}"
-            fi
-        else
-            command tmux new-session -A -s "${session}" -c "${PWD}"
-        fi
+    # Keep default tmux behavior when arguments are supplied.
+    if [[ $# -gt 0 ]]; then
+        command tmux "$@"
         return
     fi
 
-    command tmux "$@"
+    local dir session dir_hash
+    dir="${PWD:t}"
+    session="${dir//[^[:alnum:]_.-]/_}"
+    [[ -z "${session}" ]] && session="main"
+
+    # Avoid collisions when different paths share the same basename.
+    dir_hash="$(printf '%s' "${PWD:A}" | shasum | awk '{print substr($1,1,8)}')"
+    session="${session}-${dir_hash}"
+
+    if [[ -n "${TMUX}" ]]; then
+        if command tmux has-session -t "${session}" 2>/dev/null; then
+            command tmux switch-client -t "${session}"
+        else
+            command tmux new-session -d -s "${session}" -c "${PWD}"
+            command tmux switch-client -t "${session}"
+        fi
+    else
+        command tmux new-session -A -s "${session}" -c "${PWD}"
+    fi
 }
 
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"' # dev: Decode a URL [ULR]
