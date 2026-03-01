@@ -25,7 +25,7 @@ return {
         "ruff", -- Python
         "sqls", -- SQL
         -- "tailwindcss", -- Tailwind CSS
-        -- "taplo", -- TOML
+        -- "taplo", -- TOML (don't install with mason because can giving an error on Neovim LSP)
         "templ", -- Templ (Go HTML templating)
         "tombi", -- TOML
         "ts_ls", -- JavaScript / TypeScript
