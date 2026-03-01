@@ -5,12 +5,12 @@
 
 # ==== START OF `eval $(/opt/homebrew/bin/brew shellenv)` ====
 # Set Homebrew environment variables
-set -gx HOMEBREW_PREFIX "/opt/homebrew"
-set -gx HOMEBREW_CELLAR "/opt/homebrew/Cellar"
-set -gx HOMEBREW_REPOSITORY "/opt/homebrew"
+set -gx HOMEBREW_PREFIX "{{ .shell_env.homebrew.prefix }}"
+set -gx HOMEBREW_CELLAR "{{ .shell_env.homebrew.cellar }}"
+set -gx HOMEBREW_REPOSITORY "{{ .shell_env.homebrew.repository }}"
 
 # Add Homebrew paths
-fish_add_path -g --move --path "/opt/homebrew/bin" "/opt/homebrew/sbin" # using --move , to ensure the order precedence, so this directory will be check first any others directory
+fish_add_path -g --move --path {{ range .shell_env.homebrew.bin_paths }}"{{ . }}" {{ end }}
 
 # Set MANPATH
 if test -n "$MANPATH[1]"
@@ -18,13 +18,10 @@ if test -n "$MANPATH[1]"
 end
 
 # Set INFOPATH
-if not contains "/opt/homebrew/share/info" $INFOPATH
-    set -gx INFOPATH "/opt/homebrew/share/info" $INFOPATH
+if not contains "{{ .shell_env.homebrew.info_path }}" $INFOPATH
+    set -gx INFOPATH "{{ .shell_env.homebrew.info_path }}" $INFOPATH
 end
 # ==== END OF `eval $(/opt/homebrew/bin/brew shellenv)` ====
 
-set -l brew_prefix /opt/homebrew
-set fish_complete_path $fish_complete_path \
-    $brew_prefix/share/fish/completions \
-    $brew_prefix/share/fish/vendor_completions.d
+set fish_complete_path $fish_complete_path {{ range .shell_env.homebrew.fish_completions }}"{{ . }}" {{ end }}
 {{- end }}

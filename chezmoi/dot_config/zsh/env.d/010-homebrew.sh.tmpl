@@ -3,21 +3,21 @@
 
 # This block below mirrors `eval "$(/opt/homebrew/bin/brew shellenv)"`,
 # but kept static to avoid startup cost.
-export HOMEBREW_PREFIX="/opt/homebrew"
-export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
-export HOMEBREW_REPOSITORY="/opt/homebrew"
+export HOMEBREW_PREFIX="{{ .shell_env.homebrew.prefix }}"
+export HOMEBREW_CELLAR="{{ .shell_env.homebrew.cellar }}"
+export HOMEBREW_REPOSITORY="{{ .shell_env.homebrew.repository }}"
 
-if [[ -d "/opt/homebrew/bin" ]]; then
+if [[ -d "{{ index .shell_env.homebrew.bin_paths 0 }}" ]]; then
   case ":$PATH:" in
-    *":/opt/homebrew/bin:"*) ;;
-    *) PATH="/opt/homebrew/bin:$PATH" ;;
+    *":{{ index .shell_env.homebrew.bin_paths 0 }}:"*) ;;
+    *) PATH="{{ index .shell_env.homebrew.bin_paths 0 }}:$PATH" ;;
   esac
 fi
 
-if [[ -d "/opt/homebrew/sbin" ]]; then
+if [[ -d "{{ index .shell_env.homebrew.bin_paths 1 }}" ]]; then
   case ":$PATH:" in
-    *":/opt/homebrew/sbin:"*) ;;
-    *) PATH="/opt/homebrew/sbin:$PATH" ;;
+    *":{{ index .shell_env.homebrew.bin_paths 1 }}:"*) ;;
+    *) PATH="{{ index .shell_env.homebrew.bin_paths 1 }}:$PATH" ;;
   esac
 fi
 
@@ -27,7 +27,7 @@ if [[ -n "${MANPATH:-}" ]]; then
   export MANPATH=":$MANPATH"
 fi
 
-if [[ ":${INFOPATH:-}:" != *":/opt/homebrew/share/info:"* ]]; then
-  export INFOPATH="/opt/homebrew/share/info${INFOPATH:+:$INFOPATH}"
+if [[ ":${INFOPATH:-}:" != *":{{ .shell_env.homebrew.info_path }}:"* ]]; then
+  export INFOPATH="{{ .shell_env.homebrew.info_path }}${INFOPATH:+:$INFOPATH}"
 fi
 {{ end }}

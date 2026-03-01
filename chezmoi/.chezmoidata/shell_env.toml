@@ -1,0 +1,65 @@
+[shell_env]
+  [shell_env.xdg]
+    data_home          = "$HOME/.local/share"
+    config_home        = "$HOME/.config"
+    state_home         = "$HOME/.local/state"
+    cache_home         = "$HOME/.cache"
+    data_dirs_default  = "/usr/local/share:/usr/share"
+
+  [shell_env.homebrew]
+    prefix             = "/opt/homebrew"
+    cellar             = "/opt/homebrew/Cellar"
+    repository         = "/opt/homebrew"
+    bin_paths          = ["/opt/homebrew/bin", "/opt/homebrew/sbin"]
+    info_path          = "/opt/homebrew/share/info"
+    fish_completions   = ["/opt/homebrew/share/fish/completions", "/opt/homebrew/share/fish/vendor_completions.d"]
+
+  [shell_env.common]
+    EDITOR               = "nvim"
+    LM_STUDIO_BIN        = "$HOME/.lmstudio/bin"
+    TMUXIFIER_LAYOUT_PATH = "$HOME/.config/tmuxifier/layouts"
+    GIT_CONFIG_GLOBAL    = "$XDG_CONFIG_HOME/git/config"
+    PROTO_HOME           = "$XDG_CONFIG_HOME/proto"
+    STARSHIP_CONFIG      = "$XDG_CONFIG_HOME/starship/starship.toml"
+    PARALLEL_HOME        = "$XDG_CONFIG_HOME/parallel"
+    SCREENRC             = "$XDG_CONFIG_HOME/screen/screenrc"
+    WGETRC               = "$XDG_CONFIG_HOME/wgetrc"
+    _ZO_DATA_DIR         = "$XDG_DATA_HOME/zoxide"
+    LESSHISTFILE         = "/tmp/less-hist"
+    PYTHON_HISTORY       = "$XDG_STATE_HOME/python_history"
+
+  [shell_env.arch_linux]
+    HYPRLAND_CONFIG      = "$XDG_DATA_HOME/hypr/hyprland.conf"
+    TERMINFO             = "$XDG_DATA_HOME/terminfo"
+    TERMINFO_DIRS        = "$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
+
+  [shell_env.ssh_auth_sock]
+    darwin               = "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+    linux                = "$HOME/.1password/agent.sock"
+
+  [shell_env.path]
+    entries = [
+      "/opt/homebrew/bin",
+      "/opt/homebrew/sbin",
+      "/opt/zerobrew/prefix/bin",
+      "/bin",
+      "/usr/bin",
+      "/usr/sbin",
+      "/sbin",
+      "/usr/local/bin",
+      "$HOME/go/bin",
+      "$HOME/.cargo/bin",
+      "$XDG_DATA_HOME/cargo/bin",
+      "$HOME/.local/bin",
+      "$HOME/bin",
+      "/usr/bin/snap",
+      "$PROTO_HOME/shims",
+      "$PROTO_HOME/bin",
+      "$HOME/.atuin/bin",
+      "$XDG_CACHE_HOME/.bun/bin",
+      "$HOME/.tmuxifier/bin",
+      "$LM_STUDIO_BIN",
+      "/run/current-system/sw/bin",
+      "$HOME/.local/state/nix/profiles/profile/bin",
+      "$HOME/.nix-profile/bin",
+    ]

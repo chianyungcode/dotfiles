@@ -1,12 +1,12 @@
 # XDG Base Directory - Environment Variable
-set -q XDG_DATA_HOME; or set -gx XDG_DATA_HOME "$HOME/.local/share"
-set -q XDG_CONFIG_HOME; or set -gx XDG_CONFIG_HOME "$HOME/.config"
-set -q XDG_STATE_HOME; or set -gx XDG_STATE_HOME "$HOME/.local/state"
-set -q XDG_CACHE_HOME; or set -gx XDG_CACHE_HOME "$HOME/.cache"
-set -q XDG_DATA_DIRS; or set -gx XDG_DATA_DIRS "/usr/local/share:/usr/share"
+set -q XDG_DATA_HOME; or set -gx XDG_DATA_HOME "{{ .shell_env.xdg.data_home }}"
+set -q XDG_CONFIG_HOME; or set -gx XDG_CONFIG_HOME "{{ .shell_env.xdg.config_home }}"
+set -q XDG_STATE_HOME; or set -gx XDG_STATE_HOME "{{ .shell_env.xdg.state_home }}"
+set -q XDG_CACHE_HOME; or set -gx XDG_CACHE_HOME "{{ .shell_env.xdg.cache_home }}"
+set -q XDG_DATA_DIRS; or set -gx XDG_DATA_DIRS "{{ .shell_env.xdg.data_dirs_default }}"
 set -l __xdg_data_dirs (string split : $XDG_DATA_DIRS)
 if test (count $__xdg_data_dirs) -eq 0
-    set __xdg_data_dirs /usr/local/share /usr/share
+    set __xdg_data_dirs (string split : "{{ .shell_env.xdg.data_dirs_default }}")
 end
 if not contains -- $XDG_DATA_HOME $__xdg_data_dirs
     set __xdg_data_dirs $XDG_DATA_HOME $__xdg_data_dirs

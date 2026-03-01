@@ -9,31 +9,9 @@
 
 # Build PATH
 _myPaths=(
-  # --- system wide/common ---
-  "/opt/homebrew/bin"
-  "/opt/zerobrew/prefix/bin"
-  "/usr/bin/snap"
-  "/usr/local/bin"
-
-  # --- user local common ---
-  "$HOME/.cargo/bin"
-  "$HOME/.local/bin"
-  "$HOME/go/bin"                          # default GOPATH
-  "{{ .directories.user_bin_dir }}"
-  "{{ .xdgDataDir }}/cargo/bin"
-  "$XDG_CACHE_HOME/.bun/bin"
-
-  # --- app specific / tooling ---
-  "$HOME/.atuin/bin"
-  "$HOME/.tmuxifier/bin"
-  "$LM_STUDIO_BIN"
-  "$PROTO_HOME/bin"
-  "$PROTO_HOME/shims"
-
-  # -- Nix
-  "/run/current-system/sw/bin"
-  "$HOME/.local/state/nix/profiles/profile/bin"
-  "$HOME/.nix-profile/bin"
+{{- range .shell_env.path.entries }}
+  "{{ . }}"
+{{- end }}
 )
 
 for _path in "${_myPaths[@]}"; do

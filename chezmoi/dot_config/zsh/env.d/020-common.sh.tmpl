@@ -7,9 +7,9 @@
 
 # == CONFIGURATION ENV VARIABLE ===
 export DOTFILES="$HOME/.local/share/chezmoi"
-export EDITOR="nvim"
-export LM_STUDIO_BIN="$HOME/.lmstudio/bin"
-export TMUXIFIER_LAYOUT_PATH="$HOME/.config/tmuxifier/layouts"
+export EDITOR="{{ .shell_env.common.EDITOR }}"
+export LM_STUDIO_BIN="{{ .shell_env.common.LM_STUDIO_BIN }}"
+export TMUXIFIER_LAYOUT_PATH="{{ .shell_env.common.TMUXIFIER_LAYOUT_PATH }}"
 export ANTIDOTE_HOME="${XDG_CACHE_HOME}/antidote"
 
 # Let zsh-abbr leave the cursor at the end of the expanded text
@@ -20,31 +20,31 @@ export ABBR_SET_EXPANSION_CURSOR=1
 export ABBR_SET_LINE_CURSOR=1
 
 # --- Configuration ---
-export GIT_CONFIG_GLOBAL="${XDG_CONFIG_HOME}/git/config"
-export PROTO_HOME="${XDG_CONFIG_HOME}/proto"
-export STARSHIP_CONFIG="${XDG_CONFIG_HOME}/starship/starship.toml"
-export PARALLEL_HOME="${XDG_CONFIG_HOME}/parallel"
-export SCREENRC="${XDG_CONFIG_HOME}/screen/screenrc"
-export WGETRC="${XDG_CONFIG_HOME}/wgetrc"
+export GIT_CONFIG_GLOBAL="{{ .shell_env.common.GIT_CONFIG_GLOBAL }}"
+export PROTO_HOME="{{ .shell_env.common.PROTO_HOME }}"
+export STARSHIP_CONFIG="{{ .shell_env.common.STARSHIP_CONFIG }}"
+export PARALLEL_HOME="{{ .shell_env.common.PARALLEL_HOME }}"
+export SCREENRC="{{ .shell_env.common.SCREENRC }}"
+export WGETRC="{{ .shell_env.common.WGETRC }}"
 
 # --- Data ---
-export _ZO_DATA_DIR="${XDG_DATA_HOME}/zoxide"
+export _ZO_DATA_DIR="{{ .shell_env.common._ZO_DATA_DIR }}"
 
 {{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") -}}
-export HYPRLAND_CONFIG="${XDG_DATA_HOME:-$HOME/.local/share}/hypr/hyprland.conf"
-export TERMINFO="${XDG_DATA_HOME}/terminfo"
-export TERMINFO_DIRS="${XDG_DATA_HOME}/terminfo:/usr/share/terminfo"
+export HYPRLAND_CONFIG="{{ .shell_env.arch_linux.HYPRLAND_CONFIG }}"
+export TERMINFO="{{ .shell_env.arch_linux.TERMINFO }}"
+export TERMINFO_DIRS="{{ .shell_env.arch_linux.TERMINFO_DIRS }}"
 {{ end -}}
 
 # --- State & Misc ---
-export LESSHISTFILE="${LESSHISTFILE:-/tmp/less-hist}"
-export PYTHON_HISTORY="${XDG_STATE_HOME}/python_history"
+export LESSHISTFILE="${LESSHISTFILE:-{{ .shell_env.common.LESSHISTFILE }}}"
+export PYTHON_HISTORY="{{ .shell_env.common.PYTHON_HISTORY }}"
 
 if [[ -z "${SSH_TTY:-}" ]]; then
   {{- if eq .chezmoi.os "darwin" }}
-  export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+  export SSH_AUTH_SOCK="{{ .shell_env.ssh_auth_sock.darwin }}"
   {{- else if eq .chezmoi.os "linux" }}
-  export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
+  export SSH_AUTH_SOCK="{{ .shell_env.ssh_auth_sock.linux }}"
   {{- end }}
 fi
 

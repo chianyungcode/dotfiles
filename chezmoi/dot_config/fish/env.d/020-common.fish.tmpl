@@ -1,33 +1,33 @@
 # Common - Environment Variable
-set -gx EDITOR nvim
-set -gx LM_STUDIO_BIN "$HOME/.lmstudio/bin"
-set -gx TMUXIFIER_LAYOUT_PATH "$HOME/.config/tmuxifier/layouts"
+set -gx EDITOR "{{ .shell_env.common.EDITOR }}"
+set -gx LM_STUDIO_BIN "{{ .shell_env.common.LM_STUDIO_BIN }}"
+set -gx TMUXIFIER_LAYOUT_PATH "{{ .shell_env.common.TMUXIFIER_LAYOUT_PATH }}"
 
 # --- Configuration ---
-set -gx GIT_CONFIG_GLOBAL "$XDG_CONFIG_HOME/git/config"
-set -gx PROTO_HOME "$XDG_CONFIG_HOME/proto"
-set -gx STARSHIP_CONFIG "$XDG_CONFIG_HOME/starship/starship.toml"
-set -gx PARALLEL_HOME "$XDG_CONFIG_HOME/parallel"
-set -gx SCREENRC "$XDG_CONFIG_HOME/screen/screenrc"
-set -gx WGETRC "$XDG_CONFIG_HOME/wgetrc"
+set -gx GIT_CONFIG_GLOBAL "{{ .shell_env.common.GIT_CONFIG_GLOBAL }}"
+set -gx PROTO_HOME "{{ .shell_env.common.PROTO_HOME }}"
+set -gx STARSHIP_CONFIG "{{ .shell_env.common.STARSHIP_CONFIG }}"
+set -gx PARALLEL_HOME "{{ .shell_env.common.PARALLEL_HOME }}"
+set -gx SCREENRC "{{ .shell_env.common.SCREENRC }}"
+set -gx WGETRC "{{ .shell_env.common.WGETRC }}"
 
 # --- Data ---
-set -gx _ZO_DATA_DIR "$XDG_DATA_HOME/zoxide"
+set -gx _ZO_DATA_DIR "{{ .shell_env.common._ZO_DATA_DIR }}"
 
 {{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") -}}
-set -gx HYPRLAND_CONFIG "$XDG_DATA_HOME/hypr/hyprland.conf"
-set -gx TERMINFO "$XDG_DATA_HOME/terminfo"
-set -gx TERMINFO_DIRS "$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
+set -gx HYPRLAND_CONFIG "{{ .shell_env.arch_linux.HYPRLAND_CONFIG }}"
+set -gx TERMINFO "{{ .shell_env.arch_linux.TERMINFO }}"
+set -gx TERMINFO_DIRS "{{ .shell_env.arch_linux.TERMINFO_DIRS }}"
 {{ end -}}
 
 # --- State & Misc ---
-set -gx LESSHISTFILE /tmp/less-hist
-set -gx PYTHON_HISTORY "$XDG_STATE_HOME/python_history"
+set -gx LESSHISTFILE "{{ .shell_env.common.LESSHISTFILE }}"
+set -gx PYTHON_HISTORY "{{ .shell_env.common.PYTHON_HISTORY }}"
 
 if not set -q SSH_TTY
 {{- if eq .chezmoi.os "darwin" }}
-    set -gx SSH_AUTH_SOCK "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+    set -gx SSH_AUTH_SOCK "{{ .shell_env.ssh_auth_sock.darwin }}"
 {{- else if eq .chezmoi.os "linux" }}
-    set -gx SSH_AUTH_SOCK "$HOME/.1password/agent.sock"
+    set -gx SSH_AUTH_SOCK "{{ .shell_env.ssh_auth_sock.linux }}"
 {{- end }}
 end
