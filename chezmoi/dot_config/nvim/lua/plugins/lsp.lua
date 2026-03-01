@@ -9,27 +9,27 @@ return {
     opts = {
       -- Only LSP can be listed here, for formatters and linters provide in mason.nvim plugin
       ensure_installed = {
-        "templ", -- An HTML templating language for Go that has great developer tooling.
-        -- "markdown_oxide", -- Markdown: Language server protocol (LSP). Markdown language server with advanced linking support made to be completely compatible with Obsidian; An Obsidian Language Server.
-        "ts_ls", -- Javascript, Typescript: Language server protocol (LSP). Kode error diagnostic 'ts'
-        "eslint", -- Javascript, Typescript: Language server protocol (LSP). Linters (eslint). Error code: typescript-eslint
-        "biome", -- Javascript, Typescript: Language server protocol (LSP), formatters and linters
-        -- "denols", -- Javascript, Typescript: Language server protocol (LSP), runtime and linters
-        "lua_ls", -- Lua: Language server protocol (LSP)
-        -- "tailwindcss",
-        "astro",
-        "gopls", -- Go: Language server protocol (LSP)
-        "html",
-        "jsonls", -- JSON: Language server protocol (LSP)
-        "nil_ls", -- Nix: Language server protocol (LSP)
-        -- "taplo", -- TOML: Language server protocol (LSP) and formatters
-        "tombi", -- TOML: Language server protocol (LSP) and formatters
-        "yamlls", -- YAML: Language server protocol (LSP)
-        "ast_grep",
-        "ruff", -- Python: Language server protocol (LSP), linters and formatters
-        "prismals", -- prisma orm
-        "sqls", -- SQL LSP
-        --"copilot-language-server", -- LSP for NES (next edit suggestion in sidekick.nvim plugin)
+        "ast_grep", -- Generic AST-based code search/rewrite
+        "astro", -- Astro
+        "biome", -- JavaScript / TypeScript
+        -- "copilot-language-server", -- Copilot NES (next edit suggestion)
+        -- "denols", -- JavaScript / TypeScript (Deno)
+        "eslint", -- JavaScript / TypeScript (linting)
+        "gopls", -- Go
+        "html", -- HTML
+        "jsonls", -- JSON
+        "lua_ls", -- Lua
+        "markdown_oxide", -- Markdown
+        "nil_ls", -- Nix
+        "prismals", -- Prisma
+        "ruff", -- Python
+        "sqls", -- SQL
+        -- "tailwindcss", -- Tailwind CSS
+        -- "taplo", -- TOML
+        "templ", -- Templ (Go HTML templating)
+        "tombi", -- TOML
+        "ts_ls", -- JavaScript / TypeScript
+        "yamlls", -- YAML
       },
       automatic_enable = {
         exclude = {
