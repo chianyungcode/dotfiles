@@ -5,22 +5,22 @@ model_reasoning_effort = "medium"
 [features]
 
 [mcp_servers.context7]
-  args = ["-y", "@upstash/context7-mcp", "--api-key", "{{ onepasswordRead .secrets.context7_api_key }}"]
+  args = ["-y", "@upstash/context7-mcp", "--api-key", "{{ onepasswordRead .secrets.ai_tools.context7_apikey }}"]
   command = "npx"
 
 [mcp_servers.apidog]
   args = [
         "-y",
         "apidog-mcp-server@latest",
-        "--project-id={{ onepasswordRead .secrets.apidog_project_id_allweezy_backend }}"
+        "--project-id={{ onepasswordRead .secrets.apidog.apidog_project_id_allweezy_backend }}"
         ]
   command = "npx"
 
 [mcp_servers.apidog.env]
-  APIDOG_ACCESS_TOKEN = "{{ onepasswordRead .secrets.apidog_api_key }}"
+  APIDOG_ACCESS_TOKEN = "{{ onepasswordRead .secrets.apidog.apidog_api_key }}"
 
 [mcp_servers.Ref]
-  url = "https://api.ref.tools/mcp?apiKey={{ if .use_secrets }}{{ onepasswordRead .secrets.ref_api_key }}{{ end }}"
+  url = "https://api.ref.tools/mcp?apiKey={{ if .use_secrets }}{{ onepasswordRead .secrets.research.ref_apikey }}{{ end }}"
 
 [mcp_servers.deepwiki]
   url = "https://mcp.deepwiki.com/mcp"
@@ -32,7 +32,7 @@ model_reasoning_effort = "medium"
   url = "https://mcp.linear.app/mcp"
 
 [mcp_servers.tavily]
-  url = "https://mcp.tavily.com/mcp/?tavilyApiKey={{ if .use_secrets }}{{ onepasswordRead .secrets.tavily_key }}{{ end }}"
+  url = "https://mcp.tavily.com/mcp/?tavilyApiKey={{ if .use_secrets }}{{ onepasswordRead .secrets.research.tavily_apikey }}{{ end }}"
 
 [projects."/Users/chianyung/.local/share/chezmoi"]
 trust_level = "trusted"

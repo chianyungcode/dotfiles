@@ -5,7 +5,7 @@
 	"mcp": {
     "Ref": {
         "type": "remote",
-        "url": "https://api.ref.tools/mcp?apiKey={{ if .use_secrets }}{{ onepasswordRead .secrets.ref_api_key }}{{ end }}",
+        "url": "https://api.ref.tools/mcp?apiKey={{ if .use_secrets }}{{ onepasswordRead .secrets.research.ref_apikey }}{{ end }}",
         "enabled": true
       },
     "deepwiki": {
@@ -30,7 +30,7 @@
 			"type": "remote",
 			"url": "https://mcp.context7.com/mcp",
       "headers": {
-        "CONTEXT7_API_KEY": "{{ if .use_secrets }}{{ onepasswordRead .secrets.context7_api_key }}{{ end }}"
+        "CONTEXT7_API_KEY": "{{ if .use_secrets }}{{ onepasswordRead .secrets.ai_tools.context7_apikey }}{{ end }}"
       },
 			"enabled": true
 		},
@@ -46,7 +46,7 @@
     },
     "tavily": {
       "type": "remote",
-			"url": "https://mcp.tavily.com/mcp/?tavilyApiKey={{ if .use_secrets }}{{ onepasswordRead .secrets.tavily_key }}{{ end }}",
+			"url": "https://mcp.tavily.com/mcp/?tavilyApiKey={{ if .use_secrets }}{{ onepasswordRead .secrets.research.tavily_apikey }}{{ end }}",
       "enabled": true
     }
 	},

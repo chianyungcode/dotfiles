@@ -35,9 +35,9 @@
   behavior = "own"
   backend = "ssh"
   {{- if and .use_secrets (eq .git_user "chianyungcode") }}
-  key = "{{ onepasswordRead .secrets.git_signing_key_cny }}"
+  key = "{{ onepasswordRead .secrets.git.signing_key_cny }}"
   {{- else if and .use_secrets (eq .git_user "seraphynee") }}
-  key = "{{ onepasswordRead .secrets.git_signing_key_phyne }}"
+  key = "{{ onepasswordRead .secrets.git.signing_key_spy }}"
   {{- end }}
 
 [templates]

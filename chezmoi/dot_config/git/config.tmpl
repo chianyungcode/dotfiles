@@ -8,9 +8,9 @@
     name = {{ .git_user}}
     email = {{ .git_email }}
     {{- if and .use_secrets (eq .git_user "chianyungcode") }}
-    signingkey = {{ onepasswordRead .secrets.git_signing_key_cny }}
+    signingkey = {{ onepasswordRead .secrets.git.signing_key_cny }}
     {{- else if and .use_secrets (eq .git_user "seraphynee") }}
-    signingkey = {{ onepasswordRead .secrets.git_signing_key_phyne }}
+    signingkey = {{ onepasswordRead .secrets.git.signing_key_spy }}
     {{- end }}
 
 # =============================================================================
