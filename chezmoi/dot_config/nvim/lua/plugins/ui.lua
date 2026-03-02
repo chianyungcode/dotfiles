@@ -31,12 +31,6 @@ return {
   -- https://github.com/mluders/comfy-line-numbers.nvim
   -- DESC: change line numbers to more left-handed, example instead of 6j it will be 11j
   {
-    "mluders/comfy-line-numbers.nvim",
-    enabled = false,
-    opts = {},
-  },
-
-  {
     -- https://github.com/Bekaboo/dropbar.nvim
     -- DESC: Breadcrumb menunjukkan file path diatas
     "Bekaboo/dropbar.nvim",
@@ -228,7 +222,6 @@ return {
     -- Show color for hexacode in Neovim, example: #FFFFFF
     "catgoose/nvim-colorizer.lua",
     event = "BufReadPre",
-    opts = { -- set to setup table
-    },
+    -- opts = {},
   },
 }

@@ -1,4 +1,46 @@
 return {
+  {
+    "johnpmitsch/vai.nvim",
+    enabled = true,
+    opts = {
+      -- trigger key to see jump letters
+      -- works with jump, delete d/, yank y/, or visual select v/
+      trigger = "\\", -- this is the default \
+      -- jump distances plus or minus start-end
+      sweet_spot_start = 6, -- easiest combos start here
+      sweet_spot_end = 15, -- easiest combos end here
+      -- customize letters prioritized by typing ease
+      labels = {
+        "a",
+        "s",
+        "d",
+        "f",
+        "g",
+        "h",
+        "j",
+        "k",
+        "l",
+        "w",
+        "e",
+        "r",
+        "t",
+        "y",
+        "u",
+        "i",
+        "o",
+        "c",
+        "v",
+        "n",
+      },
+    },
+  },
+
+  {
+    "mluders/comfy-line-numbers.nvim",
+    enabled = false,
+    opts = {},
+  },
+
   -- https://github.com/dmtrKovalenko/fff.nvim
   -- DESC: File picker, alternative to snacks.picker, telescope, mini.picker and etc.
   {
