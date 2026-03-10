@@ -75,20 +75,6 @@
 [credential "https://dev.azure.com"]
     useHttpPath = true
 
-{{ if eq .git_user "seraphynee" -}}
-[url "ghspy:"]
-    insteadOf = https://github.com/
-{{- else if eq .git_user "chianyungcode" }}
-[url "ghcny:"]
-    insteadOf = https://github.com/
-{{- else }}
-[url "ghcny:"]
-    insteadOf = https://github.com/
-{{- end }}
-
-[url "glcny:"]
-    insteadOf = https://gitlab.com/
-
 # =============================================================================
 # ALIASES
 # =============================================================================
