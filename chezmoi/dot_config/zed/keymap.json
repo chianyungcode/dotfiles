@@ -74,6 +74,7 @@
       "space a g": ["agent::NewExternalAgentThread", { "agent": "gemini" }],
 
       "space ;": "outline::Toggle",
+      "space o l": "outline::Toggle",
 
       "space b d": "pane::CloseActiveItem",
       "space b o": "pane::CloseOtherItems",
@@ -89,8 +90,10 @@
       "alt-8": ["pane::ActivateItem", 7],
       "alt-9": ["pane::ActivateItem", 8],
 
-      "space w o": "workspace::CloseInactiveTabsAndPanes",
-      "space w O": "workspace::CloseAllDocks",
+      "space w o": [
+        "action::Sequence",
+        ["workspace::CloseInactiveTabsAndPanes", "workspace::CloseAllDocks"],
+      ],
       "space w d": "pane::CloseAllItems",
 
       "space s f": "file_finder::Toggle",
