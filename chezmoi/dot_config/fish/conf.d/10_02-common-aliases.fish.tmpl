@@ -18,3 +18,9 @@ alias cpwd "echo -n $(pwd) | wl-copy"
 alias cpwd "echo -n $(pwd) | pbcopy"
 {{ end }}
 # === END OF CHEZMOI MANAGED ===
+
+{{- if lookPath "gping" }}
+alias ping="gping"
+{{- else if lookPath "prettyping" }}
+alias ping="prettyping --nolegend"
+{{- end }}
