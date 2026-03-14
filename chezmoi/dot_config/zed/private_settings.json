@@ -10,6 +10,8 @@
     "model_parameters": []
   },
 
+  "show_edit_predictions": false,
+
   "theme": "Vitesse Refined Dark",
   "icon_theme": {
     "mode": "system",
@@ -60,6 +62,7 @@
     "markdown-oxide": true,
     "wakatime": true,
     "jj-lsp": true,
+    "fish": true,
 
     "mcp-server-context7": true,
     "postgres-context-server": true,
