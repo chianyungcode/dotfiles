@@ -61,7 +61,7 @@
     "vue": true,
     "markdown-oxide": true,
     "wakatime": true,
-    "jj-lsp": true,
+    "jj-lsp": false,
     "fish": true,
 
     "mcp-server-context7": true,
@@ -107,6 +107,11 @@
   },
 
   "lsp": {
+    "wakatime": {
+      "initialization_options": {
+        "api-key": "{{ if .use_secrets }}{{ onepasswordRead .secrets.productivity.wakatime_apikey }}{{ end }}"
+      }
+    },
     "nil": {
       "initialization_options": {
         "formatting": {
