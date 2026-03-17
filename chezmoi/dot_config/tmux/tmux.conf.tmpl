@@ -73,7 +73,7 @@ bind Up resize-pane -U 5
 bind Down resize-pane -D 5
 
 # --- RUN A CLI TOOL e.g sesh,lazygit,bun ---
-bind-key o display-popup -E -w 40% "sesh-connect-picker"
+bind-key o display-popup -E -d '#{pane_current_path}' -w 40% "$HOME/bin/sesh-connect-picker.sh"
 # bind -N "Control+g (root mode) lazygit" -T root C-g new-window -c "#{pane_current_path}" -n "🌳" "lazygit 2> /dev/null" # Lazygit
 bind -N "Run last sessions" -T prefix L run-shell "sesh last || tmux display-message -d 1000 'Oops, no last sessions found'"
 # bind -N "Control-d (root mode) lazydocker" -T prefix C-d new-window -c "#{pane_current_path}" -n "🐳" "lazydocker 2> /dev/null" # Lazydocker
