@@ -1,7 +1,7 @@
 return {
   {
     "johnpmitsch/vai.nvim",
-    enabled = true,
+    enabled = false,
     opts = {
       -- trigger key to see jump letters
       -- works with jump, delete d/, yank y/, or visual select v/
