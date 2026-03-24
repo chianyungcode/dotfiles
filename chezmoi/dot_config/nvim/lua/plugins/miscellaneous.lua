@@ -1,5 +1,11 @@
 return {
 
+  -- https://github.com/ruicsh/termite.nvim
+  -- DESC: floating terminal neovim alternative for snacks.terminal
+  {
+    "ruicsh/termite.nvim",
+    opts = {},
+  },
   -- https://github.com/alker0/chezmoi.vim
   -- DESC: syntax highlighting for .tmpl in chezmoi
   {
