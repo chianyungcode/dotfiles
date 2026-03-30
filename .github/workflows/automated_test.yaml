@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - ".github/workflows/automated_tests.yml"
+      - ".github/workflows/automated_test.yaml"
       - ".github/actions/**"
       - "chezmoi/**"
     branches:
@@ -17,7 +17,7 @@ on:
       - reopened
       - synchronize
     paths:
-      - ".github/workflows/automated_tests.yml"
+      - ".github/workflows/automated_test.yaml"
       - ".github/actions/**"
       - "chezmoi/**"
 
@@ -89,7 +89,9 @@ jobs:
       # ----------------------------------------------
       - name: Run chezmoi apply
         run: |
-          ./bin/chezmoi apply
+          if [ -d /home/runner ]; then homedir="/home/runner"; else homedir="/Users/runner"; fi
+
+          ./bin/chezmoi --config ${homedir}/.config/chezmoi/chezmoi.toml apply
 
       # ----------------------------------------------
       # UBUNTU: Confirm dotfiles are installed
