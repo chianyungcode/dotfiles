@@ -14,11 +14,24 @@ Library
 .config/borders
 {{ end }}
 
-
 # Ignore .config/hypr unless the OS is Linux and the distro is Arch.
 # This means:
 # If the OS is NOT Linux OR the distro is NOT Arch, then ignore .config/hypr.
 {{ if or (ne .chezmoi.os "linux") (ne .chezmoi.osRelease.id "arch") }}
 .config/hypr
 .config/systemd
+{{ end }}
+
+{{ if .is_ci_workflow }}
+# Skip encrypted source files in CI.
+# .chezmoiignore matches target paths, so source attributes like `encrypted_`
+# are stripped before matching.
+.agents
+.codex
+.config/espanso/match/ai.yaml
+.config/espanso/match/email.yaml
+.config/espanso/match/macos.yaml
+.config/espanso/match/ticktick.yaml
+.config/fish/env.d/030-secrets-age.fish
+.config/zsh/env.d/030-secrets-age.sh
 {{ end }}
