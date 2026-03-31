@@ -287,6 +287,7 @@
         "nikitabobko/tap/aerospace",
         "raycast",
         "rectangle",
+        "ruittenb/tap/spaceman",     # macOS workspace naming
         "swift-shift",               # Drag window with ctl + shift
         "thaw",                      # fork of jordanbaird-ice menubar
 
@@ -371,6 +372,7 @@
 
     [packages.mas.personal_computer]
       apps = [
+        # Those one who commented out probably paid apps
         # "6471482080",  # Cursor Teleporter by Apptorium
 
         # Utility
@@ -385,6 +387,7 @@
         "1604176982", # Onething
         "6743316600", # Subscription Day
         "6746757189", # Corner Time
+        # "6748582349", # Spatial Dock
 
         # Productivity
         "1666327168", # Spaced
@@ -394,6 +397,9 @@
         # Focus & Habit
         "1609960918", # Jomo
         "966085870",  # Ticktick
+
+        # Entertainment
+        # "1606145041", # Sleeve
       ]
 
       # === APT PACKAGE MANAGER ===

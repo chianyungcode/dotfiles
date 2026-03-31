@@ -11,3 +11,21 @@
   app_name     = "tuna"
   download_url = "https://tunaformac.com/download/latest"
   type         = "dmg"
+
+# blur external 
+[[macos_external_app]]
+  app_name     = "monocle"
+  download_url = "https://files.heyiam.dk/updates/Monocle-3-0-3.dmg"
+  type         = "dmg"
+
+# live wallpaper
+[[macos_external_app]]
+  app_name     = "shakkei"
+  download_url = "https://downloads.shakkei.app/Shakkei.dmg"
+  type         = "dmg"
+
+  # tidy up your dock
+  # [[macos_external_app]]
+  #   app_name     = "modokki"
+  #   download_url = "https://modoki.app/download"
+  #   type         = "dmg"
