@@ -1,7 +1,10 @@
 [
   {
     "bindings": {
-      "cmd-alt-c": ["agent::NewExternalAgentThread", { "agent": "codex" }],
+      "cmd-alt-c": [
+        "agent::NewExternalAgentThread",
+        { "agent": { "custom": { "name": "codex" } } },
+      ],
     },
   },
   {
@@ -66,12 +69,18 @@
       "space ,": "tab_switcher::Toggle",
 
       "space a a": "workspace::ToggleRightDock",
-      "space a o": ["agent::NewExternalAgentThread", { "agent": "codex" }],
+      "space a o": [
+        "agent::NewExternalAgentThread",
+        { "agent": { "custom": { "name": "codex" } } },
+      ],
       "space a c": [
         "agent::NewExternalAgentThread",
-        { "agent": "claude_code" },
+        { "agent": { "custom": { "name": "claude" } } },
       ],
-      "space a g": ["agent::NewExternalAgentThread", { "agent": "gemini" }],
+      "space a g": [
+        "agent::NewExternalAgentThread",
+        { "agent": { "custom": { "name": "gemini" } } },
+      ],
 
       "space ;": "outline::Toggle",
       "space o l": "outline::Toggle",
