@@ -3,10 +3,8 @@
     to_remove = ["htop"]
 
     [packages.homebrew.common]
-
-      # packages that needed in every computer
+      # Installed on every computer
       casks = [
-
         # Security & Identity
         "1password",
         "1password-cli",
@@ -16,7 +14,6 @@
         "ghostty",
         "cmux",                   # ghostty based terminal with vertical workspace
         "git-credential-manager",
-        # "visual-studio-code",
 
         # System & Window Tools
         "mocki-toki/formulae/barik",
@@ -25,13 +22,11 @@
         # Network & Remote Access
         "tailscale",
         "termius",
+
+        # Optional
+        # "visual-studio-code",
       ]
       formulae = [
-        # "cliclick",                  # macOS CLI tool for emulating mouse and keyboard events
-        # "berkeley-db",               # Oracle berkeley-db
-        # "brew-gem",
-        # "dotter", # dotfile manager and templater.
-
         # Utility
         "atuin",       # Better shell history
         "bat",         # cat with syntax highlighting and git integration
@@ -96,9 +91,14 @@
         # Language & Formatting Toolchain
         "cocoapods", # dependency manager for switft
         "zoxide",    # Better cd
+
+        # Optional
+        # "berkeley-db", # Oracle berkeley-db
+        # "brew-gem",
+        # "cliclick",    # macOS CLI tool for emulating mouse and keyboard events
+        # "dotter",      # dotfile manager and templater
       ]
       taps = [
-
         # Dev Tools
         "arl/arl",                             # Taps for gitmux
         "chase/tap",
@@ -124,26 +124,29 @@
         "pkgxdev/made",
         "qmk/qmk",
         "skiptools/skip",
-        # "stripe/stripe-cli",
-        # "supabase/tap",
 
         # Network / Performance
         "teamookla/speedtest",
         "vladkens/tap",
-        # "waydabber/betterdisplay",
 
         # Git Workflow
         "withgraphite/tap",
+
+        # Optional
+        # "stripe/stripe-cli",
+        # "supabase/tap",
+        # "waydabber/betterdisplay",
       ]
 
     [packages.homebrew.dev_computer]
       casks = [
-        # "amazon-q",
         "apidog",
-        # "fork",   # "sourcetree", alternative to fork
+
+        # Optional
+        # "amazon-q",
+        # "fork", # "sourcetree", alternative to fork
       ]
       formulae = [
-
         # Utility
         "sk",                  # alternative for fzf fuzzy-finder
         "difftastic",          # diff tools
@@ -164,7 +167,6 @@
         "act",                           # runs GitHub Actions locally
         "gh",                            # Github CLI
         "glab",                          # GitLab CLI
-        "git-delta",                     # Pager for git
         "git-extras",                    # Add extra command to default git
         "gitmux",                        # Git status bar in tmux
         "jj",                            # jujutsu version controll
@@ -229,22 +231,22 @@
         # YAML
         "yamlfmt",  # YAML formatter
         "yamllint", # YAML linter
-        # "helix",                               # Alternative neovim
-        # "kanata",                              # Cross-platform software keyboard remapper for Linux, macOS and Windows
-        # "kitty",               # terminal
-        # "flyctl",                              # Fly.io CLI
-        # "stow",                                # Symlink manager
+
+        # Optional
+        # "flyctl",                    # Fly.io CLI
+        # "helix",                     # Alternative neovim
+        # "kanata",                    # Cross-platform software keyboard remapper
+        # "kitty",                     # terminal
+        # "stow",                      # Symlink manager
         # "stripe/stripe-cli/stripe",
-        # "television", # Alternative to yazi
-        # "tmuxinator", # Tmux session manager
+        # "television",                # Alternative to yazi
+        # "tmuxinator",                # Tmux session manager
       ]
       taps = []
 
     [packages.homebrew.personal_computer]
       casks = [
-
         # Browsers & Internet
-        # "arc",
         "google-chrome",
         "thebrowsercompany-dia", # Dia Browser
         "zen",                   # Browser
@@ -287,7 +289,6 @@
         "nikitabobko/tap/aerospace",
         "raycast",
         "rectangle",
-        # "ruittenb/tap/spaceman",     # macOS workspace naming
         "swift-shift", # Drag window with ctl + shift
         "thaw",        # fork of jordanbaird-ice menubar
 
@@ -296,11 +297,8 @@
 
         # Keyboard / Hardware Tools
         "karabiner-elements",
-        # "via",
-        # "vial",
 
         # File & Storage Utilities
-        # "localsend",  # Send file over the Wi-Fi network
         "apparency",      # Showing detail app in finder
         "blip",           # Send any size file between devices
         "bunch",
@@ -324,9 +322,15 @@
         "utm",      # Virtual Machine Emulator
         "warp",
         "wezterm",
+
+        # Optional
+        # "arc",
+        # "localsend",             # Send file over the Wi-Fi network
+        # "ruittenb/tap/spaceman", # macOS workspace naming
+        # "via",
+        # "vial",
       ]
       formulae = [
-
         # Utility
         "asciinema",                # record your terminal
         "eget",                     # Easily install prebuilt binaries from GitHub.
@@ -347,7 +351,6 @@
     [packages.homebrew.homelab_member]
       casks = []
       formulae = [
-
         # Media
         "ffmpeg",
 
@@ -372,9 +375,6 @@
 
     [packages.mas.personal_computer]
       apps = [
-        # Those one who commented out probably paid apps
-        # "6471482080",  # Cursor Teleporter by Apptorium
-
         # Utility
         "1355679052", # Dropover
         "1502839586", # Hand mirror
@@ -387,7 +387,6 @@
         "1604176982", # Onething
         "6743316600", # Subscription Day
         "6746757189", # Corner Time
-        # "6748582349", # Spatial Dock
 
         # Productivity
         "1666327168", # Spaced
@@ -398,18 +397,21 @@
         "1609960918", # Jomo
         "966085870",  # Ticktick
 
+        # Paid / Optional
+        # "6471482080", # Cursor Teleporter by Apptorium
+        # "6748582349", # Spatial Dock
+
         # Entertainment
         # "1606145041", # Sleeve
       ]
 
-      # === APT PACKAGE MANAGER ===
+  # APT package manager
 
   [packages.apt]
     to_remove = []
 
     [packages.apt.common]
       packages = [
-
         # System Essentials
         "apt-transport-https",
         "curl",
@@ -458,17 +460,14 @@
   [packages.pacman]
     [packages.pacman.common]
       packages = [
-
         # System Essentials
         "1password-cli",
         "base-devel",    # Equivalent to apt-transport-https and build essentials
-        # "bind-tools",    # Equivalent to dnsutils
         "curl",
         "logrotate",
         "nano",
         "net-tools",
         "openssh",   # Equivalent to openssh-server
-        # "p7zip",         # Equivalent to p7zip-full
         "polkit-gnome", # For 1password prompt available
         "sudo",
         "tzdata",
@@ -494,15 +493,17 @@
         # Security
         "gnome-keyring", # For 1password two factor auth
         "gnupg",
+
+        # Optional
+        # "bind-tools", # Equivalent to dnsutils
+        # "p7zip",      # Equivalent to p7zip-full
       ]
 
     [packages.pacman.dev_computer]
       packages = [
-
         # Utility
         "skim",             # alternative for fzf fuzzy-finder
         "appimagelauncher", # for integrating .AppImage
-        # "auto-cpufreq",        # CPU frequency auto, disable this because can causing slow perfomance. This slow perfomance appear in startup time in terminal
         "difftastic", # diff tools
         "pastel",     # converter color in terminal
         "btop",
@@ -527,7 +528,6 @@
         "jujutsu",    # jujutsu version control
         "jjui-bin",   # jujutsu tui
         "git-delta",  # Pager for git
-        "git-extras", # Add extra command to default git
         "github-cli", # Github CLI
         "glab",       # GitLab CLI
         "lazygit",
@@ -570,8 +570,6 @@
 
         # Build & Runtime
         "nix",
-        # "sqlite3",             # for building python
-        # "tcl-tk",              # for building python
         "zlib", # for building python
 
         # LSP, formatter & linters
@@ -597,6 +595,11 @@
         # YAML
         "yamlfmt",  # YAML formatter
         "yamllint", # YAML linter
+
+        # Optional
+        # "auto-cpufreq", # CPU frequency auto; disabled because it slowed terminal startup
+        # "sqlite3",      # for building python
+        # "tcl-tk",       # for building python
       ]
 
     [packages.pacman.homelab_member]
@@ -620,7 +623,6 @@
 
     [packages.python.common]
       packages = [
-
         # CLI / Text Rendering
         "halper",
         "pygments",
@@ -628,7 +630,6 @@
 
     [packages.python.dev_computer]
       packages = [
-
         # Automation & Infra
         "ansible-core",
         "cookiecutter",
@@ -646,7 +647,6 @@
 
     [packages.python.personal_computer]
       packages = [
-
         # Media
         "vid-cleaner",
 
@@ -662,7 +662,6 @@
 
     [packages.cargo.dev_computer]
       packages = [
-
         # Cargo Tooling
         "cargo-binstall",
         "cargo-update",
@@ -705,7 +704,6 @@
 
     [packages.node.dev_computer]
       packages = [
-
         # Task Runner
         "@go-task/cli", # modern makefile alternative - https://taskfile.dev/
 
