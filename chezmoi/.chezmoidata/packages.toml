@@ -16,7 +16,7 @@
         "ghostty",
         "cmux",                   # ghostty based terminal with vertical workspace
         "git-credential-manager",
-        "visual-studio-code",
+        # "visual-studio-code",
 
         # System & Window Tools
         "mocki-toki/formulae/barik",
@@ -140,7 +140,7 @@
       casks = [
         # "amazon-q",
         "apidog",
-        "fork",   # "sourcetree", alternative to fork
+        # "fork",   # "sourcetree", alternative to fork
       ]
       formulae = [
 
@@ -244,7 +244,7 @@
       casks = [
 
         # Browsers & Internet
-        "arc",
+        # "arc",
         "google-chrome",
         "thebrowsercompany-dia", # Dia Browser
         "zen",                   # Browser
@@ -287,25 +287,25 @@
         "nikitabobko/tap/aerospace",
         "raycast",
         "rectangle",
-        "ruittenb/tap/spaceman",     # macOS workspace naming
-        "swift-shift",               # Drag window with ctl + shift
-        "thaw",                      # fork of jordanbaird-ice menubar
+        # "ruittenb/tap/spaceman",     # macOS workspace naming
+        "swift-shift", # Drag window with ctl + shift
+        "thaw",        # fork of jordanbaird-ice menubar
 
         # Security & Privacy
         "lulu", # Firewall
 
         # Keyboard / Hardware Tools
         "karabiner-elements",
-        "via",
-        "vial",
+        # "via",
+        # "vial",
 
         # File & Storage Utilities
+        # "localsend",  # Send file over the Wi-Fi network
         "apparency",      # Showing detail app in finder
         "blip",           # Send any size file between devices
         "bunch",
         "cloudmounter",   # Mounts cloud storages as local discs
         "hazel",          # File organize automation
-        "localsend",
         "ogdesign-eagle", # Organise all your reference images in one place
         "qspace-pro",     # Better finder
         "replacicon",     # Replace your app icon
