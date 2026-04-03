@@ -230,7 +230,7 @@
 
         # TOML
         "taplo", # TOML formatter
-        "tombi", # TOML formatter
+        # "tombi", # TOML formatter
 
         # YAML
         "yamlfmt",  # YAML formatter
@@ -596,11 +596,17 @@
         "shellcheck", # bash, sh linter
         "shfmt",      # bash, sh formatter
 
+        # Nix
+        "nixfmt", # Nix formatter
+
         # Lua
         "stylua", # Lua formatter
 
         # Markdown
         "markdownlint-cli2", # Linter for markdown file
+
+        # TOML
+        "taplo-cli", # TOML formatter
 
         # YAML
         "yamlfmt",  # YAML formatter
