@@ -11,13 +11,12 @@
 
         # Development & Terminal
         "android-platform-tools",
+        "cmux",                   # ghostty based terminal with vertical workspace 
         "ghostty",
-        "cmux",                   # ghostty based terminal with vertical workspace
-        "git-credential-manager",
+        "wezterm",
 
         # System & Window Tools
         "mocki-toki/formulae/barik",
-        "orbstack",                  # Docker replacement
 
         # Network & Remote Access
         "tailscale",
@@ -27,7 +26,7 @@
         # "visual-studio-code",
       ]
       formulae = [
-        # Utility
+        # Core CLI Utilities
         "atuin",       # Better shell history
         "bat",         # cat with syntax highlighting and git integration
         "btop",
@@ -68,6 +67,7 @@
         # Git & Version Control
         "bfg",                       # Remove large files or passwords from Git history like git-filter-branch
         "git",
+        "git-credential-manager",
         "git-delta",                 # Git diff viewer or pager
         "git-filter-repo",
         "git-lfs",
@@ -80,15 +80,17 @@
         "libfido2",    # Provides library functionality for FIDO U2F & FIDO 2.0, including USB
         "ssh-copy-id", # Add a public key to a remote machine's authorized_keys file
 
-        # Shell & Editor
-        "neovim",   # Text
+        # Shell & Terminal
         "openssh",  # SSH
         "starship", # Configure shell prompt appearance
         "tmux",     # Terminal multiplexer
-        "vim",      # Alternative neovim
         "vivid",    # Better ls
 
-        # Language & Formatting Toolchain
+        # Text Editors & IDEs
+        "neovim", # Text
+        "vim",    # Alternative neovim
+
+        # Language & Package Tooling
         "cocoapods", # dependency manager for switft
         "zoxide",    # Better cd
 
@@ -99,7 +101,7 @@
         # "dotter",      # dotfile manager and templater
       ]
       taps = [
-        # Dev Tools
+        # Development Tools
         "arl/arl",                             # Taps for gitmux
         "chase/tap",
         "dopplerhq/cli",
@@ -140,6 +142,7 @@
 
     [packages.homebrew.dev_computer]
       casks = [
+        # API & Development
         "apidog",
 
         # Optional
@@ -147,10 +150,9 @@
         # "fork", # "sourcetree", alternative to fork
       ]
       formulae = [
-        # Utility
-        "sk",                  # alternative for fzf fuzzy-finder
-        "difftastic",          # diff tools
+        # CLI Utilities
         "codespell",           # Fix common misspellings in source code and text files
+        "difftastic",          # diff tools
         "fastfetch",           # Better system info
         "ffmpegthumbnailer",   # Video thumbnail for yazi cli
         "fx",                  # Better grep
@@ -160,6 +162,7 @@
         "pngpaste",            # Paste PNG into files on MacOS, much like pbpaste does for text.
         "poppler",             # PDF rendering library
         "pueue",               # Task runner and scheduler
+        "sk",                  # alternative for fzf fuzzy-finder
         "thefuck",             # Fix typos
         "vladkens/tap/macmon", # Mac monitor
 
@@ -183,6 +186,7 @@
         "tmuxp",   # Tmux session manager
 
         # Cloud & Infra
+        "orbstack", # Docker replacement
         "awscli",
         "dotenvx/brew/dotenvx",                # Env manager
         "jesseduffield/lazydocker/lazydocker", # Docker manager
@@ -197,7 +201,7 @@
         "mongosh", # MongoDB shell
         "redis",   # Redis CLI
 
-        # Language Toolchain
+        # Language & Build Tooling
         "luarocks", # Lua package manager
         "sqlite3",  # for building python
         "tcl-tk",   # for building python
@@ -265,12 +269,14 @@
         "readdle-spark", # Spark mail
 
         # Development & AI
-        "cursor",        # IDE : Write, edit, and chat about your code with AI
-        "datagrip",      # Databases and SQL IDE
         "linear-linear", # App to manage software development and track bugs
         "ollama",        # Run local LLM
         "superwhisper",
-        "zed",           # IDE
+
+        # Text Editors & IDEs
+        "cursor",   # IDE : Write, edit, and chat about your code with AI
+        "datagrip", # Databases and SQL IDE
+        "zed",      # IDE
 
         # System & Window Management
         "bettertouchtool",
@@ -289,8 +295,8 @@
         "nikitabobko/tap/aerospace",
         "raycast",
         "rectangle",
-        "swift-shift", # Drag window with ctl + shift
-        "thaw",        # fork of jordanbaird-ice menubar
+        "swift-shift",               # Drag window with ctl + shift
+        "thaw",                      # fork of jordanbaird-ice menubar
 
         # Security & Privacy
         "lulu", # Firewall
@@ -314,14 +320,14 @@
         "clop", # Image and video resizer
         "iina",
 
-        # Lifestyle
-        "dbngin",   # Lightweight DB GUI, Database version management tool
+        # Developer Support Tools
+        "dbngin",  # Lightweight DB GUI, Database version management tool
+
+        # Automation & Input
         "espanso",
-        "lookaway", # App for maintaining your eye rest
-        "setapp",
-        "utm",      # Virtual Machine Emulator
-        "warp",
-        "wezterm",
+
+        # Virtualization
+        "utm",     # Virtual Machine Emulator
 
         # Optional
         # "arc",
@@ -329,9 +335,12 @@
         # "ruittenb/tap/spaceman", # macOS workspace naming
         # "via",
         # "vial",
+        # "lookaway", # App for maintaining your eye rest
+        # "setapp",
+        # "warp",  # AI terminal
       ]
       formulae = [
-        # Utility
+        # CLI Utilities
         "asciinema",                # record your terminal
         "eget",                     # Easily install prebuilt binaries from GitHub.
         "gromgit/brewtils/taproom", # TUI for search homebrew package
@@ -405,7 +414,7 @@
         # "1606145041", # Sleeve
       ]
 
-  # APT package manager
+      # APT package manager
 
   [packages.apt]
     to_remove = []
@@ -467,8 +476,8 @@
         "logrotate",
         "nano",
         "net-tools",
-        "openssh",   # Equivalent to openssh-server
-        "polkit-gnome", # For 1password prompt available
+        "openssh",       # Equivalent to openssh-server
+        "polkit-gnome",  # For 1password prompt available
         "sudo",
         "tzdata",
         "unzip",
@@ -501,25 +510,24 @@
 
     [packages.pacman.dev_computer]
       packages = [
-        # Utility
-        "skim",             # alternative for fzf fuzzy-finder
         "appimagelauncher", # for integrating .AppImage
-        "difftastic", # diff tools
-        "pastel",     # converter color in terminal
         "btop",
-        "codespell",  # Fix common misspellings in source code and text files
+        "difftastic",       # diff tools
+        "codespell",        # Fix common misspellings in source code and text files
         "dpkg",
-        "entr",       # dependency for tmux-autoreload
+        "entr",             # dependency for tmux-autoreload
         "eza",
-        "glow",       # Render markdown in CLI
-        "gum",        # Fuzzy finder
+        "glow",             # Render markdown in CLI
+        "gum",              # Fuzzy finder
         "less",
+        "pastel",           # converter color in terminal
         "pet-bin",
-        "pueue",      # Task runner and scheduler
+        "pueue",            # Task runner and scheduler
+        "skim",             # alternative for fzf fuzzy-finder
         "tectonic",
-        "thefuck",    # Fix typos
-        "tlrc",       # TLDR client, alternative tealdeer
-        "vivid",      # Color generator for LS_COLORS env variable
+        "thefuck",          # Fix typos
+        "tlrc",             # TLDR client, alternative tealdeer
+        "vivid",            # Color generator for LS_COLORS env variable
 
         # Security
         "gitleaks",
@@ -535,13 +543,15 @@
         # Shell & Terminal
         "fish",
         "ghostty",
-        "helix",    # Alternative neovim
-        "neovim",
         "sesh-bin", # tmux session manager
         "starship",
         "tmux",
         "tmuxp",    # tmux session manager
         "yazi",
+
+        # Text Editors & IDEs
+        "helix",  # Alternative neovim
+        "neovim",
 
         # Cloud & Infra
         "cloudflare-warp-bin",
@@ -612,10 +622,12 @@
         "asciinema", # record your terminal
         "superfile", # file manager in terminal
 
-        # Development
+        # Development Tools
+        "opencode-bin",
+
+        # Text Editors & IDEs
         "datagrip",
         "datagrip-jre", # runtime for datagrip can work
-        "opencode-bin",
       ]
 
   [packages.python]
@@ -647,11 +659,11 @@
 
     [packages.python.personal_computer]
       packages = [
-        # Media
-        "vid-cleaner",
-
         # Utility
         "smassh",
+
+        # Media
+        "vid-cleaner",
       ]
 
   [packages.cargo]
@@ -716,7 +728,6 @@
 
     [packages.node.personal_computer]
       packages = [
-
         # AI / Developer Tools
         "@openai/codex",
 
