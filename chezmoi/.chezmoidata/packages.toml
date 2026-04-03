@@ -11,7 +11,7 @@
 
         # Development & Terminal
         "android-platform-tools",
-        "cmux",                   # ghostty based terminal with vertical workspace 
+        "cmux",                   # ghostty based terminal with vertical workspace
         "ghostty",
         "wezterm",
 
@@ -186,7 +186,7 @@
         "tmuxp",   # Tmux session manager
 
         # Cloud & Infra
-        "orbstack", # Docker replacement
+        "orbstack",                            # Docker replacement
         "awscli",
         "dotenvx/brew/dotenvx",                # Env manager
         "jesseduffield/lazydocker/lazydocker", # Docker manager
@@ -251,9 +251,10 @@
     [packages.homebrew.personal_computer]
       casks = [
         # Browsers & Internet
-        "google-chrome",
-        "thebrowsercompany-dia", # Dia Browser
-        "zen",                   # Browser
+        "brave-browser",
+        # "google-chrome",
+        # "thebrowsercompany-dia", # Dia Browser
+        "zen", # Browser
 
         # Productivity & Knowledge
         "anki",
@@ -321,13 +322,13 @@
         "iina",
 
         # Developer Support Tools
-        "dbngin",  # Lightweight DB GUI, Database version management tool
+        "dbngin", # Lightweight DB GUI, Database version management tool
 
         # Automation & Input
         "espanso",
 
         # Virtualization
-        "utm",     # Virtual Machine Emulator
+        "utm", # Virtual Machine Emulator
 
         # Optional
         # "arc",
@@ -569,7 +570,6 @@
         # Desktop & Device
         "fprintd",         # fingerprint
         "fuse2",           # apidog depedency
-        "google-chrome",
         "localsend",
         "lsof",            # opencode-bin depedency
         "ticktick",
@@ -617,6 +617,10 @@
 
     [packages.pacman.personal_computer]
       packages = [
+        # Browser
+        "brave-bin",
+        # "google-chrome",
+        "zen-browser-bin",
 
         # Utility
         "asciinema", # record your terminal
@@ -700,7 +704,6 @@
 
     [packages.cargo.personal_computer]
       packages = [
-
         # Utility
         "cargo-seek",
 
