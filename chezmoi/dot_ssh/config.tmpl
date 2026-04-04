@@ -39,6 +39,7 @@ Host {{ .name }}
 Host *
 	ServerAliveInterval 30
 	ServerAliveCountMax 120
-	StrictHostKeyChecking no
+	StrictHostKeyChecking accept-new
+	UpdateHostKeys yes
 	Protocol 2
 	IdentitiesOnly yes
