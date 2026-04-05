@@ -439,14 +439,12 @@ abbr "tailpc"="ssh tailpc-nixos"
 
 # --- Tmux / Tmuxifier / Tmuxinator ---
 abbr "bktmux"="tmux list-keys | fzf"
-abbr "fier"="tmuxifier"
-abbr "mux"="tmuxinator"
-abbr "tds"="_tmux_directory_session"
-abbr "tksv"="tmux kill-server"
-abbr "tl"="tmux list-sessions"
-abbr "tmuxconf"="$EDITOR $ZSH_TMUX_CONFIG"
 abbr "tx"="tmux"
 abbr "ts"='tmux new -s "%"'
+abbr "tl"="tmux list-sessions"
+abbr "tkss"='tmux kill-session -t "%"'
+abbr "tksv"="tmux kill-server"
+
 abbr "txi"="tmuxifier"
 abbr "txis"='tmuxifier s "%"'
 
