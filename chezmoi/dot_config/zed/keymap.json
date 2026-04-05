@@ -153,11 +153,11 @@
   {
     "context": "Editor && showing_completions",
     "bindings": {
-      "ctrl-1": ["workspace::SendKeystrokes", "pageup enter"],
-      "ctrl-2": ["workspace::SendKeystrokes", "pageup down enter"],
-      "ctrl-3": ["workspace::SendKeystrokes", "pageup down down enter"],
-      "ctrl-4": ["workspace::SendKeystrokes", "pageup down down down enter"],
-      "ctrl-5": [
+      "alt-1": ["workspace::SendKeystrokes", "pageup enter"],
+      "alt-2": ["workspace::SendKeystrokes", "pageup down enter"],
+      "alt-3": ["workspace::SendKeystrokes", "pageup down down enter"],
+      "alt-4": ["workspace::SendKeystrokes", "pageup down down down enter"],
+      "alt-5": [
         "workspace::SendKeystrokes",
         "pageup down down down down enter",
       ],
