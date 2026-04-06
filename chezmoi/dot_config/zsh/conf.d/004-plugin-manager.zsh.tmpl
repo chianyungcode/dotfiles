@@ -41,6 +41,7 @@ if [[ ! -s "$zsh_plugins_zsh" || ! "$zsh_plugins_zsh" -nt "$zsh_plugins_txt" ]];
     fi
   else
     git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
+    antidote_script="${zsh_config_root}/.antidote/antidote.zsh"
     source "$antidote_script"
     antidote bundle <"$zsh_plugins_txt" >|"$zsh_plugins_zsh"
     if [[ ! -f "$zsh_plugins_zwc" || "$zsh_plugins_zsh" -nt "$zsh_plugins_zwc" ]]; then
