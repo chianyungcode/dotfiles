@@ -21,7 +21,7 @@ start-at-login                                                  = false
   outer.top        = 10
 
 [workspace-to-monitor-force-assignment]
-  3 = 3
+  d = 3
 
 [mode.main.binding]
   alt-comma           = "layout accordion horizontal vertical"
@@ -41,24 +41,16 @@ start-at-login                                                  = false
   alt-tab             = "workspace-back-and-forth"
   alt-z               = "focus-back-and-forth"
 
-  alt-ctrl-1  = "workspace 1"
-  alt-ctrl-2  = "workspace 2"
-  alt-ctrl-3  = "workspace 3"
-  alt-ctrl-4  = "workspace 4"
-  alt-ctrl-5  = "workspace 5"
-  alt-ctrl-6  = "workspace 6"
-  alt-ctrl-7  = "workspace 7"
-  alt-ctrl-8  = "workspace 8"
-  alt-ctrl-9  = "workspace 9"
-  alt-shift-1 = "move-node-to-workspace 1"
-  alt-shift-2 = "move-node-to-workspace 2"
-  alt-shift-3 = "move-node-to-workspace 3"
-  alt-shift-4 = "move-node-to-workspace 4"
-  alt-shift-5 = "move-node-to-workspace 5"
-  alt-shift-6 = "move-node-to-workspace 6"
-  alt-shift-7 = "move-node-to-workspace 7"
-  alt-shift-8 = "move-node-to-workspace 8"
-  alt-shift-9 = "move-node-to-workspace 9"
+  alt-a       = "workspace a"
+  alt-s       = "workspace s"
+  alt-d       = "workspace d"
+  alt-f       = "workspace f"
+  alt-g       = "workspace g"
+  alt-shift-a = "move-node-to-workspace a"
+  alt-shift-s = "move-node-to-workspace s"
+  alt-shift-d = "move-node-to-workspace d"
+  alt-shift-f = "move-node-to-workspace f"
+  alt-shift-g = "move-node-to-workspace g"
 
 [mode.service.binding]
   alt-shift-h = ["join-with left", "mode main"]
@@ -75,139 +67,139 @@ start-at-login                                                  = false
 
 [[on-window-detected]]
   if.app-id = "com.github.wez.wezterm"
-  run       = "move-node-to-workspace 1"
+  run       = "move-node-to-workspace a"
 
 [[on-window-detected]]
   if.app-id = "com.mitchellh.ghostty"
-  run       = "move-node-to-workspace 1"
+  run       = "move-node-to-workspace a"
 
 [[on-window-detected]]
   if.app-id = "dev.zed.Zed"
-  run       = "move-node-to-workspace 1"
+  run       = "move-node-to-workspace a"
 
 [[on-window-detected]]
   if.app-id = "com.jetbrains.WebStorm"
-  run       = "move-node-to-workspace 1"
+  run       = "move-node-to-workspace a"
 
 [[on-window-detected]]
   if.app-id = "com.apidog.app"
-  run       = "move-node-to-workspace 2"
+  run       = "move-node-to-workspace s"
 
 [[on-window-detected]]
   if.app-id = "dev.kdrag0n.MacVirt"
-  run       = "move-node-to-workspace 2"
+  run       = "move-node-to-workspace s"
 
 [[on-window-detected]]
   if.app-id = "com.jetbrains.datagrip"
-  run       = "move-node-to-workspace 2"
+  run       = "move-node-to-workspace s"
 
 [[on-window-detected]]
   if.app-id = "com.todesktop.230313mzl4w4u92"
-  run       = "move-node-to-workspace 2"
+  run       = "move-node-to-workspace s"
 
 [[on-window-detected]]
   if.app-id = "company.thebrowser.Browser"
-  run       = "move-node-to-workspace 3"
+  run       = "move-node-to-workspace d"
 
 [[on-window-detected]]
   if.app-id = "com.apple.Safari"
-  run       = "move-node-to-workspace 3"
+  run       = "move-node-to-workspace d"
 
 [[on-window-detected]]
   if.app-id = "app.zen-browser.zen"
-  run       = "move-node-to-workspace 3"
+  run       = "move-node-to-workspace d"
 
 [[on-window-detected]]
   if.app-id = "company.thebrowser.dia"
-  run       = "move-node-to-workspace 3"
+  run       = "move-node-to-workspace d"
 
 [[on-window-detected]]
   if.app-id = "com.brave.Browser"
-  run       = "move-node-to-workspace 3"
+  run       = "move-node-to-workspace d"
 
 [[on-window-detected]]
   if.app-id = "com.google.Chrome"
-  run       = "move-node-to-workspace 3"
+  run       = "move-node-to-workspace d"
 
 [[on-window-detected]]
   if.app-id = "notion.id"
-  run       = "move-node-to-workspace 4"
+  run       = "move-node-to-workspace f"
 
 [[on-window-detected]]
   if.app-id = "md.obsidian"
-  run       = "move-node-to-workspace 4"
+  run       = "move-node-to-workspace f"
 
 [[on-window-detected]]
   if.app-id = "io.capacities.app"
-  run       = "move-node-to-workspace 4"
+  run       = "move-node-to-workspace f"
 
 [[on-window-detected]]
   if.app-id = "com.catforce.timemator-setapp"
-  run       = ["layout floating", "move-node-to-workspace 5"]
+  run       = ["layout floating", "move-node-to-workspace g"]
 
 [[on-window-detected]]
   if.app-id = "com.tinyspeck.slackmacgap"
-  run       = "move-node-to-workspace 5"
+  run       = "move-node-to-workspace g"
 
 [[on-window-detected]]
   if.app-id = "com.hnc.Discord"
-  run       = "move-node-to-workspace 5"
+  run       = "move-node-to-workspace g"
 
 [[on-window-detected]]
   if.app-id = "net.coldx.App-for-WhatsApp-setapp"
-  run       = "move-node-to-workspace 5"
+  run       = "move-node-to-workspace g"
 
 [[on-window-detected]]
   if.app-id = "com.tdesktop.Telegram"
-  run       = ["layout floating", "move-node-to-workspace 5"]
+  run       = ["layout floating", "move-node-to-workspace g"]
 
 [[on-window-detected]]
   if.app-id = "com.figma.Desktop"
-  run       = "move-node-to-workspace 5"
+  run       = "move-node-to-workspace g"
 
 [[on-window-detected]]
   if.app-id = "com.apple.Music"
-  run       = ["layout floating", "move-node-to-workspace 5"]
+  run       = ["layout floating", "move-node-to-workspace g"]
 
 [[on-window-detected]]
   if.app-id = "com.manytricks.Moom"
-  run       = ["layout floating", "move-node-to-workspace 5"]
+  run       = ["layout floating", "move-node-to-workspace g"]
 
 [[on-window-detected]]
   if.app-id = "com.jinghaoshe.qspace.pro"
-  run       = ["layout floating", "move-node-to-workspace 5"]
+  run       = ["layout floating", "move-node-to-workspace g"]
 
 [[on-window-detected]]
   if.app-id = "com.linear"
-  run       = "move-node-to-workspace 5"
+  run       = "move-node-to-workspace g"
 
 [[on-window-detected]]
   if.app-id = "com.TickTick.task.mac"
-  run       = "move-node-to-workspace 5"
+  run       = "move-node-to-workspace g"
 
 [[on-window-detected]]
   if.app-id = "com.philipyoungg.session-setapp"
-  run       = ["layout floating", "move-node-to-workspace 5"]
+  run       = ["layout floating", "move-node-to-workspace g"]
 
 [[on-window-detected]]
   if.app-id = "io.raindrop.macapp"
-  run       = "move-node-to-workspace 5"
+  run       = "move-node-to-workspace g"
 
 [[on-window-detected]]
   if.app-id = "com.apple.ActivityMonitor"
-  run       = ["layout floating", "move-node-to-workspace 5"]
+  run       = ["layout floating", "move-node-to-workspace g"]
 
 [[on-window-detected]]
   if.app-id = "com.macpaw.CleanMyMac-setapp"
-  run       = ["layout floating", "move-node-to-workspace 5"]
+  run       = ["layout floating", "move-node-to-workspace g"]
 
 [[on-window-detected]]
   if.app-id = "com.electron.wispr-flow"
-  run       = ["layout floating", "move-node-to-workspace 5"]
+  run       = ["layout floating", "move-node-to-workspace g"]
 
 [[on-window-detected]]
   if.app-id = "com.1password.1password"
-  run       = ["layout floating", "move-node-to-workspace 9"]
+  run       = ["layout floating", "move-node-to-workspace g"]
 
 [[on-window-detected]]
   if.app-id = "com.alienator88.Pearcleaner"
