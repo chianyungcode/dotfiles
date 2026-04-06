@@ -16,7 +16,10 @@ updated=false
 {{ if not .generate_public_key_only }}
 # Create private key if generate_public_key_only is not true
 if [ ! -f "{{ $.directories.ssh_keys_dir }}/{{ .name }}" ]; then
-    echo "{{ range (onepassword .op_id).fields }}{{ if or (eq .label "privkey") (eq .label "private key") }}{{ .value }}{{ end }}{{ end }}" >"{{ $.directories.ssh_keys_dir }}/{{ .name }}"
+    (
+        umask 077
+        printf '%s' "{{ range (onepassword .op_id).fields }}{{ if or (eq .label "privkey") (eq .label "private key") }}{{ .value }}{{ end }}{{ end }}" >"{{ $.directories.ssh_keys_dir }}/{{ .name }}"
+    )
     chmod 600 "{{ $.directories.ssh_keys_dir }}/{{ .name }}"
     updated=true
 fi
@@ -24,7 +27,7 @@ fi
 
 # Always check for public key
 if [ ! -f "{{ $.directories.ssh_keys_dir }}/{{ .name }}.pub" ]; then
-    echo "{{ range (onepassword .op_id).fields }}{{ if or (eq .label "pubkey") (eq .label "public key") }}{{ .value }}{{ end }}{{ end }}" >"{{ $.directories.ssh_keys_dir }}/{{ .name }}.pub"
+    printf '%s' "{{ range (onepassword .op_id).fields }}{{ if or (eq .label "pubkey") (eq .label "public key") }}{{ .value }}{{ end }}{{ end }}" >"{{ $.directories.ssh_keys_dir }}/{{ .name }}.pub"
     chmod 644 "{{ $.directories.ssh_keys_dir }}/{{ .name }}.pub"
     updated=true
 fi
