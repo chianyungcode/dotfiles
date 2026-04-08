@@ -24,6 +24,7 @@ start-at-login                                                  = false
   d = 3
 
 [mode.main.binding]
+  alt-b               = "focus-back-and-forth"
   alt-comma           = "layout accordion horizontal vertical"
   alt-h               = "focus left"
   alt-j               = "focus down"
@@ -39,18 +40,25 @@ start-at-login                                                  = false
   alt-shift-tab       = "move-workspace-to-monitor --wrap-around next"
   alt-slash           = "layout tiles horizontal vertical"
   alt-tab             = "workspace-back-and-forth"
-  alt-z               = "focus-back-and-forth"
 
   alt-a       = "workspace a"
-  alt-s       = "workspace s"
+  alt-c       = "workspace c"
   alt-d       = "workspace d"
   alt-f       = "workspace f"
   alt-g       = "workspace g"
+  alt-s       = "workspace s"
   alt-shift-a = "move-node-to-workspace a"
-  alt-shift-s = "move-node-to-workspace s"
+  alt-shift-c = "move-node-to-workspace c"
   alt-shift-d = "move-node-to-workspace d"
   alt-shift-f = "move-node-to-workspace f"
   alt-shift-g = "move-node-to-workspace g"
+  alt-shift-s = "move-node-to-workspace s"
+  alt-shift-v = "move-node-to-workspace v"
+  alt-shift-x = "move-node-to-workspace x"
+  alt-shift-z = "move-node-to-workspace z"
+  alt-v       = "workspace v"
+  alt-x       = "workspace x"
+  alt-z       = "workspace z"
 
 [mode.service.binding]
   alt-shift-h = ["join-with left", "mode main"]
@@ -135,39 +143,39 @@ start-at-login                                                  = false
 
 [[on-window-detected]]
   if.app-id = "com.catforce.timemator-setapp"
-  run       = ["layout floating", "move-node-to-workspace g"]
+  run       = ["layout floating", "move-node-to-workspace z"]
 
 [[on-window-detected]]
   if.app-id = "com.tinyspeck.slackmacgap"
-  run       = "move-node-to-workspace g"
+  run       = "move-node-to-workspace c"
 
 [[on-window-detected]]
   if.app-id = "com.hnc.Discord"
-  run       = "move-node-to-workspace g"
+  run       = "move-node-to-workspace c"
 
 [[on-window-detected]]
   if.app-id = "net.coldx.App-for-WhatsApp-setapp"
-  run       = "move-node-to-workspace g"
+  run       = "move-node-to-workspace c"
 
 [[on-window-detected]]
   if.app-id = "com.tdesktop.Telegram"
-  run       = ["layout floating", "move-node-to-workspace g"]
+  run       = ["layout floating", "move-node-to-workspace c"]
 
 [[on-window-detected]]
   if.app-id = "com.figma.Desktop"
-  run       = "move-node-to-workspace g"
+  run       = "move-node-to-workspace z"
 
 [[on-window-detected]]
   if.app-id = "com.apple.Music"
-  run       = ["layout floating", "move-node-to-workspace g"]
+  run       = ["layout floating", "move-node-to-workspace z"]
 
 [[on-window-detected]]
   if.app-id = "com.manytricks.Moom"
-  run       = ["layout floating", "move-node-to-workspace g"]
+  run       = ["layout floating", "move-node-to-workspace z"]
 
 [[on-window-detected]]
   if.app-id = "com.jinghaoshe.qspace.pro"
-  run       = ["layout floating", "move-node-to-workspace g"]
+  run       = ["layout floating", "move-node-to-workspace z"]
 
 [[on-window-detected]]
   if.app-id = "com.linear"
@@ -179,27 +187,27 @@ start-at-login                                                  = false
 
 [[on-window-detected]]
   if.app-id = "com.philipyoungg.session-setapp"
-  run       = ["layout floating", "move-node-to-workspace g"]
+  run       = ["layout floating", "move-node-to-workspace z"]
 
 [[on-window-detected]]
   if.app-id = "io.raindrop.macapp"
-  run       = "move-node-to-workspace g"
+  run       = "move-node-to-workspace z"
 
 [[on-window-detected]]
   if.app-id = "com.apple.ActivityMonitor"
-  run       = ["layout floating", "move-node-to-workspace g"]
+  run       = ["layout floating", "move-node-to-workspace z"]
 
 [[on-window-detected]]
   if.app-id = "com.macpaw.CleanMyMac-setapp"
-  run       = ["layout floating", "move-node-to-workspace g"]
+  run       = ["layout floating", "move-node-to-workspace z"]
 
 [[on-window-detected]]
   if.app-id = "com.electron.wispr-flow"
-  run       = ["layout floating", "move-node-to-workspace g"]
+  run       = ["layout floating", "move-node-to-workspace z"]
 
 [[on-window-detected]]
   if.app-id = "com.1password.1password"
-  run       = ["layout floating", "move-node-to-workspace g"]
+  run       = ["layout floating", "move-node-to-workspace v"]
 
 [[on-window-detected]]
   if.app-id = "com.alienator88.Pearcleaner"
