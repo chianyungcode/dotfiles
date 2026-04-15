@@ -251,10 +251,11 @@
     [packages.homebrew.personal_computer]
       casks = [
         # Browsers & Internet
-        "brave-browser",
+        # "brave-browser",
         # "google-chrome",
         # "thebrowsercompany-dia", # Dia Browser
-        "zen", # Browser
+        "helium-browser",
+        "zen",            # Browser
 
         # Productivity & Knowledge
         "anki",
