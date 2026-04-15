@@ -226,15 +226,33 @@ return {
       require("vgit").setup()
     end,
   },
+
+  -- {
+  --   "sindrets/diffview.nvim",
+  -- },
+
+  -- https://github.com/dlyongemallo
+  -- DESC: fork of "sindrets/diffview.nvim", because it's not maintaned since 2024
   {
-    -- :Diffview
-    "sindrets/diffview.nvim",
+    "dlyongemallo/diffview.nvim",
+    enabled = false,
+    version = "*",
+    -- optional: lazy-load on command
+    -- cmd = {
+    --     "DiffviewOpen",
+    --     "DiffviewToggle",
+    --     "DiffviewFileHistory",
+    --     "DiffviewDiffFiles",
+    --     "DiffviewLog",
+    -- },
   },
+
   {
     "esmuellert/codediff.nvim",
-    enabled = false,
+    enabled = true,
     cmd = "CodeDiff",
   },
+
   {
     "clabby/difftastic.nvim",
     enabled = false,
