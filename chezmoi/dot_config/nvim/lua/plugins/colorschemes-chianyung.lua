@@ -5,6 +5,18 @@
 return {
   -- { "killitar/obscure.nvim" },
 
+  {
+    "ember-theme/nvim",
+    name = "ember",
+    priority = 1000,
+    -- config = function()
+    --   require("ember").setup({
+    --     variant = "ember-light", -- "ember" | "ember-soft" | "ember-light"
+    --   })
+    --   vim.cmd("colorscheme ember")
+    -- end,
+  },
+
   -- https://github.com/uhs-robert/oasis.nvim
   {
     "uhs-robert/oasis.nvim",
