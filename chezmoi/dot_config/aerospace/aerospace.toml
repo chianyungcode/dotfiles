@@ -131,6 +131,10 @@ start-at-login                                                  = false
   run       = "move-node-to-workspace 3"
 
 [[on-window-detected]]
+  if.app-id = "net.imput.helium"
+  run       = "move-node-to-workspace 3"
+
+[[on-window-detected]]
   if.app-id = "notion.id"
   run       = "move-node-to-workspace 4"
 
