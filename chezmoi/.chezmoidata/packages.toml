@@ -274,13 +274,15 @@
         "superwhisper",
 
         # Text Editors, IDEs & Developer Tools
-        "cursor",   # IDE : Write, edit, and chat about your code with AI
-        "datagrip", # Databases and SQL IDE
-        "dbngin",   # Lightweight DB GUI, Database version management tool
-        "utm",      # Virtual Machine Emulator
-        "zed",      # IDE
+        "cursor",       # IDE : Write, edit, and chat about your code with AI
+        "balenaetcher",
+        "datagrip",     # Databases and SQL IDE
+        "dbngin",       # Lightweight DB GUI, Database version management tool
+        "utm",          # Virtual Machine Emulator
+        "zed",          # IDE
 
         # Window Management
+        # "acsandmann/tap/rift",
         # "glide",                     # Tiling window manager
         "menuwhere",
         "moom",                      # Manage saved layout window for better workflow
@@ -288,6 +290,7 @@
         "raycast",
         # "rectangle",
         # "ruittenb/tap/spaceman", # macOS workspace naming
+        # "omniwm"
 
         # Menu bar related
         # "mocki-toki/formulae/barik",
