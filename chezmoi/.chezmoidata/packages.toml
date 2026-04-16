@@ -14,16 +14,10 @@
         "cmux",                   # ghostty based terminal with vertical workspace
         "ghostty",
         "wezterm",
+        # "warp",  # AI terminal
 
-        # System & Window Tools
-        "mocki-toki/formulae/barik",
-
-        # Network & Remote Access
-        "tailscale",
-        "termius",
-
-        # Optional
-        # "visual-studio-code",
+        # Version Control
+        "git-credential-manager",
       ]
       formulae = [
         # Core CLI Utilities
@@ -67,7 +61,6 @@
         # Git & Version Control
         "bfg",                       # Remove large files or passwords from Git history like git-filter-branch
         "git",
-        "git-credential-manager",
         "git-delta",                 # Git diff viewer or pager
         "git-filter-repo",
         "git-lfs",
@@ -144,6 +137,10 @@
       casks = [
         # API & Development
         "apidog",
+
+        # Network & Remote Access
+        "tailscale",
+        "termius",
 
         # Optional
         # "amazon-q",
@@ -250,96 +247,87 @@
 
     [packages.homebrew.personal_computer]
       casks = [
-        # Browsers & Internet
-        # "brave-browser",
+        # Browsers
+        "brave-browser",
         # "google-chrome",
-        # "thebrowsercompany-dia", # Dia Browser
         "helium-browser",
-        "zen",            # Browser
+        # "thebrowsercompany-dia", # Dia Browser
+        # "zen", # Browser
 
         # Productivity & Knowledge
-        "anki",
-        "capacities", # Note taking
-        "folo",       # Follow the organized information
+        # "anki",
+        "capacities",    # Note taking
+        "folo",          # Follow the organized information
+        "linear-linear", # Task management for product driven
         "notion",
         "obsidian",
         "raindropio",
-        "remnote",
+        # "remnote",
 
         # Communication
-        "discord",
+        # "discord",
+        "equibop",       # Discord alternative
         "readdle-spark", # Spark mail
 
         # Development & AI
-        "linear-linear", # App to manage software development and track bugs
-        "ollama",        # Run local LLM
+        "ollama",       # Run local LLM
         "superwhisper",
 
-        # Text Editors & IDEs
+        # Text Editors, IDEs & Developer Tools
         "cursor",   # IDE : Write, edit, and chat about your code with AI
         "datagrip", # Databases and SQL IDE
+        "dbngin",   # Lightweight DB GUI, Database version management tool
+        "utm",      # Virtual Machine Emulator
         "zed",      # IDE
 
-        # System & Window Management
-        "bettertouchtool",
-        "dockdoor",
-        "glide",                     # Tiling window manager
-        "hazeover",                  # dim your inactive window
-        "homerow",                   # Keyboard shortcuts for every button on your screen
-        "keyboard-cowboy",           # Keyboard shortcut utility
-        "kindavim",
-        "leader-key",
-        "lunar",                     # Configure your display management
-        "mediamate",                 # UI replacement for volume, brightness and now playing controls
+        # Window Management
+        # "glide",                     # Tiling window manager
         "menuwhere",
         "moom",                      # Manage saved layout window for better workflow
-        "mouseless",
         "nikitabobko/tap/aerospace",
         "raycast",
-        "rectangle",
-        "swift-shift",               # Drag window with ctl + shift
-        "thaw",                      # fork of jordanbaird-ice menubar
+        # "rectangle",
+        # "ruittenb/tap/spaceman", # macOS workspace naming
 
-        # Security & Privacy
-        "lulu", # Firewall
+        # Menu bar related
+        # "mocki-toki/formulae/barik",
+        "thaw", # fork of jordanbaird-ice menubar
 
-        # Keyboard / Hardware Tools
+        # Keyboard Driven
+        "homerow", # Keyboard shortcuts for every button on your screen
+        # "keyboard-cowboy",    # Keyboard shortcut utility
+        "kindavim",
+        "leader-key",
+        "mouseless",
         "karabiner-elements",
 
-        # File & Storage Utilities
-        "apparency",      # Showing detail app in finder
-        "blip",           # Send any size file between devices
-        "bunch",
-        "cloudmounter",   # Mounts cloud storages as local discs
-        "hazel",          # File organize automation
+        # Automations
+        # "bettertouchtool",
+        # "bunch",
+        "espanso",
+        # "hazel",   # File organize automation
+        # "transnomino", # Batch rename utility
+
+        # Utilities
+        "apparency",    # Showing detail app in finder
+        "blip",         # Send any size file between devices
+        "cloudmounter", # Mounts cloud storages as local discs
+        # "dockdoor",
+        # "hazeover",        # dim your inactive window
+        # "localsend",             # Send file over the Wi-Fi network
+        # "lookaway", # App for maintaining your eye rest
+        "lulu", # Firewall
+        # "mediamate",       # UI replacement for volume, brightness and now playing controls
+        "lunar",          # Configure your display management
         "ogdesign-eagle", # Organise all your reference images in one place
         "qspace-pro",     # Better finder
         "replacicon",     # Replace your app icon
-        "transnomino",    # Batch rename utility
+        # "swift-shift", # Drag window with ctl + shift
 
         # Media & Capture
         "cap",  # screen recording software
         "clop", # Image and video resizer
-        "iina",
-
-        # Developer Support Tools
-        "dbngin", # Lightweight DB GUI, Database version management tool
-
-        # Automation & Input
-        "espanso",
-
-        # Virtualization
-        "utm", # Virtual Machine Emulator
-
-        # Optional
-        # "arc",
-        # "localsend",             # Send file over the Wi-Fi network
-        # "ruittenb/tap/spaceman", # macOS workspace naming
-        # "via",
-        # "vial",
-        # "lookaway", # App for maintaining your eye rest
-        # "setapp",
-        # "warp",  # AI terminal
+        # "iina",
       ]
       formulae = [
         # CLI Utilities
@@ -350,7 +338,7 @@
         "presenterm",               # Presentation in CLI
         "superfile",                # file manager in terminal
 
-        # System & UI
+        # Window Management
         "felixkratz/formulae/borders",
 
         # Hardware
@@ -388,20 +376,20 @@
       apps = [
         # Utility
         "1355679052", # Dropover
-        "1502839586", # Hand mirror
-        "1551462255", # Mouseboost
-        "497799835",  # Velja
-        "6444667067", # Hyperduck
+        # "1502839586", # Hand mirror
+        # "1551462255", # Mouseboost
+        # "497799835",  # Velja
+        # "6444667067", # Hyperduck
         "6451349778", # Rapidmg
         "6474854386", # Launchpallete
         "6698876601", # Folder preview
-        "1604176982", # Onething
-        "6743316600", # Subscription Day
-        "6746757189", # Corner Time
+        # "1604176982", # Onething
+        # "6743316600", # Subscription Day
+        #"6746757189", # Corner Time
 
         # Productivity
-        "1666327168", # Spaced
-        "6739781207", # Pieoneer
+        # "1666327168", # Spaced
+        # "6739781207", # Pieoneer
         "6739802604", # Folo
 
         # Focus & Habit
