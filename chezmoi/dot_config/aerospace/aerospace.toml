@@ -24,8 +24,8 @@ start-at-login                                                  = false
   "3" = 3
 
 [mode.main.binding]
-  alt-b               = "focus-back-and-forth"
   alt-comma           = "layout accordion horizontal vertical"
+  alt-esc             = "focus-back-and-forth"
   alt-h               = "focus left"
   alt-j               = "focus down"
   alt-k               = "focus up"
@@ -216,4 +216,8 @@ start-at-login                                                  = false
 
 [[on-window-detected]]
   if.app-id = "com.alienator88.Pearcleaner"
+  run       = ["layout floating"]
+
+[[on-window-detected]]
+  if.app-id = "com.apple.SecurityAgent"
   run       = ["layout floating"]
