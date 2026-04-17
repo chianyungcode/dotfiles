@@ -9,7 +9,7 @@
   #   ease_in_circ, ease_out_circ, ease_in_out_circ
   animate            = false
   animation_duration = 0.3
-  animation_fps      = 100.0
+  animation_fps      = 1
 
   # Space activation behavior
   # - If true, spaces start inactive (rift does not manage windows there)
@@ -181,7 +181,7 @@
     # in a vertical stack where the line will be (left/right)
     vert_placement = "left"
     # how thick the indicator will be (in px)
-    thickness = 20.0
+    thickness = 5.0
     # spacing between the stack line and window edges (in px)
     spacing = 1.0
 
@@ -320,7 +320,13 @@
   #       ]
   #
   # By default there are no app rules; add or uncomment rules below as needed.
-  app_rules = []
+  app_rules = [
+    { app_id = "com.mitchellh.ghostty", workspace = 0, floating = false },
+    { app_id = "net.imput.helium", workspace = 1, floating = false },
+    { app_id = "com.linear", workspace = 1, floating = true },
+    { app_id = "com.tinyspeck.slackmacgap", workspace = 2, floating = false },
+    { app_id = "com.1password.1password", workspace = 3, floating = true },
+  ]
 
 # Modifier combinations that can be reused in key bindings
 # Define common modifier combinations to avoid repetition.
@@ -398,9 +404,10 @@
 
   # commands to change the layout engine of the active workspace
   "Alt + Ctrl + 1" = { set_workspace_layout = { mode = "stack" } }
-  "Alt + Ctrl + 2" = { set_workspace_layout = { mode = "bsp" } }
-  "Alt + Ctrl + 3" = { set_workspace_layout = { mode = "master_stack" } }
-  "Alt + Ctrl + 4" = { set_workspace_layout = { mode = "scrolling" } }
+  "Alt + Ctrl + 2" = { set_workspace_layout = { mode = "master_stack" } }
+  # Disable this because it's unstable
+  # "Alt + Ctrl + 3" = { set_workspace_layout = { mode = "bsp" } }
+  # "Alt + Ctrl + 4" = { set_workspace_layout = { mode = "scrolling" } }
 
   "Alt + Comma"         = "toggle_stack"
   "Alt + Ctrl + E"      = "unjoin_windows"

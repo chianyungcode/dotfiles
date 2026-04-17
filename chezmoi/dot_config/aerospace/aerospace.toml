@@ -220,4 +220,4 @@ start-at-login                                                  = false
 
 [[on-window-detected]]
   if.app-id = "com.apple.SecurityAgent"
-  run       = ["layout floating"]
+  run       = ["layout floating", "move-node-to-workspace current"]
