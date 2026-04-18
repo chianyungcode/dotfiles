@@ -75,6 +75,10 @@ start-at-login                                                  = false
   up          = "volume up"
 
 [[on-window-detected]]
+  if.app-id = "com.1password.1password"
+  run       = ["move-node-to-workspace 1"]
+
+[[on-window-detected]]
   if.app-id = "com.github.wez.wezterm"
   run       = "move-node-to-workspace 1"
 
@@ -105,6 +109,15 @@ start-at-login                                                  = false
 [[on-window-detected]]
   if.app-id = "com.todesktop.230313mzl4w4u92"
   run       = "move-node-to-workspace 2"
+
+[[on-window-detected]]
+  if.app-id = "com.linear"
+  run       = "move-node-to-workspace 3"
+
+[[on-window-detected]]
+  if.app-id = "com.TickTick.task.mac"
+  run       = "move-node-to-workspace 3"
+
 
 [[on-window-detected]]
   if.app-id = "company.thebrowser.Browser"
@@ -183,14 +196,6 @@ start-at-login                                                  = false
   run       = ["layout floating", "move-node-to-workspace 6"]
 
 [[on-window-detected]]
-  if.app-id = "com.linear"
-  run       = "move-node-to-workspace 5"
-
-[[on-window-detected]]
-  if.app-id = "com.TickTick.task.mac"
-  run       = "move-node-to-workspace 5"
-
-[[on-window-detected]]
   if.app-id = "com.philipyoungg.session-setapp"
   run       = ["layout floating", "move-node-to-workspace 6"]
 
@@ -211,13 +216,5 @@ start-at-login                                                  = false
   run       = ["layout floating", "move-node-to-workspace 6"]
 
 [[on-window-detected]]
-  if.app-id = "com.1password.1password"
-  run       = ["layout floating", "move-node-to-workspace 9"]
-
-[[on-window-detected]]
   if.app-id = "com.alienator88.Pearcleaner"
   run       = ["layout floating"]
-
-[[on-window-detected]]
-  if.app-id = "com.apple.SecurityAgent"
-  run       = ["layout floating", "move-node-to-workspace current"]
