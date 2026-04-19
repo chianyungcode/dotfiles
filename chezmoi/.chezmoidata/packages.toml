@@ -135,6 +135,11 @@
 
     [packages.homebrew.dev_computer]
       casks = [
+        # AI Agents Apps
+        "claude",
+        "codex-app",
+        "opencode-desktop",
+
         # API & Development
         "apidog",
 
@@ -147,6 +152,11 @@
         # "fork", # "sourcetree", alternative to fork
       ]
       formulae = [
+        # AI Agentss CLI's
+        "claude-code",
+        "codex",
+        "opencode",
+
         # CLI Utilities
         "codespell",           # Fix common misspellings in source code and text files
         "difftastic",          # diff tools
