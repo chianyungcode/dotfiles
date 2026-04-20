@@ -333,8 +333,10 @@
         # "mediamate",       # UI replacement for volume, brightness and now playing controls
         "lunar",          # Configure your display management
         "ogdesign-eagle", # Organise all your reference images in one place
-        "qspace-pro",     # Better finder
-        "replacicon",     # Replace your app icon
+        # "pearcleaner",    # uninstall app
+        "qspace-pro", # Better finder
+        "replacicon", # Replace your app icon
+        "shottr",     # Screenshoot tool
         # "swift-shift", # Drag window with ctl + shift
 
         # Media & Capture
