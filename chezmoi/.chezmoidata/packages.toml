@@ -389,25 +389,24 @@
       apps = [
         # Utility
         "1355679052", # Dropover
+        "6451349778", # Rapidmg
+        "6474854386", # Launchpallete
+        "6698876601", # Folder preview
+        # "6476907452", # Applight (app launcher)
         # "1502839586", # Hand mirror
         # "1551462255", # Mouseboost
         # "497799835",  # Velja
         # "6444667067", # Hyperduck
-        "6451349778", # Rapidmg
-        "6474854386", # Launchpallete
-        "6698876601", # Folder preview
         # "1604176982", # Onething
         # "6743316600", # Subscription Day
         #"6746757189", # Corner Time
 
         # Productivity
-        # "1666327168", # Spaced
-        # "6739781207", # Pieoneer
         "6739802604", # Folo
-
-        # Focus & Habit
         "1609960918", # Jomo
         "966085870",  # Ticktick
+        # "1666327168", # Spaced
+        # "6739781207", # Pieoneer
 
         # Paid / Optional
         # "6471482080", # Cursor Teleporter by Apptorium
