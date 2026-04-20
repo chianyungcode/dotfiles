@@ -8,21 +8,26 @@
   type         = "dmg"
 
 [[macos_external_app]]
-  app_name     = "tuna"
-  download_url = "https://tunaformac.com/download/latest"
+  app_name     = "recordly"
+  download_url = "https://github.com/webadderall/Recordly/releases/latest/download/Recordly-arm64.dmg"
   type         = "dmg"
 
-# blur external 
-[[macos_external_app]]
-  app_name     = "monocle"
-  download_url = "https://files.heyiam.dk/updates/Monocle-3-0-3.dmg"
-  type         = "dmg"
-
-# live wallpaper
-[[macos_external_app]]
-  app_name     = "shakkei"
-  download_url = "https://downloads.shakkei.app/Shakkei.dmg"
-  type         = "dmg"
+  # [[macos_external_app]]
+  #   app_name     = "tuna"
+  #   download_url = "https://tunaformac.com/download/latest"
+  #   type         = "dmg"
+  #
+  # # blur external 
+  # [[macos_external_app]]
+  #   app_name     = "monocle"
+  #   download_url = "https://files.heyiam.dk/updates/Monocle-3-0-3.dmg"
+  #   type         = "dmg"
+  #
+  # # live wallpaper
+  # [[macos_external_app]]
+  #   app_name     = "shakkei"
+  #   download_url = "https://downloads.shakkei.app/Shakkei.dmg"
+  #   type         = "dmg"
 
   # tidy up your dock
   # [[macos_external_app]]
