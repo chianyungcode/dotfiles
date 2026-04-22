@@ -1,5 +1,5 @@
 ---
-name: think-manual
+name: think-cheatsheet
 description: Use this when the user wants to code manually but needs a fast cheatsheet of programming-language built-ins, syntax, framework APIs, or library methods based on a feature description, without receiving a full project-specific implementation.
 ---
 
@@ -48,8 +48,40 @@ The user may describe:
 - A bug or behavior they want to implement manually
 - A pattern they suspect needs certain APIs
 - A library/framework they are using
+- The keyword `todocs` when they want the cheatsheet written to a markdown file
 
 Infer the likely tools needed from that description.
+
+# Keyword Detection
+
+Detect special intent keywords in the user's request.
+
+- If the user includes `todocs`, write the cheatsheet output to a markdown file.
+
+# File Output Behavior
+
+When `todocs` is present:
+
+- Create the output under `issue-cheatsheets/`
+- File name format must be `<date>-<time>-<issue_title>.md`
+- Use a safe kebab-case version of the issue title for `<issue_title>`
+- Remove or normalize characters that are unsafe for file names
+- Keep the title short but recognizable
+
+Recommended format:
+
+- `<date>`: `YYYY-MM-DD`
+- `<time>`: `HH-mm-ss`
+- `<issue_title>`: derived from the user's issue summary
+
+Example:
+
+- `issue-cheatsheets/2026-04-22-14-30-45-add-search-filter-to-user-list.md`
+
+If the user does not provide a clear title:
+
+- Derive it from `What The User Wants`
+- If needed, fall back to a short issue summary
 
 # Output Contract
 
@@ -73,7 +105,7 @@ Respond using this structure whenever possible:
 
 ## Programming Language
 
-- `name(ref-number)`
+- `name`[^1]
   Short explanation of what it does and why it is relevant here.
 
 Example:
@@ -85,7 +117,7 @@ Example:
 
 ### `LibraryName`
 
-- `apiName(ref-number)`
+- `apiName`[^2]
   Short explanation of what it does and why it is relevant here.
 
 Example:
@@ -95,8 +127,8 @@ Example:
 
 # References
 
-1. `https://direct-reference-url`
-2. `https://direct-reference-url`
+[^1]: `https://direct-reference-url`
+[^2]: `https://direct-reference-url`
 
 # Formatting Rules
 
@@ -104,6 +136,7 @@ Example:
 - Use short sections with strong headings.
 - Include the `Issue To Solve` section after `Project Context` and before the cheatsheet items.
 - Keep one API per bullet.
+- Put the reference marker directly on the method or API name using footnote style such as `` `map`[^1] ``.
 - Put the API name on its own line first, then the explanation on the next line.
 - Leave one blank line between bullets if the response is dense.
 - Keep explanations to 1-2 short sentences.
@@ -111,7 +144,8 @@ Example:
 - Prefer vertical layout over long inline paragraphs.
 - If there are many items, group them by purpose such as `data shaping`, `side effects`, `routing`, `server calls`, or `state`.
 - Use a small `When to prefer this` note when two APIs are easy to confuse.
-- End with references as a clean numbered list of direct URLs.
+- End with references as footnotes using direct URLs.
+- If `todocs` is present, preserve the same visual structure inside the generated markdown file.
 
 # Preferred Visual Shape
 
@@ -126,7 +160,7 @@ Use this presentation style:
 
 ## Programming Language
 
-- `map(1)`
+- `map`[^1]
   Transform each item into a new array. Useful here if the feature needs derived UI data.
 
 Example:
@@ -135,13 +169,16 @@ const values = [1, 2, 3]
 const doubled = values.map((v) => v * 2)
 ```
 
-- `find(2)`
+- `find`[^2]
   Return the first matching item. Prefer this when only one item is needed.
 
 Example:
 ```ts
 const user = users.find((u) => u.id === targetId)
 ```
+
+[^1]: `https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map`
+[^2]: `https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find`
 
 # Response Rules
 
@@ -157,6 +194,7 @@ const user = users.find((u) => u.id === targetId)
 - If confidence is low, say it explicitly and label the item as a likely candidate.
 - Avoid large paragraphs, cramped bullets, or mixed formatting styles in one answer.
 - Prefer readability over completeness.
+- Reuse the same footnote number only when multiple items truly share the exact same reference URL.
 
 # Strict Limits
 
@@ -165,6 +203,7 @@ const user = users.find((u) => u.id === targetId)
 - Never include wiring code across many files.
 - Never silently convert the request into "here is the finished solution".
 - Never recommend unrelated stacks just because they are common in general.
+- Never use a vague file name like `notes.md` or `cheatsheet.md` when `todocs` is present.
 
 # Allowed Help
 
@@ -203,6 +242,7 @@ For references:
 - Use direct URLs, not only source names.
 - Prefer section URLs when possible so the link lands near the exact API or feature.
 - Prefer official docs first.
+- Keep footnote numbering stable and easy to follow from top to bottom.
 
 # Fallback Behavior
 
@@ -224,3 +264,4 @@ The user should be able to read the answer and immediately know:
 - what the minimal syntax looks like
 - where to read the official reference directly via URL
 - which item to inspect first without reading the whole answer slowly
+- and, when `todocs` is used, where the markdown file was written
