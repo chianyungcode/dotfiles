@@ -24,3 +24,6 @@ alias ping="gping"
 {{- else if lookPath "prettyping" }}
 alias ping="prettyping --nolegend"
 {{- end }}
+
+# custom opencode config
+alias oct="env OPENCODE_CONFIG_DIR=$HOME/.config/opencode-thinking opencode"

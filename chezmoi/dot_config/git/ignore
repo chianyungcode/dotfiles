@@ -59,3 +59,7 @@ vendor/
 
 # Ignore automatically generated direnv output
 .direnv
+
+# Issue notes
+issue-cheatsheets/
+issue-steps/
