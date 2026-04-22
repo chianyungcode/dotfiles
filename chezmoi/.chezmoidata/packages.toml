@@ -258,7 +258,8 @@
     [packages.homebrew.personal_computer]
       casks = [
         # Browsers
-        "brave-browser",
+        # "brave-browser",
+        "comet",
         # "google-chrome",
         "helium-browser",
         # "thebrowsercompany-dia", # Dia Browser
