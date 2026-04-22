@@ -1,6 +1,7 @@
 return {
   {
     "chenxin-yan/footnote.nvim",
+    enabled = false,
     opts = {
       -- add any configuration here
     },
