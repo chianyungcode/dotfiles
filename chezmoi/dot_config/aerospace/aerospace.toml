@@ -139,6 +139,10 @@ start-at-login                                                  = false
   run       = "move-node-to-workspace 3"
 
 [[on-window-detected]]
+  if.app-id = "ai.perplexity.comet"
+  run       = "move-node-to-workspace 3"
+
+[[on-window-detected]]
   if.app-id = "notion.id"
   run       = "move-node-to-workspace 4"
 
@@ -168,6 +172,10 @@ start-at-login                                                  = false
 
 [[on-window-detected]]
   if.app-id = "com.hnc.Discord"
+  run       = "move-node-to-workspace 8"
+
+[[on-window-detected]]
+  if.app-id = "org.equicord.equibop"
   run       = "move-node-to-workspace 8"
 
 [[on-window-detected]]
