@@ -10,29 +10,18 @@
   windows         = ["opencode", "codex", "terminal"]
 
 [[session]]
-  name            = "OS"
-  path            = "~"
-  startup_command = "yazi"
-  windows         = ["monitoring"]
-
-[[session]]
-  name            = "tmux Config"
-  path            = "~/.local/share/chezmoi/chezmoi/dot_config/tmux"
-  preview_command = "bat --color=always ~/.config/tmux/tmux.conf"    # startup_command = "nvim tmux.conf"
-  startup_command = "nvim tmux.conf.tmpl"
-
-[[session]]
-  name = "obsidian"
-  path = "~/Documents/vault-obsidian"
-
-[[session]]
   name            = "dotfiles"
   path            = "~/.local/share/chezmoi"
   startup_command = "nvim"
-  windows         = [".config"]
+  windows         = ["dotnix", "dot_config"]
 
 [[window]]
-  name           = ".config"
+  name           = "dotnix"
+  path           = "~/Code/Personal/Experiments/nix-dendritic-projects/dotnix"
+  startup_script = "nvim"
+
+[[window]]
+  name           = "dot_config"
   path           = "~/.config"
   startup_script = "nvim"
 
