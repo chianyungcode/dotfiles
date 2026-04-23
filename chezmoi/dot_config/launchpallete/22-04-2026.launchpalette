@@ -1,0 +1,307 @@
+{
+  "appVersion" : "1.14.2",
+  "commands" : [
+    {
+      "hasSubcommands" : false,
+      "itemBundleIdentifier" : "com.apidog.app",
+      "itemName" : "Apidog",
+      "itemPath" : "\/Applications\/Apidog.app",
+      "itemType" : "application",
+      "shortcut" : {
+        "key" : 0,
+        "modifierSet" : 64
+      }
+    },
+    {
+      "hasSubcommands" : false,
+      "itemBundleIdentifier" : "com.tinyspeck.slackmacgap",
+      "itemName" : "Slack",
+      "itemPath" : "\/Applications\/Slack.app",
+      "itemType" : "application",
+      "shortcut" : {
+        "key" : 1,
+        "modifierSet" : 64
+      }
+    },
+    {
+      "hasSubcommands" : true,
+      "shortcut" : {
+        "key" : 2,
+        "modifierSet" : 64
+      }
+    },
+    {
+      "hasSubcommands" : false,
+      "itemBundleIdentifier" : "org.equicord.equibop",
+      "itemName" : "Equibop",
+      "itemPath" : "\/Applications\/Equibop.app",
+      "itemType" : "application",
+      "shortcut" : {
+        "key" : 2,
+        "modifierSet" : 64,
+        "subkey" : 8
+      }
+    },
+    {
+      "hasSubcommands" : true,
+      "shortcut" : {
+        "key" : 3,
+        "modifierSet" : 64
+      }
+    },
+    {
+      "hasSubcommands" : false,
+      "itemBundleIdentifier" : "com.jinghaoshe.qspace.pro",
+      "itemName" : "QSpace Pro",
+      "itemPath" : "\/Applications\/QSpace Pro.app",
+      "itemType" : "application",
+      "shortcut" : {
+        "key" : 3,
+        "modifierSet" : 64,
+        "subkey" : 2
+      }
+    },
+    {
+      "hasSubcommands" : false,
+      "itemBundleIdentifier" : "com.figma.Desktop",
+      "itemName" : "Figma",
+      "itemPath" : "\/Applications\/Figma.app",
+      "itemType" : "application",
+      "shortcut" : {
+        "key" : 3,
+        "modifierSet" : 64,
+        "subkey" : 34
+      }
+    },
+    {
+      "hasSubcommands" : false,
+      "itemBundleIdentifier" : "is.follow",
+      "itemName" : "Folo",
+      "itemPath" : "\/Applications\/Folo.app",
+      "itemType" : "application",
+      "shortcut" : {
+        "key" : 3,
+        "modifierSet" : 64,
+        "subkey" : 37
+      }
+    },
+    {
+      "hasSubcommands" : false,
+      "itemBundleIdentifier" : "com.mitchellh.ghostty",
+      "itemName" : "Ghostty",
+      "itemPath" : "\/Applications\/Ghostty.app",
+      "itemType" : "application",
+      "shortcut" : {
+        "key" : 5,
+        "modifierSet" : 64
+      }
+    },
+    {
+      "hasSubcommands" : true,
+      "shortcut" : {
+        "key" : 6,
+        "modifierSet" : 64
+      }
+    },
+    {
+      "hasSubcommands" : false,
+      "itemBundleIdentifier" : "dev.zed.Zed",
+      "itemName" : "Zed",
+      "itemPath" : "\/Applications\/Zed.app",
+      "itemType" : "application",
+      "shortcut" : {
+        "key" : 6,
+        "modifierSet" : 64,
+        "subkey" : 2
+      }
+    },
+    {
+      "hasSubcommands" : false,
+      "itemBundleIdentifier" : "app.zen-browser.zen",
+      "itemName" : "Zen",
+      "itemPath" : "\/Applications\/Zen.app",
+      "itemType" : "application",
+      "shortcut" : {
+        "key" : 6,
+        "modifierSet" : 64,
+        "subkey" : 14
+      }
+    },
+    {
+      "hasSubcommands" : false,
+      "itemBundleIdentifier" : "com.brave.Browser",
+      "itemName" : "Brave Browser",
+      "itemPath" : "\/Applications\/Brave Browser.app",
+      "itemType" : "application",
+      "shortcut" : {
+        "key" : 7,
+        "modifierSet" : 64
+      }
+    },
+    {
+      "hasSubcommands" : false,
+      "itemBundleIdentifier" : "io.capacities.app",
+      "itemName" : "Capacities",
+      "itemPath" : "\/Applications\/Capacities.app",
+      "itemType" : "application",
+      "shortcut" : {
+        "key" : 8,
+        "modifierSet" : 64
+      }
+    },
+    {
+      "hasSubcommands" : false,
+      "itemBundleIdentifier" : "com.github.wez.wezterm",
+      "itemName" : "WezTerm",
+      "itemPath" : "\/Applications\/WezTerm.app",
+      "itemType" : "application",
+      "shortcut" : {
+        "key" : 13,
+        "modifierSet" : 64
+      }
+    },
+    {
+      "hasSubcommands" : true,
+      "shortcut" : {
+        "key" : 15,
+        "modifierSet" : 64
+      }
+    },
+    {
+      "hasSubcommands" : false,
+      "itemBundleIdentifier" : "io.raindrop.macapp",
+      "itemName" : "Raindrop.io",
+      "itemPath" : "\/Applications\/Raindrop.io.app",
+      "itemType" : "application",
+      "shortcut" : {
+        "key" : 15,
+        "modifierSet" : 64,
+        "subkey" : 2
+      }
+    },
+    {
+      "hasSubcommands" : false,
+      "itemBundleIdentifier" : "com.TickTick.task.mac",
+      "itemName" : "TickTick",
+      "itemPath" : "\/Applications\/TickTick.app",
+      "itemType" : "application",
+      "shortcut" : {
+        "key" : 17,
+        "modifierSet" : 64
+      }
+    },
+    {
+      "hasSubcommands" : false,
+      "itemBundleIdentifier" : "md.obsidian",
+      "itemName" : "Obsidian",
+      "itemPath" : "\/Applications\/Obsidian.app",
+      "itemType" : "application",
+      "shortcut" : {
+        "key" : 31,
+        "modifierSet" : 64
+      }
+    },
+    {
+      "hasSubcommands" : false,
+      "itemBundleIdentifier" : "com.1password.1password",
+      "itemName" : "1Password",
+      "itemPath" : "\/Applications\/1Password.app",
+      "itemType" : "application",
+      "shortcut" : {
+        "key" : 35,
+        "modifierSet" : 64
+      }
+    },
+    {
+      "hasSubcommands" : false,
+      "itemBundleIdentifier" : "com.linear",
+      "itemName" : "Linear",
+      "itemPath" : "\/Applications\/Linear.app",
+      "itemType" : "application",
+      "shortcut" : {
+        "key" : 37,
+        "modifierSet" : 64
+      }
+    },
+    {
+      "hasSubcommands" : false,
+      "itemBundleIdentifier" : "notion.id",
+      "itemName" : "Notion",
+      "itemPath" : "\/Applications\/Notion.app",
+      "itemType" : "application",
+      "shortcut" : {
+        "key" : 45,
+        "modifierSet" : 64
+      }
+    },
+    {
+      "hasSubcommands" : true,
+      "shortcut" : {
+        "key" : 46,
+        "modifierSet" : 64
+      }
+    },
+    {
+      "hasSubcommands" : false,
+      "itemBundleIdentifier" : "com.apple.Music",
+      "itemName" : "Music",
+      "itemPath" : "\/System\/Applications\/Music.app",
+      "itemType" : "application",
+      "shortcut" : {
+        "key" : 46,
+        "modifierSet" : 64,
+        "subkey" : 8
+      }
+    },
+    {
+      "hasSubcommands" : false,
+      "itemBundleIdentifier" : "com.microsoft.Word",
+      "itemName" : "Microsoft Word",
+      "itemPath" : "\/Applications\/Microsoft Word.app",
+      "itemType" : "application",
+      "shortcut" : {
+        "key" : 46,
+        "modifierSet" : 64,
+        "subkey" : 13
+      }
+    },
+    {
+      "hasSubcommands" : false,
+      "itemBundleIdentifier" : "com.microsoft.Excel",
+      "itemName" : "Microsoft Excel",
+      "itemPath" : "\/Applications\/Microsoft Excel.app",
+      "itemType" : "application",
+      "shortcut" : {
+        "key" : 46,
+        "modifierSet" : 64,
+        "subkey" : 14
+      }
+    },
+    {
+      "hasSubcommands" : false,
+      "itemBundleIdentifier" : "com.manytricks.Moom",
+      "itemName" : "Moom",
+      "itemPath" : "\/Applications\/Moom.app",
+      "itemType" : "application",
+      "shortcut" : {
+        "key" : 46,
+        "modifierSet" : 64,
+        "subkey" : 31
+      }
+    }
+  ],
+  "configuration" : {
+    "disabledModifierSets" : [
+
+    ],
+    "enabledModifierSets" : [
+      64
+    ],
+    "hideMenuBarExtra" : true,
+    "openRecorderKey" : 0,
+    "reshortcutAction" : 1,
+    "showApplight" : true
+  },
+  "exportDate" : "2026-04-23T12:52:59Z",
+  "version" : 1
+}
