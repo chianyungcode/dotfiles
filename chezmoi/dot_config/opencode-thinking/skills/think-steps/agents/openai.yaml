@@ -1,0 +1,4 @@
+interface:
+  display_name: "Think Steps"
+  short_description: "Break features into manual coding steps"
+  default_prompt: "Use $think-steps to turn this feature idea into a general flow and technical steps."
