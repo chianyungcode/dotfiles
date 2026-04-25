@@ -52,7 +52,8 @@
 
   spc_ly3 (tap-hold $tap-time $hold-time spc @lwh_symbols)
   thl-cap-nav (tap-hold $tap-time $hold-time esc @lwh_nav)
-  thl-ret-sublayers (tap-hold $tap-time $hold-time ret @lwh_sublayers)
+  ;; thl-ret-sublayers (tap-hold $tap-time $hold-time ret @lwh_sublayers)
+  thl-ret-nums (tap-hold $tap-time $hold-time ret @lwh_nums)
   thl-sls-tmux (tap-hold $tap-time $hold-time / @lwh_tmux)
   thl-z-tmux (tap-hold $tap-time $hold-time z @lwh_tmux)
 
@@ -135,7 +136,7 @@
        🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   @lmet_tab    q    w    e    r    t    y    u    i    o    p    [    ]    \
-  @thl-cap-nav  @a    @s    @d    @f    g    h    @j    @k    @l    @;    '    @thl-ret-sublayers
+  @thl-cap-nav  @a    @s    @d    @f    g    h    @j    @k    @l    @;    '    @thl-ret-nums
   lsft @thl-z-tmux    x    c    @thl-v-zlj    b    n    @thl-m-zlj    ,    .   @thl-sls-tmux    rsft ;; Tombol x sekarang punya fungsi ganda
   lctl lmet lalt           @spc_ly3            ralt rmet rctl
 )
