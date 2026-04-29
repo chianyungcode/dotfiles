@@ -1,0 +1,4 @@
+interface:
+  display_name: "TickTick Task"
+  short_description: "Create and update TickTick tasks with approved tags."
+  default_prompt: "Use this skill when creating or updating TickTick tasks that need tags, dates, projects, or task metadata."
