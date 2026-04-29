@@ -1,5 +1,5 @@
 {{- if .use_secrets}}
-model = "gpt-5.4"
+model = "gpt-5.5"
 model_reasoning_effort = "medium"
 
 [features]
@@ -7,6 +7,12 @@ model_reasoning_effort = "medium"
 [mcp_servers.context7]
   args = ["-y", "@upstash/context7-mcp", "--api-key", "{{ onepasswordRead .secrets.ai_tools.context7_apikey }}"]
   command = "npx"
+
+[mcp_servers.tavily]
+  url = "https://mcp.tavily.com/mcp/?tavilyApiKey={{ if .use_secrets }}{{ onepasswordRead .secrets.research.tavily_apikey }}{{ end }}"
+
+[mcp_servers.exa]
+  url = "https://mcp.exa.ai/mcp"
 
 [mcp_servers.apidog]
   args = [
@@ -19,20 +25,11 @@ model_reasoning_effort = "medium"
 [mcp_servers.apidog.env]
   APIDOG_ACCESS_TOKEN = "{{ onepasswordRead .secrets.apidog.apidog_api_key }}"
 
-[mcp_servers.Ref]
-  url = "https://api.ref.tools/mcp?apiKey={{ if .use_secrets }}{{ onepasswordRead .secrets.research.ref_apikey }}{{ end }}"
-
 [mcp_servers.deepwiki]
   url = "https://mcp.deepwiki.com/mcp"
 
-[mcp_servers.exa]
-  url = "https://mcp.exa.ai/mcp"
-
 [mcp_servers.linear]
   url = "https://mcp.linear.app/mcp"
-
-[mcp_servers.tavily]
-  url = "https://mcp.tavily.com/mcp/?tavilyApiKey={{ if .use_secrets }}{{ onepasswordRead .secrets.research.tavily_apikey }}{{ end }}"
 
 [projects."/Users/chianyung/.local/share/chezmoi"]
 trust_level = "trusted"
