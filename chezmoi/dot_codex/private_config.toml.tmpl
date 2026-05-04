@@ -5,8 +5,8 @@ model_reasoning_effort = "medium"
 [features]
 
 [mcp_servers.context7]
-  args = ["-y", "@upstash/context7-mcp", "--api-key", "{{ onepasswordRead .secrets.ai_tools.context7_apikey }}"]
-  command = "npx"
+  url = "https://mcp.context7.com/mcp"
+  http_headers = { "CONTEXT7_API_KEY" = "{{ if .use_secrets }}{{ onepasswordRead .secrets.ai_tools.context7_apikey }}{{ end }}" }
 
 [mcp_servers.tavily]
   url = "https://mcp.tavily.com/mcp/?tavilyApiKey={{ if .use_secrets }}{{ onepasswordRead .secrets.research.tavily_apikey }}{{ end }}"
