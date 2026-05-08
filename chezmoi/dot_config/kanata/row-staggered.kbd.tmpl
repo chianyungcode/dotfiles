@@ -53,6 +53,7 @@
   spc_ly3 (tap-hold $tap-time $hold-time spc @lwh_symbols)
   thl-cap-nav (tap-hold $tap-time $hold-time esc @lwh_nav)
   ;; thl-ret-sublayers (tap-hold $tap-time $hold-time ret @lwh_sublayers)
+  thl-space-sublayers (tap-hold $tap-time $hold-time spc @lwh_sublayers)
   thl-ret-nums (tap-hold $tap-time $hold-time ret @lwh_nums)
   thl-sls-tmux (tap-hold $tap-time $hold-time / @lwh_tmux)
   thl-z-tmux (tap-hold $tap-time $hold-time z @lwh_tmux)
@@ -147,7 +148,7 @@
   tab  f1   f2   f3   f4   f5    f6    f7    f8    f9    f10    @tab-left   @tab-right    \
   caps a    @sprwhpr    @hmrwapp    f    g    left    down    up    right    ;    '    ret
   lsft z    x    c    v    b    j    rctl    @hmrwapp    .    rmet    rsft
-  lctl lmet lalt           @hyperkey            ralt rmet rctl
+  lctl lmet lalt           @thl-space-sublayers            ralt rmet rctl
 )
 
 (deflayer nums
@@ -178,7 +179,7 @@
 
 (deflayer sublayers
        🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
-  grv  o   XX   XX    XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  grv  o   XX   XX    XX   XX   XX   XX   XX   XX   XX   XX   XX   bspc
   tab  XX   XX   XX   @ly-rayc   XX   XX   XX   XX   XX   XX   XX   XX   XX
   caps 1   2   3   4   5   6   7   8   9   0   XX   XX
   lsft XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
