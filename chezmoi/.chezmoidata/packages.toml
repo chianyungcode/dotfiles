@@ -28,7 +28,6 @@
         "eza",         # Better ls
         "fd",          # Better find
         "fzf",         # Fuzzy finder
-        "gping",       # Ping with graph
         "halp",        # Better help
         "imagemagick", # Image processing
         "jq",          # Lightweight and flexible command-line JSON processor
@@ -45,6 +44,11 @@
         "xz",
         "yazi",        # File manager in CLI
         "yq",          # YAML processor
+
+        # Trace route & ping
+        "gping",  # Ping with graph
+        "mtr",    # ping & trace
+        "trippy", # ping & trace route in TUI based on rust
 
         # GNU Core & Build Dependencies
         "coreutils",  # GNU coreutils
