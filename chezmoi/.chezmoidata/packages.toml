@@ -163,7 +163,6 @@
 
         # CLI Utilities
         "codespell",           # Fix common misspellings in source code and text files
-        "difftastic",          # diff tools
         "fastfetch",           # Better system info
         "ffmpegthumbnailer",   # Video thumbnail for yazi cli
         "fx",                  # Better grep
@@ -179,10 +178,12 @@
 
         # Git & Version Control
         "act",                           # runs GitHub Actions locally
+        "difftastic",                    # diff tools
         "gh",                            # Github CLI
         "glab",                          # GitLab CLI
         "git-extras",                    # Add extra command to default git
         "gitmux",                        # Git status bar in tmux
+        "hunk",                          # Diff tools TUI
         "jj",                            # jujutsu version controll
         "jjui",                          # jujutsu tui
         "jesseduffield/lazygit/lazygit",
