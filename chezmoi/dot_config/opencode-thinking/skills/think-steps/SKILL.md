@@ -9,6 +9,42 @@ Guide manual coding by converting a requested behavior into an easy-to-understan
 
 The goal is to help the user think before coding. Keep the answer conceptual enough that the user still writes the implementation manually.
 
+# What's Need to Understand
+
+Before giving the full flow or technical steps, identify the fundamentals the user should understand first. Treat this section as a gatekeeping checkpoint: if the user does not understand the foundations, the later steps will be less useful.
+
+Keep this section stack-agnostic and adapt it to the user's context. Do not turn it into a long prerequisite course. Mention only concepts that directly affect the requested feature, bug, or behavior.
+
+## General Concepts
+
+List the product, domain, behavior, or architecture ideas the user should understand before coding.
+
+Focus on questions like:
+
+- What problem or behavior is being modeled?
+- What decisions or states exist in the flow?
+- What tradeoffs affect the user's experience?
+- What security, data, permission, lifecycle, or failure concepts matter?
+- What vocabulary should be clear before touching code?
+
+Examples:
+
+- For authentication, understand session-based auth, token-based auth, identity, authorization, and expired sessions.
+- For search, understand query input, filtering, sorting, empty results, and loading states.
+- For payments, understand checkout state, payment confirmation, failed payment, retry, and idempotency.
+- For background jobs, understand trigger, queue, worker, retry, failure, and completion state.
+
+## Technical Concepts
+
+List the minimum technical fundamentals needed to implement the flow in the current project.
+
+Split them into:
+
+- Programming language: syntax, control flow, async behavior, types, modules, error handling, data structures, or runtime behavior that matter for the task.
+- Framework/library: routing, middleware, hooks, state management, ORM, validation, auth/payment/search library, testing tool, or any project-specific API involved.
+
+When a framework or library is involved, tell the user what part of its documentation to read first instead of guessing details. Keep the guidance generic when the stack is unknown.
+
 # First Step: Understand Context
 
 Before answering, gather only the context needed to make the steps accurate.
@@ -70,6 +106,23 @@ After creating the file, respond briefly with the saved file path and a short su
 # Output Contract
 
 Respond using this structure whenever possible:
+
+## What's Need to Understand
+
+Use this as a short prerequisite checkpoint before the user reads the full steps.
+
+### General Concepts
+
+List 2-5 fundamental concepts the user should understand for this request. Keep them domain- and behavior-focused, not framework-focused.
+
+### Technical Concepts
+
+List the minimum technical concepts the user should understand.
+
+Group them as:
+
+- Programming language: language/runtime concepts needed for the task.
+- Framework/library: framework, library, or tool concepts and documentation areas to review.
 
 ## What We Are Building
 
