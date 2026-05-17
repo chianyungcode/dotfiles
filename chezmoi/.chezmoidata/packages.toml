@@ -344,7 +344,7 @@
         "lunar",          # Configure your display management
         "ogdesign-eagle", # Organise all your reference images in one place
         # "pearcleaner",    # uninstall app
-        "qspace-pro", # Better finder
+        # "qspace-pro", # Better finder
         "replacicon", # Replace your app icon
         "shottr",     # Screenshoot tool
         # "swift-shift", # Drag window with ctl + shift
