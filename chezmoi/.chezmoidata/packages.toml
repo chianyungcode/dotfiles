@@ -23,7 +23,6 @@
         # Core CLI Utilities
         "atuin",       # Better shell history
         "bat",         # cat with syntax highlighting and git integration
-        "btop",
         "chezmoi",
         "eza",         # Better ls
         "fd",          # Better find
@@ -44,6 +43,11 @@
         "xz",
         "yazi",        # File manager in CLI
         "yq",          # YAML processor
+
+        # System monitor TUI
+        "bottom",
+        # "btop",
+        # "htop",
 
         # Trace route & ping
         "gping",  # Ping with graph
@@ -521,7 +525,6 @@
     [packages.pacman.dev_computer]
       packages = [
         "appimagelauncher", # for integrating .AppImage
-        "btop",
         "difftastic",       # diff tools
         "codespell",        # Fix common misspellings in source code and text files
         "dpkg",
@@ -538,6 +541,11 @@
         "thefuck",          # Fix typos
         "tlrc",             # TLDR client, alternative tealdeer
         "vivid",            # Color generator for LS_COLORS env variable
+
+        # System monitor TUI
+        "bottom",
+        # "btop",
+        # "htop",
 
         # Security
         "gitleaks",
