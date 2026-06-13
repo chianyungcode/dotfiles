@@ -3,6 +3,12 @@
 declare -A SERVERS=(
   ["Symphony SG - Singapore"]="62530"
   ["ION Network SG - Singapore"]="63375"
+  ["CBN - Singapore"]="59016"
+  ["MyRepublic Singapore - Singapore"]="5935"
+  ["M1 Limited - Singapore"]="7311"
+  ["Firstmedia - Singapore"]="7556"
+  ["fdcservers.net - Singapore"]="26654"
+  ["PT. Mora Telematika Indonesia - Singapore"]="47713"
   ["PT XLSMART Telecom Sejahtera - Jakarta"]="68900"
   ["PT Netciti Persada - Tangerang"]="70657"
   ["PT. Indosat Tbk - Tangerang"]="71476"
@@ -14,6 +20,8 @@ declare -A SERVERS=(
   ["DeFastNet - Tangerang"]="74981"
   ["Trans Media Data - Tangerang"]="74663"
   ["Telkomsel - Tangerang"]="70715"
+  ["CBN - Jakarta"]="12807"
+  ["JSN Jaringanku - Jakarta"]="33263"
 )
 
 selected=$(

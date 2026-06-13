@@ -46,12 +46,15 @@
 
         # System monitor TUI
         "bottom",
+        "vladkens/tap",
         # "btop",
         # "htop",
 
-        # Trace route & ping
-        "gping",  # Ping with graph
-        "mtr",    # ping & trace
+        # Network
+        "gping",      # Ping with graph
+        "ipinfo-cli",
+        "mtr",        # ping & trace
+        # "nexttrace", # ping & trace
         "trippy", # ping & trace route in TUI based on rust
 
         # GNU Core & Build Dependencies
@@ -130,7 +133,6 @@
 
         # Network / Performance
         "teamookla/speedtest",
-        "vladkens/tap",
 
         # Git Workflow
         "withgraphite/tap",
