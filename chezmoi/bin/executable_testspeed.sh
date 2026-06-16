@@ -21,6 +21,10 @@ declare -A SERVERS=(
   ["Trans Media Data - Tangerang"]="74663"
   ["Telkomsel - Tangerang"]="70715"
   ["CBN - Jakarta"]="12807"
+  ["PT.Jinom Network Indonesia - Jakarta"]="38447"
+  ["ENC Nusantara - Jakarta Barat"]="72702"
+  ["MNC Play - Jakarta"]="54756"
+  ["PT. Telekomunikasi Indonesia- Jakarta Barat"]="72088"
   ["JSN Jaringanku - Jakarta"]="33263"
 )
 
