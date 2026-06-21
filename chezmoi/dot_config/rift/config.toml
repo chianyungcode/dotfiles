@@ -322,10 +322,14 @@
   # By default there are no app rules; add or uncomment rules below as needed.
   app_rules = [
     { app_id = "com.mitchellh.ghostty", workspace = 0, floating = false },
+    { app_id = "com.tinyspeck.slackmacgap", workspace = 1, floating = false },
+    { app_id = "com.brave.Browser", workspace = 1, floating = false },
+    { app_id = "app.zen-browser.zen", workspace = 1, floating = false },
     { app_id = "net.imput.helium", workspace = 1, floating = false },
-    { app_id = "com.linear", workspace = 1, floating = true },
-    { app_id = "com.tinyspeck.slackmacgap", workspace = 2, floating = false },
+    { app_id = "com.linear", workspace = 2, floating = true },
+    { app_id = "com.TickTick.task.mac", workspace = 2, floating = false },
     { app_id = "com.1password.1password", workspace = 3, floating = true },
+    { app_id = "com.hnc.Discord", workspace = 3, floating = false },
   ]
 
 # Modifier combinations that can be reused in key bindings
@@ -390,15 +394,15 @@
   "comb1 + K" = { move_node = "up" }
   "comb1 + L" = { move_node = "right" }
 
-  "Alt + 1" = { switch_to_workspace = 0 }
-  "Alt + 2" = { switch_to_workspace = 1 }
-  "Alt + 3" = { switch_to_workspace = 2 }
-  "Alt + 4" = { switch_to_workspace = 3 }
+  "Alt + A" = { switch_to_workspace = 0 }
+  "Alt + D" = { switch_to_workspace = 2 }
+  "Alt + F" = { switch_to_workspace = 3 }
+  "Alt + S" = { switch_to_workspace = 1 }
 
-  "comb1 + 1" = { move_window_to_workspace = 0 }
-  "comb1 + 2" = { move_window_to_workspace = 1 }
-  "comb1 + 3" = { move_window_to_workspace = 2 }
-  "comb1 + 4" = { move_window_to_workspace = 3 }
+  "comb1 + A" = { move_window_to_workspace = 0 }
+  "comb1 + D" = { move_window_to_workspace = 2 }
+  "comb1 + F" = { move_window_to_workspace = 3 }
+  "comb1 + S" = { move_window_to_workspace = 1 }
 
   "Alt + Tab" = "switch_to_last_workspace"
 
@@ -417,7 +421,7 @@
   "Alt + Shift + Up"    = { join_window = "up" }
   "Alt + Slash"         = "toggle_orientation"
 
-  "Alt + F"              = "toggle_fullscreen"
+  "Alt + P"              = "toggle_fullscreen"
   "Alt + Shift + F"      = "toggle_fullscreen_within_gaps"
   "Alt + Shift + Space"  = "toggle_window_floating"
   "comb1 + Ctrl + Space" = "toggle_focus_floating"         # briefly bring focus to floating window
