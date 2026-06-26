@@ -279,6 +279,7 @@
         # Productivity & Knowledge
         # "anki",
         "capacities",    # Note taking
+        "cotypist",      # local AI auto completion
         "folo",          # Follow the organized information
         "linear-linear", # Task management for product driven
         "notion",
@@ -406,6 +407,7 @@
         "6451349778", # Rapidmg
         "6474854386", # Launchpallete
         "6698876601", # Folder preview
+        "6532621020", # IP address in menubar
         # "6476907452", # Applight (app launcher)
         # "1502839586", # Hand mirror
         # "1551462255", # Mouseboost
