@@ -4,7 +4,12 @@ onboarding = false
   name = "gruvbox"
 
 [ui]
-  confirm_close = false
+  confirm_close                     = false
+  pane_borders                      = true
+  pane_gaps                         = false
+  prompt_new_tab_name               = false
+  redraw_on_focus_gained            = true
+  show_agent_labels_on_pane_borders = true
 
 [keys]
   prefix = "ctrl+a"
