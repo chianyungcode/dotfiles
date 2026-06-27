@@ -1,0 +1,52 @@
+onboarding = false
+
+[theme]
+  name = "gruvbox"
+
+[ui]
+  confirm_close = false
+
+[keys]
+  prefix = "ctrl+a"
+
+  # workspaces (tmux sessions)
+  close_workspace  = "prefix+g"       # tmux: kill-session
+  goto             = "prefix+o"       # moved from g because g = close workspace
+  new_workspace    = "prefix+shift+s"
+  rename_workspace = "prefix+$"
+  # shift+1..9 is parsed as digit+SHIFT, but many terminals send the shifted
+  # glyph (!..() without a base digit, so herdr never matches it. Use ctrl.
+  switch_workspace = "prefix+ctrl+1..9"
+  workspace_picker = "prefix+w"
+
+  # tabs (tmux windows)
+  close_tab    = "prefix+ampersand"
+  new_tab      = "prefix+c"
+  next_tab     = "prefix+n"
+  previous_tab = "prefix+p"
+  rename_tab   = "prefix+comma"
+  switch_tab   = "prefix+1..9"
+
+  # panes
+  close_pane       = "prefix+x"
+  focus_pane_down  = "prefix+j"
+  focus_pane_left  = "prefix+h"
+  focus_pane_right = "prefix+l"
+  focus_pane_up    = "prefix+k"
+  last_pane        = "prefix+q"
+
+  # splits
+  split_horizontal = "prefix+minus" # tmux: -  (stacked)
+  split_vertical   = "prefix+|"     # tmux: |  (side-by-side)
+
+  # reload / resize
+  reload_config = "prefix+r" # tmux: prefix+r reloads config
+  resize_mode   = "prefix+R" # shifted to R to free up r
+
+  # herdr-only features keep nearby keys
+  copy_mode      = "prefix+["
+  detach         = "prefix+d"
+  toggle_sidebar = "prefix+b"
+  zoom           = "prefix+z"
+
+  focus_agent = "prefix+alt+1..9"
