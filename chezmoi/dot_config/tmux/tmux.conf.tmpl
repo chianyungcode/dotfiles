@@ -48,6 +48,9 @@ bind r source-file $HOME/.config/tmux/tmux.conf \; display-message "Config reloa
 # Create new window in the same working directory as the active pane
 bind c new-window -c '#{pane_current_path}'
 
+# Create a new tmux session
+bind -N "Create new session" -T prefix S new-session
+
 unbind C-w # Unbind this because conflicting with zsh shell keybind which i prefer to use
 
 unbind q # unbind 'display-pane' which the default is prefix + q
