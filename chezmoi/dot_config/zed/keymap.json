@@ -34,7 +34,7 @@
   {
     "context": "vim_mode == normal || vim_mode == visual",
     "bindings": {
-      "s": "vim::PushSneak",
+      "s": "vim::HelixJumpToWord",
       "shift-s": "vim::PushSneakBackward",
     },
   },
