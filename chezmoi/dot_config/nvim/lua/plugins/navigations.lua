@@ -180,7 +180,7 @@ return {
   -- https://github.com/A7Lavinraj/fyler.nvim
   -- DESC: Combination of nvim-tree and oil.nvim, file explorer with tree view and vim operations
   {
-    "A7Lavinraj/fyler.nvim",
+    "FylerOrg/fyler.nvim",
     enabled = true,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
@@ -188,13 +188,19 @@ return {
         "<leader>fm",
         function()
           require("fyler").open({
-            kind = "float",
+            kind = "floating",
           })
         end,
         desc = "Open Fyler",
       },
     },
     opts = {
+      integrations = {
+        icon = "nvim_web_devicons",
+      },
+      ui = {
+        indent_guides = true,
+      },
       views = {
         finder = {
           icon = {
