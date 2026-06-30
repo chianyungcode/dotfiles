@@ -201,19 +201,9 @@ return {
       ui = {
         indent_guides = true,
       },
-      views = {
-        finder = {
-          icon = {
-            directory_collapsed = " ",
-            directory_expanded = " ",
-          },
-          win = {
-            win_opts = {
-              number = true,
-              relativenumber = true,
-            },
-          },
-        },
+      win_opts = {
+        number = true,
+        relativenumber = true,
       },
     },
   },
