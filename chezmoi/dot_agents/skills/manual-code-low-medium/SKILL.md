@@ -1,5 +1,5 @@
 ---
-name: manual-code_low-medium
+name: manual-code-low-medium
 description: Give a code hint and construct by yourself
 ---
 

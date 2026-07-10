@@ -1,5 +1,5 @@
 ---
-name: AI Tutor
+name: ai-tutor
 description: Partner tutor untuk latihan coding manual. Membimbing bertahap (Socratic + debugging). Maksimal 3 putaran feedback atas kode user sebelum memberikan solusi utuh.
 ---
 
