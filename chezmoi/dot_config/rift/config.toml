@@ -231,7 +231,8 @@
   #   that's already active, it will switch to the last workspace instead
   # - reapply_app_rules_on_title_change: if true, app rules are re-evaluated when a window's title changes
   auto_assign_windows               = true
-  default_workspace_count           = 4
+  # Match aerospace workspaces 1–9 (rift is 0-based: 0=1 … 8=9)
+  default_workspace_count           = 9
   enabled                           = true
   preserve_focus_per_workspace      = true
   reapply_app_rules_on_title_change = false
@@ -255,81 +256,63 @@
   # Workspace names (indexed order). If fewer than default_workspace_count are provided,
   # remaining workspaces are named "Workspace X".
   # Do not provide more names than default_workspace_count.
-  workspace_names = ["1", "2", "3", "4"]
+  workspace_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
-  # App rules (automatic assignment)
-  # Define rules that match new windows and set properties (workspace, floating, etc).
-  #
-  # Matchable fields:
-  #   - app_id         : application bundle identifier (exact)
-  #   - app_name       : substring match against application name
-  #   - title_regex    : regular expression matched against the window title
-  #   - title_substring: literal substring (case-sensitive) matched against the title
-  #   - ax_role / ax_subrole: exact match against macOS Accessibility (AX) role/subrole
-  #
-  # Rule options:
-  #   - workspace (integer, 0-based): target workspace index. If omitted or invalid, uses the active workspace.
-  #     Alternatively, `workspace` may be a workspace name string to target by name.
-  #   - floating (boolean): whether matched windows should float by default.
-  #   - manage (boolean): whether Rift should manage the matching window. Set to false to ignore the window completely (default = true).
-  #
-  # Matching behavior (summary):
-  #   1. All rules that match a window are evaluated.
-  #   2. If multiple matching rules share the same non-empty `app_id`, the rule
-  #      with the most specified conditions (the most non-empty fields) wins.
-  #      If there's a tie, the earlier rule in the file wins.
-  #   3. If matching rules do NOT share the same `app_id`, the rule with the
-  #      highest specificity (most non-empty fields) is selected; ties are broken by order.
-  #   4. Within a single rule, all specified fields are combined conjunctively:
-  #      the rule matches only if every non-empty field matches the window.
-  #
-  # Tips:
-  #   - To make exceptions for a specific app, place a more specific rule before
-  #     a general `app_id` rule. Example:
-  #       app_rules = [
-  #         { app_id = "com.example.X", title_regex = "Dialog", floating = true },
-  #         { app_id = "com.example.X", floating = false },
-  #       ]
-  #
-  #   - Use `title_substring` for simple, literal (case-sensitive) substring matches.
-  #     Use `title_regex` for advanced patterns.
-  #
-  # Accessibility (AX) matching:
-  #   - `ax_role` and `ax_subrole` match the exact AX values reported by macOS
-  #     (e.g., "AXWindow", "AXDialog", "AXSystemDialog", "AXToolbar").
-  #   - Useful for distinguishing dialogs, sheets, toolbars, etc., when bundle/name/title aren't enough.
-  #
-  # Validation:
-  #   - `title_regex` must be a valid regular expression. Invalid regexes cause the rule
-  #     to be ignored and a warning to be logged.
-  #
-  # Examples:
-  #   - Float any window with "Preferences" in the title:
-  #       app_rules = [
-  #         { title_substring = "Preferences", floating = true },
-  #       ]
-  #
-  #   - Match by app name substring and workspace:
-  #       app_rules = [
-  #         { app_name = "Calendar", workspace = 2, floating = true },
-  #       ]
-  #
-  #   - Accessibility example: float dialog windows for a specific app:
-  #       app_rules = [
-  #         { app_id = "com.example.X", ax_subrole = "AXDialog", floating = true },
-  #       ]
-  #
-  # By default there are no app rules; add or uncomment rules below as needed.
+  # App rules — mirrored from aerospace [[on-window-detected]]
+  # Rift workspace is 0-based (aerospace "workspace N" → rift workspace N-1).
+  # floating = true where aerospace runs "layout floating".
   app_rules = [
+    # Workspace 1 (rift 0) — terminals / editors / 1Password
+    { app_id = "com.1password.1password", workspace = 0, floating = true },
+    { app_id = "com.github.wez.wezterm", workspace = 0, floating = false },
     { app_id = "com.mitchellh.ghostty", workspace = 0, floating = false },
-    { app_id = "com.tinyspeck.slackmacgap", workspace = 1, floating = false },
-    { app_id = "com.brave.Browser", workspace = 1, floating = false },
+    { app_id = "dev.zed.Zed", workspace = 0, floating = false },
+    { app_id = "com.jetbrains.WebStorm", workspace = 0, floating = false },
+
+    # Workspace 2 (rift 1) — browsers / DB / VMs / API
+    { app_id = "com.apidog.app", workspace = 1, floating = false },
+    { app_id = "dev.kdrag0n.MacVirt", workspace = 1, floating = false },
+    { app_id = "com.jetbrains.datagrip", workspace = 1, floating = false },
+    { app_id = "com.todesktop.230313mzl4w4u92", workspace = 1, floating = false }, # Cursor
+    { app_id = "company.thebrowser.Browser", workspace = 1, floating = false },   # Arc
+    { app_id = "com.apple.Safari", workspace = 1, floating = false },
     { app_id = "app.zen-browser.zen", workspace = 1, floating = false },
+    { app_id = "company.thebrowser.dia", workspace = 1, floating = false },
+    { app_id = "com.brave.Browser", workspace = 1, floating = false },
+    { app_id = "com.google.Chrome", workspace = 1, floating = false },
     { app_id = "net.imput.helium", workspace = 1, floating = false },
-    { app_id = "com.linear", workspace = 2, floating = true },
-    { app_id = "com.TickTick.task.mac", workspace = 2, floating = false },
-    { app_id = "com.1password.1password", workspace = 3, floating = true },
-    { app_id = "com.hnc.Discord", workspace = 3, floating = false },
+    { app_id = "ai.perplexity.comet", workspace = 1, floating = false },
+
+    # Workspace 4 (rift 3) — notes / knowledge
+    { app_id = "notion.id", workspace = 3, floating = false },
+    { app_id = "md.obsidian", workspace = 3, floating = false },
+    { app_id = "io.capacities.app", workspace = 3, floating = false },
+
+    # Workspace 5 (rift 4) — tasks / issues
+    { app_id = "com.linear", workspace = 4, floating = false },
+    { app_id = "com.TickTick.task.mac", workspace = 4, floating = false },
+
+    # Workspace 6 (rift 5) — media / utilities (many floating)
+    { app_id = "com.catforce.timemator-setapp", workspace = 5, floating = true },
+    { app_id = "com.figma.Desktop", workspace = 5, floating = false },
+    { app_id = "com.apple.Music", workspace = 5, floating = true },
+    { app_id = "com.manytricks.Moom", workspace = 5, floating = true },
+    { app_id = "com.jinghaoshe.qspace.pro", workspace = 5, floating = true },
+    { app_id = "com.philipyoungg.session-setapp", workspace = 5, floating = true },
+    { app_id = "io.raindrop.macapp", workspace = 5, floating = false },
+    { app_id = "com.apple.ActivityMonitor", workspace = 5, floating = true },
+    { app_id = "com.macpaw.CleanMyMac-setapp", workspace = 5, floating = true },
+    { app_id = "com.electron.wispr-flow", workspace = 5, floating = true },
+
+    # Workspace 8 (rift 7) — chat / social
+    { app_id = "com.tinyspeck.slackmacgap", workspace = 7, floating = false },
+    { app_id = "com.hnc.Discord", workspace = 7, floating = false },
+    { app_id = "org.equicord.equibop", workspace = 7, floating = false },
+    { app_id = "net.coldx.App-for-WhatsApp-setapp", workspace = 7, floating = false },
+    { app_id = "com.tdesktop.Telegram", workspace = 7, floating = true },
+
+    # Float only (no workspace assignment in aerospace)
+    { app_id = "com.alienator88.Pearcleaner", floating = true },
   ]
 
 # Modifier combinations that can be reused in key bindings
@@ -382,7 +365,8 @@
   # - scroll_strip = { delta = 0.5 }
   # - snap_strip / center_selection
 
-  "Alt + Z" = "toggle_space_activated"
+  # Free Alt+Z for workspace 6 (aerospace); toggle managed-space elsewhere
+  "Alt + Ctrl + Z" = "toggle_space_activated"
 
   "Alt + H" = { move_focus = "left" }
   "Alt + J" = { move_focus = "down" }
@@ -394,15 +378,26 @@
   "comb1 + K" = { move_node = "up" }
   "comb1 + L" = { move_node = "right" }
 
-  "Alt + A" = { switch_to_workspace = 0 }
-  "Alt + D" = { switch_to_workspace = 2 }
-  "Alt + F" = { switch_to_workspace = 3 }
-  "Alt + S" = { switch_to_workspace = 1 }
+  # Workspace switch — same keys as aerospace (rift is 0-based)
+  "Alt + A" = { switch_to_workspace = 0 } # aerospace 1
+  "Alt + S" = { switch_to_workspace = 1 } # aerospace 2
+  "Alt + D" = { switch_to_workspace = 2 } # aerospace 3
+  "Alt + F" = { switch_to_workspace = 3 } # aerospace 4
+  "Alt + G" = { switch_to_workspace = 4 } # aerospace 5
+  "Alt + Z" = { switch_to_workspace = 5 } # aerospace 6
+  "Alt + X" = { switch_to_workspace = 6 } # aerospace 7
+  "Alt + C" = { switch_to_workspace = 7 } # aerospace 8
+  "Alt + V" = { switch_to_workspace = 8 } # aerospace 9
 
   "comb1 + A" = { move_window_to_workspace = 0 }
+  "comb1 + S" = { move_window_to_workspace = 1 }
   "comb1 + D" = { move_window_to_workspace = 2 }
   "comb1 + F" = { move_window_to_workspace = 3 }
-  "comb1 + S" = { move_window_to_workspace = 1 }
+  "comb1 + G" = { move_window_to_workspace = 4 }
+  "comb1 + Z" = { move_window_to_workspace = 5 }
+  "comb1 + X" = { move_window_to_workspace = 6 }
+  "comb1 + C" = { move_window_to_workspace = 7 }
+  "comb1 + V" = { move_window_to_workspace = 8 }
 
   "Alt + Tab" = "switch_to_last_workspace"
 
@@ -421,9 +416,10 @@
   "Alt + Shift + Up"    = { join_window = "up" }
   "Alt + Slash"         = "toggle_orientation"
 
-  "Alt + P"              = "toggle_fullscreen"
-  "Alt + Shift + F"      = "toggle_fullscreen_within_gaps"
-  "Alt + Shift + Space"  = "toggle_window_floating"
+  "Alt + P"             = "toggle_fullscreen"
+  # Avoid Alt+Shift+F — that is comb1+F (move to workspace 4 / aerospace 4)
+  "Alt + Ctrl + F"      = "toggle_fullscreen_within_gaps"
+  "Alt + Shift + Space" = "toggle_window_floating"
   "comb1 + Ctrl + Space" = "toggle_focus_floating"         # briefly bring focus to floating window
 
   # smartly resize windows
