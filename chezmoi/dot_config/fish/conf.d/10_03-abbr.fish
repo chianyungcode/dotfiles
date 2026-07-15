@@ -38,6 +38,11 @@ abbr --add pue pueue
 abbr --add pueon 'pueued -d'
 abbr --add puer 'pueue reset'
 
+# coding agents
+abbr -a oc opencode
+abbr -a cx codex
+abbr -a gk grok
+
 # brew
 abbr --add bci "brew info --cask"
 abbr --add bcin "brew install --cask"

@@ -1,3 +1,8 @@
+# coding agents
+abbr "oc"="opencode"
+abbr "cx"="codex"
+abbr "gk"="grok"
+
 # --- Bun ---
 abbr "b"="bun"
 abbr "ba"="bun add"
