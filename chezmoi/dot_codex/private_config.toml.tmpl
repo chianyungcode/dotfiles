@@ -1,18 +1,8 @@
 {{- if .use_secrets}}
-model = "gpt-5.5"
-model_reasoning_effort = "medium"
+model = "gpt-5.6-sol"
+model_reasoning_effort = "xhigh"
 
 [features]
-
-[mcp_servers.context7]
-  url = "https://mcp.context7.com/mcp"
-  http_headers = { "CONTEXT7_API_KEY" = "{{ if .use_secrets }}{{ onepasswordRead .secrets.ai_tools.context7_apikey }}{{ end }}" }
-
-[mcp_servers.tavily]
-  url = "https://mcp.tavily.com/mcp/?tavilyApiKey={{ if .use_secrets }}{{ onepasswordRead .secrets.research.tavily_apikey }}{{ end }}"
-
-[mcp_servers.exa]
-  url = "https://mcp.exa.ai/mcp"
 
 [mcp_servers.apidog]
   args = [
@@ -25,14 +15,27 @@ model_reasoning_effort = "medium"
 [mcp_servers.apidog.env]
   APIDOG_ACCESS_TOKEN = "{{ onepasswordRead .secrets.apidog.apidog_api_key }}"
 
+[mcp_servers.context7]
+  url = "https://mcp.context7.com/mcp"
+  http_headers = { "CONTEXT7_API_KEY" = "{{ if .use_secrets }}{{ onepasswordRead .secrets.ai_tools.context7_apikey }}{{ end }}" }
+
 [mcp_servers.deepwiki]
   url = "https://mcp.deepwiki.com/mcp"
+  enabled = false
+
+[mcp_servers.exa]
+  url = "https://mcp.exa.ai/mcp"
+  enabled = false
 
 [mcp_servers.linear]
   url = "https://mcp.linear.app/mcp"
 
+[mcp_servers.tavily]
+  url = "https://mcp.tavily.com/mcp/?tavilyApiKey={{ if .use_secrets }}{{ onepasswordRead .secrets.research.tavily_apikey }}{{ end }}"
+  enabled = false
+
 [mcp_servers.ticktick]
- url = "https://mcp.ticktick.com"
+  url = "https://mcp.ticktick.com"
 
 [projects."/Users/chianyung/.local/share/chezmoi"]
 trust_level = "trusted"
@@ -40,6 +43,4 @@ trust_level = "trusted"
 [projects."/Users/chianyung/Code/Personal/Projects/Backend/allweezy-backend"]
 trust_level = "trusted"
 
-[notice]
-hide_gpt5_1_migration_prompt = true
 {{- end }}
