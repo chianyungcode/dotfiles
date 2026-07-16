@@ -63,3 +63,6 @@ vendor/
 # Issue notes
 issue-cheatsheets/
 issue-steps/
+
+# Personal / AI-generated docs (not for the repo)
+docs/chianyung/
