@@ -57,15 +57,105 @@
 
 
 [aliases]
-  ed = ["edit"]
   la = ["log", "-r", "all()"]
-  abd = ["abandon"]
   fetch = ["git", "fetch"]
   init = ["git", "init", "--colocate"]
   mark = ["bookmark", "set", "-r"]
   markc = ["bookmark", "set", "-r", "@"]
   push = ["git", "push", "--allow-new"]
   track = ["bookmark", "track"]
+  # Create a sibling workspace from main, one level up:
+  # name = <current_folder>.<arg>, path = ../<current_folder>.<arg>
+  wl = ["workspace", "list"]
+  wa = [
+    "util", "exec", "--", "bash", "-c",
+    '''
+    set -euo pipefail
+    root=$(jj workspace root)
+    base=$(basename "$root")
+    name="$base.$0"
+    dest="$(dirname "$root")/$name"
+    jj workspace add --name "$name" --revision main "$dest"
+    ''',
+  ]
+  # Create a sibling workspace from main; the Fish wrapper enters it
+  # arg: short suffix used as <current_folder>.<arg>
+  wacd = [
+    "util", "exec", "--", "bash", "-c",
+    '''
+    set -euo pipefail
+    arg="$0"
+    if [ -z "$arg" ]; then
+      echo "usage: jj wacd <workspace>" >&2
+      exit 2
+    fi
+    root=$(jj workspace root)
+    base=$(basename "$root")
+    name="$base.$arg"
+    dest="$(dirname "$root")/$name"
+    jj workspace add --name "$name" --revision main "$dest" 1>&2
+    printf '%s\n' "$dest"
+    ''',
+  ]
+  # Print the main workspace path; the Fish jj wrapper changes into it
+  wq = [
+    "util", "exec", "--", "bash", "-c",
+    '''
+    set -euo pipefail
+    root=$(jj workspace root)
+    repo="$root/.jj/repo"
+    if [ -f "$repo" ]; then
+      repo_ref=$(cat "$repo")
+      shared_repo=$(cd "$root/.jj" && cd "$repo_ref" && pwd -P)
+      root=$(dirname "$(dirname "$shared_repo")")
+    fi
+    printf '%s\n' "$root"
+    ''',
+  ]
+  # Print a workspace path; the Fish jj wrapper changes into it
+  # arg: short suffix (feature-x) or full name (myapp.feature-x)
+  wcd = [
+    "util", "exec", "--", "bash", "-c",
+    '''
+    set -euo pipefail
+    arg="$0"
+    if [ -z "$arg" ]; then
+      echo "usage: jj wcd <workspace>" >&2
+      exit 2
+    fi
+    if dest=$(jj workspace root --name "$arg" 2>/dev/null); then
+      printf '%s\n' "$dest"
+    else
+      root=$(jj wq)
+      base=$(basename "$root")
+      jj workspace root --name "$base.$arg"
+    fi
+    ''',
+  ]
+  # Forget workspace and delete its folder (mirrors wa naming)
+  # arg: short suffix (feature-x) or full name (myapp.feature-x)
+  wd = [
+    "util", "exec", "--", "bash", "-c",
+    '''
+    set -euo pipefail
+    arg="$0"
+    if dest=$(jj workspace root --name "$arg" 2>/dev/null); then
+      name="$arg"
+    else
+      root=$(jj workspace root --name default 2>/dev/null || jj workspace root)
+      base=$(basename "$root")
+      name="$base.$arg"
+      dest=$(jj workspace root --name "$name")
+    fi
+    if [ "$name" = "default" ]; then
+      echo "refusing to forget/delete the default workspace" >&2
+      exit 1
+    fi
+    jj workspace forget "$name"
+    rm -rf -- "$dest"
+    echo "Forgot and deleted workspace: $name ($dest)"
+    ''',
+  ]
 
 [lazyjj]
  diff-tool = "difft"
