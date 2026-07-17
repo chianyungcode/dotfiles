@@ -56,3 +56,21 @@ onboarding = false
   zoom           = "prefix+z"
 
   focus_agent = "prefix+alt+1..9"
+
+  [[keys.command]]
+    command     = "nathanflurry.jj-workspace.new-tab"
+    description = "new jj workspace (in tab)"
+    key         = "prefix+a"
+    type        = "plugin_action"
+
+  [[keys.command]]
+    command     = "nathanflurry.jj-workspace.new"
+    description = "new jj workspace"
+    key         = "prefix+shift+a"
+    type        = "plugin_action"
+
+  [[keys.command]]
+    command     = "nathanflurry.jj-workspace.remove"
+    description = "remove jj workspace"
+    key         = "prefix+shift+d"
+    type        = "plugin_action"
