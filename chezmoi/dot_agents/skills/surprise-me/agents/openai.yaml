@@ -1,0 +1,4 @@
+interface:
+  display_name: "Surprise Me"
+  short_description: "Discover and rank fresh product feature ideas"
+  default_prompt: "Use $surprise-me to research this repository and recommend the strongest fresh feature to build next."
