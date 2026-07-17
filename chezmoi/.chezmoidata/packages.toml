@@ -366,6 +366,7 @@
         "presenterm",               # Presentation in CLI
         "superfile",                # file manager in terminal
 
+        "tuxedo", # task management TUI
         # Window Management
         "felixkratz/formulae/borders",
 
