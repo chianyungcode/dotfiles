@@ -1,0 +1,10 @@
+agent_notes                  = true
+exclude_untracked            = false
+line_numbers                 = true
+menu_bar                     = true
+mode                         = "auto"          # auto, split, stack
+prompt_save_view_preferences = true
+theme                        = "vitesse-black" # any built-in theme id, auto, or custom
+transparent_background       = false
+watch                        = false
+wrap_lines                   = false
