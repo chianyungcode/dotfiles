@@ -12,7 +12,7 @@ fi
 
 # Check if the nano syntax highlighting directory exists
 
-NANO_DIR="{{ .xdgDataDir }}/nano"
+NANO_DIR="{{ .xdg.data_home }}/nano"
 if [ ! -e "${NANO_DIR}/conf.nanorc" ]; then
     header "Installing nano syntax highlighting..."
 
@@ -20,7 +20,7 @@ if [ ! -e "${NANO_DIR}/conf.nanorc" ]; then
         mkdir -p "${NANO_DIR}"
     fi
 
-    wget --hsts-file='{{ .xdgDataDir }}/wget-hsts' -O "${NANO_DIR}/nanorc.zip" https://github.com/scopatz/nanorc/archive/master.zip
+    wget --hsts-file='{{ .xdg.data_home }}/wget-hsts' -O "${NANO_DIR}/nanorc.zip" https://github.com/scopatz/nanorc/archive/master.zip
 
     pushd "${NANO_DIR}" >/dev/null || exit
 

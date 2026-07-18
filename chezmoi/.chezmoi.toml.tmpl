@@ -40,7 +40,6 @@
 {{- $xdg_config := env "XDG_CONFIG_HOME" | default (joinPath .chezmoi.homeDir ".config") -}}
 {{- $xdg_data := env "XDG_DATA_HOME" | default (joinPath .chezmoi.homeDir ".local/share") -}}
 {{- $xdg_state := env "XDG_STATE_HOME" | default (joinPath .chezmoi.homeDir ".local/state") -}}
-{{- $is_ci := ne (env "CI") "" -}}
 
 {{ if $encrypted_files }}
 encryption = "age"
@@ -49,20 +48,6 @@ encryption = "age"
 identity = "{{ joinPath .chezmoi.homeDir ".local/share/ages/keys.txt" }}"
 recipients = "age1z9fpa8c4v4fmdu42myc6uyapvs9436tns9myss5yqv6p3cmrny2s4rs6kt"
 {{ end }}
-
-[data]
-git_email = {{ $git_email | quote }}
-git_user = {{ $git_name | quote }}
-github_user = {{ $github_username | quote }}
-dev_computer = {{ $development }}
-homelab_member = {{ $homelab }}
-is_ci_workflow = {{ $is_ci }}
-personal_computer = {{ $personal }}
-use_secrets = {{ eq $secrets_provider "onepassword" }}
-xdgCacheDir = {{ $xdg_cache | quote }}
-xdgConfigDir = {{ $xdg_config | quote }}
-xdgDataDir = {{ $xdg_data | quote }}
-xdgStateDir = {{ $xdg_state | quote }}
 
 [data.identity]
 profile = {{ $identity_profile | quote }}

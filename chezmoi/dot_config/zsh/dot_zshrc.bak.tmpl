@@ -45,23 +45,23 @@ unset _myPaths _path
 
 # Create XDG directories
 #############################################
-if [ ! -d "{{ .xdgCacheDir }}/zsh" ]; then
-    mkdir -p "{{ .xdgCacheDir }}/zsh"
+if [ ! -d "{{ .xdg.cache_home }}/zsh" ]; then
+    mkdir -p "{{ .xdg.cache_home }}/zsh"
 fi
-if [ ! -d "{{ .xdgDataDir }}/zsh" ]; then
-    mkdir -p "{{ .xdgDataDir }}/zsh"
+if [ ! -d "{{ .xdg.data_home }}/zsh" ]; then
+    mkdir -p "{{ .xdg.data_home }}/zsh"
 fi
-if [ ! -d "{{ .xdgStateDir }}/zsh" ]; then
-    mkdir -p "{{ .xdgStateDir }}/zsh"
+if [ ! -d "{{ .xdg.state_home }}/zsh" ]; then
+    mkdir -p "{{ .xdg.state_home }}/zsh"
 fi
 
 # Source completions
-if [ -d "{{ .xdgDataDir }}/zsh/completions" ]; then
-    fpath+={{ .xdgDataDir }}/zsh/completions
+if [ -d "{{ .xdg.data_home }}/zsh/completions" ]; then
+    fpath+={{ .xdg.data_home }}/zsh/completions
 fi
 
-if [ -d "{{ .xdgDataDir }}/zsh/zsh-completions/src" ]; then
-    fpath+={{ .xdgDataDir }}/zsh/zsh-completions/src
+if [ -d "{{ .xdg.data_home }}/zsh/zsh-completions/src" ]; then
+    fpath+={{ .xdg.data_home }}/zsh/zsh-completions/src
 fi
 
 {{ if eq .chezmoi.os "darwin" -}}
@@ -76,7 +76,7 @@ fi
 autoload -Uz compinit
 
 # Use cached dump if fresh (<24h)
-zcdump="{{ .xdgCacheDir }}/zsh/zcompdump-${ZSH_VERSION}"
+zcdump="{{ .xdg.cache_home }}/zsh/zcompdump-${ZSH_VERSION}"
 # More portable zsh-native way to check file age
 if [[ -r "$zcdump" && (! -f "${zcdump}.zwc" || "$zcdump" -nt "${zcdump}.zwc") ]]; then
   # If dump exists but compiled version doesn't or is older
@@ -97,7 +97,7 @@ fi
 
 # Files containing files *.zsh or *.sh to be sourced to your environment
 configFileLocations=(
-    "{{ .xdgConfigDir }}/zsh-source"
+    "{{ .xdg.config_home }}/zsh-source"
 )
 
 for configFileLocation in "${configFileLocations[@]}"; do
@@ -123,4 +123,3 @@ done
 {{ end }}
 
 # zprof # uncomment this for profiling function take time so it will slow startup
-

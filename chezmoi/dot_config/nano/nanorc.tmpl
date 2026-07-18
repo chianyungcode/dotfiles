@@ -9,7 +9,7 @@ set nohelp
 # disable inverse text for the minibar
 set titlecolor normal,normal
 
-# Include syntax highlighters (add more from {{ .xdgDataDir }}/nano)
-include {{ .xdgDataDir }}/nano/*.nanorc
+# Include syntax highlighters (add more from {{ .xdg.data_home }}/nano)
+include {{ .xdg.data_home }}/nano/*.nanorc
 
 {{- end }}

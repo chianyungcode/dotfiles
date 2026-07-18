@@ -1,6 +1,6 @@
 {{ if lookPath "chezmoi" }}
 {{- if lookPath "nvim" }}
-alias nvdot='nvim {{ .xdgDataDir }}/chezmoi'
+alias nvdot='nvim {{ .xdg.data_home }}/chezmoi'
 {{- end }}
 
 
