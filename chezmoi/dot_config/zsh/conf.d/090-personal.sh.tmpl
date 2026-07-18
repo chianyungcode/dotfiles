@@ -1,4 +1,4 @@
-{{ if .use_secrets -}}
+{{ if eq .secrets.provider "onepassword" -}}
 # SSH Shortcuts
 {{ range .remote_servers -}}
 {{- if not (lookPath .name) }}

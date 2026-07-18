@@ -10,7 +10,7 @@ Include ~/.orbstack/ssh/config
 # ssh-keygen -f [filename] -t rsa -b 4096 -C "[comment]"
 
 # ##### Chezmoi Managed #############
-{{- if .use_secrets}}
+{{- if eq .secrets.provider "onepassword"}}
 {{- range .remote_servers }}
 {{-     if .add_to_ssh_config }}
 

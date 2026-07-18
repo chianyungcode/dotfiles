@@ -7,7 +7,7 @@
 			"type": "remote",
 			"url": "https://mcp.context7.com/mcp",
       "headers": {
-        "CONTEXT7_API_KEY": "{{ if .use_secrets }}{{ onepasswordRead .secrets.ai_tools.context7_apikey }}{{ end }}"
+        "CONTEXT7_API_KEY": "{{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.ai_tools.context7_apikey }}{{ end }}"
       },
 			"enabled": true
 		},
@@ -36,7 +36,7 @@
     },
     "tavily": {
       "type": "remote",
-			"url": "https://mcp.tavily.com/mcp/?tavilyApiKey={{ if .use_secrets }}{{ onepasswordRead .secrets.research.tavily_apikey }}{{ end }}",
+      "url": "https://mcp.tavily.com/mcp/?tavilyApiKey={{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.research.tavily_apikey }}{{ end }}",
       "enabled": false
       },
     "ticktick": {
