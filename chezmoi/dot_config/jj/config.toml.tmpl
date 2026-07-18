@@ -4,10 +4,7 @@
 
 [ui]
   default-command = "log"
-  editor = "nvim"
   diff-formatter = ["difft", "--color=always", "$left", "$right"]
-
-  # Used by jj split, jj diffedit, jj squash -i, and jj restore -i.
   diff-editor = "gitpatch"
   # Used by jj resolve to resolve file conflicts.
   merge-editor = "diffconflicts"
@@ -168,5 +165,4 @@
 auto-update-stale = true
 
 [lazyjj]
- diff-tool = "difft"
  layout-percent = 30
