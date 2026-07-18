@@ -47,6 +47,18 @@ To use this repo on a new machine:
    - Enable `onepassword` or Age-encrypted files later by updating Chezmoi's configuration and applying again.
    - Add optional tools such as `difft` through a machine-local Chezmoi config after installing them.
 
+### Validate a configuration change
+
+Run the local render matrix before applying changes to a real home directory:
+
+```bash
+./tests/chezmoi-render-config.sh
+```
+
+The matrix renders secretless server and development data, a graphical
+workstation, CI-derived ignores, and custom XDG paths into temporary
+destinations. It does not install packages or require `op` credentials.
+
 ## Usage
 - **Edit Files**: Modify files in `~/.local/share/chezmoi/` and run `chezmoi apply` to update symlinks.
 - **Add New Files**: Use `chezmoi add ~/.somefile` to track new dotfiles.

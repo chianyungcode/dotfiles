@@ -50,11 +50,10 @@ Commit: `refactor(chezmoi): gate graphical configuration capability`
 ### Task 4: Add render matrix verification and update docs
 
 **Files:**
-- Create: `chezmoi/tests/render-config.sh`
+- Create: `tests/chezmoi-render-config.sh`
 - Modify: `README.md`
 - Modify: `docs/chianyung/chezmoi-agnostic-config-refactor-plan.md`
 
 Add a shell verification matrix using temporary chezmoi config/data overrides to check nested data, secretless rendering, custom XDG paths, CI-derived ignores, and absence of legacy fields. Document the commands and mark the plan status/acceptance items that are actually verified.
 
 Commit: `test(chezmoi): add configuration render matrix`
-

@@ -4,7 +4,7 @@
 
 ## Status
 
-- **State:** Proposed
+- **State:** Implemented; local render matrix verified
 - **Scope:** Chezmoi configuration data model and its consumers
 - **Primary target:** Portable personal dotfiles across Ubuntu servers, Arch
   Linux, macOS, and CI
@@ -427,6 +427,17 @@ rg '\.(git_user|git_email|github_user|dev_computer|homelab_member|personal_compu
 The search should return no active template consumers before compatibility
 fields are removed.
 
+The repository-level render matrix exercises the secretless server,
+development server, graphical workstation, CI, and custom-XDG paths without
+modifying the real destination:
+
+```bash
+./tests/chezmoi-render-config.sh
+```
+
+Clean Ubuntu, Arch, and macOS machine validation remains environment-specific;
+the matrix does not claim to replace those platform runs.
+
 ## Risks and Mitigations
 
 ### Breaking every template at once
@@ -465,41 +476,43 @@ verify generated configs.
 
 ## Acceptance Criteria
 
-- [ ] `.chezmoi.toml.tmpl` is organized by identity, machine, features, secrets,
+- [x] `.chezmoi.toml.tmpl` is organized by identity, machine, features, secrets,
       encryption, and XDG paths.
-- [ ] All generated data uses consistent snake_case names.
-- [ ] Operating-system and distribution values come from `.chezmoi` built-in
+- [x] All generated data uses consistent snake_case names.
+- [x] Operating-system and distribution values come from `.chezmoi` built-in
       data.
-- [ ] One identity choice produces a coherent Git name, email, and GitHub
+- [x] One identity choice produces a coherent Git name, email, and GitHub
       username.
-- [ ] Git and Jujutsu do not select signing keys by comparing hardcoded
+- [x] Git and Jujutsu do not select signing keys by comparing hardcoded
       usernames.
-- [ ] `machine.role` accepts only `server` or `workstation`.
-- [ ] The role selects initial defaults but does not directly control package
+- [x] `machine.role` accepts only `server` or `workstation`.
+- [x] The role selects initial defaults but does not directly control package
       installation.
-- [ ] Independent capability flags can describe all current machines.
-- [ ] `features.graphical` controls GUI-related packages and configuration
+- [x] Independent capability flags can describe all current machines.
+- [x] `features.graphical` controls GUI-related packages and configuration
       independently from the role.
-- [ ] 1Password usage and Age-encrypted files are independently configurable.
-- [ ] Secretless Ubuntu initialization does not require `op` or an Age identity.
-- [ ] XDG paths respect existing environment variables.
-- [ ] CI state is not stored as permanent user configuration.
-- [ ] The generated config does not require `difft`.
-- [ ] No active template references a legacy flat field.
+- [x] 1Password usage and Age-encrypted files are independently configurable.
+- [x] Secretless Ubuntu initialization does not require `op` or an Age identity.
+- [x] XDG paths respect existing environment variables.
+- [x] CI state is not stored as permanent user configuration.
+- [x] The generated config does not require `difft`.
+- [x] No active template references a legacy flat field.
 - [ ] Ubuntu 24.04, Arch Linux, macOS, and CI validation paths pass.
 - [ ] A second `chezmoi apply` completes successfully.
-- [ ] The README documents the verified native initialization command.
+- [x] The README documents the verified native initialization command.
 
-## Open Questions Before Implementation
+## Decisions Recorded During Implementation
 
-1. Should `git_name` remain the account handle, or use a human-readable Git
-   author name?
-2. Which encrypted files are required on a server, if any?
-3. Should the Age recipient remain personal data in the repository or be
-   prompted/configured locally?
-4. Should `features.personal` remain broad or be divided into more specific
-   capabilities such as `productivity_apps`?
-5. Should identity profiles include Git signing format and key references?
+1. `git_name` remains the existing account handle so Git, GitHub credentials,
+   and Jujutsu bookmark names stay coherent.
+2. Secretless servers do not require encrypted files; encrypted targets are an
+   explicit opt-in separate from the secrets provider.
+3. The existing personal Age recipient and identity path are emitted only when
+   encrypted files are enabled.
+4. `features.personal` remains broad for this personal repository; graphical
+   software is independently controlled by `features.graphical`.
+5. Identity profiles include 1Password lookup keys for Git signing and GitHub
+   tokens; custom identities leave those optional references empty.
 
 Resolve these questions before Phase 1 so the initial target model does not
 require another immediate rename.
