@@ -1,25 +1,21 @@
+{{- $account_data := include ".chezmoidata/accounts.toml" | fromToml -}}
 {{- $identity_profile := promptChoiceOnce . "identity.profile" "Choose your identity profile" (list "personal" "secondary" "custom") "personal" -}}
 {{- $git_name := "" -}}
 {{- $git_email := "" -}}
 {{- $github_username := "" -}}
 {{- $signing_key := "" -}}
 {{- $github_token := "" -}}
-{{- if eq $identity_profile "personal" -}}
-{{-   $git_name = "chianyungcode" -}}
-{{-   $git_email = "cnytechcode@gmail.com" -}}
-{{-   $github_username = "chianyungcode" -}}
-{{-   $signing_key = "signing_key_cny" -}}
-{{-   $github_token = "cny_gh_pat" -}}
-{{- else if eq $identity_profile "secondary" -}}
-{{-   $git_name = "seraphynee" -}}
-{{-   $git_email = "seraphyne31@gmail.com" -}}
-{{-   $github_username = "seraphynee" -}}
-{{-   $signing_key = "signing_key_spy" -}}
-{{-   $github_token = "spy_gh_pat" -}}
-{{- else -}}
+{{- if eq $identity_profile "custom" -}}
 {{-   $git_name = promptStringOnce . "identity.git_name" "Git author name" -}}
 {{-   $git_email = promptStringOnce . "identity.git_email" "Git author email" -}}
 {{-   $github_username = promptStringOnce . "identity.github_username" "GitHub username" -}}
+{{- else -}}
+{{-   $account := index $account_data.accounts $identity_profile -}}
+{{-   $git_name = $account.git_name -}}
+{{-   $git_email = $account.git_email -}}
+{{-   $github_username = $account.github_username -}}
+{{-   $signing_key = $account.signing_key -}}
+{{-   $github_token = $account.github_token -}}
 {{- end -}}
 
 {{- $machine_role := promptChoiceOnce . "machine.role" "Choose this machine's primary role" (list "server" "workstation") "server" -}}
