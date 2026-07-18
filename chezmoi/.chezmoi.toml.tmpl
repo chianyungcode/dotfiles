@@ -1,106 +1,94 @@
-{{- $use_secrets := false -}}
-{{- if hasKey . "use_secrets" -}}
-{{-   $use_secrets = .use_secrets -}}
-{{- else -}}
-{{-   $use_secrets = promptBoolOnce . "use_secrets" "Use secrets from 1Password? (true/false)" -}}
-{{- end -}}
-
+{{- $identity_profile := promptChoiceOnce . "identity.profile" "Choose your identity profile" (list "personal" "secondary" "custom") "personal" -}}
+{{- $git_name := "" -}}
 {{- $git_email := "" -}}
-{{- if hasKey . "git_email" -}}
-{{-   $git_email = .git_email -}}
+{{- $github_username := "" -}}
+{{- $signing_key := "" -}}
+{{- $github_token := "" -}}
+{{- if eq $identity_profile "personal" -}}
+{{-   $git_name = "chianyungcode" -}}
+{{-   $git_email = "cnytechcode@gmail.com" -}}
+{{-   $github_username = "chianyungcode" -}}
+{{-   $signing_key = "signing_key_cny" -}}
+{{-   $github_token = "cny_gh_pat" -}}
+{{- else if eq $identity_profile "secondary" -}}
+{{-   $git_name = "seraphynee" -}}
+{{-   $git_email = "seraphyne31@gmail.com" -}}
+{{-   $github_username = "seraphynee" -}}
+{{-   $signing_key = "signing_key_spy" -}}
+{{-   $github_token = "spy_gh_pat" -}}
 {{- else -}}
-{{-   $git_email = promptChoiceOnce . "git_email" "Choose your git email" (list "cnytechcode@gmail.com" "seraphyne31@gmail.com") -}}
+{{-   $git_name = promptStringOnce . "identity.git_name" "Git author name" -}}
+{{-   $git_email = promptStringOnce . "identity.git_email" "Git author email" -}}
+{{-   $github_username = promptStringOnce . "identity.github_username" "GitHub username" -}}
 {{- end -}}
 
-{{- $git_user := "" -}}
-{{- if hasKey . "git_user" -}}
-{{-   $git_user = .git_user -}}
-{{- else -}}
-{{-   $git_user = promptChoiceOnce . "git_user" "Choose your git user" (list "chianyungcode" "seraphynee" "custom") -}}
-{{-   if eq $git_user "custom" -}}
-{{-     $git_user = promptStringOnce . "git_user_custom" "What's your git user" -}}
-{{-   end -}}
+{{- $machine_role := promptChoiceOnce . "machine.role" "Choose this machine's primary role" (list "server" "workstation") "server" -}}
+{{- $workstation_defaults := eq $machine_role "workstation" -}}
+{{- $development := promptBoolOnce . "features.development" "Enable development tools?" $workstation_defaults -}}
+{{- $homelab := promptBoolOnce . "features.homelab" "Enable homelab tools?" false -}}
+{{- $personal := promptBoolOnce . "features.personal" "Enable personal tools?" $workstation_defaults -}}
+{{- $graphical := promptBoolOnce . "features.graphical" "Enable graphical tools?" $workstation_defaults -}}
+
+{{- $secrets_default := "none" -}}
+{{- if $workstation_defaults -}}
+{{-   $secrets_default = "onepassword" -}}
 {{- end -}}
+{{- $secrets_provider := promptChoiceOnce . "secrets.provider" "Choose the secrets provider" (list "none" "onepassword") $secrets_default -}}
+{{- $encrypted_files := promptBoolOnce . "encrypted_files.enabled" "Enable Age-encrypted files?" $workstation_defaults -}}
 
-{{- $github_user := "" -}}
-{{- if hasKey . "github_user" -}}
-{{-   $github_user = .github_user -}}
-{{- else -}}
-{{-   $github_user = promptChoiceOnce . "github_user" "Choose your github user" (list "chianyungcode" "seraphynee" "custom") -}}
-{{-   if eq $github_user "custom" -}}
-{{-     $github_user = promptStringOnce . "github_user_custom" "What's your github user" -}}
-{{-   end -}}
-{{- end -}}
+{{- $xdg_cache := env "XDG_CACHE_HOME" | default (joinPath .chezmoi.homeDir ".cache") -}}
+{{- $xdg_config := env "XDG_CONFIG_HOME" | default (joinPath .chezmoi.homeDir ".config") -}}
+{{- $xdg_data := env "XDG_DATA_HOME" | default (joinPath .chezmoi.homeDir ".local/share") -}}
+{{- $xdg_state := env "XDG_STATE_HOME" | default (joinPath .chezmoi.homeDir ".local/state") -}}
+{{- $is_ci := ne (env "CI") "" -}}
 
-{{- $personal_computer := false -}}
-{{- if hasKey . "personal_computer" -}}
-{{-   $personal_computer = .personal_computer -}}
-{{- else -}}
-{{-   $personal_computer = promptBoolOnce . "personal_computer" "Is this a personal computer for daily driving? (true/false)" -}}
-{{- end -}}
-
-{{- $dev_computer := false -}}
-{{- if hasKey . "dev_computer" -}}
-{{-   $dev_computer = .dev_computer -}}
-{{- else -}}
-{{-   $dev_computer = promptBoolOnce . "dev_computer" "Do you do development on this computer? (true/false)" -}}
-{{- end -}}
-
-{{- $homelab_member := false -}}
-{{- if hasKey . "homelab_member" -}}
-{{-   $homelab_member = .homelab_member -}}
-{{- else -}}
-{{-   $homelab_member = promptBoolOnce . "homelab_member" "Is this computer part of your homelab? (true/false)" -}}
-{{- end -}}
-
-{{- $is_ci_workflow := false -}}
-{{- if hasKey . "is_ci_workflow" -}}
-{{-   $is_ci_workflow = .is_ci_workflow -}}
-{{- end -}}
-
-{{- $xdg_cache_dir := printf "%s/.cache" .chezmoi.homeDir -}}
-{{- if hasKey . "xdgCacheDir" -}}
-{{-   $xdg_cache_dir = .xdgCacheDir -}}
-{{- end -}}
-
-{{- $xdg_config_dir := printf "%s/.config" .chezmoi.homeDir -}}
-{{- if hasKey . "xdgConfigDir" -}}
-{{-   $xdg_config_dir = .xdgConfigDir -}}
-{{- end -}}
-
-{{- $xdg_data_dir := printf "%s/.local/share" .chezmoi.homeDir -}}
-{{- if hasKey . "xdgDataDir" -}}
-{{-   $xdg_data_dir = .xdgDataDir -}}
-{{- end -}}
-
-{{- $xdg_state_dir := printf "%s/.local/state" .chezmoi.homeDir -}}
-{{- if hasKey . "xdgStateDir" -}}
-{{-   $xdg_state_dir = .xdgStateDir -}}
-{{- end -}}
-
-# NOTE
-# 'use_secrets' ensures whether you are using 1Password; if so, all 1Password functions like 'onePasswordRead' can be used because the "op" CLI is installed
-
+{{ if $encrypted_files }}
 encryption = "age"
 
 [age]
- identity = "{{.chezmoi.homeDir}}/.local/share/ages/keys.txt"
- recipients = "age1z9fpa8c4v4fmdu42myc6uyapvs9436tns9myss5yqv6p3cmrny2s4rs6kt"
+identity = "{{ joinPath .chezmoi.homeDir ".local/share/ages/keys.txt" }}"
+recipients = "age1z9fpa8c4v4fmdu42myc6uyapvs9436tns9myss5yqv6p3cmrny2s4rs6kt"
+{{ end }}
 
 [data]
-  git_email         = {{ $git_email | quote }}
-  git_user          = {{ $git_user | quote }}
-  github_user       = {{ $github_user | quote }}
-  dev_computer      = {{ $dev_computer }}
-  homelab_member    = {{ $homelab_member }}
-  is_ci_workflow    = {{ $is_ci_workflow }}
-  personal_computer = {{ $personal_computer }}
-  use_secrets       = {{ $use_secrets }}
-  xdgCacheDir       = {{ $xdg_cache_dir | quote }}
-  xdgConfigDir      = {{ $xdg_config_dir | quote }}
-  xdgDataDir        = {{ $xdg_data_dir | quote }}
-  xdgStateDir       = {{ $xdg_state_dir | quote }}
+git_email = {{ $git_email | quote }}
+git_user = {{ $git_name | quote }}
+github_user = {{ $github_username | quote }}
+dev_computer = {{ $development }}
+homelab_member = {{ $homelab }}
+is_ci_workflow = {{ $is_ci }}
+personal_computer = {{ $personal }}
+use_secrets = {{ eq $secrets_provider "onepassword" }}
+xdgCacheDir = {{ $xdg_cache | quote }}
+xdgConfigDir = {{ $xdg_config | quote }}
+xdgDataDir = {{ $xdg_data | quote }}
+xdgStateDir = {{ $xdg_state | quote }}
 
-[diff]
-  command = "difft"
-  args = ["--color=always", "--skip-unchanged"]
+[data.identity]
+profile = {{ $identity_profile | quote }}
+git_name = {{ $git_name | quote }}
+git_email = {{ $git_email | quote }}
+github_username = {{ $github_username | quote }}
+signing_key = {{ $signing_key | quote }}
+github_token = {{ $github_token | quote }}
+
+[data.machine]
+role = {{ $machine_role | quote }}
+
+[data.features]
+development = {{ $development }}
+homelab = {{ $homelab }}
+personal = {{ $personal }}
+graphical = {{ $graphical }}
+
+[data.secrets]
+provider = {{ $secrets_provider | quote }}
+
+[data.encrypted_files]
+enabled = {{ $encrypted_files }}
+
+[data.xdg]
+cache_home = {{ $xdg_cache | quote }}
+config_home = {{ $xdg_config | quote }}
+data_home = {{ $xdg_data | quote }}
+state_home = {{ $xdg_state | quote }}
