@@ -13,6 +13,12 @@ formulae=(
     "{{ $package }}"
     {{ end }}
 
+    {{ if .features.graphical }}
+    {{ range $package := .packages.homebrew.graphical.formulae }}
+    "{{ $package }}"
+    {{ end }}
+    {{ end }}
+
     {{ if .features.development }}
     {{ range $package := .packages.homebrew.development.formulae }}
     "{{ $package }}"
@@ -37,7 +43,13 @@ casks=(
     "{{ $package }}"
     {{ end }}
 
-    {{ if .features.development }}
+    {{ if .features.graphical }}
+    {{ range $package := .packages.homebrew.graphical.casks }}
+    "{{ $package }}"
+    {{ end }}
+    {{ end }}
+
+    {{ if and .features.development .features.graphical }}
     {{ range $package := .packages.homebrew.development.casks }}
     "{{ $package }}"
     {{ end }}
@@ -49,7 +61,7 @@ casks=(
     {{ end }}
     {{ end }}
 
-    {{ if .features.personal }}
+    {{ if and .features.personal .features.graphical }}
     {{ range $package := .packages.homebrew.personal.casks }}
     "{{ $package }}"
     {{ end }}

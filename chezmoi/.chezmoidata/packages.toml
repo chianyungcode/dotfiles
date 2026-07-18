@@ -5,16 +5,11 @@
     [packages.homebrew.common]
       # Installed on every computer
       casks = [
-        # Security & Identity
-        "1password",
+        # CLI security and identity tools
         "1password-cli",
 
-        # Development & Terminal
+        # Development and device tools
         "android-platform-tools",
-        "cmux",                   # ghostty based terminal with vertical workspace
-        "ghostty",
-        "wezterm",
-        # "warp",  # AI terminal
 
         # Version Control
         "git-credential-manager",
@@ -142,6 +137,19 @@
         # "supabase/tap",
         # "waydabber/betterdisplay",
       ]
+
+    [packages.homebrew.graphical]
+      casks = [
+        # Security & Identity
+        "1password",
+
+        # Terminals
+        "cmux",
+        "ghostty",
+        "wezterm",
+      ]
+      formulae = ["felixkratz/formulae/borders"]
+      taps = []
 
     [packages.homebrew.development]
       casks = [

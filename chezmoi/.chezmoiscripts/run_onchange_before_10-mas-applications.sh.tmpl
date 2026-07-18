@@ -5,25 +5,27 @@
 {{ template "shared_script_utils.bash" . }}
 
 apps=(
+    {{ if .features.graphical }}
     {{ range $package := .packages.mas.common.apps }}
     "{{ $package }}"
     {{ end }}
 
-    {{ if .features.development }}
+    {{ if and .features.development .features.graphical }}
     {{ range $package := .packages.mas.development.apps }}
     "{{ $package }}"
     {{ end }}
     {{ end }}
 
-    {{ if .features.homelab }}
+    {{ if and .features.homelab .features.graphical }}
     {{ range $package := .packages.mas.homelab.apps }}
     "{{ $package }}"
     {{ end }}
     {{ end }}
 
-    {{ if .features.personal }}
+    {{ if and .features.personal .features.graphical }}
     {{ range $package := .packages.mas.personal.apps }}
     "{{ $package }}"
+    {{ end }}
     {{ end }}
     {{ end }}
 )

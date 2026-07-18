@@ -22,6 +22,20 @@ Library
 .config/systemd
 {{ end }}
 
+{{ if not .features.graphical }}
+# Graphical applications and their configuration are opt-in, independent of
+# whether the machine's primary role is a server or workstation.
+.config/aerospace
+.config/borders
+.config/ghostty
+.config/hypr
+.config/karabiner
+.config/launchpallete
+.config/rift
+.config/wezterm
+Library/Application Support/Leader Key
+{{ end }}
+
 {{- $is_ci := ne (env "CI") "" -}}
 {{- $skip_encrypted := or (not .encrypted_files.enabled) $is_ci -}}
 {{ if $skip_encrypted }}
