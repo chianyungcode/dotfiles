@@ -143,7 +143,7 @@
         # "waydabber/betterdisplay",
       ]
 
-    [packages.homebrew.dev_computer]
+    [packages.homebrew.development]
       casks = [
         # AI Agents Apps
         "claude",
@@ -266,7 +266,7 @@
       ]
       taps = []
 
-    [packages.homebrew.personal_computer]
+    [packages.homebrew.personal]
       casks = [
         # Browsers
         "brave-browser",
@@ -376,7 +376,7 @@
       ]
       taps = []
 
-    [packages.homebrew.homelab_member]
+    [packages.homebrew.homelab]
       casks = []
       formulae = [
         # Media
@@ -395,13 +395,13 @@
     [packages.mas.common]
       apps = []
 
-    [packages.mas.dev_computer]
+    [packages.mas.development]
       apps = []
 
-    [packages.mas.homelab_member]
+    [packages.mas.homelab]
       apps = []
 
-    [packages.mas.personal_computer]
+    [packages.mas.personal]
       apps = [
         # Utility
         "1355679052", # Dropover
@@ -476,13 +476,13 @@
         "gpg",
       ]
 
-    [packages.apt.dev_computer]
+    [packages.apt.development]
       packages = []
 
-    [packages.apt.homelab_member]
+    [packages.apt.homelab]
       packages = ["iperf"]
 
-    [packages.apt.personal_computer]
+    [packages.apt.personal]
       packages = []
 
   [packages.pacman]
@@ -527,7 +527,7 @@
         # "p7zip",      # Equivalent to p7zip-full
       ]
 
-    [packages.pacman.dev_computer]
+    [packages.pacman.development]
       packages = [
         "appimagelauncher", # for integrating .AppImage
         "difftastic",       # diff tools
@@ -640,10 +640,10 @@
         # "tcl-tk",       # for building python
       ]
 
-    [packages.pacman.homelab_member]
+    [packages.pacman.homelab]
       packages = ["iperf"]
 
-    [packages.pacman.personal_computer]
+    [packages.pacman.personal]
       packages = [
         # Browser
         "brave-bin",
@@ -672,7 +672,7 @@
         "pygments",
       ]
 
-    [packages.python.dev_computer]
+    [packages.python.development]
       packages = [
         # Automation & Infra
         "ansible-core",
@@ -686,10 +686,10 @@
         "pynvim",
       ]
 
-    [packages.python.homelab_member]
+    [packages.python.homelab]
       packages = []
 
-    [packages.python.personal_computer]
+    [packages.python.personal]
       packages = [
         # Utility
         "smassh",
@@ -704,7 +704,7 @@
     [packages.cargo.common]
       packages = []
 
-    [packages.cargo.dev_computer]
+    [packages.cargo.development]
       packages = [
         # Cargo Tooling
         "cargo-binstall",
@@ -727,10 +727,10 @@
         "typos-cli",
       ]
 
-    [packages.cargo.homelab_member]
+    [packages.cargo.homelab]
       packages = []
 
-    [packages.cargo.personal_computer]
+    [packages.cargo.personal]
       packages = [
         # Utility
         "cargo-seek",
@@ -745,7 +745,7 @@
     [packages.node.common]
       packages = []
 
-    [packages.node.dev_computer]
+    [packages.node.development]
       packages = [
         # Task Runner
         "@go-task/cli", # modern makefile alternative - https://taskfile.dev/
@@ -754,10 +754,10 @@
         "neovim",
       ]
 
-    [packages.node.homelab_member]
+    [packages.node.homelab]
       packages = []
 
-    [packages.node.personal_computer]
+    [packages.node.personal]
       packages = [
         # AI / Developer Tools
         "@openai/codex",

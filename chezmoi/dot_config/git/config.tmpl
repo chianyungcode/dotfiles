@@ -5,19 +5,17 @@
 # USER IDENTITY
 # =============================================================================
 [user]
-    name = {{ .git_user}}
-    email = {{ .git_email }}
-    {{- if and .use_secrets (eq .git_user "chianyungcode") }}
-    signingkey = {{ onepasswordRead .secrets.git.signing_key_cny }}
-    {{- else if and .use_secrets (eq .git_user "seraphynee") }}
-    signingkey = {{ onepasswordRead .secrets.git.signing_key_spy }}
+    name = {{ .identity.git_name }}
+    email = {{ .identity.git_email }}
+    {{- if and (eq .secrets.provider "onepassword") .identity.signing_key }}
+    signingkey = {{ onepasswordRead (index .secrets.git .identity.signing_key) }}
     {{- end }}
 
 # =============================================================================
 # COMMIT & SIGNING
 # =============================================================================
 
-{{- if .use_secrets }}
+{{- if eq .secrets.provider "onepassword" }}
 [gpg]
     format = ssh
 
@@ -70,7 +68,7 @@
     {{- end }}
 
 [credential "https://github.com"]
-    username = {{ .github_user }}
+    username = {{ .identity.github_username }}
 
 [credential "https://dev.azure.com"]
     useHttpPath = true

@@ -8,18 +8,18 @@ packages=(
     {{ range $package := .packages.apt.common.packages }}
     "{{ $package }}"
     {{ end }}
-    {{ if .dev_computer }}
-    {{ range $package := .packages.apt.dev_computer.packages }}
+    {{ if .features.development }}
+    {{ range $package := .packages.apt.development.packages }}
     "{{ $package }}"
     {{ end }}
     {{ end }}
-    {{ if .homelab_member }}
-    {{ range $package := .packages.apt.homelab_member.packages }}
+    {{ if .features.homelab }}
+    {{ range $package := .packages.apt.homelab.packages }}
     "{{ $package }}"
     {{ end }}
     {{ end }}
-    {{ if .personal_computer }}
-    {{ range $package := .packages.apt.personal_computer.packages }}
+    {{ if .features.personal }}
+    {{ range $package := .packages.apt.personal.packages }}
     "{{ $package }}"
     {{ end }}
     {{ end }}

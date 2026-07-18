@@ -9,20 +9,20 @@ packages=(
     "{{ $package }}"
     {{ end }}
 
-    {{ if .dev_computer }}
-    {{ range $package := .packages.python.dev_computer.packages }}
+    {{ if .features.development }}
+    {{ range $package := .packages.python.development.packages }}
     "{{ $package }}"
     {{ end }}
     {{ end }}
 
-    {{ if .homelab_member }}
-    {{ range $package := .packages.python.homelab_member.packages }}
+    {{ if .features.homelab }}
+    {{ range $package := .packages.python.homelab.packages }}
     "{{ $package }}"
     {{ end }}
     {{ end }}
 
-    {{ if .personal_computer }}
-    {{ range $package := .packages.python.personal_computer.packages }}
+    {{ if .features.personal }}
+    {{ range $package := .packages.python.personal.packages }}
     "{{ $package }}"
     {{ end }}
     {{ end }}
@@ -43,5 +43,3 @@ fi
 success "Python packages installed"
 
 _safeExit_
-
-
