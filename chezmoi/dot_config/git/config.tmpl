@@ -35,6 +35,9 @@
 # =============================================================================
 [core]
     excludesFile = ~/.config/git/ignore
+    {{ if eq .machine.role "workstation" }}
+    pager = delta
+    {{ end }}
     # sshCommand = ssh -i {{ .directories.ssh_keys_dir | replaceAllRegex "\\${HOME}" "~" }}/git
 
     # Treat spaces before tabs and all kinds of trailing whitespace as an error
@@ -80,6 +83,7 @@
     pf = !git push --force-with-lease "$@"
     cam = commit --amend --no-edit
 
+{{ if eq .machine.role "workstation" }}
     # `git log` with patches shown with difftastic.
     dl = -c diff.external=difft log -p --ext-diff
 
@@ -88,6 +92,7 @@
 
     # `git diff` with difftastic.
     dft = -c diff.external=difft diff
+{{ end }}
 
     # Conventional commit aliases
     build = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"build${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
@@ -117,6 +122,30 @@
 # =============================================================================
 # DIFF & MERGE TOOLS
 # =============================================================================
+{{ if eq .machine.role "workstation" }}
+[delta]
+    navigate = true
+    side-by-side = true
+    syntax-theme = "DarkNeon"
+    plus-style = "syntax #445345"
+    minus-style = "syntax #4F221F"
+    line-numbers = true
+
+[interactive]
+    diffFilter = delta --color-only
+
+[diff]
+    colorMoved = default
+    external = difft
+    tool = difftastic
+
+[difftool]
+    prompt = false
+
+[difftool "difftastic"]
+    cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
+{{ end }}
+
 [merge]
     conflictstyle = zdiff3
 
@@ -170,6 +199,9 @@
 [pager]
     status = true
     show-branch = true
+    {{ if eq .machine.role "workstation" }}
+    difftool = true
+    {{ end }}
 
 # =============================================================================
 # LFS (Large File Storage)

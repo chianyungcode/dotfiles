@@ -32,7 +32,7 @@ Commit: `refactor(chezmoi): source identity from account profiles`
 - Modify: `chezmoi/dot_config/git/config.tmpl`
 - Modify: `chezmoi/dot_config/jj/config.toml.tmpl`
 
-Remove unconditional `difft`/difftastic and delta formatter configuration from generated Git/Jujutsu configuration while retaining normal built-in diff behavior and explicit user aliases only where they do not run automatically.
+Emit the existing `difft`/difftastic and delta formatter configuration only for `machine.role = "workstation"`; retain normal built-in diff behavior for servers and explicit user aliases only where they do not run automatically.
 
 Commit: `refactor(chezmoi): avoid mandatory diff tooling`
 

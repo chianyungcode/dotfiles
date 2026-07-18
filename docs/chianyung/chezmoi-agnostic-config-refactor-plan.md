@@ -106,10 +106,12 @@ during a test.
 XDG fields use camelCase while most other data uses snake_case. The current
 template also repeats nearly identical path-selection blocks.
 
-### Optional diff tooling is global
+### Optional diff tooling is role-specific
 
-The generated config always selects `difft`, even on machines where it is not
-installed, including a minimal Ubuntu server.
+The generated config must not select `difft` on a minimal Ubuntu server where
+it may not be installed. Workstations can opt into the existing `delta` and
+`difft` experience because those machines install and use the interactive
+tooling.
 
 ## Target Data Model
 
@@ -254,10 +256,10 @@ override-data mechanism rather than treating it as user configuration.
 
 ### Diff behavior
 
-Remove the unconditional `[diff]` block from the portable configuration.
-
-Initial behavior should use chezmoi's built-in diff. A user can add `difft`
-through a machine-local config override after the binary is installed.
+Keep the portable server configuration on Git and Jujutsu's built-in diff.
+Emit the existing `delta` and `difft` configuration when
+`machine.role = "workstation"`, where the interactive tooling is part of the
+workstation package set.
 
 ## Field Migration Map
 
@@ -495,7 +497,8 @@ verify generated configs.
 - [x] Secretless Ubuntu initialization does not require `op` or an Age identity.
 - [x] XDG paths respect existing environment variables.
 - [x] CI state is not stored as permanent user configuration.
-- [x] The generated config does not require `difft`.
+- [x] Server-generated config does not require `difft`; workstation-generated
+      config enables the optional diff tooling by role.
 - [x] No active template references a legacy flat field.
 - [ ] Ubuntu 24.04, Arch Linux, macOS, and CI validation paths pass.
 - [ ] A second `chezmoi apply` completes successfully.

@@ -112,6 +112,32 @@ ci_ignore=$(CI=1 chezmoi -S "$source_dir" -c "$config_file" \
 printf '%s\n' "$ci_ignore" | rg -q '^\.codex$'
 printf '%s\n' "$ci_ignore" | rg -q '^\.config/fish/env.d/030-secrets-age.fish$'
 
+server_git=$(chezmoi -S "$source_dir" -c "$config_file" \
+    execute-template --override-data-file "$server_data" \
+    --file "$source_dir/dot_config/git/config.tmpl")
+workstation_git=$(chezmoi -S "$source_dir" -c "$config_file" \
+    execute-template --override-data-file "$workstation_data" \
+    --file "$source_dir/dot_config/git/config.tmpl")
+if printf '%s\n' "$server_git" | rg -q '^    pager = delta$|^    external = difft$|^    tool = difftastic$'; then
+    printf 'server configuration unexpectedly enables optional diff tools\n' >&2
+    exit 1
+fi
+printf '%s\n' "$workstation_git" | rg -q '^    pager = delta$'
+printf '%s\n' "$workstation_git" | rg -q '^    external = difft$'
+
+server_jj=$(chezmoi -S "$source_dir" -c "$config_file" \
+    execute-template --override-data-file "$server_data" \
+    --file "$source_dir/dot_config/jj/config.toml.tmpl")
+workstation_jj=$(chezmoi -S "$source_dir" -c "$config_file" \
+    execute-template --override-data-file "$workstation_data" \
+    --file "$source_dir/dot_config/jj/config.toml.tmpl")
+if printf '%s\n' "$server_jj" | rg -q 'diff-formatter|diff-tool'; then
+    printf 'server Jujutsu configuration unexpectedly enables optional diff tools\n' >&2
+    exit 1
+fi
+printf '%s\n' "$workstation_jj" | rg -q '^  diff-formatter = \["difft"'
+printf '%s\n' "$workstation_jj" | rg -q '^ diff-tool = "difft"$'
+
 legacy_pattern='\.(git_user|git_email|github_user|dev_computer|homelab_member|personal_computer|is_ci_workflow|use_secrets|xdgCacheDir|xdgConfigDir|xdgDataDir|xdgStateDir)\b'
 legacy_matches=$(rg -n "$legacy_pattern" "$source_dir" \
     --glob '*.tmpl' --glob '*.toml' --glob '*.fish' --glob '*.sh' --glob '*.bash' \

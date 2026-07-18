@@ -45,7 +45,7 @@ To use this repo on a new machine:
 5. **Post-Installation**:
    - Install optional packages through the capability selections made during initialization.
    - Enable `onepassword` or Age-encrypted files later by updating Chezmoi's configuration and applying again.
-   - Add optional tools such as `difft` through a machine-local Chezmoi config after installing them.
+   - Workstations enable the configured `delta`/`difft` experience; server roles use built-in Git and Jujutsu diffs.
 
 ### Validate a configuration change
 

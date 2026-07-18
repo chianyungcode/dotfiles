@@ -4,7 +4,10 @@
 
 [ui]
   default-command = "log"
+{{ if eq .machine.role "workstation" }}
   diff-formatter = ["difft", "--color=always", "$left", "$right"]
+{{ end }}
+  # diff-editor = "diffedit3"
   diff-editor = "gitpatch"
   # Used by jj resolve to resolve file conflicts.
   merge-editor = "diffconflicts"
@@ -165,4 +168,7 @@
 auto-update-stale = true
 
 [lazyjj]
+{{ if eq .machine.role "workstation" }}
+ diff-tool = "difft"
+{{ end }}
  layout-percent = 30
