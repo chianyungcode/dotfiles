@@ -44,17 +44,18 @@
 
   ;; ==== LAYERS ====
   ;; You may also use `layer-toggle` in place of `layer-while-held`; they behave exactly the same. The `layer-toggle` name is slightly shorter but is a bit inaccurate with regards to its meaning.
-  lwh_nums (layer-while-held nums)
+  lwh_herdr (layer-while-held herdr)
   lwh_symbols (layer-while-held symbols)
   lwh_tmux (layer-while-held tmux)
   lwh_nav  (layer-while-held nav)
   lwh_sublayers (layer-while-held sublayers)
 
+
   spc_ly3 (tap-hold $tap-time $hold-time spc @lwh_symbols)
   thl-cap-nav (tap-hold $tap-time $hold-time esc @lwh_nav)
   ;; thl-ret-sublayers (tap-hold $tap-time $hold-time ret @lwh_sublayers)
   thl-space-sublayers (tap-hold $tap-time $hold-time spc @lwh_sublayers)
-  thl-ret-nums (tap-hold $tap-time $hold-time ret @lwh_nums)
+  thl-ret-herdr (tap-hold $tap-time $hold-time ret @lwh_herdr)
   thl-sls-tmux (tap-hold $tap-time $hold-time / @lwh_tmux)
   thl-z-tmux (tap-hold $tap-time $hold-time z @lwh_tmux)
 
@@ -68,8 +69,8 @@
   {{- end }}
 
   ;; ==== MODIFIER KEYS + LETTER KEYS ====
-  a (tap-hold $tap-time $hold-time a @lwh_nums)
-  ; (tap-hold $tap-time $hold-time ; @lwh_nums)
+  a (tap-hold $tap-time $hold-time a @lwh_sublayers)
+  ; (tap-hold $tap-time $hold-time ; @lwh_sublayers)
 
   s (tap-hold $tap-time $hold-time s lctl)
   d (tap-hold $tap-time $hold-time d lalt)
@@ -137,7 +138,7 @@
        🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   @lmet_tab    q    w    e    r    t    y    u    i    o    p    [    ]    \
-  @thl-cap-nav  @a    @s    @d    @f    g    h    @j    @k    @l    @;    '    @thl-ret-nums
+  @thl-cap-nav  @a    @s    @d    @f    g    h    @j    @k    @l    @;    '    @thl-ret-herdr
   lsft @thl-z-tmux    x    c    @thl-v-zlj    b    n    @thl-m-zlj    ,    .   @thl-sls-tmux    rsft ;; Tombol x sekarang punya fungsi ganda
   lctl lmet lalt           @spc_ly3            ralt rmet rctl
 )
@@ -151,12 +152,35 @@
   lctl lmet lalt           @thl-space-sublayers            ralt @hyperkey rctl
 )
 
-(deflayer nums
+;; == HERDR ==
+(defalias 
+  herdr-workspace-1 (macro C-a C-1)
+  herdr-workspace-2 (macro C-a C-2)
+  herdr-workspace-3 (macro C-a C-3)
+  herdr-workspace-4 (macro C-a C-4)
+  herdr-workspace-5 (macro C-a C-5)
+  herdr-workspace-6 (macro C-a C-6)
+  herdr-workspace-7 (macro C-a C-7)
+  herdr-workspace-8 (macro C-a C-8)
+  herdr-workspace-9 (macro C-a C-9)
+
+  herdr-agent-1 (macro C-a A-1)
+  herdr-agent-2 (macro C-a A-2)
+  herdr-agent-3 (macro C-a A-3)
+  herdr-agent-4 (macro C-a A-4)
+  herdr-agent-5 (macro C-a A-5)
+  herdr-agent-6 (macro C-a A-6)
+  herdr-agent-7 (macro C-a A-7)
+  herdr-agent-8 (macro C-a A-8)
+  herdr-agent-9 (macro C-a A-9)
+)
+
+(deflayer herdr
        🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
   grv  XX    XX    XX    XX    XX    XX    XX    XX    XX    XX    -    =    bspc
-  tab  f1   f2   f3   f4   f5    f6    f7    f8    f9    f10    @tab-left   @tab-right    \
-  caps 1    2    3    4    5    6    7    8    9    ;    '    ret
-  lsft XX  XX  XX  XX  XX    XX    0    ,    .    /    rsft
+  tab  @herdr-workspace-1   @herdr-workspace-2   @herdr-workspace-3   @herdr-workspace-4   @herdr-workspace-5   @herdr-workspace-6   @herdr-workspace-7   @herdr-workspace-8   @herdr-workspace-9   f10    @tab-left   @tab-right    \
+  caps @herdr-agent-1  @herdr-agent-2  @herdr-agent-3  @herdr-agent-4  @herdr-agent-5  @herdr-agent-6  @herdr-agent-7  @herdr-agent-8  @herdr-agent-9  ;    '    ret
+  lsft XX  XX  XX  XX  XX    XX    XX    XX    XX   XX    rsft
   lctl lmet lalt           spc            ralt rmet rctl
 )
 
@@ -179,8 +203,8 @@
 
 (deflayer sublayers
        🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
-  grv  o   XX   XX    XX   XX   XX   XX   XX   XX   XX   XX   XX   bspc
-  tab  XX   XX   XX   @ly-rayc   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  grv  XX   XX   XX    XX   XX   XX   XX   XX   XX   XX   XX   XX   bspc
+  tab  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   caps 1   2   3   4   5   6   7   8   9   0   XX   XX
   lsft XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
   lctl lmet lalt           spc            ralt rmet rctl
