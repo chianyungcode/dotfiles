@@ -64,8 +64,5 @@ vendor/
 issue-cheatsheets/
 issue-steps/
 
-# Personal / AI-generated docs (not for the repo)
-docs/chianyung/
-
-# jujutsu workspaces
-/workspaces/
+# ignores only .codemark directory in the repository root
+/.codemark/
