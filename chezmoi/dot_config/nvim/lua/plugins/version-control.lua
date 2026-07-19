@@ -53,6 +53,13 @@ return {
     },
   },
 
+  -- https://github.com/rafikdraoui/jj-diffconflicts
+  -- DESC: Resolve Jujutsu conflicts with a two-way Neovim diff.
+  {
+    "rafikdraoui/jj-diffconflicts",
+    cmd = "JJDiffConflicts",
+  },
+
   { "yannvanhalewyn/jujutsu.nvim", enabled = false },
   -- https://github.com/NicolasGB/jj.nvim
   -- DESC: jj vcs integration with neovim
