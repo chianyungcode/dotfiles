@@ -4,10 +4,11 @@
 
 [ui]
   default-command = "log"
-{{ if eq .machine.role "workstation" }}
+  editor = "nvim"
+{{- if eq .machine.role "workstation" }}
   diff-formatter = ["difft", "--color=always", "$left", "$right"]
 {{ end }}
-  # diff-editor = "diffedit3"
+  # Used by jj split, jj diffedit, jj squash -i, and jj restore -i.
   diff-editor = "gitpatch"
   # Used by jj resolve to resolve file conflicts.
   merge-editor = "diffconflicts"
@@ -165,10 +166,10 @@
   ]
 
 [snapshot]
-auto-update-stale = true
+  auto-update-stale = true
 
 [lazyjj]
-{{ if eq .machine.role "workstation" }}
- diff-tool = "difft"
-{{ end }}
- layout-percent = 30
+{{- if eq .machine.role "workstation" }}
+  diff-tool = "difft"
+{{- end }}
+  layout-percent = 30
