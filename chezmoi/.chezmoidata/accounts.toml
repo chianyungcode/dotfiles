@@ -1,0 +1,13 @@
+[accounts.personal]
+git_name = "chianyungcode"
+git_email = "cnytechcode@gmail.com"
+github_username = "chianyungcode"
+signing_key = "signing_key_cny"
+github_token = "cny_gh_pat"
+
+[accounts.secondary]
+git_name = "seraphynee"
+git_email = "seraphyne31@gmail.com"
+github_username = "seraphynee"
+signing_key = "signing_key_spy"
+github_token = "spy_gh_pat"

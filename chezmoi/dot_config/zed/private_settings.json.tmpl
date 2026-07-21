@@ -122,7 +122,7 @@
   "lsp": {
     "wakatime": {
       "initialization_options": {
-        "api-key": "{{ if .use_secrets }}{{ onepasswordRead .secrets.productivity.wakatime_apikey }}{{ end }}"
+        "api-key": "{{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.productivity.wakatime_apikey }}{{ end }}"
       }
     },
     "nil": {

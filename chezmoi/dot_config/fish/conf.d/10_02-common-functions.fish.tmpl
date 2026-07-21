@@ -259,7 +259,7 @@ function escape
 end
 
 function htmldecode
-    set sedLocation "{{ .xdgDataDir }}/sed/htmlDecode.sed"
+    set sedLocation "{{ .xdg.data_home }}/sed/htmlDecode.sed"
     if test -f $sedLocation
         echo $argv[1] | sed -f $sedLocation
     else
@@ -268,7 +268,7 @@ function htmldecode
 end
 
 function htmlencode
-    set sedLocation "{{ .xdgDataDir }}/sed/htmlEncode.sed"
+    set sedLocation "{{ .xdg.data_home }}/sed/htmlEncode.sed"
     if test -f $sedLocation
         echo $argv[1] | sed -f $sedLocation
     else

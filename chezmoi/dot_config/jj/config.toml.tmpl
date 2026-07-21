@@ -1,13 +1,13 @@
 [user]
-  name = "{{ .git_user}}"
-  email = "{{ .git_email }}"
+  name = "{{ .identity.git_name }}"
+  email = "{{ .identity.git_email }}"
 
 [ui]
   default-command = "log"
-  editor = "nvim"
+{{ if eq .machine.role "workstation" }}
   diff-formatter = ["difft", "--color=always", "$left", "$right"]
-
-  # Used by jj split, jj diffedit, jj squash -i, and jj restore -i.
+{{ end }}
+  # diff-editor = "diffedit3"
   diff-editor = "gitpatch"
   # Used by jj resolve to resolve file conflicts.
   merge-editor = "diffconflicts"
@@ -43,14 +43,12 @@
 [signing]
   behavior = "own"
   backend = "ssh"
-  {{- if and .use_secrets (eq .git_user "chianyungcode") }}
-  key = "{{ onepasswordRead .secrets.git.signing_key_cny }}"
-  {{- else if and .use_secrets (eq .git_user "seraphynee") }}
-  key = "{{ onepasswordRead .secrets.git.signing_key_spy }}"
+  {{- if and (eq .secrets.provider "onepassword") .identity.signing_key }}
+  key = "{{ onepasswordRead (index .secrets.git .identity.signing_key) }}"
   {{- end }}
 
 [templates]
-  git_push_bookmark = '"{{ .git_user }}/push-" ++ change_id.short()'
+  git_push_bookmark = '"{{ .identity.git_name }}/push-" ++ change_id.short()'
 
 [template-aliases]
   # 'format_short_id(id)' = 'id.shortest()'
@@ -170,5 +168,7 @@
 auto-update-stale = true
 
 [lazyjj]
+{{ if eq .machine.role "workstation" }}
  diff-tool = "difft"
+{{ end }}
  layout-percent = 30

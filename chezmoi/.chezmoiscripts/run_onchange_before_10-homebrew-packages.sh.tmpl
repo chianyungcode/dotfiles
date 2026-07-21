@@ -1,4 +1,5 @@
 {{- if eq .chezmoi.os "darwin" -}}
+{{- $is_ci := ne (env "CI") "" -}}
 #!/usr/bin/env bash
 
 {{ template "shared_script_utils.bash" . }}
@@ -12,20 +13,26 @@ formulae=(
     "{{ $package }}"
     {{ end }}
 
-    {{ if .dev_computer }}
-    {{ range $package := .packages.homebrew.dev_computer.formulae }}
+    {{ if .features.graphical }}
+    {{ range $package := .packages.homebrew.graphical.formulae }}
     "{{ $package }}"
     {{ end }}
     {{ end }}
 
-    {{ if .homelab_member }}
-    {{ range $package := .packages.homebrew.homelab_member.formulae }}
+    {{ if .features.development }}
+    {{ range $package := .packages.homebrew.development.formulae }}
     "{{ $package }}"
     {{ end }}
     {{ end }}
 
-    {{ if .personal_computer }}
-    {{ range $package := .packages.homebrew.personal_computer.formulae }}
+    {{ if .features.homelab }}
+    {{ range $package := .packages.homebrew.homelab.formulae }}
+    "{{ $package }}"
+    {{ end }}
+    {{ end }}
+
+    {{ if .features.personal }}
+    {{ range $package := .packages.homebrew.personal.formulae }}
     "{{ $package }}"
     {{ end }}
     {{ end }}
@@ -36,20 +43,26 @@ casks=(
     "{{ $package }}"
     {{ end }}
 
-    {{ if .dev_computer }}
-    {{ range $package := .packages.homebrew.dev_computer.casks }}
+    {{ if .features.graphical }}
+    {{ range $package := .packages.homebrew.graphical.casks }}
     "{{ $package }}"
     {{ end }}
     {{ end }}
 
-    {{ if .homelab_member }}
-    {{ range $package := .packages.homebrew.homelab_member.casks }}
+    {{ if and .features.development .features.graphical }}
+    {{ range $package := .packages.homebrew.development.casks }}
     "{{ $package }}"
     {{ end }}
     {{ end }}
 
-    {{ if .personal_computer }}
-    {{ range $package := .packages.homebrew.personal_computer.casks }}
+    {{ if .features.homelab }}
+    {{ range $package := .packages.homebrew.homelab.casks }}
+    "{{ $package }}"
+    {{ end }}
+    {{ end }}
+
+    {{ if and .features.personal .features.graphical }}
+    {{ range $package := .packages.homebrew.personal.casks }}
     "{{ $package }}"
     {{ end }}
     {{ end }}
@@ -88,7 +101,7 @@ for formula in ${formulae[@]}; do
     fi
 done
 
-{{ if not .is_ci_workflow }}
+{{ if not $is_ci }}
 for cask in ${casks[@]}; do
     if ! _inArray_ -i "${cask}" "${currently_installed_casks[@]}"; then
         # Check if app already exists in /Applications to prevent conflicts

@@ -5,19 +5,17 @@
 # USER IDENTITY
 # =============================================================================
 [user]
-    name = {{ .git_user}}
-    email = {{ .git_email }}
-    {{- if and .use_secrets (eq .git_user "chianyungcode") }}
-    signingkey = {{ onepasswordRead .secrets.git.signing_key_cny }}
-    {{- else if and .use_secrets (eq .git_user "seraphynee") }}
-    signingkey = {{ onepasswordRead .secrets.git.signing_key_spy }}
+    name = {{ .identity.git_name }}
+    email = {{ .identity.git_email }}
+    {{- if and (eq .secrets.provider "onepassword") .identity.signing_key }}
+    signingkey = {{ onepasswordRead (index .secrets.git .identity.signing_key) }}
     {{- end }}
 
 # =============================================================================
 # COMMIT & SIGNING
 # =============================================================================
 
-{{- if .use_secrets }}
+{{- if eq .secrets.provider "onepassword" }}
 [gpg]
     format = ssh
 
@@ -36,8 +34,10 @@
 # CORE SETTINGS
 # =============================================================================
 [core]
-    pager = delta
     excludesFile = ~/.config/git/ignore
+    {{ if eq .machine.role "workstation" }}
+    pager = delta
+    {{ end }}
     # sshCommand = ssh -i {{ .directories.ssh_keys_dir | replaceAllRegex "\\${HOME}" "~" }}/git
 
     # Treat spaces before tabs and all kinds of trailing whitespace as an error
@@ -70,7 +70,7 @@
     {{- end }}
 
 [credential "https://github.com"]
-    username = {{ .github_user }}
+    username = {{ .identity.github_username }}
 
 [credential "https://dev.azure.com"]
     useHttpPath = true
@@ -83,6 +83,7 @@
     pf = !git push --force-with-lease "$@"
     cam = commit --amend --no-edit
 
+{{ if eq .machine.role "workstation" }}
     # `git log` with patches shown with difftastic.
     dl = -c diff.external=difft log -p --ext-diff
 
@@ -91,6 +92,7 @@
 
     # `git diff` with difftastic.
     dft = -c diff.external=difft diff
+{{ end }}
 
     # Conventional commit aliases
     build = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"build${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
@@ -120,23 +122,17 @@
 # =============================================================================
 # DIFF & MERGE TOOLS
 # =============================================================================
+{{ if eq .machine.role "workstation" }}
 [delta]
-    navigate = true    # use n and N to move between diff sections
+    navigate = true
     side-by-side = true
-    syntax-theme = "DarkNeon"  # Theme
-    plus-style = "syntax #445345"      # Warna untuk baris yang ditambahkan
-    minus-style = "syntax #4F221F"     # Warna untuk baris yang dihapus
+    syntax-theme = "DarkNeon"
+    plus-style = "syntax #445345"
+    minus-style = "syntax #4F221F"
     line-numbers = true
-
-    # delta detects terminal colors automatically; set one of these to disable auto-detection
-    # dark = true
-    # light = true
 
 [interactive]
     diffFilter = delta --color-only
-
-[merge]
-    conflictstyle = zdiff3
 
 [diff]
     colorMoved = default
@@ -144,12 +140,14 @@
     tool = difftastic
 
 [difftool]
-    # Run the difftool immediately, don't ask 'are you sure' each time.
     prompt = false
 
 [difftool "difftastic"]
-    # See `man git-difftool` for a description of MERGED, LOCAL and REMOTE.
     cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
+{{ end }}
+
+[merge]
+    conflictstyle = zdiff3
 
 [apply]
     whitespace = fix
@@ -201,9 +199,9 @@
 [pager]
     status = true
     show-branch = true
-    # Use a pager if the difftool output is larger than one screenful,
-    # consistent with the behaviour of `git diff`.
+    {{ if eq .machine.role "workstation" }}
     difftool = true
+    {{ end }}
 
 # =============================================================================
 # LFS (Large File Storage)

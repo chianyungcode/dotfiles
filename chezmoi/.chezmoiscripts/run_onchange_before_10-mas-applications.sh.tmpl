@@ -1,28 +1,31 @@
-{{- if and (eq .chezmoi.os "darwin") (not .is_ci_workflow) -}}
+{{- $is_ci := ne (env "CI") "" -}}
+{{- if and (eq .chezmoi.os "darwin") (not $is_ci) -}}
 #!/usr/bin/env bash
 
 {{ template "shared_script_utils.bash" . }}
 
 apps=(
+    {{ if .features.graphical }}
     {{ range $package := .packages.mas.common.apps }}
     "{{ $package }}"
     {{ end }}
 
-    {{ if .dev_computer }}
-    {{ range $package := .packages.mas.dev_computer.apps }}
+    {{ if and .features.development .features.graphical }}
+    {{ range $package := .packages.mas.development.apps }}
     "{{ $package }}"
     {{ end }}
     {{ end }}
 
-    {{ if .homelab_member }}
-    {{ range $package := .packages.mas.homelab_member.apps }}
+    {{ if and .features.homelab .features.graphical }}
+    {{ range $package := .packages.mas.homelab.apps }}
     "{{ $package }}"
     {{ end }}
     {{ end }}
 
-    {{ if .personal_computer }}
-    {{ range $package := .packages.mas.personal_computer.apps }}
+    {{ if and .features.personal .features.graphical }}
+    {{ range $package := .packages.mas.personal.apps }}
     "{{ $package }}"
+    {{ end }}
     {{ end }}
     {{ end }}
 )

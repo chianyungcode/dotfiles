@@ -87,18 +87,18 @@ packages=(
     {{ range $package := .packages.pacman.common.packages }}
     "{{ $package }}"
     {{ end }}
-    {{ if .dev_computer }}
-    {{ range $package := .packages.pacman.dev_computer.packages }}
+    {{ if .features.development }}
+    {{ range $package := .packages.pacman.development.packages }}
     "{{ $package }}"
     {{ end }}
     {{ end }}
-    {{ if .homelab_member }}
-    {{ range $package := .packages.pacman.homelab_member.packages }}
+    {{ if .features.homelab }}
+    {{ range $package := .packages.pacman.homelab.packages }}
     "{{ $package }}"
     {{ end }}
     {{ end }}
-    {{ if .personal_computer }}
-    {{ range $package := .packages.pacman.personal_computer.packages }}
+    {{ if .features.personal }}
+    {{ range $package := .packages.pacman.personal.packages }}
     "{{ $package }}"
     {{ end }}
     {{ end }}

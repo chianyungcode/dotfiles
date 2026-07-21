@@ -1,4 +1,4 @@
-{{- if .use_secrets}}
+{{- if eq .secrets.provider "onepassword"}}
 model = "gpt-5.6-sol"
 model_reasoning_effort = "xhigh"
 
@@ -17,7 +17,7 @@ model_reasoning_effort = "xhigh"
 
 [mcp_servers.context7]
   url = "https://mcp.context7.com/mcp"
-  http_headers = { "CONTEXT7_API_KEY" = "{{ if .use_secrets }}{{ onepasswordRead .secrets.ai_tools.context7_apikey }}{{ end }}" }
+  http_headers = { "CONTEXT7_API_KEY" = "{{ onepasswordRead .secrets.ai_tools.context7_apikey }}" }
 
 [mcp_servers.deepwiki]
   url = "https://mcp.deepwiki.com/mcp"
@@ -31,7 +31,7 @@ model_reasoning_effort = "xhigh"
   url = "https://mcp.linear.app/mcp"
 
 [mcp_servers.tavily]
-  url = "https://mcp.tavily.com/mcp/?tavilyApiKey={{ if .use_secrets }}{{ onepasswordRead .secrets.research.tavily_apikey }}{{ end }}"
+  url = "https://mcp.tavily.com/mcp/?tavilyApiKey={{ onepasswordRead .secrets.research.tavily_apikey }}"
   enabled = false
 
 [mcp_servers.ticktick]

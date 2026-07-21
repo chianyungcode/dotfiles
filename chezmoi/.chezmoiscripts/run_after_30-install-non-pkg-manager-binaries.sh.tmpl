@@ -1,11 +1,12 @@
-{{- if not .is_ci_workflow -}}
+{{- $is_ci := ne (env "CI") "" -}}
+{{- if not $is_ci -}}
 #!/usr/bin/env bash
 {{ template "shared_script_utils.bash" . }}
 {{ $current_os := .chezmoi.os }}
 {{ $current_arch := .chezmoi.arch }}
-{{ $is_personal_computer := .personal_computer }}
-{{ $is_dev_computer := .dev_computer }}
-{{ $is_homelab_member := .homelab_member }}
+{{ $is_personal := .features.personal }}
+{{ $is_development := .features.development }}
+{{ $is_homelab := .features.homelab }}
 
 header "Non-package manager binary installation/update"
 echo ""
@@ -20,22 +21,22 @@ echo ""
 
 {{ if $binary.install_filter }}
 
-{{ if eq $binary.install_filter "homelab_member" }}
-{{ if not $is_homelab_member }}
+{{ if eq $binary.install_filter "homelab" }}
+{{ if not $is_homelab }}
 debug "Skipping binary installation of {{ $binary.name }} for non homelab members"
 {{ continue }}
 {{ end }}
 {{ end }}
 
-{{ if eq $binary.install_filter "dev_computer" }}
-{{ if not $is_dev_computer }}
+{{ if eq $binary.install_filter "development" }}
+{{ if not $is_development }}
 debug "Skipping binary installation of {{ $binary.name }} for non dev computers"
 {{ continue }}
 {{ end }}
 {{ end }}
 
-{{ if eq $binary.install_filter "personal_computer" }}
-{{ if not $is_personal_computer }}
+{{ if eq $binary.install_filter "personal" }}
+{{ if not $is_personal }}
 debug "Skipping binary installation of {{ $binary.name }} for non personal computers"
 {{ continue }}
 {{ end }}
@@ -64,5 +65,4 @@ fi
 {{ end }}
 _safeExit_
 {{- end }}
-
 
