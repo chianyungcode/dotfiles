@@ -3,6 +3,8 @@
 
 [diff_name_apps]
   "1password"             = "1Password"
+  "balenaetcher"          = "balenaEtcher"
+  "brave-browser"         = "Brave Browser"
   "folo"                  = "folo"
   "google-chrome"         = "Google Chrome"
   "keyboard-cowboy"       = "Keyboard Cowboy"

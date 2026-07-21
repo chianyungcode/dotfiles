@@ -41,7 +41,7 @@
 
         # System monitor TUI
         "bottom",
-        "vladkens/tap",
+        "macmon", # Mac monitor
         # "btop",
         # "htop",
 
@@ -101,36 +101,31 @@
       ]
       taps = [
         # Development Tools
-        "arl/arl",                             # Taps for gitmux
-        "chase/tap",
-        "dopplerhq/cli",
-        "dotenvx/brew",
-        "felixkratz/formulae",
-        "grishka/grishka",
-        "homebrew/bundle",
-        "homebrew/services",
-        "jesseduffield/lazydocker/lazydocker",
-        "jesseduffield/lazygit",
-        "jstkdng/programs",
-        "knqyf263/pet",
-        "koekeishiya/formulae",
-        "koyeb/tap",
-        "nikitabobko/tap",
-        "olets/tap",
-
-        # Embedded / Hardware
-        "osx-cross/arm",
-        "osx-cross/avr",
-        "pablopunk/brew",
-        "pkgxdev/made",
-        "qmk/qmk",
-        "skiptools/skip",
-
-        # Network / Performance
-        "teamookla/speedtest",
-
-        # Git Workflow
-        "withgraphite/tap",
+        # "arl/arl",                             # Taps for gitmux
+        # "dopplerhq/cli",
+        # "felixkratz/formulae",
+        # "grishka/grishka",
+        # "homebrew/bundle",
+        # "homebrew/services",
+        # "jstkdng/programs",
+        # "koekeishiya/formulae",
+        # "koyeb/tap",
+        # "nikitabobko/tap",
+        # "olets/tap",
+        #
+        # # Embedded / Hardware
+        # "osx-cross/arm",
+        # "osx-cross/avr",
+        # "pablopunk/brew",
+        # "pkgxdev/made",
+        # "qmk/qmk",
+        # "skiptools/skip",
+        #
+        # # Network / Performance
+        # "teamookla/speedtest",
+        #
+        # # Git Workflow
+        # "withgraphite/tap",
 
         # Optional
         # "stripe/stripe-cli",
@@ -154,7 +149,7 @@
     [packages.homebrew.development]
       casks = [
         # AI Agents Apps
-        "claude",
+        "claude-code",
         "codex-app",
         "opencode-desktop",
 
@@ -165,43 +160,44 @@
         "tailscale",
         "termius",
 
+        # Docker replacement
+        "orbstack",
+
         # Optional
         # "amazon-q",
         # "fork", # "sourcetree", alternative to fork
       ]
       formulae = [
         # AI Agentss CLI's
-        "claude-code",
         "codex",
         "opencode",
 
         # CLI Utilities
-        "codespell",           # Fix common misspellings in source code and text files
-        "fastfetch",           # Better system info
-        "ffmpegthumbnailer",   # Video thumbnail for yazi cli
-        "fx",                  # Better grep
-        "glow",                # Render markdown in CLI
-        "hyperfine",           # A command-line benchmarking tool
-        "pastel",              # converter color in terminal
-        "pngpaste",            # Paste PNG into files on MacOS, much like pbpaste does for text.
-        "poppler",             # PDF rendering library
-        "pueue",               # Task runner and scheduler
-        "sk",                  # alternative for fzf fuzzy-finder
-        "thefuck",             # Fix typos
-        "vladkens/tap/macmon", # Mac monitor
+        "codespell",         # Fix common misspellings in source code and text files
+        "fastfetch",         # Better system info
+        "ffmpegthumbnailer", # Video thumbnail for yazi cli
+        "fx",                # Better grep
+        "glow",              # Render markdown in CLI
+        "hyperfine",         # A command-line benchmarking tool
+        "pastel",            # converter color in terminal
+        "pngpaste",          # Paste PNG into files on MacOS, much like pbpaste does for text.
+        "poppler",           # PDF rendering library
+        "pueue",             # Task runner and scheduler
+        "sk",                # alternative for fzf fuzzy-finder
+        "thefuck",           # Fix typos
 
         # Git & Version Control
-        "act",                           # runs GitHub Actions locally
-        "difftastic",                    # diff tools
-        "gh",                            # Github CLI
-        "glab",                          # GitLab CLI
-        "git-extras",                    # Add extra command to default git
-        "gitmux",                        # Git status bar in tmux
-        "hunk",                          # Diff tools TUI
-        "jj",                            # jujutsu version controll
-        "jjui",                          # jujutsu tui
-        "jesseduffield/lazygit/lazygit",
-        "knqyf263/pet/pet",              # CLI snippet manager
+        "act",        # runs GitHub Actions locally
+        "difftastic", # diff tools
+        "gh",         # Github CLI
+        "glab",       # GitLab CLI
+        "git-extras", # Add extra command to default git
+        "gitmux",     # Git status bar in tmux
+        "hunk",       # Diff tools TUI
+        "jj",         # jujutsu version controll
+        "jjui",       # jujutsu tui
+        "lazygit",
+        "pet",        # CLI snippet manager
 
         # Shell & Terminal
         "direnv",  # Environment manager for shell based current working directory
@@ -212,11 +208,10 @@
         "tmuxp",   # Tmux session manager
 
         # Cloud & Infra
-        "orbstack",                            # Docker replacement
         "awscli",
-        "dotenvx/brew/dotenvx",                # Env manager
-        "jesseduffield/lazydocker/lazydocker", # Docker manager
-        "koyeb/tap/koyeb",                     # Koyeb CLI
+        "dotenvx/brew/dotenvx", # Env manager
+        "lazydocker",           # Docker manager
+        # "koyeb/tap/koyeb",                     # Koyeb CLI
 
         # API & Data
         "httpie",      # HTTP client
@@ -286,9 +281,9 @@
 
         # Productivity & Knowledge
         # "anki",
-        "capacities",    # Note taking
-        "cotypist",      # local AI auto completion
-        "folo",          # Follow the organized information
+        "capacities", # Note taking
+        # "cotypist",   # local AI auto completion
+        # "folo",          # Follow the organized information
         "linear-linear", # Task management for product driven
         "notion",
         "obsidian",
@@ -297,20 +292,20 @@
 
         # Communication
         # "discord",
-        "equibop",       # Discord alternative
-        "readdle-spark", # Spark mail
+        "equibop", # Discord alternative
+        # "readdle-spark", # Spark mail
 
         # Development & AI
         "ollama",       # Run local LLM
         "superwhisper",
 
         # Text Editors, IDEs & Developer Tools
-        "cursor",       # IDE : Write, edit, and chat about your code with AI
-        "balenaetcher",
-        "datagrip",     # Databases and SQL IDE
-        "dbngin",       # Lightweight DB GUI, Database version management tool
-        "utm",          # Virtual Machine Emulator
-        "zed",          # IDE
+        "cursor", # IDE : Write, edit, and chat about your code with AI
+        # "balenaetcher",
+        "datagrip", # Databases and SQL IDE
+        "dbngin",   # Lightweight DB GUI, Database version management tool
+        "utm",      # Virtual Machine Emulator
+        "zed",      # IDE
 
         # Window Management
         # "acsandmann/tap/rift",
@@ -331,7 +326,6 @@
         "homerow", # Keyboard shortcuts for every button on your screen
         # "keyboard-cowboy",    # Keyboard shortcut utility
         "kindavim",
-        "leader-key",
         "mouseless",
         "karabiner-elements",
 
@@ -343,14 +337,14 @@
         # "transnomino", # Batch rename utility
 
         # Utilities
-        "apparency",    # Showing detail app in finder
-        "blip",         # Send any size file between devices
-        "cloudmounter", # Mounts cloud storages as local discs
+        "apparency", # Showing detail app in finder
+        "blip",      # Send any size file between devices
+        # "cloudmounter", # Mounts cloud storages as local discs
         # "dockdoor",
         # "hazeover",        # dim your inactive window
         # "localsend",             # Send file over the Wi-Fi network
         # "lookaway", # App for maintaining your eye rest
-        "lulu", # Firewall
+        # "lulu", # Firewall
         # "mediamate",       # UI replacement for volume, brightness and now playing controls
         "lunar",          # Configure your display management
         "ogdesign-eagle", # Organise all your reference images in one place
@@ -367,12 +361,12 @@
       ]
       formulae = [
         # CLI Utilities
-        "asciinema",                # record your terminal
-        "eget",                     # Easily install prebuilt binaries from GitHub.
-        "gromgit/brewtils/taproom", # TUI for search homebrew package
-        "mole",                     # https://github.com/tw93/Mole
-        "presenterm",               # Presentation in CLI
-        "superfile",                # file manager in terminal
+        "asciinema",  # record your terminal
+        "eget",       # Easily install prebuilt binaries from GitHub.
+        "taproom",    # TUI for search homebrew package
+        "mole",       # https://github.com/tw93/Mole
+        "presenterm", # Presentation in CLI
+        "superfile",  # file manager in terminal
 
         "tuxedo", # task management TUI
         # Window Management
@@ -427,7 +421,7 @@
         #"6746757189", # Corner Time
 
         # Productivity
-        "6739802604", # Folo
+        # "6739802604", # Folo
         "1609960918", # Jomo
         "966085870",  # Ticktick
         # "1666327168", # Spaced
