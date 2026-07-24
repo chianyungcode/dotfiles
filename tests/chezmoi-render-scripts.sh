@@ -247,7 +247,7 @@ if [[ "$1" == "signin" && "${2:-}" == "--raw" ]]; then
     printf '%s\n' 'test-session'
 elif [[ "$1" == "item" && "${2:-}" == "get" ]] ||
     [[ "$1" == "--session" && "${3:-}" == "item" && "${4:-}" == "get" ]]; then
-    printf '%s\n' '{"fields":[{"label":"private key","value":"PRIVATE-KEY-FIXTURE\\n"},{"label":"public key","value":"ssh-ed25519 PUBLIC-FIXTURE\\n"}]}'
+    printf '%s\n' '{"fields":[{"label":"private key","value":"PRIVATE-KEY-FIXTURE\n"},{"label":"public key","value":"ssh-ed25519 PUBLIC-FIXTURE\n"}]}'
 else
     exit 64
 fi

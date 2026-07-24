@@ -31,11 +31,11 @@ install_nanorc() {
 ensure_debian_symlinks() {
     mkdir -p "$HOME/.local/bin"
     if command -v batcat >/dev/null 2>&1 &&
-        [[ ! -e "$HOME/.local/bin/bat" ]]; then
+        [[ ! -e "$HOME/.local/bin/bat" && ! -L "$HOME/.local/bin/bat" ]]; then
         ln -s "$(command -v batcat)" "$HOME/.local/bin/bat"
     fi
     if command -v fdfind >/dev/null 2>&1 &&
-        [[ ! -e "$HOME/.local/bin/fd" ]]; then
+        [[ ! -e "$HOME/.local/bin/fd" && ! -L "$HOME/.local/bin/fd" ]]; then
         ln -s "$(command -v fdfind)" "$HOME/.local/bin/fd"
     fi
 }

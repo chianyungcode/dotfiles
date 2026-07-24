@@ -14,10 +14,14 @@ decode_base64() {
 mkdir -p "{{ .directories.ssh_keys_dir }}"
 
 {{ range .remote_servers -}}
-{{ if not .generate_public_key_only -}}
 private_key="{{ $.directories.ssh_keys_dir }}/{{ .name }}"
 public_key="$private_key.pub"
 
+if [[ -L "$private_key" || -L "$public_key" ]]; then
+    die "refusing to write SSH key through symlink for {{ .name }}"
+fi
+
+{{ if not .generate_public_key_only -}}
 if [[ ! -f "$private_key" ]]; then
     (
         umask 077
@@ -26,10 +30,6 @@ if [[ ! -f "$private_key" ]]; then
     )
     chmod 0600 "$private_key"
 fi
-{{ end -}}
-{{ if .generate_public_key_only -}}
-private_key="{{ $.directories.ssh_keys_dir }}/{{ .name }}"
-public_key="$private_key.pub"
 {{ end -}}
 
 if [[ ! -f "$public_key" ]]; then

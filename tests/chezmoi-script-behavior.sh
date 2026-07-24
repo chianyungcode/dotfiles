@@ -23,6 +23,22 @@ assert_log_contains() {
     }
 }
 
+assert_file_mode() {
+    local file=$1
+    local expected_mode=$2
+    local actual_mode
+
+    if actual_mode=$(stat -f '%Lp' "$file" 2>/dev/null); then
+        :
+    else
+        actual_mode=$(stat -c '%a' "$file")
+    fi
+    [[ "$actual_mode" == "$expected_mode" ]] || {
+        printf 'unexpected mode for %s: %s\n' "$file" "$actual_mode" >&2
+        exit 1
+    }
+}
+
 core_fixture="$tmp_dir/core-fixture.sh"
 {
     printf '%s\n' '#!/usr/bin/env bash'
@@ -736,6 +752,25 @@ PATH="$post_install_fake_bin:/usr/bin:/bin" \
 [[ -L "$post_install_home/.local/bin/bat" ]]
 [[ -L "$post_install_home/.local/bin/fd" ]]
 
+post_install_dangling_home="$tmp_dir/post-install-dangling-home"
+mkdir -p "$post_install_dangling_home/.config/zsh/.antidote" \
+    "$post_install_dangling_home/.local/share/nano" \
+    "$post_install_dangling_home/.local/bin"
+printf '%s\n' 'nanorc fixture' \
+    >"$post_install_dangling_home/.local/share/nano/conf.nanorc"
+ln -s "$tmp_dir/missing-bat" "$post_install_dangling_home/.local/bin/bat"
+ln -s "$tmp_dir/missing-fd" "$post_install_dangling_home/.local/bin/fd"
+COMMAND_LOG="$tmp_dir/post-install-dangling-commands.log"
+: >"$COMMAND_LOG"
+PATH="$post_install_fake_bin:/usr/bin:/bin" \
+    HOME="$post_install_dangling_home" \
+    ZDOTDIR="$post_install_dangling_home/.config/zsh" \
+    COMMAND_LOG="$COMMAND_LOG" \
+    /bin/bash "$post_install_fixture"
+[[ -L "$post_install_dangling_home/.local/bin/bat" ]]
+[[ -L "$post_install_dangling_home/.local/bin/fd" ]]
+[[ ! -s "$COMMAND_LOG" ]]
+
 maintenance_source="$source_dir/.chezmoiscripts/run_once_after_90-monthly-maintenance.sh.tmpl"
 maintenance_fixture="$tmp_dir/monthly-maintenance.sh"
 chezmoi -S "$source_dir" execute-template \
@@ -758,5 +793,83 @@ PATH="$maintenance_fake_bin:/usr/bin:/bin" \
     /bin/bash "$maintenance_fixture"
 [[ $(wc -l <"$COMMAND_LOG") -eq 1 ]]
 assert_log_contains 'uv tool upgrade --all'
+
+security_source="$source_dir/.chezmoiscripts/run_onchange_after_60-security-material.sh.tmpl"
+security_keys_dir="$tmp_dir/security-keys"
+security_data="$tmp_dir/security.json"
+jq \
+    --arg ssh_keys_dir "$security_keys_dir" \
+    '.secrets.provider = "onepassword"
+     | .directories.ssh_keys_dir = $ssh_keys_dir
+     | .remote_servers = {
+         fixture: {
+           name: "fixture",
+           op_id: "fixture-op-id",
+           generate_public_key_only: false
+         }
+       }' \
+    "$base_data_file" >"$security_data"
+
+security_fake_bin="$tmp_dir/security-fake-bin"
+mkdir -p "$security_fake_bin"
+cat >"$security_fake_bin/op" <<'STUB'
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ "$1" == "signin" && "${2:-}" == "--raw" ]]; then
+    printf '%s\n' 'test-session'
+elif [[ "$1" == "item" && "${2:-}" == "get" ]] ||
+    [[ "$1" == "--session" && "${3:-}" == "item" && "${4:-}" == "get" ]]; then
+    printf '%s\n' '{"fields":[{"label":"private key","value":"PRIVATE-KEY-FIXTURE\n"},{"label":"public key","value":"ssh-ed25519 PUBLIC-FIXTURE\n"}]}'
+else
+    exit 64
+fi
+STUB
+chmod +x "$security_fake_bin/op"
+security_fixture="$tmp_dir/security-material.sh"
+PATH="$security_fake_bin:$PATH" chezmoi -S "$source_dir" execute-template \
+    --override-data-file "$security_data" \
+    --file "$security_source" >"$security_fixture"
+chmod +x "$security_fixture"
+
+security_output="$tmp_dir/security-success.out"
+PATH="$security_fake_bin:/usr/bin:/bin" \
+    /bin/bash "$security_fixture" >"$security_output" 2>&1
+printf 'PRIVATE-KEY-FIXTURE\n' >"$tmp_dir/expected-private-key"
+printf 'ssh-ed25519 PUBLIC-FIXTURE\n' >"$tmp_dir/expected-public-key"
+cmp -s "$tmp_dir/expected-private-key" "$security_keys_dir/fixture"
+cmp -s "$tmp_dir/expected-public-key" "$security_keys_dir/fixture.pub"
+assert_file_mode "$security_keys_dir/fixture" 600
+assert_file_mode "$security_keys_dir/fixture.pub" 644
+if rg -Fq 'PRIVATE-KEY-FIXTURE' "$security_output" ||
+    rg -Fq 'ssh-ed25519 PUBLIC-FIXTURE' "$security_output"; then
+    printf 'security phase wrote key material to logs\n' >&2
+    exit 1
+fi
+
+for key_suffix in '' '.pub'; do
+    dangling_keys_dir="$tmp_dir/security-dangling-${key_suffix:-private}"
+    outside_target="$tmp_dir/outside-${key_suffix:-private}"
+    mkdir -p "$dangling_keys_dir"
+    ln -s "$outside_target" "$dangling_keys_dir/fixture$key_suffix"
+    dangling_security_data="$tmp_dir/security-dangling-${key_suffix:-private}.json"
+    jq --arg ssh_keys_dir "$dangling_keys_dir" \
+        '.directories.ssh_keys_dir = $ssh_keys_dir' \
+        "$security_data" >"$dangling_security_data"
+    dangling_security_fixture="$tmp_dir/security-dangling-${key_suffix:-private}.sh"
+    PATH="$security_fake_bin:$PATH" chezmoi -S "$source_dir" execute-template \
+        --override-data-file "$dangling_security_data" \
+        --file "$security_source" >"$dangling_security_fixture"
+    set +e
+    PATH="$security_fake_bin:/usr/bin:/bin" \
+        /bin/bash "$dangling_security_fixture" \
+        >"$tmp_dir/security-dangling-${key_suffix:-private}.out" 2>&1
+    security_status=$?
+    set -e
+    [[ $security_status -ne 0 ]]
+    [[ ! -e "$outside_target" ]]
+    [[ ! -f "$dangling_keys_dir/fixture" ]]
+    [[ ! -f "$dangling_keys_dir/fixture.pub" ]]
+done
 
 printf 'chezmoi script behavior tests passed\n'
