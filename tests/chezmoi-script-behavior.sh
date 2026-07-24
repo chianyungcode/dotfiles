@@ -39,6 +39,22 @@ assert_file_mode() {
     }
 }
 
+assert_no_security_fixture_material() {
+    local file=$1
+    local material
+    for material in \
+        'PRIVATE-KEY-FIXTURE' \
+        'ssh-ed25519 PUBLIC-FIXTURE' \
+        'UFJJVkFURS1LRVktRklYVFVSRQo=' \
+        'c3NoLWVkMjU1MTkgUFVCTElDLUZJWFRVUkUK'; do
+        if rg -Fq "$material" "$file"; then
+            printf '%s contains reversible security fixture material\n' \
+                "$file" >&2
+            exit 1
+        fi
+    done
+}
+
 core_fixture="$tmp_dir/core-fixture.sh"
 {
     printf '%s\n' '#!/usr/bin/env bash'
@@ -1075,6 +1091,7 @@ cat >"$security_fake_bin/op" <<'STUB'
 #!/usr/bin/env bash
 set -euo pipefail
 
+printf 'op %s\n' "$*" >>"${OP_COMMAND_LOG:-/dev/null}"
 if [[ "$1" == "signin" && "${2:-}" == "--raw" ]]; then
     printf '%s\n' 'test-session'
 elif [[ "$1" == "item" && "${2:-}" == "get" ]] ||
@@ -1084,19 +1101,43 @@ elif [[ "$1" == "item" && "${2:-}" == "get" ]] ||
     else
         printf '%s\n' '{"fields":[{"label":"private key","value":"PRIVATE-KEY-FIXTURE\n"},{"label":"public key","value":"ssh-ed25519 PUBLIC-FIXTURE\n"}]}'
     fi
+    [[ "${FAIL_OP_AFTER_OUTPUT:-false}" == true ]] && exit 42
+    exit 0
 else
     exit 64
 fi
 STUB
 chmod +x "$security_fake_bin/op"
 security_fixture="$tmp_dir/security-material.sh"
-PATH="$security_fake_bin:$PATH" chezmoi -S "$source_dir" execute-template \
+security_render_op_log="$tmp_dir/security-render-op.log"
+: >"$security_render_op_log"
+PATH="$security_fake_bin:$PATH" \
+    OP_COMMAND_LOG="$security_render_op_log" \
+    chezmoi -S "$source_dir" execute-template \
     --override-data-file "$security_data" \
     --file "$security_source" >"$security_fixture"
 chmod +x "$security_fixture"
+assert_no_security_fixture_material "$security_fixture"
+rg -Fq 'fixture-op-id' "$security_fixture"
+[[ ! -s "$security_render_op_log" ]]
+
+security_dry_run_root="$tmp_dir/security-dry-run-root"
+mkdir -p "$security_dry_run_root"
+security_dry_run_output="$tmp_dir/security-dry-run.out"
+PATH="$security_fake_bin:$PATH" \
+    OP_COMMAND_LOG="$security_render_op_log" \
+    chezmoi -S "$source_dir" -D "$security_dry_run_root" \
+    --override-data-file "$security_data" apply \
+    --dry-run --verbose --no-tty --force --include scripts \
+    >"$security_dry_run_output" 2>&1
+assert_no_security_fixture_material "$security_dry_run_output"
+[[ ! -s "$security_render_op_log" ]]
 
 security_output="$tmp_dir/security-success.out"
+OP_COMMAND_LOG="$tmp_dir/security-op-commands.log"
+: >"$OP_COMMAND_LOG"
 PATH="$security_fake_bin:/usr/bin:/bin" \
+    OP_COMMAND_LOG="$OP_COMMAND_LOG" \
     /bin/bash "$security_fixture" >"$security_output" 2>&1
 printf 'PRIVATE-KEY-FIXTURE\n' >"$tmp_dir/expected-private-key"
 printf 'ssh-ed25519 PUBLIC-FIXTURE\n' >"$tmp_dir/expected-public-key"
@@ -1104,11 +1145,15 @@ cmp -s "$tmp_dir/expected-private-key" "$security_keys_dir/fixture"
 cmp -s "$tmp_dir/expected-public-key" "$security_keys_dir/fixture.pub"
 assert_file_mode "$security_keys_dir/fixture" 600
 assert_file_mode "$security_keys_dir/fixture.pub" 644
-if rg -Fq 'PRIVATE-KEY-FIXTURE' "$security_output" ||
-    rg -Fq 'ssh-ed25519 PUBLIC-FIXTURE' "$security_output"; then
-    printf 'security phase wrote key material to logs\n' >&2
-    exit 1
-fi
+assert_no_security_fixture_material "$security_output"
+rg -Fq 'op item get fixture-op-id --format json' "$OP_COMMAND_LOG"
+[[ $(rg -Fc 'op item get fixture-op-id --format json' "$OP_COMMAND_LOG") -eq 2 ]]
+
+PATH="/usr/bin:/bin" /bin/bash "$security_fixture" \
+    >"$tmp_dir/security-offline-existing.out" 2>&1
+cmp -s "$tmp_dir/expected-private-key" "$security_keys_dir/fixture"
+cmp -s "$tmp_dir/expected-public-key" "$security_keys_dir/fixture.pub"
+assert_no_security_fixture_material "$tmp_dir/security-offline-existing.out"
 
 render_security_case() {
     local item_json=$1
@@ -1134,12 +1179,14 @@ assert_security_render_rejected() {
     render_security_case "$item_json" "$keys_dir" "$fixture"
     set +e
     PATH="$security_fake_bin:/usr/bin:/bin" \
+        OP_ITEM_JSON_FIXTURE="$item_json" \
         /bin/bash "$fixture" >"$tmp_dir/security-$label.out" 2>&1
     status=$?
     set -e
     [[ $status -ne 0 ]]
     [[ ! -e "$keys_dir/fixture" ]]
     [[ ! -e "$keys_dir/fixture.pub" ]]
+    assert_no_security_fixture_material "$tmp_dir/security-$label.out"
     if find "$keys_dir" -name '.fixture*.tmp.*' -print -quit | rg -q .; then
         printf 'security %s failure left a temporary key\n' "$label" >&2
         exit 1
@@ -1166,19 +1213,10 @@ printf '%s\n' \
     >"$normal_security_json"
 render_security_case "$normal_security_json" "$security_decode_keys_dir" \
     "$security_decode_fixture"
-security_decode_fake_bin="$tmp_dir/security-decode-fake-bin"
-mkdir -p "$security_decode_fake_bin"
-cat >"$security_decode_fake_bin/base64" <<'STUB'
-#!/usr/bin/env bash
-set -euo pipefail
-input=$(cat)
-[[ -z "$input" ]] && exit 0
-printf 'PARTIAL-KEY-FIXTURE'
-exit 42
-STUB
-chmod +x "$security_decode_fake_bin/base64"
 set +e
-PATH="$security_decode_fake_bin:$security_fake_bin:/usr/bin:/bin" \
+PATH="$security_fake_bin:/usr/bin:/bin" \
+    OP_ITEM_JSON_FIXTURE="$normal_security_json" \
+    FAIL_OP_AFTER_OUTPUT=true \
     /bin/bash "$security_decode_fixture" \
     >"$tmp_dir/security-decode-failure.out" 2>&1
 status=$?
@@ -1186,6 +1224,7 @@ set -e
 [[ $status -ne 0 ]]
 [[ ! -e "$security_decode_keys_dir/fixture" ]]
 [[ ! -e "$security_decode_keys_dir/fixture.pub" ]]
+assert_no_security_fixture_material "$tmp_dir/security-decode-failure.out"
 if find "$security_decode_keys_dir" -name '.fixture*.tmp.*' \
     -print -quit | rg -q .; then
     printf 'failed key decode left a temporary key\n' >&2
@@ -1193,9 +1232,41 @@ if find "$security_decode_keys_dir" -name '.fixture*.tmp.*' \
 fi
 
 PATH="$security_fake_bin:/usr/bin:/bin" \
+    OP_ITEM_JSON_FIXTURE="$normal_security_json" \
     /bin/bash "$security_decode_fixture"
 cmp -s "$tmp_dir/expected-private-key" "$security_decode_keys_dir/fixture"
 cmp -s "$tmp_dir/expected-public-key" "$security_decode_keys_dir/fixture.pub"
+
+security_public_only_keys_dir="$tmp_dir/security-public-only-keys"
+security_public_only_data="$tmp_dir/security-public-only.json"
+jq --arg ssh_keys_dir "$security_public_only_keys_dir" \
+    '.directories.ssh_keys_dir = $ssh_keys_dir
+     | .remote_servers.fixture.generate_public_key_only = true' \
+    "$security_data" >"$security_public_only_data"
+security_public_only_fixture="$tmp_dir/security-public-only.sh"
+PATH="$security_fake_bin:$PATH" chezmoi -S "$source_dir" execute-template \
+    --override-data-file "$security_public_only_data" \
+    --file "$security_source" >"$security_public_only_fixture"
+chmod +x "$security_public_only_fixture"
+assert_no_security_fixture_material "$security_public_only_fixture"
+public_only_item_json="$tmp_dir/security-public-only-item.json"
+printf '%s\n' \
+    '{"fields":[{"label":"pubkey","value":"ssh-ed25519 PUBLIC-FIXTURE\n"}]}' \
+    >"$public_only_item_json"
+public_only_op_log="$tmp_dir/security-public-only-op.log"
+: >"$public_only_op_log"
+PATH="$security_fake_bin:/usr/bin:/bin" \
+    OP_ITEM_JSON_FIXTURE="$public_only_item_json" \
+    OP_COMMAND_LOG="$public_only_op_log" \
+    /bin/bash "$security_public_only_fixture" \
+    >"$tmp_dir/security-public-only.out" 2>&1
+[[ ! -e "$security_public_only_keys_dir/fixture" ]]
+cmp -s "$tmp_dir/expected-public-key" \
+    "$security_public_only_keys_dir/fixture.pub"
+assert_file_mode "$security_public_only_keys_dir/fixture.pub" 644
+assert_no_security_fixture_material "$tmp_dir/security-public-only.out"
+[[ $(rg -Fc 'op item get fixture-op-id --format json' \
+    "$public_only_op_log") -eq 1 ]]
 
 for key_suffix in '' '.pub'; do
     dangling_keys_dir="$tmp_dir/security-dangling-${key_suffix:-private}"

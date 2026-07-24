@@ -37,7 +37,9 @@ Taplo, Jujutsu.
   `curl | sh`.
 - Preserve current package membership except for explicit runtime declarations,
   moving Eza into APT handling, and adding Atuin to standalone binary data.
-- Keep private SSH key content out of log output and write it with `umask 077`.
+- Keep raw or reversibly encoded SSH key content out of rendered scripts,
+  dry-run output, and runtime logs. Fetch it only at execution time and stage
+  writes under `umask 077`.
 - Use Jujutsu commits (`jj commit`) rather than Git staging commands.
 
 ---
@@ -1853,9 +1855,10 @@ assert_contains "$maintenance" 'uv tool upgrade --all'
 assert_contains "$maintenance_source" 'output "date" "+%m"'
 ```
 
-Render a onepassword security fixture only through a stub `op` executable; do
-not use local 1Password state. The stub handles `op signin --raw` by printing
-`test-session` and handles `op item get <id> --format json` by printing:
+Render a onepassword security fixture without invoking `op`; the rendered
+script must contain only nonsecret item/path metadata. For runtime behavior
+tests, use a stub `op` executable rather than local 1Password state. The stub
+handles `op item get <id> --format json` by printing:
 
 ```json
 {
@@ -1928,42 +1931,52 @@ Wrap the entire output in:
 ```
 
 Port current server iteration and preserve "create only if absent" behavior.
-Add a portable decoder:
+Render only nonsecret metadata such as the item ID, server name, and target
+path. Never call the `onepassword` template function for key material: raw or
+reversibly encoded values in a rendered script are exposed by
+`chezmoi apply --dry-run --verbose`.
+
+Only when a required regular key file is absent, require `op` and `jq`. Fetch
+the item at script execution time and stream the selected field from `op`
+through `jq` directly into a mode-protected same-directory temporary file:
 
 ```bash
-decode_base64() {
-    if printf '' | base64 --decode >/dev/null 2>&1; then
-        base64 --decode
-    else
-        base64 -D
+fetch_onepassword_field() {
+    local item_id=$1
+    local primary_label=$2
+    local alternate_label=$3
+    local output_file=$4
+
+    if ! op item get "$item_id" --format json 2>/dev/null |
+        jq -e -r -j \
+            --arg primary "$primary_label" \
+            --arg alternate "$alternate_label" '
+                first(
+                    .fields[]?
+                    | select(
+                        .label == $primary or
+                        .label == $alternate
+                    )
+                    | .value
+                    | select(type == "string" and length > 0)
+                )
+            ' 2>/dev/null >"$output_file"; then
+        die "missing, empty, or unreadable key field"
     fi
 }
 ```
 
-For each key, render `onepassword` values through `b64enc` so shell quoting
-cannot alter key content:
+Do not hold key material in a shell variable or pass it as a command argument.
+Validate non-empty staged output, set mode 0600 for private material or 0644
+for public material, and atomically rename only after every missing field for
+the server has staged successfully. EXIT/signal traps must remove temporary
+files after failure.
 
-```gotemplate
-private_key="{{ $.directories.ssh_keys_dir }}/{{ .name }}"
-public_key="$private_key.pub"
-
-if [[ ! -f "$private_key" ]]; then
-    (
-        umask 077
-        printf '%s' '{{ range (onepassword .op_id).fields }}{{ if or (eq .label "privkey") (eq .label "private key") }}{{ .value | b64enc }}{{ end }}{{ end }}' |
-            decode_base64 >"$private_key"
-    )
-    chmod 0600 "$private_key"
-fi
-
-if [[ ! -f "$public_key" ]]; then
-    printf '%s' '{{ range (onepassword .op_id).fields }}{{ if or (eq .label "pubkey") (eq .label "public key") }}{{ .value | b64enc }}{{ end }}{{ end }}' |
-        decode_base64 >"$public_key"
-    chmod 0644 "$public_key"
-fi
-```
-
-Do not include rendered secret values in any log line.
+Preserve accepted labels (`privkey`/`private key` and
+`pubkey`/`public key`), public-only behavior, symlink rejection, and the
+offline no-op when valid regular files already exist. No raw or base64 key
+material may appear in execute-template output, verbose dry-run output,
+stdout, stderr, or failure diagnostics.
 
 - [ ] **Step 5: Implement phase 90**
 
@@ -2190,7 +2203,7 @@ Homebrew-only change does not alter the Ubuntu system-package script.
 | 30 | after, on change | Install uv, npm, and Cargo packages |
 | 40 | after, on change | Install standalone GitHub-release tools |
 | 50 | after, always | Repair shell extras, nanorc, and compatibility symlinks |
-| 60 | after, on change | Create SSH key material |
+| 60 | after, on change | Fetch and atomically create SSH key material |
 | 90 | after, monthly | Upgrade uv-managed tools |
 
 The numeric phase is a dependency boundary. Runtime phase 20 must complete
@@ -2244,7 +2257,9 @@ paths and behavior:
 
 - Remote installers are downloaded before execution.
 - Standalone release checksums are verified when published.
-- SSH key writing uses `printf` and `umask 077`.
+- SSH key material is fetched only at runtime, streamed into
+  mode-protected temporary files, and atomically published without appearing
+  in rendered or verbose dry-run output.
 
 Do not mark unrelated SSH trust or secret-exposure findings resolved.
 

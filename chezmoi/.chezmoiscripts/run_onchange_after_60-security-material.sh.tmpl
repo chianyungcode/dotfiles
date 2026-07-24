@@ -3,75 +3,106 @@
 
 PHASE="60-security-material"
 {{ template "scripts/core.bash" . }}
-decode_base64() {
-    if printf '' | base64 --decode >/dev/null 2>&1; then
-        base64 --decode
-    else
-        base64 -D
+fetch_onepassword_field() {
+    local item_id=$1
+    local primary_label=$2
+    local alternate_label=$3
+    local output_file=$4
+    local key_label=$5
+
+    if ! op item get "$item_id" --format json 2>/dev/null |
+        jq -e -r -j \
+            --arg primary "$primary_label" \
+            --arg alternate "$alternate_label" '
+                first(
+                    .fields[]?
+                    | select(
+                        .label == $primary or
+                        .label == $alternate
+                    )
+                    | .value
+                    | select(type == "string" and length > 0)
+                )
+            ' 2>/dev/null >"$output_file"; then
+        die "missing, empty, or unreadable $key_label key field"
     fi
+    [[ -s "$output_file" ]] ||
+        die "missing, empty, or unreadable $key_label key field"
 }
 
-publish_decoded_key() {
-    local encoded_value=$1
-    local target=$2
-    local mode=$3
-    local key_label=$4
+install_server_keys() {
+    local item_id=$1
+    local private_key=$2
+    local include_private=$3
+    local public_key="$private_key.pub"
+    local need_private=false
+    local need_public=false
+
+    if [[ -L "$private_key" || -L "$public_key" ]]; then
+        die "refusing to write SSH key through symlink: ${private_key##*/}"
+    fi
+
+    if [[ "$include_private" == true && ! -f "$private_key" ]]; then
+        need_private=true
+    fi
+    [[ -f "$public_key" ]] || need_public=true
+    if [[ "$need_private" == false && "$need_public" == false ]]; then
+        return 0
+    fi
+
+    require_command op
+    require_command jq
 
     (
-        local temporary_key=""
-        cleanup_temporary_key() {
-            [[ -z "$temporary_key" ]] || rm -f -- "$temporary_key"
+        local temporary_private=""
+        local temporary_public=""
+        cleanup_temporary_keys() {
+            [[ -z "$temporary_private" ]] ||
+                rm -f -- "$temporary_private"
+            [[ -z "$temporary_public" ]] ||
+                rm -f -- "$temporary_public"
         }
-        trap cleanup_temporary_key EXIT
+        trap cleanup_temporary_keys EXIT
         trap 'exit 1' HUP INT TERM
-
         umask 077
-        temporary_key=$(mktemp \
-            "${target%/*}/.${target##*/}.tmp.XXXXXX") ||
-            die "could not create temporary $key_label key"
-        if ! printf '%s' "$encoded_value" |
-            decode_base64 >"$temporary_key"; then
-            die "could not decode $key_label key"
+
+        if [[ "$need_private" == true ]]; then
+            temporary_private=$(mktemp \
+                "${private_key%/*}/.${private_key##*/}.tmp.XXXXXX") ||
+                die "could not create temporary private key"
+            fetch_onepassword_field \
+                "$item_id" "privkey" "private key" \
+                "$temporary_private" private
+            chmod 0600 "$temporary_private"
         fi
-        [[ -s "$temporary_key" ]] ||
-            die "decoded $key_label key is empty"
-        chmod "$mode" "$temporary_key"
-        mv "$temporary_key" "$target"
-        temporary_key=""
+
+        if [[ "$need_public" == true ]]; then
+            temporary_public=$(mktemp \
+                "${public_key%/*}/.${public_key##*/}.tmp.XXXXXX") ||
+                die "could not create temporary public key"
+            fetch_onepassword_field \
+                "$item_id" "pubkey" "public key" \
+                "$temporary_public" public
+            chmod 0644 "$temporary_public"
+        fi
+
+        if [[ "$need_private" == true ]]; then
+            mv "$temporary_private" "$private_key"
+            temporary_private=""
+        fi
+        if [[ "$need_public" == true ]]; then
+            mv "$temporary_public" "$public_key"
+            temporary_public=""
+        fi
     )
 }
 
 mkdir -p "{{ .directories.ssh_keys_dir }}"
 
 {{ range .remote_servers -}}
-private_key="{{ $.directories.ssh_keys_dir }}/{{ .name }}"
-public_key="$private_key.pub"
-{{ if not .generate_public_key_only -}}
-private_key_encoded='{{ range (onepassword .op_id).fields }}{{ if or (eq .label "privkey") (eq .label "private key") }}{{ .value | b64enc }}{{ end }}{{ end }}'
-{{ end -}}
-public_key_encoded='{{ range (onepassword .op_id).fields }}{{ if or (eq .label "pubkey") (eq .label "public key") }}{{ .value | b64enc }}{{ end }}{{ end }}'
-
-if [[ -L "$private_key" || -L "$public_key" ]]; then
-    die "refusing to write SSH key through symlink for {{ .name }}"
-fi
-
-{{ if not .generate_public_key_only -}}
-if [[ ! -f "$private_key" && -z "$private_key_encoded" ]]; then
-    die "missing or empty private key field for {{ .name }}"
-fi
-{{ end -}}
-if [[ ! -f "$public_key" && -z "$public_key_encoded" ]]; then
-    die "missing or empty public key field for {{ .name }}"
-fi
-
-{{ if not .generate_public_key_only -}}
-if [[ ! -f "$private_key" ]]; then
-    publish_decoded_key "$private_key_encoded" "$private_key" 0600 private
-fi
-{{ end -}}
-
-if [[ ! -f "$public_key" ]]; then
-    publish_decoded_key "$public_key_encoded" "$public_key" 0644 public
-fi
+install_server_keys \
+    "{{ .op_id }}" \
+    "{{ $.directories.ssh_keys_dir }}/{{ .name }}" \
+    "{{ if .generate_public_key_only }}false{{ else }}true{{ end }}"
 {{ end -}}
 {{ end -}}

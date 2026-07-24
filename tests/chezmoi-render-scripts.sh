@@ -22,6 +22,20 @@ assert_not_contains() {
     fi
 }
 
+assert_no_security_fixture_material() {
+    local file=$1
+    local material
+    for material in \
+        'PRIVATE-KEY-FIXTURE' \
+        'ssh-ed25519 PUBLIC-FIXTURE' \
+        'UFJJVkFURS1LRVktRklYVFVSRQo=' \
+        'c3NoLWVkMjU1MTkgUFVCTElDLUZJWFRVUkUK'; do
+        if rg -Fq "$material" "$file"; then
+            fail "$file contains reversible security fixture material"
+        fi
+    done
+}
+
 make_profile() {
     local output_file=$1
     local os=$2
@@ -278,6 +292,9 @@ for profile in mac ubuntu arch; do
         --override-data-file "$security_onepassword" \
         --file "$security_source" >"$security_rendered"
     check_rendered_script "$security_rendered"
+    assert_no_security_fixture_material "$security_rendered"
+    assert_contains "$security_rendered" 'op item get'
+    assert_contains "$security_rendered" 'format json'
 done
 
 maintenance_source="$source_dir/.chezmoiscripts/run_once_after_90-monthly-maintenance.sh.tmpl"
