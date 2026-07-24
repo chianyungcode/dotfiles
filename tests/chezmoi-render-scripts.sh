@@ -7,6 +7,72 @@ fail() {
 	exit 1
 }
 
+assert_contains() {
+    local file=$1
+    local pattern=$2
+    rg -q "$pattern" "$file" ||
+        fail "$file does not contain pattern: $pattern"
+}
+
+assert_not_contains() {
+    local file=$1
+    local pattern=$2
+    if rg -q "$pattern" "$file"; then
+        fail "$file unexpectedly contains pattern: $pattern"
+    fi
+}
+
+make_profile() {
+    local output_file=$1
+    local os=$2
+    local distribution=$3
+    local architecture=$4
+    local development=$5
+    local personal=$6
+    local homelab=$7
+    local graphical=$8
+
+    jq \
+        --arg os "$os" \
+        --arg distribution "$distribution" \
+        --arg architecture "$architecture" \
+        --argjson development "$development" \
+        --argjson personal "$personal" \
+        --argjson homelab "$homelab" \
+        --argjson graphical "$graphical" \
+        '.chezmoi.os = $os
+         | .chezmoi.osRelease.id = $distribution
+         | .chezmoi.arch = $architecture
+         | .features = {
+             development: $development,
+             personal: $personal,
+             homelab: $homelab,
+             graphical: $graphical
+           }
+         | .secrets.provider = "none"
+         | .encrypted_files.enabled = false' \
+        "$base_data_file" >"$output_file"
+}
+
+render_script() {
+    local profile=$1
+    local source_script=$2
+    local output_file=$3
+    chezmoi -S "$source_dir" execute-template \
+        --override-data-file "$profile" \
+        --file "$source_script" >"$output_file"
+}
+
+check_rendered_script() {
+    local script=$1
+    [[ ! -s "$script" ]] && return 0
+    head -n 1 "$script" | rg -q '^#!/usr/bin/env bash$' ||
+        fail "$script has no Bash shebang"
+    bash -n "$script"
+    shfmt -d -i 4 "$script"
+    shellcheck -S warning "$script"
+}
+
 repo_root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 source_dir="$repo_root/chezmoi"
 tmp_dir=$(mktemp -d)
@@ -52,5 +118,27 @@ jq -e '
       {name:"taplo", version:"latest", features:["development"]}
     ]
 ' "$base_data_file" >/dev/null
+
+mac_data="$tmp_dir/mac.json"
+ubuntu_data="$tmp_dir/ubuntu.json"
+arch_data="$tmp_dir/arch.json"
+make_profile "$mac_data" darwin darwin arm64 true true false true
+make_profile "$ubuntu_data" linux ubuntu amd64 true false false false
+make_profile "$arch_data" linux arch amd64 true true false true
+
+bootstrap_source="$source_dir/.chezmoiscripts/run_before_00-bootstrap.sh.tmpl"
+for profile in mac ubuntu arch; do
+    render_script "$tmp_dir/$profile.json" "$bootstrap_source" \
+        "$tmp_dir/$profile-bootstrap.sh"
+    check_rendered_script "$tmp_dir/$profile-bootstrap.sh"
+done
+
+assert_contains "$tmp_dir/mac-bootstrap.sh" 'Installing Homebrew'
+assert_not_contains "$tmp_dir/mac-bootstrap.sh" 'paru'
+assert_contains "$tmp_dir/ubuntu-bootstrap.sh" 'apt-get install'
+assert_not_contains "$tmp_dir/ubuntu-bootstrap.sh" 'pacman'
+assert_contains "$tmp_dir/arch-bootstrap.sh" 'command -v paru'
+assert_contains "$tmp_dir/arch-bootstrap.sh" 'makepkg -si'
+assert_not_contains "$tmp_dir/arch-bootstrap.sh" 'apt-get'
 
 printf 'chezmoi script render tests passed\n'

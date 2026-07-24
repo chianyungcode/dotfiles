@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+PHASE="00-bootstrap"
+{{ template "scripts/core.bash" . }}
+{{ if eq .chezmoi.os "darwin" -}}
+if ! command -v brew >/dev/null 2>&1; then
+    info "Installing Homebrew"
+    make_temp_dir "homebrew-install"
+    installer="$TEMP_DIR/install.sh"
+    curl --fail --show-error --silent --location --retry 3 \
+        https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh \
+        --output "$installer"
+    /bin/bash "$installer"
+fi
+
+if [[ -x /opt/homebrew/bin/brew ]] &&
+    ! command -v brew >/dev/null 2>&1; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+{{ else if eq .chezmoi.os "linux" -}}
+missing_commands=()
+for command_name in curl unzip wget; do
+    command -v "$command_name" >/dev/null 2>&1 ||
+        missing_commands+=("$command_name")
+done
+
+{{ if or (eq .chezmoi.osRelease.id "ubuntu") (eq .chezmoi.osRelease.id "debian") -}}
+if [[ ${#missing_commands[@]} -gt 0 ]]; then
+    sudo apt-get update
+    sudo apt-get install -y "${missing_commands[@]}"
+fi
+{{ else if eq .chezmoi.osRelease.id "arch" -}}
+if [[ ${#missing_commands[@]} -gt 0 ]]; then
+    sudo pacman -Sy --noconfirm "${missing_commands[@]}"
+fi
+
+if ! command -v paru >/dev/null 2>&1; then
+    sudo pacman -S --needed --noconfirm git base-devel
+    make_temp_dir "paru-build"
+    git clone --depth 1 https://aur.archlinux.org/paru.git "$TEMP_DIR/paru"
+    (
+        cd "$TEMP_DIR/paru"
+        makepkg -si --noconfirm
+    )
+    require_command paru
+fi
+{{ else -}}
+die "unsupported Linux distribution: {{ .chezmoi.osRelease.id }}"
+{{ end -}}
+{{ end -}}
+
+info "bootstrap prerequisites satisfied"
