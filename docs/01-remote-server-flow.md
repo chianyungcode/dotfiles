@@ -1,10 +1,13 @@
 # Remote Server Configuration Flow
 
-This guide explains how to configure SSH access to remote servers using 1Password and Chezmoi for secure key management and automated configuration.
+This guide explains how to configure SSH access to remote servers using
+1Password and Chezmoi for secure key management and automated configuration.
 
 ## Overview
 
-The remote server configuration flow integrates 1Password for secure storage of SSH keys and server credentials, with Chezmoi managing the SSH configuration automatically. This approach provides:
+The remote server configuration flow integrates 1Password for secure storage of
+SSH keys and server credentials, with Chezmoi managing the SSH configuration
+automatically. This approach provides:
 
 - **Security**: SSH keys are stored securely in 1Password
 - **Automation**: SSH config is generated automatically
@@ -24,7 +27,8 @@ Before starting, ensure you have:
 
 ### Step 1: Create 1Password Items
 
-Create 1Password items using the provided templates. Choose the appropriate template based on your connection method:
+Create 1Password items using the provided templates. Choose the appropriate
+template based on your connection method:
 
 #### For Regular SSH Connections
 
@@ -38,7 +42,8 @@ op item create --template remote-server.json
 op item create --template tailscale-remote-server.json
 ```
 
-> **Note**: When using Tailscale, the hostname typically uses Tailscale's Magic DNS format (e.g., `server-name.tailnet-name.ts.net`)
+> **Note**: When using Tailscale, the hostname typically uses Tailscale's Magic
+> DNS format (e.g., `server-name.tailnet-name.ts.net`)
 
 ### Step 2: Configure 1Password Item Fields
 
@@ -52,11 +57,13 @@ After creating the item, manually fill in the following fields in 1Password:
 | `hostname`    | Server hostname or IP address   | ✅       |
 | `port`        | SSH port (default: 22)          | ❌       |
 
-> **Security Note**: Store only the key content without any additional formatting or headers/footers.
+> **Security Note**: Store only the key content without any additional
+> formatting or headers/footers.
 
 ### Step 3: Add Server Configuration
 
-Add your remote server configuration to `./chezmoi/.chezmoidata/remote-servers.toml`:
+Add your remote server configuration to
+`./chezmoi/.chezmoidata/remote-servers.toml`:
 
 ```toml
 [remote_servers]
@@ -75,6 +82,8 @@ Add your remote server configuration to `./chezmoi/.chezmoidata/remote-servers.t
 
 #### Configuration Options
 
+<!-- markdownlint-disable MD013 -->
+
 | Option              | Type    | Description                                  | Default |
 | ------------------- | ------- | -------------------------------------------- | ------- |
 | `add_to_ssh_config` | boolean | Whether to include this server in SSH config | `false` |
@@ -82,9 +91,11 @@ Add your remote server configuration to `./chezmoi/.chezmoidata/remote-servers.t
 | `op_id`             | string  | 1Password item UUID                          | -       |
 | `tailscale_ip`      | boolean | Use Tailscale connection                     | `false` |
 
+<!-- markdownlint-enable MD013 -->
+
 ### Step 4: Automatic Key Generation
 
-The `run_after_20-create-ssh-keys.sh.tmpl` script will:
+The `run_onchange_after_60-security-material.sh.tmpl` script will:
 
 1. Extract SSH keys from 1Password
 2. Create private and public key files in `~/.ssh-keys/`
@@ -93,11 +104,13 @@ The `run_after_20-create-ssh-keys.sh.tmpl` script will:
 
 ### Step 5: SSH Configuration Generation
 
-The `~/.ssh/config.tmpl` file automatically generates SSH configurations using Go template syntax. The generated config includes:
+The `~/.ssh/config.tmpl` file automatically generates SSH configurations using
+Go template syntax. The generated config includes:
 
 - **Regular connections**: `Host [server-name]`
 - **Tailscale connections**: `Host tail[server-name]` (prefix with 'tail')
-- **Security settings**: IdentityFile, IdentitiesOnly, and other security options
+- **Security settings**: IdentityFile, IdentitiesOnly, and other security
+  options
 
 ## Examples
 
@@ -110,11 +123,11 @@ The `~/.ssh/config.tmpl` file automatically generates SSH configurations using G
   name = "web-server"
   op_id = "abc123def456"
   tailscale_ip = false
-```
+```text
 
 Generated SSH config:
 
-```
+```text
 Host web-server
     User ubuntu
     Hostname 192.168.1.100
@@ -136,7 +149,7 @@ Host web-server
 
 Generated SSH config:
 
-```
+```text
 Host db-server
     User admin
     Hostname db-server.company.ts.net
@@ -177,6 +190,7 @@ After configuration, verify your setup:
    ```
 
 4. **Check 1Password integration**:
+
    ```bash
    op item get [server-name] --fields label=hostname
    ```
@@ -187,17 +201,16 @@ After configuration, verify your setup:
 
 #### Issue: SSH key not found
 
-**Symptoms**: `Permission denied (publickey)`
-**Solution**:
+**Symptoms**: `Permission denied (publickey)` **Solution**:
 
 1. Verify 1Password item contains correct `ssh_key` field
-2. Check if `run_after_20-create-ssh-keys.sh.tmpl` executed successfully
+2. Check if `run_onchange_after_60-security-material.sh.tmpl` executed
+   successfully
 3. Ensure key files exist in `~/.ssh-keys/`
 
 #### Issue: 1Password CLI not authenticated
 
-**Symptoms**: `op: command not found` or authentication errors
-**Solution**:
+**Symptoms**: `op: command not found` or authentication errors **Solution**:
 
 ```bash
 # Install 1Password CLI
@@ -209,8 +222,7 @@ op signin
 
 #### Issue: Tailscale connection fails
 
-**Symptoms**: `Could not resolve hostname`
-**Solution**:
+**Symptoms**: `Could not resolve hostname` **Solution**:
 
 1. Verify Tailscale is running: `tailscale status`
 2. Check if Magic DNS is enabled in Tailscale admin
@@ -218,8 +230,7 @@ op signin
 
 #### Issue: Wrong hostname in SSH config
 
-**Symptoms**: Connection to wrong server
-**Solution**:
+**Symptoms**: Connection to wrong server **Solution**:
 
 1. Check 1Password item's `hostname` field
 2. Verify `tailscale_ip` setting matches your intention
@@ -246,7 +257,8 @@ op signin
 
 ### Custom SSH Options
 
-To add custom SSH options for specific servers, you can extend the template or manually add entries after the managed section.
+To add custom SSH options for specific servers, you can extend the template or
+manually add entries after the managed section.
 
 ### Multiple Environments
 

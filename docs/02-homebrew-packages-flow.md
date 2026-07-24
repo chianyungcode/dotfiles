@@ -1,17 +1,24 @@
 # Homebrew Packages Installation Flow
 
-This document describes how Homebrew packages (formulae and casks) are managed through chezmoi's templating system.
+This document describes how Homebrew packages (formulae and casks) are managed
+through chezmoi's templating system.
 
 ## Overview
 
 The Homebrew package installation process follows a two-step approach:
 
-1. **Package Definition**: Packages are defined in `.chezmoidata/packages.toml` with optional filtering based on system roles
-2. **Installation Execution**: A shell script template installs the defined packages while handling edge cases
+1. **Package Definition**: Packages are declared in
+   `.chezmoidata/packages-system.toml` with optional filtering based on system
+   roles.
+2. **Installation Execution**: The system-package phase renders the Homebrew
+   fragment only on macOS, then installs the defined packages while handling
+   edge cases.
 
 ## Package Definition
 
-Packages are configured in [`.chezmoidata/packages.toml`](chezmoi/.chezmoidata/packages.toml) with support for conditional installation based on:
+Packages are configured in
+[`.chezmoidata/packages-system.toml`](../chezmoi/.chezmoidata/packages-system.toml)
+with support for conditional installation based on:
 
 - `dev_computer`: Development-focused packages
 - `personal_computer`: Personal use packages
@@ -38,9 +45,11 @@ Example configuration:
 
 ## Installation Script
 
-The installation is handled by [`run_onchange_before_10-homebrew-packages.sh.tmpl`](chezmoi/.chezmoiscripts/run_onchange_before_10-homebrew-packages.sh.tmpl), which:
+The installation is handled by
+[`run_onchange_before_10-system-packages.sh.tmpl`](../chezmoi/.chezmoiscripts/run_onchange_before_10-system-packages.sh.tmpl).
+Its Homebrew fragment is rendered only on macOS, where it:
 
-1. Reads package definitions from `.chezmoidata/packages.toml`
+1. Reads package definitions from `.chezmoidata/packages-system.toml`
 2. Installs formulae and casks based on system role filters
 3. Handles pre-existing applications gracefully
 
@@ -48,10 +57,14 @@ The installation is handled by [`run_onchange_before_10-homebrew-packages.sh.tmp
 
 ### When the Notice Appears
 
-The script displays a notice message: `"Skipping ${cask} - already exists in /Applications"` **only** when both conditions are met:
+The script displays a notice message:
+`"Skipping ${cask} - already exists in /Applications"` **only** when both
+conditions are met:
 
-1. **The cask is NOT installed via Homebrew** (not in `currently_installed_casks`)
-2. **The application already exists in `/Applications`** (installed manually via DMG or other methods)
+1. **The cask is NOT installed via Homebrew** (not in
+   `currently_installed_casks`)
+2. **The application already exists in `/Applications`** (installed manually via
+   DMG or other methods)
 
 ### Logic Flow
 
@@ -71,18 +84,27 @@ fi
 
 ### Behavior Scenarios
 
+<!-- markdownlint-disable MD013 -->
+
 | Scenario             | Homebrew Status | App in /Applications | Result                       |
 | -------------------- | --------------- | -------------------- | ---------------------------- |
 | **Manual Install**   | Not installed   | ✅ Exists            | **Notice displayed**         |
 | **Homebrew Install** | ✅ Installed    | May or may not exist | No notice (skipped entirely) |
 | **Fresh Install**    | Not installed   | ❌ Doesn't exist     | Install via Homebrew         |
 
+<!-- markdownlint-enable MD013 -->
+
 ### Key Insight
 
-The notice serves as a **helpful indicator** that an application was installed manually rather than through Homebrew, preventing duplicate installations while informing the user about potential version/source mismatches.
+The notice serves as a **helpful indicator** that an application was installed
+manually rather than through Homebrew, preventing duplicate installations while
+informing the user about potential version/source mismatches.
 
 ## Best Practices
 
-- **Manual installations**: Consider uninstalling and reinstalling via Homebrew for better version management
-- **Version conflicts**: The notice helps identify when you might have different versions (manual vs Homebrew)
-- **Clean setup**: For new systems, prefer Homebrew installations for consistent package management
+- **Manual installations**: Consider uninstalling and reinstalling via Homebrew
+  for better version management
+- **Version conflicts**: The notice helps identify when you might have different
+  versions (manual vs Homebrew)
+- **Clean setup**: For new systems, prefer Homebrew installations for consistent
+  package management

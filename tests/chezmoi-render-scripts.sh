@@ -87,6 +87,16 @@ source_dir="$repo_root/chezmoi"
 tmp_dir=$(mktemp -d)
 trap 'rm -rf "$tmp_dir"' EXIT
 
+stale_docs_pattern='shared_script_utils|run_after_20-create-ssh-keys|run_onchange_before_10-homebrew-packages|run_after_30-instal-atuin|install-binary\.py'
+if rg -n "$stale_docs_pattern" \
+    "$repo_root/README.md" \
+    "$repo_root/docs/01-remote-server-flow.md" \
+    "$repo_root/docs/02-homebrew-packages-flow.md" \
+    "$repo_root/docs/03-shell-scripting-chezmoi.md" \
+    "$repo_root/docs/security-review.md"; then
+    fail "documentation still refers to legacy script architecture"
+fi
+
 for command_name in bash chezmoi jq rg shellcheck shfmt; do
 	command -v "$command_name" >/dev/null ||
 		{
