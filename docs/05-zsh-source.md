@@ -77,7 +77,7 @@ Secret environment variables (optional, gated by `.use_secrets`):
 
 - `CONTEXT7_MCP_API_KEY`
 - `GITHUB_TOKEN`
-- `OPENROUTER_OPENCODE_APIKEY`
+- `OPENROUTER_API_KEY`
 - `WAKATIME_API_KEY`
 
 ### `040-path.sh.tmpl`

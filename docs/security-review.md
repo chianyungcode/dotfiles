@@ -13,6 +13,20 @@ Overall, the repo does a few things well:
 
 The most important issues are around SSH trust policy, secret exposure scope, and installer supply-chain safety.
 
+## OnePassword Data Layout
+
+OnePassword item references are grouped by the service category they support in
+`chezmoi/.chezmoidata/onepassword.toml`:
+
+- `secrets.ai_mcp`: Context7, Ref, and Tavily MCP credentials
+- `secrets.ai_inference`: the OpenRouter credential used by OpenCode
+- `secrets.ai_tools`: OpenCommit credentials
+- `secrets.productivity`: WakaTime credentials
+
+Templates should use the namespace that matches the credential's purpose;
+`ai_tools` is still used for OpenCommit, while MCP and inference credentials
+belong under their dedicated namespaces.
+
 ## Findings
 
 ### High
@@ -169,15 +183,17 @@ Recommended classification:
 
 ### Keep app-scoped or on-demand
 - `GITHUB_TOKEN`
-- `OPENROUTER_OPENCODE_APIKEY`
+- `OPENROUTER_API_KEY`
 - `CONTEXT7_MCP_API_KEY`
 - `WAKATIME_API_KEY`
 - `APIDOG_ACCESS_TOKEN`
 - `OCO_API_KEY`
 
 ### Migrate away from query string transport
-- `ref_apikey`
-- `tavily_apikey`
+- `secrets.ai_mcp.tavily_apikey`
+
+### Defined but currently unused
+- `secrets.ai_mcp.ref_apikey`
 
 ### Low concern / acceptable as-is
 - SSH signing public keys in Git/JJ config
