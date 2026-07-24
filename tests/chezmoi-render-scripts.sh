@@ -266,4 +266,23 @@ check_rendered_script "$maintenance"
 assert_contains "$maintenance" 'uv tool upgrade --all'
 assert_contains "$maintenance_source" 'output "date" "\+%m"'
 
+actual_scripts="$tmp_dir/actual-scripts.txt"
+expected_scripts="$tmp_dir/expected-scripts.txt"
+
+find "$source_dir/.chezmoiscripts" -maxdepth 1 -type f \
+    -exec basename {} \; | sort >"$actual_scripts"
+
+printf '%s\n' \
+    run_after_50-post-install.sh.tmpl \
+    run_before_00-bootstrap.sh.tmpl \
+    run_onchange_after_20-language-runtimes.sh.tmpl \
+    run_onchange_after_30-language-packages.sh.tmpl \
+    run_onchange_after_40-standalone-tools.sh.tmpl \
+    run_onchange_after_60-security-material.sh.tmpl \
+    run_onchange_before_10-system-packages.sh.tmpl \
+    run_once_after_90-monthly-maintenance.sh.tmpl |
+    sort >"$expected_scripts"
+
+diff -u "$expected_scripts" "$actual_scripts"
+
 printf 'chezmoi script render tests passed\n'

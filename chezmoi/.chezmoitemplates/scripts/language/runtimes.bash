@@ -20,7 +20,7 @@ download_installer() {
 ensure_uv() {
     command -v uv >/dev/null 2>&1 && return 0
     # shellcheck disable=SC2194 # chezmoi renders the platform as a literal.
-    case "{{ .chezmoi.os }}:{{ .chezmoi.osRelease.id }}" in
+    case "{{ .chezmoi.os }}:{{ index .chezmoi.osRelease "id" | default "" }}" in
     darwin:*) brew install uv ;;
     linux:arch) paru -S --needed --noconfirm uv ;;
     linux:ubuntu | linux:debian)
@@ -36,7 +36,7 @@ ensure_uv() {
 ensure_mise() {
     command -v mise >/dev/null 2>&1 && return 0
     # shellcheck disable=SC2194 # chezmoi renders the platform as a literal.
-    case "{{ .chezmoi.os }}:{{ .chezmoi.osRelease.id }}" in
+    case "{{ .chezmoi.os }}:{{ index .chezmoi.osRelease "id" | default "" }}" in
     darwin:*) brew install mise ;;
     linux:arch) paru -S --needed --noconfirm mise ;;
     linux:ubuntu | linux:debian)
