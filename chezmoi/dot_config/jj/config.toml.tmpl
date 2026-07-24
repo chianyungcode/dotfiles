@@ -1,3 +1,4 @@
+{{- $signing_enabled := and (eq .secrets.provider "onepassword") (ne .identity.signing_key "") -}}
 [user]
   name = "{{ .identity.git_name }}"
   email = "{{ .identity.git_email }}"
@@ -42,11 +43,14 @@
   auto-track-bookmarks = "glob:*"
 
 [signing]
+{{- if $signing_enabled }}
   behavior = "own"
   backend = "ssh"
-  {{- if and (eq .secrets.provider "onepassword") .identity.signing_key }}
   key = "{{ onepasswordRead (index .secrets.git .identity.signing_key) }}"
-  {{- end }}
+{{- else }}
+  behavior = "drop"
+  backend = "none"
+{{- end }}
 
 [templates]
   git_push_bookmark = '"{{ .identity.git_name }}/push-" ++ change_id.short()'

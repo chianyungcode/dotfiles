@@ -1,5 +1,6 @@
 # Git Configuration
 # Organized by logical sections following Git's configuration hierarchy
+{{- $signing_enabled := and (eq .secrets.provider "onepassword") (ne .identity.signing_key "") -}}
 
 # =============================================================================
 # USER IDENTITY
@@ -7,7 +8,7 @@
 [user]
     name = {{ .identity.git_name }}
     email = {{ .identity.git_email }}
-    {{- if and (eq .secrets.provider "onepassword") .identity.signing_key }}
+    {{- if $signing_enabled }}
     signingkey = {{ onepasswordRead (index .secrets.git .identity.signing_key) }}
     {{- end }}
 
@@ -15,7 +16,7 @@
 # COMMIT & SIGNING
 # =============================================================================
 
-{{- if eq .secrets.provider "onepassword" }}
+{{- if $signing_enabled }}
 [gpg]
     format = ssh
 
@@ -69,8 +70,10 @@
     guiPrompt = false
     {{- end }}
 
+{{- if ne .identity.github_username "" }}
 [credential "https://github.com"]
     username = {{ .identity.github_username }}
+{{- end }}
 
 [credential "https://dev.azure.com"]
     useHttpPath = true
