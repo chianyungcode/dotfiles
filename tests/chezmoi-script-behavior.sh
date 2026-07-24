@@ -498,9 +498,9 @@ PATH="$standalone_fake_bin" \
     COMMAND_LOG="$COMMAND_LOG" \
     RELEASE_JSON_FIXTURE="$release_json_fixture" \
     /bin/bash "$standalone_fixture" >"$tmp_dir/standalone-success.out" 2>&1 || {
-        cat "$tmp_dir/standalone-success.out" >&2
-        exit 1
-    }
+    cat "$tmp_dir/standalone-success.out" >&2
+    exit 1
+}
 
 [[ -x "$standalone_home/.local/bin/sample" ]]
 "$standalone_home/.local/bin/sample" --version | rg -q '^sample 1.2.3$'

@@ -104,31 +104,31 @@
       ]
 
 [[runtimes]]
+  features = ["development", "personal"]
   name     = "node"
   version  = "latest"
-  features = ["development", "personal"]
 
 [[runtimes]]
+  features = ["development"]
   name     = "go"
   version  = "latest"
-  features = ["development"]
 
 [[runtimes]]
+  features = ["development", "personal"]
   name     = "rust"
   version  = "latest"
-  features = ["development", "personal"]
 
 [[runtimes]]
+  features = ["development"]
   name     = "bun"
   version  = "latest"
-  features = ["development"]
 
 [[runtimes]]
+  features = ["development"]
   name     = "deno"
   version  = "latest"
-  features = ["development"]
 
 [[runtimes]]
+  features = ["development"]
   name     = "taplo"
   version  = "latest"
-  features = ["development"]
