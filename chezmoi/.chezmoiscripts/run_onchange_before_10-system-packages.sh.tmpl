@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+PHASE="10-system-packages"
+{{ template "scripts/core.bash" . -}}
+
+{{ if eq .chezmoi.os "darwin" -}}
+{{ template "scripts/system/homebrew.bash" . }}
+install_homebrew_packages
+{{ else if and (eq .chezmoi.os "linux") (or (eq .chezmoi.osRelease.id "ubuntu") (eq .chezmoi.osRelease.id "debian")) -}}
+{{ template "scripts/system/apt.bash" . }}
+install_apt_packages
+{{ else if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") -}}
+{{ template "scripts/system/paru.bash" . }}
+install_paru_packages
+{{ else -}}
+die "unsupported package-manager platform"
+{{ end -}}

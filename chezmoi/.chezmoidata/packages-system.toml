@@ -463,6 +463,7 @@
         "fd-find",
         "figlet",
         "fzf",
+        "eza",
         "jq",
         "lolcat",
         "mc",      # Midnight Commander
@@ -488,6 +489,8 @@
       packages = []
 
   [packages.pacman]
+    to_remove = []
+
     [packages.pacman.common]
       packages = [
         # System Essentials

@@ -141,4 +141,22 @@ assert_contains "$tmp_dir/arch-bootstrap.sh" 'command -v paru'
 assert_contains "$tmp_dir/arch-bootstrap.sh" 'makepkg -si'
 assert_not_contains "$tmp_dir/arch-bootstrap.sh" 'apt-get'
 
+system_source="$source_dir/.chezmoiscripts/run_onchange_before_10-system-packages.sh.tmpl"
+for profile in mac ubuntu arch; do
+    render_script "$tmp_dir/$profile.json" "$system_source" \
+        "$tmp_dir/$profile-system.sh"
+    check_rendered_script "$tmp_dir/$profile-system.sh"
+done
+
+assert_contains "$tmp_dir/mac-system.sh" 'brew install'
+assert_contains "$tmp_dir/mac-system.sh" 'mas install'
+assert_not_contains "$tmp_dir/mac-system.sh" 'apt-get|paru'
+
+assert_contains "$tmp_dir/ubuntu-system.sh" 'apt-get install'
+assert_contains "$tmp_dir/ubuntu-system.sh" 'deb.gierens.de'
+assert_not_contains "$tmp_dir/ubuntu-system.sh" 'brew|paru'
+
+assert_contains "$tmp_dir/arch-system.sh" 'paru -S'
+assert_not_contains "$tmp_dir/arch-system.sh" 'brew|apt-get'
+
 printf 'chezmoi script render tests passed\n'

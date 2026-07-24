@@ -7,7 +7,7 @@ source_dir="$repo_root/chezmoi"
 tmp_dir=$(mktemp -d)
 trap 'rm -rf "$tmp_dir"' EXIT
 
-for command_name in chezmoi rg; do
+for command_name in chezmoi jq rg; do
     command -v "$command_name" >/dev/null ||
         {
             printf 'missing command: %s\n' "$command_name" >&2
@@ -110,5 +110,108 @@ PATH="$fake_bin:/usr/bin:/bin" \
 assert_log_contains 'pacman -S --needed --noconfirm git base-devel'
 assert_log_contains 'git clone --depth 1 https://aur.archlinux.org/paru.git'
 assert_log_contains 'makepkg -si --noconfirm'
+
+system_source="$source_dir/.chezmoiscripts/run_onchange_before_10-system-packages.sh.tmpl"
+system_fake_bin="$tmp_dir/system-fake-bin"
+mkdir -p "$system_fake_bin"
+manager_stub="$system_fake_bin/manager-stub"
+cat >"$manager_stub" <<'STUB'
+#!/usr/bin/env bash
+set -u
+manager=${0##*/}
+printf '%s %s\n' "$manager" "$*" >>"$COMMAND_LOG"
+
+case "$manager:$*" in
+    sudo:*) exec "$@" ;;
+    brew:list*) exit 1 ;;
+    brew:*package-fail*|apt-get:*package-fail*|paru:*package-fail*) exit 42 ;;
+    dpkg-query:*) exit 1 ;;
+    apt-cache:show*) exit 0 ;;
+    pacman:-Q*) exit 1 ;;
+    paru:-Si*) exit 0 ;;
+    mas:list*) exit 0 ;;
+    *) exit 0 ;;
+esac
+STUB
+chmod +x "$manager_stub"
+for command_name in brew mas sudo apt-get apt-cache dpkg-query pacman paru eza; do
+    ln -s manager-stub "$system_fake_bin/$command_name"
+done
+
+for profile in mac ubuntu arch; do
+    system_data="$tmp_dir/$profile-system.json"
+    case "$profile" in
+    mac)
+        jq \
+            --argjson packages '["package-ok", "package-fail", "package-never"]' \
+            '.chezmoi.os = "darwin"
+             | .chezmoi.osRelease.id = "darwin"
+             | .features = {
+                 development: false,
+                 personal: false,
+                 homelab: false,
+                 graphical: false
+               }
+             | .packages.homebrew.to_remove = []
+             | .packages.homebrew.common.formulae = $packages
+             | .packages.homebrew.common.casks = []' \
+            "$base_data_file" >"$system_data"
+        ;;
+    ubuntu)
+        jq \
+            --argjson packages '["package-ok", "package-fail", "package-never"]' \
+            '.chezmoi.os = "linux"
+             | .chezmoi.osRelease.id = "ubuntu"
+             | .features = {
+                 development: false,
+                 personal: false,
+                 homelab: false,
+                 graphical: false
+               }
+             | .packages.apt.to_remove = []
+             | .packages.apt.common.packages = $packages' \
+            "$base_data_file" >"$system_data"
+        ;;
+    arch)
+        jq \
+            --argjson packages '["package-ok", "package-fail", "package-never"]' \
+            '.chezmoi.os = "linux"
+             | .chezmoi.osRelease.id = "arch"
+             | .features = {
+                 development: false,
+                 personal: false,
+                 homelab: false,
+                 graphical: false
+               }
+             | .packages.pacman.to_remove = []
+             | .packages.pacman.common.packages = $packages' \
+            "$base_data_file" >"$system_data"
+        ;;
+    esac
+
+    system_fixture="$tmp_dir/$profile-system.sh"
+    chezmoi -S "$source_dir" execute-template \
+        --override-data-file "$system_data" \
+        --file "$system_source" >"$system_fixture"
+    chmod +x "$system_fixture"
+
+    COMMAND_LOG="$tmp_dir/$profile-system.log"
+    : >"$COMMAND_LOG"
+    set +e
+    PATH="$system_fake_bin:/usr/bin:/bin" \
+        CI=true \
+        COMMAND_LOG="$COMMAND_LOG" \
+        /bin/bash "$system_fixture" >"$tmp_dir/$profile-system.out" 2>&1
+    status=$?
+    set -e
+
+    [[ $status -ne 0 ]]
+    rg -q 'package-ok' "$COMMAND_LOG"
+    rg -q 'package-fail' "$COMMAND_LOG"
+    if rg -q 'package-never' "$COMMAND_LOG"; then
+        printf 'manager continued after package-fail\n' >&2
+        exit 1
+    fi
+done
 
 printf 'chezmoi script behavior tests passed\n'
