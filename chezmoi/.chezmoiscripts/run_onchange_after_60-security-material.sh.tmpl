@@ -41,6 +41,13 @@ install_server_keys() {
     if [[ -L "$private_key" || -L "$public_key" ]]; then
         die "refusing to write SSH key through symlink: ${private_key##*/}"
     fi
+    if [[ "$include_private" == true &&
+        -e "$private_key" && ! -f "$private_key" ]]; then
+        die "refusing non-regular SSH key target: ${private_key##*/}"
+    fi
+    if [[ -e "$public_key" && ! -f "$public_key" ]]; then
+        die "refusing non-regular SSH key target: ${public_key##*/}"
+    fi
 
     if [[ "$include_private" == true && ! -f "$private_key" ]]; then
         need_private=true

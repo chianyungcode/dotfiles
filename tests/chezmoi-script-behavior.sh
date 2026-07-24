@@ -1268,6 +1268,78 @@ assert_no_security_fixture_material "$tmp_dir/security-public-only.out"
 [[ $(rg -Fc 'op item get fixture-op-id --format json' \
     "$public_only_op_log") -eq 1 ]]
 
+prepare_existing_security_defaults() {
+    local keys_dir=$1
+    mkdir -p "$keys_dir"
+    jq -r '.remote_servers[]?.name' "$base_data_file" |
+        while IFS= read -r server_name; do
+            printf '%s\n' 'existing key fixture' \
+                >"$keys_dir/$server_name"
+            printf '%s\n' 'existing public key fixture' \
+                >"$keys_dir/$server_name.pub"
+        done
+}
+
+assert_security_directory_conflict() {
+    local key_suffix=$1
+    local public_only=$2
+    local label=$3
+    local keys_dir="$tmp_dir/security-$label-keys"
+    local data_file="$tmp_dir/security-$label.json"
+    local fixture="$tmp_dir/security-$label.sh"
+    local conflict_path="$keys_dir/fixture$key_suffix"
+    local op_log="$tmp_dir/security-$label-op.log"
+    local output="$tmp_dir/security-$label.out"
+
+    prepare_existing_security_defaults "$keys_dir"
+    mkdir -p "$conflict_path"
+    jq \
+        --arg ssh_keys_dir "$keys_dir" \
+        --argjson public_only "$public_only" \
+        '.directories.ssh_keys_dir = $ssh_keys_dir
+         | .remote_servers.fixture.generate_public_key_only = $public_only' \
+        "$security_data" >"$data_file"
+    PATH="$security_fake_bin:$PATH" \
+        chezmoi -S "$source_dir" execute-template \
+        --override-data-file "$data_file" \
+        --file "$security_source" >"$fixture"
+    chmod +x "$fixture"
+    : >"$op_log"
+
+    set +e
+    PATH="$security_fake_bin:/usr/bin:/bin" \
+        OP_COMMAND_LOG="$op_log" \
+        /bin/bash "$fixture" >"$output" 2>&1
+    status=$?
+    set -e
+    [[ $status -ne 0 ]] || {
+        printf 'security phase accepted %s directory target\n' "$label" >&2
+        exit 1
+    }
+    rg -Fq 'refusing non-regular SSH key target' "$output"
+    assert_no_security_fixture_material "$output"
+    [[ ! -s "$op_log" ]]
+    [[ -d "$conflict_path" ]]
+    if find "$conflict_path" -mindepth 1 -print -quit | rg -q .; then
+        printf 'security phase wrote inside %s directory target\n' \
+            "$label" >&2
+        exit 1
+    fi
+    if find "$keys_dir" -name '.fixture*.tmp.*' -print -quit | rg -q .; then
+        printf 'security %s conflict left a temporary key\n' "$label" >&2
+        exit 1
+    fi
+    if [[ "$key_suffix" == ".pub" ]]; then
+        [[ ! -e "$keys_dir/fixture" ]]
+    else
+        [[ ! -e "$keys_dir/fixture.pub" ]]
+    fi
+}
+
+assert_security_directory_conflict '' false private-directory
+assert_security_directory_conflict '.pub' false public-directory
+assert_security_directory_conflict '.pub' true public-only-directory
+
 for key_suffix in '' '.pub'; do
     dangling_keys_dir="$tmp_dir/security-dangling-${key_suffix:-private}"
     outside_target="$tmp_dir/outside-${key_suffix:-private}"
