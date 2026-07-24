@@ -816,13 +816,7 @@ messages.
 - [ ] **Step 9: Commit the initialization behavior**
 
 ```bash
-git add \
-    chezmoi/.chezmoidata/accounts.toml \
-    chezmoi/.chezmoi.toml.tmpl \
-    tests/chezmoi-init-prompts.py \
-    tests/chezmoi-init-data.sh \
-    tests/chezmoi-render-config.sh
-git commit -m "feat(chezmoi): make server init role-first"
+jj commit -m "feat(chezmoi): make server init role-first"
 ```
 
 ---
@@ -1048,11 +1042,7 @@ chezmoi render matrix passed
 - [ ] **Step 6: Commit the VCS consumer changes**
 
 ```bash
-git add \
-    chezmoi/dot_config/git/config.tmpl \
-    chezmoi/dot_config/jj/config.toml.tmpl \
-    tests/chezmoi-vcs-local-commit.sh
-git commit -m "fix(vcs): support local-only server identity"
+jj commit -m "fix(vcs): support local-only server identity"
 ```
 
 ---
@@ -1305,8 +1295,7 @@ rm -r "$verification_root"
 - [ ] **Step 5: Commit the documentation**
 
 ```bash
-git add README.md docs/06-server-initialization.md
-git commit -m "docs(chezmoi): explain server initialization"
+jj commit -m "docs(chezmoi): explain server initialization"
 ```
 
 - [ ] **Step 6: Confirm the branch is ready for review**
@@ -1314,9 +1303,9 @@ git commit -m "docs(chezmoi): explain server initialization"
 Run:
 
 ```bash
-git status --short
-git log -4 --oneline
+jj status
+jj log -r 'ancestors(@, 5)' -n 4 --no-graph
 ```
 
-Expected: `git status --short` prints nothing. The log shows the design commit
+Expected: `jj status` reports no working-copy changes. The log shows the design commit
 followed by the initialization, VCS, and documentation commits from this plan.
