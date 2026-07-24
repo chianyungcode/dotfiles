@@ -24,10 +24,18 @@ To use this repo on a new machine:
    chezmoi init --apply https://github.com/chianyungcode/dotfiles.git
    ```
 
-   During initialization, choose an identity profile, machine role, capabilities,
-   secrets provider, and whether Age-encrypted files should be enabled. A
-   secretless Ubuntu server can use the defaults `server`, `none`, and `false`
-   without `op` or an Age identity.
+   Initialization asks for the machine role first.
+
+   - A `server` automatically uses the local-only `server-minimal` identity,
+     disables personal and graphical features, uses no secrets provider, and
+     disables Age-encrypted files. Only development and homelab capabilities
+     are prompted.
+   - A `workstation` prompts for its identity profile, capabilities, secrets
+     provider, and Age-encrypted files.
+
+   The server path does not require `op` or an Age identity. See
+   [Server Initialization](./docs/06-server-initialization.md) for migration,
+   exceptional overrides, and emergency local commits.
 
 3. **Apply Configurations**:
    Run `chezmoi apply` to apply all dotfiles to your home directory.
@@ -44,7 +52,9 @@ To use this repo on a new machine:
 
 5. **Post-Installation**:
    - Install optional packages through the capability selections made during initialization.
-   - Enable `onepassword` or Age-encrypted files later by updating Chezmoi's configuration and applying again.
+   - Workstations can change their secrets provider or Age-encrypted file policy
+     by updating Chezmoi's configuration and applying again. Server
+     reinitialization restores both settings to their secretless defaults.
    - Workstations enable the configured `delta`/`difft` experience; server roles use built-in Git and Jujutsu diffs.
 
 ### Validate a configuration change
