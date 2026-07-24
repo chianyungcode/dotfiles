@@ -159,4 +159,25 @@ assert_not_contains "$tmp_dir/ubuntu-system.sh" 'brew|paru'
 assert_contains "$tmp_dir/arch-system.sh" 'paru -S'
 assert_not_contains "$tmp_dir/arch-system.sh" 'brew|apt-get'
 
+runtime_source="$source_dir/.chezmoiscripts/run_onchange_after_20-language-runtimes.sh.tmpl"
+language_source="$source_dir/.chezmoiscripts/run_onchange_after_30-language-packages.sh.tmpl"
+render_script "$ubuntu_data" "$runtime_source" "$tmp_dir/ubuntu-runtime.sh"
+render_script "$ubuntu_data" "$language_source" "$tmp_dir/ubuntu-language.sh"
+check_rendered_script "$tmp_dir/ubuntu-runtime.sh"
+check_rendered_script "$tmp_dir/ubuntu-language.sh"
+
+assert_contains "$tmp_dir/ubuntu-runtime.sh" 'node@latest'
+assert_contains "$tmp_dir/ubuntu-runtime.sh" 'rust@latest'
+assert_contains "$tmp_dir/ubuntu-language.sh" '@go-task/cli'
+assert_contains "$tmp_dir/ubuntu-language.sh" 'cargo-binstall'
+
+server_data="$tmp_dir/server.json"
+make_profile "$server_data" linux ubuntu amd64 false false false false
+render_script "$server_data" "$runtime_source" "$tmp_dir/server-runtime.sh"
+check_rendered_script "$tmp_dir/server-runtime.sh"
+assert_contains "$tmp_dir/server-runtime.sh" 'ensure_uv'
+assert_not_contains "$tmp_dir/server-runtime.sh" 'node@latest'
+assert_not_contains "$tmp_dir/server-runtime.sh" 'rust@latest'
+assert_not_contains "$tmp_dir/server-runtime.sh" 'ensure_mise'
+
 printf 'chezmoi script render tests passed\n'

@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+
+PHASE="30-language-packages"
+{{ template "scripts/core.bash" . }}
+{{ template "scripts/language/packages.bash" . -}}
+
+export PATH="{{ .xdg.data_home }}/mise/shims:$HOME/.local/bin:$PATH"
+
+uv_remove=(
+{{- range .packages.python.to_remove }}
+    "{{ . }}"
+{{- end }}
+)
+uv_packages=(
+{{- range .packages.python.common.packages }}
+    "{{ . }}"
+{{- end }}
+{{- if .features.development }}
+{{- range .packages.python.development.packages }}
+    "{{ . }}"
+{{- end }}
+{{- end }}
+{{- if .features.homelab }}
+{{- range .packages.python.homelab.packages }}
+    "{{ . }}"
+{{- end }}
+{{- end }}
+{{- if .features.personal }}
+{{- range .packages.python.personal.packages }}
+    "{{ . }}"
+{{- end }}
+{{- end }}
+)
+
+npm_remove=(
+{{- range .packages.node.to_remove }}
+    "{{ . }}"
+{{- end }}
+)
+npm_packages=(
+{{- range .packages.node.common.packages }}
+    "{{ . }}"
+{{- end }}
+{{- if .features.development }}
+{{- range .packages.node.development.packages }}
+    "{{ . }}"
+{{- end }}
+{{- end }}
+{{- if .features.homelab }}
+{{- range .packages.node.homelab.packages }}
+    "{{ . }}"
+{{- end }}
+{{- end }}
+{{- if .features.personal }}
+{{- range .packages.node.personal.packages }}
+    "{{ . }}"
+{{- end }}
+{{- end }}
+)
+
+cargo_remove=(
+{{- range .packages.cargo.to_remove }}
+    "{{ . }}"
+{{- end }}
+)
+cargo_packages=(
+{{- range .packages.cargo.common.packages }}
+    "{{ . }}"
+{{- end }}
+{{- if .features.development }}
+{{- range .packages.cargo.development.packages }}
+    "{{ . }}"
+{{- end }}
+{{- end }}
+{{- if .features.homelab }}
+{{- range .packages.cargo.homelab.packages }}
+    "{{ . }}"
+{{- end }}
+{{- end }}
+{{- if .features.personal }}
+{{- range .packages.cargo.personal.packages }}
+    "{{ . }}"
+{{- end }}
+{{- end }}
+)
+
+install_uv_tools
+install_npm_packages
+install_cargo_packages

@@ -260,4 +260,107 @@ for profile in mac ubuntu arch; do
     fi
 done
 
+runtime_source="$source_dir/.chezmoiscripts/run_onchange_after_20-language-runtimes.sh.tmpl"
+language_source="$source_dir/.chezmoiscripts/run_onchange_after_30-language-packages.sh.tmpl"
+language_data="$tmp_dir/language.json"
+jq \
+    '.chezmoi.os = "linux"
+     | .chezmoi.osRelease.id = "ubuntu"
+     | .features = {
+         development: true,
+         personal: false,
+         homelab: false,
+         graphical: false
+       }
+     | .runtimes = [
+         {name: "node", version: "latest", features: ["development"]}
+       ]
+     | .packages.python.to_remove = []
+     | .packages.python.common.packages = ["python-tool"]
+     | .packages.python.development.packages = []
+     | .packages.python.homelab.packages = []
+     | .packages.python.personal.packages = []
+     | .packages.node.to_remove = []
+     | .packages.node.common.packages = ["node-tool"]
+     | .packages.node.development.packages = []
+     | .packages.node.homelab.packages = []
+     | .packages.node.personal.packages = []
+     | .packages.cargo.to_remove = []
+     | .packages.cargo.common.packages = ["cargo-tool"]
+     | .packages.cargo.development.packages = []
+     | .packages.cargo.homelab.packages = []
+     | .packages.cargo.personal.packages = []' \
+    "$base_data_file" >"$language_data"
+
+runtime_fixture="$tmp_dir/language-runtime.sh"
+language_fixture="$tmp_dir/language-packages.sh"
+chezmoi -S "$source_dir" execute-template \
+    --override-data-file "$language_data" \
+    --file "$runtime_source" >"$runtime_fixture"
+chezmoi -S "$source_dir" execute-template \
+    --override-data-file "$language_data" \
+    --file "$language_source" >"$language_fixture"
+chmod +x "$runtime_fixture" "$language_fixture"
+
+language_fake_bin="$tmp_dir/language-fake-bin"
+mkdir -p "$language_fake_bin"
+language_stub="$language_fake_bin/language-stub"
+cat >"$language_stub" <<'STUB'
+#!/usr/bin/env bash
+set -u
+manager=${0##*/}
+printf '%s %s\n' "$manager" "$*" >>"$COMMAND_LOG"
+
+case "$manager:$*" in
+    uv:"tool list"*) exit 0 ;;
+    npm:"list -g"*) exit 1 ;;
+    cargo:"install --list"*) exit 0 ;;
+    npm:*node-tool*)
+        [[ "${FAIL_NPM:-false}" == true ]] && exit 42
+        ;;
+esac
+exit 0
+STUB
+chmod +x "$language_stub"
+for command_name in mise uv node npm go rustc cargo bun deno taplo; do
+    ln -s language-stub "$language_fake_bin/$command_name"
+done
+
+COMMAND_LOG="$tmp_dir/language-commands.log"
+: >"$COMMAND_LOG"
+PATH="$language_fake_bin:/usr/bin:/bin" \
+    COMMAND_LOG="$COMMAND_LOG" \
+    /bin/bash "$runtime_fixture"
+PATH="$language_fake_bin:/usr/bin:/bin" \
+    COMMAND_LOG="$COMMAND_LOG" \
+    /bin/bash "$language_fixture"
+
+mise_line=$(rg -n 'mise use -g node@latest' "$COMMAND_LOG" | cut -d: -f1)
+uv_line=$(rg -n 'uv tool install python-tool' "$COMMAND_LOG" | cut -d: -f1)
+npm_line=$(rg -n 'npm install -g node-tool' "$COMMAND_LOG" | cut -d: -f1)
+cargo_line=$(rg -n 'cargo install cargo-tool' "$COMMAND_LOG" | cut -d: -f1)
+
+((mise_line < uv_line))
+((uv_line < npm_line))
+((npm_line < cargo_line))
+
+: >"$COMMAND_LOG"
+PATH="$language_fake_bin:/usr/bin:/bin" \
+    COMMAND_LOG="$COMMAND_LOG" \
+    /bin/bash "$runtime_fixture"
+set +e
+PATH="$language_fake_bin:/usr/bin:/bin" \
+    COMMAND_LOG="$COMMAND_LOG" \
+    FAIL_NPM=true \
+    /bin/bash "$language_fixture" >"$tmp_dir/language-failure.out" 2>&1
+status=$?
+set -e
+
+[[ $status -ne 0 ]]
+assert_log_contains 'npm install -g node-tool'
+if rg -Fq 'cargo install cargo-tool' "$COMMAND_LOG"; then
+    printf 'cargo continued after npm install failure\n' >&2
+    exit 1
+fi
+
 printf 'chezmoi script behavior tests passed\n'

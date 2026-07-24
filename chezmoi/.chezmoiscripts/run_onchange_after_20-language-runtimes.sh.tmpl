@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+PHASE="20-language-runtimes"
+{{ template "scripts/core.bash" . }}
+{{ template "scripts/language/runtimes.bash" . -}}
+
+export PATH="{{ .xdg.data_home }}/mise/shims:$HOME/.local/bin:$PATH"
+
+{{- $hasRuntimes := false -}}
+{{- range $runtime := .runtimes -}}
+{{- range $feature := $runtime.features -}}
+{{- if index $.features $feature -}}
+{{- $hasRuntimes = true -}}
+{{- end -}}
+{{- end -}}
+{{- end }}
+# shellcheck disable=SC2034 # Empty runtime profiles do not consume the array.
+runtimes=(
+{{- range $runtime := .runtimes }}
+{{-   $enabled := false }}
+{{-   range $feature := $runtime.features }}
+{{-     if index $.features $feature }}
+{{-       $enabled = true }}
+{{-     end }}
+{{-   end }}
+{{-   if $enabled }}
+    "{{ $runtime.name }}@{{ $runtime.version }}"
+{{-   end }}
+{{- end }}
+)
+
+ensure_uv
+{{ if $hasRuntimes -}}
+ensure_mise
+install_language_runtimes "${runtimes[@]}"
+{{ end -}}
