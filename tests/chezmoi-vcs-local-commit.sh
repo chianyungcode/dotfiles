@@ -50,7 +50,7 @@ GIT_CONFIG_GLOBAL="$git_config" GIT_CONFIG_NOSYSTEM=1 HOME="$tmp_dir/home" \
     git -C "$git_repo" add emergency.txt
 GIT_CONFIG_GLOBAL="$git_config" GIT_CONFIG_NOSYSTEM=1 HOME="$tmp_dir/home" \
     git -C "$git_repo" commit -q -m emergency
-git_identity=$( 
+git_identity=$(
     GIT_CONFIG_GLOBAL="$git_config" GIT_CONFIG_NOSYSTEM=1 HOME="$tmp_dir/home" \
         git -C "$git_repo" log -1 --format='%an|%ae|%s'
 )
@@ -74,7 +74,7 @@ jj_repo="$tmp_dir/jj-repo"
 JJ_CONFIG="$jj_config" jj git init "$jj_repo" >/dev/null
 printf 'emergency\n' >"$jj_repo/emergency.txt"
 JJ_CONFIG="$jj_config" jj -R "$jj_repo" describe -m emergency >/dev/null
-jj_identity=$( 
+jj_identity=$(
     JJ_CONFIG="$jj_config" jj -R "$jj_repo" log -r @ --no-graph \
         -T 'author.name() ++ "|" ++ author.email() ++ "|" ++ description.first_line() ++ "\n"'
 )
