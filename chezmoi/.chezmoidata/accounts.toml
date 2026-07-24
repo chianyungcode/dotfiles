@@ -11,3 +11,10 @@ git_email = "seraphyne31@gmail.com"
 github_username = "seraphynee"
 signing_key = "signing_key_spy"
 github_token = "spy_gh_pat"
+
+[accounts.server-minimal]
+git_name = "chianyungcode-server"
+git_email = "chianyungcode-server@local.invalid"
+github_username = ""
+signing_key = ""
+github_token = ""

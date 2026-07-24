@@ -1,15 +1,37 @@
 {{- $account_data := include ".chezmoidata/accounts.toml" | fromToml -}}
-{{- $identity_profile := promptChoiceOnce . "identity.profile" "Choose your identity profile" (list "personal" "secondary" "custom") "personal" -}}
+{{- $machine_role := promptChoiceOnce . "machine.role" "Choose this machine's primary role" (list "server" "workstation") "server" -}}
+{{- $existing_identity_profile := dig "identity" "profile" "" . -}}
+{{- $workstation_transition := and (eq $machine_role "workstation") (eq $existing_identity_profile "server-minimal") -}}
+{{- $identity_profile := "server-minimal" -}}
+{{- if eq $machine_role "workstation" -}}
+{{-   if $workstation_transition -}}
+{{-     $identity_profile = promptChoice "Choose your identity profile" (list "personal" "secondary" "custom") "personal" -}}
+{{-   else if and (ne $existing_identity_profile "") (not (or (eq $existing_identity_profile "personal") (eq $existing_identity_profile "secondary") (eq $existing_identity_profile "custom"))) -}}
+{{-     fail (printf "unknown workstation identity profile %q; expected personal, secondary, or custom" $existing_identity_profile) -}}
+{{-   else -}}
+{{-     $identity_profile = promptChoiceOnce . "identity.profile" "Choose your identity profile" (list "personal" "secondary" "custom") "personal" -}}
+{{-   end -}}
+{{- end -}}
+
 {{- $git_name := "" -}}
 {{- $git_email := "" -}}
 {{- $github_username := "" -}}
 {{- $signing_key := "" -}}
 {{- $github_token := "" -}}
 {{- if eq $identity_profile "custom" -}}
-{{-   $git_name = promptStringOnce . "identity.git_name" "Git author name" -}}
-{{-   $git_email = promptStringOnce . "identity.git_email" "Git author email" -}}
-{{-   $github_username = promptStringOnce . "identity.github_username" "GitHub username" -}}
+{{-   if $workstation_transition -}}
+{{-     $git_name = promptString "Git author name" -}}
+{{-     $git_email = promptString "Git author email" -}}
+{{-     $github_username = promptString "GitHub username" -}}
+{{-   else -}}
+{{-     $git_name = promptStringOnce . "identity.git_name" "Git author name" -}}
+{{-     $git_email = promptStringOnce . "identity.git_email" "Git author email" -}}
+{{-     $github_username = promptStringOnce . "identity.github_username" "GitHub username" -}}
+{{-   end -}}
 {{- else -}}
+{{-   if not (hasKey $account_data.accounts $identity_profile) -}}
+{{-     fail (printf "identity profile %q is missing from .chezmoidata/accounts.toml" $identity_profile) -}}
+{{-   end -}}
 {{-   $account := index $account_data.accounts $identity_profile -}}
 {{-   $git_name = $account.git_name -}}
 {{-   $git_email = $account.git_email -}}
@@ -17,20 +39,30 @@
 {{-   $signing_key = $account.signing_key -}}
 {{-   $github_token = $account.github_token -}}
 {{- end -}}
+{{- if or (eq $git_name "") (eq $git_email "") -}}
+{{-   fail (printf "identity profile %q must define non-empty git_name and git_email" $identity_profile) -}}
+{{- end -}}
 
-{{- $machine_role := promptChoiceOnce . "machine.role" "Choose this machine's primary role" (list "server" "workstation") "server" -}}
 {{- $workstation_defaults := eq $machine_role "workstation" -}}
 {{- $development := promptBoolOnce . "features.development" "Enable development tools?" $workstation_defaults -}}
 {{- $homelab := promptBoolOnce . "features.homelab" "Enable homelab tools?" false -}}
-{{- $personal := promptBoolOnce . "features.personal" "Enable personal tools?" $workstation_defaults -}}
-{{- $graphical := promptBoolOnce . "features.graphical" "Enable graphical tools?" $workstation_defaults -}}
-
-{{- $secrets_default := "none" -}}
+{{- $personal := false -}}
+{{- $graphical := false -}}
+{{- $secrets_provider := "none" -}}
+{{- $encrypted_files := false -}}
 {{- if $workstation_defaults -}}
-{{-   $secrets_default = "onepassword" -}}
+{{-   if $workstation_transition -}}
+{{-     $personal = promptBool "Enable personal tools?" true -}}
+{{-     $graphical = promptBool "Enable graphical tools?" true -}}
+{{-     $secrets_provider = promptChoice "Choose the secrets provider" (list "none" "onepassword") "onepassword" -}}
+{{-     $encrypted_files = promptBool "Enable Age-encrypted files?" true -}}
+{{-   else -}}
+{{-     $personal = promptBoolOnce . "features.personal" "Enable personal tools?" true -}}
+{{-     $graphical = promptBoolOnce . "features.graphical" "Enable graphical tools?" true -}}
+{{-     $secrets_provider = promptChoiceOnce . "secrets.provider" "Choose the secrets provider" (list "none" "onepassword") "onepassword" -}}
+{{-     $encrypted_files = promptBoolOnce . "encrypted_files.enabled" "Enable Age-encrypted files?" true -}}
+{{-   end -}}
 {{- end -}}
-{{- $secrets_provider := promptChoiceOnce . "secrets.provider" "Choose the secrets provider" (list "none" "onepassword") $secrets_default -}}
-{{- $encrypted_files := promptBoolOnce . "encrypted_files.enabled" "Enable Age-encrypted files?" $workstation_defaults -}}
 
 {{- $xdg_cache := env "XDG_CACHE_HOME" | default (joinPath .chezmoi.homeDir ".cache") -}}
 {{- $xdg_config := env "XDG_CONFIG_HOME" | default (joinPath .chezmoi.homeDir ".config") -}}
