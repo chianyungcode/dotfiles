@@ -123,10 +123,14 @@ printf '%s %s\n' "$manager" "$*" >>"$COMMAND_LOG"
 
 case "$manager:$*" in
     sudo:*) exec "$@" ;;
+    brew:list*package-remove-fail*) exit 0 ;;
+    brew:uninstall*package-remove-fail*|apt-get:remove*package-remove-fail*|paru:-R*package-remove-fail*) exit 42 ;;
     brew:list*) exit 1 ;;
     brew:*package-fail*|apt-get:*package-fail*|paru:*package-fail*) exit 42 ;;
+    dpkg-query:*package-remove-fail*) printf 'ii \n' ;;
     dpkg-query:*) exit 1 ;;
     apt-cache:show*) exit 0 ;;
+    pacman:-Q*package-remove-fail*) exit 0 ;;
     pacman:-Q*) exit 1 ;;
     paru:-Si*) exit 0 ;;
     mas:list*) exit 0 ;;
@@ -210,6 +214,48 @@ for profile in mac ubuntu arch; do
     rg -q 'package-fail' "$COMMAND_LOG"
     if rg -q 'package-never' "$COMMAND_LOG"; then
         printf 'manager continued after package-fail\n' >&2
+        exit 1
+    fi
+
+    removal_data="$tmp_dir/$profile-removal.json"
+    case "$profile" in
+    mac)
+        jq \
+            '.packages.homebrew.to_remove = ["package-remove-fail"]
+             | .packages.homebrew.common.formulae = ["package-removal-sentinel"]' \
+            "$system_data" >"$removal_data"
+        ;;
+    ubuntu)
+        jq \
+            '.packages.apt.to_remove = ["package-remove-fail"]
+             | .packages.apt.common.packages = ["package-removal-sentinel"]' \
+            "$system_data" >"$removal_data"
+        ;;
+    arch)
+        jq \
+            '.packages.pacman.to_remove = ["package-remove-fail"]
+             | .packages.pacman.common.packages = ["package-removal-sentinel"]' \
+            "$system_data" >"$removal_data"
+        ;;
+    esac
+
+    chezmoi -S "$source_dir" execute-template \
+        --override-data-file "$removal_data" \
+        --file "$system_source" >"$system_fixture"
+    COMMAND_LOG="$tmp_dir/$profile-removal.log"
+    : >"$COMMAND_LOG"
+    set +e
+    PATH="$system_fake_bin:/usr/bin:/bin" \
+        CI=true \
+        COMMAND_LOG="$COMMAND_LOG" \
+        /bin/bash "$system_fixture" >"$tmp_dir/$profile-removal.out" 2>&1
+    status=$?
+    set -e
+
+    [[ $status -ne 0 ]]
+    rg -q 'package-remove-fail' "$COMMAND_LOG"
+    if rg -q 'package-removal-sentinel' "$COMMAND_LOG"; then
+        printf 'manager continued after package-remove-fail\n' >&2
         exit 1
     fi
 done

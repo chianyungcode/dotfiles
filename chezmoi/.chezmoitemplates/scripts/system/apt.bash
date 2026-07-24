@@ -60,8 +60,9 @@ install_apt_packages() {
 
     if [[ ${#remove_packages[@]} -gt 0 ]]; then
         for package in "${remove_packages[@]}"; do
-            apt_package_installed "$package" &&
+            if apt_package_installed "$package"; then
                 sudo apt-get remove -y "$package"
+            fi
         done
     fi
 

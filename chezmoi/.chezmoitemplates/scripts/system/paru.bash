@@ -30,8 +30,9 @@ install_paru_packages() {
 
     if [[ ${#remove_packages[@]} -gt 0 ]]; then
         for package in "${remove_packages[@]}"; do
-            pacman -Q "$package" >/dev/null 2>&1 &&
+            if pacman -Q "$package" >/dev/null 2>&1; then
                 paru -R --noconfirm "$package"
+            fi
         done
     fi
 

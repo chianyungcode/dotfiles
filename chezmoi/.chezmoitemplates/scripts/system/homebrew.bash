@@ -102,8 +102,9 @@ install_homebrew_packages() {
 
     if [[ ${#remove_formulae[@]} -gt 0 ]]; then
         for package in "${remove_formulae[@]}"; do
-            brew list --formula "$package" >/dev/null 2>&1 &&
+            if brew list --formula "$package" >/dev/null 2>&1; then
                 brew uninstall --formula "$package"
+            fi
         done
     fi
 
