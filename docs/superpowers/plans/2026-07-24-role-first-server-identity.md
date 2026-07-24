@@ -418,6 +418,39 @@ fi
 rg -q 'unknown workstation identity profile "mystery"' \
     "$tmp_dir/unknown-profile.err"
 
+if render_config "$tmp_dir/empty-custom.toml" "$missing_config" \
+    --promptChoice machine.role=workstation \
+    --promptChoice identity.profile=custom \
+    --promptString identity.git_name= \
+    --promptString identity.git_email=emergency@example.invalid \
+    --promptString identity.github_username= \
+    2>"$tmp_dir/empty-custom.err"; then
+    printf 'empty custom Git name unexpectedly rendered\n' >&2
+    exit 1
+fi
+rg -q 'must define non-empty git_name and git_email' \
+    "$tmp_dir/empty-custom.err"
+
+missing_account_source="$tmp_dir/missing-server-account-source"
+mkdir -p "$missing_account_source/.chezmoidata"
+cp "$template_file" "$missing_account_source/.chezmoi.toml.tmpl"
+awk '
+    /^\[accounts\.server-minimal\]$/ { exit }
+    { print }
+' "$source_dir/.chezmoidata/accounts.toml" \
+    >"$missing_account_source/.chezmoidata/accounts.toml"
+
+if chezmoi -S "$missing_account_source" -c "$missing_config" \
+    execute-template --init \
+    --file "$missing_account_source/.chezmoi.toml.tmpl" \
+    >"$tmp_dir/missing-account.toml" \
+    2>"$tmp_dir/missing-account.err"; then
+    printf 'missing server account unexpectedly rendered\n' >&2
+    exit 1
+fi
+rg -q 'identity profile "server-minimal" is missing' \
+    "$tmp_dir/missing-account.err"
+
 printf 'chezmoi init data passed\n'
 ```
 
