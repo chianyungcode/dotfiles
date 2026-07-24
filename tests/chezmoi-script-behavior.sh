@@ -363,4 +363,169 @@ if rg -Fq 'cargo install cargo-tool' "$COMMAND_LOG"; then
     exit 1
 fi
 
+standalone_source="$source_dir/.chezmoiscripts/run_onchange_after_40-standalone-tools.sh.tmpl"
+standalone_data="$tmp_dir/standalone.json"
+jq \
+    '.chezmoi.os = "linux"
+     | .chezmoi.osRelease.id = "ubuntu"
+     | .chezmoi.arch = "amd64"
+     | .features = {
+         development: false,
+         personal: false,
+         homelab: false,
+         graphical: false
+       }
+     | .binaries |= with_entries(.value.systems = [])
+     | .binaries.sample = {
+           name: "sample",
+           repository: "example/sample",
+           systems: ["linux"],
+           required_architecture: "",
+           install_filter: "",
+           executable_name: "sample",
+           version_regex: "",
+           remove_from_release: ""
+       }' \
+    "$base_data_file" >"$standalone_data"
+
+standalone_fixture="$tmp_dir/standalone-tools.sh"
+chezmoi -S "$source_dir" execute-template \
+    --override-data-file "$standalone_data" \
+    --file "$standalone_source" >"$standalone_fixture"
+chmod +x "$standalone_fixture"
+
+release_json_fixture="$tmp_dir/release.json"
+cat >"$release_json_fixture" <<'JSON'
+{
+  "tag_name": "v1.2.3",
+  "prerelease": false,
+  "draft": false,
+  "assets": [
+    {
+      "name": "sample-v1.2.3-x86_64-unknown-linux-gnu.tar.gz",
+      "browser_download_url": "https://fixtures.invalid/sample.tar.gz"
+    },
+    {
+      "name": "SHA256SUMS",
+      "browser_download_url": "https://fixtures.invalid/SHA256SUMS"
+    }
+  ]
+}
+JSON
+
+fixture_root="$tmp_dir/release-fixture"
+mkdir -p "$fixture_root/sample-v1.2.3"
+cat >"$fixture_root/sample-v1.2.3/sample" <<'SAMPLE'
+#!/usr/bin/env bash
+printf 'sample 1.2.3\n'
+SAMPLE
+chmod +x "$fixture_root/sample-v1.2.3/sample"
+ARCHIVE_FIXTURE="$tmp_dir/sample.tar.gz"
+tar -czf "$ARCHIVE_FIXTURE" -C "$fixture_root" sample-v1.2.3
+CHECKSUM_FIXTURE="$tmp_dir/SHA256SUMS"
+if command -v sha256sum >/dev/null 2>&1; then
+    digest=$(sha256sum "$ARCHIVE_FIXTURE" | awk '{print $1}')
+else
+    digest=$(shasum -a 256 "$ARCHIVE_FIXTURE" | awk '{print $1}')
+fi
+printf '%s  %s\n' "$digest" sample.tar.gz >"$CHECKSUM_FIXTURE"
+export ARCHIVE_FIXTURE CHECKSUM_FIXTURE
+
+standalone_fake_bin="$tmp_dir/standalone-fake-bin"
+mkdir -p "$standalone_fake_bin"
+cat >"$standalone_fake_bin/curl" <<'STUB'
+#!/usr/bin/env bash
+set -u
+printf 'curl %s\n' "$*" >>"$COMMAND_LOG"
+output_file=""
+url=""
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --output)
+            output_file=$2
+            shift 2
+            ;;
+        -H)
+            shift 2
+            ;;
+        --fail|--show-error|--silent|--location|--retry)
+            if [[ "$1" == --retry ]]; then shift 2; else shift; fi
+            ;;
+        http*) url=$1; shift ;;
+        *) shift ;;
+    esac
+done
+
+case "$url" in
+    */releases/latest) cat "$RELEASE_JSON_FIXTURE" ;;
+    */sample.tar.gz) cp "$ARCHIVE_FIXTURE" "$output_file" ;;
+    */SHA256SUMS) cp "$CHECKSUM_FIXTURE" "$output_file" ;;
+    *) exit 64 ;;
+esac
+STUB
+chmod +x "$standalone_fake_bin/curl"
+for command_name in awk bash cat chmod cp find grep head jq mkdir mktemp mv rm \
+    sha256sum shasum tar; do
+    command_path=$(command -v "$command_name") || continue
+    ln -s "$command_path" "$standalone_fake_bin/$command_name"
+done
+
+COMMAND_LOG="$tmp_dir/standalone-commands.log"
+: >"$COMMAND_LOG"
+standalone_home="$tmp_dir/standalone-home"
+PATH="$standalone_fake_bin" \
+    HOME="$standalone_home" \
+    COMMAND_LOG="$COMMAND_LOG" \
+    RELEASE_JSON_FIXTURE="$release_json_fixture" \
+    /bin/bash "$standalone_fixture" >"$tmp_dir/standalone-success.out" 2>&1 || {
+        cat "$tmp_dir/standalone-success.out" >&2
+        exit 1
+    }
+
+[[ -x "$standalone_home/.local/bin/sample" ]]
+"$standalone_home/.local/bin/sample" --version | rg -q '^sample 1.2.3$'
+assert_log_contains 'releases/latest'
+assert_log_contains 'sample.tar.gz'
+assert_log_contains 'SHA256SUMS'
+
+wrong_checksum_fixture="$tmp_dir/wrong-SHA256SUMS"
+printf '%064d  sample.tar.gz\n' 0 >"$wrong_checksum_fixture"
+: >"$COMMAND_LOG"
+set +e
+PATH="$standalone_fake_bin" \
+    HOME="$tmp_dir/wrong-checksum-home" \
+    COMMAND_LOG="$COMMAND_LOG" \
+    RELEASE_JSON_FIXTURE="$release_json_fixture" \
+    CHECKSUM_FIXTURE="$wrong_checksum_fixture" \
+    /bin/bash "$standalone_fixture" >"$tmp_dir/wrong-checksum.out" 2>&1
+status=$?
+set -e
+[[ $status -ne 0 ]]
+[[ ! -e "$tmp_dir/wrong-checksum-home/.local/bin/sample" ]]
+
+checksumless_release_json="$tmp_dir/release-without-checksum.json"
+jq 'del(.assets[1])' "$release_json_fixture" >"$checksumless_release_json"
+: >"$COMMAND_LOG"
+set +e
+PATH="$standalone_fake_bin" \
+    HOME="$tmp_dir/checksumless-home" \
+    COMMAND_LOG="$COMMAND_LOG" \
+    RELEASE_JSON_FIXTURE="$checksumless_release_json" \
+    /bin/bash "$standalone_fixture" >"$tmp_dir/checksumless.out" 2>&1
+status=$?
+set -e
+[[ $status -ne 0 ]]
+[[ ! -e "$tmp_dir/checksumless-home/.local/bin/sample" ]]
+
+no_op_home="$tmp_dir/no-op-home"
+mkdir -p "$no_op_home/.local/bin"
+cp "$standalone_home/.local/bin/sample" "$no_op_home/.local/bin/sample"
+: >"$COMMAND_LOG"
+PATH="$no_op_home/.local/bin:$standalone_fake_bin" \
+    HOME="$no_op_home" \
+    COMMAND_LOG="$COMMAND_LOG" \
+    RELEASE_JSON_FIXTURE="$release_json_fixture" \
+    /bin/bash "$standalone_fixture"
+[[ ! -s "$COMMAND_LOG" ]]
+
 printf 'chezmoi script behavior tests passed\n'

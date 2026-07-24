@@ -63,6 +63,15 @@ render_script() {
         --file "$source_script" >"$output_file"
 }
 
+render_script_ci() {
+    local profile=$1
+    local source_script=$2
+    local output_file=$3
+    CI=true chezmoi -S "$source_dir" execute-template \
+        --override-data-file "$profile" \
+        --file "$source_script" >"$output_file"
+}
+
 check_rendered_script() {
     local script=$1
     [[ ! -s "$script" ]] && return 0
@@ -179,5 +188,36 @@ assert_contains "$tmp_dir/server-runtime.sh" 'ensure_uv'
 assert_not_contains "$tmp_dir/server-runtime.sh" 'node@latest'
 assert_not_contains "$tmp_dir/server-runtime.sh" 'rust@latest'
 assert_not_contains "$tmp_dir/server-runtime.sh" 'ensure_mise'
+
+standalone_source="$source_dir/.chezmoiscripts/run_onchange_after_40-standalone-tools.sh.tmpl"
+render_script "$mac_data" "$standalone_source" "$tmp_dir/mac-standalone.sh"
+render_script "$ubuntu_data" "$standalone_source" "$tmp_dir/ubuntu-standalone.sh"
+render_script "$arch_data" "$standalone_source" "$tmp_dir/arch-standalone.sh"
+render_script "$server_data" "$standalone_source" "$tmp_dir/server-standalone.sh"
+render_script_ci "$ubuntu_data" "$standalone_source" "$tmp_dir/ci-standalone.sh"
+
+[[ ! -s "$tmp_dir/mac-standalone.sh" ]] ||
+    fail "macOS standalone phase must render empty"
+check_rendered_script "$tmp_dir/ubuntu-standalone.sh"
+check_rendered_script "$tmp_dir/arch-standalone.sh"
+check_rendered_script "$tmp_dir/server-standalone.sh"
+[[ ! -s "$tmp_dir/ci-standalone.sh" ]] ||
+    fail "CI standalone phase must render empty"
+
+for repository in \
+    'atuinsh/atuin' \
+    'ClementTsang/bottom' \
+    'mr-karan/doggo' \
+    'dandavison/delta' \
+    'jesseduffield/lazygit' \
+    'MilesCranmer/rip2' \
+    'ajeetdsouza/zoxide'; do
+    assert_contains "$tmp_dir/ubuntu-standalone.sh" "$repository"
+    assert_contains "$tmp_dir/arch-standalone.sh" "$repository"
+done
+assert_contains "$tmp_dir/ubuntu-standalone.sh" 'install_git_credential_manager'
+assert_contains "$tmp_dir/ubuntu-standalone.sh" 'sudo dpkg -i'
+assert_not_contains "$tmp_dir/arch-standalone.sh" 'install_git_credential_manager|dpkg'
+assert_not_contains "$tmp_dir/server-standalone.sh" 'jesseduffield/lazygit'
 
 printf 'chezmoi script render tests passed\n'

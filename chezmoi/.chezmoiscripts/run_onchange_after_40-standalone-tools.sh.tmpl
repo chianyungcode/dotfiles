@@ -1,0 +1,31 @@
+{{- $is_ci := ne (env "CI") "" -}}
+{{- if and (eq .chezmoi.os "linux") (not $is_ci) -}}
+#!/usr/bin/env bash
+
+PHASE="40-standalone-tools"
+{{ template "scripts/core.bash" . }}
+{{ template "scripts/standalone/github-release.bash" . }}
+
+{{- $os := .chezmoi.os }}
+{{- $arch := .chezmoi.arch }}
+{{- range $binary := .binaries }}
+{{-   $enabled := has $os $binary.systems }}
+{{-   if and $enabled (ne $binary.required_architecture "") }}
+{{-     $enabled = eq $binary.required_architecture $arch }}
+{{-   end }}
+{{-   if and $enabled (ne $binary.install_filter "") }}
+{{-     $enabled = index $.features $binary.install_filter }}
+{{-   end }}
+{{-   if $enabled }}
+install_github_release \
+    "{{ $binary.name }}" \
+    "{{ $binary.repository }}" \
+    "{{ $binary.executable_name | default $binary.name }}" \
+    "{{ $binary.remove_from_release }}"
+{{-   end }}
+{{- end }}
+
+{{- if and .features.development (eq .chezmoi.arch "amd64") (or (eq .chezmoi.osRelease.id "ubuntu") (eq .chezmoi.osRelease.id "debian")) }}
+install_git_credential_manager
+{{- end }}
+{{ end -}}

@@ -11,6 +11,17 @@
 #   executable_name (optional): Name of executable if different from name of package.
 
 [binaries]
+  [binaries.atuin]
+    description           = "Shell history search and synchronization"
+    executable_name       = "atuin"
+    install_filter        = ""
+    name                  = "atuin"
+    remove_from_release   = ""
+    repository            = "atuinsh/atuin"
+    required_architecture = ""
+    systems               = ["linux"]
+    version_regex         = ""
+
   [binaries.bottom]
     description           = "A cross-platform graphical process/system monitor with a focus on performance, privacy, and a nice visual design"
     executable_name       = "btm"
