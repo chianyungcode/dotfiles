@@ -194,7 +194,7 @@
         "git-extras", # Add extra command to default git
         "gitmux",     # Git status bar in tmux
         "hunk",       # Diff tools TUI
-        "jj",         # jujutsu version controll
+        "jj",         # jujutsu version control
         "jjui",       # jujutsu tui
         "lazygit",
         "pet",        # CLI snippet manager
@@ -351,7 +351,7 @@
         # "pearcleaner",    # uninstall app
         # "qspace-pro", # Better finder
         "replacicon", # Replace your app icon
-        "shottr",     # Screenshoot tool
+        "shottr",     # Screenshot tool
         # "swift-shift", # Drag window with ctl + shift
 
         # Media & Capture
@@ -596,9 +596,9 @@
 
         # Desktop & Device
         "fprintd",         # fingerprint
-        "fuse2",           # apidog depedency
+        "fuse2",           # apidog dependency
         "localsend",
-        "lsof",            # opencode-bin depedency
+        "lsof",            # opencode-bin dependency
         "ticktick",
         "yubico-piv-tool",
 

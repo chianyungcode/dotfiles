@@ -55,4 +55,5 @@ repos:
         entry: shellcheck
         language: system
         types: [shell]
-        exclude: "chezmoi/dot_config/zsh/dot_zshrc|.*\\.zsh$"
+        exclude: >-
+          chezmoi/dot_config/zsh/dot_zshrc|.*\.zsh$|^chezmoi/\.chezmoiscripts/|^chezmoi/\.chezmoitemplates/scripts/(language|standalone|system)/

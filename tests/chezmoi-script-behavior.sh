@@ -112,9 +112,13 @@ write_fake_command() {
 for command_name in curl unzip wget; do
     write_fake_command "$command_name" 'exit 0'
 done
+# shellcheck disable=SC2016 # Expand these variables inside the generated stubs.
 write_fake_command sudo 'printf "sudo %s\\n" "$*" >>"$COMMAND_LOG"; exec "$@"'
+# shellcheck disable=SC2016 # Expand these variables inside the generated stubs.
 write_fake_command pacman 'printf "pacman %s\\n" "$*" >>"$COMMAND_LOG"'
+# shellcheck disable=SC2016 # Expand these variables inside the generated stubs.
 write_fake_command git 'printf "git %s\\n" "$*" >>"$COMMAND_LOG"; mkdir -p "${@: -1}"'
+# shellcheck disable=SC2016 # Expand these variables inside the generated stubs.
 write_fake_command makepkg 'printf "makepkg %s\\n" "$*" >>"$COMMAND_LOG"; printf "%s\\n%s\\n" "#!/bin/bash" "exit 0" >"$FAKE_BIN/paru"; chmod +x "$FAKE_BIN/paru"'
 
 COMMAND_LOG="$tmp_dir/commands.log"

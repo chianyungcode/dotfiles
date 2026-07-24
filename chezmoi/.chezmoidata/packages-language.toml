@@ -48,7 +48,7 @@
         "cargo-update",
 
         # Git & Version Control
-        "koji",        # conventional commit cli alternative fo commitizen
+        "koji",        # conventional commit cli alternative for commitizen
         "starship-jj", # https://gitlab.com/lanastara_foss/starship-jj
         "worktrunk",   # git worktree wrapper
 
@@ -58,7 +58,7 @@
         "stylua", # Lua formatter
 
         # Markdown
-        "rumdl", # perfomance markdown linter
+        "rumdl", # performance markdown linter
 
         # General
         "typos-cli",
