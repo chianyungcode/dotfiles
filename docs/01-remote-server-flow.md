@@ -205,10 +205,11 @@ After configuration, verify your setup:
 
 **Symptoms**: `Permission denied (publickey)` **Solution**:
 
-1. Verify 1Password item contains correct `ssh_key` field
-2. Check if `run_onchange_after_60-security-material.sh.tmpl` executed
-   successfully
-3. Ensure key files exist in `~/.ssh-keys/`
+1. Verify the item has either `privkey` or `private key` for private material.
+2. Verify it has either `pubkey` or `public key` for public material.
+3. Check if `run_onchange_after_60-security-material.sh.tmpl` executed
+   successfully.
+4. Ensure key files exist in `~/.ssh-keys/`.
 
 #### Issue: 1Password CLI not authenticated
 
