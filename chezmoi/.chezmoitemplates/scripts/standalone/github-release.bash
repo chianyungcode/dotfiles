@@ -68,6 +68,25 @@ verify_archive_checksum() {
     fi
 }
 
+verify_sha256_digest() {
+    local file=$1
+    local expected_digest=$2
+    local actual_digest
+
+    [[ "$expected_digest" =~ ^[[:xdigit:]]{64}$ ]] ||
+        die "invalid SHA-256 digest for ${file##*/}"
+
+    if command -v sha256sum >/dev/null 2>&1; then
+        actual_digest=$(sha256sum "$file" | awk '{print $1}')
+    else
+        require_command shasum
+        actual_digest=$(shasum -a 256 "$file" | awk '{print $1}')
+    fi
+
+    [[ "$actual_digest" == "$expected_digest" ]] ||
+        die "SHA-256 digest mismatch for ${file##*/}"
+}
+
 extract_release_archive() {
     local archive=$1
     local destination=$2
@@ -155,19 +174,29 @@ install_git_credential_manager() {
     git credential-manager --version >/dev/null 2>&1 && return 0
     require_command dpkg
     make_temp_dir "git-credential-manager"
-    release_json="$TEMP_DIR/gcm-release.json"
+    local release_json="$TEMP_DIR/gcm-release.json"
     github_api \
         https://api.github.com/repos/git-ecosystem/git-credential-manager/releases/latest \
         >"$release_json"
-    deb_url=$(jq -r '
+    local deb_asset deb_url deb_digest
+    deb_asset=$(jq -r '
         .assets[]
         | select(.name | test("linux.*(amd64|x64).*\\.deb$"; "i"))
-        | .browser_download_url
+        | [.browser_download_url, (.digest // "")]
+        | @tsv
     ' "$release_json" | head -n 1)
-    [[ -n "$deb_url" ]] || die "GCM amd64 Debian asset not found"
-    deb_file="$TEMP_DIR/${deb_url##*/}"
+    [[ -n "$deb_asset" && "$deb_asset" != null ]] ||
+        die "GCM amd64 Debian asset not found"
+    IFS=$'\t' read -r deb_url deb_digest <<<"$deb_asset"
+    [[ -n "$deb_url" && "$deb_url" != null ]] ||
+        die "GCM amd64 Debian asset URL is missing"
+    [[ "$deb_digest" =~ ^sha256:[[:xdigit:]]{64}$ ]] ||
+        die "GCM amd64 Debian asset has an invalid SHA-256 digest"
+
+    local deb_file="$TEMP_DIR/${deb_url##*/}"
     curl --fail --show-error --silent --location --retry 3 \
         "$deb_url" --output "$deb_file"
+    verify_sha256_digest "$deb_file" "${deb_digest#sha256:}"
     sudo dpkg -i "$deb_file"
     git credential-manager --version >/dev/null
 }

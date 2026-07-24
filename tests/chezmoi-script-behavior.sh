@@ -457,7 +457,11 @@ while [[ $# -gt 0 ]]; do
 done
 
 case "$url" in
+    */git-ecosystem/git-credential-manager/releases/latest)
+        cat "$GCM_RELEASE_JSON_FIXTURE"
+        ;;
     */releases/latest) cat "$RELEASE_JSON_FIXTURE" ;;
+    */gcm-linux-x64.deb) cp "$GCM_DEB_FIXTURE" "$output_file" ;;
     */sample.tar.gz) cp "$ARCHIVE_FIXTURE" "$output_file" ;;
     */SHA256SUMS) cp "$CHECKSUM_FIXTURE" "$output_file" ;;
     *) exit 64 ;;
@@ -465,7 +469,7 @@ esac
 STUB
 chmod +x "$standalone_fake_bin/curl"
 for command_name in awk bash cat chmod cp find grep head jq mkdir mktemp mv rm \
-    sha256sum shasum tar; do
+    sha256sum shasum tar touch; do
     command_path=$(command -v "$command_name") || continue
     ln -s "$command_path" "$standalone_fake_bin/$command_name"
 done
@@ -527,5 +531,111 @@ PATH="$no_op_home/.local/bin:$standalone_fake_bin" \
     RELEASE_JSON_FIXTURE="$release_json_fixture" \
     /bin/bash "$standalone_fixture"
 [[ ! -s "$COMMAND_LOG" ]]
+
+cat >"$standalone_fake_bin/sudo" <<'STUB'
+#!/usr/bin/env bash
+set -u
+printf 'sudo %s\n' "$*" >>"$COMMAND_LOG"
+exec "$@"
+STUB
+cat >"$standalone_fake_bin/dpkg" <<'STUB'
+#!/usr/bin/env bash
+set -u
+printf 'dpkg %s\n' "$*" >>"$COMMAND_LOG"
+touch "$GCM_INSTALLED_RECORD"
+STUB
+cat >"$standalone_fake_bin/git" <<'STUB'
+#!/usr/bin/env bash
+set -u
+if [[ "$1" == credential-manager && "${2:-}" == --version ]]; then
+    [[ -e "$GCM_INSTALLED_RECORD" ]] && exit 0
+    exit 1
+fi
+exit 64
+STUB
+chmod +x "$standalone_fake_bin/sudo" "$standalone_fake_bin/dpkg" \
+    "$standalone_fake_bin/git"
+
+gcm_data="$tmp_dir/gcm.json"
+jq \
+    '.features.development = true
+     | .binaries |= with_entries(.value.systems = [])' \
+    "$standalone_data" >"$gcm_data"
+gcm_fixture="$tmp_dir/gcm-standalone-tools.sh"
+chezmoi -S "$source_dir" execute-template \
+    --override-data-file "$gcm_data" \
+    --file "$standalone_source" >"$gcm_fixture"
+chmod +x "$gcm_fixture"
+
+GCM_DEB_FIXTURE="$tmp_dir/gcm-linux-x64.deb"
+printf 'gcm package fixture\n' >"$GCM_DEB_FIXTURE"
+if command -v sha256sum >/dev/null 2>&1; then
+    gcm_digest=$(sha256sum "$GCM_DEB_FIXTURE" | awk '{print $1}')
+else
+    gcm_digest=$(shasum -a 256 "$GCM_DEB_FIXTURE" | awk '{print $1}')
+fi
+gcm_release_json="$tmp_dir/gcm-release.json"
+cat >"$gcm_release_json" <<JSON
+{
+  "assets": [
+    {
+      "name": "gcm-linux-x64.deb",
+      "browser_download_url": "https://fixtures.invalid/gcm-linux-x64.deb",
+      "digest": "sha256:$gcm_digest"
+    }
+  ]
+}
+JSON
+
+COMMAND_LOG="$tmp_dir/gcm-commands.log"
+gcm_installed_record="$tmp_dir/gcm-installed"
+: >"$COMMAND_LOG"
+PATH="$standalone_fake_bin" \
+    HOME="$tmp_dir/gcm-home" \
+    COMMAND_LOG="$COMMAND_LOG" \
+    GCM_DEB_FIXTURE="$GCM_DEB_FIXTURE" \
+    GCM_INSTALLED_RECORD="$gcm_installed_record" \
+    GCM_RELEASE_JSON_FIXTURE="$gcm_release_json" \
+    /bin/bash "$gcm_fixture"
+assert_log_contains 'dpkg -i'
+[[ -e "$gcm_installed_record" ]]
+
+assert_gcm_rejects_digest() {
+    local release_fixture=$1
+    local label=$2
+    local installed_record="$tmp_dir/gcm-$label-installed"
+
+    : >"$COMMAND_LOG"
+    set +e
+    PATH="$standalone_fake_bin" \
+        HOME="$tmp_dir/gcm-$label-home" \
+        COMMAND_LOG="$COMMAND_LOG" \
+        GCM_DEB_FIXTURE="$GCM_DEB_FIXTURE" \
+        GCM_INSTALLED_RECORD="$installed_record" \
+        GCM_RELEASE_JSON_FIXTURE="$release_fixture" \
+        /bin/bash "$gcm_fixture" >"$tmp_dir/gcm-$label.out" 2>&1
+    status=$?
+    set -e
+    [[ $status -ne 0 ]]
+    [[ ! -e "$installed_record" ]]
+    if rg -Fq 'dpkg -i' "$COMMAND_LOG"; then
+        printf 'GCM dpkg ran with %s digest\n' "$label" >&2
+        exit 1
+    fi
+}
+
+wrong_gcm_digest_json="$tmp_dir/gcm-wrong-digest.json"
+jq '.assets[0].digest = "sha256:0000000000000000000000000000000000000000000000000000000000000000"' \
+    "$gcm_release_json" >"$wrong_gcm_digest_json"
+assert_gcm_rejects_digest "$wrong_gcm_digest_json" wrong
+
+malformed_gcm_digest_json="$tmp_dir/gcm-malformed-digest.json"
+jq '.assets[0].digest = "sha512:not-a-sha256"' "$gcm_release_json" \
+    >"$malformed_gcm_digest_json"
+assert_gcm_rejects_digest "$malformed_gcm_digest_json" malformed
+
+missing_gcm_digest_json="$tmp_dir/gcm-missing-digest.json"
+jq 'del(.assets[0].digest)' "$gcm_release_json" >"$missing_gcm_digest_json"
+assert_gcm_rejects_digest "$missing_gcm_digest_json" missing
 
 printf 'chezmoi script behavior tests passed\n'
