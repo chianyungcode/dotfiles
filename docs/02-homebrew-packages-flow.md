@@ -1,28 +1,23 @@
 # Homebrew Packages Installation Flow
 
-This document describes how Homebrew packages (formulae and casks) are managed
-through chezmoi's templating system.
+This document describes how Homebrew formulae and casks are managed through
+Chezmoi's templating system.
 
 ## Overview
 
-The Homebrew package installation process follows a two-step approach:
-
-1. **Package Definition**: Packages are declared in
-   `.chezmoidata/packages-system.toml` with optional filtering based on system
-   roles.
-2. **Installation Execution**: The system-package phase renders the Homebrew
-   fragment only on macOS, then installs the defined packages while handling
-   edge cases.
+The system-package phase renders the Homebrew fragment only on macOS. It reads
+the package declarations, filters them by the selected feature gates, and
+installs missing formulae, casks, and supported Mac App Store applications.
 
 ## Package Definition
 
-Packages are configured in
-[`.chezmoidata/packages-system.toml`](../chezmoi/.chezmoidata/packages-system.toml)
-with support for conditional installation based on:
+Homebrew packages are configured in
+[`.chezmoidata/packages-system.toml`](../chezmoi/.chezmoidata/packages-system.toml).
+The feature tables use these gates:
 
-- `dev_computer`: Development-focused packages
-- `personal_computer`: Personal use packages
-- `homelab_member`: Homelab-specific tools
+- `development`: development-focused packages;
+- `personal`: personal-use packages; and
+- `homelab`: homelab-specific tools.
 
 Example configuration:
 
@@ -34,77 +29,54 @@ Example configuration:
     casks = ["1password", "ghostty"]
     formulae = ["git", "neovim", "fish"]
 
-    [packages.homebrew.dev_computer]
+    [packages.homebrew.development]
     casks = ["cursor", "datagrip"]
     formulae = ["gh", "act", "direnv"]
 
-    [packages.homebrew.personal_computer]
+    [packages.homebrew.personal]
     casks = ["arc", "raycast", "obsidian"]
     formulae = ["qmk/qmk/qmk"]
 ```
 
+The `graphical` feature also gates casks. The current data file includes
+separate `common`, `development`, `personal`, `homelab`, and `graphical`
+tables where applicable.
+
 ## Installation Script
 
-The installation is handled by
-[`run_onchange_before_10-system-packages.sh.tmpl`](../chezmoi/.chezmoiscripts/run_onchange_before_10-system-packages.sh.tmpl).
-Its Homebrew fragment is rendered only on macOS, where it:
+[`run_onchange_before_10-system-packages.sh.tmpl`](../chezmoi/.chezmoiscripts/run_onchange_before_10-system-packages.sh.tmpl)
+renders the Homebrew fragment on macOS. The fragment updates Homebrew, removes
+configured formulae, and then processes each configured formula and cask.
 
-1. Reads package definitions from `.chezmoidata/packages-system.toml`
-2. Installs formulae and casks based on system role filters
-3. Handles pre-existing applications gracefully
+For every formula, `brew list --formula` determines whether installation is
+already satisfied. For every cask, `brew list --cask` first determines whether
+Homebrew already manages it.
 
-## Skip Notification Behavior
+## Cask Skip Behavior
 
-### When the Notice Appears
-
-The script displays a notice message:
-`"Skipping ${cask} - already exists in /Applications"` **only** when both
-conditions are met:
-
-1. **The cask is NOT installed via Homebrew** (not in
-   `currently_installed_casks`)
-2. **The application already exists in `/Applications`** (installed manually via
-   DMG or other methods)
-
-### Logic Flow
+If Homebrew does not already manage a cask, the fragment derives its expected
+application name. It then checks both `/Applications` and
+`/Applications/Setapp` before installing.
 
 ```bash
-if ! _inArray_ -i "${cask}" "${currently_installed_casks[@]}"; then
-    # Condition: Cask is not managed by Homebrew
-
-    if [[ ! -d "/Applications/${app_name}.app" ]]; then
-        # Application doesn't exist → Install via Homebrew
-        brew install -q --cask ${cask}
-    else
-        # Application exists → Show skip notice
-        notice "Skipping ${cask} - already exists in /Applications"
-    fi
+brew list --cask "$cask" >/dev/null 2>&1 && continue
+app_name=$(homebrew_app_name "$cask")
+if [[ -d "/Applications/$app_name.app" ||
+    -d "/Applications/Setapp/$app_name.app" ]]; then
+    notice "Skipping $cask because $app_name.app already exists"
+    continue
 fi
+brew install --cask "$cask"
 ```
 
-### Behavior Scenarios
-
-<!-- markdownlint-disable MD013 -->
-
-| Scenario             | Homebrew Status | App in /Applications | Result                       |
-| -------------------- | --------------- | -------------------- | ---------------------------- |
-| **Manual Install**   | Not installed   | ✅ Exists            | **Notice displayed**         |
-| **Homebrew Install** | ✅ Installed    | May or may not exist | No notice (skipped entirely) |
-| **Fresh Install**    | Not installed   | ❌ Doesn't exist     | Install via Homebrew         |
-
-<!-- markdownlint-enable MD013 -->
-
-### Key Insight
-
-The notice serves as a **helpful indicator** that an application was installed
-manually rather than through Homebrew, preventing duplicate installations while
-informing the user about potential version/source mismatches.
+The notice means that a matching application bundle already exists outside the
+current Homebrew cask record. This avoids a duplicate installation while making
+the skipped package visible in Chezmoi output.
 
 ## Best Practices
 
-- **Manual installations**: Consider uninstalling and reinstalling via Homebrew
-  for better version management
-- **Version conflicts**: The notice helps identify when you might have different
-  versions (manual vs Homebrew)
-- **Clean setup**: For new systems, prefer Homebrew installations for consistent
-  package management
+- Prefer Homebrew installs for consistent updates and removal.
+- Review a skipped cask if its existing application has a different source or
+  version than the desired Homebrew cask.
+- Run `chezmoi apply --dry-run --verbose` before applying a package-data
+  change on a machine.

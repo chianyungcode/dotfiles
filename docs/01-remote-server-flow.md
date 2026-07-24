@@ -49,16 +49,18 @@ op item create --template tailscale-remote-server.json
 
 After creating the item, manually fill in the following fields in 1Password:
 
-| Field         | Description                     | Required |
-| ------------- | ------------------------------- | -------- |
-| `ssh_key`     | Private SSH key content         | ✅       |
-| `ssh_key.pub` | Public SSH key content          | ✅       |
-| `user`        | SSH username for the connection | ✅       |
-| `hostname`    | Server hostname or IP address   | ✅       |
-| `port`        | SSH port (default: 22)          | ❌       |
+| Field                      | Description                     | Required |
+| -------------------------- | ------------------------------- | -------- |
+| `privkey` or `private key` | Private SSH key content         | ✅       |
+| `pubkey` or `public key`   | Public SSH key content          | ✅       |
+| `user`                     | SSH username for the connection | ✅       |
+| `hostname`                 | Server hostname or IP address   | ✅       |
+| `port`                     | SSH port (default: 22)          | ❌       |
 
 > **Security Note**: Store only the key content without any additional
 > formatting or headers/footers.
+>
+> Provide one field from each accepted private-key and public-key label pair.
 
 ### Step 3: Add Server Configuration
 
@@ -116,7 +118,7 @@ Go template syntax. The generated config includes:
 
 ### Example 1: Regular Server Setup
 
-```toml
+````toml
 [remote_servers]
   [remote_servers.web-server]
   add_to_ssh_config = true
@@ -134,7 +136,7 @@ Host web-server
     Port 22
     IdentityFile ~/.ssh-keys/web-server
     IdentitiesOnly yes
-```
+````
 
 ### Example 2: Tailscale Server Setup
 
