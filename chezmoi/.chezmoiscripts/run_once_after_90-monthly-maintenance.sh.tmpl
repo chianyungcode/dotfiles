@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# {{ output "date" "+%m" | trim }}
+
+PHASE="90-monthly-maintenance"
+{{ template "scripts/core.bash" . }}
+if command -v uv >/dev/null 2>&1; then
+    uv tool upgrade --all
+else
+    die "uv is required for monthly maintenance"
+fi

@@ -1,0 +1,41 @@
+{{- if eq .secrets.provider "onepassword" -}}
+#!/usr/bin/env bash
+
+PHASE="60-security-material"
+{{ template "scripts/core.bash" . }}
+decode_base64() {
+    if printf '' | base64 --decode >/dev/null 2>&1; then
+        base64 --decode
+    else
+        base64 -D
+    fi
+}
+
+mkdir -p "{{ .directories.ssh_keys_dir }}"
+
+{{ range .remote_servers -}}
+{{ if not .generate_public_key_only -}}
+private_key="{{ $.directories.ssh_keys_dir }}/{{ .name }}"
+public_key="$private_key.pub"
+
+if [[ ! -f "$private_key" ]]; then
+    (
+        umask 077
+        printf '%s' '{{ range (onepassword .op_id).fields }}{{ if or (eq .label "privkey") (eq .label "private key") }}{{ .value | b64enc }}{{ end }}{{ end }}' |
+            decode_base64 >"$private_key"
+    )
+    chmod 0600 "$private_key"
+fi
+{{ end -}}
+{{ if .generate_public_key_only -}}
+private_key="{{ $.directories.ssh_keys_dir }}/{{ .name }}"
+public_key="$private_key.pub"
+{{ end -}}
+
+if [[ ! -f "$public_key" ]]; then
+    printf '%s' '{{ range (onepassword .op_id).fields }}{{ if or (eq .label "pubkey") (eq .label "public key") }}{{ .value | b64enc }}{{ end }}{{ end }}' |
+        decode_base64 >"$public_key"
+    chmod 0644 "$public_key"
+fi
+{{ end -}}
+{{ end -}}

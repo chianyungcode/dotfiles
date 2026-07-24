@@ -220,4 +220,50 @@ assert_contains "$tmp_dir/ubuntu-standalone.sh" 'sudo dpkg -i'
 assert_not_contains "$tmp_dir/arch-standalone.sh" 'install_git_credential_manager|dpkg'
 assert_not_contains "$tmp_dir/server-standalone.sh" 'jesseduffield/lazygit'
 
+post_install_source="$source_dir/.chezmoiscripts/run_after_50-post-install.sh.tmpl"
+post_install="$tmp_dir/ubuntu-post-install.sh"
+render_script "$ubuntu_data" "$post_install_source" "$post_install"
+check_rendered_script "$post_install"
+assert_contains "$post_install" 'ANTIDOTE_DIR='
+assert_contains "$post_install" 'nanorc'
+assert_contains "$post_install" 'fdfind'
+assert_contains "$post_install" 'batcat'
+
+security_source="$source_dir/.chezmoiscripts/run_onchange_after_60-security-material.sh.tmpl"
+security_none="$tmp_dir/security-none.sh"
+render_script "$ubuntu_data" "$security_source" "$security_none"
+[[ ! -s "$security_none" ]] ||
+    fail "security phase must be empty for provider none"
+
+security_onepassword="$tmp_dir/security-onepassword.json"
+jq '.secrets.provider = "onepassword"' "$ubuntu_data" >"$security_onepassword"
+security_fake_bin="$tmp_dir/security-fake-bin"
+mkdir -p "$security_fake_bin"
+cat >"$security_fake_bin/op" <<'STUB'
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ "$1" == "signin" && "${2:-}" == "--raw" ]]; then
+    printf '%s\n' 'test-session'
+elif [[ "$1" == "item" && "${2:-}" == "get" ]] ||
+    [[ "$1" == "--session" && "${3:-}" == "item" && "${4:-}" == "get" ]]; then
+    printf '%s\n' '{"fields":[{"label":"private key","value":"PRIVATE-KEY-FIXTURE\\n"},{"label":"public key","value":"ssh-ed25519 PUBLIC-FIXTURE\\n"}]}'
+else
+    exit 64
+fi
+STUB
+chmod +x "$security_fake_bin/op"
+security_rendered="$tmp_dir/security-onepassword.sh"
+PATH="$security_fake_bin:$PATH" chezmoi -S "$source_dir" execute-template \
+    --override-data-file "$security_onepassword" \
+    --file "$security_source" >"$security_rendered"
+check_rendered_script "$security_rendered"
+
+maintenance_source="$source_dir/.chezmoiscripts/run_once_after_90-monthly-maintenance.sh.tmpl"
+maintenance="$tmp_dir/monthly-maintenance.sh"
+render_script "$ubuntu_data" "$maintenance_source" "$maintenance"
+check_rendered_script "$maintenance"
+assert_contains "$maintenance" 'uv tool upgrade --all'
+assert_contains "$maintenance_source" 'output "date" "\+%m"'
+
 printf 'chezmoi script render tests passed\n'

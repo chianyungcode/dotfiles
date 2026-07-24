@@ -638,4 +638,125 @@ missing_gcm_digest_json="$tmp_dir/gcm-missing-digest.json"
 jq 'del(.assets[0].digest)' "$gcm_release_json" >"$missing_gcm_digest_json"
 assert_gcm_rejects_digest "$missing_gcm_digest_json" missing
 
+post_install_source="$source_dir/.chezmoiscripts/run_after_50-post-install.sh.tmpl"
+post_install_data="$tmp_dir/post-install.json"
+post_install_home="$tmp_dir/post-install-home"
+jq \
+    --arg data_home "$post_install_home/.local/share" \
+    '.chezmoi.os = "linux"
+     | .chezmoi.osRelease.id = "ubuntu"
+     | .xdg.data_home = $data_home
+     | .secrets.provider = "none"' \
+    "$base_data_file" >"$post_install_data"
+post_install_fixture="$tmp_dir/post-install.sh"
+chezmoi -S "$source_dir" execute-template \
+    --override-data-file "$post_install_data" \
+    --file "$post_install_source" >"$post_install_fixture"
+chmod +x "$post_install_fixture"
+
+post_install_fake_bin="$tmp_dir/post-install-fake-bin"
+mkdir -p "$post_install_fake_bin"
+cat >"$post_install_fake_bin/git" <<'STUB'
+#!/usr/bin/env bash
+set -euo pipefail
+printf 'git %s\n' "$*" >>"$COMMAND_LOG"
+target=""
+for argument in "$@"; do
+    target=$argument
+done
+mkdir -p "$target"
+STUB
+cat >"$post_install_fake_bin/curl" <<'STUB'
+#!/usr/bin/env bash
+set -euo pipefail
+printf 'curl %s\n' "$*" >>"$COMMAND_LOG"
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+    --output)
+        : >"$2"
+        exit 0
+        ;;
+    *)
+        shift
+        ;;
+    esac
+done
+exit 64
+STUB
+cat >"$post_install_fake_bin/unzip" <<'STUB'
+#!/usr/bin/env bash
+set -euo pipefail
+printf 'unzip %s\n' "$*" >>"$COMMAND_LOG"
+destination=""
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+    -d)
+        destination=$2
+        shift 2
+        ;;
+    *)
+        shift
+        ;;
+    esac
+done
+mkdir -p "$destination/nanorc-master"
+printf '%s\n' 'include ~/.nanorc' >"$destination/nanorc-master/conf.nanorc"
+STUB
+for command_name in batcat fdfind; do
+    printf '%s\n%s\n' '#!/usr/bin/env bash' 'exit 0' \
+        >"$post_install_fake_bin/$command_name"
+    chmod +x "$post_install_fake_bin/$command_name"
+done
+chmod +x "$post_install_fake_bin/git" "$post_install_fake_bin/curl" \
+    "$post_install_fake_bin/unzip"
+
+COMMAND_LOG="$tmp_dir/post-install-commands.log"
+: >"$COMMAND_LOG"
+PATH="$post_install_fake_bin:/usr/bin:/bin" \
+    HOME="$post_install_home" \
+    ZDOTDIR="$post_install_home/.config/zsh" \
+    COMMAND_LOG="$COMMAND_LOG" \
+    /bin/bash "$post_install_fixture"
+assert_log_contains 'git clone --depth 1 https://github.com/mattmc3/antidote.git'
+assert_log_contains 'curl --fail --show-error --silent --location --retry 3'
+assert_log_contains 'unzip -q'
+[[ -L "$post_install_home/.local/bin/bat" ]]
+[[ -L "$post_install_home/.local/bin/fd" ]]
+
+: >"$COMMAND_LOG"
+PATH="$post_install_fake_bin:/usr/bin:/bin" \
+    HOME="$post_install_home" \
+    ZDOTDIR="$post_install_home/.config/zsh" \
+    COMMAND_LOG="$COMMAND_LOG" \
+    /bin/bash "$post_install_fixture"
+[[ ! -s "$COMMAND_LOG" ]] || {
+    printf 'post-install phase made clone or network calls on second run\n' >&2
+    exit 1
+}
+[[ -L "$post_install_home/.local/bin/bat" ]]
+[[ -L "$post_install_home/.local/bin/fd" ]]
+
+maintenance_source="$source_dir/.chezmoiscripts/run_once_after_90-monthly-maintenance.sh.tmpl"
+maintenance_fixture="$tmp_dir/monthly-maintenance.sh"
+chezmoi -S "$source_dir" execute-template \
+    --override-data-file "$post_install_data" \
+    --file "$maintenance_source" >"$maintenance_fixture"
+chmod +x "$maintenance_fixture"
+
+maintenance_fake_bin="$tmp_dir/maintenance-fake-bin"
+mkdir -p "$maintenance_fake_bin"
+cat >"$maintenance_fake_bin/uv" <<'STUB'
+#!/usr/bin/env bash
+set -euo pipefail
+printf 'uv %s\n' "$*" >>"$COMMAND_LOG"
+STUB
+chmod +x "$maintenance_fake_bin/uv"
+COMMAND_LOG="$tmp_dir/maintenance-commands.log"
+: >"$COMMAND_LOG"
+PATH="$maintenance_fake_bin:/usr/bin:/bin" \
+    COMMAND_LOG="$COMMAND_LOG" \
+    /bin/bash "$maintenance_fixture"
+[[ $(wc -l <"$COMMAND_LOG") -eq 1 ]]
+assert_log_contains 'uv tool upgrade --all'
+
 printf 'chezmoi script behavior tests passed\n'
