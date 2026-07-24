@@ -102,7 +102,6 @@ The `run_onchange_after_60-security-material.sh.tmpl` script will:
 1. Extract SSH keys from 1Password
 2. Create private and public key files in `~/.ssh-keys/`
 3. Set appropriate file permissions (600 for private keys)
-4. Generate SSH config entries
 
 ### Step 5: SSH Configuration Generation
 
@@ -118,14 +117,14 @@ Go template syntax. The generated config includes:
 
 ### Example 1: Regular Server Setup
 
-````toml
+```toml
 [remote_servers]
   [remote_servers.web-server]
   add_to_ssh_config = true
   name = "web-server"
   op_id = "abc123def456"
   tailscale_ip = false
-```text
+```
 
 Generated SSH config:
 
@@ -136,7 +135,7 @@ Host web-server
     Port 22
     IdentityFile ~/.ssh-keys/web-server
     IdentitiesOnly yes
-````
+```
 
 ### Example 2: Tailscale Server Setup
 
@@ -152,14 +151,7 @@ Host web-server
 Generated SSH config:
 
 ```text
-Host db-server
-    User admin
-    Hostname db-server.company.ts.net
-    Port 22
-    IdentityFile ~/.ssh-keys/db-server
-    IdentitiesOnly yes
-
-Host tdb-server
+Host taildb-server
     User admin
     Hostname 100.64.0.1
     Port 22

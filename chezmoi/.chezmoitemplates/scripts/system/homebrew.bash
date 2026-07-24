@@ -131,13 +131,12 @@ install_homebrew_packages() {
             done
         fi
 
-        if command -v mas >/dev/null 2>&1; then
-            if [[ ${#mas_apps[@]} -gt 0 ]]; then
-                for app_id in "${mas_apps[@]}"; do
-                    mas list | awk '{print $1}' | grep -Fxq "$app_id" ||
-                        mas install "$app_id"
-                done
-            fi
+        if [[ ${#mas_apps[@]} -gt 0 ]]; then
+            require_command mas
+            for app_id in "${mas_apps[@]}"; do
+                mas list | awk '{print $1}' | grep -Fxq "$app_id" ||
+                    mas install "$app_id"
+            done
         fi
     fi
 }

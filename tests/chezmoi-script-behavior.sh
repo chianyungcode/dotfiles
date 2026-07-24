@@ -280,6 +280,59 @@ for profile in mac ubuntu arch; do
     fi
 done
 
+mas_required_data="$tmp_dir/mas-required.json"
+jq \
+    '.chezmoi.os = "darwin"
+     | .chezmoi.osRelease.id = "darwin"
+     | .features = {
+         development: false,
+         personal: false,
+         homelab: false,
+         graphical: true
+       }
+     | .packages.homebrew.to_remove = []
+     | .packages.homebrew.common.formulae = []
+     | .packages.homebrew.common.casks = []
+     | .packages.mas.common.apps = ["123456789"]' \
+    "$base_data_file" >"$mas_required_data"
+mas_required_fixture="$tmp_dir/mas-required.sh"
+chezmoi -S "$source_dir" execute-template \
+    --override-data-file "$mas_required_data" \
+    --file "$system_source" >"$mas_required_fixture"
+# shellcheck disable=SC2016 # Literal shell code appended to the fixture.
+printf '%s\n' 'printf "mas-sentinel\n" >>"$COMMAND_LOG"' \
+    >>"$mas_required_fixture"
+chmod +x "$mas_required_fixture"
+
+mas_missing_bin="$tmp_dir/mas-missing-bin"
+mkdir -p "$mas_missing_bin"
+ln -s "$manager_stub" "$mas_missing_bin/brew"
+COMMAND_LOG="$tmp_dir/mas-required.log"
+: >"$COMMAND_LOG"
+set +e
+PATH="$mas_missing_bin:/usr/bin:/bin" \
+    COMMAND_LOG="$COMMAND_LOG" \
+    /bin/bash "$mas_required_fixture" >"$tmp_dir/mas-required.out" 2>&1
+status=$?
+set -e
+[[ $status -ne 0 ]]
+rg -Fq 'required command not found: mas' "$tmp_dir/mas-required.out"
+if rg -Fq 'mas-sentinel' "$COMMAND_LOG"; then
+    printf 'system phase continued after required mas was missing\n' >&2
+    exit 1
+fi
+
+mas_optional_data="$tmp_dir/mas-optional.json"
+jq '.packages.mas.common.apps = []' "$mas_required_data" >"$mas_optional_data"
+mas_optional_fixture="$tmp_dir/mas-optional.sh"
+chezmoi -S "$source_dir" execute-template \
+    --override-data-file "$mas_optional_data" \
+    --file "$system_source" >"$mas_optional_fixture"
+chmod +x "$mas_optional_fixture"
+PATH="$mas_missing_bin:/usr/bin:/bin" \
+    COMMAND_LOG="$COMMAND_LOG" \
+    /bin/bash "$mas_optional_fixture"
+
 runtime_source="$source_dir/.chezmoiscripts/run_onchange_after_20-language-runtimes.sh.tmpl"
 language_source="$source_dir/.chezmoiscripts/run_onchange_after_30-language-packages.sh.tmpl"
 language_data="$tmp_dir/language.json"
@@ -552,6 +605,73 @@ PATH="$no_op_home/.local/bin:$standalone_fake_bin" \
     /bin/bash "$standalone_fixture"
 [[ ! -s "$COMMAND_LOG" ]]
 
+bad_fixture_root="$tmp_dir/bad-release-fixture"
+mkdir -p "$bad_fixture_root/sample-v1.2.3"
+cat >"$bad_fixture_root/sample-v1.2.3/sample" <<'SAMPLE'
+#!/usr/bin/env bash
+exit 42
+SAMPLE
+chmod +x "$bad_fixture_root/sample-v1.2.3/sample"
+bad_archive_fixture="$tmp_dir/bad-sample.tar.gz"
+tar -czf "$bad_archive_fixture" -C "$bad_fixture_root" sample-v1.2.3
+bad_checksum_fixture="$tmp_dir/bad-SHA256SUMS"
+if command -v sha256sum >/dev/null 2>&1; then
+    bad_digest=$(sha256sum "$bad_archive_fixture" | awk '{print $1}')
+else
+    bad_digest=$(shasum -a 256 "$bad_archive_fixture" | awk '{print $1}')
+fi
+printf '%s  %s\n' "$bad_digest" sample.tar.gz >"$bad_checksum_fixture"
+
+verification_retry_home="$tmp_dir/verification-retry-home"
+: >"$COMMAND_LOG"
+set +e
+PATH="$standalone_fake_bin" \
+    HOME="$verification_retry_home" \
+    COMMAND_LOG="$COMMAND_LOG" \
+    RELEASE_JSON_FIXTURE="$release_json_fixture" \
+    ARCHIVE_FIXTURE="$bad_archive_fixture" \
+    CHECKSUM_FIXTURE="$bad_checksum_fixture" \
+    /bin/bash "$standalone_fixture" \
+    >"$tmp_dir/verification-failure.out" 2>&1
+status=$?
+set -e
+[[ $status -ne 0 ]]
+[[ ! -e "$verification_retry_home/.local/bin/sample" ]]
+if find "$verification_retry_home/.local/bin" -name '.sample.*' \
+    -print -quit | rg -q .; then
+    printf 'failed standalone verification left a staged executable\n' >&2
+    exit 1
+fi
+
+: >"$COMMAND_LOG"
+PATH="$standalone_fake_bin" \
+    HOME="$verification_retry_home" \
+    COMMAND_LOG="$COMMAND_LOG" \
+    RELEASE_JSON_FIXTURE="$release_json_fixture" \
+    ARCHIVE_FIXTURE="$ARCHIVE_FIXTURE" \
+    CHECKSUM_FIXTURE="$CHECKSUM_FIXTURE" \
+    /bin/bash "$standalone_fixture"
+[[ -x "$verification_retry_home/.local/bin/sample" ]]
+"$verification_retry_home/.local/bin/sample" --version |
+    rg -q '^sample 1.2.3$'
+assert_log_contains 'releases/latest'
+
+invalid_existing_home="$tmp_dir/invalid-existing-home"
+mkdir -p "$invalid_existing_home/.local/bin"
+cp "$bad_fixture_root/sample-v1.2.3/sample" \
+    "$invalid_existing_home/.local/bin/sample"
+: >"$COMMAND_LOG"
+PATH="$invalid_existing_home/.local/bin:$standalone_fake_bin" \
+    HOME="$invalid_existing_home" \
+    COMMAND_LOG="$COMMAND_LOG" \
+    RELEASE_JSON_FIXTURE="$release_json_fixture" \
+    ARCHIVE_FIXTURE="$ARCHIVE_FIXTURE" \
+    CHECKSUM_FIXTURE="$CHECKSUM_FIXTURE" \
+    /bin/bash "$standalone_fixture"
+"$invalid_existing_home/.local/bin/sample" --version |
+    rg -q '^sample 1.2.3$'
+assert_log_contains 'releases/latest'
+
 cat >"$standalone_fake_bin/sudo" <<'STUB'
 #!/usr/bin/env bash
 set -u
@@ -674,6 +794,18 @@ chezmoi -S "$source_dir" execute-template \
     --file "$post_install_source" >"$post_install_fixture"
 chmod +x "$post_install_fixture"
 
+render_post_install_fixture() {
+    local home=$1
+    local fixture=$2
+    local data_file="$fixture.json"
+    jq --arg data_home "$home/.local/share" \
+        '.xdg.data_home = $data_home' "$post_install_data" >"$data_file"
+    chezmoi -S "$source_dir" execute-template \
+        --override-data-file "$data_file" \
+        --file "$post_install_source" >"$fixture"
+    chmod +x "$fixture"
+}
+
 post_install_fake_bin="$tmp_dir/post-install-fake-bin"
 mkdir -p "$post_install_fake_bin"
 cat >"$post_install_fake_bin/git" <<'STUB'
@@ -685,6 +817,7 @@ for argument in "$@"; do
     target=$argument
 done
 mkdir -p "$target"
+printf '%s\n' '# antidote fixture' >"$target/antidote.zsh"
 STUB
 cat >"$post_install_fake_bin/curl" <<'STUB'
 #!/usr/bin/env bash
@@ -722,13 +855,27 @@ done
 mkdir -p "$destination/nanorc-master"
 printf '%s\n' 'include ~/.nanorc' >"$destination/nanorc-master/conf.nanorc"
 STUB
+cat >"$post_install_fake_bin/cp" <<'STUB'
+#!/usr/bin/env bash
+set -euo pipefail
+printf 'cp %s\n' "$*" >>"$COMMAND_LOG"
+if [[ "${FAIL_NANORC_COPY:-false}" == true &&
+    "$*" == *nanorc-master* ]]; then
+    source_directory=${2%/.}
+    destination=$3
+    mkdir -p "$destination"
+    /bin/cp "$source_directory/conf.nanorc" "$destination/conf.nanorc"
+    exit 42
+fi
+exec /bin/cp "$@"
+STUB
 for command_name in batcat fdfind; do
     printf '%s\n%s\n' '#!/usr/bin/env bash' 'exit 0' \
         >"$post_install_fake_bin/$command_name"
     chmod +x "$post_install_fake_bin/$command_name"
 done
 chmod +x "$post_install_fake_bin/git" "$post_install_fake_bin/curl" \
-    "$post_install_fake_bin/unzip"
+    "$post_install_fake_bin/unzip" "$post_install_fake_bin/cp"
 
 COMMAND_LOG="$tmp_dir/post-install-commands.log"
 : >"$COMMAND_LOG"
@@ -742,6 +889,8 @@ assert_log_contains 'curl --fail --show-error --silent --location --retry 3'
 assert_log_contains 'unzip -q'
 [[ -L "$post_install_home/.local/bin/bat" ]]
 [[ -L "$post_install_home/.local/bin/fd" ]]
+[[ -f "$post_install_home/.config/zsh/.antidote/antidote.zsh" ]]
+[[ -f "$post_install_home/.local/share/nano/.chezmoi-complete" ]]
 
 : >"$COMMAND_LOG"
 PATH="$post_install_fake_bin:/usr/bin:/bin" \
@@ -756,24 +905,130 @@ PATH="$post_install_fake_bin:/usr/bin:/bin" \
 [[ -L "$post_install_home/.local/bin/bat" ]]
 [[ -L "$post_install_home/.local/bin/fd" ]]
 
-post_install_dangling_home="$tmp_dir/post-install-dangling-home"
-mkdir -p "$post_install_dangling_home/.config/zsh/.antidote" \
-    "$post_install_dangling_home/.local/share/nano" \
-    "$post_install_dangling_home/.local/bin"
-printf '%s\n' 'nanorc fixture' \
-    >"$post_install_dangling_home/.local/share/nano/conf.nanorc"
-ln -s "$tmp_dir/missing-bat" "$post_install_dangling_home/.local/bin/bat"
-ln -s "$tmp_dir/missing-fd" "$post_install_dangling_home/.local/bin/fd"
-COMMAND_LOG="$tmp_dir/post-install-dangling-commands.log"
+post_install_partial_home="$tmp_dir/post-install-partial-home"
+post_install_partial_fixture="$tmp_dir/post-install-partial.sh"
+render_post_install_fixture "$post_install_partial_home" \
+    "$post_install_partial_fixture"
+mkdir -p "$post_install_partial_home/.config/zsh/.antidote" \
+    "$post_install_partial_home/.local/share/nano"
+printf '%s\n' 'incomplete nanorc fixture' \
+    >"$post_install_partial_home/.local/share/nano/conf.nanorc"
+COMMAND_LOG="$tmp_dir/post-install-partial-commands.log"
 : >"$COMMAND_LOG"
 PATH="$post_install_fake_bin:/usr/bin:/bin" \
-    HOME="$post_install_dangling_home" \
-    ZDOTDIR="$post_install_dangling_home/.config/zsh" \
+    HOME="$post_install_partial_home" \
+    ZDOTDIR="$post_install_partial_home/.config/zsh" \
     COMMAND_LOG="$COMMAND_LOG" \
-    /bin/bash "$post_install_fixture"
-[[ -L "$post_install_dangling_home/.local/bin/bat" ]]
-[[ -L "$post_install_dangling_home/.local/bin/fd" ]]
+    /bin/bash "$post_install_partial_fixture"
+assert_log_contains 'git clone --depth 1 https://github.com/mattmc3/antidote.git'
+assert_log_contains 'curl --fail --show-error --silent --location --retry 3'
+[[ -f "$post_install_partial_home/.config/zsh/.antidote/antidote.zsh" ]]
+[[ -f "$post_install_partial_home/.local/share/nano/.chezmoi-complete" ]]
+
+post_install_copy_retry_home="$tmp_dir/post-install-copy-retry-home"
+post_install_copy_retry_fixture="$tmp_dir/post-install-copy-retry.sh"
+render_post_install_fixture "$post_install_copy_retry_home" \
+    "$post_install_copy_retry_fixture"
+mkdir -p "$post_install_copy_retry_home/.config/zsh/.antidote"
+printf '%s\n' '# existing antidote' \
+    >"$post_install_copy_retry_home/.config/zsh/.antidote/antidote.zsh"
+COMMAND_LOG="$tmp_dir/post-install-copy-retry-commands.log"
+: >"$COMMAND_LOG"
+set +e
+PATH="$post_install_fake_bin:/usr/bin:/bin" \
+    HOME="$post_install_copy_retry_home" \
+    ZDOTDIR="$post_install_copy_retry_home/.config/zsh" \
+    COMMAND_LOG="$COMMAND_LOG" \
+    FAIL_NANORC_COPY=true \
+    /bin/bash "$post_install_copy_retry_fixture" \
+    >"$tmp_dir/post-install-copy-failure.out" 2>&1
+status=$?
+set -e
+[[ $status -ne 0 ]]
+[[ -f "$post_install_copy_retry_home/.local/share/nano/conf.nanorc" ]]
+[[ ! -e "$post_install_copy_retry_home/.local/share/nano/.chezmoi-complete" ]]
+
+: >"$COMMAND_LOG"
+PATH="$post_install_fake_bin:/usr/bin:/bin" \
+    HOME="$post_install_copy_retry_home" \
+    ZDOTDIR="$post_install_copy_retry_home/.config/zsh" \
+    COMMAND_LOG="$COMMAND_LOG" \
+    /bin/bash "$post_install_copy_retry_fixture"
+assert_log_contains 'curl --fail --show-error --silent --location --retry 3'
+[[ -f "$post_install_copy_retry_home/.local/share/nano/.chezmoi-complete" ]]
+
+prepare_complete_post_install_home() {
+    local home=$1
+    mkdir -p "$home/.config/zsh/.antidote" \
+        "$home/.local/share/nano" \
+        "$home/.local/bin"
+    printf '%s\n' '# existing antidote' \
+        >"$home/.config/zsh/.antidote/antidote.zsh"
+    printf '%s\n' 'complete nanorc fixture' \
+        >"$home/.local/share/nano/conf.nanorc"
+    : >"$home/.local/share/nano/.chezmoi-complete"
+}
+
+post_install_correct_home="$tmp_dir/post-install-correct-home"
+post_install_correct_fixture="$tmp_dir/post-install-correct.sh"
+render_post_install_fixture "$post_install_correct_home" \
+    "$post_install_correct_fixture"
+prepare_complete_post_install_home "$post_install_correct_home"
+ln -s "$post_install_fake_bin/batcat" \
+    "$post_install_correct_home/.local/bin/bat"
+ln -s "$post_install_fake_bin/fdfind" \
+    "$post_install_correct_home/.local/bin/fd"
+COMMAND_LOG="$tmp_dir/post-install-correct-commands.log"
+: >"$COMMAND_LOG"
+PATH="$post_install_fake_bin:/usr/bin:/bin" \
+    HOME="$post_install_correct_home" \
+    ZDOTDIR="$post_install_correct_home/.config/zsh" \
+    COMMAND_LOG="$COMMAND_LOG" \
+    /bin/bash "$post_install_correct_fixture"
 [[ ! -s "$COMMAND_LOG" ]]
+[[ $(readlink "$post_install_correct_home/.local/bin/bat") == "$post_install_fake_bin/batcat" ]]
+[[ $(readlink "$post_install_correct_home/.local/bin/fd") == "$post_install_fake_bin/fdfind" ]]
+
+post_install_wrong_home="$tmp_dir/post-install-wrong-home"
+post_install_wrong_fixture="$tmp_dir/post-install-wrong.sh"
+render_post_install_fixture "$post_install_wrong_home" \
+    "$post_install_wrong_fixture"
+prepare_complete_post_install_home "$post_install_wrong_home"
+ln -s "$tmp_dir/wrong-bat" "$post_install_wrong_home/.local/bin/bat"
+ln -s "$tmp_dir/missing-fd" "$post_install_wrong_home/.local/bin/fd"
+COMMAND_LOG="$tmp_dir/post-install-wrong-commands.log"
+: >"$COMMAND_LOG"
+PATH="$post_install_fake_bin:/usr/bin:/bin" \
+    HOME="$post_install_wrong_home" \
+    ZDOTDIR="$post_install_wrong_home/.config/zsh" \
+    COMMAND_LOG="$COMMAND_LOG" \
+    /bin/bash "$post_install_wrong_fixture"
+[[ $(readlink "$post_install_wrong_home/.local/bin/bat") == "$post_install_fake_bin/batcat" ]]
+[[ $(readlink "$post_install_wrong_home/.local/bin/fd") == "$post_install_fake_bin/fdfind" ]]
+
+post_install_conflict_home="$tmp_dir/post-install-conflict-home"
+post_install_conflict_fixture="$tmp_dir/post-install-conflict.sh"
+render_post_install_fixture "$post_install_conflict_home" \
+    "$post_install_conflict_fixture"
+prepare_complete_post_install_home "$post_install_conflict_home"
+printf '%s\n' 'user-owned bat path' \
+    >"$post_install_conflict_home/.local/bin/bat"
+COMMAND_LOG="$tmp_dir/post-install-conflict-commands.log"
+: >"$COMMAND_LOG"
+set +e
+PATH="$post_install_fake_bin:/usr/bin:/bin" \
+    HOME="$post_install_conflict_home" \
+    ZDOTDIR="$post_install_conflict_home/.config/zsh" \
+    COMMAND_LOG="$COMMAND_LOG" \
+    /bin/bash "$post_install_conflict_fixture" \
+    >"$tmp_dir/post-install-conflict.out" 2>&1
+status=$?
+set -e
+[[ $status -ne 0 ]]
+rg -Fq 'refusing to replace non-symlink path' \
+    "$tmp_dir/post-install-conflict.out"
+rg -Fxq 'user-owned bat path' \
+    "$post_install_conflict_home/.local/bin/bat"
 
 maintenance_source="$source_dir/.chezmoiscripts/run_once_after_90-monthly-maintenance.sh.tmpl"
 maintenance_fixture="$tmp_dir/monthly-maintenance.sh"
@@ -824,7 +1079,11 @@ if [[ "$1" == "signin" && "${2:-}" == "--raw" ]]; then
     printf '%s\n' 'test-session'
 elif [[ "$1" == "item" && "${2:-}" == "get" ]] ||
     [[ "$1" == "--session" && "${3:-}" == "item" && "${4:-}" == "get" ]]; then
-    printf '%s\n' '{"fields":[{"label":"private key","value":"PRIVATE-KEY-FIXTURE\n"},{"label":"public key","value":"ssh-ed25519 PUBLIC-FIXTURE\n"}]}'
+    if [[ -n "${OP_ITEM_JSON_FIXTURE:-}" ]]; then
+        cat "$OP_ITEM_JSON_FIXTURE"
+    else
+        printf '%s\n' '{"fields":[{"label":"private key","value":"PRIVATE-KEY-FIXTURE\n"},{"label":"public key","value":"ssh-ed25519 PUBLIC-FIXTURE\n"}]}'
+    fi
 else
     exit 64
 fi
@@ -850,6 +1109,93 @@ if rg -Fq 'PRIVATE-KEY-FIXTURE' "$security_output" ||
     printf 'security phase wrote key material to logs\n' >&2
     exit 1
 fi
+
+render_security_case() {
+    local item_json=$1
+    local keys_dir=$2
+    local output=$3
+    local data_file="$output.json"
+    jq --arg ssh_keys_dir "$keys_dir" \
+        '.directories.ssh_keys_dir = $ssh_keys_dir' \
+        "$security_data" >"$data_file"
+    OP_ITEM_JSON_FIXTURE="$item_json" \
+        PATH="$security_fake_bin:$PATH" \
+        chezmoi -S "$source_dir" execute-template \
+        --override-data-file "$data_file" \
+        --file "$security_source" >"$output"
+    chmod +x "$output"
+}
+
+assert_security_render_rejected() {
+    local item_json=$1
+    local label=$2
+    local keys_dir="$tmp_dir/security-$label-keys"
+    local fixture="$tmp_dir/security-$label.sh"
+    render_security_case "$item_json" "$keys_dir" "$fixture"
+    set +e
+    PATH="$security_fake_bin:/usr/bin:/bin" \
+        /bin/bash "$fixture" >"$tmp_dir/security-$label.out" 2>&1
+    status=$?
+    set -e
+    [[ $status -ne 0 ]]
+    [[ ! -e "$keys_dir/fixture" ]]
+    [[ ! -e "$keys_dir/fixture.pub" ]]
+    if find "$keys_dir" -name '.fixture*.tmp.*' -print -quit | rg -q .; then
+        printf 'security %s failure left a temporary key\n' "$label" >&2
+        exit 1
+    fi
+}
+
+missing_private_json="$tmp_dir/security-missing-private.json"
+printf '%s\n' \
+    '{"fields":[{"label":"public key","value":"ssh-ed25519 PUBLIC-FIXTURE\n"}]}' \
+    >"$missing_private_json"
+assert_security_render_rejected "$missing_private_json" missing-private
+
+empty_public_json="$tmp_dir/security-empty-public.json"
+printf '%s\n' \
+    '{"fields":[{"label":"private key","value":"PRIVATE-KEY-FIXTURE\n"},{"label":"public key","value":""}]}' \
+    >"$empty_public_json"
+assert_security_render_rejected "$empty_public_json" empty-public
+
+security_decode_keys_dir="$tmp_dir/security-decode-keys"
+security_decode_fixture="$tmp_dir/security-decode.sh"
+normal_security_json="$tmp_dir/security-normal.json"
+printf '%s\n' \
+    '{"fields":[{"label":"private key","value":"PRIVATE-KEY-FIXTURE\n"},{"label":"public key","value":"ssh-ed25519 PUBLIC-FIXTURE\n"}]}' \
+    >"$normal_security_json"
+render_security_case "$normal_security_json" "$security_decode_keys_dir" \
+    "$security_decode_fixture"
+security_decode_fake_bin="$tmp_dir/security-decode-fake-bin"
+mkdir -p "$security_decode_fake_bin"
+cat >"$security_decode_fake_bin/base64" <<'STUB'
+#!/usr/bin/env bash
+set -euo pipefail
+input=$(cat)
+[[ -z "$input" ]] && exit 0
+printf 'PARTIAL-KEY-FIXTURE'
+exit 42
+STUB
+chmod +x "$security_decode_fake_bin/base64"
+set +e
+PATH="$security_decode_fake_bin:$security_fake_bin:/usr/bin:/bin" \
+    /bin/bash "$security_decode_fixture" \
+    >"$tmp_dir/security-decode-failure.out" 2>&1
+status=$?
+set -e
+[[ $status -ne 0 ]]
+[[ ! -e "$security_decode_keys_dir/fixture" ]]
+[[ ! -e "$security_decode_keys_dir/fixture.pub" ]]
+if find "$security_decode_keys_dir" -name '.fixture*.tmp.*' \
+    -print -quit | rg -q .; then
+    printf 'failed key decode left a temporary key\n' >&2
+    exit 1
+fi
+
+PATH="$security_fake_bin:/usr/bin:/bin" \
+    /bin/bash "$security_decode_fixture"
+cmp -s "$tmp_dir/expected-private-key" "$security_decode_keys_dir/fixture"
+cmp -s "$tmp_dir/expected-public-key" "$security_decode_keys_dir/fixture.pub"
 
 for key_suffix in '' '.pub'; do
     dangling_keys_dir="$tmp_dir/security-dangling-${key_suffix:-private}"

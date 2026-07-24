@@ -180,10 +180,14 @@ assert_not_contains "$tmp_dir/arch-system.sh" 'brew|apt-get'
 
 runtime_source="$source_dir/.chezmoiscripts/run_onchange_after_20-language-runtimes.sh.tmpl"
 language_source="$source_dir/.chezmoiscripts/run_onchange_after_30-language-packages.sh.tmpl"
-render_script "$ubuntu_data" "$runtime_source" "$tmp_dir/ubuntu-runtime.sh"
-render_script "$ubuntu_data" "$language_source" "$tmp_dir/ubuntu-language.sh"
-check_rendered_script "$tmp_dir/ubuntu-runtime.sh"
-check_rendered_script "$tmp_dir/ubuntu-language.sh"
+for profile in mac ubuntu arch; do
+    render_script "$tmp_dir/$profile.json" "$runtime_source" \
+        "$tmp_dir/$profile-runtime.sh"
+    render_script "$tmp_dir/$profile.json" "$language_source" \
+        "$tmp_dir/$profile-language.sh"
+    check_rendered_script "$tmp_dir/$profile-runtime.sh"
+    check_rendered_script "$tmp_dir/$profile-language.sh"
+done
 
 assert_contains "$tmp_dir/ubuntu-runtime.sh" 'node@latest'
 assert_contains "$tmp_dir/ubuntu-runtime.sh" 'rust@latest'
@@ -231,10 +235,13 @@ assert_not_contains "$tmp_dir/arch-standalone.sh" 'install_git_credential_manage
 assert_not_contains "$tmp_dir/server-standalone.sh" 'jesseduffield/lazygit'
 
 post_install_source="$source_dir/.chezmoiscripts/run_after_50-post-install.sh.tmpl"
+for profile in mac ubuntu arch; do
+    render_script "$tmp_dir/$profile.json" "$post_install_source" \
+        "$tmp_dir/$profile-post-install.sh"
+    check_rendered_script "$tmp_dir/$profile-post-install.sh"
+done
 post_install="$tmp_dir/ubuntu-post-install.sh"
-render_script "$ubuntu_data" "$post_install_source" "$post_install"
-check_rendered_script "$post_install"
-assert_contains "$post_install" 'ANTIDOTE_DIR='
+assert_contains "$post_install" 'antidote_dir='
 assert_contains "$post_install" 'nanorc'
 assert_contains "$post_install" 'fdfind'
 assert_contains "$post_install" 'batcat'
@@ -245,8 +252,6 @@ render_script "$ubuntu_data" "$security_source" "$security_none"
 [[ ! -s "$security_none" ]] ||
     fail "security phase must be empty for provider none"
 
-security_onepassword="$tmp_dir/security-onepassword.json"
-jq '.secrets.provider = "onepassword"' "$ubuntu_data" >"$security_onepassword"
 security_fake_bin="$tmp_dir/security-fake-bin"
 mkdir -p "$security_fake_bin"
 cat >"$security_fake_bin/op" <<'STUB'
@@ -263,16 +268,25 @@ else
 fi
 STUB
 chmod +x "$security_fake_bin/op"
-security_rendered="$tmp_dir/security-onepassword.sh"
-PATH="$security_fake_bin:$PATH" chezmoi -S "$source_dir" execute-template \
-    --override-data-file "$security_onepassword" \
-    --file "$security_source" >"$security_rendered"
-check_rendered_script "$security_rendered"
+for profile in mac ubuntu arch; do
+    security_onepassword="$tmp_dir/$profile-security-onepassword.json"
+    jq '.secrets.provider = "onepassword"' "$tmp_dir/$profile.json" \
+        >"$security_onepassword"
+    security_rendered="$tmp_dir/$profile-security-onepassword.sh"
+    PATH="$security_fake_bin:$PATH" \
+        chezmoi -S "$source_dir" execute-template \
+        --override-data-file "$security_onepassword" \
+        --file "$security_source" >"$security_rendered"
+    check_rendered_script "$security_rendered"
+done
 
 maintenance_source="$source_dir/.chezmoiscripts/run_once_after_90-monthly-maintenance.sh.tmpl"
-maintenance="$tmp_dir/monthly-maintenance.sh"
-render_script "$ubuntu_data" "$maintenance_source" "$maintenance"
-check_rendered_script "$maintenance"
+for profile in mac ubuntu arch; do
+    maintenance="$tmp_dir/$profile-monthly-maintenance.sh"
+    render_script "$tmp_dir/$profile.json" "$maintenance_source" "$maintenance"
+    check_rendered_script "$maintenance"
+done
+maintenance="$tmp_dir/ubuntu-monthly-maintenance.sh"
 assert_contains "$maintenance" 'uv tool upgrade --all'
 assert_contains "$maintenance_source" 'output "date" "\+%m"'
 

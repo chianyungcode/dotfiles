@@ -5,39 +5,69 @@ PHASE="50-post-install"
 install_antidote() {
     local zdotdir
     zdotdir=${ZDOTDIR:-"$HOME/.config/zsh"}
-    local ANTIDOTE_DIR="$zdotdir/.antidote"
-    [[ -d "$ANTIDOTE_DIR" ]] && return 0
+    local antidote_dir="$zdotdir/.antidote"
+    [[ -f "$antidote_dir/antidote.zsh" ]] && return 0
     require_command git
-    mkdir -p "$zdotdir"
+    make_temp_dir "post-install"
+    local staged_antidote="$TEMP_DIR/antidote"
     git clone --depth 1 https://github.com/mattmc3/antidote.git \
-        "$ANTIDOTE_DIR"
+        "$staged_antidote"
+    [[ -f "$staged_antidote/antidote.zsh" ]] ||
+        die "Antidote clone is missing antidote.zsh"
+    mkdir -p "$zdotdir"
+    mkdir -p "$antidote_dir"
+    cp -R "$staged_antidote/." "$antidote_dir/"
+    [[ -f "$antidote_dir/antidote.zsh" ]] ||
+        die "Antidote installation is incomplete"
 }
 
 install_nanorc() {
     local nano_dir="{{ .xdg.data_home }}/nano"
-    [[ -f "$nano_dir/conf.nanorc" ]] && return 0
+    local completion_marker="$nano_dir/.chezmoi-complete"
+    [[ -f "$completion_marker" ]] && return 0
     require_command curl
     require_command unzip
-    make_temp_dir "nanorc"
+    make_temp_dir "post-install"
     curl --fail --show-error --silent --location --retry 3 \
         https://github.com/scopatz/nanorc/archive/master.zip \
         --output "$TEMP_DIR/nanorc.zip"
     unzip -q "$TEMP_DIR/nanorc.zip" -d "$TEMP_DIR"
     mkdir -p "$nano_dir"
     cp -R "$TEMP_DIR/nanorc-master/." "$nano_dir/"
+    : >"$completion_marker"
 }
 
 {{- if and (eq .chezmoi.os "linux") (or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelease.id "ubuntu")) }}
+ensure_managed_symlink() {
+    local command_name=$1
+    local managed_path=$2
+    local command_path
+    command_path=$(command -v "$command_name") || return 0
+
+    if [[ -L "$managed_path" ]]; then
+        [[ $(readlink "$managed_path") == "$command_path" ]] && return 0
+    elif [[ -e "$managed_path" ]]; then
+        die "refusing to replace non-symlink path: $managed_path"
+    fi
+
+    (
+        local temporary_link="${managed_path}.tmp.$$"
+        cleanup_temporary_link() {
+            rm -f -- "$temporary_link"
+        }
+        trap cleanup_temporary_link EXIT
+        trap 'exit 1' HUP INT TERM
+        [[ ! -e "$temporary_link" && ! -L "$temporary_link" ]] ||
+            die "temporary symlink path already exists: $temporary_link"
+        ln -s "$command_path" "$temporary_link"
+        mv -f "$temporary_link" "$managed_path"
+    )
+}
+
 ensure_debian_symlinks() {
     mkdir -p "$HOME/.local/bin"
-    if command -v batcat >/dev/null 2>&1 &&
-        [[ ! -e "$HOME/.local/bin/bat" && ! -L "$HOME/.local/bin/bat" ]]; then
-        ln -s "$(command -v batcat)" "$HOME/.local/bin/bat"
-    fi
-    if command -v fdfind >/dev/null 2>&1 &&
-        [[ ! -e "$HOME/.local/bin/fd" && ! -L "$HOME/.local/bin/fd" ]]; then
-        ln -s "$(command -v fdfind)" "$HOME/.local/bin/fd"
-    fi
+    ensure_managed_symlink batcat "$HOME/.local/bin/bat"
+    ensure_managed_symlink fdfind "$HOME/.local/bin/fd"
 }
 {{- end }}
 

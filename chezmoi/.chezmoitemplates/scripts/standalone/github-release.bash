@@ -111,7 +111,10 @@ install_github_release() {
     local executable=$3
     local exclude_regex=$4
 
-    command -v "$executable" >/dev/null 2>&1 && return 0
+    if command -v "$executable" >/dev/null 2>&1 &&
+        "$executable" --version >/dev/null 2>&1; then
+        return 0
+    fi
     require_command curl
     require_command jq
     make_temp_dir "github-release"
@@ -165,8 +168,11 @@ install_github_release() {
     mkdir -p "$install_dir"
     cp "$source_executable" "$temporary_target"
     chmod 0755 "$temporary_target"
+    if ! "$temporary_target" --version >/dev/null 2>&1; then
+        rm -f -- "$temporary_target"
+        die "$name executable failed staged verification"
+    fi
     mv "$temporary_target" "$target"
-    "$target" --version >/dev/null
 }
 {{- if and (eq .chezmoi.os "linux") .features.development (eq .chezmoi.arch "amd64") (or (eq .chezmoi.osRelease.id "ubuntu") (eq .chezmoi.osRelease.id "debian")) }}
 

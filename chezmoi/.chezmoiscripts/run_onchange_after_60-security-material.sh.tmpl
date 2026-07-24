@@ -11,31 +11,67 @@ decode_base64() {
     fi
 }
 
+publish_decoded_key() {
+    local encoded_value=$1
+    local target=$2
+    local mode=$3
+    local key_label=$4
+
+    (
+        local temporary_key=""
+        cleanup_temporary_key() {
+            [[ -z "$temporary_key" ]] || rm -f -- "$temporary_key"
+        }
+        trap cleanup_temporary_key EXIT
+        trap 'exit 1' HUP INT TERM
+
+        umask 077
+        temporary_key=$(mktemp \
+            "${target%/*}/.${target##*/}.tmp.XXXXXX") ||
+            die "could not create temporary $key_label key"
+        if ! printf '%s' "$encoded_value" |
+            decode_base64 >"$temporary_key"; then
+            die "could not decode $key_label key"
+        fi
+        [[ -s "$temporary_key" ]] ||
+            die "decoded $key_label key is empty"
+        chmod "$mode" "$temporary_key"
+        mv "$temporary_key" "$target"
+        temporary_key=""
+    )
+}
+
 mkdir -p "{{ .directories.ssh_keys_dir }}"
 
 {{ range .remote_servers -}}
 private_key="{{ $.directories.ssh_keys_dir }}/{{ .name }}"
 public_key="$private_key.pub"
+{{ if not .generate_public_key_only -}}
+private_key_encoded='{{ range (onepassword .op_id).fields }}{{ if or (eq .label "privkey") (eq .label "private key") }}{{ .value | b64enc }}{{ end }}{{ end }}'
+{{ end -}}
+public_key_encoded='{{ range (onepassword .op_id).fields }}{{ if or (eq .label "pubkey") (eq .label "public key") }}{{ .value | b64enc }}{{ end }}{{ end }}'
 
 if [[ -L "$private_key" || -L "$public_key" ]]; then
     die "refusing to write SSH key through symlink for {{ .name }}"
 fi
 
 {{ if not .generate_public_key_only -}}
+if [[ ! -f "$private_key" && -z "$private_key_encoded" ]]; then
+    die "missing or empty private key field for {{ .name }}"
+fi
+{{ end -}}
+if [[ ! -f "$public_key" && -z "$public_key_encoded" ]]; then
+    die "missing or empty public key field for {{ .name }}"
+fi
+
+{{ if not .generate_public_key_only -}}
 if [[ ! -f "$private_key" ]]; then
-    (
-        umask 077
-        printf '%s' '{{ range (onepassword .op_id).fields }}{{ if or (eq .label "privkey") (eq .label "private key") }}{{ .value | b64enc }}{{ end }}{{ end }}' |
-            decode_base64 >"$private_key"
-    )
-    chmod 0600 "$private_key"
+    publish_decoded_key "$private_key_encoded" "$private_key" 0600 private
 fi
 {{ end -}}
 
 if [[ ! -f "$public_key" ]]; then
-    printf '%s' '{{ range (onepassword .op_id).fields }}{{ if or (eq .label "pubkey") (eq .label "public key") }}{{ .value | b64enc }}{{ end }}{{ end }}' |
-        decode_base64 >"$public_key"
-    chmod 0644 "$public_key"
+    publish_decoded_key "$public_key_encoded" "$public_key" 0644 public
 fi
 {{ end -}}
 {{ end -}}
