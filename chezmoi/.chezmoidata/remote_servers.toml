@@ -46,11 +46,3 @@
     name                     = "pc-nixos"
     op_id                    = "5ulvmrvynchgsmlffm64spatn4"
     tailscale_ip             = true
-
-  [remote_servers.hermes-ubuntu]
-    add_to_ssh_config        = true
-    forward_agent            = false
-    generate_public_key_only = true
-    name                     = "hermes-ubuntu"
-    op_id                    = "nld5gp5xo5ragnlcxhedxqx2x4"
-    tailscale_ip             = false
