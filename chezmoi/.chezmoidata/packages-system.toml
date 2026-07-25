@@ -16,28 +16,25 @@
       ]
       formulae = [
         # Core CLI Utilities
-        "atuin",       # Better shell history
         "bat",         # cat with syntax highlighting and git integration
-        "chezmoi",
         "eza",         # Better ls
-        "fd",          # Better find
-        "fzf",         # Fuzzy finder
         "halp",        # Better help
         "imagemagick", # Image processing
-        "jq",          # Lightweight and flexible command-line JSON processor
         "most",        # Pager
         "navi",        # An interactive cheatsheet tool for the command-line
         "rip2",        # A safer rm, written in Rust
-        "ripgrep",     # Search tool like grep and the silver searcher
         "tlrc",        # TLDR client, alternative tealdeer
         "unzip",
         "watchman",    # File watcher
         "wget",
-        "whois",       # Lookup tool for domain names and other internet resources
         "wtfutil",
         "xz",
         "yazi",        # File manager in CLI
-        "yq",          # YAML processor
+
+        # Dotfile manager
+        "chezmoi",
+        # "dotter",      # dotfile manager and templater
+        # "stow",                      # Symlink manager
 
         # System monitor TUI
         "bottom",
@@ -51,6 +48,7 @@
         "mtr",        # ping & trace
         # "nexttrace", # ping & trace
         "trippy", # ping & trace route in TUI based on rust
+        "whois",  # Lookup tool for domain names and other internet resources
 
         # GNU Core & Build Dependencies
         "coreutils",  # GNU coreutils
@@ -80,10 +78,9 @@
         "ssh-copy-id", # Add a public key to a remote machine's authorized_keys file
 
         # Shell & Terminal
-        "openssh",  # SSH
-        "starship", # Configure shell prompt appearance
-        "tmux",     # Terminal multiplexer
-        "vivid",    # Better ls
+        "openssh", # SSH
+        "tmux",    # Terminal multiplexer
+        "vivid",   # Better ls
 
         # Text Editors & IDEs
         "neovim", # Text
@@ -97,7 +94,6 @@
         # "berkeley-db", # Oracle berkeley-db
         # "brew-gem",
         # "cliclick",    # macOS CLI tool for emulating mouse and keyboard events
-        # "dotter",      # dotfile manager and templater
       ]
       taps = [
         # Development Tools
@@ -171,18 +167,31 @@
         # Coding Agents CLI's
         "opencode",
 
+        # File & text processing
+        "fd",      # Better find
+        "fzf",     # Fuzzy finder
+        "fx",      # JSON viewer and processor
+        "jq",      # Lightweight and flexible command-line JSON processor
+        "ripgrep", # Search tool like grep and the silver searcher
+        "sd",      # Intuitive find-and-replace CLI
+        "sk",      # Alternative to fzf fuzzy-finder
+        "yq",      # YAML processor
+
+        # File manager
+        "superfile", # file manager in terminal
+        # "television",                # Alternative to yazi
+        "yazi",
+
         # CLI Utilities
         "codespell",         # Fix common misspellings in source code and text files
         "fastfetch",         # Better system info
         "ffmpegthumbnailer", # Video thumbnail for yazi cli
-        "fx",                # Better grep
         "glow",              # Render markdown in CLI
         "hyperfine",         # A command-line benchmarking tool
         "pastel",            # converter color in terminal
         "pngpaste",          # Paste PNG into files on MacOS, much like pbpaste does for text.
         "poppler",           # PDF rendering library
         "pueue",             # Task runner and scheduler
-        "sk",                # alternative for fzf fuzzy-finder
         "thefuck",           # Fix typos
 
         # Git & Version Control
@@ -199,12 +208,14 @@
         "pet",        # CLI snippet manager
 
         # Shell & Terminal
-        "direnv",  # Environment manager for shell based current working directory
-        "fish",    # Alternative shell for zsh
-        "nushell", # Alternative shell
-        "sesh",    # Tmux session manager
-        "sshs",    # Graphical command-line client for SSH
-        "tmuxp",   # Tmux session manager
+        "atuin",    # Better shell history
+        "direnv",   # Environment manager for shell based current working directory
+        "fish",     # Alternative shell for zsh
+        "nushell",  # Alternative shell
+        "sesh",     # Tmux session manager
+        "sshs",     # Graphical command-line client for SSH
+        "starship", # Configure shell prompt appearance
+        "tmuxp",    # Tmux session manager
 
         # Cloud & Infra
         "awscli",
@@ -261,9 +272,7 @@
         # "helix",                     # Alternative neovim
         # "kanata",                    # Cross-platform software keyboard remapper
         # "kitty",                     # terminal
-        # "stow",                      # Symlink manager
         # "stripe/stripe-cli/stripe",
-        # "television",                # Alternative to yazi
         # "tmuxinator",                # Tmux session manager
       ]
       taps = []
@@ -365,7 +374,6 @@
         "taproom",    # TUI for search homebrew package
         "mole",       # https://github.com/tw93/Mole
         "presenterm", # Presentation in CLI
-        "superfile",  # file manager in terminal
 
         "tuxedo", # task management TUI
         # Window Management
@@ -458,16 +466,12 @@
         "zsh",
 
         # CLI Utilities
-        "bat",     # cat with syntax highlighting and Git integration
-        "fd-find",
+        "bat",    # cat with syntax highlighting and Git integration
         "figlet",
-        "fzf",
         "eza",
-        "jq",
         "lolcat",
-        "mc",      # Midnight Commander
-        "ncdu",    # NCurses Disk Usage
-        "ripgrep", # search tool like grep and the silver searcher
+        "mc",     # Midnight Commander
+        "ncdu",   # NCurses Disk Usage
 
         # Git & Version Control
         "git",
@@ -479,7 +483,15 @@
       ]
 
     [packages.apt.development]
-      packages = []
+      packages = [
+        # File & text processing
+        "fd-find",
+        "fzf",
+        "jq",
+        "ripgrep",
+        "sd",
+        "yq",
+      ]
 
     [packages.apt.homelab]
       packages = ["iperf"]
@@ -508,15 +520,11 @@
         "zsh",
 
         # CLI Utilities
-        "bat",     # cat with syntax highlighting and Git integration
-        "fd",      # Equivalent to fd-find
+        "bat",    # cat with syntax highlighting and Git integration
         "figlet",
-        "fzf",
-        "jq",
         "lolcat",
-        "mc",      # Midnight Commander
-        "ncdu",    # NCurses Disk Usage
-        "ripgrep", # search tool like grep and the silver searcher
+        "mc",     # Midnight Commander
+        "ncdu",   # NCurses Disk Usage
 
         # Git & Version Control
         "git",
@@ -533,6 +541,15 @@
 
     [packages.pacman.development]
       packages = [
+        # File & text processing
+        "fd",
+        "fzf",
+        "jq",
+        "ripgrep",
+        "sd",
+        "skim",    # Alternative to fzf fuzzy-finder
+        "yq",      # YAML processor
+
         "appimagelauncher", # for integrating .AppImage
         "difftastic",       # diff tools
         "codespell",        # Fix common misspellings in source code and text files
@@ -545,7 +562,6 @@
         "pastel",           # converter color in terminal
         "pet-bin",
         "pueue",            # Task runner and scheduler
-        "skim",             # alternative for fzf fuzzy-finder
         "tectonic",
         "thefuck",          # Fix typos
         "tlrc",             # TLDR client, alternative tealdeer
@@ -574,7 +590,6 @@
         "starship",
         "tmux",
         "tmuxp",    # tmux session manager
-        "yazi",
 
         # Text Editors & IDEs
         "helix",  # Alternative neovim
@@ -591,7 +606,6 @@
         "httpie",   # HTTP client
         "hurl",     # runs HTTP requests defined in a simple plain text format.
         "usbutils", # check fingerprint info
-        "yq",       # YAML processor
 
         # Desktop & Device
         "fprintd",         # fingerprint

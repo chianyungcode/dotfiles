@@ -34,7 +34,7 @@ return {
     -- https://github.com/Bekaboo/dropbar.nvim
     -- DESC: Breadcrumb menunjukkan file path diatas
     "Bekaboo/dropbar.nvim",
-    enabled = false,
+    enabled = true,
     config = function()
       require("dropbar").setup({
         icons = {
