@@ -1209,37 +1209,37 @@ printf '%s\n' \
     >"$empty_public_json"
 assert_security_render_rejected "$empty_public_json" empty-public
 
-security_decode_keys_dir="$tmp_dir/security-decode-keys"
-security_decode_fixture="$tmp_dir/security-decode.sh"
+security_runtime_keys_dir="$tmp_dir/security-runtime-keys"
+security_runtime_fixture="$tmp_dir/security-runtime-fetch.sh"
 normal_security_json="$tmp_dir/security-normal.json"
 printf '%s\n' \
     '{"fields":[{"label":"private key","value":"PRIVATE-KEY-FIXTURE\n"},{"label":"public key","value":"ssh-ed25519 PUBLIC-FIXTURE\n"}]}' \
     >"$normal_security_json"
-render_security_case "$normal_security_json" "$security_decode_keys_dir" \
-    "$security_decode_fixture"
+render_security_case "$normal_security_json" "$security_runtime_keys_dir" \
+    "$security_runtime_fixture"
 set +e
 PATH="$security_fake_bin:/usr/bin:/bin" \
     OP_ITEM_JSON_FIXTURE="$normal_security_json" \
     FAIL_OP_AFTER_OUTPUT=true \
-    /bin/bash "$security_decode_fixture" \
-    >"$tmp_dir/security-decode-failure.out" 2>&1
+    /bin/bash "$security_runtime_fixture" \
+    >"$tmp_dir/security-runtime-fetch-failure.out" 2>&1
 status=$?
 set -e
 [[ $status -ne 0 ]]
-[[ ! -e "$security_decode_keys_dir/fixture" ]]
-[[ ! -e "$security_decode_keys_dir/fixture.pub" ]]
-assert_no_security_fixture_material "$tmp_dir/security-decode-failure.out"
-if find "$security_decode_keys_dir" -name '.fixture*.tmp.*' \
+[[ ! -e "$security_runtime_keys_dir/fixture" ]]
+[[ ! -e "$security_runtime_keys_dir/fixture.pub" ]]
+assert_no_security_fixture_material "$tmp_dir/security-runtime-fetch-failure.out"
+if find "$security_runtime_keys_dir" -name '.fixture*.tmp.*' \
     -print -quit | rg -q .; then
-    printf 'failed key decode left a temporary key\n' >&2
+    printf 'failed runtime key fetch left a temporary key\n' >&2
     exit 1
 fi
 
 PATH="$security_fake_bin:/usr/bin:/bin" \
     OP_ITEM_JSON_FIXTURE="$normal_security_json" \
-    /bin/bash "$security_decode_fixture"
-cmp -s "$tmp_dir/expected-private-key" "$security_decode_keys_dir/fixture"
-cmp -s "$tmp_dir/expected-public-key" "$security_decode_keys_dir/fixture.pub"
+    /bin/bash "$security_runtime_fixture"
+cmp -s "$tmp_dir/expected-private-key" "$security_runtime_keys_dir/fixture"
+cmp -s "$tmp_dir/expected-public-key" "$security_runtime_keys_dir/fixture.pub"
 
 security_public_only_keys_dir="$tmp_dir/security-public-only-keys"
 security_public_only_data="$tmp_dir/security-public-only.json"

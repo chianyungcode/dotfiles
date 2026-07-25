@@ -293,6 +293,8 @@ for profile in mac ubuntu arch; do
         --file "$security_source" >"$security_rendered"
     check_rendered_script "$security_rendered"
     assert_no_security_fixture_material "$security_rendered"
+    assert_not_contains "$security_rendered" 'decode_base64|b64enc|base64 --decode|base64 -D'
+    assert_contains "$security_rendered" 'fetch_onepassword_field'
     assert_contains "$security_rendered" 'op item get'
     assert_contains "$security_rendered" 'format json'
 done

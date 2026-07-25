@@ -95,13 +95,17 @@ Add your remote server configuration to
 
 <!-- markdownlint-enable MD013 -->
 
-### Step 4: Automatic Key Generation
+### Step 4: Automatic Key Materialization
 
-The `run_onchange_after_60-security-material.sh.tmpl` script will:
+The `run_onchange_after_60-security-material.sh.tmpl` script will, when a key
+file is missing:
 
-1. Extract SSH keys from 1Password
-2. Create private and public key files in `~/.ssh-keys/`
-3. Set appropriate file permissions (600 for private keys)
+1. Fetch the required SSH key field from 1Password at script execution time.
+2. Create the private and/or public key file in `~/.ssh-keys/`.
+3. Set appropriate file permissions (600 for private keys, 644 for public keys).
+
+Key material is not embedded in the rendered Chezmoi script, and no base64
+encode/decode step is required.
 
 ### Step 5: SSH Configuration Generation
 
