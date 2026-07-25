@@ -191,14 +191,14 @@ for profile in mac ubuntu arch; do
             '.chezmoi.os = "darwin"
              | .chezmoi.osRelease.id = "darwin"
              | .features = {
-                 development: false,
+                 development: true,
                  personal: false,
                  homelab: false,
                  graphical: false
                }
              | .packages.homebrew.to_remove = []
-             | .packages.homebrew.common.formulae = $packages
-             | .packages.homebrew.common.casks = []' \
+             | .packages.homebrew.development.formulae = $packages
+             | .packages.homebrew.development.casks = []' \
             "$base_data_file" >"$system_data"
         ;;
     ubuntu)
@@ -262,7 +262,7 @@ for profile in mac ubuntu arch; do
     mac)
         jq \
             '.packages.homebrew.to_remove = ["package-remove-fail"]
-             | .packages.homebrew.common.formulae = ["package-removal-sentinel"]' \
+             | .packages.homebrew.development.formulae = ["package-removal-sentinel"]' \
             "$system_data" >"$removal_data"
         ;;
     ubuntu)
@@ -305,14 +305,14 @@ jq \
     '.chezmoi.os = "darwin"
      | .chezmoi.osRelease.id = "darwin"
      | .features = {
-         development: false,
+         development: true,
          personal: false,
          homelab: false,
          graphical: true
        }
      | .packages.homebrew.to_remove = []
-     | .packages.homebrew.common.formulae = []
-     | .packages.homebrew.common.casks = []
+     | .packages.homebrew.development.formulae = []
+     | .packages.homebrew.development.casks = []
      | .packages.mas.common.apps = ["123456789"]' \
     "$base_data_file" >"$mas_required_data"
 mas_required_fixture="$tmp_dir/mas-required.sh"

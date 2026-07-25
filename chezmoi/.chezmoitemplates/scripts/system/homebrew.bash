@@ -5,9 +5,6 @@ remove_formulae=(
 )
 
 formulae=(
-{{- range .packages.homebrew.common.formulae }}
-    "{{ . }}"
-{{- end }}
 {{- if .features.graphical }}
 {{- range .packages.homebrew.graphical.formulae }}
     "{{ . }}"
@@ -31,9 +28,6 @@ formulae=(
 )
 
 casks=(
-{{- range .packages.homebrew.common.casks }}
-    "{{ . }}"
-{{- end }}
 {{- if .features.graphical }}
 {{- range .packages.homebrew.graphical.casks }}
     "{{ . }}"

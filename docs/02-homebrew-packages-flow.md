@@ -24,14 +24,10 @@ Example configuration:
 ```toml
 [packages]
   [packages.homebrew]
-    [packages.homebrew.common]
-    taps = ["homebrew/bundle"]
-    casks = ["1password", "ghostty"]
-    formulae = ["git", "neovim", "fish"]
-
     [packages.homebrew.development]
-    casks = ["cursor", "datagrip"]
-    formulae = ["gh", "act", "direnv"]
+    taps = ["homebrew/bundle"]
+    casks = ["1password-cli", "cursor", "ghostty"]
+    formulae = ["git", "neovim", "fish", "gh", "act", "direnv"]
 
     [packages.homebrew.personal]
     casks = ["arc", "raycast", "obsidian"]
@@ -39,8 +35,8 @@ Example configuration:
 ```
 
 The `graphical` feature also gates casks. The current data file includes
-separate `common`, `development`, `personal`, `homelab`, and `graphical`
-tables where applicable.
+separate `development`, `personal`, `homelab`, and `graphical` tables where
+applicable.
 
 ## Installation Script
 

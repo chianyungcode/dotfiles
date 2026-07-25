@@ -2,98 +2,232 @@
   [packages.homebrew]
     to_remove = ["htop"]
 
-    [packages.homebrew.common]
-      # Installed on every computer
+    [packages.homebrew.graphical]
       casks = [
-        # CLI security and identity tools
+        # Security & Identity
+        "1password",
+
+        # Terminals
+        # "cmux",
+        "ghostty",
+        # "kitty",
+        "wezterm",
+      ]
+      formulae = ["felixkratz/formulae/borders"]
+      taps = []
+
+    [packages.homebrew.development]
+      casks = [
+        # Security & Identity
         "1password-cli",
 
-        # Development and device tools
+        # Development & Device Tools
         "android-platform-tools",
-
-        # Version Control
         "git-credential-manager",
+
+        # Coding Agents Apps
+        "claude-code",
+        "codex",
+        "grok-build",
+        "opencode-desktop",
+
+        # API & Development
+        "apidog",
+
+        # Network & Remote Access
+        "tailscale",
+        "termius",
+
+        # Docker replacement
+        "orbstack",
+
+        # Optional
+        # "amazon-q",
+        # "fork", # "sourcetree", alternative to fork
       ]
       formulae = [
-        # Core CLI Utilities
-        "bat",         # cat with syntax highlighting and git integration
-        "eza",         # Better ls
-        "halp",        # Better help
-        "imagemagick", # Image processing
-        "most",        # Pager
-        "navi",        # An interactive cheatsheet tool for the command-line
-        "rip2",        # A safer rm, written in Rust
-        "tlrc",        # TLDR client, alternative tealdeer
-        "unzip",
-        "watchman",    # File watcher
-        "wget",
+        # Coding Agents CLI's
+        # "cursor-cli",
+        # "pi-coding-agent",
+        "opencode",
+
+        # File & Text Processing
+        "bat",     # cat with syntax highlighting and git integration
+        "fd",      # Better find
+        "fzf",     # Fuzzy finder, written in Go
+        "fx",      # JSON viewer and processor
+        "jq",      # Lightweight and flexible command-line JSON processor
+        "ripgrep", # Search tool like grep and the silver searcher
+        "sd",      # Intuitive find-and-replace CLI
+        "sk",      # Alternative to fzf fuzzy-finder, written in Rust
+        "yq",      # YAML processor
+
+        # File Managers & Navigation
+        "chezmoi",   # Dotfile manager
+        "eza",       # Better ls
+        "rip2",      # A safer rm, written in Rust
+        "superfile", # File manager in terminal
+        "yazi",      # File manager in CLI
+        "zoxide",    # Better cd
+        # "dotter",    # Alternative dotfile manager
+        # "stow",      # Symlink manager
+        # "television", # Alternative to yazi
+
+        # CLI Help, Search & Productivity
+        "glow",    # Render markdown in CLI
+        "halp",    # Better help
+        "most",    # Pager
+        "navi",    # Interactive command-line cheatsheet
+        "pet",     # CLI snippet manager
+        "thefuck", # Fix typos
+        "tlrc",    # TLDR client, alternative tealdeer
+
+        # System Monitoring & Utilities
+        "bottom",    # System monitor TUI
+        "fastfetch", # Better system info
+        "macmon",    # Mac monitor
+        "onefetch",  # Git repo statistic
+        "pueue",     # Task runner and scheduler
+        "watchman",  # File watcher
         "wtfutil",
+
+        # Media, Documents & Archives
+        "ffmpegthumbnailer", # Video thumbnail for yazi CLI
+        "imagemagick",       # Image processing
+        "pastel",            # Convert colors in terminal
+        "pngpaste",          # Paste PNG into files on macOS
+        "poppler",           # PDF rendering library
+        "unzip",
         "xz",
-        "yazi",        # File manager in CLI
-
-        # Dotfile manager
-        "chezmoi",
-        # "dotter",      # dotfile manager and templater
-        # "stow",                      # Symlink manager
-
-        # System monitor TUI
-        "bottom",
-        "macmon", # Mac monitor
-        # "btop",
-        # "htop",
-
-        # Network
-        "gping",      # Ping with graph
-        "ipinfo-cli",
-        "mtr",        # ping & trace
-        # "nexttrace", # ping & trace
-        "trippy", # ping & trace route in TUI based on rust
-        "whois",  # Lookup tool for domain names and other internet resources
 
         # GNU Core & Build Dependencies
         "coreutils",  # GNU coreutils
         "findutils",  # GNU find
         "gawk",       # GNU awk
         "gnu-getopt",
-        "gnu-sed",    # GNU implementation of the famous stream editor
+        "gnu-sed",    # GNU implementation of the stream editor
         "gnu-tar",    # GNU version of the tar archiving utility
         "grep",       # GNU grep
-        "gzip",       # Popular GNU data compression program
+        "gzip",       # Data compression program
         "icu4c@76",
-        "pkgconf",    # package compiler and linker metadata toolkit
+        "pkgconf",    # Package compiler and linker metadata toolkit
 
-        # Git & Version Control
-        "bfg",                       # Remove large files or passwords from Git history like git-filter-branch
+        # Version Control System
+        "act",                       # Runs GitHub Actions locally
+        "bfg",                       # Remove large files or passwords from Git history
+        "difftastic",                # Diff tools
+        "gh",                        # GitHub CLI
         "git",
         "git-delta",                 # Git diff viewer or pager
+        "git-extras",                # Add extra commands to git
         "git-filter-repo",
         "git-lfs",
+        "glab",                      # GitLab CLI
+        "hunk",                      # Diff tools TUI
+        "jj",                        # Jujutsu version control
+        "jjui",                      # Jujutsu TUI
+        "lazygit",
         "withgraphite/tap/graphite",
 
         # Security & Cryptography
-        "gitleaks",    # Find secrets that leaks in your repo
-        "gnupg",       # GPG
-        "gnutls",      # GNU Transport Layer Security (TLS) Library
-        "libfido2",    # Provides library functionality for FIDO U2F & FIDO 2.0, including USB
-        "ssh-copy-id", # Add a public key to a remote machine's authorized_keys file
+        "gnupg",    # GPG
+        "gnutls",   # GNU Transport Layer Security library
+        "libfido2", # FIDO U2F and FIDO 2.0 library
+
+        # Network & Remote Access
+        "gping",       # Ping with graph
+        "ipinfo-cli",
+        "mtr",         # Ping and trace
+        "openssh",     # SSH
+        "ssh-copy-id", # Add a public key to a remote machine's authorized_keys
+        "trippy",      # Ping and traceroute TUI based on Rust
+        "wget",
+        "whois",       # Lookup tool for domains and internet resources
+
+        # Cloud & Infra
+        "awscli",
+        "dotenvx/brew/dotenvx", # Env manager
+        "lazydocker",           # Docker manager
+        # "koyeb/tap/koyeb",                     # Koyeb CLI
+
+        # Terminal Multiplexer
+        "gitmux", # Git status bar in tmux
+        "herdr",  # Tmux alternative with AI native integration
+        "sesh",   # Tmux session manager
+        "tmux",   # Terminal multiplexer
+        "tmuxp",  # Tmux session manager
+        # "zellij",
 
         # Shell & Terminal
-        "openssh", # SSH
-        "tmux",    # Terminal multiplexer
-        "vivid",   # Better ls
+        "atuin",    # Better shell history
+        "direnv",   # Environment manager for shell based current directory
+        "fish",     # Alternative shell for zsh
+        "nushell",  # Alternative shell
+        "sshs",     # Graphical command-line client for SSH
+        "starship", # Configure shell prompt appearance
+        "vivid",    # Terminal color generator
 
         # Text Editors & IDEs
-        "neovim", # Text
-        "vim",    # Alternative neovim
+        # "helix",  # Alternative neovim
+        "neovim", # Text editor
+        "vim",    # Alternative to neovim
 
-        # Language & Package Tooling
-        "cocoapods", # dependency manager for switft
-        "zoxide",    # Better cd
+        # API & Data
+        "httpie",      # HTTP client
+        "hurl",        # command line tool that runs HTTP requests defined in a simple plain text format.
+        "mermaid-cli", # LaTex math
+
+        # Databases
+        "mongosh", # MongoDB shell
+        "redis",   # Redis CLI
+
+        # Language & Build Tooling
+        "cocoapods", # Dependency manager for Swift
+        "luarocks",  # Lua package manager
+        "sqlite3",   # for building python
+        "tcl-tk",    # for building python
+        "tectonic",  # render LaTex math
+        "zlib",      # for building python
+
+        # === LSP, formatter & linters ===
+
+        # Text
+        "codespell", # check code for misspellings
+
+        # JavaScript / TypeScript
+        "biome",    # JS/TS linter, formatter
+        "eslint",   # JS/TS linter
+        "prettier", # JS/TS formatter
+
+        # Python
+        "ruff", # Python linter
+
+        # Shell
+        "shellcheck", # bash, sh linter
+        "shfmt",      # bash, sh formatter
+
+        # Nix
+        "nixfmt", # Nix formatter
+
+        # Markdown
+        "markdownlint-cli2", # Linter for markdown file
+
+        # TOML
+        "taplo", # TOML formatter
+        # "tombi", # TOML formatter
+
+        # YAML
+        "yamlfmt",  # YAML formatter
+        "yamllint", # YAML linter
 
         # Optional
-        # "berkeley-db", # Oracle berkeley-db
+        # "berkeley-db",               # Oracle berkeley-db
         # "brew-gem",
-        # "cliclick",    # macOS CLI tool for emulating mouse and keyboard events
+        # "cliclick",                  # macOS CLI tool for emulating mouse and keyboard events
+        # "flyctl",                    # Fly.io CLI
+        # "kanata",                    # Cross-platform software keyboard remapper
+        # "stripe/stripe-cli/stripe",
+        # "tmuxinator",                # Tmux session manager
       ]
       taps = [
         # Development Tools
@@ -128,154 +262,6 @@
         # "supabase/tap",
         # "waydabber/betterdisplay",
       ]
-
-    [packages.homebrew.graphical]
-      casks = [
-        # Security & Identity
-        "1password",
-
-        # Terminals
-        "cmux",
-        "ghostty",
-        "wezterm",
-      ]
-      formulae = ["felixkratz/formulae/borders"]
-      taps = []
-
-    [packages.homebrew.development]
-      casks = [
-        # Coding Agents Apps
-        "claude-code",
-        "codex",
-        "opencode-desktop",
-
-        # API & Development
-        "apidog",
-
-        # Network & Remote Access
-        "tailscale",
-        "termius",
-
-        # Docker replacement
-        "orbstack",
-
-        # Optional
-        # "amazon-q",
-        # "fork", # "sourcetree", alternative to fork
-      ]
-      formulae = [
-        # Coding Agents CLI's
-        "opencode",
-
-        # File & text processing
-        "fd",      # Better find
-        "fzf",     # Fuzzy finder
-        "fx",      # JSON viewer and processor
-        "jq",      # Lightweight and flexible command-line JSON processor
-        "ripgrep", # Search tool like grep and the silver searcher
-        "sd",      # Intuitive find-and-replace CLI
-        "sk",      # Alternative to fzf fuzzy-finder
-        "yq",      # YAML processor
-
-        # File manager
-        "superfile", # file manager in terminal
-        # "television",                # Alternative to yazi
-        "yazi",
-
-        # CLI Utilities
-        "codespell",         # Fix common misspellings in source code and text files
-        "fastfetch",         # Better system info
-        "ffmpegthumbnailer", # Video thumbnail for yazi cli
-        "glow",              # Render markdown in CLI
-        "hyperfine",         # A command-line benchmarking tool
-        "pastel",            # converter color in terminal
-        "pngpaste",          # Paste PNG into files on MacOS, much like pbpaste does for text.
-        "poppler",           # PDF rendering library
-        "pueue",             # Task runner and scheduler
-        "thefuck",           # Fix typos
-
-        # Git & Version Control
-        "act",        # runs GitHub Actions locally
-        "difftastic", # diff tools
-        "gh",         # Github CLI
-        "glab",       # GitLab CLI
-        "git-extras", # Add extra command to default git
-        "gitmux",     # Git status bar in tmux
-        "hunk",       # Diff tools TUI
-        "jj",         # jujutsu version control
-        "jjui",       # jujutsu tui
-        "lazygit",
-        "pet",        # CLI snippet manager
-
-        # Shell & Terminal
-        "atuin",    # Better shell history
-        "direnv",   # Environment manager for shell based current working directory
-        "fish",     # Alternative shell for zsh
-        "nushell",  # Alternative shell
-        "sesh",     # Tmux session manager
-        "sshs",     # Graphical command-line client for SSH
-        "starship", # Configure shell prompt appearance
-        "tmuxp",    # Tmux session manager
-
-        # Cloud & Infra
-        "awscli",
-        "dotenvx/brew/dotenvx", # Env manager
-        "lazydocker",           # Docker manager
-        # "koyeb/tap/koyeb",                     # Koyeb CLI
-
-        # API & Data
-        "httpie",      # HTTP client
-        "hurl",        # command line tool that runs HTTP requests defined in a simple plain text format.
-        "mermaid-cli", # LaTex math
-
-        # Databases
-        "mongosh", # MongoDB shell
-        "redis",   # Redis CLI
-
-        # Language & Build Tooling
-        "luarocks", # Lua package manager
-        "sqlite3",  # for building python
-        "tcl-tk",   # for building python
-        "tectonic", # render LaTex math
-        "zlib",     # for building python
-
-        # LSP, formatter & linters
-
-        # JavaScript / TypeScript
-        "biome",    # JS/TS linter, formatter
-        "eslint",   # JS/TS linter
-        "prettier", # JS/TS formatter
-
-        # Python
-        "ruff", # Python linter
-
-        # Shell
-        "shellcheck", # bash, sh linter
-        "shfmt",      # bash, sh formatter
-
-        # Nix
-        "nixfmt", # Nix formatter
-
-        # Markdown
-        "markdownlint-cli2", # Linter for markdown file
-
-        # TOML
-        "taplo", # TOML formatter
-        # "tombi", # TOML formatter
-
-        # YAML
-        "yamlfmt",  # YAML formatter
-        "yamllint", # YAML linter
-
-        # Optional
-        # "flyctl",                    # Fly.io CLI
-        # "helix",                     # Alternative neovim
-        # "kanata",                    # Cross-platform software keyboard remapper
-        # "kitty",                     # terminal
-        # "stripe/stripe-cli/stripe",
-        # "tmuxinator",                # Tmux session manager
-      ]
-      taps = []
 
     [packages.homebrew.personal]
       casks = [
