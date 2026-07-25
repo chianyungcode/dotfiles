@@ -52,29 +52,55 @@
         "opencode",
 
         # File & Text Processing
-        "bat",     # cat with syntax highlighting and git integration
-        "fd",      # Better find
-        "fzf",     # Fuzzy finder, written in Go
-        "fx",      # JSON viewer and processor
-        "jq",      # Lightweight and flexible command-line JSON processor
+        # @fuzzy finder
+        "fzf",        # Fuzzy finder, written in Go
+        "television", # Fuzzy finder with preview integration, written in Rust.
+        "sk",         # Alternative to fzf fuzzy-finder, written in Rust
+
+        # @text/content preview
+        "bat",     # `cat` with syntax highlighting and git integration
+        "glow",    # Render markdown in CLI
+        "leaf-md", # Render markdown with GUI experience
+
+        # @text/content processing
+        "choose-rust", # Alternative to 'awk' and 'cut'
+        "grex",        # Generate regex from test cases
+        "sd",          # Intuitive find-and-replace CLI
+        "scooter",     # Find and replace content file
+
+        # @text/content search
         "ripgrep", # Search tool like grep and the silver searcher
-        "sd",      # Intuitive find-and-replace CLI
-        "sk",      # Alternative to fzf fuzzy-finder, written in Rust
-        "yq",      # YAML processor
+        # "ynqa/tap/sigrs", # Interactive grep, disable this because it slow 
+
+        # @file search
+        "fd", # Better find
+
+        # @text processor
+        "fx",  # JSON viewer and processor
+        "jq",  # Lightweight and flexible command-line JSON processor
+        "jnv", # Interactive `jq`
+        "yq",  # YAML processor
 
         # File Managers & Navigation
-        "chezmoi",   # Dotfile manager
-        "eza",       # Better ls
-        "rip2",      # A safer rm, written in Rust
-        "superfile", # File manager in terminal
-        "yazi",      # File manager in CLI
-        "zoxide",    # Better cd
+        # @dotfile manager
+        "chezmoi", # Dotfile manager
         # "dotter",    # Alternative dotfile manager
         # "stow",      # Symlink manager
-        # "television", # Alternative to yazi
+
+        # @file manager
+        "superfile", # File manager in terminal
+        "yazi",      # File manager in CLI
+
+        # @list file
+        "eza", # Better ls
+        "lla", # Better ls
+
+        # @navigation
+        "DanielCardonaRojas/codemark/codemark",
+        "rip2",                                 # A safer rm, written in Rust
+        "zoxide",                               # Better cd
 
         # CLI Help, Search & Productivity
-        "glow",    # Render markdown in CLI
         "halp",    # Better help
         "most",    # Pager
         "navi",    # Interactive command-line cheatsheet
@@ -113,21 +139,26 @@
         "pkgconf",    # Package compiler and linker metadata toolkit
 
         # Version Control System
+        # @diff tools
+        "difftastic", # Diff tools
+        "git-delta",  # Git diff viewer or pager
+        "hunk",       # Diff tools TUI
+
+        # @git
         "act",                       # Runs GitHub Actions locally
         "bfg",                       # Remove large files or passwords from Git history
-        "difftastic",                # Diff tools
         "gh",                        # GitHub CLI
         "git",
-        "git-delta",                 # Git diff viewer or pager
         "git-extras",                # Add extra commands to git
         "git-filter-repo",
         "git-lfs",
         "glab",                      # GitLab CLI
-        "hunk",                      # Diff tools TUI
-        "jj",                        # Jujutsu version control
-        "jjui",                      # Jujutsu TUI
         "lazygit",
         "withgraphite/tap/graphite",
+
+        # @jujutsu
+        "jj",   # Jujutsu version control
+        "jjui", # Jujutsu TUI
 
         # Security & Cryptography
         "gnupg",    # GPG
@@ -135,19 +166,28 @@
         "libfido2", # FIDO U2F and FIDO 2.0 library
 
         # Network & Remote Access
-        "gping",       # Ping with graph
+        # @network
+        "gping",      # Ping with graph
         "ipinfo-cli",
-        "mtr",         # Ping and trace
+        "mtr",        # Ping and trace
+        "trippy",     # Ping and traceroute TUI based on Rust
+        "whois",      # Lookup tool for domains and internet resources
+
+        # @ssh
         "openssh",     # SSH
         "ssh-copy-id", # Add a public key to a remote machine's authorized_keys
-        "trippy",      # Ping and traceroute TUI based on Rust
+        "sshs",        # Graphical command-line client for SSH
         "wget",
-        "whois",       # Lookup tool for domains and internet resources
 
         # Cloud & Infra
-        "awscli",
+        # @env secret manager
         "dotenvx/brew/dotenvx", # Env manager
-        "lazydocker",           # Docker manager
+        "varlock",              # env with schema
+
+        # @container
+        "lazydocker", # Docker manager
+
+        "awscli",
         # "koyeb/tap/koyeb",                     # Koyeb CLI
 
         # Terminal Multiplexer
@@ -163,7 +203,6 @@
         "direnv",   # Environment manager for shell based current directory
         "fish",     # Alternative shell for zsh
         "nushell",  # Alternative shell
-        "sshs",     # Graphical command-line client for SSH
         "starship", # Configure shell prompt appearance
         "vivid",    # Terminal color generator
 
@@ -191,32 +230,32 @@
 
         # === LSP, formatter & linters ===
 
-        # Text
+        # @text
         "codespell", # check code for misspellings
 
-        # JavaScript / TypeScript
+        # @javascript/typescript
         "biome",    # JS/TS linter, formatter
         "eslint",   # JS/TS linter
         "prettier", # JS/TS formatter
 
-        # Python
+        # @python
         "ruff", # Python linter
 
-        # Shell
+        # @shell
         "shellcheck", # bash, sh linter
         "shfmt",      # bash, sh formatter
 
-        # Nix
+        # @nix
         "nixfmt", # Nix formatter
 
-        # Markdown
+        # @markdown
         "markdownlint-cli2", # Linter for markdown file
 
-        # TOML
+        # @toml
         "taplo", # TOML formatter
         # "tombi", # TOML formatter
 
-        # YAML
+        # @yaml
         "yamlfmt",  # YAML formatter
         "yamllint", # YAML linter
 
