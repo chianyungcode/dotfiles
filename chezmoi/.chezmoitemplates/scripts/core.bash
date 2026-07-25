@@ -2,6 +2,8 @@ set -Eeuo pipefail
 
 : "${PHASE:?PHASE must be set before loading scripts/core.bash}"
 
+printf '\n✨ %s ✨\n' "$PHASE"
+
 TEMP_DIR=""
 
 info() {

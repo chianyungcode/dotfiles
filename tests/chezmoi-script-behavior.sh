@@ -72,7 +72,11 @@ chmod +x "$core_fixture"
 
 success_record="$tmp_dir/success-temp"
 success_output=$(TEMP_RECORD="$success_record" "$core_fixture")
-rg -q '\[core-test\] fixture complete' <<<"$success_output"
+expected_success_output=$'\n✨ core-test ✨\n[core-test] fixture complete'
+if [[ "$success_output" != "$expected_success_output" ]]; then
+    printf 'unexpected core output:\n%s\n' "$success_output" >&2
+    exit 1
+fi
 success_temp=$(<"$success_record")
 [[ ! -d "$success_temp" ]]
 
