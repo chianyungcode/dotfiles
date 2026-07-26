@@ -395,6 +395,7 @@
       formulae = [
         # CLI Utilities
         "asciinema",  # record your terminal
+        "croc",       # File transfer
         "eget",       # Easily install prebuilt binaries from GitHub.
         "taproom",    # TUI for search homebrew package
         "mole",       # https://github.com/tw93/Mole
