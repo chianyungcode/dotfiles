@@ -26,9 +26,8 @@ abbr --add ax 'chmod a+x'
 abbr --add untar 'tar -zxvf'
 abbr --add mktar 'tar -cvzf'
 abbr --add numfiles 'echo (ls -1 | wc -l)'
-abbr --add bkzsh 'bindkey | fzf'
-abbr --add bkfsh 'bind | fzf'
-abbr --add bktmux 'tmux list-keys | fzf'
+abbr --add bkfsh 'bind | sk'
+abbr --add bktmux 'tmux list-keys | sk'
 abbr --add dotf 'cd ~/.local/share/chezmoi'
 abbr --add conf 'cd ~/.config/'
 abbr --add exf 'exec fish'
@@ -86,7 +85,7 @@ abbr --add bd "bun run dev"
 abbr --add bdocs "bun run docs"
 abbr --add bfmt "bun run format"
 abbr --add bfu "brew upgrade --formula"
-# abbr "bfzf"="bun run \"\$(jq -r '.scripts | keys[]' package.json | fzf --no-border)\""
+
 abbr --add bga "bun add --global"
 abbr --add bgls "bun pm ls --global"
 abbr --add bgrm "bun remove --global"
@@ -174,7 +173,6 @@ abbr --add llt "eza -lah --classify=always --tree --level=2 --icons=auto"
 abbr --add ls "eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
 abbr --add lt "eza --tree --level=2 --icons=auto"
 abbr --add lx "eza -lbhHigUmuSa@ --icons=auto --git"
-abbr --add cyh "eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
 
 # npm
 abbr --add npmD "npm i -D "
@@ -216,8 +214,8 @@ abbr --add tailmbp "ssh tailmbp"
 abbr --add tailpc "ssh tailpc-nixos"
 abbr --add tailprefs "tailscale debug prefs"
 abbr --add ax "chmod a+x"
-abbr --add bktmux "tmux list-keys | fzf"
-abbr --add bkfish "bind | fzf"
+abbr --add bktmux "tmux list-keys | sk"
+abbr --add bkfish "bind | sk"
 abbr --add hidedot "defaults write com.apple.finder AppleShowAllFiles FALSE"
 abbr --add cpwd "echo $(pwd) | pbcopy"
 abbr --add bsra "bsr --all"
@@ -275,7 +273,8 @@ abbr --add gcb "git checkout -b"
 abbr --add gcd "git checkout \$(git_develop_branch)"
 abbr --add gcf "git config --list"
 abbr --add gcfu "git commit --fixup"
-abbr --add gcl "git clone --recurse-submodules"
+abbr --add gcl "git clone"
+abbr --add gclr "git clone --recurse-submodules"
 abbr --add gclean "git clean --interactive -d"
 abbr --add gclf "git clone --recursive --shallow-submodules --filter=blob:none --also-filter-submodules"
 abbr --add gcm "git checkout \$(git_main_branch)"
@@ -334,7 +333,7 @@ abbr --add glol 'git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s 
 abbr --add glolaa 'git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --all'
 abbr --add glola 'git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --branches --remotes --tags'
 abbr --add glols 'git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --stat'
-abbr --add glp _git_log_prettily
+abbr --add glp 'git log-patch'
 abbr --add gluc "git pull upstream \$(git_current_branch)"
 abbr --add glum "git pull upstream \$(git_main_branch)"
 abbr --add gm "git merge"
@@ -400,7 +399,7 @@ abbr --add grup "git remote update"
 abbr --add grv "git remote --verbose"
 abbr --add gsb "git status --short --branch"
 abbr --add gsd "git svn dcommit"
-abbr --add gsh "git show"
+abbr --add gsh "git sh"
 abbr --add gsi "git submodule init"
 abbr --add gsps "git show --pretty=short --show-signature"
 abbr --add gsr "git svn rebase"
@@ -456,6 +455,7 @@ abbr --add gwtrm "git worktree remove"
 # Jujutsu
 abbr -a j jj # I use `jj` to exit insert mode
 abbr -a jh 'jj -h'
+abbr -a ji jjui
 
 abbr -a jst 'jj status'
 abbr -a jsh --set-cursor 'jj show %'
@@ -477,6 +477,7 @@ abbr -a jl 'jj log'
 abbr -a jla "jj log 'all()'"
 abbr -a jlt --set-cursor "jj log -T %"
 
+abbr -a jr --set-cursor 'jj rebase %'
 abbr -a jrh --set-cursor 'jj rebase -h'
 abbr -a jrs --set-cursor 'jj rebase -s % -d @-'
 abbr -a jrr --set-cursor 'jj rebase -r % -o '
@@ -527,14 +528,15 @@ abbr --add zlls "zellij list-sessions"
 abbr --add vercel "op plugin run -- vercel"
 abbr --add gh "op plugin run -- gh"
 
-abbr --add chp --set-cursor 'chezmoi apply -P ~/.config/%'
-
 abbr --add untar "tar -zxvf"
 # abbr "urldecode"="python -c \"import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])\""
 abbr --add which-command whence
 
-# Personal abbreviations
+# chezmoi
 abbr --add ch chezmoi
+abbr --add chp --set-cursor 'chezmoi apply -P ~/.config/%'
+
+# Personal abbreviations
 abbr --add tmuxconf "\$EDITOR ~/.local/share/chezmoi/chezmoi/dot_config/tmux/tmux.conf.tmpl"
 abbr restart-kanata sudo launchctl kickstart -k system/com.example.kanata
 abbr --add nv nvim

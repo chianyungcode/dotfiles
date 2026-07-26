@@ -3,7 +3,7 @@
   Description = "List all tmux keybind"
   Output      = ""
   Tag         = ["tmux"]
-  command     = "tmux list-keys | fzf"
+  command     = "tmux list-keys | sk"
 
 [[Snippets]]
   Description = "Local | Rename Pane"

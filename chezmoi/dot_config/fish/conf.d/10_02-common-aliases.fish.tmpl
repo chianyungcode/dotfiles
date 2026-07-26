@@ -7,9 +7,6 @@
 # A simple wrapper for the function builtin, which creates a function wrapping a command
 # https://fishshell.com/docs/current/cmds/alias.html
 
-# bun
-alias bfzf "bun run \"\$(jq -r '.scripts | keys[]' package.json | fzf --no-border)\""
-
 # === START OF CHEZMOI MANAGED ===
 {{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") (lookPath "wl-copy")}}
 alias cpwd "echo -n $(pwd) | wl-copy"

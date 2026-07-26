@@ -13,7 +13,7 @@ abbr "bc"="bun create"
 abbr "bd"="bun run dev"
 abbr "bdocs"="bun run docs"
 abbr "bfmt"="bun run format"
-abbr "bfzf"="bun run \"$(jq -r '.scripts | keys[]' package.json | fzf --no-border)\""
+
 abbr "bga"="bun add --global"
 abbr "bgls"="bun pm ls --global"
 abbr "bgrm"="bun remove --global"
@@ -102,9 +102,10 @@ abbr "dvprune"="docker volume prune"
 abbr "dxc"="docker container exec"
 abbr "dxcit"="docker container exec -it"
 
-# --- Dotfiles / Neovim / config ---
+# --- Chezmoi ---
 abbr "ch"="chezmoi"
-abbr "chez"="chezmoi"
+
+# --- Dotfiles / Neovim / config ---
 abbr "clrnvses"="rm -rf ~/.local/share/nvim/sessions/*"
 abbr "config"="cd ~/.config/"
 abbr "cpwd"="echo -n /Users/chianyung/.local/share/chezmoi | pbcopy"
@@ -159,7 +160,8 @@ abbr "gcb"="git checkout -b"
 abbr "gcd"="git checkout $(git_develop_branch)"
 abbr "gcf"="git config --list"
 abbr "gcfu"="git commit --fixup"
-abbr "gcl"="git clone --recurse-submodules"
+abbr "gcl"="git clone"
+abbr "gclr"="git clone --recurse-submodules"
 abbr "gclean"="git clean --interactive -d"
 abbr "gclf"="git clone --recursive --shallow-submodules --filter=blob:none --also-filter-submodules"
 abbr "gcm"="git checkout $(git_main_branch)"
@@ -217,7 +219,7 @@ abbr "glol"="git log --graph --pretty=\"%Cred%h%Creset -%C(auto)%d%Creset %s %Cg
 abbr "glola"="git log --graph --pretty=\"%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset\" --branches --tags --remotes"
 abbr "glolaa"="git log --graph --pretty=\"%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset\" --all"
 abbr "glols"="git log --graph --pretty=\"%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset\" --stat"
-abbr "glp"="_git_log_prettily"
+abbr "glp"="git log-patch"
 abbr "gluc"="git pull upstream $(git_current_branch)"
 abbr "glum"="git pull upstream $(git_main_branch)"
 abbr "gm"="git merge"
@@ -283,7 +285,7 @@ abbr "grup"="git remote update"
 abbr "grv"="git remote --verbose"
 abbr "gsb"="git status --short --branch"
 abbr "gsd"="git svn dcommit"
-abbr "gsh"="git show"
+abbr "gsh"="git sh"
 abbr "gsi"="git submodule init"
 abbr "gsps"="git show --pretty=short --show-signature"
 abbr "gsr"="git svn rebase"
@@ -341,6 +343,7 @@ abbr "lzg"="lazygit"
 # --- Jujutsu --
 abbr j="jj"
 abbr jh='jj -h'
+abbr ji='jjui'
 
 abbr jst="jj status"
 abbr jsh="jj show %"
@@ -373,7 +376,7 @@ abbr jlt="jj log -T %"
 abbr jn="jj new %"
 abbr jnc='jj new -m "$(koji --stdout)"'
 
-
+abbr jr="jj rebase %"
 abbr jrh="jj rebase -h"
 abbr jrs="jj rebase -s % -d @-"
 abbr jrr="jj rebase -r % -o %"
@@ -443,7 +446,7 @@ abbr "tailmbp"="ssh tailmbp"
 abbr "tailpc"="ssh tailpc-nixos"
 
 # --- Tmux / Tmuxifier / Tmuxinator ---
-abbr "bktmux"="tmux list-keys | fzf"
+abbr "bktmux"="tmux list-keys | sk"
 abbr "tx"="tmux"
 abbr "ts"='tmux new -s "%"'
 abbr "tl"="tmux list-sessions"
@@ -454,7 +457,6 @@ abbr "txi"="tmuxifier"
 abbr "txis"='tmuxifier s "%"'
 
 # --- ls / file listing (eza) ---
-abbr "cyh"="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
 abbr "l"="eza -l --classify=auto --icons=auto --git"
 abbr "la"="eza -lbhHigUmuSa --icons=auto --git"
 abbr "ll"="eza -lah --classify=auto --icons=auto --git"
@@ -491,5 +493,5 @@ abbr "psc"="pet search"
 abbr "pue"="pueue"
 
 # --- Shell helpers / themes ---
-abbr "bkzsh"="bindkey | fzf"
+abbr "bkzsh"="bindkey | sk"
 abbr "fsh-alias"="fast-theme"
