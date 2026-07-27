@@ -346,9 +346,13 @@ abbr jh='jj -h'
 abbr ji='jjui'
 
 abbr jst="jj status"
-abbr jsh="jj show %"
-
 abbr jab="jj abandon %"
+abbr jabso="jj absorb"
+abbr je="jj edit %"
+
+abbr jsh="jj show %"
+abbr jshs="jj show -s"
+abbr jshsr="jj show -s -r %"
 
 abbr jbl="jj bookmark list -a"
 abbr jbm="jj bookmark move % --to @-"
@@ -359,10 +363,13 @@ abbr jc="jj commit"
 abbr jcc='jj commit -m "$(koji --stdout)"'
 
 abbr jd='jj desc -m "%"'
-abbr jdf="jj diff"
+abbr jdr='jj desc -m "%" -r %'
 abbr jdc='jj desc -m "$(koji --stdout)"'
 
-abbr je="jj edit %"
+abbr jdf="jj diff"
+abbr jdfr="jj diff -r %"
+abbr jdfs="jj diff -s"
+abbr jdfsr="jj diff -s -r %"
 
 abbr jgf="jj git fetch"
 abbr jgpa="jj git push"
@@ -372,17 +379,26 @@ abbr jgpsm="jj git push -b main"
 abbr jl="jj log"
 abbr jla="jj log 'all()'"
 abbr jlt="jj log -T %"
+abbr jls="jj log -s"
+abbr jlsr="jj log -s -r %"
+abbr jlp="jj log -p"
+abbr jlpr="jj log -p -r %"
 
 abbr jn="jj new %"
+abbr jna="jj new -A %"
+abbr jnb="jj new -B %"
 abbr jnc='jj new -m "$(koji --stdout)"'
 
 abbr jr="jj rebase %"
 abbr jrh="jj rebase -h"
-abbr jrs="jj rebase -s % -d @-"
+abbr jrs="jj rebase -s % -o @-"
 abbr jrr="jj rebase -r % -o %"
 
 abbr jsp="jj split"
 abbr jspi="jj split -i"
+abbr jspr="jj split -r %"
+abbr jspa="jj split -A %"
+abbr jspb="jj split -B %"
 
 abbr jsq="jj squash"
 abbr jsqi="jj squash -i"

@@ -458,7 +458,14 @@ abbr -a jh 'jj -h'
 abbr -a ji jjui
 
 abbr -a jst 'jj status'
+abbr -a jab --set-cursor 'jj abandon %'
+abbr -a jabso 'jj absorb'
+abbr -a je --set-cursor 'jj edit %'
+
 abbr -a jsh --set-cursor 'jj show %'
+abbr -a jshr --set-cursor 'jj show -r %'
+abbr -a jshs 'jj show -s'
+abbr -a jshsr --set-cursor 'jj show -s -r %'
 
 abbr -a jbl 'jj bookmark list -a'
 abbr -a jbm --set-cursor 'jj bookmark move % --to @-'
@@ -466,7 +473,9 @@ abbr -a jbmm 'jj bookmark move main --to @-'
 abbr -a jbsc 'jj bookmark set -r @'
 
 abbr -a jdf 'jj diff'
-abbr -a je --set-cursor 'jj edit %'
+abbr -a jdfr --set-cursor 'jj diff -r %'
+abbr -a jdfs 'jj diff -s'
+abbr -a jdfsr --set-cursor 'jj diff -s -r %'
 
 abbr -a jgf 'jj git fetch'
 abbr -a jgpa 'jj git push'
@@ -476,28 +485,36 @@ abbr -a jgpsm --set-cursor 'jj git push -b main'
 abbr -a jl 'jj log'
 abbr -a jla "jj log 'all()'"
 abbr -a jlt --set-cursor "jj log -T %"
+abbr -a jls 'jj log -s'
+abbr -a jlsr --set-cursor 'jj log -s -r %'
+abbr -a jlp 'jj log -p'
+abbr -a jlpr --set-cursor 'jj log -p -r %'
 
 abbr -a jr --set-cursor 'jj rebase %'
 abbr -a jrh --set-cursor 'jj rebase -h'
-abbr -a jrs --set-cursor 'jj rebase -s % -d @-'
+abbr -a jrs --set-cursor 'jj rebase -s % -o @-'
 abbr -a jrr --set-cursor 'jj rebase -r % -o '
 
 abbr -a jsp 'jj split'
 abbr -a jspi 'jj split -i'
+abbr -a jspr --set-cursor 'jj split -r %'
+abbr -a jspa --set-cursor 'jj split -A %'
+abbr -a jspb --set-cursor 'jj split -B %'
 
 abbr -a jsq 'jj squash'
 abbr -a jsqi 'jj squash -i'
 abbr -a jsqc --set-cursor 'jj squash -t %'
 
-abbr -a jab --set-cursor 'jj abandon %'
-
 abbr -a jd --set-cursor 'jj desc -m "%"'
+abbr -a jdr --set-cursor 'jj desc -m "%" -r'
 abbr -a jdc 'jj desc -m "$(koji --stdout)"'
 
 abbr -a jc 'jj commit'
 abbr -a jcc 'jj commit -m "$(koji --stdout)"'
 
 abbr -a jn --set-cursor 'jj new %'
+abbr -a jna --set-cursor 'jj new -A %'
+abbr -a jnb --set-cursor 'jj new -B %'
 abbr -a jnc 'jj new -m "$(koji --stdout)"'
 
 abbr -a judo 'jj undo'
