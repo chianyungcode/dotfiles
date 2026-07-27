@@ -1,10 +1,5 @@
-# Git Configuration
-# Organized by logical sections following Git's configuration hierarchy
 {{- $signing_enabled := and (eq .secrets.provider "onepassword") (ne .identity.signing_key "") -}}
 
-# =============================================================================
-# USER IDENTITY
-# =============================================================================
 [user]
     name = {{ .identity.git_name }}
     email = {{ .identity.git_email }}
@@ -12,11 +7,7 @@
     signingkey = {{ onepasswordRead (index .secrets.git .identity.signing_key) }}
     {{- end }}
 
-# =============================================================================
-# COMMIT & SIGNING
-# =============================================================================
-
-{{- if $signing_enabled }}
+{{ if $signing_enabled -}}
 [gpg]
     format = ssh
 
@@ -31,14 +22,12 @@
 [commit]
     gpgsign = true
 {{- end }}
-# =============================================================================
-# CORE SETTINGS
-# =============================================================================
+
 [core]
     excludesFile = ~/.config/git/ignore
-    {{ if eq .machine.role "workstation" }}
+    {{- if eq .machine.role "workstation" }}
     pager = delta
-    {{ end }}
+    {{- end }}
     # sshCommand = ssh -i {{ .directories.ssh_keys_dir | replaceAllRegex "\\${HOME}" "~" }}/git
 
     # Treat spaces before tabs and all kinds of trailing whitespace as an error
@@ -50,16 +39,17 @@
     # http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
     precomposeunicode = false
 
-# =============================================================================
-# INITIALIZATION
-# =============================================================================
+[pager]
+    status = true
+    show-branch = true
+    {{- if eq .machine.role "workstation" }}
+    difftool = true
+    {{- end }}
+
 [init]
     default = branch
     defaultBranch = main
 
-# =============================================================================
-# CREDENTIALS & AUTHENTICATION
-# =============================================================================
 [credential]
     {{- if eq .chezmoi.os "darwin"}}
     helper = osxkeychain
@@ -70,7 +60,7 @@
     guiPrompt = false
     {{- end }}
 
-{{- if ne .identity.github_username "" }}
+{{ if ne .identity.github_username "" -}}
 [credential "https://github.com"]
     username = {{ .identity.github_username }}
 {{- end }}
@@ -78,54 +68,33 @@
 [credential "https://dev.azure.com"]
     useHttpPath = true
 
-# =============================================================================
-# ALIASES
-# =============================================================================
 [alias]
+    # general aliases
     co = checkout
     pf = !git push --force-with-lease "$@"
     cam = commit --amend --no-edit
 
-{{ if eq .machine.role "workstation" }}
-    # `git log` with patches shown with difftastic.
-    dl = -c diff.external=difft log -p --ext-diff
+    # difftastic aliases
+    {{- if eq .machine.role "workstation" }}
+    log-patch = -c diff.external=difft log -p --ext-diff # `git log` with patches shown with difftastic.
+    sh = -c diff.external=difft show --ext-diff # Show the most recent commit with difftastic.
+    {{- end }}
 
-    # Show the most recent commit with difftastic.
-    ds = -c diff.external=difft show --ext-diff
-
-    # `git diff` with difftastic.
-    dft = -c diff.external=difft diff
-{{ end }}
-
-    # Conventional commit aliases
+    # conventional commit aliases
     build = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"build${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-
     chore = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"chore${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-
     ci = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"ci${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-
     docs = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"docs${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-
     feat = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"feat${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-
     fix = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"fix${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-
     perf = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"perf${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-
     refactor = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"refactor${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-
     rev = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"revert${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-
     style = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"style${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-
     test = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"test${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
-
     wip = "!a() {\nlocal _scope _attention _message\nwhile [ $# -ne 0 ]; do\ncase $1 in\n  -s | --scope )\n    if [ -z $2 ]; then\n      echo \"Missing scope!\"\n      return 1\n    fi\n    _scope=\"$2\"\n    shift 2\n    ;;\n  -a | --attention )\n    _attention=\"!\"\n    shift 1\n    ;;\n  * )\n    _message=\"${_message} $1\"\n    shift 1\n    ;;\nesac\ndone\ngit commit -m \"wip${_scope:+(${_scope})}${_attention}:${_message}\"\n}; a"
 
-# =============================================================================
-# DIFF & MERGE TOOLS
-# =============================================================================
-{{ if eq .machine.role "workstation" }}
+{{ if eq .machine.role "workstation" -}}
 [delta]
     navigate = true
     side-by-side = true
@@ -147,7 +116,7 @@
 
 [difftool "difftastic"]
     cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
-{{ end }}
+{{- end }}
 
 [merge]
     conflictstyle = zdiff3
@@ -155,15 +124,9 @@
 [apply]
     whitespace = fix
 
-# =============================================================================
-# BRANCH MANAGEMENT
-# =============================================================================
 [branch]
     sort = -committerdate
 
-# =============================================================================
-# COLOR SETTINGS
-# =============================================================================
 [color]
     ui = true
 
@@ -172,9 +135,6 @@
     local = yellow
     remote = green
 
-# =============================================================================
-# REMOTE OPERATIONS
-# =============================================================================
 [fetch]
     prune = true      # Remove deleted remote branches in local
     pruneTags = true  # Remove deleted remote tags in local
@@ -188,27 +148,11 @@
     # avoid accidentally creating a merge commit when you run git pull on a branch where the upstream branch has diverged
     rebase = true
 
-# =============================================================================
-# REBASE SETTINGS
-# =============================================================================
 [rebase]
     autosquash = true
     autostash = true
     updateRefs = true
 
-# =============================================================================
-# PAGER SETTINGS
-# =============================================================================
-[pager]
-    status = true
-    show-branch = true
-    {{ if eq .machine.role "workstation" }}
-    difftool = true
-    {{ end }}
-
-# =============================================================================
-# LFS (Large File Storage)
-# =============================================================================
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f

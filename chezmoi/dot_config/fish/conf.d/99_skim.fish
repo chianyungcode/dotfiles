@@ -10,7 +10,7 @@ if type -q sk; and type -q fd
 
         set -l selected (
             fd --hidden --exclude .git --type f --type d |
-            sk --regex --preview='if [ -d {} ]; then CLICOLOR_FORCE=1 lla -a {}; else bat --color=always {}; fi' --preview-window="$preview_window" --bind='ctrl-/:toggle-preview' -m --reverse --query "$query"
+            sk --border=rounded --height=80% --regex --preview='if [ -d {} ]; then CLICOLOR_FORCE=1 lla -a {}; else bat --color=always {}; fi' --preview-window="$preview_window" --bind='ctrl-/:toggle-preview' -m --reverse --query "$query"
         )
 
         if test (count $selected) -gt 0

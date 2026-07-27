@@ -97,6 +97,9 @@
 
 ## Integration
 
+- `chezmoi/dot_config/fish/conf.d/90_sk-git.fish`: Provides native Fish
+  `sk-git` widgets that paste selected commit hashes (`Ctrl-G H`) or local
+  branches (`Ctrl-G B`) into the command line with Git previews.
 - `chezmoi/dot_config/fish/conf.d/90_git.fish.tmpl`: Adds the `prgl` alias for
   a formatted graphical Git log and defines `gurl` to print the current
   repository's HTTPS URL.
@@ -170,6 +173,9 @@
 
 ## Integration
 
+- `chezmoi/dot_config/fish/conf.d/90_sk-git.fish`: Uses `sk` for multi-select
+  Git commit and local-branch pickers with adaptive previews and Fish-native
+  key bindings.
 - `chezmoi/dot_config/fish/conf.d/99_skim.fish`: When both `sk` and `fd` are
   available, binds `Ctrl-T` in normal and insert Fish modes to a multi-select
   file/directory picker with adaptive previews from `bat` and `lla`.
