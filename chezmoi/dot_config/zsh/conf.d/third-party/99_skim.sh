@@ -3,6 +3,16 @@ if (( $+commands[sk] && $+commands[fd] )); then
     local -a selected
     local query="${LBUFFER##* }"
     local prefix="$LBUFFER"
+    local preview_window="right:50%"
+    local terminal_width="${COLUMNS:-}"
+
+    if [[ -z "$terminal_width" ]]; then
+      terminal_width="$(tput cols 2>/dev/null)"
+    fi
+
+    if [[ "$terminal_width" == <-> ]] && (( terminal_width < 120 )); then
+      preview_window="down:40%:wrap"
+    fi
 
     if [[ -n "$query" ]]; then
       prefix="${LBUFFER[1,$(( ${#LBUFFER} - ${#query} ))]}"
@@ -10,7 +20,7 @@ if (( $+commands[sk] && $+commands[fd] )); then
 
     selected=("${(@f)$(
       fd --hidden --exclude .git --type f --type d |
-        sk --preview 'bat {} --color=always' -m --reverse --query "$query"
+        sk --regex --preview 'if [ -d {} ]; then CLICOLOR_FORCE=1 lla -a {}; else bat --color=always {}; fi' --preview-window="$preview_window" --bind 'ctrl-/:toggle-preview' -m --reverse --query "$query"
     )}")
 
     if (( ${#selected[@]} )); then
