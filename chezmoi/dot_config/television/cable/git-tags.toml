@@ -6,7 +6,7 @@ requirements = ["git"]
 [source]
 command = "git for-each-ref --color=always --sort=-creatordate --format='%(refname:short)%09%(color:yellow)%(refname:short) %(color:green)(%(creatordate:relative))%09%(color:blue)%(subject)%(color:reset)' refs/tags 2>/dev/null"
 ansi = true
-no_sort = true
+
 frecency = false
 output = "{strip_ansi|split:\\t:0}"
 

@@ -5,18 +5,12 @@ function __sk_git_is_repository
 end
 
 function __sk_git_preview_window
-    set -l terminal_width (tput cols 2>/dev/null)
-
-    if test -n "$terminal_width"; and test "$terminal_width" -lt 120
-        echo "down:40%:wrap"
-    else
-        echo "right:50%"
-    end
+    echo "down:70%:wrap"
 end
 
 function __sk_git_picker_window
     printf '%s\n' \
-        '--height=60%' \
+        '--height=95%' \
         '--min-height=12' \
         '--border=rounded'
 end
@@ -41,8 +35,8 @@ function sk_git_hashes
         git log --date=short --color=always \
             --format='%h%x09%C(green)%ad %C(auto)%h%d %s %C(blue)(%an)%C(reset)' \
             2>/dev/null |
-            env -u NO_COLOR sk --ansi --delimiter='\t' --with-nth=2.. --multi --reverse \
-                --no-sort --prompt='hashes> ' \
+            env -u NO_COLOR sk --ansi --delimiter='\t' --hide-nth=1 --multi --reverse \
+                --prompt='hashes> ' \
                 --preview='DFT_COLOR=always git show --ext-diff --color=always {1}' \
                 --preview-window=(__sk_git_preview_window) \
                 (__sk_git_picker_window) \
@@ -109,7 +103,7 @@ function sk_git_branches
         git for-each-ref --color=always --sort=-committerdate \
             --format='%(refname:short)%09%(HEAD) %(color:yellow)%(refname:short) %(color:green)(%(committerdate:relative))%09%(color:blue)%(subject)%(color:reset)' \
             refs/heads 2>/dev/null |
-            env -u NO_COLOR sk --ansi --delimiter='\t' --with-nth=2.. --multi --reverse \
+            env -u NO_COLOR sk --ansi --delimiter='\t' --hide-nth=1 --multi --reverse \
                 (__sk_git_picker_window) \
                 --header='CTRL-O open branch in remote' \
                 --prompt='branches> ' \
@@ -223,7 +217,7 @@ function sk_git_stashes
 
     set -l selected (
         git stash list --format='%gd%x09%C(yellow)%gs%C(reset)' 2>/dev/null |
-            env -u NO_COLOR sk --ansi --delimiter='\t' --with-nth=2.. --multi --reverse \
+            env -u NO_COLOR sk --ansi --delimiter='\t' --hide-nth=1 --multi --reverse \
                 --prompt='stashes> ' \
                 --preview='DFT_COLOR=always git show --ext-diff --color=always {1}' \
                 --preview-window=(__sk_git_preview_window) \
@@ -248,7 +242,7 @@ function sk_git_reflogs
 
     set -l selected (
         git reflog --format='%gD%x09%C(yellow)%h%C(auto) %gs%C(reset)' 2>/dev/null |
-            env -u NO_COLOR sk --ansi --delimiter='\t' --with-nth=2.. --multi --reverse \
+            env -u NO_COLOR sk --ansi --delimiter='\t' --hide-nth=1 --multi --reverse \
                 --prompt='reflogs> ' \
                 --preview='DFT_COLOR=always git show --ext-diff --color=always {1}' \
                 --preview-window=(__sk_git_preview_window) \
@@ -275,7 +269,7 @@ function sk_git_tags
         git for-each-ref --color=always --sort=-creatordate \
             --format='%(refname:short)%09%(color:yellow)%(refname:short) %(color:green)(%(creatordate:relative))%09%(color:blue)%(subject)%(color:reset)' \
             refs/tags 2>/dev/null |
-            env -u NO_COLOR sk --ansi --delimiter='\t' --with-nth=2.. --multi --reverse \
+            env -u NO_COLOR sk --ansi --delimiter='\t' --hide-nth=1 --multi --reverse \
                 --prompt='tags> ' \
                 --preview='DFT_COLOR=always git show --ext-diff --color=always {1}' \
                 --preview-window=(__sk_git_preview_window) \

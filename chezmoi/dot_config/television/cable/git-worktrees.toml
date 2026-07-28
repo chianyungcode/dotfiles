@@ -5,7 +5,7 @@ requirements = ["git"]
 
 [source]
 command = "git worktree list 2>/dev/null"
-no_sort = true
+
 frecency = false
 output = "{split: :0}"
 

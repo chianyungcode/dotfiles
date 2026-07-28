@@ -6,7 +6,7 @@ requirements = ["git"]
 [source]
 command = "git reflog --format='%gD%x09%C(yellow)%h%C(auto) %gs%C(reset)' 2>/dev/null"
 ansi = true
-no_sort = true
+
 frecency = false
 output = "{strip_ansi|split:\\t:0}"
 

@@ -151,11 +151,21 @@ assert_picker_window() {
     done
 }
 
+preview_window=$(env COLUMNS=200 fish --no-config -c '
+    source "$argv[1]"
+    __sk_git_preview_window
+' "$fish_config")
+[[ "$preview_window" == 'down:40%:wrap' ]] ||
+    fail "preview window is not configured below"
+
 run_widget sk_git_hashes "$git_repo" "$head_hash"
 assert_picker_window
 rg -Fq 'second commit' "$tmp_dir/sk-input"
 rg -Fxq -- '--multi' "$tmp_dir/sk-args"
-rg -Fxq -- '--no-sort' "$tmp_dir/sk-args"
+if rg -Fxq -- '--no-sort' "$tmp_dir/sk-args"; then
+    fail "hash picker unexpectedly disables fuzzy ranking"
+fi
+rg -Fxq -- '--hide-nth=1' "$tmp_dir/sk-args"
 rg -Fq 'ctrl-/:toggle-preview' "$tmp_dir/sk-args"
 rg -Fq 'git show --ext-diff --color=always {1}' "$tmp_dir/sk-args"
 rg -Fq 'DFT_COLOR=always git show --ext-diff --color=always {1}' "$tmp_dir/sk-args"
@@ -182,6 +192,7 @@ rg -Fxq -- $'-f\trepaint' "$tmp_dir/commandline"
 rg -Fxq -- '--height=60%' "$tmp_dir/sk-args"
 rg -Fxq -- '--min-height=12' "$tmp_dir/sk-args"
 rg -Fxq -- '--border=rounded' "$tmp_dir/sk-args"
+rg -Fxq -- '--hide-nth=1' "$tmp_dir/sk-args"
 rg -Fxq -- '--header=CTRL-O open branch in remote' "$tmp_dir/sk-args"
 rg -Fq -- "ctrl-o:execute-silent(fish -c '__sk_git_open_branch" \
     "$tmp_dir/sk-args"
@@ -229,6 +240,7 @@ rg -Fxq -- $'-f\trepaint' "$tmp_dir/commandline"
 
 run_widget sk_git_tags "$git_repo" v1.0
 assert_picker_window
+rg -Fxq -- '--hide-nth=1' "$tmp_dir/sk-args"
 rg -Fq $'v1.0\t' "$tmp_dir/sk-input"
 rg -Fq 'DFT_COLOR=always git show --ext-diff --color=always {1}' \
     "$tmp_dir/sk-args"
@@ -244,6 +256,7 @@ fi
 
 run_widget sk_git_stashes "$git_repo" 'stash@{0}'
 assert_picker_window
+rg -Fxq -- '--hide-nth=1' "$tmp_dir/sk-args"
 rg -Fq $'stash@{0}\t' "$tmp_dir/sk-input"
 rg -Fq 'DFT_COLOR=always git show --ext-diff --color=always {1}' "$tmp_dir/sk-args"
 escaped_stash=$(fish --no-config -c \
@@ -253,6 +266,7 @@ rg -Fxq -- $'-f\trepaint' "$tmp_dir/commandline"
 
 run_widget sk_git_reflogs "$git_repo" 'HEAD@{0}'
 assert_picker_window
+rg -Fxq -- '--hide-nth=1' "$tmp_dir/sk-args"
 rg -Fq $'HEAD@{0}\t' "$tmp_dir/sk-input"
 rg -Fq 'DFT_COLOR=always git show --ext-diff --color=always {1}' "$tmp_dir/sk-args"
 escaped_reflog=$(fish --no-config -c \

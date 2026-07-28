@@ -5,7 +5,7 @@ requirements = ["git"]
 
 [source]
 command = "git remote -v 2>/dev/null | sort | awk '{print $1 \"\\t\" $2}' | uniq"
-no_sort = true
+
 frecency = false
 output = "{split:\\t:0}"
 
