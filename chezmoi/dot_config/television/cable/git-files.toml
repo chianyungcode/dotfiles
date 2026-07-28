@@ -1,0 +1,18 @@
+[metadata]
+name = "xgit-files"
+description = "Browse tracked Git files"
+requirements = ["git"]
+
+[source]
+command = "git ls-files 2>/dev/null"
+no_sort = true
+frecency = false
+
+[preview]
+command = "git log --oneline --graph --date=short --color=always --pretty=format:'%C(auto)%cd %h%d %s' -- '{}'"
+
+[ui]
+layout = "landscape"
+
+[ui.preview_panel]
+size = 65

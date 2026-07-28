@@ -1,0 +1,20 @@
+[metadata]
+name = "xgit-branches"
+description = "Browse local Git branches"
+requirements = ["git"]
+
+[source]
+command = "git for-each-ref --color=always --sort=-committerdate --format='%(refname:short)%09%(HEAD) %(color:yellow)%(refname:short) %(color:green)(%(committerdate:relative))%09%(color:blue)%(subject)%(color:reset)' refs/heads 2>/dev/null"
+ansi = true
+no_sort = true
+frecency = false
+output = "{strip_ansi|split:\\t:0}"
+
+[preview]
+command = "git log --oneline --graph --date=short --color=always --pretty=format:'%C(auto)%cd %h%d %s' '{split:\\t:0}' --"
+
+[ui]
+layout = "landscape"
+
+[ui.preview_panel]
+size = 65

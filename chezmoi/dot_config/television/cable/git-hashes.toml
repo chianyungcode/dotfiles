@@ -1,0 +1,20 @@
+[metadata]
+name = "xgit-hashes"
+description = "Browse Git commit hashes"
+requirements = ["git"]
+
+[source]
+command = "git log --date=short --color=always --format='%h%x09%C(green)%ad %C(auto)%h%d %s %C(blue)(%an)%C(reset)' 2>/dev/null"
+ansi = true
+no_sort = true
+frecency = false
+output = "{strip_ansi|split:\\t:0}"
+
+[preview]
+command = "DFT_COLOR=always git show --ext-diff --color=always '{split:\\t:0}'"
+
+[ui]
+layout = "landscape"
+
+[ui.preview_panel]
+size = 65

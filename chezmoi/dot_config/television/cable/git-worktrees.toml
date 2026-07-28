@@ -1,0 +1,19 @@
+[metadata]
+name = "xgit-worktrees"
+description = "Browse Git worktrees"
+requirements = ["git"]
+
+[source]
+command = "git worktree list 2>/dev/null"
+no_sort = true
+frecency = false
+output = "{split: :0}"
+
+[preview]
+command = "git -c color.status=always -C '{}' status --short --branch; echo; git -C '{}' log --oneline --graph --date=short --color=always --pretty=format:'%C(auto)%cd %h%d %s' --"
+
+[ui]
+layout = "landscape"
+
+[ui.preview_panel]
+size = 65

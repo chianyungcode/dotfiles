@@ -183,6 +183,31 @@
   Zsh Line Editor widget that uses fd for candidates and bat/lla for previews;
   the binding is deferred when possible to reduce startup cost.
 
+# television
+
+## Integration
+
+- `chezmoi/dot_config/television/cable/git-hashes.toml`: Browse commit hashes
+  with `git show` previews.
+- `chezmoi/dot_config/television/cable/git-branches.toml`: Browse local
+  branches with graphical log previews.
+- `chezmoi/dot_config/television/cable/git-files.toml`: Browse tracked files
+  with file-history previews.
+- `chezmoi/dot_config/television/cable/git-remotes.toml`: Browse remotes with
+  remote log previews.
+- `chezmoi/dot_config/television/cable/git-worktrees.toml`: Browse worktrees
+  with status and log previews.
+- `chezmoi/dot_config/television/cable/git-stashes.toml`: Browse stashes with
+  `git show` previews.
+- `chezmoi/dot_config/television/cable/git-reflogs.toml`: Browse reflog entries
+  with `git show` previews.
+- `chezmoi/dot_config/television/cable/git-tags.toml`: Browse tags with
+  `git show` previews.
+
+Invoke a channel directly, for example `tv git-branches` or
+`tv git-hashes`. These channels do not install shell bindings; the selected
+value is written to stdout like any other Television channel.
+
 # starship
 
 ## Integration

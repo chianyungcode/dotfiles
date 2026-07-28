@@ -1,0 +1,19 @@
+[metadata]
+name = "xgit-remotes"
+description = "Browse Git remotes"
+requirements = ["git"]
+
+[source]
+command = "git remote -v 2>/dev/null | sort | awk '{print $1 \"\\t\" $2}' | uniq"
+no_sort = true
+frecency = false
+output = "{split:\\t:0}"
+
+[preview]
+command = "git log --oneline --graph --date=short --color=always --pretty=format:'%C(auto)%cd %h%d %s' --remotes='{split:\\t:0}' --"
+
+[ui]
+layout = "landscape"
+
+[ui.preview_panel]
+size = 65

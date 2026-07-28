@@ -1,0 +1,20 @@
+[metadata]
+name = "xgit-stashes"
+description = "Browse Git stashes"
+requirements = ["git"]
+
+[source]
+command = "git stash list --format='%gd%x09%C(yellow)%gs%C(reset)' 2>/dev/null"
+ansi = true
+no_sort = true
+frecency = false
+output = "{strip_ansi|split:\\t:0}"
+
+[preview]
+command = "DFT_COLOR=always git show --ext-diff --color=always '{split:\\t:0}'"
+
+[ui]
+layout = "landscape"
+
+[ui.preview_panel]
+size = 65

@@ -1,0 +1,20 @@
+[metadata]
+name = "xgit-tags"
+description = "Browse Git tags"
+requirements = ["git"]
+
+[source]
+command = "git for-each-ref --color=always --sort=-creatordate --format='%(refname:short)%09%(color:yellow)%(refname:short) %(color:green)(%(creatordate:relative))%09%(color:blue)%(subject)%(color:reset)' refs/tags 2>/dev/null"
+ansi = true
+no_sort = true
+frecency = false
+output = "{strip_ansi|split:\\t:0}"
+
+[preview]
+command = "DFT_COLOR=always git show --ext-diff --color=always '{split:\\t:0}'"
+
+[ui]
+layout = "landscape"
+
+[ui.preview_panel]
+size = 65
