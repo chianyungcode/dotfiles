@@ -159,7 +159,7 @@ make_profile "$mac_data" darwin darwin arm64 true true false true
 make_profile "$ubuntu_data" linux ubuntu amd64 true false false false
 make_profile "$arch_data" linux arch amd64 true true false true
 
-bootstrap_source="$source_dir/.chezmoiscripts/run_before_00-bootstrap.sh.tmpl"
+bootstrap_source="$source_dir/.chezmoiscripts/run_once_before_00-bootstrap.sh.tmpl"
 for profile in mac ubuntu arch; do
     render_script "$tmp_dir/$profile.json" "$bootstrap_source" \
         "$tmp_dir/$profile-bootstrap.sh"
@@ -248,7 +248,7 @@ assert_contains "$tmp_dir/ubuntu-standalone.sh" 'sudo dpkg -i'
 assert_not_contains "$tmp_dir/arch-standalone.sh" 'install_git_credential_manager|dpkg'
 assert_not_contains "$tmp_dir/server-standalone.sh" 'jesseduffield/lazygit'
 
-post_install_source="$source_dir/.chezmoiscripts/run_after_50-post-install.sh.tmpl"
+post_install_source="$source_dir/.chezmoiscripts/run_once_after_50-post-install.sh.tmpl"
 for profile in mac ubuntu arch; do
     render_script "$tmp_dir/$profile.json" "$post_install_source" \
         "$tmp_dir/$profile-post-install.sh"
@@ -316,8 +316,8 @@ find "$source_dir/.chezmoiscripts" -maxdepth 1 -type f \
     -exec basename {} \; | sort >"$actual_scripts"
 
 printf '%s\n' \
-    run_after_50-post-install.sh.tmpl \
-    run_before_00-bootstrap.sh.tmpl \
+    run_once_after_50-post-install.sh.tmpl \
+    run_once_before_00-bootstrap.sh.tmpl \
     run_onchange_after_20-language-runtimes.sh.tmpl \
     run_onchange_after_30-language-packages.sh.tmpl \
     run_onchange_after_40-standalone-tools.sh.tmpl \

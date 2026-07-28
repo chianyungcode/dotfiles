@@ -1,4 +1,9 @@
 function pet-select
+    if not type -q pet; or not type -q sk
+        commandline -f repaint
+        return
+    end
+
     # Simpan hasil dari pet search ke variable BUFFER
     set -l buffer (pet search --query (commandline -b))
     # Set command line ke hasil
@@ -7,10 +12,14 @@ function pet-select
     commandline --cursor (string length -- "$buffer")
 end
 
-# Bind ke Ctrl+F di semua mode
-bind \cf pet-select  # default (mirip emacs mode)
-bind -M insert \cf pet-select  # vi insert mode
-bind -M default \cf pet-select # vi command mode
+if type -q pet; and type -q sk
+    # Bind ke Ctrl+F di semua mode
+    bind \cf pet-select  # default (mirip emacs mode)
+    bind -M insert \cf pet-select  # vi insert mode
+    bind -M default \cf pet-select # vi command mode
+end
 
-alias pexec "pet exec -t"
-alias psc "pet search"
+if type -q pet
+    alias pexec "pet exec -t"
+    alias psc "pet search"
+end

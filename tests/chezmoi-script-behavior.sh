@@ -116,7 +116,7 @@ jq \
 bootstrap_fixture="$tmp_dir/arch-bootstrap.sh"
 chezmoi -S "$source_dir" execute-template \
     --override-data-file "$arch_data" \
-    --file "$source_dir/.chezmoiscripts/run_before_00-bootstrap.sh.tmpl" \
+    --file "$source_dir/.chezmoiscripts/run_once_before_00-bootstrap.sh.tmpl" \
     >"$bootstrap_fixture"
 chmod +x "$bootstrap_fixture"
 
@@ -798,7 +798,7 @@ missing_gcm_digest_json="$tmp_dir/gcm-missing-digest.json"
 jq 'del(.assets[0].digest)' "$gcm_release_json" >"$missing_gcm_digest_json"
 assert_gcm_rejects_digest "$missing_gcm_digest_json" missing
 
-post_install_source="$source_dir/.chezmoiscripts/run_after_50-post-install.sh.tmpl"
+post_install_source="$source_dir/.chezmoiscripts/run_once_after_50-post-install.sh.tmpl"
 post_install_data="$tmp_dir/post-install.json"
 post_install_home="$tmp_dir/post-install-home"
 jq \

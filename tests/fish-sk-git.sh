@@ -221,7 +221,7 @@ for help_entry in \
 done
 rg -Fxq -- '--no-multi' "$tmp_dir/sk-args"
 rg -Fxq -- '--no-sort' "$tmp_dir/sk-args"
-rg -Fxq -- '--prompt=sk-git help> ' "$tmp_dir/sk-args"
+rg -Fxq -- '--prompt=help> ' "$tmp_dir/sk-args"
 if rg -q '^-it' "$tmp_dir/commandline"; then
     fail "help picker inserted text"
 fi

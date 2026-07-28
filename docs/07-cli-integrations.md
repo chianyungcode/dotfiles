@@ -138,6 +138,8 @@
 
 ## Integration
 
+- `chezmoi/dot_config/pet/config.toml`: Configures Pet's interactive snippet
+  selector to use Skim (`sk`) with a reverse layout and command preview.
 - `chezmoi/dot_config/fish/conf.d/90_pet.fish.tmpl`: Binds `Ctrl-F` in Fish
   editing modes to search snippets and adds the `pexec` and `psc` aliases.
 - `chezmoi/dot_config/fish/completions/pet.fish`: Provides Fish completions

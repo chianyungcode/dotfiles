@@ -40,7 +40,7 @@ for channel in "${channels[@]}"; do
     file="$channel_dir/$channel.toml"
     [[ -f "$file" ]] || fail "$file is missing"
 
-    assert_contains "$file" "name = \"$channel\""
+    assert_contains "$file" "name = \"x$channel\""
     assert_contains "$file" 'requirements = ["git"]'
     assert_contains "$file" 'no_sort = true'
     assert_contains "$file" 'frecency = false'
