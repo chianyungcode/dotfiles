@@ -108,7 +108,7 @@ abbr "ch"="chezmoi"
 # --- Dotfiles / Neovim / config ---
 abbr "clrnvses"="rm -rf ~/.local/share/nvim/sessions/*"
 abbr "config"="cd ~/.config/"
-abbr "cpwd"="echo -n /Users/chianyung/.local/share/chezmoi | pbcopy"
+
 abbr "dotf"="cd ~/.local/share/chezmoi"
 abbr "nv"="nvim"
 abbr "nvdot"="nvim /Users/chianyung/.local/share/chezmoi"
@@ -389,10 +389,13 @@ abbr jna="jj new -A %"
 abbr jnb="jj new -B %"
 abbr jnc='jj new -m "$(koji --stdout)"'
 
-abbr jr="jj rebase %"
-abbr jrh="jj rebase -h"
-abbr jrs="jj rebase -s % -o @-"
-abbr jrr="jj rebase -r % -o %"
+abbr jrs="jj restore %"
+abbr jrsi='jj restore -i'
+
+abbr jrb="jj rebase %"
+abbr jrbh="jj rebase -h"
+abbr jrbs="jj rebase -s % -o @-"
+abbr jrbr="jj rebase -r % -o %"
 
 abbr jsp="jj split"
 abbr jspi="jj split -i"

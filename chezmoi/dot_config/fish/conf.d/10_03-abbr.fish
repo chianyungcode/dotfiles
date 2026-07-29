@@ -489,10 +489,13 @@ abbr -a jlsr --set-cursor 'jj log -s -r %'
 abbr -a jlp 'jj log -p'
 abbr -a jlpr --set-cursor 'jj log -p -r %'
 
-abbr -a jr --set-cursor 'jj rebase %'
-abbr -a jrh --set-cursor 'jj rebase -h'
-abbr -a jrs --set-cursor 'jj rebase -s % -o @-'
-abbr -a jrr --set-cursor 'jj rebase -r % -o '
+abbr -a jrs --set-cursor 'jj restore %'
+abbr -a jrsi 'jj restore -i'
+
+abbr -a jrb --set-cursor 'jj rebase %'
+abbr -a jrbh --set-cursor 'jj rebase -h'
+abbr -a jrbs --set-cursor 'jj rebase -s % -o @-'
+abbr -a jrbr --set-cursor 'jj rebase -r % -o '
 
 abbr -a jsp 'jj split'
 abbr -a jspi 'jj split -i'
