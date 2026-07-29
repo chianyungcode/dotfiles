@@ -520,6 +520,11 @@ abbr -a judo 'jj undo'
 abbr -a jopl 'jj op log'
 abbr -a jevl 'jj evolog'
 
+# hunk
+abbr -a hd 'hunk diff'
+abbr -a hdr --set-cursor "hunk diff '%'"
+abbr -a hs 'hunk show'
+abbr -a hsr --set-cursor "hunk show '%'"
 # tmux
 abbr --add tx tmux
 abbr --add ts --set-cursor 'tmux new -s "%"'
