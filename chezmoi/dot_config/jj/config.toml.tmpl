@@ -4,7 +4,7 @@
   email = "{{ .identity.git_email }}"
 
 [ui]
-  default-command = "show"
+  default-command = ["log", "-r", "@", "--no-graph", "-p", "-s"]
   editor = "nvim"
 {{- if eq .machine.role "workstation" }}
   diff-formatter = ["difft", "--color=always", "$left", "$right"]
