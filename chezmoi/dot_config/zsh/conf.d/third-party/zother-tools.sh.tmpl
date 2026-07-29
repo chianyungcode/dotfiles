@@ -3,12 +3,3 @@
 {{- if lookPath "direnv"}}
 # eval "$(direnv hook zsh)"
 {{- end }}
-
-# FZF Git integration
-if [[ -r "$HOME/.config/fzf-git/fzf-git.sh" ]]; then
-  if (( $+functions[zsh-defer] )); then
-    zsh-defer source "$HOME/.config/fzf-git/fzf-git.sh"
-  else
-    source "$HOME/.config/fzf-git/fzf-git.sh"
-  fi
-fi
