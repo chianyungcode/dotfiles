@@ -24,10 +24,14 @@ alias numfiles='echo $(ls -1 | wc -l)' # Count of non-hidden files in current di
 
 # === START OF CHEZMOI MANAGED ===
 {{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") (lookPath "wl-copy")}}
-alias cpwd="echo -n $(pwd) | wl-copy"
+function cpwd() {
+    printf '%s' "$PWD" | wl-copy
+}
 {{- end }}
 {{- if eq .chezmoi.os "darwin" }}
-alias cpwd="echo -n $(pwd) | pbcopy"
+function cpwd() {
+    printf '%s' "$PWD" | pbcopy
+}
 {{ end }}
 # === END OF CHEZMOI MANAGED ===
 

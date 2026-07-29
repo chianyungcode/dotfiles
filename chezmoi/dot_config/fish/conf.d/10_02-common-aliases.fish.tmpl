@@ -9,10 +9,14 @@
 
 # === START OF CHEZMOI MANAGED ===
 {{- if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") (lookPath "wl-copy")}}
-alias cpwd "echo -n $(pwd) | wl-copy"
+function cpwd
+    printf '%s' "$PWD" | wl-copy
+end
 {{- end }}
 {{- if eq .chezmoi.os "darwin" }}
-alias cpwd "echo -n $(pwd) | pbcopy"
+function cpwd
+    printf '%s' "$PWD" | pbcopy
+end
 {{ end }}
 # === END OF CHEZMOI MANAGED ===
 
