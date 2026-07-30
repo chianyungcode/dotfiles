@@ -23,7 +23,7 @@ if (( $+commands[sk] && $+commands[fd] )); then
         sk  --border=rounded --regex --preview 'if [ -d {} ]; then CLICOLOR_FORCE=1 lla -a {}; else bat -n --color=always {}; fi' --preview-window="$preview_window" --bind 'ctrl-/:toggle-preview' -m --reverse --query "$query"
     )}")
 
-    if (( ${#selected[@]} )); then
+    if (( ${#selected[@]} )) && [[ -n "${selected[1]}" ]]; then
       LBUFFER="$prefix"
       for item in "${selected[@]}"; do
         LBUFFER+="${(q)item} "
