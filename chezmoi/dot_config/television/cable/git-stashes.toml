@@ -7,6 +7,7 @@ requirements = ["git"]
 command = "git stash list --format='%gd%x09%C(yellow)%gs%C(reset)' 2>/dev/null"
 ansi = true
 
+no_sort = true
 frecency = false
 output = "{strip_ansi|split:\\t:0}"
 
@@ -18,3 +19,24 @@ layout = "landscape"
 
 [ui.preview_panel]
 size = 65
+
+[actions.apply]
+description = "Apply stash (modifies repository; Ctrl-R to reload)"
+command = "git stash apply '{split:\\n:0|strip_ansi|split:\\t:0}'"
+shell = "bash"
+mode = "fork"
+separator = "\n"
+
+[actions.pop]
+description = "Pop stash (destructive; Ctrl-R to reload)"
+command = "git stash pop '{split:\\n:0|strip_ansi|split:\\t:0}'"
+shell = "bash"
+mode = "fork"
+separator = "\n"
+
+[actions.drop]
+description = "Drop stash (destructive; Ctrl-R to reload)"
+command = "git stash drop '{split:\\n:0|strip_ansi|split:\\t:0}'"
+shell = "bash"
+mode = "fork"
+separator = "\n"

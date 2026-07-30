@@ -215,9 +215,19 @@
 - `chezmoi/dot_config/television/cable/git-tags.toml`: Browse tags with
   `git show` previews.
 
-Invoke a channel directly, for example `tv git-branches` or
-`tv git-hashes`. These channels do not install shell bindings; the selected
-value is written to stdout like any other Television channel.
+Invoke a channel directly, for example `tv xgit-branches` or
+`tv xgit-hashes`. Normal confirmation still writes the selected value to
+stdout.
+
+Press `Ctrl-X` inside any `xgit-*` channel to search its object-specific
+actions. The action picker includes browser, inspection, editing, and curated
+Git mutation commands. Destructive actions are labeled `(destructive)`; they
+execute without a second confirmation. After an action changes repository
+state, press `Ctrl-R` when its description requests a reload.
+
+Browser actions share
+`~/.config/television/scripts/git-open`, which resolves HTTPS and SCP-style SSH
+remotes, including configured SSH aliases, before using the platform opener.
 
 # starship
 

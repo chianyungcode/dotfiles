@@ -6,6 +6,7 @@ requirements = ["git"]
 [source]
 command = "git remote -v 2>/dev/null | sort | awk '{print $1 \"\\t\" $2}' | uniq"
 
+no_sort = true
 frecency = false
 output = "{split:\\t:0}"
 
@@ -17,3 +18,24 @@ layout = "landscape"
 
 [ui.preview_panel]
 size = 65
+
+[actions.open-browser]
+description = "Open remote in browser"
+command = "$HOME/.config/television/scripts/git-open remote '{split:\\n:0|split:\\t:0}'"
+shell = "bash"
+mode = "fork"
+separator = "\n"
+
+[actions.fetch]
+description = "Fetch remote (modifies repository; Ctrl-R to reload)"
+command = "git fetch '{split:\\n:0|split:\\t:0}'"
+shell = "bash"
+mode = "fork"
+separator = "\n"
+
+[actions.fetch-prune]
+description = "Fetch and prune remote (destructive; Ctrl-R to reload)"
+command = "git fetch --prune '{split:\\n:0|split:\\t:0}'"
+shell = "bash"
+mode = "fork"
+separator = "\n"

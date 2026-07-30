@@ -7,6 +7,7 @@ requirements = ["git"]
 command = "git for-each-ref --color=always --sort=-committerdate --format='%(refname:short)%09%(HEAD) %(color:yellow)%(refname:short) %(color:green)(%(committerdate:relative))%09%(color:blue)%(subject)%(color:reset)' refs/heads 2>/dev/null"
 ansi = true
 
+no_sort = true
 frecency = false
 output = "{strip_ansi|split:\\t:0}"
 
@@ -18,3 +19,38 @@ layout = "landscape"
 
 [ui.preview_panel]
 size = 65
+
+[actions.open-browser]
+description = "Open branch in browser"
+command = "$HOME/.config/television/scripts/git-open branch '{split:\\n:0|strip_ansi|split:\\t:0}'"
+shell = "bash"
+mode = "fork"
+separator = "\n"
+
+[actions.switch]
+description = "Switch branch (modifies repository; Ctrl-R to reload)"
+command = "git switch '{split:\\n:0|strip_ansi|split:\\t:0}'"
+shell = "bash"
+mode = "fork"
+separator = "\n"
+
+[actions.merge]
+description = "Merge selected branch into current (modifies repository; Ctrl-R to reload)"
+command = "git merge '{split:\\n:0|strip_ansi|split:\\t:0}'"
+shell = "bash"
+mode = "fork"
+separator = "\n"
+
+[actions.rebase]
+description = "Rebase current branch onto selected (modifies repository; Ctrl-R to reload)"
+command = "git rebase '{split:\\n:0|strip_ansi|split:\\t:0}'"
+shell = "bash"
+mode = "fork"
+separator = "\n"
+
+[actions.delete]
+description = "Delete local branch (destructive; Ctrl-R to reload)"
+command = "git branch -d '{split:\\n:0|strip_ansi|split:\\t:0}'"
+shell = "bash"
+mode = "fork"
+separator = "\n"

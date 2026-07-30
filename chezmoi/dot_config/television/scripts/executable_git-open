@@ -1,0 +1,89 @@
+#!/bin/sh
+set -eu
+
+kind=${1-}
+value=${2-}
+[ -n "$kind" ] && [ -n "$value" ] || exit 1
+
+current_branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null) || exit 1
+if [ "$current_branch" = HEAD ]; then
+    current_branch=$(
+        git describe --exact-match --tags 2>/dev/null ||
+            git rev-parse --short HEAD 2>/dev/null
+    ) || exit 1
+fi
+
+remote=
+web_path=
+case "$kind" in
+commit)
+    web_path="/commit/$value"
+    ;;
+branch)
+    current_branch=$value
+    remote=$(git config --get "branch.$current_branch.remote" 2>/dev/null || :)
+    remote_candidate=${current_branch%%/*}
+    if [ -z "$remote" ] && [ "$remote_candidate" != "$current_branch" ] &&
+        git remote get-url "$remote_candidate" >/dev/null 2>&1; then
+        remote=$remote_candidate
+        current_branch=${current_branch#*/}
+    fi
+    [ -n "$remote" ] || remote=origin
+    web_path="/tree/$current_branch"
+    ;;
+remote)
+    remote=$value
+    web_path="/tree/$current_branch"
+    ;;
+file)
+    prefix=$(git rev-parse --show-prefix 2>/dev/null) || exit 1
+    web_path="/blob/$current_branch/$prefix$value"
+    ;;
+tag)
+    web_path="/releases/tag/$value"
+    ;;
+*)
+    exit 1
+    ;;
+esac
+
+if [ -z "$remote" ]; then
+    remote=$(git config --get "branch.$current_branch.remote" 2>/dev/null || :)
+    [ -n "$remote" ] || remote=origin
+fi
+
+remote_url=$(git remote get-url "$remote" 2>/dev/null) || exit 1
+remote_url=${remote_url%.git}
+case "$remote_url" in
+http://*|https://*)
+    ;;
+*:*/*)
+    remote_host=${remote_url%%:*}
+    remote_path=${remote_url#*:}
+    ssh_host=${remote_host##*@}
+    web_host=$ssh_host
+    if command -v ssh >/dev/null 2>&1; then
+        configured_host=$(
+            ssh -G "$ssh_host" 2>/dev/null |
+                awk '/^hostname / { print $2; exit }'
+        )
+        [ -n "$configured_host" ] && web_host=$configured_host
+    fi
+    remote_url="https://$web_host/$remote_path"
+    ;;
+*)
+    exit 1
+    ;;
+esac
+
+url=$remote_url$web_path
+case $(uname -s) in
+Darwin)
+    command -v open >/dev/null 2>&1 || exit 1
+    exec open "$url"
+    ;;
+*)
+    command -v xdg-open >/dev/null 2>&1 || exit 1
+    exec xdg-open "$url"
+    ;;
+esac

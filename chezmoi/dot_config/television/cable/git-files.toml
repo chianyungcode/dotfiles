@@ -6,6 +6,7 @@ requirements = ["git"]
 [source]
 command = "git ls-files 2>/dev/null"
 
+no_sort = true
 frecency = false
 
 [preview]
@@ -16,3 +17,31 @@ layout = "landscape"
 
 [ui.preview_panel]
 size = 65
+
+[actions.open-browser]
+description = "Open file in browser"
+command = "$HOME/.config/television/scripts/git-open file '{split:\\n:0}'"
+shell = "bash"
+mode = "fork"
+separator = "\n"
+
+[actions.edit]
+description = "Edit file"
+command = "${EDITOR:-vi} -- '{split:\\n:0}'"
+shell = "bash"
+mode = "fork"
+separator = "\n"
+
+[actions.stage]
+description = "Stage file (modifies repository; Ctrl-R to reload)"
+command = "git add -- '{split:\\n:0}'"
+shell = "bash"
+mode = "fork"
+separator = "\n"
+
+[actions.restore]
+description = "Restore file (destructive; Ctrl-R to reload)"
+command = "git restore --worktree -- '{split:\\n:0}'"
+shell = "bash"
+mode = "fork"
+separator = "\n"
