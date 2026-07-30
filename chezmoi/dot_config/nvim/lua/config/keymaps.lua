@@ -8,9 +8,9 @@
 -- vim.keymap.set("n", "<leader>e", function() end, { desc = "Chian" })
 
 -- Related to plugin 'tiny-code-action'
-vim.keymap.set("n", "<leader>cb", function()
-  require("tiny-code-action").code_action()
-end, { noremap = true, silent = true })
+-- vim.keymap.set("n", "<leader>cb", function()
+--   require("tiny-code-action").code_action()
+-- end, { noremap = true, silent = true })
 
 -- Fix keymap behavior:
 -- When pressing '?' and 'n', the search should move to the top (previous match),
@@ -30,6 +30,10 @@ vim.keymap.set("t", "<C-_>", function()
     vim.api.nvim_win_hide(0)
   end
 end, { noremap = true, silent = true, desc = "Hide terminal" })
+
+-- Add empty lines before and after cursor line
+vim.keymap.set("n", "<S-CR>", "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>")
+vim.keymap.set("n", "<CR>", "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>")
 
 -- Syntax
 -- vim.keymap.set("mode-vim", "keymaps", "command / function", { desc = "Wormhole Close Labels" })
