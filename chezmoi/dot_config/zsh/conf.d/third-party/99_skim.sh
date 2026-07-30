@@ -20,7 +20,7 @@ if (( $+commands[sk] && $+commands[fd] )); then
 
     selected=("${(@f)$(
       fd --hidden --exclude .git --type f --type d |
-        sk --regex --preview 'if [ -d {} ]; then CLICOLOR_FORCE=1 lla -a {}; else bat --color=always {}; fi' --preview-window="$preview_window" --bind 'ctrl-/:toggle-preview' -m --reverse --query "$query"
+        sk  --border=rounded --regex --preview 'if [ -d {} ]; then CLICOLOR_FORCE=1 lla -a {}; else bat -n --color=always {}; fi' --preview-window="$preview_window" --bind 'ctrl-/:toggle-preview' -m --reverse --query "$query"
     )}")
 
     if (( ${#selected[@]} )); then

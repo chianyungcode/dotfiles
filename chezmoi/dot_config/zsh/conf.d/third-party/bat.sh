@@ -1,5 +1,5 @@
 # Theming for bat and delta
-export BAT_THEME="DarkNeon"
+export BAT_THEME="gruvbox-dark"
 
 # Pass all help (-h, --help) output through bat
 # if [[ -n ${ZSH_NAME} ]]; then
