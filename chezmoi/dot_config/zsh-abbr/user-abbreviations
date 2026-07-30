@@ -408,8 +408,16 @@ abbr jsqi="jj squash -i"
 abbr jsqc="jj squash -t %"
 
 abbr judo="jj undo"
-abbr jopl="jj op log"
+
+abbr jopl="jj op log %"
+abbr jopl='jj op log %'
+abbr jopd='jj op diff %'
+abbr jopa='jj op abandon %'
+abbr joprs='jj op restore %'
+abbr joprv='jj op revert %'
+
 abbr jevl="jj evolog"
+abbr jevlr="jj evolog -r '%'"
 
 # hunk
 abbr hd="hunk diff"

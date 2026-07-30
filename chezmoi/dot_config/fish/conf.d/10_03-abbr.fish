@@ -520,8 +520,16 @@ abbr -a jnb --set-cursor 'jj new -B %'
 abbr -a jnc 'jj new -m "$(koji --stdout)"'
 
 abbr -a judo 'jj undo'
-abbr -a jopl 'jj op log'
+
+abbr -a jop -- set-cursor 'jj op %'
+abbr -a jopl --set-cursor 'jj op log %'
+abbr -a jopd --set-cursor 'jj op diff %'
+abbr -a jopa --set-cursor 'jj op abandon %'
+abbr -a joprs --set-cursor 'jj op restore %'
+abbr -a joprv --set-cursor 'jj op revert %'
+
 abbr -a jevl 'jj evolog'
+abbr -a jevlr --set-cursor "jj evolog -r '%'"
 
 # hunk
 abbr -a hd 'hunk diff'
