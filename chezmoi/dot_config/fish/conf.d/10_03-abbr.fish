@@ -13,24 +13,32 @@ abbr --add .. "cd .."
 abbr --add ... "cd ../.."
 abbr --add .... "cd ../../.."
 abbr --add ..... "cd ../../../.."
+abbr --add c clear
 abbr --add cat bat
-abbr --add cl clear
-abbr --add che chezmoi
 abbr --add nv nvim
 abbr --add lzg lazygit
 abbr --add lzd lazydocker
-abbr --add mux tmuxinator
-abbr --add fier tmuxifier
-abbr --add clrnvses 'rm -rf ~/.local/share/nvim/sessions/*'
 abbr --add ax 'chmod a+x'
 abbr --add untar 'tar -zxvf'
 abbr --add mktar 'tar -cvzf'
 abbr --add numfiles 'echo (ls -1 | wc -l)'
 abbr --add bkfsh 'bind | sk'
 abbr --add bktmux 'tmux list-keys | sk'
+abbr --add ping gping
+
+# Personal abbreviations (unique only — shared defaults live in "better defaults" above)
+abbr --add exf 'exec fish'
 abbr --add dotf 'cd ~/.local/share/chezmoi'
 abbr --add conf 'cd ~/.config/'
-abbr --add exf 'exec fish'
+abbr --add clrnvses 'rm -rf ~/.local/share/nvim/sessions/*'
+abbr --add restart-kanata 'sudo launchctl kickstart -k system/com.example.kanata'
+abbr --add nvdot "nvim ~/.local/share/chezmoi"
+abbr --add fixmounts "sudo automount -vcu"
+abbr --add fsh-alias fast-theme
+abbr --add ghh "git help"
+abbr --add prgl pretty_git_log
+abbr --add run-help man
+abbr --add dopr "doppler run -- "
 
 # pueue
 abbr --add pue pueue
@@ -560,34 +568,9 @@ abbr --add zlls "zellij list-sessions"
 abbr --add vercel "op plugin run -- vercel"
 abbr --add gh "op plugin run -- gh"
 
-abbr --add untar "tar -zxvf"
 # abbr "urldecode"="python -c \"import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])\""
 abbr --add which-command whence
 
 # chezmoi
 abbr --add ch chezmoi
 abbr --add chp --set-cursor 'chezmoi apply -P ~/.config/%'
-
-# Personal abbreviations
-abbr --add tmuxconf "\$EDITOR ~/.local/share/chezmoi/chezmoi/dot_config/tmux/tmux.conf.tmpl"
-abbr restart-kanata sudo launchctl kickstart -k system/com.example.kanata
-abbr --add nv nvim
-abbr --add nvdot "nvim ~/.local/share/chezmoi"
-abbr --add numfiles "echo \$(ls -1 | wc -l)"
-abbr --add exf "exec fish"
-abbr --add cat bat
-abbr --add cl clear
-abbr --add clrnvses "rm -rf ~/.local/share/nvim/sessions/*"
-abbr --add config "cd ~/.config/"
-abbr --add fier tmuxifier
-abbr --add fixmounts "sudo automount -vcu"
-abbr --add fsh-alias fast-theme
-abbr --add ghh "git help"
-abbr --add lzd lazydocker
-abbr --add lzg lazygit
-abbr --add mktar "tar -cvzf"
-abbr --add mux tmuxinator
-abbr --add ping gping
-abbr --add prgl pretty_git_log
-abbr --add run-help man
-abbr dopr "doppler run -- "
