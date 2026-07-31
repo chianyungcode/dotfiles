@@ -1,118 +1,53 @@
 ;; https://jtroo.github.io/config.html
 
-;; Global configuration, this configuration applied globally
+;; Global configuration applied to all layers.
 (defcfg
   process-unmapped-keys yes
-  concurrent-tap-hold yes ;; for input chording/combos
+  concurrent-tap-hold yes ;; For input chording/combos.
   danger-enable-cmd yes
 
-;; uncomment this code below if you using kanata in macos, to prevent bugs that causing kanata doesn't work after sleep
+  ;; Uncomment this section on macOS to prevent Kanata from stopping after sleep.
 
-;;  macos-dev-names-exclude (
-;;    "Corne"
-;;    "kbdksp/geulisv1"
-;;  )
+  ;; macos-dev-names-exclude (
+  ;;   "Corne"
+  ;;   "kbdksp/geulisv1"
+  ;; )
 
-;;  macos-dev-names-include (
-;;      "Chian's Magic Keyboard"
-;;  )
+  ;; macos-dev-names-include (
+  ;;   "Chian's Magic Keyboard"
+  ;; )
 
 )
 
-;; Variable for storing a constant value
+;; Timing and chord constants.
 (defvar
   tap-time 200
   hold-time 200
-  hold-time-slow 300
   input-chord-time 250
 )
 
-;; Define key that want to remap
+;; Physical keyboard layout.
 (defsrc
        f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   caps a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lmet lalt           spc            ralt rmet rctl
+  lctl  lmet  lalt  spc  ralt  rmet  rctl
 )
 
-;;  Syntax for tap-hold
-;;  (tap-hold TAP-TIME HOLD-TIME TAP-KEY HOLD-KEY)
-(defalias
-  cw (caps-word 1000)
-
-  ;; ==== LAYERS ====
-  ;; You may also use `layer-toggle` in place of `layer-while-held`; they behave exactly the same. The `layer-toggle` name is slightly shorter but is a bit inaccurate with regards to its meaning.
-  lwh_herdr (layer-while-held herdr)
-  lwh_symbols (layer-while-held symbols)
-  lwh_tmux (layer-while-held tmux)
-  lwh_nav  (layer-while-held nav)
-  lwh_sublayers (layer-while-held sublayers)
-
-
-  spc_ly3 (tap-hold $tap-time $hold-time spc @lwh_symbols)
-  thl-cap-nav (tap-hold $tap-time $hold-time esc @lwh_nav)
-  ;; thl-ret-sublayers (tap-hold $tap-time $hold-time ret @lwh_sublayers)
-  thl-space-sublayers (tap-hold $tap-time $hold-time spc @lwh_sublayers)
-  thl-ret-herdr (tap-hold $tap-time $hold-time ret @lwh_herdr)
-  thl-sls-tmux (tap-hold $tap-time $hold-time / @lwh_tmux)
-  thl-z-tmux (tap-hold $tap-time $hold-time z @lwh_tmux)
-
-  thl-v-zlj (tap-hold $tap-time $hold-time v (layer-while-held zellij))
-  thl-m-zlj (tap-hold $tap-time $hold-time m (layer-while-held zellij))
-
-  {{ if eq .chezmoi.os "darwin" -}}
-  lmet_tab (tap-hold $tap-time $hold-time tab (macro M-tab))
-  {{- else if eq .chezmoi.os "linux" }}
-  lmet_tab (tap-hold $tap-time $hold-time tab (macro A-tab))
-  {{- end }}
-
-  ;; ==== MODIFIER KEYS + LETTER KEYS ====
-  a (tap-hold $tap-time $hold-time a @lwh_sublayers)
-  ; (tap-hold $tap-time $hold-time ; @lwh_sublayers)
-
-  s (tap-hold $tap-time $hold-time s lctl)
-  d (tap-hold $tap-time $hold-time d lalt)
-  f (tap-hold $tap-time $hold-time f lmet)
-  l (tap-hold $tap-time $hold-time l lctl)
-  k (tap-hold $tap-time $hold-time k lalt)
-  j (tap-hold $tap-time $hold-time j lmet)
-  {{ if eq .chezmoi.os "darwin" -}}
-  m (tap-hold $tap-time $hold-time m rmet)
-  v (tap-hold $tap-time $hold-time v rmet)
-  {{- else if eq .chezmoi.os "linux" }}
-  m (tap-hold $tap-time $hold-time m lmet)
-  v (tap-hold $tap-time $hold-time v lmet)
-  {{- end }}
-  hyperkey (tap-hold $tap-time $hold-time spc (multi lsft lctl lalt lmet))
-
-  ;; ==== OS SPECIFIC ====
-  ;; - macOS -
-  mc C-up ;; Mission Control
-  sls M-spc ;; Spotlight Search
-  dtn S-C-A-M-f5 ;; Dictation
-  dnd S-C-A-M-f6 ;; Do Not Disturb
-  lp S-C-A-M-l ;; Launchpad
-
-  sprwhpr C-A-/ ;; Superwhisper
-  hmrwapp M-S-spc
-
-  tab-left C-S-tab
-  tab-right C-tab
-)
-
-;; == Input combos / chording ==
+;; Input combos / chording.
 #|
-  syntax:
+  Syntax:
   (participating-keysN) actionN timeoutN release-behaviourN (disabled-layersN)
 
-  references:
+  Reference:
   https://jtroo.github.io/config.html#input-chords-v2
 
-  timeoutN :
-  The maximum time (in milliseconds) between the first key press and the subsequent ones for them to be recognized as a "chord".
-  If the keys are not pressed within this time window, the system treats them as regular key presses (not a chord) and processes them according to the active layer.
+  timeoutN:
+  The maximum time (in milliseconds) between the first key press and the
+  subsequent ones for them to be recognized as a chord. If the keys are not
+  pressed within this window, Kanata processes them as regular key presses.
 |#
 
 (defchordsv2
@@ -130,100 +65,116 @@
   {{- end }}
 )
 
-;; == Layers ==
-;; the order of deflayer is important, the first layer defined is the layer that will be active by default when kanata is running
-
-;; Define base / default layer
-(deflayer base
-       🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  @lmet_tab    q    w    e    r    t    y    u    i    o    p    [    ]    \
-  @thl-cap-nav  @a    @s    @d    @f    g    h    @j    @k    @l    @;    '    @thl-ret-herdr
-  lsft @thl-z-tmux    x    c    @thl-v-zlj    b    n    @thl-m-zlj    ,    .   @thl-sls-tmux    rsft ;; Tombol x sekarang punya fungsi ganda
-  lctl lmet lalt           @spc_ly3            ralt rmet rctl
-)
-
-(deflayer nav
-       🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  f1   f2   f3   f4   f5    f6    f7    f8    f9    f10    @tab-left   @tab-right    \
-  caps a    @sprwhpr    @hmrwapp    f    g    left    down    up    right    ;    '    ret
-  lsft z    x    c    v    b    j    rctl    @hmrwapp    .    rmet    rsft
-  lctl lmet lalt           @thl-space-sublayers            ralt @hyperkey rctl
-)
-
-;; == HERDR ==
-(defalias 
-  herdr-workspace-1 (macro C-a C-1)
-  herdr-workspace-2 (macro C-a C-2)
-  herdr-workspace-3 (macro C-a C-3)
-  herdr-workspace-4 (macro C-a C-4)
-  herdr-workspace-5 (macro C-a C-5)
-  herdr-workspace-6 (macro C-a C-6)
-  herdr-workspace-7 (macro C-a C-7)
-  herdr-workspace-8 (macro C-a C-8)
-  herdr-workspace-9 (macro C-a C-9)
-
-  herdr-agent-1 (macro C-a A-1)
-  herdr-agent-2 (macro C-a A-2)
-  herdr-agent-3 (macro C-a A-3)
-  herdr-agent-4 (macro C-a A-4)
-  herdr-agent-5 (macro C-a A-5)
-  herdr-agent-6 (macro C-a A-6)
-  herdr-agent-7 (macro C-a A-7)
-  herdr-agent-8 (macro C-a A-8)
-  herdr-agent-9 (macro C-a A-9)
-)
-
-(deflayer herdr
-       🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
-  grv  XX    XX    XX    XX    XX    XX    XX    XX    XX    XX    -    =    bspc
-  tab  @herdr-workspace-1   @herdr-workspace-2   @herdr-workspace-3   @herdr-workspace-4   @herdr-workspace-5   @herdr-workspace-6   @herdr-workspace-7   @herdr-workspace-8   @herdr-workspace-9   f10    @tab-left   @tab-right    \
-  caps @herdr-agent-1  @herdr-agent-2  @herdr-agent-3  @herdr-agent-4  @herdr-agent-5  @herdr-agent-6  @herdr-agent-7  @herdr-agent-8  @herdr-agent-9  ;    '    ret
-  lsft XX  XX  XX  XX  XX    XX    XX    XX    XX   XX    rsft
-  lctl lmet lalt           spc            ralt rmet rctl
-)
-
-(deflayer symbols
-       🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  XX   -   =   XX   XX   XX   XX   -   =   XX  XX   XX    \
-  caps S-1  S-2  S-3  S-4  S-5    S-6    S-7    S-8    S-9    S-0    '    ret
-  lsft 1    2    3    4    5    6    7    8    9    0    rsft
-  lctl lmet lalt           spc            ralt rmet rctl
-)
-
+;; Shared aliases used by the base and navigation layers.
 (defalias
-  {{ if eq .chezmoi.os "darwin" }}
-  ly-rayc (tap-hold $tap-time $hold-time r (layer-while-held raycast))
-  {{ else if eq .chezmoi.os "linux" }}
-  ly-rayc r
+  ;; Layer access.
+  lwh_herdr (layer-while-held herdr)
+  lwh_symbols (layer-while-held symbols)
+  lwh_tmux (layer-while-held tmux)
+  lwh_nav (layer-while-held nav)
+  lwh_sublayers (layer-while-held sublayers)
+
+  ;; tap-hold to layer
+  thl-spc-symbols (tap-hold $tap-time $hold-time spc @lwh_symbols)
+  thl-caps-nav (tap-hold $tap-time $hold-time esc @lwh_nav)
+  thl-spc-sublayers (tap-hold $tap-time $hold-time spc @lwh_sublayers)
+  thl-ret-herdr (tap-hold $tap-time $hold-time ret @lwh_herdr)
+  
+  thl-sls-tmux (tap-hold $tap-time $hold-time / @lwh_tmux)
+  thl-z-tmux (tap-hold $tap-time $hold-time z @lwh_tmux)
+  thl-v-zlj (tap-hold $tap-time $hold-time v (layer-while-held zellij))
+  thl-m-zlj (tap-hold $tap-time $hold-time m (layer-while-held zellij))
+
+  ;; tap-hold to modifier key
+  s (tap-hold $tap-time $hold-time s lctl)
+  d (tap-hold $tap-time $hold-time d lalt)
+  f (tap-hold $tap-time $hold-time f lmet)
+  l (tap-hold $tap-time $hold-time l lctl)
+  k (tap-hold $tap-time $hold-time k lalt)
+  j (tap-hold $tap-time $hold-time j lmet)
+  {{ if eq .chezmoi.os "darwin" -}}
+  m (tap-hold $tap-time $hold-time m rmet)
+  v (tap-hold $tap-time $hold-time v rmet)
+  {{- else if eq .chezmoi.os "linux" }}
+  m (tap-hold $tap-time $hold-time m lmet)
+  v (tap-hold $tap-time $hold-time v lmet)
+  {{- end }}
+
+  ;; OS and application shortcuts.
+  mc C-up ;; Mission Control
+  sls M-spc ;; Spotlight Search
+  dtn S-C-A-M-f5 ;; Dictation
+  dnd S-C-A-M-f6 ;; Do Not Disturb
+  sprwhpr C-A-/ ;; Superwhisper
+  hmrwapp M-S-spc
+  hyperkey (tap-hold $tap-time $hold-time spc (multi lsft lctl lalt lmet))
+  tab-left C-S-tab
+  tab-right C-tab
+
+  ;; Switch applications.
+  {{ if eq .chezmoi.os "darwin" -}}
+  lmet_tab (tap-hold $tap-time $hold-time tab (macro M-tab))
+  {{- else if eq .chezmoi.os "linux" }}
+  lmet_tab (tap-hold $tap-time $hold-time tab (macro A-tab))
   {{- end }}
 )
 
-(deflayer sublayers
-       🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
-  grv  XX   XX   XX    XX   XX   XX   XX   XX   XX   XX   XX   XX   bspc
-  tab  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  caps 1   2   3   4   5   6   7   8   9   0   XX   XX
-  lsft XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  lctl lmet lalt           spc            ralt rmet rctl
+;; Layers are defined in activation order; base is active by default.
+
+;; Define base / default layer
+(deflayer base
+  🔅  🔆  @mc  @sls  @dtn  @dnd  ◀◀  ▶⏸  ▶▶  🔇  🔉  🔊
+  grv  1  2  3  4  5  6  7  8  9  0  -  =  bspc
+  @lmet_tab  q  w  e  r  t  y  u  i  o  p  [  ]  \
+  @thl-caps-nav  @a  @s  @d  @f  g  h  @j  @k  @l  @;  '  @thl-ret-herdr
+  lsft  @thl-z-tmux  x  c  @thl-v-zlj  b  n  @thl-m-zlj  ,  .  @thl-sls-tmux  rsft
+  lctl  lmet  lalt  @thl-spc-symbols  ralt  rmet  rctl
 )
 
-;; == TMUX ==
+;; Navigation layer.
+(deflayer nav
+  🔅  🔆  @mc  @sls  @dtn  @dnd  ◀◀  ▶⏸  ▶▶  🔇  🔉  🔊
+  grv  1  2  3  4  5  6  7  8  9  0  -  =  bspc
+  tab  f1  f2  f3  f4  f5  f6  f7  f8  f9  f10  @tab-left  @tab-right  \
+  caps  a  @sprwhpr  @hmrwapp  f  g  left  down  up  right  ;  '  ret
+  lsft  z  x  c  v  b  j  rctl  @hmrwapp  .  rmet  rsft
+  lctl  lmet  lalt  @thl-spc-sublayers  ralt  @hyperkey  rctl
+)
+
+;; Symbols layer.
+(deflayer symbols
+  🔅  🔆  @mc  @sls  @dtn  @dnd  ◀◀  ▶⏸  ▶▶  🔇  🔉  🔊
+  grv  1  2  3  4  5  6  7  8  9  0  -  =  bspc
+  tab  XX  -  =  XX  XX  XX  XX  -  =  XX  XX  XX  \
+  caps  S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  S-9  S-0  '  ret
+  lsft  1  2  3  4  5  6  7  8  9  0  rsft
+  lctl  lmet  lalt  spc  ralt  rmet  rctl
+)
+
+;; Sublayers layer.
+(deflayer sublayers
+  🔅  🔆  @mc  @sls  @dtn  @dnd  ◀◀  ▶⏸  ▶▶  🔇  🔉  🔊
+  grv  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  bspc
+  tab  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX
+  caps  1  2  3  4  5  6  7  8  9  0  XX  XX
+  lsft  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX
+  lctl  lmet  lalt  spc  ralt  rmet  rctl
+)
+
+;; TMUX layer and aliases.
 (defalias
   tmux-prefix C-a
 
-  tx-new-window (macro @tmux-prefix c) ;; new window
+  tx-new-window (macro @tmux-prefix c) ;; New window.
   tx-new-session (macro @tmux-prefix S-s)
-  tx-plg-sesh  (macro @tmux-prefix o) ;; sesh plugin
-  tx-detach (macro @tmux-prefix d) ;; detach tmux
-  tx-vi-mode (macro @tmux-prefix [) ;; switch to tmux vi mode
+  tx-plg-sesh (macro @tmux-prefix o) ;; Sesh plugin.
+  tx-detach (macro @tmux-prefix d) ;; Detach tmux.
+  tx-vi-mode (macro @tmux-prefix [) ;; Switch to tmux vi mode.
 
   ;; rename session/window/pane
-  tx-rn-session (macro @tmux-prefix S-4) ;; rename session
-  tx-rn-window (macro @tmux-prefix ,) ;; rename window
-  tx-rn-pane (macro @tmux-prefix u) ;; rename pane
+  tx-rn-session (macro @tmux-prefix S-4) ;; Rename session.
+  tx-rn-window (macro @tmux-prefix ,) ;; Rename window.
+  tx-rn-pane (macro @tmux-prefix u) ;; Rename pane.
 
   ;; switch between last session/window/pane
   tx-sw-session (macro @tmux-prefix S-a)
@@ -274,24 +225,59 @@
 )
 
 (deflayer tmux
-       🔅        🔆        @mc              @sls           @dtn           @dnd              ◀◀        ▶⏸          ▶▶                    🔇            🔉            🔊
-  grv  @tx-wdw-1          @tx-wdw-2         @tx-wdw-3      @tx-wdw-4      @tx-wdw-5         @tx-wdw-6             @tx-wdw-7           @tx-wdw-8                     9             0               @tx-splith         @tx-splitv         bspc
-  lrld @tx-slcsession     @tx-slcwindow     @tx-detach     @tx-plg-sesh   XX                XX                    @tx-rsz-left        @tx-rsz-bottom                @tx-rsz-up    @tx-rsz-right   @tx-swap-prev                 @tx-swap-next                \
-  caps @tx-sw-session     @tx-sw-window     @tx-sw-pane    @tx-flash      XX                @tx-p-left            @tx-p-bottom        @tx-p-top                     @tx-p-right   ;               '                  ret
-  lsft @tx-kill-session   @tx-kill-window   @tx-kill-pane  @tx-vi-mode    @tx-new-session   @tx-new-window        @tx-rn-session      @tx-rn-window                 @tx-rn-pane   /             rsft
-  lctl lmet               lalt                             spc                                            ralt            rmet              rctl
+  🔅  🔆  @mc  @sls  @dtn  @dnd  ◀◀  ▶⏸  ▶▶  🔇  🔉  🔊
+  grv  @tx-wdw-1  @tx-wdw-2  @tx-wdw-3  @tx-wdw-4  @tx-wdw-5  @tx-wdw-6  @tx-wdw-7  @tx-wdw-8  9  0  @tx-splith  @tx-splitv  bspc
+  lrld  @tx-slcsession  @tx-slcwindow  @tx-detach  @tx-plg-sesh  XX  XX  @tx-rsz-left  @tx-rsz-bottom  @tx-rsz-up  @tx-rsz-right  @tx-swap-prev  @tx-swap-next  \
+  caps  @tx-sw-session  @tx-sw-window  @tx-sw-pane  @tx-flash  XX  @tx-p-left  @tx-p-bottom  @tx-p-top  @tx-p-right  ;  '  ret
+  lsft  @tx-kill-session  @tx-kill-window  @tx-kill-pane  @tx-vi-mode  @tx-new-session  @tx-new-window  @tx-rn-session  @tx-rn-window  @tx-rn-pane  /  rsft
+  lctl  lmet  lalt  @thl-spc-symbols  ralt  rmet  rctl
 )
 
+;; HERDR layer and aliases.
+(defalias
+  herdr-workspace-1 (macro C-a C-1)
+  herdr-workspace-2 (macro C-a C-2)
+  herdr-workspace-3 (macro C-a C-3)
+  herdr-workspace-4 (macro C-a C-4)
+  herdr-workspace-5 (macro C-a C-5)
+  herdr-workspace-6 (macro C-a C-6)
+  herdr-workspace-7 (macro C-a C-7)
+  herdr-workspace-8 (macro C-a C-8)
+  herdr-workspace-9 (macro C-a C-9)
+
+  herdr-agent-1 (macro C-a A-1)
+  herdr-agent-2 (macro C-a A-2)
+  herdr-agent-3 (macro C-a A-3)
+  herdr-agent-4 (macro C-a A-4)
+  herdr-agent-5 (macro C-a A-5)
+  herdr-agent-6 (macro C-a A-6)
+  herdr-agent-7 (macro C-a A-7)
+  herdr-agent-8 (macro C-a A-8)
+  herdr-agent-9 (macro C-a A-9)
+
+  herdr-pane-zoom (macro C-a z)
+)
+
+(deflayer herdr
+  🔅  🔆  @mc  @sls  @dtn  @dnd  ◀◀  ▶⏸  ▶▶  🔇  🔉  🔊
+  grv  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  -  =  bspc
+  tab  @herdr-workspace-1  @herdr-workspace-2  @herdr-workspace-3  @herdr-workspace-4  @herdr-workspace-5  @herdr-workspace-6  @herdr-workspace-7  @herdr-workspace-8  @herdr-workspace-9  XX  XX  XX  \
+  caps  @herdr-agent-1  @herdr-agent-2  @herdr-agent-3  @herdr-agent-4  @herdr-agent-5  @herdr-agent-6  @herdr-agent-7  @herdr-agent-8  @herdr-agent-9  ;  '  ret
+  lsft  @herdr-pane-zoom  XX  XX  XX  XX  XX  XX  XX  XX  XX  rsft
+  lctl  lmet  lalt  spc  ralt  rmet  rctl
+)
+
+;; Zellij layer and aliases.
 (defalias
   zlj-prefix C-a
   zlj-rsz (macro @zlj-prefix 25 r)
 
-  ;; session
+  ;; Session.
   zlj-ses (macro @zlj-prefix 25 o)
   zlj-sessions (macro @zlj-prefix 25 o 25 w) ;; session list
   zlj-ses-dtch (macro @zlj-prefix 25 o 25 d) ;; session detach
 
-  ;; tab
+  ;; Tab.
   zlj-tab (macro @zlj-prefix 25 t)
   zlj-new-tab (macro @zlj-prefix 25 t 25 n)
   zlj-tab-qs (macro @zlj-prefix 25 t 10 tab 10 esc) ;; switch last
@@ -307,12 +293,12 @@
   zlj-t-8 (macro @zlj-prefix 25 t 25 Digit8)
   zlj-t-9 (macro @zlj-prefix 25 t 25 Digit9)
 
-  ;; pane
+  ;; Pane.
   zlj-pane (macro @zlj-prefix p)
   zlj-pane-cls (macro @zlj-prefix 25 p 25 x) ;; close pane
   zlj-pane-qs (macro @zlj-prefix 25 p 25 tab 25 esc) ;; switch last
 
-  ;; split pane
+  ;; Split pane.
   zlj-splith (macro @zlj-prefix 25 p 25 -) ;; split horizontal
   zlj-splitv (macro @zlj-prefix 25 p 25 S-\) ;; split vertical
 
@@ -323,16 +309,16 @@
 )
 
 (deflayer zellij
-       🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
-  grv  @zlj-t-1  @zlj-t-2  @zlj-t-3  @zlj-t-4  @zlj-t-5  @zlj-t-6  @zlj-t-7  @zlj-t-8  @zlj-t-9   XX   @zlj-splith   @zlj-splitv   XX
-  tab  @zlj-sessions  XX   @zlj-ses-dtch   @zlj-rsz  @zlj-tab  XX        XX   XX   @zlj-ses @zlj-pane     XX   XX XX
-  caps XX   @zlj-tab-qs   @zlj-pane-qs   XX   XX     @zlj-p-left    @zlj-p-bottom        @zlj-p-top   @zlj-p-right   XX       XX            XX
-  lsft @zlj-tab-cls   @zlj-pane-cls   @zlj-new-tab   XX   XX        XX        XX        XX   XX   XX       XX
-  lctl lmet lalt           spc            ralt rmet rctl
+  🔅  🔆  @mc  @sls  @dtn  @dnd  ◀◀  ▶⏸  ▶▶  🔇  🔉  🔊
+  grv  @zlj-t-1  @zlj-t-2  @zlj-t-3  @zlj-t-4  @zlj-t-5  @zlj-t-6  @zlj-t-7  @zlj-t-8  @zlj-t-9  XX  @zlj-splith  @zlj-splitv  XX
+  tab  @zlj-sessions  XX  @zlj-ses-dtch  @zlj-rsz  @zlj-tab  XX  XX  XX  @zlj-ses  @zlj-pane  XX  XX  XX
+  caps  XX  @zlj-tab-qs  @zlj-pane-qs  XX  XX  @zlj-p-left  @zlj-p-bottom  @zlj-p-top  @zlj-p-right  XX  XX  XX
+  lsft  @zlj-tab-cls  @zlj-pane-cls  @zlj-new-tab  XX  XX  XX  XX  XX  XX  XX  XX
+  lctl  lmet  lalt  spc  ralt  rmet  rctl
 )
 
 {{ if eq .chezmoi.os "darwin" -}}
-;; == RAYCAST ==
+;; Raycast layer and aliases (macOS only).
 (defalias
   rrain (cmd open "raycast://extensions/lardissone/raindrop-io/search")
   remoj (cmd open "raycast://extensions/raycast/emoji-symbols/search-emoji-symbols")
@@ -341,11 +327,11 @@
 )
 
 (deflayer raycast
-       🔅    🔆    @mc   @sls  @dtn  @dnd  ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊
-  grv  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  tab  XX   XX   @remoj   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  caps XX   XX   XX   XX   XX   XX   @rspot   @rrain   @ryout   XX   XX   XX
-  lsft XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
-  lctl lmet lalt           spc            ralt rmet rctl
+  🔅  🔆  @mc  @sls  @dtn  @dnd  ◀◀  ▶⏸  ▶▶  🔇  🔉  🔊
+  grv  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX
+  tab  XX  XX  @remoj  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX
+  caps  XX  XX  XX  XX  XX  XX  @rspot  @rrain  @ryout  XX  XX  XX
+  lsft  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX
+  lctl  lmet  lalt  spc  ralt  rmet  rctl
 )
 {{ end }}
