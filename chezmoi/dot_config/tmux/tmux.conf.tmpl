@@ -307,7 +307,7 @@ set -g window-status-current-format ' #[fg=yellow]#I:#W'
 #
 # # window look and feel
 set -g automatic-rename on
-set -g automatic-rename-format "#{pane_current_command}"
+set -g automatic-rename-format "#{pane_current_command}#{?window_zoomed_flag, Z,}"
 #
 # set -g window-status-format " #I#{?#{!=:#{window_name},Window},: #W,} "
 # set -g window-status-style "bg=#{@thm_bg},fg=#{@thm_rosewater}"
