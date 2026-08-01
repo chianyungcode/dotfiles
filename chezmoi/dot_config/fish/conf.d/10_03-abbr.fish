@@ -8,6 +8,46 @@
 # https://fishshell.com/docs/current/cmds/abbr.html
 # cSpell:disable
 
+# Move through additional `%` placeholders left behind by --set-cursor.
+function __fish_abbr_cursor_next
+    set -l buffer $argv[1]
+    set -l cursor $argv[2]
+    set -l suffix (string sub --start (math $cursor + 1) -- "$buffer" | string collect)
+    set -l marker_offset (string match --index --regex '%' "$suffix" | string split ' ')[1]
+
+    if test -z "$marker_offset"
+        return 1
+    end
+
+    set -g __fish_abbr_cursor_next_position (math $cursor + $marker_offset - 1)
+    set -l marker_index $__fish_abbr_cursor_next_position
+    set -l before
+    if test $marker_index -gt 0
+        set before (string sub --start 1 --end $marker_index -- "$buffer" | string collect)
+    end
+    set -l after (string sub --start (math $marker_index + 2) -- "$buffer" | string collect)
+    set -g __fish_abbr_cursor_next_buffer "$before$after"
+end
+
+function __fish_abbr_cursor_next_widget
+    set -l buffer (commandline | string collect)
+    set -l cursor (commandline --cursor)
+
+    __fish_abbr_cursor_next "$buffer" "$cursor"; or return 0
+    commandline --replace "$__fish_abbr_cursor_next_buffer"
+    commandline --cursor "$__fish_abbr_cursor_next_position"
+    commandline -f repaint
+    set -e __fish_abbr_cursor_next_buffer __fish_abbr_cursor_next_position
+end
+
+if status is-interactive
+    # Advance through additional `%` placeholders with F2.
+    bind -M insert f2 __fish_abbr_cursor_next_widget
+end
+
+abbr -a --set-cursor ehc "echo % | pwd %"
+abbr --add testmulti --set-cursor 'echo % | pwd %'
+
 # better defaults
 abbr --add .. "cd .."
 abbr --add ... "cd ../.."
@@ -29,7 +69,7 @@ abbr --add ping gping
 # Personal abbreviations (unique only — shared defaults live in "better defaults" above)
 abbr --add exf 'exec fish'
 abbr --add dotf 'cd ~/.local/share/chezmoi'
-abbr --add conf 'cd ~/.config/'
+abbr --add conf --set-cursor 'cd ~/.config/%'
 abbr --add clrnvses 'rm -rf ~/.local/share/nvim/sessions/*'
 abbr --add restart-kanata 'sudo launchctl kickstart -k system/com.example.kanata'
 abbr --add nvdot "nvim ~/.local/share/chezmoi"
@@ -469,20 +509,17 @@ abbr -a jab --set-cursor 'jj abandon %'
 abbr -a jabso 'jj absorb'
 abbr -a je --set-cursor 'jj edit %'
 
-abbr -a jsh --set-cursor 'jj show %'
-abbr -a jshr --set-cursor 'jj show -r %'
-abbr -a jshs 'jj show -s'
-abbr -a jshsr --set-cursor 'jj show -s -r %'
+abbr -a jsh --set-cursor 'jj show -r "@%"'
+abbr -a jshs --set-cursor 'jj show -s -r "@%"'
+abbr -a jshst --set-cursor 'jj show -r "@%" --stat'
 
 abbr -a jbl 'jj bookmark list -a'
 abbr -a jbm --set-cursor 'jj bookmark move % --to @-'
 abbr -a jbmm 'jj bookmark move main --to @-'
 abbr -a jbsc 'jj bookmark set -r @'
 
-abbr -a jdf 'jj diff'
-abbr -a jdfr --set-cursor 'jj diff -r %'
-abbr -a jdfs 'jj diff -s'
-abbr -a jdfsr --set-cursor 'jj diff -s -r %'
+abbr -a jdf --set-cursor 'jj diff -r "@%"'
+abbr -a jdfs --set-cursor 'jj diff -s -r "@%"'
 
 abbr -a jgf 'jj git fetch'
 abbr -a jgpa 'jj git push'
@@ -492,10 +529,13 @@ abbr -a jgpsm --set-cursor 'jj git push -b main'
 abbr -a jl 'jj log'
 abbr -a jla "jj log 'all()'"
 abbr -a jlt --set-cursor "jj log -T %"
-abbr -a jls 'jj log -s'
-abbr -a jlsr --set-cursor 'jj log -s -r %'
-abbr -a jlp 'jj log -p'
-abbr -a jlpr --set-cursor 'jj log -p -r %'
+abbr -a jls --set-cursor 'jj log -s'
+abbr -a jlsr --set-cursor 'jj log -s -r "@%"'
+abbr -a jlsp --set-cursor 'jj log -s -p'
+abbr -a jlspr --set-cursor 'jj log -s -p -r "@%"'
+abbr -a jlp --set-cursor 'jj log -p'
+abbr -a jlps --set-cursor 'jj log -p -s'
+abbr -a jlpsr --set-cursor 'jj log -p -s -r "@%"'
 
 abbr -a jrs --set-cursor 'jj restore %'
 abbr -a jrsi 'jj restore -i'
@@ -505,19 +545,18 @@ abbr -a jrbh --set-cursor 'jj rebase -h'
 abbr -a jrbs --set-cursor 'jj rebase -s % -o @-'
 abbr -a jrbr --set-cursor 'jj rebase -r % -o '
 
-abbr -a jsp 'jj split'
-abbr -a jspi 'jj split -i'
-abbr -a jspr --set-cursor 'jj split -r %'
+abbr -a jsp --set-cursor 'jj split -r "@%"'
+abbr -a jspi --set-cursor 'jj split -i -r "@%"'
 abbr -a jspa --set-cursor 'jj split -A %'
 abbr -a jspb --set-cursor 'jj split -B %'
 
-abbr -a jsq 'jj squash'
-abbr -a jsqi 'jj squash -i'
-abbr -a jsqc --set-cursor 'jj squash -t %'
+abbr -a jsq --set-cursor 'jj squash -r "@%"'
+abbr -a jsqi --set-cursor 'jj squash -i -r "@%"'
+abbr -a jsqft --set-cursor 'jj squash -f "@%" -t "%"'
+abbr -a jsqift --set-cursor 'jj squash -i -f "@%" -t "%"'
 
-abbr -a jd --set-cursor 'jj desc -m "%"'
-abbr -a jdr --set-cursor 'jj desc -m "%" -r'
-abbr -a jdc 'jj desc -m "$(koji --stdout)"'
+abbr -a jd --set-cursor 'jj desc -m "%" -r "@%"'
+abbr -a jdc --set-cursor 'jj desc -m "$(koji --stdout)" -r "@%"'
 
 abbr -a jc 'jj commit'
 abbr -a jcc 'jj commit -m "$(koji --stdout)"'
@@ -536,14 +575,13 @@ abbr -a jopa --set-cursor 'jj op abandon %'
 abbr -a joprs --set-cursor 'jj op restore %'
 abbr -a joprv --set-cursor 'jj op revert %'
 
-abbr -a jevl 'jj evolog'
-abbr -a jevlr --set-cursor "jj evolog -r '%'"
+abbr -a jevl --set-cursor 'jj evolog -r "@%"'
+abbr -a jevlp --set-cursor 'jj evolog -p -r "@%"'
 
 # hunk
-abbr -a hd 'hunk diff'
-abbr -a hdr --set-cursor "hunk diff '%'"
-abbr -a hs 'hunk show'
-abbr -a hsr --set-cursor "hunk show '%'"
+abbr -a hd --set-cursor 'hunk diff "@%"'
+abbr -a hs --set-cursor "hunk show '@%'"
+
 # tmux
 abbr --add tx tmux
 abbr --add ts --set-cursor 'tmux new -s "%"'

@@ -107,7 +107,7 @@ abbr "ch"="chezmoi"
 
 # --- Dotfiles / Neovim / config ---
 abbr "clrnvses"="rm -rf ~/.local/share/nvim/sessions/*"
-abbr "config"="cd ~/.config/"
+abbr "conf"="cd ~/.config/%"
 
 abbr "dotf"="cd ~/.local/share/chezmoi"
 abbr "nv"="nvim"
@@ -350,9 +350,9 @@ abbr jab="jj abandon %"
 abbr jabso="jj absorb"
 abbr je="jj edit %"
 
-abbr jsh="jj show %"
-abbr jshs="jj show -s"
-abbr jshsr="jj show -s -r %"
+abbr jsh='jj show -r "@%"'
+abbr jshs='jj show -s -r "@%"'
+abbr jshst='jj show -r "@%" --stat'
 
 abbr jbl="jj bookmark list -a"
 abbr jbm="jj bookmark move % --to @-"
@@ -362,14 +362,11 @@ abbr jbsc="jj bookmark set -r @"
 abbr jc="jj commit"
 abbr jcc='jj commit -m "$(koji --stdout)"'
 
-abbr jd='jj desc -m "%"'
-abbr jdr='jj desc -m "%" -r %'
-abbr jdc='jj desc -m "$(koji --stdout)"'
+abbr jd='jj desc -m "%" -r "@"'
+abbr jdc='jj desc -m "$(koji --stdout)" -r "@%"'
 
-abbr jdf="jj diff"
-abbr jdfr="jj diff -r %"
-abbr jdfs="jj diff -s"
-abbr jdfsr="jj diff -s -r %"
+abbr jdf='jj diff -r "@%"'
+abbr jdfs='jj diff -s "@%"'
 
 abbr jgf="jj git fetch"
 abbr jgpa="jj git push"
@@ -379,10 +376,10 @@ abbr jgpsm="jj git push -b main"
 abbr jl="jj log"
 abbr jla="jj log 'all()'"
 abbr jlt="jj log -T %"
-abbr jls="jj log -s"
-abbr jlsr="jj log -s -r %"
-abbr jlp="jj log -p"
-abbr jlpr="jj log -p -r %"
+abbr jls='jj log -s -r "@%"'
+abbr jlsp='jj log -s -p -r "@%"'
+abbr jlp='jj log -p -r "@%"'
+abbr jlps='jj log -p -s -r "@%"'
 
 abbr jn="jj new %"
 abbr jna="jj new -A %"
@@ -397,15 +394,15 @@ abbr jrbh="jj rebase -h"
 abbr jrbs="jj rebase -s % -o @-"
 abbr jrbr="jj rebase -r % -o %"
 
-abbr jsp="jj split"
-abbr jspi="jj split -i"
-abbr jspr="jj split -r %"
+abbr jsp='jj split -r "@%"'
+abbr jspi='jj split -i -r "@%"'
 abbr jspa="jj split -A %"
 abbr jspb="jj split -B %"
 
-abbr jsq="jj squash"
-abbr jsqi="jj squash -i"
-abbr jsqc="jj squash -t %"
+abbr jsq='jj squash -r "@%"'
+abbr jsqi='jj squash -i -r "@%"'
+abbr jsqft='jj squash -f "@%" -t ""'
+abbr jsqift='jj squash -i -f "@%" -t ""'
 
 abbr judo="jj undo"
 
@@ -416,14 +413,12 @@ abbr jopa='jj op abandon %'
 abbr joprs='jj op restore %'
 abbr joprv='jj op revert %'
 
-abbr jevl="jj evolog"
-abbr jevlr="jj evolog -r '%'"
+abbr jevl='jj evolog -r "@%"'
+abbr jevlp='jj evolog -p -r "@%"'
 
 # hunk
-abbr hd="hunk diff"
-abbr hdr="hunk diff '%'"
-abbr hs="hunk show"
-abbr hsr="hunk show '%'"
+abbr hd='hunk diff "@%"'
+abbr hs="hunk show '@%'"
 
 # --- Homebrew ---
 abbr "bci"="brew info --cask"
