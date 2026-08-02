@@ -7,7 +7,7 @@ add_newline = true
 {{- $unified_theme := env "UNIFIED_THEME_CLI" -}}
 {{- if eq $unified_theme "" }}{{ $unified_theme = .shell_env.common.UNIFIED_THEME_CLI }}{{ end -}}
 {{ if eq $unified_theme "kanagawa-dragon" }}
-palette = "kanagawa_dragon"
+palette = "kanagawa-dragon"
 {{- end }}
 # CUSTOM CONFIG
 # ---------------------------------
@@ -251,21 +251,21 @@ $character"""
   symbol = " "
 
 {{ if eq $unified_theme "kanagawa-dragon" }}
-[palettes.kanagawa_dragon]
-black = "#1F1F28"
-bright-black = "#54546D"
-white = "#DCD7BA"
-gray = "#727169"
-red = "#C34043"
+[palettes."kanagawa-dragon"]
+black = "#0d0c0c"
+bright-black = "#a6a69c"
+white = "#c5c9c5"
+gray = "#737c73"
+red = "#c4746e"
 bright-red = "#E82424"
-green = "#98BB6C"
-bright-green = "#7AA89F"
-yellow = "#E6C384"
-bright-yellow = "#FF9E3B"
-blue = "#658594"
-bright-blue = "#7E9CD8"
-magenta = "#957FB8"
-bright-magenta = "#9CABCA"
-cyan = "#6A9589"
+green = "#8a9a7b"
+bright-green = "#87a987"
+yellow = "#c4b28a"
+bright-yellow = "#c4b28a"
+blue = "#8ba4b0"
+bright-blue = "#7FB4CA"
+magenta = "#a292a3"
+bright-magenta = "#8992a7"
+cyan = "#8ea4a2"
 bright-cyan = "#7AA89F"
 {{- end }}

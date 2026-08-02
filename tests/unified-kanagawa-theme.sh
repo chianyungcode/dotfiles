@@ -31,7 +31,7 @@ done
 for file in \
     "$source_dir/dot_config/ghostty/themes/kanagawa-dragon" \
     "$source_dir/dot_config/wezterm/themes/kanagawa-dragon.lua" \
-    "$source_dir/dot_config/bat/themes/Kanagawa Dragon.tmTheme" \
+    "$source_dir/dot_config/bat/themes/kanagawa-dragon.tmTheme" \
     "$source_dir/dot_config/btop/themes/kanagawa-dragon.theme" \
     "$source_dir/dot_config/lla/themes/kanagawa-dragon.toml" \
     "$source_dir/dot_config/yazi/flavors/kanagawa-dragon.yazi/flavor.toml" \
@@ -42,6 +42,9 @@ for file in \
     assert_file "$file"
 done
 
+bat_theme=$(<"$source_dir/dot_config/bat/themes/kanagawa-dragon.tmTheme")
+assert_contains "$bat_theme" '<key>name</key><string>kanagawa-dragon</string>'
+
 tmp_dir=$(mktemp -d)
 base_data_file="$tmp_dir/base.json"
 trap 'rm -rf "$tmp_dir"' EXIT
@@ -50,6 +53,13 @@ chezmoi -S "$source_dir" data >"$base_data_file"
 theme_data=$(jq -r '.shell_env.common.UNIFIED_THEME_CLI' "$base_data_file")
 [[ "$theme_data" == kanagawa-dragon ]] ||
     fail "UNIFIED_THEME_CLI default is not kanagawa-dragon"
+
+[[ ! -e "$source_dir/dot_config/bat/themes/Kanagawa Dragon.tmTheme" ]] ||
+    fail "Bat theme must use kebab-case filename"
+
+kanagawa_palette=$(jq -r '.theme.kanagawa_dragon' "$base_data_file")
+assert_contains "$kanagawa_palette" '"background": "#181616"'
+assert_contains "$kanagawa_palette" '"foreground": "#c5c9c5"'
 
 render() {
     local selector=$1
@@ -73,6 +83,12 @@ assert_contains "$pi" '"theme": "kanagawa-dragon"'
 
 pi_fallback=$(render unsupported dot_pi/agent/settings.json.tmpl)
 assert_contains "$pi_fallback" '"theme": "catppuccin-mocha"'
+
+fish_bat=$(render kanagawa-dragon dot_config/fish/conf.d/90_bat.fish.tmpl)
+assert_contains "$fish_bat" 'BAT_THEME "kanagawa-dragon"'
+
+zsh_bat=$(render kanagawa-dragon dot_config/zsh/conf.d/third-party/bat.sh.tmpl)
+assert_contains "$zsh_bat" 'BAT_THEME="kanagawa-dragon"'
 
 herdr=$(render kanagawa-dragon dot_config/herdr/config.toml.tmpl)
 assert_contains "$herdr" '^  name = "custom"$'

@@ -249,42 +249,42 @@ theme = "{{ if eq $unified_theme "kanagawa-dragon" }}default{{ else }}gruvbox{{ 
 
 {{ if eq $unified_theme "kanagawa-dragon" -}}
 [styles.cpu]
-all_entry_color = "light cyan"
-avg_entry_color = "light yellow"
-cpu_core_colors = ["light cyan", "light yellow", "light green", "light blue", "cyan", "white"]
+all_entry_color = "#8a9a7b"
+avg_entry_color = "#c4b28a"
+cpu_core_colors = ["#8a9a7b", "#c4b28a", "#87a987", "#8ba4b0", "#8ea4a2", "#c5c9c5"]
 
 [styles.memory]
-ram_color = "light cyan"
-cache_color = "gray"
-swap_color = "light yellow"
-arc_color = "light blue"
-gpu_colors = ["light cyan", "light yellow", "light green", "light blue"]
+ram_color = "#8a9a7b"
+cache_color = "#737c73"
+swap_color = "#c4b28a"
+arc_color = "#8ba4b0"
+gpu_colors = ["#8a9a7b", "#c4b28a", "#87a987", "#8ba4b0"]
 
 [styles.network]
-rx_color = "light cyan"
-tx_color = "light yellow"
-rx_total_color = "cyan"
-tx_total_color = "light green"
+rx_color = "#8a9a7b"
+tx_color = "#c4b28a"
+rx_total_color = "#8ea4a2"
+tx_total_color = "#87a987"
 
 [styles.battery]
-high_battery_color = "light cyan"
-medium_battery_color = "light yellow"
-low_battery_color = "light red"
+high_battery_color = "#8a9a7b"
+medium_battery_color = "#c4b28a"
+low_battery_color = "#E82424"
 
 [styles.tables]
-headers = {color = "light yellow", bold = true}
+headers = {color = "#c4b28a", bold = true}
 
 [styles.graphs]
-graph_color = "gray"
-legend_text = {color = "gray"}
+graph_color = "#737c73"
+legend_text = {color = "#737c73"}
 
 [styles.widgets]
-border_color = "gray"
-selected_border_color = "light yellow"
-widget_title = {color = "light yellow"}
-text = {color = "white"}
-selected_text = {color = "black", bg_color = "light yellow"}
-disabled_text = {color = "dark gray"}
+border_color = "#393836"
+selected_border_color = "#c4b28a"
+widget_title = {color = "#c4b28a"}
+text = {color = "#c5c9c5"}
+selected_text = {color = "#181616", bg_color = "#c4b28a"}
+disabled_text = {color = "#737c73"}
 {{- end }}
 
 #[styles.cpu]

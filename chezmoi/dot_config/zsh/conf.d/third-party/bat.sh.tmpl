@@ -1,7 +1,7 @@
 # Theming for bat and delta
 {{- $unified_theme := env "UNIFIED_THEME_CLI" -}}
 {{- if eq $unified_theme "" }}{{ $unified_theme = .shell_env.common.UNIFIED_THEME_CLI }}{{ end -}}
-export BAT_THEME="{{ if eq $unified_theme "kanagawa-dragon" }}Kanagawa Dragon{{ else }}gruvbox-dark{{ end }}"
+export BAT_THEME="{{ if eq $unified_theme "kanagawa-dragon" }}kanagawa-dragon{{ else }}gruvbox-dark{{ end }}"
 
 # Pass all help (-h, --help) output through bat
 # if [[ -n ${ZSH_NAME} ]]; then

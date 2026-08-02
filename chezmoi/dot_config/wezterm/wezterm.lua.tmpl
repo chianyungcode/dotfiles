@@ -16,14 +16,14 @@ end
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
 	local edge_background = "rgba(0,0,0,0)"
-	local background = "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.surface }}{{ else }}#5D9AC0{{ end }}"
+	local background = "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.background }}{{ else }}#5D9AC0{{ end }}"
 	local foreground = "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.foreground }}{{ else }}#000{{ end }}"
 	local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_left_half_circle_thick
 	local SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_upper_left_triangle
 
 	if tab.is_active then
-		background = "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.orange }}{{ else }}#F1BB67{{ end }}"
-		foreground = "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.background }}{{ else }}#000{{ end }}"
+		background = "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.yellow }}{{ else }}#F1BB67{{ end }}"
+		foreground = "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.surface }}{{ else }}#000{{ end }}"
 		edge_background = "rgba(0,0,0,0)"
 		SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_lower_right_triangle
 	end

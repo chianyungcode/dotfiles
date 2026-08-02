@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>name</key><string>kanagawa-dragon</string>
+  <key>settings</key><array>
+    <dict><key>settings</key><dict>
+      <key>background</key><string>#181616</string><key>caret</key><string>#8ea4a2</string>
+      <key>foreground</key><string>#c5c9c5</string><key>invisibles</key><string>#625e5a</string>
+      <key>lineHighlight</key><string>#0d0c0c</string><key>selection</key><string>#223249</string>
+    </dict></dict>
+    <dict><key>name</key><string>Comments</string><key>scope</key><string>comment</string><key>settings</key><dict><key>foreground</key><string>#737c73</string></dict></dict>
+    <dict><key>name</key><string>Strings</string><key>scope</key><string>string</string><key>settings</key><dict><key>foreground</key><string>#8a9a7b</string></dict></dict>
+    <dict><key>name</key><string>Constants</string><key>scope</key><string>constant</string><key>settings</key><dict><key>foreground</key><string>#b6927b</string></dict></dict>
+    <dict><key>name</key><string>Keywords</string><key>scope</key><string>keyword, storage, storage.type</string><key>settings</key><dict><key>foreground</key><string>#8992a7</string></dict></dict>
+    <dict><key>name</key><string>Functions</string><key>scope</key><string>entity.name.function, support.function</string><key>settings</key><dict><key>foreground</key><string>#8ba4b0</string></dict></dict>
+    <dict><key>name</key><string>Types</string><key>scope</key><string>entity.name.type, support.type</string><key>settings</key><dict><key>foreground</key><string>#8ea4a2</string></dict></dict>
+    <dict><key>name</key><string>Errors</string><key>scope</key><string>invalid, invalid.illegal</string><key>settings</key><dict><key>foreground</key><string>#E82424</string></dict></dict>
+  </array>
+</dict></plist>

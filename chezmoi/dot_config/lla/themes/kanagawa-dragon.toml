@@ -3,19 +3,19 @@ author = "chianyung"
 description = "Kanagawa Dragon dark theme"
 
 [colors]
-file = { r = 220, g = 215, b = 186 }
-directory = { r = 126, g = 156, b = 216 }
-symlink = { r = 122, g = 168, b = 159 }
-executable = { r = 152, g = 187, b = 108 }
-size = { r = 122, g = 168, b = 159 }
-date = { r = 114, g = 113, b = 105 }
+file = { r = 197, g = 201, b = 197 }
+directory = { r = 139, g = 164, b = 176 }
+symlink = { r = 142, g = 164, b = 162 }
+executable = { r = 138, g = 154, b = 123 }
+size = { r = 142, g = 164, b = 162 }
+date = { r = 115, g = 124, b = 115 }
 user = { r = 200, g = 192, b = 147 }
 group = { r = 114, g = 113, b = 105 }
-permission_dir = { r = 230, g = 195, b = 132 }
-permission_read = { r = 152, g = 187, b = 108 }
-permission_write = { r = 230, g = 195, b = 132 }
-permission_exec = { r = 152, g = 187, b = 108 }
-permission_none = { r = 84, g = 84, b = 109 }
+permission_dir = { r = 196, g = 178, b = 138 }
+permission_read = { r = 138, g = 154, b = 123 }
+permission_write = { r = 196, g = 178, b = 138 }
+permission_exec = { r = 138, g = 154, b = 123 }
+permission_none = { r = 98, g = 94, b = 90 }
 
 [special_files]
 
