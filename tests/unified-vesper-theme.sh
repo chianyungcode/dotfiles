@@ -42,6 +42,10 @@ for file in \
     assert_file "$file"
 done
 
+assert_file "$source_dir/dot_config/starship/starship.toml.tmpl"
+[[ ! -e "$source_dir/dot_config/starship/starship.toml" ]] ||
+    fail "Starship source must be a Chezmoi template"
+
 tmp_dir=$(mktemp -d)
 base_data_file="$tmp_dir/base.json"
 trap 'rm -rf "$tmp_dir"' EXIT
