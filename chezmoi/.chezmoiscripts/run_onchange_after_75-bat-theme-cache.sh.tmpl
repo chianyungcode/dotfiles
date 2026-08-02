@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+# Theme asset fingerprint: {{ include "dot_config/bat/themes/kanagawa-dragon.tmTheme" | sha256sum }}
+
 if command -v bat >/dev/null 2>&1; then
     bat cache --build
 fi

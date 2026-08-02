@@ -326,6 +326,7 @@ bat_theme_script="$tmp_dir/bat-theme-cache.sh"
 render_script "$ubuntu_data" "$bat_theme_source" "$bat_theme_script"
 check_rendered_script "$bat_theme_script"
 assert_contains "$bat_theme_script" 'bat cache --build'
+assert_contains "$bat_theme_script" 'Theme asset fingerprint:'
 
 actual_scripts="$tmp_dir/actual-scripts.txt"
 expected_scripts="$tmp_dir/expected-scripts.txt"
