@@ -8,24 +8,6 @@ add_newline = true
 {{- if eq $unified_theme "" }}{{ $unified_theme = .shell_env.common.UNIFIED_THEME_CLI }}{{ end -}}
 {{ if eq $unified_theme "vesper" }}
 palette = "vesper"
-
-[palettes.vesper]
-black = "#101010"
-bright-black = "#505050"
-white = "#FFFFFF"
-gray = "#A0A0A0"
-red = "#FF8080"
-bright-red = "#FF9A9A"
-green = "#99FFE4"
-bright-green = "#B3FFED"
-yellow = "#FFC799"
-bright-yellow = "#FFCFA8"
-blue = "#65737E"
-bright-blue = "#A0A0A0"
-magenta = "#7E7E7E"
-bright-magenta = "#A0A0A0"
-cyan = "#99FFE4"
-bright-cyan = "#B3FFED"
 {{- end }}
 # CUSTOM CONFIG
 # ---------------------------------
@@ -267,3 +249,23 @@ $character"""
 
 [zig]
   symbol = " "
+
+{{ if eq $unified_theme "vesper" }}
+[palettes.vesper]
+black = "#101010"
+bright-black = "#505050"
+white = "#FFFFFF"
+gray = "#A0A0A0"
+red = "#FF8080"
+bright-red = "#FF9A9A"
+green = "#99FFE4"
+bright-green = "#B3FFED"
+yellow = "#FFC799"
+bright-yellow = "#FFCFA8"
+blue = "#65737E"
+bright-blue = "#A0A0A0"
+magenta = "#7E7E7E"
+bright-magenta = "#A0A0A0"
+cyan = "#99FFE4"
+bright-cyan = "#B3FFED"
+{{- end }}

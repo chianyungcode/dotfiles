@@ -21,7 +21,7 @@ assert_file() {
 repo_root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 source_dir="$repo_root/chezmoi"
 
-for command_name in chezmoi jq rg; do
+for command_name in chezmoi jq rg starship; do
     command -v "$command_name" >/dev/null || {
         printf 'missing required command: %s\n' "$command_name" >&2
         exit 1
@@ -82,5 +82,13 @@ assert_contains "$fish_bat" 'BAT_THEME "Vesper"'
 
 zsh_bat=$(render vesper dot_config/zsh/conf.d/third-party/bat.sh.tmpl)
 assert_contains "$zsh_bat" 'BAT_THEME="Vesper"'
+
+starship_config_file="$tmp_dir/starship.toml"
+render vesper dot_config/starship/starship.toml.tmpl >"$starship_config_file"
+starship_effective=$(STARSHIP_CONFIG="$starship_config_file" starship print-config)
+assert_contains "$starship_effective" '^format = "\$hostname'
+if printf '%s\n' "$starship_effective" | rg -q '^format = "\$all"'; then
+    fail "Starship format unexpectedly falls back to the default module list"
+fi
 
 printf 'unified Vesper theme render checks passed\n'
