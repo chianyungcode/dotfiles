@@ -1,3 +1,5 @@
 {{- $unified_theme := env "UNIFIED_THEME_CLI" -}}
 {{- if eq $unified_theme "" }}{{ $unified_theme = .shell_env.common.UNIFIED_THEME_CLI }}{{ end -}}
-set -gx BAT_THEME "{{ if eq $unified_theme "vesper" }}Vesper{{ else }}gruvbox-dark{{ end }}"
+
+[flavor]
+dark = "{{ if eq $unified_theme "vesper" }}vesper{{ else }}lain{{ end }}"

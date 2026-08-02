@@ -1,0 +1,7 @@
+{{- $unified_theme := env "UNIFIED_THEME_CLI" -}}
+{{- if eq $unified_theme "" }}{{ $unified_theme = .shell_env.common.UNIFIED_THEME_CLI }}{{ end -}}
+
+# btop configuration managed by chezmoi.
+color_theme = "{{ if eq $unified_theme "vesper" }}vesper{{ else }}Default{{ end }}"
+theme_background = true
+truecolor = true

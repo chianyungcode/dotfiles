@@ -321,6 +321,12 @@ assert_contains "$imperative" 'herdr-automatic-rename'
 assert_contains "$imperative" 'already satisfied'
 assert_contains "$imperative" 'is not installed'
 
+bat_theme_source="$source_dir/.chezmoiscripts/run_onchange_after_75-bat-theme-cache.sh.tmpl"
+bat_theme_script="$tmp_dir/bat-theme-cache.sh"
+render_script "$ubuntu_data" "$bat_theme_source" "$bat_theme_script"
+check_rendered_script "$bat_theme_script"
+assert_contains "$bat_theme_script" 'bat cache --build'
+
 actual_scripts="$tmp_dir/actual-scripts.txt"
 expected_scripts="$tmp_dir/expected-scripts.txt"
 
@@ -334,6 +340,7 @@ printf '%s\n' \
     run_onchange_after_30-language-packages.sh.tmpl \
     run_onchange_after_40-standalone-tools.sh.tmpl \
     run_onchange_after_60-security-material.sh.tmpl \
+    run_onchange_after_75-bat-theme-cache.sh.tmpl \
     run_onchange_before_10-system-packages.sh.tmpl \
     run_after_70-imperative-cli-tools.sh.tmpl \
     run_once_after_90-monthly-maintenance.sh.tmpl |

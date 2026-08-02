@@ -1,3 +1,6 @@
+{{- $unified_theme := env "UNIFIED_THEME_CLI" -}}
+{{- if eq $unified_theme "" }}{{ $unified_theme = .shell_env.common.UNIFIED_THEME_CLI }}{{ end -}}
+
 # lla Configuration File
 # This file controls the behavior and appearance of the lla command
 
@@ -45,7 +48,7 @@ permission_format = "symbolic"
 # The theme to use for coloring
 # Place custom themes in ~/.config/lla/themes/
 # Default: "default"
-theme = "vesper"
+theme = "{{ if eq $unified_theme "vesper" }}vesper{{ else }}vesper{{ end }}"
 
 # List of enabled plugins
 # Each plugin provides additional functionality

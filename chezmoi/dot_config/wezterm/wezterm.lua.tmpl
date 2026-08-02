@@ -1,3 +1,6 @@
+{{- $unified_theme := env "UNIFIED_THEME_CLI" -}}
+{{- if eq $unified_theme "" }}{{ $unified_theme = .shell_env.common.UNIFIED_THEME_CLI }}{{ end -}}
+
 -- Keyword local adalah untuk variabel seperti const pada javascript
 
 -- Pull in the wezterm API
@@ -13,14 +16,14 @@ end
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
 	local edge_background = "rgba(0,0,0,0)"
-	local background = "#5D9AC0"
-	local foreground = "#000"
+	local background = "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.surface }}{{ else }}#5D9AC0{{ end }}"
+	local foreground = "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.foreground }}{{ else }}#000{{ end }}"
 	local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_left_half_circle_thick
 	local SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_upper_left_triangle
 
 	if tab.is_active then
-		background = "#F1BB67"
-		foreground = "#000"
+		background = "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.orange }}{{ else }}#F1BB67{{ end }}"
+		foreground = "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.background }}{{ else }}#000{{ end }}"
 		edge_background = "rgba(0,0,0,0)"
 		SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_lower_right_triangle
 	end
@@ -42,7 +45,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 end)
 
 local config = {
-	colors = dofile(wezterm.config_dir .. "/themes/oldworld-vibrant.lua"),
+	colors = dofile(wezterm.config_dir .. "/themes/{{ if eq $unified_theme "vesper" }}vesper{{ else }}oldworld-vibrant{{ end }}.lua"),
 	-- config.color_scheme = 'Colorful Colors (terminal.sexy)'
 
 	-- ### Config font ###

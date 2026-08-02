@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>name</key>
+  <string>Vesper</string>
+  <key>settings</key>
+  <array>
+    <dict>
+      <key>settings</key>
+      <dict>
+        <key>background</key><string>#101010</string>
+        <key>caret</key><string>#99FFE4</string>
+        <key>foreground</key><string>#FFFFFF</string>
+        <key>invisibles</key><string>#505050</string>
+        <key>lineHighlight</key><string>#161616</string>
+        <key>selection</key><string>#232323</string>
+      </dict>
+    </dict>
+    <dict><key>name</key><string>Comments</string><key>scope</key><string>comment</string><key>settings</key><dict><key>foreground</key><string>#7E7E7E</string></dict></dict>
+    <dict><key>name</key><string>Strings</string><key>scope</key><string>string</string><key>settings</key><dict><key>foreground</key><string>#99FFE4</string></dict></dict>
+    <dict><key>name</key><string>Constants</string><key>scope</key><string>constant</string><key>settings</key><dict><key>foreground</key><string>#FFCFA8</string></dict></dict>
+    <dict><key>name</key><string>Keywords</string><key>scope</key><string>keyword, storage, storage.type</string><key>settings</key><dict><key>foreground</key><string>#FFC799</string></dict></dict>
+    <dict><key>name</key><string>Functions</string><key>scope</key><string>entity.name.function, support.function</string><key>settings</key><dict><key>foreground</key><string>#FFC799</string></dict></dict>
+    <dict><key>name</key><string>Types</string><key>scope</key><string>entity.name.type, support.type</string><key>settings</key><dict><key>foreground</key><string>#FFCFA8</string></dict></dict>
+    <dict><key>name</key><string>Tags</string><key>scope</key><string>entity.name.tag</string><key>settings</key><dict><key>foreground</key><string>#99FFE4</string></dict></dict>
+    <dict><key>name</key><string>Errors</string><key>scope</key><string>invalid, invalid.illegal</string><key>settings</key><dict><key>foreground</key><string>#FF8080</string></dict></dict>
+    <dict><key>name</key><string>Markup headings</string><key>scope</key><string>markup.heading</string><key>settings</key><dict><key>foreground</key><string>#FFC799</string><key>fontStyle</key><string>bold</string></dict></dict>
+    <dict><key>name</key><string>Markup additions</string><key>scope</key><string>markup.inserted</string><key>settings</key><dict><key>foreground</key><string>#99FFE4</string></dict></dict>
+    <dict><key>name</key><string>Markup deletions</string><key>scope</key><string>markup.deleted</string><key>settings</key><dict><key>foreground</key><string>#FF8080</string></dict></dict>
+  </array>
+</dict>
+</plist>

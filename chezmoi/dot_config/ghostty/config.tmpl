@@ -1,3 +1,6 @@
+{{- $unified_theme := env "UNIFIED_THEME_CLI" -}}
+{{- if eq $unified_theme "" }}{{ $unified_theme = .shell_env.common.UNIFIED_THEME_CLI }}{{ end -}}
+
 # Note: Ghostty configuration does not support inline comments. If you need to add comments, configure them on a separate line for each comment.
 # ==========================
 #   APPEARANCE
@@ -8,7 +11,7 @@ shell-integration-features = cursor,sudo,title
 # General
 background-opacity = 1
 background-blur-radius = 10
-theme = oldworld-vibrant
+theme = {{ if eq $unified_theme "vesper" }}vesper{{ else }}oldworld-vibrant{{ end }}
 
 # background-image = ~/Downloads/anim.jpg
 # background-image-position = center
@@ -16,7 +19,7 @@ theme = oldworld-vibrant
 # background-image-opacity = 0.05
 
 # Cursor
-cursor-color = #00FF98
+cursor-color = {{ if eq $unified_theme "vesper" }}{{ .theme.vesper.mint }}{{ else }}#00FF98{{ end }}
 cursor-style = bar
 cursor-style-blink = false
 

@@ -1,4 +1,6 @@
 {{- $signing_enabled := and (eq .secrets.provider "onepassword") (ne .identity.signing_key "") -}}
+{{- $unified_theme := env "UNIFIED_THEME_CLI" -}}
+{{- if eq $unified_theme "" }}{{ $unified_theme = .shell_env.common.UNIFIED_THEME_CLI }}{{ end -}}
 
 [user]
     name = {{ .identity.git_name }}
@@ -98,10 +100,27 @@
 [delta]
     navigate = true
     side-by-side = true
+    {{- if eq $unified_theme "vesper" }}
+    features = vesper
+    {{- else }}
     syntax-theme = "DarkNeon"
     plus-style = "syntax #445345"
     minus-style = "syntax #4F221F"
+    {{- end }}
     line-numbers = true
+
+    {{- if eq $unified_theme "vesper" }}
+[delta "vesper"]
+    syntax-theme = "Vesper"
+    file-style = "bold #FFC799"
+    hunk-header-style = "bold #FFCFA8 box #282828"
+    minus-style = "syntax #2A1616"
+    minus-emph-style = "syntax #4F221F"
+    plus-style = "syntax #162A24"
+    plus-emph-style = "syntax #245044"
+    line-numbers-minus-style = "#FF8080"
+    line-numbers-plus-style = "#99FFE4"
+    {{- end }}
 
 [interactive]
     diffFilter = delta --color-only

@@ -15,6 +15,7 @@
     fish_completions   = ["/opt/homebrew/share/fish/completions", "/opt/homebrew/share/fish/vendor_completions.d"]
 
   [shell_env.common]
+    UNIFIED_THEME_CLI     = "vesper"
     EDITOR               = "nvim"
     LM_STUDIO_BIN        = "$HOME/.lmstudio/bin"
     TMUXIFIER_LAYOUT_PATH = "$HOME/.config/tmuxifier/layouts"

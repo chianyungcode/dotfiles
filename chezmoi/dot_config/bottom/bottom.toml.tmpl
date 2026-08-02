@@ -1,3 +1,6 @@
+{{- $unified_theme := env "UNIFIED_THEME_CLI" -}}
+{{- if eq $unified_theme "" }}{{ $unified_theme = .shell_env.common.UNIFIED_THEME_CLI }}{{ end -}}
+
 # This is a default config file for bottom. All of the settings are commented
 # out by default; if you wish to change them uncomment and modify as you see
 # fit.
@@ -242,7 +245,47 @@
 #
 # This will have the lowest precedence if a custom colour palette is set,
 # or overridden if the command-line flag for a built-in theme is set.
-theme = "gruvbox"
+theme = "{{ if eq $unified_theme "vesper" }}default{{ else }}gruvbox{{ end }}"
+
+{{ if eq $unified_theme "vesper" -}}
+[styles.cpu]
+all_entry_color = "light cyan"
+avg_entry_color = "light yellow"
+cpu_core_colors = ["light cyan", "light yellow", "light green", "light blue", "cyan", "white"]
+
+[styles.memory]
+ram_color = "light cyan"
+cache_color = "gray"
+swap_color = "light yellow"
+arc_color = "light blue"
+gpu_colors = ["light cyan", "light yellow", "light green", "light blue"]
+
+[styles.network]
+rx_color = "light cyan"
+tx_color = "light yellow"
+rx_total_color = "cyan"
+tx_total_color = "light green"
+
+[styles.battery]
+high_battery_color = "light cyan"
+medium_battery_color = "light yellow"
+low_battery_color = "light red"
+
+[styles.tables]
+headers = {color = "light yellow", bold = true}
+
+[styles.graphs]
+graph_color = "gray"
+legend_text = {color = "gray"}
+
+[styles.widgets]
+border_color = "gray"
+selected_border_color = "light yellow"
+widget_title = {color = "light yellow"}
+text = {color = "white"}
+selected_text = {color = "black", bg_color = "light yellow"}
+disabled_text = {color = "dark gray"}
+{{- end }}
 
 #[styles.cpu]
 #all_entry_color = "green"

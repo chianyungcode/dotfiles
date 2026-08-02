@@ -1,6 +1,9 @@
+{{- $unified_theme := env "UNIFIED_THEME_CLI" -}}
+{{- if eq $unified_theme "" }}{{ $unified_theme = .shell_env.common.UNIFIED_THEME_CLI }}{{ end -}}
+
 # More details are at https://superfile.netlify.app/configure/superfile-config/
 # change your theme
-theme = 'gruvbox'
+theme = '{{ if eq $unified_theme "vesper" }}vesper{{ else }}gruvbox{{ end }}'
 # 
 # The editor files will be opened with. (Leave blank to use the EDITOR environment variable).
 editor = ''

@@ -1,4 +1,5 @@
 # Common - Environment Variable
+set -gx UNIFIED_THEME_CLI "{{ .shell_env.common.UNIFIED_THEME_CLI }}"
 set -gx EDITOR "{{ .shell_env.common.EDITOR }}"
 set -gx LM_STUDIO_BIN "{{ .shell_env.common.LM_STUDIO_BIN }}"
 set -gx TMUXIFIER_LAYOUT_PATH "{{ .shell_env.common.TMUXIFIER_LAYOUT_PATH }}"

@@ -1,0 +1,29 @@
+{{- $unified_theme := env "UNIFIED_THEME_CLI" -}}
+{{- if eq $unified_theme "" }}{{ $unified_theme = .shell_env.common.UNIFIED_THEME_CLI }}{{ end -}}
+
+agent_notes                  = true
+exclude_untracked            = false
+line_numbers                 = true
+menu_bar                     = true
+mode                         = "auto"          # auto, split, stack
+prompt_save_view_preferences = true
+theme                        = "{{ if eq $unified_theme "vesper" }}custom{{ else }}vitesse-black{{ end }}" # any built-in theme id, auto, or custom
+transparent_background       = false
+watch                        = false
+wrap_lines                   = false
+
+{{ if eq $unified_theme "vesper" -}}
+[custom_theme]
+base = "github-dark-default"
+label = "Vesper"
+accent = "{{ .theme.vesper.orange }}"
+panel = "{{ .theme.vesper.surface }}"
+noteBorder = "{{ .theme.vesper.border }}"
+
+[custom_theme.syntax]
+keyword = "{{ .theme.vesper.orange_bright }}"
+string = "{{ .theme.vesper.mint }}"
+comment = "{{ .theme.vesper.dim }}"
+operator = "{{ .theme.vesper.orange }}"
+variable = "{{ .theme.vesper.foreground }}"
+{{- end }}

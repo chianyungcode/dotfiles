@@ -1,0 +1,83 @@
+[app]
+overall = { bg = "#101010" }
+
+[mgr]
+cwd = { fg = "#FFC799", bold = true }
+hovered = { fg = "#FFFFFF", bg = "#232323", bold = true }
+preview_hovered = { underline = true }
+find_keyword = { fg = "#FFCFA8", bg = "#161616", bold = true }
+find_position = { fg = "#99FFE4", bg = "#161616", bold = true }
+marker_marked = { fg = "#99FFE4", bg = "#99FFE4" }
+marker_selected = { fg = "#FFC799", bg = "#FFC799" }
+marker_copied = { fg = "#FFCFA8", bg = "#FFCFA8" }
+marker_cut = { fg = "#FF8080", bg = "#FF8080" }
+count_selected = { fg = "#101010", bg = "#FFC799" }
+count_copied = { fg = "#101010", bg = "#FFCFA8" }
+count_cut = { fg = "#101010", bg = "#FF8080" }
+border_symbol = "│"
+border_style = { fg = "#282828" }
+
+[tabs]
+active = { fg = "#101010", bg = "#FFC799", bold = true }
+inactive = { fg = "#7E7E7E", bg = "#161616" }
+
+[mode]
+normal_main = { fg = "#101010", bg = "#FFC799", bold = true }
+normal_alt = { fg = "#FFC799", bg = "#161616" }
+select_main = { fg = "#101010", bg = "#99FFE4", bold = true }
+select_alt = { fg = "#99FFE4", bg = "#161616" }
+unset_main = { fg = "#101010", bg = "#FF8080", bold = true }
+unset_alt = { fg = "#FF8080", bg = "#161616" }
+
+[status]
+perm_sep = { fg = "#65737E" }
+perm_type = { fg = "#FFC799" }
+perm_read = { fg = "#99FFE4" }
+perm_write = { fg = "#FFC799" }
+perm_exec = { fg = "#FFCFA8" }
+progress_label = { fg = "#FFC799", bold = true }
+progress_normal = { fg = "#99FFE4", bg = "#232323" }
+progress_error = { fg = "#FF8080", bg = "#232323" }
+
+[which]
+mask = { bg = "#161616" }
+cand = { fg = "#FFC799" }
+rest = { fg = "#7E7E7E" }
+desc = { fg = "#A0A0A0" }
+separator_style = { fg = "#65737E" }
+
+[confirm]
+border = { fg = "#FFC799" }
+title = { fg = "#FFC799", bold = true }
+content = { fg = "#FFFFFF" }
+btn_yes = { fg = "#101010", bg = "#99FFE4", bold = true }
+btn_no = { fg = "#FF8080", bold = true }
+
+[input]
+border = { fg = "#FFC799" }
+title = { fg = "#FFC799" }
+value = { fg = "#FFFFFF" }
+selected = { reversed = true }
+
+[help]
+on = { fg = "#99FFE4" }
+run = { fg = "#FFCFA8" }
+desc = { fg = "#A0A0A0" }
+footer = { fg = "#101010", bg = "#FFC799" }
+
+[filetype]
+rules = [
+  { mime = "inode/directory", fg = "#FFC799", bold = true },
+  { mime = "image/*", fg = "#99FFE4" },
+  { mime = "{audio,video}/*", fg = "#FFCFA8" },
+  { mime = "application/{pdf,doc,rtf,odt,docx,xlsx,pptx}", fg = "#FFC799" },
+  { url = "*.{txt,md,rst,csv,*json*,toml,yml,yaml,xml,html,ini,cfg,conf,log}", fg = "#FFFFFF" },
+  { url = "*.{zip,rar,7z,tar,gz,bz2,xz,zst,lz,lzma,iso,img}", fg = "#FFCFA8" },
+  { url = "*", fg = "#A0A0A0" },
+  { url = "*/", fg = "#FFC799", bold = true },
+]
+
+[icon]
+dirs = [
+  { name = "*", text = "󰉋", fg = "#FFC799" },
+]
