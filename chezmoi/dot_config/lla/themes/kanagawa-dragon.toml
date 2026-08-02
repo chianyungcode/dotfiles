@@ -1,0 +1,40 @@
+name = "kanagawa-dragon"
+author = "chianyung"
+description = "Kanagawa Dragon dark theme"
+
+[colors]
+file = { r = 220, g = 215, b = 186 }
+directory = { r = 126, g = 156, b = 216 }
+symlink = { r = 122, g = 168, b = 159 }
+executable = { r = 152, g = 187, b = 108 }
+size = { r = 122, g = 168, b = 159 }
+date = { r = 114, g = 113, b = 105 }
+user = { r = 200, g = 192, b = 147 }
+group = { r = 114, g = 113, b = 105 }
+permission_dir = { r = 230, g = 195, b = 132 }
+permission_read = { r = 152, g = 187, b = 108 }
+permission_write = { r = 230, g = 195, b = 132 }
+permission_exec = { r = 152, g = 187, b = 108 }
+permission_none = { r = 84, g = 84, b = 109 }
+
+[special_files]
+
+[special_files.folders]
+".git" = { r = 195, g = 64, b = 67 }
+"node_modules" = { r = 114, g = 113, b = 105 }
+"target" = { r = 114, g = 113, b = 105 }
+"dist" = { r = 114, g = 113, b = 105 }
+
+[special_files.exact_match]
+"README.md" = { r = 230, g = 195, b = 132 }
+"Cargo.toml" = { r = 122, g = 168, b = 159 }
+
+[extensions.colors]
+md = { r = 230, g = 195, b = 132 }
+toml = { r = 122, g = 168, b = 159 }
+yaml = { r = 122, g = 168, b = 159 }
+yml = { r = 122, g = 168, b = 159 }
+json = { r = 255, g = 160, b = 102 }
+rs = { r = 126, g = 156, b = 216 }
+go = { r = 122, g = 168, b = 159 }
+lua = { r = 149, g = 127, b = 184 }

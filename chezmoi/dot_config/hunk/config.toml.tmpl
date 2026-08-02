@@ -7,23 +7,23 @@ line_numbers                 = true
 menu_bar                     = true
 mode                         = "auto"          # auto, split, stack
 prompt_save_view_preferences = true
-theme                        = "{{ if eq $unified_theme "vesper" }}custom{{ else }}vitesse-black{{ end }}" # any built-in theme id, auto, or custom
+theme                        = "{{ if eq $unified_theme "kanagawa-dragon" }}custom{{ else }}vitesse-black{{ end }}" # any built-in theme id, auto, or custom
 transparent_background       = false
 watch                        = false
 wrap_lines                   = false
 
-{{ if eq $unified_theme "vesper" -}}
+{{ if eq $unified_theme "kanagawa-dragon" -}}
 [custom_theme]
 base = "github-dark-default"
-label = "Vesper"
-accent = "{{ .theme.vesper.orange }}"
-panel = "{{ .theme.vesper.surface }}"
-noteBorder = "{{ .theme.vesper.border }}"
+label = "Kanagawa Dragon"
+accent = "{{ .theme.kanagawa_dragon.orange }}"
+panel = "{{ .theme.kanagawa_dragon.surface }}"
+noteBorder = "{{ .theme.kanagawa_dragon.border }}"
 
 [custom_theme.syntax]
-keyword = "{{ .theme.vesper.orange_bright }}"
-string = "{{ .theme.vesper.mint }}"
-comment = "{{ .theme.vesper.dim }}"
-operator = "{{ .theme.vesper.orange }}"
-variable = "{{ .theme.vesper.foreground }}"
+keyword = "{{ .theme.kanagawa_dragon.yellow }}"
+string = "{{ .theme.kanagawa_dragon.green }}"
+comment = "{{ .theme.kanagawa_dragon.dim }}"
+operator = "{{ .theme.kanagawa_dragon.orange }}"
+variable = "{{ .theme.kanagawa_dragon.foreground }}"
 {{- end }}

@@ -2,31 +2,31 @@
 {{- if eq $unified_theme "" }}{{ $unified_theme = .shell_env.common.UNIFIED_THEME_CLI }}{{ end -}}
 
 filekinds:
-  normal: {foreground: "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.foreground }}{{ else }}White{{ end }}"}
-  directory: {foreground: "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.orange }}{{ else }}Blue{{ end }}", is_bold: true}
-  symlink: {foreground: "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.mint }}{{ else }}Cyan{{ end }}"}
-  executable: {foreground: "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.mint }}{{ else }}Green{{ end }}", is_bold: true}
-  pipe: {foreground: "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.warning }}{{ else }}Yellow{{ end }}"}
-  socket: {foreground: "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.error }}{{ else }}Red{{ end }}"}
-  block_device: {foreground: "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.orange }}{{ else }}Yellow{{ end }}"}
-  char_device: {foreground: "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.orange }}{{ else }}Yellow{{ end }}"}
+  normal: {foreground: "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.foreground }}{{ else }}White{{ end }}"}
+  directory: {foreground: "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.blue }}{{ else }}Blue{{ end }}", is_bold: true}
+  symlink: {foreground: "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.aqua }}{{ else }}Cyan{{ end }}"}
+  executable: {foreground: "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.green }}{{ else }}Green{{ end }}", is_bold: true}
+  pipe: {foreground: "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.yellow }}{{ else }}Yellow{{ end }}"}
+  socket: {foreground: "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.error }}{{ else }}Red{{ end }}"}
+  block_device: {foreground: "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.orange }}{{ else }}Yellow{{ end }}"}
+  char_device: {foreground: "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.orange }}{{ else }}Yellow{{ end }}"}
 
 perms:
-  user_read: {foreground: "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.mint }}{{ else }}Green{{ end }}"}
-  user_write: {foreground: "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.orange }}{{ else }}Yellow{{ end }}"}
-  user_execute_file: {foreground: "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.mint }}{{ else }}Green{{ end }}", is_bold: true}
-  user_execute_other: {foreground: "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.mint }}{{ else }}Green{{ end }}"}
-  group_read: {foreground: "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.mint }}{{ else }}Green{{ end }}"}
-  group_write: {foreground: "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.orange }}{{ else }}Yellow{{ end }}"}
-  group_execute: {foreground: "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.mint }}{{ else }}Green{{ end }}"}
-  other_read: {foreground: "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.muted }}{{ else }}White{{ end }}"}
-  other_write: {foreground: "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.error }}{{ else }}Red{{ end }}"}
-  other_execute: {foreground: "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.mint }}{{ else }}Green{{ end }}"}
-  attribute: {foreground: "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.dim }}{{ else }}White{{ end }}"}
+  user_read: {foreground: "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.green }}{{ else }}Green{{ end }}"}
+  user_write: {foreground: "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.yellow }}{{ else }}Yellow{{ end }}"}
+  user_execute_file: {foreground: "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.green }}{{ else }}Green{{ end }}", is_bold: true}
+  user_execute_other: {foreground: "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.green }}{{ else }}Green{{ end }}"}
+  group_read: {foreground: "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.green }}{{ else }}Green{{ end }}"}
+  group_write: {foreground: "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.yellow }}{{ else }}Yellow{{ end }}"}
+  group_execute: {foreground: "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.green }}{{ else }}Green{{ end }}"}
+  other_read: {foreground: "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.muted }}{{ else }}White{{ end }}"}
+  other_write: {foreground: "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.error }}{{ else }}Red{{ end }}"}
+  other_execute: {foreground: "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.green }}{{ else }}Green{{ end }}"}
+  attribute: {foreground: "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.dim }}{{ else }}White{{ end }}"}
 
 filenames:
   extensions:
-    md: {filename: {foreground: "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.orange }}{{ else }}Yellow{{ end }}"}}
-    toml: {filename: {foreground: "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.mint }}{{ else }}Cyan{{ end }}"}}
-    yaml: {filename: {foreground: "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.mint }}{{ else }}Cyan{{ end }}"}}
-    yml: {filename: {foreground: "{{ if eq $unified_theme "vesper" }}{{ .theme.vesper.mint }}{{ else }}Cyan{{ end }}"}}
+    md: {filename: {foreground: "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.orange }}{{ else }}Yellow{{ end }}"}}
+    toml: {filename: {foreground: "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.aqua }}{{ else }}Cyan{{ end }}"}}
+    yaml: {filename: {foreground: "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.aqua }}{{ else }}Cyan{{ end }}"}}
+    yml: {filename: {foreground: "{{ if eq $unified_theme "kanagawa-dragon" }}{{ .theme.kanagawa_dragon.aqua }}{{ else }}Cyan{{ end }}"}}

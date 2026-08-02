@@ -1,7 +1,30 @@
+{{- $unified_theme := env "UNIFIED_THEME_CLI" -}}
+{{- if eq $unified_theme "" }}{{ $unified_theme = .shell_env.common.UNIFIED_THEME_CLI }}{{ end -}}
+
 onboarding = false
 
 [theme]
-  name = "gruvbox"
+  name = "{{ if eq $unified_theme "kanagawa-dragon" }}custom{{ else }}gruvbox{{ end }}"
+
+{{ if eq $unified_theme "kanagawa-dragon" -}}
+[theme.custom]
+  panel_bg = "#1F1F28"
+  surface0 = "#16161D"
+  surface1 = "#2A2A37"
+  surface_dim = "#363646"
+  overlay0 = "#54546D"
+  overlay1 = "#727169"
+  text = "#DCD7BA"
+  subtext0 = "#C8C093"
+  accent = "#E6C384"
+  mauve = "#957FB8"
+  green = "#98BB6C"
+  yellow = "#E6C384"
+  red = "#C34043"
+  blue = "#7E9CD8"
+  teal = "#7AA89F"
+  peach = "#FFA066"
+{{- end }}
 
 [ui]
   confirm_close                     = false
@@ -16,12 +39,10 @@ onboarding = false
   prefix = "ctrl+a"
 
   # workspaces (tmux sessions)
-  close_workspace  = "prefix+g"       # tmux: kill-session
-  goto             = "prefix+o"       # moved from g because g = close workspace
+  close_workspace  = "prefix+g"
+  goto             = "prefix+o"
   new_workspace    = "prefix+shift+s"
   rename_workspace = "prefix+$"
-  # shift+1..9 is parsed as digit+SHIFT, but many terminals send the shifted
-  # glyph (!..() without a base digit, so herdr never matches it. Use ctrl.
   switch_workspace = "prefix+ctrl+1..9"
   workspace_picker = "prefix+w"
 
@@ -42,14 +63,14 @@ onboarding = false
   last_pane        = "prefix+q"
 
   # splits
-  split_horizontal = "prefix+minus" # tmux: -  (stacked)
-  split_vertical   = "prefix+|"     # tmux: |  (side-by-side)
+  split_horizontal = "prefix+minus"
+  split_vertical   = "prefix+|"
 
   # reload / resize
-  reload_config = "prefix+r" # tmux: prefix+r reloads config
-  resize_mode   = "prefix+R" # shifted to R to free up r
+  reload_config = "prefix+r"
+  resize_mode   = "prefix+R"
 
-  # herdr-only features keep nearby keys
+  # herdr-only features
   copy_mode      = "prefix+["
   detach         = "prefix+d"
   toggle_sidebar = "prefix+b"

@@ -100,8 +100,8 @@
 [delta]
     navigate = true
     side-by-side = true
-    {{- if eq $unified_theme "vesper" }}
-    features = vesper
+    {{- if eq $unified_theme "kanagawa-dragon" }}
+    features = kanagawa-dragon
     {{- else }}
     syntax-theme = "DarkNeon"
     plus-style = "syntax #445345"
@@ -109,17 +109,17 @@
     {{- end }}
     line-numbers = true
 
-    {{- if eq $unified_theme "vesper" }}
-[delta "vesper"]
-    syntax-theme = "Vesper"
-    file-style = "bold #FFC799"
-    hunk-header-style = "bold #FFCFA8 box #282828"
-    minus-style = "syntax #2A1616"
-    minus-emph-style = "syntax #4F221F"
-    plus-style = "syntax #162A24"
-    plus-emph-style = "syntax #245044"
-    line-numbers-minus-style = "#FF8080"
-    line-numbers-plus-style = "#99FFE4"
+    {{- if eq $unified_theme "kanagawa-dragon" }}
+[delta "kanagawa-dragon"]
+    syntax-theme = "Kanagawa Dragon"
+    file-style = "bold #E6C384"
+    hunk-header-style = "bold #FF9E3B box #363646"
+    minus-style = "syntax #43242B"
+    minus-emph-style = "syntax #C34043"
+    plus-style = "syntax #2B3328"
+    plus-emph-style = "syntax #76946A"
+    line-numbers-minus-style = "#E82424"
+    line-numbers-plus-style = "#98BB6C"
     {{- end }}
 
 [interactive]

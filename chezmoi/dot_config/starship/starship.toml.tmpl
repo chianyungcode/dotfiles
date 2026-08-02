@@ -6,8 +6,8 @@
 add_newline = true
 {{- $unified_theme := env "UNIFIED_THEME_CLI" -}}
 {{- if eq $unified_theme "" }}{{ $unified_theme = .shell_env.common.UNIFIED_THEME_CLI }}{{ end -}}
-{{ if eq $unified_theme "vesper" }}
-palette = "vesper"
+{{ if eq $unified_theme "kanagawa-dragon" }}
+palette = "kanagawa_dragon"
 {{- end }}
 # CUSTOM CONFIG
 # ---------------------------------
@@ -250,22 +250,22 @@ $character"""
 [zig]
   symbol = " "
 
-{{ if eq $unified_theme "vesper" }}
-[palettes.vesper]
-black = "#101010"
-bright-black = "#505050"
-white = "#FFFFFF"
-gray = "#A0A0A0"
-red = "#FF8080"
-bright-red = "#FF9A9A"
-green = "#99FFE4"
-bright-green = "#B3FFED"
-yellow = "#FFC799"
-bright-yellow = "#FFCFA8"
-blue = "#65737E"
-bright-blue = "#A0A0A0"
-magenta = "#7E7E7E"
-bright-magenta = "#A0A0A0"
-cyan = "#99FFE4"
-bright-cyan = "#B3FFED"
+{{ if eq $unified_theme "kanagawa-dragon" }}
+[palettes.kanagawa_dragon]
+black = "#1F1F28"
+bright-black = "#54546D"
+white = "#DCD7BA"
+gray = "#727169"
+red = "#C34043"
+bright-red = "#E82424"
+green = "#98BB6C"
+bright-green = "#7AA89F"
+yellow = "#E6C384"
+bright-yellow = "#FF9E3B"
+blue = "#658594"
+bright-blue = "#7E9CD8"
+magenta = "#957FB8"
+bright-magenta = "#9CABCA"
+cyan = "#6A9589"
+bright-cyan = "#7AA89F"
 {{- end }}
