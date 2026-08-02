@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+PHASE="70-imperative-cli-tools"
+{{ template "scripts/core.bash" . -}}
+
+run_imperative_cli() {
+    local name=$1
+    local cli=$2
+    local check=$3
+    local run=$4
+
+    if ! command -v "$cli" >/dev/null 2>&1; then
+        info "Skipping $name: $cli is not installed"
+        return 0
+    fi
+
+    if bash -c "$check"; then
+        info "Skipping $name: already satisfied"
+        return 0
+    fi
+
+    info "Running $name"
+    bash -c "$run"
+}
+
+{{- range .imperative_cli_tools }}
+run_imperative_cli \
+    {{ printf "%q" .name }} \
+    {{ printf "%q" .cli }} \
+    {{ printf "%q" .check }} \
+    {{ printf "%q" .run }}
+{{- end }}

@@ -23,6 +23,15 @@ assert_log_contains() {
     }
 }
 
+assert_file_contains() {
+    local file=$1
+    local pattern=$2
+    rg -Fq "$pattern" "$file" || {
+        printf 'missing file content: %s\n' "$pattern" >&2
+        exit 1
+    }
+}
+
 assert_file_mode() {
     local file=$1
     local expected_mode=$2
@@ -95,6 +104,120 @@ failure_temp=$(<"$failure_record")
 
 base_data_file="$tmp_dir/base.json"
 chezmoi -S "$source_dir" data >"$base_data_file"
+
+imperative_source="$source_dir/.chezmoiscripts/run_after_70-imperative-cli-tools.sh.tmpl"
+imperative_default_fixture="$tmp_dir/imperative-default.sh"
+chezmoi -S "$source_dir" execute-template \
+    --override-data-file "$base_data_file" \
+    --file "$imperative_source" >"$imperative_default_fixture"
+chmod +x "$imperative_default_fixture"
+rg -q 'herdr plugin install qu8n/herdr-automatic-rename --yes' \
+    "$imperative_default_fixture"
+
+imperative_data="$tmp_dir/imperative-behavior.json"
+jq \
+    --argjson operations '[
+      {
+        "name": "primary operation",
+        "cli": "fake-cli",
+        "check": "fake-cli check",
+        "run": "fake-cli run"
+      },
+      {
+        "name": "later operation",
+        "cli": "fake-cli",
+        "check": "fake-cli later-check",
+        "run": "fake-cli later-run"
+      }
+    ]' \
+    '.imperative_cli_tools = $operations' \
+    "$base_data_file" >"$imperative_data"
+
+imperative_fixture="$tmp_dir/imperative-behavior.sh"
+chezmoi -S "$source_dir" execute-template \
+    --override-data-file "$imperative_data" \
+    --file "$imperative_source" >"$imperative_fixture"
+chmod +x "$imperative_fixture"
+
+imperative_fake_bin="$tmp_dir/imperative-fake-bin"
+mkdir -p "$imperative_fake_bin"
+cat >"$imperative_fake_bin/fake-cli" <<'STUB'
+#!/usr/bin/env bash
+set -u
+
+printf 'fake-cli %s\n' "$*" >>"$COMMAND_LOG"
+
+case "${1:-}" in
+    check|later-check)
+        [[ "${FAKE_CHECK_STATUS:-0}" -eq 0 ]]
+        ;;
+    run)
+        [[ "${FAKE_FAIL_RUN:-false}" != true ]]
+        ;;
+    later-run)
+        exit 0
+        ;;
+    *)
+        exit 64
+        ;;
+esac
+STUB
+chmod +x "$imperative_fake_bin/fake-cli"
+
+COMMAND_LOG="$tmp_dir/imperative-missing-cli.log"
+: >"$COMMAND_LOG"
+PATH="/usr/bin:/bin" \
+    COMMAND_LOG="$COMMAND_LOG" \
+    /bin/bash "$imperative_fixture" >"$tmp_dir/imperative-missing-cli.out"
+assert_file_contains "$tmp_dir/imperative-missing-cli.out" \
+    'fake-cli is not installed'
+if [[ -s "$COMMAND_LOG" ]]; then
+    printf 'missing CLI should not run any command\n' >&2
+    exit 1
+fi
+
+COMMAND_LOG="$tmp_dir/imperative-check-success.log"
+: >"$COMMAND_LOG"
+PATH="$imperative_fake_bin:/usr/bin:/bin" \
+    COMMAND_LOG="$COMMAND_LOG" \
+    /bin/bash "$imperative_fixture" >"$tmp_dir/imperative-check-success.out"
+assert_file_contains "$tmp_dir/imperative-check-success.out" \
+    'primary operation: already satisfied'
+assert_file_contains "$tmp_dir/imperative-check-success.out" \
+    'later operation: already satisfied'
+assert_log_contains 'fake-cli check'
+assert_log_contains 'fake-cli later-check'
+if rg -q 'fake-cli (run|later-run)' "$COMMAND_LOG"; then
+    printf 'successful checks should skip run commands\n' >&2
+    exit 1
+fi
+
+COMMAND_LOG="$tmp_dir/imperative-check-failure.log"
+: >"$COMMAND_LOG"
+PATH="$imperative_fake_bin:/usr/bin:/bin" \
+    FAKE_CHECK_STATUS=1 \
+    COMMAND_LOG="$COMMAND_LOG" \
+    /bin/bash "$imperative_fixture" >"$tmp_dir/imperative-check-failure.out"
+assert_log_contains 'fake-cli run'
+assert_log_contains 'fake-cli later-run'
+
+COMMAND_LOG="$tmp_dir/imperative-run-failure.log"
+: >"$COMMAND_LOG"
+set +e
+PATH="$imperative_fake_bin:/usr/bin:/bin" \
+    FAKE_CHECK_STATUS=1 \
+    FAKE_FAIL_RUN=true \
+    COMMAND_LOG="$COMMAND_LOG" \
+    /bin/bash "$imperative_fixture" >"$tmp_dir/imperative-run-failure.out" 2>&1
+imperative_failure_status=$?
+set -e
+[[ $imperative_failure_status -ne 0 ]]
+assert_log_contains 'fake-cli run'
+if rg -q 'fake-cli (later-check|later-run)' "$COMMAND_LOG"; then
+    printf 'failed run should stop later operations\n' >&2
+    exit 1
+fi
+
 arch_data="$tmp_dir/arch.json"
 jq \
     --arg os linux \

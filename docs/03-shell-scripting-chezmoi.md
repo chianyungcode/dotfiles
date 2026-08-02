@@ -9,6 +9,8 @@ Automation is divided by responsibility:
 - `.chezmoidata/packages-language.toml` declares runtimes and uv, npm, and Cargo
   packages.
 - `.chezmoidata/binaries.toml` declares standalone GitHub-release tools.
+- `.chezmoidata/imperative-cli-tools.toml` declares CLI operations that need
+  explicit checks and commands.
 - `.chezmoitemplates/scripts/` contains reusable Bash implementation fragments.
 - `.chezmoiscripts/` contains the ordered Chezmoi entrypoints.
 
@@ -29,6 +31,7 @@ change does not alter the Ubuntu system-package script.
 | 40    | after, on change  | Install standalone GitHub-release tools                 |
 | 50    | after, always     | Repair shell extras, nanorc, and compatibility symlinks |
 | 60    | after, on change  | Create SSH key material                                 |
+| 70    | after, always     | Reconcile imperative CLI-managed state                  |
 | 90    | after, monthly    | Upgrade uv-managed tools                                |
 
 <!-- markdownlint-enable MD013 -->
@@ -60,6 +63,33 @@ partial completion.
 
 Do not add a new entrypoint for a single package. Add manager-specific behavior
 to its focused template fragment only when data alone cannot express it.
+
+## Adding an Imperative CLI Operation
+
+Some CLI tools do not provide a declarative configuration file for installing
+plugins or extensions. Add those operations to
+`.chezmoidata/imperative-cli-tools.toml` instead of creating a new script:
+
+```toml
+[[imperative_cli_tools]]
+name = "Herdr Automatic Rename plugin"
+cli = "herdr"
+check = "herdr plugin list --json | jq -e '.result.plugins[] | select(.plugin_id == \"herdr-automatic-rename\")' >/dev/null"
+run = "herdr plugin install qu8n/herdr-automatic-rename --yes"
+```
+
+Each entry must define:
+
+- `name`: the label shown in Chezmoi output;
+- `cli`: the executable whose absence makes this entry optional;
+- `check`: a Bash command that succeeds when the desired state exists; and
+- `run`: the Bash command that creates the desired state.
+
+The phase in
+[`run_after_70-imperative-cli-tools.sh.tmpl`](../chezmoi/.chezmoiscripts/run_after_70-imperative-cli-tools.sh.tmpl)
+runs on every `chezmoi apply`. It skips entries when the CLI is unavailable or
+the check succeeds, and stops immediately if a needed `run` command fails. It
+does not remove resources that are absent from the data file.
 
 ## Validation
 

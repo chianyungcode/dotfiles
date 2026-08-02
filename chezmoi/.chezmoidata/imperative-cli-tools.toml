@@ -1,0 +1,5 @@
+[[imperative_cli_tools]]
+name = "Herdr Automatic Rename plugin"
+cli = "herdr"
+check = "herdr plugin list --json | jq -e '.result.plugins[] | select(.plugin_id == \"herdr-automatic-rename\")' >/dev/null"
+run = "herdr plugin install qu8n/herdr-automatic-rename --yes"

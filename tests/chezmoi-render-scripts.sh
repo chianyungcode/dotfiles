@@ -309,6 +309,18 @@ maintenance="$tmp_dir/ubuntu-monthly-maintenance.sh"
 assert_contains "$maintenance" 'uv tool upgrade --all'
 assert_contains "$maintenance_source" 'output "date" "\+%m"'
 
+imperative_source="$source_dir/.chezmoiscripts/run_after_70-imperative-cli-tools.sh.tmpl"
+for profile in mac ubuntu arch; do
+    imperative="$tmp_dir/$profile-imperative-cli-tools.sh"
+    render_script "$tmp_dir/$profile.json" "$imperative_source" "$imperative"
+    check_rendered_script "$imperative"
+done
+imperative="$tmp_dir/mac-imperative-cli-tools.sh"
+assert_contains "$imperative" 'herdr plugin install'
+assert_contains "$imperative" 'herdr-automatic-rename'
+assert_contains "$imperative" 'already satisfied'
+assert_contains "$imperative" 'is not installed'
+
 actual_scripts="$tmp_dir/actual-scripts.txt"
 expected_scripts="$tmp_dir/expected-scripts.txt"
 
@@ -323,6 +335,7 @@ printf '%s\n' \
     run_onchange_after_40-standalone-tools.sh.tmpl \
     run_onchange_after_60-security-material.sh.tmpl \
     run_onchange_before_10-system-packages.sh.tmpl \
+    run_after_70-imperative-cli-tools.sh.tmpl \
     run_once_after_90-monthly-maintenance.sh.tmpl |
     sort >"$expected_scripts"
 
