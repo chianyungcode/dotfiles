@@ -20,7 +20,6 @@ cursor-color = #00FF98
 cursor-style = bar
 cursor-style-blink = false
 
-
 # ==========================
 #   WINDOW & TITLE
 # ==========================
@@ -38,14 +37,13 @@ macos-icon = custom-style
 macos-icon-ghost-color = white
 macos-icon-screen-color = black
 
-
 # ==========================
 #   FONT
 # ==========================
 
 {{- if eq .chezmoi.os "darwin" }}
-font-family = Google Sans Mono
-font-size = 19
+font-family = IoskeleyMonoTerm Nerd Font
+font-size = 18
 font-thicken = false
 font-thicken-strength = 150
 {{- else if eq .chezmoi.os "linux" }}
@@ -62,7 +60,6 @@ font-thicken-strength = 150
 # font-synthetic-style = italic
 # bold-is-bright = false
 # window-colorspace = display-p3
-
 
 # ==========================
 #   KEYBINDINGS
@@ -94,7 +91,6 @@ keybind = alt+shift+l=goto_split:right
     keybind = alt+eight=unbind
     keybind = alt+nine=unbind
 {{- end }}
-
 
 # ==========================
 #   MISCELLANEOUS

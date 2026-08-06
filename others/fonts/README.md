@@ -5,6 +5,7 @@
 ## Awesome Fonts
 
 [ProgrammingFonts](https://www.programmingfonts.org/#twilio-sans-mono)
+[r/ProgrammingFonts](https://www.reddit.com/r/ProgrammingFonts)
 
 ## List of fonts
 Sorted by best to worse (in my opinion)
@@ -24,5 +25,9 @@ Sorted by best to worse (in my opinion)
 - Menlo
 - Monaspace {Neon / Argon / Xenon / Radon / Krypton}
 - Hack
+- CommitMono
+- IoskeleyMonoTerm Nerd Font
+- LythMonoTerm Nerd Font
+- Twilio Sans Mono
 
 [[../README.md]]
