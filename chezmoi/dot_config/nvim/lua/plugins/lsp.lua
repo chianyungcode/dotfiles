@@ -20,7 +20,6 @@ return {
         "jsonls", -- JSON
         "lua_ls", -- Lua
         "markdown_oxide", -- Markdown
-        "nil_ls", -- Nix
         "prismals", -- Prisma
         "ruff", -- Python
         "sqls", -- SQL
@@ -65,6 +64,34 @@ return {
           keys = {
             -- Disable default hover keymap to avoid conflict with hover.lua
             { "K", false },
+          },
+        },
+        nil_ls = {
+          enabled = false,
+        },
+        nixd = {
+          mason = false,
+          cmd = { "nixd" },
+          settings = {
+            nixd = {
+              nixpkgs = {
+                expr = "import (builtins.getFlake (builtins.toString ./.)).inputs.nixpkgs { }",
+              },
+              formatting = {
+                command = { "nixfmt" },
+              },
+              options = {
+                nixos = {
+                  expr = "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.acerus.options",
+                },
+                home_manager = {
+                  expr = "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.acerus.options.home-manager.users.type.getSubOptions [ ]",
+                },
+                darwin = {
+                  expr = "(builtins.getFlake (builtins.toString ./.)).darwinConfigurations.mbp.options",
+                },
+              },
+            },
           },
         },
       },
