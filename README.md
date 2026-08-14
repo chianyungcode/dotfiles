@@ -16,21 +16,23 @@ across multiple machines.
 
 To use this repo on a new machine:
 
-1. **Install Chezmoi**: Follow the
-   [official installation guide](https://www.twpayne.com/chezmoi/getting-started.html).
-   For example, on macOS with Homebrew:
+1. **Install prerequisites**: Make sure `curl` and `git` are available. Their
+   availability depends on the distribution and installation image; on Ubuntu
+   you can install them with:
 
    ```bash
-   brew install chezmoi
+   sudo apt update
+   sudo apt install -y curl git
    ```
 
-2. **Initialize Chezmoi**: Use Chezmoi's native initialization flow:
+2. **Install and initialize Chezmoi**: Run:
 
    ```bash
-   chezmoi init --apply https://github.com/chianyungcode/dotfiles.git
+   sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply chianyungcode
    ```
 
-   Initialization asks for the machine role first.
+   This installs Chezmoi if needed, initializes the repository, and applies the
+   configuration. Initialization asks for the machine role first.
 
    - A `server` automatically uses the local-only `server-minimal` identity,
      disables personal and graphical features, uses no secrets provider, and
@@ -40,13 +42,10 @@ To use this repo on a new machine:
      provider, and Age-encrypted files.
 
    The server path does not require `op` or an Age identity. See
-   [Server Initialization](./docs/06-server-initialization.md) for migration,
+   [Server Initialization](./docs/05-server-initialization.md) for migration,
    exceptional overrides, and emergency local commits.
 
-3. **Apply Configurations**: Run `chezmoi apply` to apply all dotfiles to your
-   home directory.
-
-4. **Inspect Configuration**:
+3. **Inspect Configuration**:
 
    ```bash
    chezmoi data
@@ -57,7 +56,7 @@ To use this repo on a new machine:
    chezmoi apply --dry-run --verbose
    ```
 
-5. **Post-Installation**:
+4. **Post-Installation**:
    - Install optional packages through the capability selections made during
      initialization.
    - Workstations can change their secrets provider or Age-encrypted file policy
