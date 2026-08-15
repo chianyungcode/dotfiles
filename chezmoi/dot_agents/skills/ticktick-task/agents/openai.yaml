@@ -1,3 +1,4 @@
+---
 interface:
   display_name: "TickTick Task"
   short_description: "Create and update TickTick tasks with approved tags."

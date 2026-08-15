@@ -1,10 +1,10 @@
 [metadata]
-name = "xgit-worktrees"
-description = "Browse Git worktrees"
-requirements = ["git"]
+  description  = "Browse Git worktrees"
+  name         = "xgit-worktrees"
+  requirements = ["git"]
 
 [source]
-command = '''git worktree list --porcelain 2>/dev/null | awk '
+  command = '''git worktree list --porcelain 2>/dev/null | awk '
     /^worktree / { path = substr($0, 10) }
     /^HEAD / { head = $2 }
     /^branch / { branch = $2 }
@@ -17,38 +17,38 @@ command = '''git worktree list --porcelain 2>/dev/null | awk '
         if (path != "") printf "%s\t%s\t%s\n", path, head, branch
     }
 ' '''
-display = "{split:\\t:0}  {split:\\t:2}"
+  display = "{split:\\t:0}  {split:\\t:2}"
 
-no_sort = true
-frecency = false
-output = "{split:\\t:0}"
+  frecency = false
+  no_sort  = true
+  output   = "{split:\\t:0}"
 
 [preview]
-command = "git -c color.status=always -C '{split:\\t:0}' status --short --branch; echo; git -C '{split:\\t:0}' log --oneline --graph --date=short --color=always --pretty=format:'%C(auto)%cd %h%d %s' '{split:\\t:1}' --"
+  command = "git -c color.status=always -C '{split:\\t:0}' status --short --branch; echo; git -C '{split:\\t:0}' log --oneline --graph --date=short --color=always --pretty=format:'%C(auto)%cd %h%d %s' '{split:\\t:1}' --"
 
 [ui]
-layout = "landscape"
+  layout = "landscape"
 
-[ui.preview_panel]
-size = 65
+  [ui.preview_panel]
+    size = 65
 
 [actions.shell]
-description = "Open shell in worktree"
-command = "cd '{split:\\n:0|split:\\t:0}' && exec \"${SHELL:-/bin/sh}\" -l"
-shell = "bash"
-mode = "execute"
-separator = "\n"
+  command     = "cd '{split:\\n:0|split:\\t:0}' && exec \"${SHELL:-/bin/sh}\" -l"
+  description = "Open shell in worktree"
+  mode        = "execute"
+  separator   = "\n"
+  shell       = "bash"
 
 [actions.edit]
-description = "Edit worktree"
-command = "${EDITOR:-vi} -- '{split:\\n:0|split:\\t:0}'"
-shell = "bash"
-mode = "fork"
-separator = "\n"
+  command     = "${EDITOR:-vi} -- '{split:\\n:0|split:\\t:0}'"
+  description = "Edit worktree"
+  mode        = "fork"
+  separator   = "\n"
+  shell       = "bash"
 
 [actions.remove]
-description = "Remove worktree (destructive; Ctrl-R to reload)"
-command = "git worktree remove '{split:\\n:0|split:\\t:0}'"
-shell = "bash"
-mode = "fork"
-separator = "\n"
+  command     = "git worktree remove '{split:\\n:0|split:\\t:0}'"
+  description = "Remove worktree (destructive; Ctrl-R to reload)"
+  mode        = "fork"
+  separator   = "\n"
+  shell       = "bash"

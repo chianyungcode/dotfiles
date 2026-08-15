@@ -1,42 +1,42 @@
 [metadata]
-name = "xgit-reflogs"
-description = "Browse Git reflog entries"
-requirements = ["git"]
+  description  = "Browse Git reflog entries"
+  name         = "xgit-reflogs"
+  requirements = ["git"]
 
 [source]
-command = "git reflog --format='%gD%x09%C(yellow)%h%C(auto) %gs%C(reset)' 2>/dev/null"
-ansi = true
+  ansi    = true
+  command = "git reflog --format='%gD%x09%C(yellow)%h%C(auto) %gs%C(reset)' 2>/dev/null"
 
-no_sort = true
-frecency = false
-output = "{strip_ansi|split:\\t:0}"
+  frecency = false
+  no_sort  = true
+  output   = "{strip_ansi|split:\\t:0}"
 
 [preview]
-command = "DFT_COLOR=always git show --ext-diff --color=always '{split:\\t:0}'"
+  command = "DFT_COLOR=always git show --ext-diff --color=always '{split:\\t:0}'"
 
 [ui]
-layout = "landscape"
+  layout = "landscape"
 
-[ui.preview_panel]
-size = 65
+  [ui.preview_panel]
+    size = 65
 
 [actions.checkout-detached]
-description = "Checkout reflog entry detached (modifies repository; Ctrl-R to reload)"
-command = "git switch --detach '{split:\\n:0|strip_ansi|split:\\t:0}'"
-shell = "bash"
-mode = "fork"
-separator = "\n"
+  command     = "git switch --detach '{split:\\n:0|strip_ansi|split:\\t:0}'"
+  description = "Checkout reflog entry detached (modifies repository; Ctrl-R to reload)"
+  mode        = "fork"
+  separator   = "\n"
+  shell       = "bash"
 
 [actions.cherry-pick]
-description = "Cherry-pick reflog entry (modifies repository; Ctrl-R to reload)"
-command = "git cherry-pick '{split:\\n:0|strip_ansi|split:\\t:0}'"
-shell = "bash"
-mode = "fork"
-separator = "\n"
+  command     = "git cherry-pick '{split:\\n:0|strip_ansi|split:\\t:0}'"
+  description = "Cherry-pick reflog entry (modifies repository; Ctrl-R to reload)"
+  mode        = "fork"
+  separator   = "\n"
+  shell       = "bash"
 
 [actions.hard-reset]
-description = "Hard-reset to reflog entry (destructive; Ctrl-R to reload)"
-command = "git reset --hard '{split:\\n:0|strip_ansi|split:\\t:0}'"
-shell = "bash"
-mode = "fork"
-separator = "\n"
+  command     = "git reset --hard '{split:\\n:0|strip_ansi|split:\\t:0}'"
+  description = "Hard-reset to reflog entry (destructive; Ctrl-R to reload)"
+  mode        = "fork"
+  separator   = "\n"
+  shell       = "bash"

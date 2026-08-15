@@ -1,56 +1,56 @@
 [metadata]
-name = "xgit-branches"
-description = "Browse local Git branches"
-requirements = ["git"]
+  description  = "Browse local Git branches"
+  name         = "xgit-branches"
+  requirements = ["git"]
 
 [source]
-command = "git for-each-ref --color=always --sort=-committerdate --format='%(refname:short)%09%(HEAD) %(color:yellow)%(refname:short) %(color:green)(%(committerdate:relative))%09%(color:blue)%(subject)%(color:reset)' refs/heads 2>/dev/null"
-ansi = true
+  ansi    = true
+  command = "git for-each-ref --color=always --sort=-committerdate --format='%(refname:short)%09%(HEAD) %(color:yellow)%(refname:short) %(color:green)(%(committerdate:relative))%09%(color:blue)%(subject)%(color:reset)' refs/heads 2>/dev/null"
 
-no_sort = true
-frecency = false
-output = "{strip_ansi|split:\\t:0}"
+  frecency = false
+  no_sort  = true
+  output   = "{strip_ansi|split:\\t:0}"
 
 [preview]
-command = "git log --oneline --graph --date=short --color=always --pretty=format:'%C(auto)%cd %h%d %s' '{split:\\t:0}' --"
+  command = "git log --oneline --graph --date=short --color=always --pretty=format:'%C(auto)%cd %h%d %s' '{split:\\t:0}' --"
 
 [ui]
-layout = "landscape"
+  layout = "landscape"
 
-[ui.preview_panel]
-size = 65
+  [ui.preview_panel]
+    size = 65
 
 [actions.open-browser]
-description = "Open branch in browser"
-command = "$HOME/.config/television/scripts/git-open branch '{split:\\n:0|strip_ansi|split:\\t:0}'"
-shell = "bash"
-mode = "fork"
-separator = "\n"
+  command     = "$HOME/.config/television/scripts/git-open branch '{split:\\n:0|strip_ansi|split:\\t:0}'"
+  description = "Open branch in browser"
+  mode        = "fork"
+  separator   = "\n"
+  shell       = "bash"
 
 [actions.switch]
-description = "Switch branch (modifies repository; Ctrl-R to reload)"
-command = "git switch '{split:\\n:0|strip_ansi|split:\\t:0}'"
-shell = "bash"
-mode = "fork"
-separator = "\n"
+  command     = "git switch '{split:\\n:0|strip_ansi|split:\\t:0}'"
+  description = "Switch branch (modifies repository; Ctrl-R to reload)"
+  mode        = "fork"
+  separator   = "\n"
+  shell       = "bash"
 
 [actions.merge]
-description = "Merge selected branch into current (modifies repository; Ctrl-R to reload)"
-command = "git merge '{split:\\n:0|strip_ansi|split:\\t:0}'"
-shell = "bash"
-mode = "fork"
-separator = "\n"
+  command     = "git merge '{split:\\n:0|strip_ansi|split:\\t:0}'"
+  description = "Merge selected branch into current (modifies repository; Ctrl-R to reload)"
+  mode        = "fork"
+  separator   = "\n"
+  shell       = "bash"
 
 [actions.rebase]
-description = "Rebase current branch onto selected (modifies repository; Ctrl-R to reload)"
-command = "git rebase '{split:\\n:0|strip_ansi|split:\\t:0}'"
-shell = "bash"
-mode = "fork"
-separator = "\n"
+  command     = "git rebase '{split:\\n:0|strip_ansi|split:\\t:0}'"
+  description = "Rebase current branch onto selected (modifies repository; Ctrl-R to reload)"
+  mode        = "fork"
+  separator   = "\n"
+  shell       = "bash"
 
 [actions.delete]
-description = "Delete local branch (destructive; Ctrl-R to reload)"
-command = "git branch -d '{split:\\n:0|strip_ansi|split:\\t:0}'"
-shell = "bash"
-mode = "fork"
-separator = "\n"
+  command     = "git branch -d '{split:\\n:0|strip_ansi|split:\\t:0}'"
+  description = "Delete local branch (destructive; Ctrl-R to reload)"
+  mode        = "fork"
+  separator   = "\n"
+  shell       = "bash"

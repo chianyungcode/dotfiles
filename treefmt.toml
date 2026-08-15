@@ -68,8 +68,8 @@
 
 [formatter.shfmt]
   command  = "shfmt"
-  includes = ["*.sh", "*.bash"]
   excludes = ["chezmoi/.chezmoitemplates/**", "chezmoi/dot_config/zsh/**/*.sh"]
+  includes = ["*.sh", "*.bash"]
   options  = ["-w"]
 
 [formatter.stylua]

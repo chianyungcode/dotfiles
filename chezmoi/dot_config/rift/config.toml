@@ -230,7 +230,7 @@
   # - workspace_auto_back_and_forth: when enabled, if you try to switch to the same workspace
   #   that's already active, it will switch to the last workspace instead
   # - reapply_app_rules_on_title_change: if true, app rules are re-evaluated when a window's title changes
-  auto_assign_windows               = true
+  auto_assign_windows = true
   # Match aerospace workspaces 1–9 (rift is 0-based: 0=1 … 8=9)
   default_workspace_count           = 9
   enabled                           = true
@@ -274,7 +274,7 @@
     { app_id = "dev.kdrag0n.MacVirt", workspace = 1, floating = false },
     { app_id = "com.jetbrains.datagrip", workspace = 1, floating = false },
     { app_id = "com.todesktop.230313mzl4w4u92", workspace = 1, floating = false }, # Cursor
-    { app_id = "company.thebrowser.Browser", workspace = 1, floating = false },   # Arc
+    { app_id = "company.thebrowser.Browser", workspace = 1, floating = false },    # Arc
     { app_id = "com.apple.Safari", workspace = 1, floating = false },
     { app_id = "app.zen-browser.zen", workspace = 1, floating = false },
     { app_id = "company.thebrowser.dia", workspace = 1, floating = false },
@@ -380,24 +380,24 @@
 
   # Workspace switch — same keys as aerospace (rift is 0-based)
   "Alt + A" = { switch_to_workspace = 0 } # aerospace 1
-  "Alt + S" = { switch_to_workspace = 1 } # aerospace 2
+  "Alt + C" = { switch_to_workspace = 7 } # aerospace 8
   "Alt + D" = { switch_to_workspace = 2 } # aerospace 3
   "Alt + F" = { switch_to_workspace = 3 } # aerospace 4
   "Alt + G" = { switch_to_workspace = 4 } # aerospace 5
-  "Alt + Z" = { switch_to_workspace = 5 } # aerospace 6
-  "Alt + X" = { switch_to_workspace = 6 } # aerospace 7
-  "Alt + C" = { switch_to_workspace = 7 } # aerospace 8
+  "Alt + S" = { switch_to_workspace = 1 } # aerospace 2
   "Alt + V" = { switch_to_workspace = 8 } # aerospace 9
+  "Alt + X" = { switch_to_workspace = 6 } # aerospace 7
+  "Alt + Z" = { switch_to_workspace = 5 } # aerospace 6
 
   "comb1 + A" = { move_window_to_workspace = 0 }
-  "comb1 + S" = { move_window_to_workspace = 1 }
+  "comb1 + C" = { move_window_to_workspace = 7 }
   "comb1 + D" = { move_window_to_workspace = 2 }
   "comb1 + F" = { move_window_to_workspace = 3 }
   "comb1 + G" = { move_window_to_workspace = 4 }
-  "comb1 + Z" = { move_window_to_workspace = 5 }
-  "comb1 + X" = { move_window_to_workspace = 6 }
-  "comb1 + C" = { move_window_to_workspace = 7 }
+  "comb1 + S" = { move_window_to_workspace = 1 }
   "comb1 + V" = { move_window_to_workspace = 8 }
+  "comb1 + X" = { move_window_to_workspace = 6 }
+  "comb1 + Z" = { move_window_to_workspace = 5 }
 
   "Alt + Tab" = "switch_to_last_workspace"
 
@@ -416,10 +416,10 @@
   "Alt + Shift + Up"    = { join_window = "up" }
   "Alt + Slash"         = "toggle_orientation"
 
-  "Alt + P"             = "toggle_fullscreen"
+  "Alt + P" = "toggle_fullscreen"
   # Avoid Alt+Shift+F — that is comb1+F (move to workspace 4 / aerospace 4)
-  "Alt + Ctrl + F"      = "toggle_fullscreen_within_gaps"
-  "Alt + Shift + Space" = "toggle_window_floating"
+  "Alt + Ctrl + F"       = "toggle_fullscreen_within_gaps"
+  "Alt + Shift + Space"  = "toggle_window_floating"
   "comb1 + Ctrl + Space" = "toggle_focus_floating"         # briefly bring focus to floating window
 
   # smartly resize windows

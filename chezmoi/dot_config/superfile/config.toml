@@ -65,16 +65,16 @@ code_previewer = ''
 sidebar_width = 20
 # 
 # Border style
-border_top = '─'
-border_bottom = '─'
-border_left = '│'
-border_right = '│'
-border_top_left = '╭'
-border_top_right = '╮'
-border_bottom_left = '╰'
+border_bottom       = '─'
+border_bottom_left  = '╰'
 border_bottom_right = '╯'
-border_middle_left = '├'
+border_left         = '│'
+border_middle_left  = '├'
 border_middle_right = '┤'
+border_right        = '│'
+border_top          = '─'
+border_top_left     = '╭'
+border_top_right    = '╮'
 # 
 # ==========PLUGINS========== #
 # Plugins means that you need to install some external dependencies to use them.

@@ -74,103 +74,103 @@ default_depth = 3
 
 # Sorting configuration
 [sort]
-# List directories before files
-# Default: false
-dirs_first = true
+  # List directories before files
+  # Default: false
+  dirs_first = true
 
-# Enable case-sensitive sorting
-# Default: false
-case_sensitive = true
+  # Enable case-sensitive sorting
+  # Default: false
+  case_sensitive = true
 
-# Use natural sorting for numbers (e.g., 2.txt before 10.txt)
-# Default: true
-natural = true
+  # Use natural sorting for numbers (e.g., 2.txt before 10.txt)
+  # Default: true
+  natural = true
 
 # Filtering configuration
 [filter]
-# Enable case-sensitive filtering by default
-# Default: false
-case_sensitive = true
+  # Enable case-sensitive filtering by default
+  # Default: false
+  case_sensitive = true
 
-# Hide dot files and directories by default
-# Default: false
-no_dotfiles = true
+  # Hide dot files and directories by default
+  # Default: false
+  no_dotfiles = true
 
-# Respect .gitignore (and git exclude) rules when listing files
-# Default: false
-respect_gitignore = true
+  # Respect .gitignore (and git exclude) rules when listing files
+  # Default: false
+  respect_gitignore = true
 
-# Named filter presets let you reuse complex filter combinations
-# Uncomment and customize the example below or define your own under [filter.presets.<name>]
-# [filter.presets.rust_sources]
-# description = "Common Rust sources"
-# filter = "glob:*.{rs,toml}"
-# size = "<2M"
-# modified = "<30d"
+  # Named filter presets let you reuse complex filter combinations
+  # Uncomment and customize the example below or define your own under [filter.presets.<name>]
+  # [filter.presets.rust_sources]
+  # description = "Common Rust sources"
+  # filter = "glob:*.{rs,toml}"
+  # size = "<2M"
+  # modified = "<30d"
 
 # Formatter-specific configurations
 [formatters.tree]
-# Maximum number of entries to display in tree view
-# Controls memory usage and performance for large directories
-# Set to 0 to show all entries (may impact performance)
-# Default: 20000 entries
-max_lines = 20000
+  # Maximum number of entries to display in tree view
+  # Controls memory usage and performance for large directories
+  # Set to 0 to show all entries (may impact performance)
+  # Default: 20000 entries
+  max_lines = 20000
 
 # Grid formatter configuration
 [formatters.grid]
-# Whether to ignore terminal width by default
-# When true, grid view will use max_width instead of terminal width
-# Default: false
-ignore_width = false
+  # Whether to ignore terminal width by default
+  # When true, grid view will use max_width instead of terminal width
+  # Default: false
+  ignore_width = false
 
-# Maximum width for grid view when ignore_width is true
-# This value is used when terminal width is ignored
-# Default: 200 columns
-max_width = 200
+  # Maximum width for grid view when ignore_width is true
+  # This value is used when terminal width is ignored
+  # Default: 200 columns
+  max_width = 200
 
 # Long formatter configuration
 [formatters.long]
-# Hide the group column in long format
-# Default: false
-hide_group = true
+  # Hide the group column in long format
+  # Default: false
+  hide_group = true
 
-# Show relative dates (e.g., "2h ago") in long format
-# Default: false
-relative_dates = true
+  # Show relative dates (e.g., "2h ago") in long format
+  # Default: false
+  relative_dates = true
 
-# Date/time format for absolute dates in long format
-# Uses chrono strftime syntax (e.g., "%Y-%m-%d %H:%M" to show the year)
-# Default: "%b %d %H:%M"
-date_format = "%b %d %H:%M"
+  # Date/time format for absolute dates in long format
+  # Uses chrono strftime syntax (e.g., "%Y-%m-%d %H:%M" to show the year)
+  # Default: "%b %d %H:%M"
+  date_format = "%b %d %H:%M"
 
-# Column order for long view (use built-in keys or field:<custom_field> for plugin data)
-columns = ["permissions", "size", "modified", "user", "group", "name"]
+  # Column order for long view (use built-in keys or field:<custom_field> for plugin data)
+  columns = ["permissions", "size", "modified", "user", "group", "name"]
 
 # Table formatter configuration
 [formatters.table]
-# Columns rendered in table view (same keys as long view; include plugin fields via field:<name>)
-columns = ["permissions", "size", "modified", "name"]
+  # Columns rendered in table view (same keys as long view; include plugin fields via field:<name>)
+  columns = ["permissions", "size", "modified", "name"]
 
 # Lister-specific configurations
 [listers.recursive]
-# Maximum number of entries to process in recursive listing
-# Controls memory usage and performance for deep directory structures
-# Set to 0 to process all entries (may impact performance)
-# Default: 20000 entries
-max_entries = 20000
+  # Maximum number of entries to process in recursive listing
+  # Controls memory usage and performance for deep directory structures
+  # Set to 0 to process all entries (may impact performance)
+  # Default: 20000 entries
+  max_entries = 20000
 
 # Fuzzy lister configuration
 [listers.fuzzy]
-# Patterns to ignore when listing files in fuzzy mode
-# Can be:
-#  - Simple substring match: "node_modules"
-#  - Glob pattern: "glob:*.min.js"
-#  - Regular expression: "regex:.*\\.pyc$"
-# Default: ["node_modules", "target", ".git", ".idea", ".vscode"]
-ignore_patterns = ["node_modules","target",".git",".idea",".vscode"]
+  # Patterns to ignore when listing files in fuzzy mode
+  # Can be:
+  #  - Simple substring match: "node_modules"
+  #  - Glob pattern: "glob:*.min.js"
+  #  - Regular expression: "regex:.*\\.pyc$"
+  # Default: ["node_modules", "target", ".git", ".idea", ".vscode"]
+  ignore_patterns = ["node_modules", "target", ".git", ".idea", ".vscode"]
 
-# Editor to use for editing files in fuzzy view
-# Overrides the $EDITOR environment variable if set
-# Examples: "nvim", "vim", "nano", "code"
-# Default: "" (falls back to $EDITOR or $VISUAL, then nano)
-editor = ""
+  # Editor to use for editing files in fuzzy view
+  # Overrides the $EDITOR environment variable if set
+  # Examples: "nvim", "vim", "nano", "code"
+  # Default: "" (falls back to $EDITOR or $VISUAL, then nano)
+  editor = ""

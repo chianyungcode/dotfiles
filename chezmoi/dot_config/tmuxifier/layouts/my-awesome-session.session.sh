@@ -6,14 +6,14 @@
 # argument is given, session name will be based on layout file name.
 if initialize_session "my-awesome-session"; then
 
-  # Create a new window inline within session layout definition.
-  #new_window "misc"
-  load_window "my-awesome-window"
-  # Load a defined window layout.
-  #load_window "example"
+	# Create a new window inline within session layout definition.
+	#new_window "misc"
+	load_window "my-awesome-window"
+	# Load a defined window layout.
+	#load_window "example"
 
-  # Select the default active window on session creation.
-  #select_window 1
+	# Select the default active window on session creation.
+	#select_window 1
 
 fi
 

@@ -1,49 +1,49 @@
 [metadata]
-name = "xgit-tags"
-description = "Browse Git tags"
-requirements = ["git"]
+  description  = "Browse Git tags"
+  name         = "xgit-tags"
+  requirements = ["git"]
 
 [source]
-command = "git for-each-ref --color=always --sort=-creatordate --format='%(refname:short)%09%(color:yellow)%(refname:short) %(color:green)(%(creatordate:relative))%09%(color:blue)%(subject)%(color:reset)' refs/tags 2>/dev/null"
-ansi = true
+  ansi    = true
+  command = "git for-each-ref --color=always --sort=-creatordate --format='%(refname:short)%09%(color:yellow)%(refname:short) %(color:green)(%(creatordate:relative))%09%(color:blue)%(subject)%(color:reset)' refs/tags 2>/dev/null"
 
-no_sort = true
-frecency = false
-output = "{strip_ansi|split:\\t:0}"
+  frecency = false
+  no_sort  = true
+  output   = "{strip_ansi|split:\\t:0}"
 
 [preview]
-command = "DFT_COLOR=always git show --ext-diff --color=always '{split:\\t:0}'"
+  command = "DFT_COLOR=always git show --ext-diff --color=always '{split:\\t:0}'"
 
 [ui]
-layout = "landscape"
+  layout = "landscape"
 
-[ui.preview_panel]
-size = 65
+  [ui.preview_panel]
+    size = 65
 
 [actions.open-browser]
-description = "Open tag in browser"
-command = "$HOME/.config/television/scripts/git-open tag '{split:\\n:0|strip_ansi|split:\\t:0}'"
-shell = "bash"
-mode = "fork"
-separator = "\n"
+  command     = "$HOME/.config/television/scripts/git-open tag '{split:\\n:0|strip_ansi|split:\\t:0}'"
+  description = "Open tag in browser"
+  mode        = "fork"
+  separator   = "\n"
+  shell       = "bash"
 
 [actions.checkout-detached]
-description = "Checkout tag detached (modifies repository; Ctrl-R to reload)"
-command = "git switch --detach '{split:\\n:0|strip_ansi|split:\\t:0}'"
-shell = "bash"
-mode = "fork"
-separator = "\n"
+  command     = "git switch --detach '{split:\\n:0|strip_ansi|split:\\t:0}'"
+  description = "Checkout tag detached (modifies repository; Ctrl-R to reload)"
+  mode        = "fork"
+  separator   = "\n"
+  shell       = "bash"
 
 [actions.push-origin]
-description = "Push tag to origin (modifies remote)"
-command = "git push origin '{split:\\n:0|strip_ansi|split:\\t:0}'"
-shell = "bash"
-mode = "fork"
-separator = "\n"
+  command     = "git push origin '{split:\\n:0|strip_ansi|split:\\t:0}'"
+  description = "Push tag to origin (modifies remote)"
+  mode        = "fork"
+  separator   = "\n"
+  shell       = "bash"
 
 [actions.delete]
-description = "Delete local tag (destructive; Ctrl-R to reload)"
-command = "git tag -d '{split:\\n:0|strip_ansi|split:\\t:0}'"
-shell = "bash"
-mode = "fork"
-separator = "\n"
+  command     = "git tag -d '{split:\\n:0|strip_ansi|split:\\t:0}'"
+  description = "Delete local tag (destructive; Ctrl-R to reload)"
+  mode        = "fork"
+  separator   = "\n"
+  shell       = "bash"

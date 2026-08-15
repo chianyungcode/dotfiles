@@ -6,7 +6,7 @@ function _pisces_bind_pair -a mode left right -d "Creates bindings for the given
     set l $left
     set r $right
 
-    set left  (string escape -n -- $left)
+    set left (string escape -n -- $left)
     set right (string escape -n -- $right)
 
     if [ $left = $right ]

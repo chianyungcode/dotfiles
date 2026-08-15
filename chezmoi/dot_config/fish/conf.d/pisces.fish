@@ -1,6 +1,6 @@
 set -l _pisces_bind_mode default
 switch $fish_key_bindings
-    case 'fish_vi_key_bindings' 'fish_hybrid_key_bindings'
+    case fish_vi_key_bindings fish_hybrid_key_bindings
         set _pisces_bind_mode insert
 end
 
@@ -19,12 +19,11 @@ bind -M $_pisces_bind_mode \177 _pisces_backspace
 # overrides TAB to provide completion of vars before a closing '"'
 bind -M $_pisces_bind_mode \t _pisces_complete
 
-
 function _pisces_uninstall --on-event pisces_uninstall
     # NOTE: won't work as expected if user has changed the mode after installation
     set -l _pisces_bind_mode default
     switch $fish_key_bindings
-        case 'fish_vi_key_bindings' 'fish_hybrid_key_bindings'
+        case fish_vi_key_bindings fish_hybrid_key_bindings
             set _pisces_bind_mode insert
     end
 
@@ -34,9 +33,9 @@ function _pisces_uninstall --on-event pisces_uninstall
         end
     end
 
-    bind -M $_pisces_bind_mode \b   backward-delete-char
+    bind -M $_pisces_bind_mode \b backward-delete-char
     bind -M $_pisces_bind_mode \177 backward-delete-char
-    bind -M $_pisces_bind_mode \t   complete
+    bind -M $_pisces_bind_mode \t complete
 
     set -e pisces_pairs
 end

@@ -1,42 +1,42 @@
 [metadata]
-name = "xgit-stashes"
-description = "Browse Git stashes"
-requirements = ["git"]
+  description  = "Browse Git stashes"
+  name         = "xgit-stashes"
+  requirements = ["git"]
 
 [source]
-command = "git stash list --format='%gd%x09%C(yellow)%gs%C(reset)' 2>/dev/null"
-ansi = true
+  ansi    = true
+  command = "git stash list --format='%gd%x09%C(yellow)%gs%C(reset)' 2>/dev/null"
 
-no_sort = true
-frecency = false
-output = "{strip_ansi|split:\\t:0}"
+  frecency = false
+  no_sort  = true
+  output   = "{strip_ansi|split:\\t:0}"
 
 [preview]
-command = "DFT_COLOR=always git show --ext-diff --color=always '{split:\\t:0}'"
+  command = "DFT_COLOR=always git show --ext-diff --color=always '{split:\\t:0}'"
 
 [ui]
-layout = "landscape"
+  layout = "landscape"
 
-[ui.preview_panel]
-size = 65
+  [ui.preview_panel]
+    size = 65
 
 [actions.apply]
-description = "Apply stash (modifies repository; Ctrl-R to reload)"
-command = "git stash apply '{split:\\n:0|strip_ansi|split:\\t:0}'"
-shell = "bash"
-mode = "fork"
-separator = "\n"
+  command     = "git stash apply '{split:\\n:0|strip_ansi|split:\\t:0}'"
+  description = "Apply stash (modifies repository; Ctrl-R to reload)"
+  mode        = "fork"
+  separator   = "\n"
+  shell       = "bash"
 
 [actions.pop]
-description = "Pop stash (destructive; Ctrl-R to reload)"
-command = "git stash pop '{split:\\n:0|strip_ansi|split:\\t:0}'"
-shell = "bash"
-mode = "fork"
-separator = "\n"
+  command     = "git stash pop '{split:\\n:0|strip_ansi|split:\\t:0}'"
+  description = "Pop stash (destructive; Ctrl-R to reload)"
+  mode        = "fork"
+  separator   = "\n"
+  shell       = "bash"
 
 [actions.drop]
-description = "Drop stash (destructive; Ctrl-R to reload)"
-command = "git stash drop '{split:\\n:0|strip_ansi|split:\\t:0}'"
-shell = "bash"
-mode = "fork"
-separator = "\n"
+  command     = "git stash drop '{split:\\n:0|strip_ansi|split:\\t:0}'"
+  description = "Drop stash (destructive; Ctrl-R to reload)"
+  mode        = "fork"
+  separator   = "\n"
+  shell       = "bash"

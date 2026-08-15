@@ -15,9 +15,9 @@ if type -q sk; and type -q fd
                 sk --border=rounded --height=80% --regex --preview='if [ -d {} ]; then CLICOLOR_FORCE=1 lla -a {}; else bat -n --color=always {}; fi' --preview-window="$preview_window" --header='CTRL-E edit marked files | CTRL-D cd directory | CTRL-/ toggle preview' --bind='ctrl-e:accept(ctrl-e)' --bind='ctrl-d:accept(ctrl-d)' --bind='ctrl-q:abort' --bind='ctrl-/:toggle-preview' -m --reverse --query "$query"
             )
 
-                if test (count $selected) -eq 0
-                    break
-                end
+            if test (count $selected) -eq 0
+                break
+            end
 
             if test "$selected[1]" = ctrl-e
                 set -l files

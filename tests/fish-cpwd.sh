@@ -3,8 +3,8 @@
 set -euo pipefail
 
 fail() {
-    printf '%s\n' "$1" >&2
-    exit 1
+	printf '%s\n' "$1" >&2
+	exit 1
 }
 
 repo_root=$(cd "$(dirname "$0")/.." && pwd)
@@ -15,17 +15,17 @@ tmp_dir=$(mktemp -d)
 trap 'rm -rf "$tmp_dir"' EXIT
 
 for command_name in chezmoi fish rg; do
-    command -v "$command_name" >/dev/null ||
-        fail "missing required command: $command_name"
+	command -v "$command_name" >/dev/null ||
+		fail "missing required command: $command_name"
 done
 
 rg -Fq 'function cpwd' "$aliases_source" ||
-    fail 'common aliases template must define cpwd as a function'
+	fail 'common aliases template must define cpwd as a function'
 if rg -n -F 'alias cpwd' "$aliases_source"; then
-    fail 'common aliases template still defines cpwd as an alias'
+	fail 'common aliases template still defines cpwd as an alias'
 fi
 if rg -n -F 'abbr --add cpwd' "$abbr_source"; then
-    fail 'abbreviation file still defines cpwd'
+	fail 'abbreviation file still defines cpwd'
 fi
 
 rendered="$tmp_dir/common-aliases.fish"
@@ -33,8 +33,8 @@ chezmoi -S "$source_dir" execute-template --file "$aliases_source" >"$rendered"
 fish --no-config -n "$rendered"
 
 if ! rg -q '^function cpwd$' "$rendered"; then
-    printf 'cpwd branch is inactive on this platform; source checks passed\n'
-    exit 0
+	printf 'cpwd branch is inactive on this platform; source checks passed\n'
+	exit 0
 fi
 
 stub_bin="$tmp_dir/bin"
@@ -50,8 +50,8 @@ expected_output="$tmp_dir/expected-output"
 actual_output="$tmp_dir/actual-output"
 printf '%s' "$tmp_dir/expected" >"$expected_output"
 CPWD_TEST_OUTPUT="$actual_output" PATH="$stub_bin:$PATH" \
-    fish --no-config -c "source '$rendered'; cd '$tmp_dir/start'; cd '$tmp_dir/expected'; cpwd"
+	fish --no-config -c "source '$rendered'; cd '$tmp_dir/start'; cd '$tmp_dir/expected'; cpwd"
 cmp -s "$expected_output" "$actual_output" ||
-    fail 'cpwd did not copy the directory active at invocation time'
+	fail 'cpwd did not copy the directory active at invocation time'
 
 printf 'fish cpwd tests passed\n'

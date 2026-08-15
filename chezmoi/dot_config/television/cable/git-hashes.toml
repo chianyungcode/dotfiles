@@ -1,56 +1,56 @@
 [metadata]
-name = "xgit-hashes"
-description = "Browse Git commit hashes"
-requirements = ["git"]
+  description  = "Browse Git commit hashes"
+  name         = "xgit-hashes"
+  requirements = ["git"]
 
 [source]
-command = "git log --date=short --color=always --format='%h%x09%C(green)%ad %C(auto)%h%d %s %C(blue)(%an)%C(reset)' 2>/dev/null"
-ansi = true
+  ansi    = true
+  command = "git log --date=short --color=always --format='%h%x09%C(green)%ad %C(auto)%h%d %s %C(blue)(%an)%C(reset)' 2>/dev/null"
 
-no_sort = true
-frecency = false
-output = "{strip_ansi|split:\\t:0}"
+  frecency = false
+  no_sort  = true
+  output   = "{strip_ansi|split:\\t:0}"
 
 [preview]
-command = "DFT_COLOR=always git show --ext-diff --color=always '{split:\\t:0}'"
+  command = "DFT_COLOR=always git show --ext-diff --color=always '{split:\\t:0}'"
 
 [ui]
-layout = "landscape"
+  layout = "landscape"
 
-[ui.preview_panel]
-size = 65
+  [ui.preview_panel]
+    size = 65
 
 [actions.open-browser]
-description = "Open commit in browser"
-command = "$HOME/.config/television/scripts/git-open commit '{split:\\n:0|strip_ansi|split:\\t:0}'"
-shell = "bash"
-mode = "fork"
-separator = "\n"
+  command     = "$HOME/.config/television/scripts/git-open commit '{split:\\n:0|strip_ansi|split:\\t:0}'"
+  description = "Open commit in browser"
+  mode        = "fork"
+  separator   = "\n"
+  shell       = "bash"
 
 [actions.diff-working-tree]
-description = "Diff commit against working tree"
-command = "git diff --color=always '{split:\\n:0|strip_ansi|split:\\t:0}'"
-shell = "bash"
-mode = "fork"
-separator = "\n"
+  command     = "git diff --color=always '{split:\\n:0|strip_ansi|split:\\t:0}'"
+  description = "Diff commit against working tree"
+  mode        = "fork"
+  separator   = "\n"
+  shell       = "bash"
 
 [actions.checkout-detached]
-description = "Checkout commit detached (modifies repository; Ctrl-R to reload)"
-command = "git switch --detach '{split:\\n:0|strip_ansi|split:\\t:0}'"
-shell = "bash"
-mode = "fork"
-separator = "\n"
+  command     = "git switch --detach '{split:\\n:0|strip_ansi|split:\\t:0}'"
+  description = "Checkout commit detached (modifies repository; Ctrl-R to reload)"
+  mode        = "fork"
+  separator   = "\n"
+  shell       = "bash"
 
 [actions.cherry-pick]
-description = "Cherry-pick commit (modifies repository; Ctrl-R to reload)"
-command = "git cherry-pick '{split:\\n:0|strip_ansi|split:\\t:0}'"
-shell = "bash"
-mode = "fork"
-separator = "\n"
+  command     = "git cherry-pick '{split:\\n:0|strip_ansi|split:\\t:0}'"
+  description = "Cherry-pick commit (modifies repository; Ctrl-R to reload)"
+  mode        = "fork"
+  separator   = "\n"
+  shell       = "bash"
 
 [actions.revert]
-description = "Revert commit (modifies repository; Ctrl-R to reload)"
-command = "git revert '{split:\\n:0|strip_ansi|split:\\t:0}'"
-shell = "bash"
-mode = "fork"
-separator = "\n"
+  command     = "git revert '{split:\\n:0|strip_ansi|split:\\t:0}'"
+  description = "Revert commit (modifies repository; Ctrl-R to reload)"
+  mode        = "fork"
+  separator   = "\n"
+  shell       = "bash"

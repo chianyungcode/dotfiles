@@ -1,41 +1,41 @@
 [metadata]
-name = "xgit-remotes"
-description = "Browse Git remotes"
-requirements = ["git"]
+  description  = "Browse Git remotes"
+  name         = "xgit-remotes"
+  requirements = ["git"]
 
 [source]
-command = "git remote -v 2>/dev/null | sort | awk '{print $1 \"\\t\" $2}' | uniq"
+  command = "git remote -v 2>/dev/null | sort | awk '{print $1 \"\\t\" $2}' | uniq"
 
-no_sort = true
-frecency = false
-output = "{split:\\t:0}"
+  frecency = false
+  no_sort  = true
+  output   = "{split:\\t:0}"
 
 [preview]
-command = "git log --oneline --graph --date=short --color=always --pretty=format:'%C(auto)%cd %h%d %s' --remotes='{split:\\t:0}' --"
+  command = "git log --oneline --graph --date=short --color=always --pretty=format:'%C(auto)%cd %h%d %s' --remotes='{split:\\t:0}' --"
 
 [ui]
-layout = "landscape"
+  layout = "landscape"
 
-[ui.preview_panel]
-size = 65
+  [ui.preview_panel]
+    size = 65
 
 [actions.open-browser]
-description = "Open remote in browser"
-command = "$HOME/.config/television/scripts/git-open remote '{split:\\n:0|split:\\t:0}'"
-shell = "bash"
-mode = "fork"
-separator = "\n"
+  command     = "$HOME/.config/television/scripts/git-open remote '{split:\\n:0|split:\\t:0}'"
+  description = "Open remote in browser"
+  mode        = "fork"
+  separator   = "\n"
+  shell       = "bash"
 
 [actions.fetch]
-description = "Fetch remote (modifies repository; Ctrl-R to reload)"
-command = "git fetch '{split:\\n:0|split:\\t:0}'"
-shell = "bash"
-mode = "fork"
-separator = "\n"
+  command     = "git fetch '{split:\\n:0|split:\\t:0}'"
+  description = "Fetch remote (modifies repository; Ctrl-R to reload)"
+  mode        = "fork"
+  separator   = "\n"
+  shell       = "bash"
 
 [actions.fetch-prune]
-description = "Fetch and prune remote (destructive; Ctrl-R to reload)"
-command = "git fetch --prune '{split:\\n:0|split:\\t:0}'"
-shell = "bash"
-mode = "fork"
-separator = "\n"
+  command     = "git fetch --prune '{split:\\n:0|split:\\t:0}'"
+  description = "Fetch and prune remote (destructive; Ctrl-R to reload)"
+  mode        = "fork"
+  separator   = "\n"
+  shell       = "bash"

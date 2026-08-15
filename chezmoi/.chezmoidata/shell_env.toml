@@ -1,41 +1,44 @@
 [shell_env]
   [shell_env.xdg]
-    data_home          = "$HOME/.local/share"
-    config_home        = "$HOME/.config"
-    state_home         = "$HOME/.local/state"
-    cache_home         = "$HOME/.cache"
-    data_dirs_default  = "/usr/local/share:/usr/share"
+    cache_home        = "$HOME/.cache"
+    config_home       = "$HOME/.config"
+    data_dirs_default = "/usr/local/share:/usr/share"
+    data_home         = "$HOME/.local/share"
+    state_home        = "$HOME/.local/state"
 
   [shell_env.homebrew]
-    prefix             = "/opt/homebrew"
-    cellar             = "/opt/homebrew/Cellar"
-    repository         = "/opt/homebrew"
-    bin_paths          = ["/opt/homebrew/bin", "/opt/homebrew/sbin"]
-    info_path          = "/opt/homebrew/share/info"
-    fish_completions   = ["/opt/homebrew/share/fish/completions", "/opt/homebrew/share/fish/vendor_completions.d"]
+    bin_paths = ["/opt/homebrew/bin", "/opt/homebrew/sbin"]
+    cellar = "/opt/homebrew/Cellar"
+    fish_completions = [
+      "/opt/homebrew/share/fish/completions",
+      "/opt/homebrew/share/fish/vendor_completions.d",
+    ]
+    info_path = "/opt/homebrew/share/info"
+    prefix = "/opt/homebrew"
+    repository = "/opt/homebrew"
 
   [shell_env.common]
-    EDITOR               = "nvim"
-    LM_STUDIO_BIN        = "$HOME/.lmstudio/bin"
+    EDITOR                = "nvim"
+    GIT_CONFIG_GLOBAL     = "$XDG_CONFIG_HOME/git/config"
+    LESSHISTFILE          = "/tmp/less-hist"
+    LM_STUDIO_BIN         = "$HOME/.lmstudio/bin"
+    PARALLEL_HOME         = "$XDG_CONFIG_HOME/parallel"
+    PROTO_HOME            = "$XDG_CONFIG_HOME/proto"
+    PYTHON_HISTORY        = "$XDG_STATE_HOME/python_history"
+    SCREENRC              = "$XDG_CONFIG_HOME/screen/screenrc"
+    STARSHIP_CONFIG       = "$XDG_CONFIG_HOME/starship/starship.toml"
     TMUXIFIER_LAYOUT_PATH = "$HOME/.config/tmuxifier/layouts"
-    GIT_CONFIG_GLOBAL    = "$XDG_CONFIG_HOME/git/config"
-    PROTO_HOME           = "$XDG_CONFIG_HOME/proto"
-    STARSHIP_CONFIG      = "$XDG_CONFIG_HOME/starship/starship.toml"
-    PARALLEL_HOME        = "$XDG_CONFIG_HOME/parallel"
-    SCREENRC             = "$XDG_CONFIG_HOME/screen/screenrc"
-    WGETRC               = "$XDG_CONFIG_HOME/wgetrc"
-    _ZO_DATA_DIR         = "$XDG_DATA_HOME/zoxide"
-    LESSHISTFILE         = "/tmp/less-hist"
-    PYTHON_HISTORY       = "$XDG_STATE_HOME/python_history"
+    WGETRC                = "$XDG_CONFIG_HOME/wgetrc"
+    _ZO_DATA_DIR          = "$XDG_DATA_HOME/zoxide"
 
   [shell_env.arch_linux]
-    HYPRLAND_CONFIG      = "$XDG_DATA_HOME/hypr/hyprland.conf"
-    TERMINFO             = "$XDG_DATA_HOME/terminfo"
-    TERMINFO_DIRS        = "$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
+    HYPRLAND_CONFIG = "$XDG_DATA_HOME/hypr/hyprland.conf"
+    TERMINFO        = "$XDG_DATA_HOME/terminfo"
+    TERMINFO_DIRS   = "$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
 
   [shell_env.ssh_auth_sock]
-    darwin               = "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-    linux                = "$HOME/.1password/agent.sock"
+    darwin = "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+    linux  = "$HOME/.1password/agent.sock"
 
   [shell_env.path]
     entries = [

@@ -3,8 +3,8 @@
 set -euo pipefail
 
 fail() {
-    printf '%s\n' "$1" >&2
-    exit 1
+	printf '%s\n' "$1" >&2
+	exit 1
 }
 
 repo_root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
@@ -45,43 +45,43 @@ STUB
 chmod +x "$stub_bin/uname" "$stub_bin/open" "$stub_bin/ssh"
 
 run_open() {
-    local directory=$1 kind=$2 value=$3 expected=$4
-    : >"$tmp_dir/open.log"
-    (
-        cd "$directory"
-        PATH="$stub_bin:$PATH" TV_GIT_OPEN_LOG="$tmp_dir/open.log" \
-            sh "$helper" "$kind" "$value"
-    )
-    [[ $(<"$tmp_dir/open.log") == "$expected" ]] ||
-        fail "$kind URL mismatch"
+	local directory=$1 kind=$2 value=$3 expected=$4
+	: >"$tmp_dir/open.log"
+	(
+		cd "$directory"
+		PATH="$stub_bin:$PATH" TV_GIT_OPEN_LOG="$tmp_dir/open.log" \
+			sh "$helper" "$kind" "$value"
+	)
+	[[ $(<"$tmp_dir/open.log") == "$expected" ]] ||
+		fail "$kind URL mismatch"
 }
 
 git -C "$repo" remote add origin git@github.com:owner/project.git
 run_open "$repo" commit "$head_hash" \
-    "https://github.com/owner/project/commit/$head_hash"
+	"https://github.com/owner/project/commit/$head_hash"
 run_open "$repo" branch main \
-    "https://github.com/owner/project/tree/main"
+	"https://github.com/owner/project/tree/main"
 run_open "$repo" file tracked.txt \
-    "https://github.com/owner/project/blob/main/tracked.txt"
+	"https://github.com/owner/project/blob/main/tracked.txt"
 
 git -C "$repo" remote set-url origin https://gitlab.com/owner/project.git
 run_open "$repo" remote origin \
-    "https://gitlab.com/owner/project/tree/main"
+	"https://gitlab.com/owner/project/tree/main"
 
 git -C "$repo" tag v1.0
 run_open "$repo" tag v1.0 \
-    "https://gitlab.com/owner/project/releases/tag/v1.0"
+	"https://gitlab.com/owner/project/releases/tag/v1.0"
 
 git -C "$repo" remote set-url origin ghcny:owner/project.git
 run_open "$repo" branch main \
-    "https://github.com/owner/project/tree/main"
+	"https://github.com/owner/project/tree/main"
 
 mkdir -p "$repo/nested"
 run_open "$repo/nested" file tracked.txt \
-    "https://github.com/owner/project/blob/main/nested/tracked.txt"
+	"https://github.com/owner/project/blob/main/nested/tracked.txt"
 
 if (cd "$repo" && PATH="$stub_bin:$PATH" sh "$helper" unknown value); then
-    fail "unknown object kind unexpectedly succeeded"
+	fail "unknown object kind unexpectedly succeeded"
 fi
 
 printf 'television Git browser helper passed\n'

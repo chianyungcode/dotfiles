@@ -1,3 +1,4 @@
+---
 interface:
   display_name: "Think Steps"
   short_description: "Break features into manual coding steps"

@@ -11,10 +11,10 @@ echo "Starting uinput configuration and kanata service setup..."
 
 # 1. Create uinput group if it doesn't exist
 if ! getent group uinput >/dev/null; then
-  echo "Creating group 'uinput'..."
-  sudo groupadd --system uinput
+	echo "Creating group 'uinput'..."
+	sudo groupadd --system uinput
 else
-  echo "Group 'uinput' already exists."
+	echo "Group 'uinput' already exists."
 fi
 
 # 2. Add current user to 'input' and 'uinput' groups
@@ -56,19 +56,19 @@ dest_base=~/.local/share/fonts
 mkdir -p "$dest_base"
 
 for font_folder in "$src_dir"/*; do
-  if [ -d "$font_folder" ]; then
-    folder_name=$(basename "$font_folder")
-    dest_folder="$dest_base/$folder_name"
+	if [ -d "$font_folder" ]; then
+		folder_name=$(basename "$font_folder")
+		dest_folder="$dest_base/$folder_name"
 
-    if [ -d "$dest_folder" ]; then
-      echo "Skipping $folder_name (already exists)"
-      continue
-    fi
+		if [ -d "$dest_folder" ]; then
+			echo "Skipping $folder_name (already exists)"
+			continue
+		fi
 
-    mkdir -p "$dest_folder"
-    cp "$font_folder"/*.otf "$dest_folder"/
-    echo "Copied fonts from $font_folder to $dest_folder"
-  fi
+		mkdir -p "$dest_folder"
+		cp "$font_folder"/*.otf "$dest_folder"/
+		echo "Copied fonts from $font_folder to $dest_folder"
+	fi
 done
 
 fc-cache -fv
@@ -82,7 +82,7 @@ sudo mkdir -p /etc/1password
 sudo touch /etc/1password/custom_allowed_browsers
 
 if ! grep -qxF "zen-bin" /etc/1password/custom_allowed_browsers; then
-  echo "zen-bin" | sudo tee -a /etc/1password/custom_allowed_browsers >/dev/null
+	echo "zen-bin" | sudo tee -a /etc/1password/custom_allowed_browsers >/dev/null
 fi
 
 # █▀▀ █ █▄░█ █▀▀ █▀▀ █▀█ █▀█ █▀█ █ █▄░█ ▀█▀
