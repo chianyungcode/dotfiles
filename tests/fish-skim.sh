@@ -8,18 +8,21 @@ fail() {
 }
 
 repo_root=$(cd "$(dirname "$0")/.." && pwd)
-skim_source="$repo_root/chezmoi/dot_config/zsh/conf.d/third-party/99_skim.sh"
+skim_source="$repo_root/chezmoi/dot_config/fish/conf.d/99_skim.fish"
 tmp_dir=$(mktemp -d)
 trap 'rm -rf "$tmp_dir"' EXIT
 
-command -v zsh >/dev/null || fail 'missing required command: zsh'
+for command_name in fish rg; do
+    command -v "$command_name" >/dev/null ||
+        fail "missing required command: $command_name"
+done
 
 stub_bin="$tmp_dir/bin"
 mkdir -p "$stub_bin"
 
 cat >"$stub_bin/fd" <<'STUB'
 #!/usr/bin/env bash
-printf 'candidate\n'
+printf '%s\n' candidate
 STUB
 chmod +x "$stub_bin/fd"
 
@@ -67,28 +70,32 @@ chmod +x "$stub_bin/sk"
 
 actual=$(
     PATH="$stub_bin:$PATH" SKIM_ARGS_OUTPUT="$tmp_dir/sk-args" \
-        zsh -f -c '
-            zle() { :; }
-            bindkey() { :; }
-            source "$1"
-            LBUFFER=""
-            skim-ctrl-t-widget
-            print -r -- "$LBUFFER"
-        ' zsh "$skim_source"
+        fish --no-config -c '
+            function commandline
+                switch "$argv[1]"
+                    case --current-token
+                        echo ""
+                    case "*"
+                        return 0
+                end
+            end
+            source "$argv[1]"
+            skim_ctrl_t
+        ' "$skim_source"
 )
 
 [[ -z "$actual" ]] || fail "cancelled skim inserted: $(printf '%q' "$actual")"
 
 rg -Fq -- 'ctrl-e:accept(ctrl-e)' "$tmp_dir/sk-args" ||
-    fail 'zsh skim is missing ctrl-e editor action'
+    fail 'fish skim is missing ctrl-e editor action'
 rg -Fq -- 'ctrl-c:accept(ctrl-c)' "$tmp_dir/sk-args" ||
-    fail 'zsh skim is missing ctrl-c bat action'
+    fail 'fish skim is missing ctrl-c bat action'
 rg -Fq -- 'ctrl-d:accept(ctrl-d)' "$tmp_dir/sk-args" ||
-    fail 'zsh skim is missing ctrl-d directory action'
+    fail 'fish skim is missing ctrl-d directory action'
 rg -Fq -- 'ctrl-q:abort' "$tmp_dir/sk-args" ||
-    fail 'zsh skim is missing ctrl-q cancellation action'
+    fail 'fish skim is missing ctrl-q cancellation action'
 rg -Fq -- 'CTRL-E edit marked files | CTRL-C bat marked files | CTRL-D cd directory | CTRL-/ toggle preview' "$tmp_dir/sk-args" ||
-    fail 'zsh skim is missing the action hint'
+    fail 'fish skim is missing the action hint'
 
 action_start="$tmp_dir/action-start"
 mkdir -p "$action_start"
@@ -101,24 +108,29 @@ for action in edit bat; do
         PATH="$stub_bin:$PATH" SKIM_TEST_MODE=actions SKIM_ACTION="$action" \
             SKIM_FILE_1="$action_file_1" SKIM_FILE_2="$action_file_2" \
             ACTION_OUTPUT="$action_output" EDITOR=editor \
-            zsh -f -c '
-                zle() { :; }
-                bindkey() { :; }
-                source "$1"
-                cd -- "$2"
-                LBUFFER=""
-                skim-ctrl-t-widget
+            fish --no-config -c '
+                function commandline
+                    switch "$argv[1]"
+                        case --current-token
+                            echo ""
+                        case "*"
+                            return 0
+                    end
+                end
+                source "$argv[1]"
+                cd -- "$argv[2]"
+                skim_ctrl_t
                 pwd
-            ' zsh "$skim_source" "$action_start"
+            ' "$skim_source" "$action_start"
     )
     [[ "$actual_pwd" == "$action_start" ]] ||
-        fail "zsh skim action changed directory: $actual_pwd"
+        fail "fish skim action changed directory: $actual_pwd"
     tail -n 2 "$action_output" >"$tmp_dir/$action-files"
     printf '%s\n%s\n' "$action_file_1" "$action_file_2" >"$tmp_dir/expected-files"
     cmp -s "$tmp_dir/expected-files" "$tmp_dir/$action-files" ||
-        fail "zsh skim $action action did not receive all marked files"
+        fail "fish skim $action action did not receive all marked files"
     if [[ "$action" == bat ]] && rg -Fxq -- '-n' "$action_output"; then
-        fail 'zsh skim ctrl-c bat action should not use -n'
+        fail 'fish skim ctrl-c bat action should not use -n'
     fi
 done
 
@@ -129,20 +141,25 @@ call_count="$tmp_dir/call-count"
 actual_pwd=$(
     PATH="$stub_bin:$PATH" SKIM_TEST_MODE=directory \
         SKIM_CALL_COUNT="$call_count" SKIM_TARGET="$target_dir" \
-        zsh -f -c '
-            zle() { :; }
-            bindkey() { :; }
-            source "$1"
-            cd -- "$2"
-            LBUFFER=""
-            skim-ctrl-t-widget
+        fish --no-config -c '
+            function commandline
+                switch "$argv[1]"
+                    case --current-token
+                        echo ""
+                    case "*"
+                        return 0
+                end
+            end
+            source "$argv[1]"
+            cd -- "$argv[2]"
+            skim_ctrl_t
             pwd
-        ' zsh "$skim_source" "$start_dir"
+        ' "$skim_source" "$start_dir"
 )
 [[ "$actual_pwd" == "$target_dir" ]] ||
-    fail "zsh skim did not cd to selected directory: $actual_pwd"
+    fail "fish skim did not cd to selected directory: $actual_pwd"
 [[ $(<"$call_count") == 2 ]] ||
-    fail "zsh skim did not reopen after directory action: $(<"$call_count") calls"
+    fail "fish skim did not reopen after directory action: $(<"$call_count") calls"
 
 file_target="$start_dir/file.txt"
 touch "$file_target"
@@ -150,17 +167,22 @@ call_count="$tmp_dir/file-call-count"
 actual_pwd=$(
     PATH="$stub_bin:$PATH" SKIM_TEST_MODE=directory \
         SKIM_CALL_COUNT="$call_count" SKIM_TARGET="$file_target" \
-        zsh -f -c '
-            zle() { :; }
-            bindkey() { :; }
-            source "$1"
-            cd -- "$2"
-            LBUFFER=""
-            skim-ctrl-t-widget
+        fish --no-config -c '
+            function commandline
+                switch "$argv[1]"
+                    case --current-token
+                        echo ""
+                    case "*"
+                        return 0
+                end
+            end
+            source "$argv[1]"
+            cd -- "$argv[2]"
+            skim_ctrl_t
             pwd
-        ' zsh "$skim_source" "$start_dir"
+        ' "$skim_source" "$start_dir"
 )
 [[ "$actual_pwd" == "$start_dir" ]] ||
-    fail "zsh skim changed directory for file result: $actual_pwd"
+    fail "fish skim changed directory for file result: $actual_pwd"
 
-printf 'zsh skim cancellation test passed\n'
+printf 'fish skim action tests passed\n'
