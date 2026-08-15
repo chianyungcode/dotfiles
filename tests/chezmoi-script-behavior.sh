@@ -113,6 +113,8 @@ chezmoi -S "$source_dir" execute-template \
 chmod +x "$imperative_default_fixture"
 rg -q 'herdr plugin install qu8n/herdr-automatic-rename --yes' \
     "$imperative_default_fixture"
+rg -q 'plugin_id == \\"jhochenbaum.hunkdiff\\"' \
+    "$imperative_default_fixture"
 
 imperative_data="$tmp_dir/imperative-behavior.json"
 jq \
