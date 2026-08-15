@@ -5,8 +5,9 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - ".github/workflows/automated_test.yaml"
+      - ".github/workflows/**"
       - ".github/actions/**"
+      - ".chezmoiroot"
       - "chezmoi/**"
     branches:
       - master
@@ -17,8 +18,9 @@ on:
       - reopened
       - synchronize
     paths:
-      - ".github/workflows/automated_test.yaml"
+      - ".github/workflows/**"
       - ".github/actions/**"
+      - ".chezmoiroot"
       - "chezmoi/**"
 
 concurrency:
@@ -27,6 +29,8 @@ concurrency:
 
 jobs:
   test-dotfiles:
+    env:
+      CI: "true"
     # runs-on: ubuntu-latest
     strategy:
       fail-fast: true
@@ -60,21 +64,34 @@ jobs:
           mkdir -p ${homedir}/.config/chezmoi
 
           cat > ${homedir}/.config/chezmoi/chezmoi.toml<< EOF
-          [data]
-              git_user          = "chianyungcode"
-              git_email         = "test@test.com"
-              github_user       = "chianyungcode"
-              machine_username  = "test"
-              machine_hostname  = "machine-test"
-              dev_computer      = false
-              homelab_member    = false
-              is_ci_workflow    = true # Set true only in CI test
-              personal_computer = false
-              use_secrets       = false
-              xdgCacheDir       = "${homedir}/.cache"
-              xdgConfigDir      = "${homedir}/.config"
-              xdgDataDir        = "${homedir}/.local/share"
-              xdgStateDir       = "${homedir}/.local/state"
+          [data.identity]
+              profile          = "server-minimal"
+              git_name         = "chianyungcode-server"
+              git_email        = "chianyungcode-server@local.invalid"
+              github_username  = ""
+              signing_key      = ""
+              github_token     = ""
+
+          [data.machine]
+              role = "server"
+
+          [data.features]
+              development = true
+              homelab     = false
+              personal    = false
+              graphical   = false
+
+          [data.secrets]
+              provider = "none"
+
+          [data.encrypted_files]
+              enabled = false
+
+          [data.xdg]
+              cache_home  = "${homedir}/.cache"
+              config_home = "${homedir}/.config"
+              data_home   = "${homedir}/.local/share"
+              state_home  = "${homedir}/.local/state"
           EOF
 
       # ----------------------------------------------
@@ -90,8 +107,9 @@ jobs:
       - name: Run chezmoi apply
         run: |
           if [ -d /home/runner ]; then homedir="/home/runner"; else homedir="/Users/runner"; fi
+          source_dir="${homedir}/.local/share/chezmoi/chezmoi"
 
-          ./bin/chezmoi --config ${homedir}/.config/chezmoi/chezmoi.toml apply
+          ./bin/chezmoi --source "${source_dir}" --config "${homedir}/.config/chezmoi/chezmoi.toml" apply
 
       # ----------------------------------------------
       # UBUNTU: Confirm dotfiles are installed
@@ -114,7 +132,7 @@ jobs:
           )
 
           missing_files=(
-            .config/dotfile_source/080-macos.sh
+            .config/zsh/conf.d/080-macos.sh
             Library
           )
 

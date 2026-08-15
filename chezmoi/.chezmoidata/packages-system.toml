@@ -511,6 +511,7 @@
     [packages.apt.development]
       packages = [
         # File & text processing
+        "build-essential",
         "fd-find",
         "fzf",
         "jq",
