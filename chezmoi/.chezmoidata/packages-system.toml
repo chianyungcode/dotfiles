@@ -512,6 +512,8 @@
       packages = [
         # File & text processing
         "build-essential",
+        "pkg-config",
+        "libssl-dev",
         "fd-find",
         "fzf",
         "jq",
