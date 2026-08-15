@@ -32,21 +32,12 @@ printf '%s\n' "$@" >"$ACTION_OUTPUT"
 STUB
 chmod +x "$stub_bin/editor"
 
-cat >"$stub_bin/bat" <<'STUB'
-#!/usr/bin/env bash
-printf '%s\n' "$@" >"$ACTION_OUTPUT"
-STUB
-chmod +x "$stub_bin/bat"
-
 cat >"$stub_bin/sk" <<'STUB'
 #!/usr/bin/env bash
 if [[ ${SKIM_TEST_MODE:-} == actions ]]; then
     case "$SKIM_ACTION" in
         edit)
             printf 'ctrl-e\n%s\n%s\n' "$SKIM_FILE_1" "$SKIM_FILE_2"
-            ;;
-        bat)
-            printf 'ctrl-c\n%s\n%s\n' "$SKIM_FILE_1" "$SKIM_FILE_2"
             ;;
     esac
     exit 0
@@ -88,13 +79,20 @@ actual=$(
 
 rg -Fq -- 'ctrl-e:accept(ctrl-e)' "$tmp_dir/sk-args" ||
     fail 'fish skim is missing ctrl-e editor action'
-rg -Fq -- 'ctrl-c:accept(ctrl-c)' "$tmp_dir/sk-args" ||
-    fail 'fish skim is missing ctrl-c bat action'
+if rg -Fq -- 'ctrl-c:accept' "$tmp_dir/sk-args"; then
+    fail 'fish skim should leave ctrl-c as the default cancel action'
+fi
 rg -Fq -- 'ctrl-d:accept(ctrl-d)' "$tmp_dir/sk-args" ||
     fail 'fish skim is missing ctrl-d directory action'
 rg -Fq -- 'ctrl-q:abort' "$tmp_dir/sk-args" ||
     fail 'fish skim is missing ctrl-q cancellation action'
-rg -Fq -- 'CTRL-E edit marked files | CTRL-C bat marked files | CTRL-D cd directory | CTRL-/ toggle preview' "$tmp_dir/sk-args" ||
+if rg -Fq -- 'ctrl-b:accept' "$tmp_dir/sk-args"; then
+    fail 'fish skim should not bind ctrl-b to bat'
+fi
+if rg -Fq -- 'CTRL-B bat marked files' "$tmp_dir/sk-args"; then
+    fail 'fish skim should not advertise a bat action'
+fi
+rg -Fq -- 'CTRL-E edit marked files | CTRL-D cd directory | CTRL-/ toggle preview' "$tmp_dir/sk-args" ||
     fail 'fish skim is missing the action hint'
 
 action_start="$tmp_dir/action-start"
@@ -102,7 +100,7 @@ mkdir -p "$action_start"
 action_file_1="$action_start/file-1.txt"
 action_file_2="$action_start/file-2.txt"
 touch "$action_file_1" "$action_file_2"
-for action in edit bat; do
+for action in edit; do
     action_output="$tmp_dir/$action-args"
     actual_pwd=$(
         PATH="$stub_bin:$PATH" SKIM_TEST_MODE=actions SKIM_ACTION="$action" \
@@ -129,9 +127,6 @@ for action in edit bat; do
     printf '%s\n%s\n' "$action_file_1" "$action_file_2" >"$tmp_dir/expected-files"
     cmp -s "$tmp_dir/expected-files" "$tmp_dir/$action-files" ||
         fail "fish skim $action action did not receive all marked files"
-    if [[ "$action" == bat ]] && rg -Fxq -- '-n' "$action_output"; then
-        fail 'fish skim ctrl-c bat action should not use -n'
-    fi
 done
 
 start_dir="$tmp_dir/start"

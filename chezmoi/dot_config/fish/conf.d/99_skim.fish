@@ -12,14 +12,14 @@ if type -q sk; and type -q fd
         while true
             set selected (
                 fd --hidden --exclude .git --type f --type d --type symlink |
-                sk --border=rounded --height=80% --regex --preview='if [ -d {} ]; then CLICOLOR_FORCE=1 lla -a {}; else bat -n --color=always {}; fi' --preview-window="$preview_window" --header='CTRL-E edit marked files | CTRL-C bat marked files | CTRL-D cd directory | CTRL-/ toggle preview' --bind='ctrl-e:accept(ctrl-e)' --bind='ctrl-c:accept(ctrl-c)' --bind='ctrl-d:accept(ctrl-d)' --bind='ctrl-q:abort' --bind='ctrl-/:toggle-preview' -m --reverse --query "$query"
+                sk --border=rounded --height=80% --regex --preview='if [ -d {} ]; then CLICOLOR_FORCE=1 lla -a {}; else bat -n --color=always {}; fi' --preview-window="$preview_window" --header='CTRL-E edit marked files | CTRL-D cd directory | CTRL-/ toggle preview' --bind='ctrl-e:accept(ctrl-e)' --bind='ctrl-d:accept(ctrl-d)' --bind='ctrl-q:abort' --bind='ctrl-/:toggle-preview' -m --reverse --query "$query"
             )
 
                 if test (count $selected) -eq 0
                     break
                 end
 
-            if test "$selected[1]" = ctrl-e; or test "$selected[1]" = ctrl-c
+            if test "$selected[1]" = ctrl-e
                 set -l files
                 for item in $selected[2..-1]
                     if test -f "$item"
@@ -28,16 +28,12 @@ if type -q sk; and type -q fd
                 end
 
                 if test (count $files) -gt 0
-                    if test "$selected[1]" = ctrl-e
-                        set -l editor "$EDITOR"
-                        if test -z "$editor"
-                            set editor vim
-                        end
-                        set -lx EDITOR "$editor"
-                        sh -c '${EDITOR:-vim} -- "$@"' sh $files
-                    else
-                        bat --color=always -- $files
+                    set -l editor "$EDITOR"
+                    if test -z "$editor"
+                        set editor vim
                     end
+                    set -lx EDITOR "$editor"
+                    sh -c '${EDITOR:-vim} -- "$@"' sh $files
                 end
 
                 set selected

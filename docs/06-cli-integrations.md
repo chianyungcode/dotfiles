@@ -190,15 +190,15 @@
 - `chezmoi/dot_config/fish/conf.d/99_skim.fish`: When both `sk` and `fd` are
   available, binds `Ctrl-T` in normal and insert Fish modes to a multi-select
   file/directory picker with adaptive previews from `bat` and `lla`; `Ctrl-E`
-  opens all marked files in `$EDITOR`, `Ctrl-C` displays all marked files with
-  `bat`, and `Ctrl-D` changes into a highlighted directory before reopening the
-  picker.
+  opens all marked files in `$EDITOR`, `Ctrl-C` keeps the default cancellation
+  behavior, and `Ctrl-D` changes into a highlighted directory before reopening
+  the picker.
 - `chezmoi/dot_config/zsh/conf.d/third-party/99_skim.sh`: Binds `Ctrl-T` to a
   Zsh Line Editor widget that uses fd for candidates and bat/lla for previews;
-  `Ctrl-E` opens all marked files in `$EDITOR`, `Ctrl-C` displays all marked
-  files with `bat`, and `Ctrl-D` changes into a highlighted directory before
-  reopening the picker. The binding is deferred when possible to reduce
-  startup cost.
+  `Ctrl-E` opens all marked files in `$EDITOR`, `Ctrl-C` keeps the default
+  cancellation behavior, and `Ctrl-D` changes into a highlighted directory
+  before reopening the picker.
+  The binding is deferred when possible to reduce startup cost.
 
 # television
 

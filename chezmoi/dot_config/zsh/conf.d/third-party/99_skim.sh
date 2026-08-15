@@ -21,14 +21,14 @@ if (( $+commands[sk] && $+commands[fd] )); then
     while true; do
       result=("${(@f)$(
         fd --hidden --exclude .git --type f --type d --type symlink |
-          sk  --border=rounded --regex --preview 'if [ -d {} ]; then CLICOLOR_FORCE=1 lla -a {}; else bat -n --color=always {}; fi' --preview-window="$preview_window" --header='CTRL-E edit marked files | CTRL-C bat marked files | CTRL-D cd directory | CTRL-/ toggle preview' --bind 'ctrl-e:accept(ctrl-e)' --bind 'ctrl-c:accept(ctrl-c)' --bind 'ctrl-d:accept(ctrl-d)' --bind 'ctrl-q:abort' --bind 'ctrl-/:toggle-preview' -m --reverse --query "$query"
+          sk  --border=rounded --height=80% --regex --preview 'if [ -d {} ]; then CLICOLOR_FORCE=1 lla -a {}; else bat -n --color=always {}; fi' --preview-window="$preview_window" --header='CTRL-E edit marked files | CTRL-D cd directory | CTRL-/ toggle preview' --bind 'ctrl-e:accept(ctrl-e)' --bind 'ctrl-d:accept(ctrl-d)' --bind 'ctrl-q:abort' --bind 'ctrl-/:toggle-preview' -m --reverse --query "$query"
       )}")
 
       if (( ! ${#result[@]} )); then
         break
       fi
 
-      if [[ "${result[1]}" == ctrl-e || "${result[1]}" == ctrl-c ]]; then
+      if [[ "${result[1]}" == ctrl-e ]]; then
         files=()
         if (( ${#result[@]} > 1 )); then
           for item in "${(@)result[2,-1]}"; do
@@ -37,12 +37,8 @@ if (( $+commands[sk] && $+commands[fd] )); then
         fi
 
         if (( ${#files[@]} )); then
-          if [[ "${result[1]}" == ctrl-e ]]; then
-            local editor="${EDITOR:-vim}"
-            ${=editor} -- "${files[@]}"
-          else
-            bat --color=always -- "${files[@]}"
-          fi
+          local editor="${EDITOR:-vim}"
+          ${=editor} -- "${files[@]}"
         fi
 
         selected=()
