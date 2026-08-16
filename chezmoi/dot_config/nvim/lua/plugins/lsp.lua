@@ -69,6 +69,9 @@ return {
         nil_ls = {
           enabled = false,
         },
+        harper_ls = {
+          enabled = false,
+        },
         nixd = {
           mason = false,
           cmd = { "nixd" },

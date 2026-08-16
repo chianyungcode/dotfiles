@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import pathlib
 import sys
+
 import tomllib
 
 channel_dir = pathlib.Path(sys.argv[1])

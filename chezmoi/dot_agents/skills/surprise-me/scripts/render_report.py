@@ -28,7 +28,6 @@ import json
 import re
 from pathlib import Path
 
-
 CSS = """
 :root {
   color-scheme: light dark;

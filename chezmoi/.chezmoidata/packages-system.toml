@@ -229,6 +229,8 @@
         "zlib",      # for building python
 
         # === LSP, formatter & linters ===
+        "treefmt", # formatter multiplexer
+        "harper",  # grammar checker LSP
 
         # @text
         "codespell", # check code for misspellings
@@ -250,6 +252,7 @@
 
         # @markdown
         "markdownlint-cli2", # Linter for markdown file
+        "markdown-oxide",    # PKM markdown LSP
 
         # @toml
         "taplo", # TOML formatter

@@ -12,7 +12,6 @@ import sys
 import tempfile
 import time
 
-
 ROLE = "Choose this machine's primary role?"
 IDENTITY = "Choose your identity profile?"
 DEVELOPMENT = "Enable development tools?"
