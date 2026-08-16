@@ -243,6 +243,9 @@
         # @python
         "ruff", # Python linter
 
+        # @lua
+        "lua-language-server", # lua LSP
+
         # @shell
         "shellcheck", # bash, sh linter
         "shfmt",      # bash, sh formatter
@@ -614,6 +617,8 @@
         "github-cli", # Github CLI
         "glab",       # GitLab CLI
         "lazygit",
+        "serie",
+        "git-graph",
 
         # Shell & Terminal
         "fish",
