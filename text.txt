@@ -1,0 +1,3 @@
+sudo apt update && sudo apt upgrade
+sudo apt install -y curl git
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply chianyungcode

@@ -43,6 +43,7 @@ Library/Application Support/Leader Key
 # are stripped before matching. Keep Age-encrypted targets out of secretless
 # machines and CI so no Age identity is required.
 .agents/skills/ticktick-task/SKILL.md
+.agents/skills/orchestrating-brain-agent-tasks/SKILL.md
 .config/espanso/match/ai.yaml
 .config/espanso/match/email.yaml
 .config/espanso/match/macos.yaml
