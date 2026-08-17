@@ -169,6 +169,49 @@
     ''',
   ]
 
+  # Hack when waiting for https://github.com/jj-vcs/jj/issues/405
+  # pre-committed commit
+  pco = [
+    "util", "exec", "--", "bash", "-c", """
+    set -euo pipefail
+
+    # List files changed in the current working commit (`@`)
+    changed_files=$(jj diff --name-only -r @)
+
+    # If nothing changed, just commit normally
+    if [ -z "$changed_files" ]; then
+      exec jj commit "$@"
+    fi
+
+    # Run pre-commit only on the changed files
+    printf '%s\n' "$changed_files" | xargs pre-commit run --files
+
+    # If pre-commit succeeded, create the commit
+    exec jj commit "$@"
+    """, ""
+  ]
+
+  # Run pre-commit before editing the current commit description
+  pde = [
+    "util", "exec", "--", "bash", "-c", """
+    set -euo pipefail
+
+    # List files changed in the current working commit (`@`)
+    changed_files=$(jj diff --name-only -r @)
+
+    # If nothing changed, just edit the current commit description
+    if [ -z "$changed_files" ]; then
+      exec jj describe --editor "$@"
+    fi
+
+    # Run pre-commit only on the changed files
+    printf '%s\n' "$changed_files" | xargs pre-commit run --files
+
+    # If pre-commit succeeded, edit the current commit description
+    exec jj describe --editor "$@"
+    """, ""
+  ]
+
 [snapshot]
   auto-update-stale = true
 

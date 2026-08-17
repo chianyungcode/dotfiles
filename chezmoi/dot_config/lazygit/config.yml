@@ -1,9 +1,8 @@
 ---
 # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
-
 git:
-  pagers:
-    - externalDiffCommand: difft --color=always
-
+  diffRenderers:
+    - command: difft --color=always
+      type: extDiff
 gui:
   showFileTree: false
