@@ -682,6 +682,7 @@ case "$url" in
     */gcm-linux-x64.deb) cp "$GCM_DEB_FIXTURE" "$output_file" ;;
     */sample.tar.gz) cp "$ARCHIVE_FIXTURE" "$output_file" ;;
     */SHA256SUMS) cp "$CHECKSUM_FIXTURE" "$output_file" ;;
+    */sample.tar.gz.sha256) cp "$CHECKSUM_FIXTURE" "$output_file" ;;
     *) exit 64 ;;
 esac
 STUB
@@ -709,6 +710,30 @@ PATH="$standalone_fake_bin" \
 assert_log_contains 'releases/latest'
 assert_log_contains 'sample.tar.gz'
 assert_log_contains 'SHA256SUMS'
+
+per_archive_release_json="$tmp_dir/release-with-per-archive-checksum.json"
+jq '.assets[1].name = "other.tar.gz.sha256"
+    | .assets[1].browser_download_url = "https://fixtures.invalid/other.tar.gz.sha256"
+    | .assets += [{
+          name: "sample.tar.gz.sha256",
+          browser_download_url: "https://fixtures.invalid/sample.tar.gz.sha256"
+       }]' \
+	"$release_json_fixture" >"$per_archive_release_json"
+per_archive_home="$tmp_dir/per-archive-checksum-home"
+: >"$COMMAND_LOG"
+PATH="$standalone_fake_bin" \
+	HOME="$per_archive_home" \
+	COMMAND_LOG="$COMMAND_LOG" \
+	RELEASE_JSON_FIXTURE="$per_archive_release_json" \
+	CHECKSUM_FIXTURE="$CHECKSUM_FIXTURE" \
+	/bin/bash "$standalone_fixture" >"$tmp_dir/per-archive-checksum.out" 2>&1 || {
+	cat "$tmp_dir/per-archive-checksum.out" >&2
+	exit 1
+}
+[[ -x "$per_archive_home/.local/bin/sample" ]]
+"$per_archive_home/.local/bin/sample" --version |
+	rg -q '^sample 1.2.3$'
+assert_log_contains 'sample.tar.gz.sha256'
 
 wrong_checksum_fixture="$tmp_dir/wrong-SHA256SUMS"
 printf '%064d  sample.tar.gz\n' 0 >"$wrong_checksum_fixture"

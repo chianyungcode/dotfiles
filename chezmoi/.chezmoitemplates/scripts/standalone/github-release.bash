@@ -34,12 +34,16 @@ select_release_asset() {
 
 select_checksum_asset() {
     local release_json=$1
-    jq -r '
+    local archive_name=$2
+    jq -r --arg archive "$archive_name" '
         .assets[]
-        | select(.name | test(
-            "^(sha256sums|sha256sums\\.txt|checksums|checksums\\.txt)$";
-            "i"
-        ))
+        | select(
+            (.name | test(
+                "^(sha256sums|sha256sums\\.txt|checksums|checksums\\.txt)$";
+                "i"
+            ))
+            or ((.name | ascii_downcase) == (($archive | ascii_downcase) + ".sha256"))
+        )
         | .browser_download_url
     ' "$release_json" | head -n 1
 }
@@ -142,7 +146,7 @@ install_github_release() {
         "$asset_url" --output "$archive"
 
     local checksum_url
-    checksum_url=$(select_checksum_asset "$release_json")
+    checksum_url=$(select_checksum_asset "$release_json" "${archive##*/}")
     if [[ -n "$checksum_url" && "$checksum_url" != null ]]; then
         local checksum_file="$work_dir/${checksum_url##*/}"
         curl --fail --show-error --silent --location --retry 3 \
