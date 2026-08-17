@@ -252,7 +252,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "luna",
+      colorscheme = "oldworld",
     },
   },
 }
