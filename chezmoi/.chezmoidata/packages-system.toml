@@ -236,6 +236,7 @@
 
         # @text
         "codespell", # check code for misspellings
+        "typos-cli", # check typos
 
         # @javascript/typescript
         "biome",    # JS/TS linter, formatter
@@ -247,6 +248,7 @@
 
         # @lua
         "lua-language-server", # lua LSP
+        "stylua",              # lua formatter
 
         # @shell
         "shellcheck", # bash, sh linter

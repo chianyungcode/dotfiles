@@ -56,13 +56,13 @@
 
         # LSP, formatter & linters
 
-        # Lua
+        # @lua
         "stylua", # Lua formatter
 
-        # Markdown
+        # @markdown
         "rumdl", # performance markdown linter
 
-        # General
+        # @text
         "typos-cli",
       ]
 
