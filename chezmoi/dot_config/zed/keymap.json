@@ -3,22 +3,22 @@
     "bindings": {
       "cmd-alt-c": [
         "agent::NewExternalAgentThread",
-        { "agent": { "custom": { "name": "codex-acp" } } },
-      ],
-    },
+        { "agent": { "custom": { "name": "codex-acp" } } }
+      ]
+    }
   },
   {
     "context": "(VimControl && !menu)",
     "bindings": {
-      "space": null,
-    },
+      "space": null
+    }
   },
   {
     "context": "Pane",
     "bindings": {
       "ctrl-shift-tab": "pane::ActivatePreviousItem",
-      "ctrl-tab": "pane::ActivateNextItem",
-    },
+      "ctrl-tab": "pane::ActivateNextItem"
+    }
   },
   {
     "context": "Editor",
@@ -28,15 +28,15 @@
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-j": "workspace::ActivatePaneDown",
-    },
+      "ctrl-j": "workspace::ActivatePaneDown"
+    }
   },
   {
     "context": "vim_mode == normal || vim_mode == visual",
     "bindings": {
       "s": "vim::HelixJumpToWord",
-      "shift-s": "vim::PushSneakBackward",
-    },
+      "shift-s": "vim::PushSneakBackward"
+    }
   },
   {
     "context": "ProjectPanel && not_editing",
@@ -53,14 +53,14 @@
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-j": "workspace::ActivatePaneDown",
-    },
+      "ctrl-j": "workspace::ActivatePaneDown"
+    }
   },
   {
     "context": "Editor && vim_mode == visual  && !menu && extension",
     "bindings": {
-      "space a t": "agent::AddSelectionToThread",
-    },
+      "space a t": "agent::AddSelectionToThread"
+    }
   },
   {
     "context": "vim_mode == normal && !menu",
@@ -71,15 +71,15 @@
 
       "space a o": [
         "agent::NewExternalAgentThread",
-        { "agent": { "custom": { "name": "codex-acp" } } },
+        { "agent": { "custom": { "name": "codex-acp" } } }
       ],
       "space a c": [
         "agent::NewExternalAgentThread",
-        { "agent": { "custom": { "name": "claude-acp" } } },
+        { "agent": { "custom": { "name": "claude-acp" } } }
       ],
       "space a g": [
         "agent::NewExternalAgentThread",
-        { "agent": { "custom": { "name": "gemini" } } },
+        { "agent": { "custom": { "name": "gemini" } } }
       ],
 
       "space ;": "outline::Toggle",
@@ -101,7 +101,7 @@
 
       "space w o": [
         "action::Sequence",
-        ["workspace::CloseInactiveTabsAndPanes", "workspace::CloseAllDocks"],
+        ["workspace::CloseInactiveTabsAndPanes", "workspace::CloseAllDocks"]
       ],
       "space w d": "pane::CloseAllItems",
 
@@ -134,7 +134,7 @@
 
       "space g g": [
         "task::Spawn",
-        { "task_name": "lazygit", "reveal_target": "center" },
+        { "task_name": "lazygit", "reveal_target": "center" }
       ],
       "space g b": "editor::OpenGitBlameCommit",
       "space g B": "git::Blame",
@@ -143,12 +143,12 @@
 
       "space g j": [
         "task::Spawn",
-        { "task_name": "jjui", "reveal_target": "center" },
+        { "task_name": "jjui", "reveal_target": "center" }
       ],
 
       "space x x": "diagnostics::Deploy",
-      "space x T": ["workspace::SendKeystrokes", "space / shift-TODO enter"],
-    },
+      "space x T": ["workspace::SendKeystrokes", "space / shift-TODO enter"]
+    }
   },
   {
     "context": "Editor && showing_completions",
@@ -157,57 +157,39 @@
       "alt-2": ["workspace::SendKeystrokes", "pageup down enter"],
       "alt-3": ["workspace::SendKeystrokes", "pageup down down enter"],
       "alt-4": ["workspace::SendKeystrokes", "pageup down down down enter"],
-      "alt-5": [
-        "workspace::SendKeystrokes",
-        "pageup down down down down enter",
-      ],
-    },
+      "alt-5": ["workspace::SendKeystrokes", "pageup down down down down enter"]
+    }
   },
   {
-    "context": "(FileFinder || FileFinder > Picker > Editor)",
+    "context": "FileFinder || (FileFinder > Picker > Editor) || (FileFinder > Picker > menu)",
     "bindings": {
-      "ctrl-m": "file_finder::ToggleSplitMenu",
-    },
-  },
-  {
-    "context": "((FileFinder || FileFinder > Picker > Editor) || FileFinder > Picker > menu)",
-    "bindings": {
-      "ctrl-v": "pane::SplitVertical",
-      "ctrl-h": "pane::SplitHorizontal",
-    },
+      "ctrl-v": "pane::SplitRight",
+      "ctrl-h": "pane::SplitDown"
+    }
   },
   {
     "context": "ProjectSearchBar",
     "bindings": {
-      "space /": "pane::CloseActiveItem",
-    },
+      "space /": "pane::CloseActiveItem"
+    }
   },
   {
     "context": "Terminal",
     "bindings": {
-      "ctrl-/": "terminal_panel::Toggle",
-    },
+      "ctrl-/": "terminal_panel::Toggle"
+    }
   },
   {
     "context": "AcpThread > Editor",
     "bindings": {
-      "ctrl-t": "agent::CycleThinkingEffort",
-    },
+      "ctrl-t": "agent::CycleThinkingEffort"
+    }
   },
   {
     "context": "vim_mode == insert",
     "bindings": {
       "ctrl-s": ["workspace::SendKeystrokes", "escape ctrl-s"],
-      "ctrl-y": "editor::ConfirmCompletion",
-    },
-  },
-  // {
-  //   "context": "Dock",
-  //   "bindings": {
-  //     "ctrl-w h": "workspace::ActivatePaneLeft",
-  //     "ctrl-w l": "workspace::ActivatePaneRight",
-  //     "ctrl-w k": "workspace::ActivatePaneUp",
-  //     "ctrl-w j": "workspace::ActivatePaneDown",
-  //   },
-  // },
+      "ctrl-y": "editor::ConfirmCompletion"
+    }
+  }
 ]

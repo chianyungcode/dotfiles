@@ -1,136 +1,175 @@
 {
-  "agent_servers": {
-    "codex-acp": {
-      "type": "registry"
-    },
-    "gemini": {
-      "type": "registry"
-    }
-  },
+	// AI
+	"agent_servers": {
+		"codex-acp": {
+			"type": "registry"
+		},
+		"gemini": {
+			"type": "registry"
+		}
+	},
 
-  "agent": {
-    "default_model": {
-      "provider": "zed.dev",
-      "model": "gpt-5.4",
-      "enable_thinking": true,
-      "effort": "medium"
-    },
-    "favorite_models": [],
-    "model_parameters": []
-  },
+	"agent": {
+		"default_model": {
+			"provider": "zed.dev",
+			"model": "gpt-5.4",
+			"enable_thinking": true,
+			"effort": "medium"
+		},
+		"favorite_models": [],
+		"model_parameters": []
+	},
 
-  "focus_follows_mouse": {
-    "enabled": true
-  },
+	"show_edit_predictions": false,
 
-  "show_edit_predictions": false,
+	// Basic Settings
+	"theme": "Vitesse Refined Dark",
+	"icon_theme": {
+		"mode": "system",
+		"light": "Catppuccin Macchiato",
+		"dark": "Catppuccin Macchiato"
+	},
+	"relative_line_numbers": "enabled",
+	"cursor_blink": false,
+	"vertical_scroll_margin": 0,
+	"colorize_brackets": true,
 
-  "theme": "Vitesse Refined Dark",
-  "icon_theme": {
-    "mode": "system",
-    "light": "Catppuccin Macchiato",
-    "dark": "Catppuccin Macchiato"
-  },
+	"agent_buffer_font_size": 17.0,
+	"buffer_font_family": "Geist Mono",
+	"buffer_font_size": 16,
+	"ui_font_family": "Geist Mono",
+	"ui_font_size": 18,
 
-  "which_key": { "enabled": true, "delay_ms": 50 },
+	"base_keymap": "VSCode",
+	"vim_mode": true,
+	"vim": {
+		"toggle_relative_line_numbers": true
+	},
 
-  "vertical_scroll_margin": 0,
+	"autosave": "on_focus_change",
+	"close_on_file_delete": true,
+	"hide_mouse": "on_typing_and_action",
+	"format_on_save": "on",
+	"minimap": {
+		"show": "never",
+		"thumb": "always",
+		"thumb_border": "left_open",
+		"current_line_highlight": null
+	},
+	"which_key": { "enabled": true, "delay_ms": 50 },
+	"focus_follows_mouse": {
+		"enabled": true
+	},
+	"terminal": {
+		"default_height": 480,
+		"font_size": 18
+	},
+	"scrollbar": {
+		"show": "never"
+	},
+	"scroll_beyond_last_line": "off",
 
-  "agent_buffer_font_size": 17.0,
-  "colorize_brackets": true,
-  "terminal": {
-    "default_height": 480,
-    "font_size": 18
-  },
-  "ui_font_family": "Geist Mono",
-  "ui_font_size": 18,
-  "buffer_font_family": "Geist Mono",
-  "buffer_font_size": 16,
-  "scrollbar": {
-    "show": "never"
-  },
-  "scroll_beyond_last_line": "off",
+	"auto_install_extensions": {
+		"dockerfile": true,
+		"html": true,
+		"sql": true,
+		"java": true,
+		"nix": true,
+		"lua": true,
+		"make": true,
+		"latex": true,
+		"prisma": true,
+		"biome": true,
+		"astro": true,
+		"vue": true,
+		"markdown-oxide": true,
+		"wakatime": true,
+		"tombi": false,
+		"fish": true,
 
-  "base_keymap": "VSCode",
-  "vim_mode": true,
-  "vim": {
-    "toggle_relative_line_numbers": true
-  },
-  "relative_line_numbers": "enabled",
-  "cursor_blink": false,
+		"mcp-server-context7": true,
+		"postgres-context-server": true,
+		"mcp-server-github": true,
+		"mcp-server-exa-search": true,
+		"mcp-server-firecrawl": true,
+		"prisma-mcp": true,
+		"mcp-server-resend": true,
+		"mcp-server-buildkite": true,
+		"shadcn-mcp": true,
 
-  "auto_install_extensions": {
-    "dockerfile": true,
-    "html": true,
-    "sql": true,
-    "java": true,
-    "nix": true,
-    "lua": true,
-    "make": true,
-    "latex": true,
-    "prisma": true,
-    "biome": true,
-    "astro": true,
-    "vue": true,
-    "markdown-oxide": true,
-    "wakatime": true,
-    "tombi": false,
-    "fish": true,
+		"catppuccin-blur": true,
+		"vitesse-theme-refined": true,
 
-    "mcp-server-context7": true,
-    "postgres-context-server": true,
-    "mcp-server-github": true,
-    "mcp-server-exa-search": true,
-    "mcp-server-firecrawl": true,
-    "prisma-mcp": true,
-    "mcp-server-resend": true,
-    "mcp-server-buildkite": true,
-    "shadcn-mcp": true,
+		"catppuccin-icons": true,
+		"jetbrains-new-ui-icons": true,
+		"colored-zed-icons-theme": true,
 
-    "catppuccin-blur": true,
-    "vitesse-theme-refined": true,
+		"react-typescript-snippets": true,
+		"python-snippets": true,
+		"go-snippets": true,
+		"nextjs-react-snippets": true
+	},
 
-    "catppuccin-icons": true,
-    "jetbrains-new-ui-icons": true,
-    "colored-zed-icons-theme": true,
+	// LSP, Formatters & Linters
+	"enable_language_server": true,
+	"lsp": {
+		"wakatime": {
+			"initialization_options": {
+				"api-key": "{{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.productivity.wakatime_apikey }}{{ end }}"
+			}
+		},
+		"nil": {
+			"initialization_options": {
+				"formatting": {
+					"command": ["nixfmt", "--quiet", "--"]
+				}
+			}
+		}
+	},
 
-    "react-typescript-snippets": true,
-    "python-snippets": true,
-    "go-snippets": true,
-    "nextjs-react-snippets": true
-  },
-
-  "enable_language_server": true,
-
-  "autosave": "on_focus_change",
-  "close_on_file_delete": true,
-  "hide_mouse": "on_typing_and_movement",
-  "format_on_save": "on",
-  "minimap": {
-    "show": "never",
-    "thumb": "always",
-    "thumb_border": "left_open",
-    "current_line_highlight": null
-  },
-
-  "languages": {
-    "Nix": {
-      "language_servers": ["nil", "!nixd"]
-    }
-  },
-
-  "lsp": {
-    "wakatime": {
-      "initialization_options": {
-        "api-key": "{{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.productivity.wakatime_apikey }}{{ end }}"
-      }
-    },
-    "nil": {
-      "initialization_options": {
-        "formatting": {
-          "command": ["nixfmt", "--quiet", "--"]
-        }
-      }
-    }
-  }
+	"languages": {
+		"Nix": {
+			"language_servers": ["nil", "!nixd"]
+		},
+		"JavaScript": {
+			"formatter": { "language_server": { "name": "biome" } },
+			"code_actions_on_format": {
+				"source.organizeImports.biome": true
+			}
+		},
+		"TypeScript": {
+			"formatter": { "language_server": { "name": "biome" } },
+			"code_actions_on_format": {
+				"source.organizeImports.biome": true
+			}
+		},
+		"JSON": {
+			"formatter": { "language_server": { "name": "biome" } }
+		},
+		"JSONC": {
+			"formatter": { "language_server": { "name": "biome" } }
+		},
+		"Lua": {
+			"formatter": {
+				"external": {
+					"command": "stylua",
+					"arguments": [
+						"--search-parent-directories",
+						"--respect-ignores",
+						"--stdin-filepath",
+						"{buffer_path}",
+						"-"
+					]
+				}
+			}
+		},
+		"YAML": {
+			"formatter": {
+				"external": {
+					"command": "yamlfmt",
+					"arguments": ["-"]
+				}
+			}
+		}
+	}
 }
