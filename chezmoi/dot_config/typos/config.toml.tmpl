@@ -1,0 +1,366 @@
+# ============================================================
+# 1. File-level settings
+# ============================================================
+[files]
+# Gitignore-style globs to ignore files/directories globally
+extend-exclude = [
+  # Dependencies & build artifacts
+  "node_modules/",
+  "vendor/",
+  "dist/",
+  "build/",
+  ".next/",
+  "out/",
+  "coverage/",
+  "*.min.js",
+  "*.min.css",
+
+  # Lock files & binaries
+  "package-lock.json",
+  "pnpm-lock.yaml",
+  "yarn.lock",
+  "Cargo.lock",
+  "*.lock",
+  "*.bin",
+  "*.exe",
+  "*.dll",
+  "*.so",
+  "*.dylib",
+
+  # Generated / vendored code
+  "generated/",
+  "codegen/",
+  "proto/",
+  "openapi/",
+  "swagger/",
+  "graphql_generated/",
+
+  # Localization & data files with many false positives
+  "public/locales/",
+  "i18n/",
+  "**/*.po",
+  "**/*.mo",
+  "data/*.json",
+  "fixtures/",
+  "mocks/",
+
+  # Secrets & keys (should not be scanned)
+  "*env*",
+  ".env*",
+  "*.pem",
+  "*.key",
+  "*.crt",
+  "*.pub",
+]
+
+# ============================================================
+# 2. Default (global) settings
+# ============================================================
+[default]
+# Locale for spell checking (en, en-us, en-gb, etc.)
+locale = "en"
+
+# Allow Unicode characters in identifiers (e.g. local names, emojis)
+unicode = true
+
+# Words that should be treated as valid (not typos)
+[default.extend-words]
+# Personal names / contributors
+budi = "budi"
+sari = "sari"
+wijaya = "wijaya"
+
+# Technical acronyms / terms
+jkt = "jkt"
+idn = "idn"
+api = "api"
+http = "http"
+https = "https"
+tcp = "tcp"
+udp = "udp"
+dns = "dns"
+tls = "tls"
+ssh = "ssh"
+jwt = "jwt"
+otp = "otp"
+mfa = "mfa"
+sso = "sso"
+rbac = "rbac"
+acl = "acl"
+cors = "cors"
+csp = "csp"
+xss = "xss"
+csrf = "csrf"
+sqli = "sqli"
+ddos = "ddos"
+cdn = "cdn"
+ci = "ci"
+cd = "cd"
+devops = "devops"
+k8s = "k8s"
+eks = "eks"
+gke = "gke"
+aks = "aks"
+gcp = "gcp"
+aws = "aws"
+azure = "azure"
+oci = "oci"
+vpc = "vpc"
+iam = "iam"
+sts = "sts"
+s3 = "s3"
+rds = "rds"
+dynamo = "dynamo"
+sns = "sns"
+sqs = "sqs"
+lambda = "lambda"
+ec2 = "ec2"
+fargate = "fargate"
+cloudfront = "cloudfront"
+route53 = "route53"
+waf = "waf"
+nat = "nat"
+ssl = "ssl"
+
+# Product / brand names
+perplexity = "perplexity"
+vercel = "vercel"
+cloudflare = "cloudflare"
+firebase = "firebase"
+supabase = "supabase"
+planetscale = "planetscale"
+neon = "neon"
+turso = "turso"
+flyio = "flyio"
+render = "render"
+railway = "railway"
+netlify = "netlify"
+stripe = "stripe"
+resend = "resend"
+clerk = "clerk"
+auth0 = "auth0"
+sentry = "sentry"
+logtail = "logtail"
+axiom = "axiom"
+datadog = "datadog"
+newrelic = "newrelic"
+grafana = "grafana"
+prometheus = "prometheus"
+loki = "loki"
+tempo = "tempo"
+jaeger = "jaeger"
+otel = "otel"
+opentelemetry = "opentelemetry"
+
+# Common codebase terms
+dto = "dto"
+vo = "vo"
+pojo = "pojo"
+repo = "repo"
+svc = "svc"
+cfg = "cfg"
+env = "env"
+prod = "prod"
+stg = "stg"
+dev = "dev"
+qa = "qa"
+uat = "uat"
+pr = "pr"
+feat = "feat"
+fix = "fix"
+chore = "chore"
+refactor = "refactor"
+test = "test"
+spec = "spec"
+e2e = "e2e"
+a11y = "a11y"
+i18n = "i18n"
+l10n = "l10n"
+r13n = "r13n"
+mvp = "mvp"
+poc = "poc"
+rfc = "rfc"
+okrs = "okrs"
+kpi = "kpi"
+sla = "sla"
+slo = "slo"
+errorBudget = "errorBudget"
+
+# Words often flagged as typos but actually valid
+teh = "teh"
+ba = "ba"
+fo = "fo"
+noo = "noo"
+aks = "aks"
+crate = "crate"
+ser = "ser"
+inout = "inout"
+nd = "nd"
+ad = "ad"
+ue = "ue"
+ro = "ro"
+
+# Identifiers that should be treated as valid (camelCase, snake_case, etc.)
+[default.extend-identifiers]
+# Library / package names
+React = "React"
+Next = "Next"
+TanStack = "TanStack"
+Zustand = "Zustand"
+Zod = "Zod"
+Prisma = "Prisma"
+Drizzle = "Drizzle"
+tRPC = "tRPC"
+Hono = "Hono"
+Express = "Express"
+Fastify = "Fastify"
+Nest = "Nest"
+Remix = "Remix"
+Svelte = "Svelte"
+SvelteKit = "SvelteKit"
+Vite = "Vite"
+Webpack = "Webpack"
+Rollup = "Rollup"
+esbuild = "esbuild"
+swc = "swc"
+tsc = "tsc"
+eslint = "eslint"
+prettier = "prettier"
+biome = "biome"
+oxlint = "oxlint"
+stylelint = "stylelint"
+commitlint = "commitlint"
+lintstaged = "lintstaged"
+husky = "husky"
+lefthook = "lefthook"
+changesets = "changesets"
+semanticRelease = "semanticRelease"
+releaseIt = "releaseIt"
+nx = "nx"
+turbo = "turbo"
+lerna = "lerna"
+pnpm = "pnpm"
+yarn = "yarn"
+npm = "npm"
+bun = "bun"
+deno = "deno"
+
+# Legacy / project-specific identifiers
+AttributeIDSupressMenu = "AttributeIDSupressMenu"
+UserIDOld = "UserIDOld"
+getUsersListFromCache = "getUsersListFromCache"
+initDBConnectionPool = "initDBConnectionPool"
+createHTTPSServer = "createHTTPSServer"
+parseJWTToken = "parseJWTToken"
+validateOTPCode = "validateOTPCode"
+handleStripeWebhookEvent = "handleStripeWebhookEvent"
+sendResendEmail = "sendResendEmail"
+logToDatadog = "logToDatadog"
+trackWithPosthog = "trackWithPosthog"
+captureWithSentry = "captureWithSentry"
+
+# Regex patterns for identifiers to always ignore
+[default]
+extend-ignore-identifiers-re = [
+  # All identifiers matching "AttributeID...Supress..."
+  "AttributeID.*Supress.*",
+  # All Stripe webhook handlers
+  "handleStripe.*Webhook.*",
+  # All identifiers starting with "legacy"
+  "legacy.*",
+  # All identifiers ending with a digit (e.g. v1, v2, api2)
+  ".*[0-9]$",
+]
+
+# ============================================================
+# 3. Per-file-type overrides
+# ============================================================
+
+# Translation files (only check filenames, not contents)
+[type.po]
+extend-glob = ["*.po", "*.mo"]
+check-file = false
+
+# JSON files in i18n / locales folders
+[type.i18n]
+extend-glob = [
+  "i18n/**/*.json",
+  "public/locales/**/*.json",
+  "src/locales/**/*.json",
+]
+check-file = false
+
+# Markdown files (documentation) – keep checking but can be relaxed if needed
+[type.md]
+extend-glob = ["*.md", "*.mdx"]
+# check-file = false
+
+# Config files (often have weird keys)
+[type.config]
+extend-glob = [
+  "*.config.js",
+  "*.config.ts",
+  "*.config.mjs",
+  "vite.config.*",
+  "next.config.*",
+  "tailwind.config.*",
+  "eslint.config.*",
+  "prettier.config.*",
+  "tsconfig.*",
+  "jsconfig.*",
+]
+check-file = false
+
+# Generated GraphQL / OpenAPI files
+[type.generated]
+extend-glob = [
+  "generated/**/*.ts",
+  "codegen/**/*.ts",
+  "graphql/**/*.ts",
+  "openapi/**/*.ts",
+  "swagger/**/*.ts",
+]
+check-file = false
+
+# Lock & vendor files (extra safety, though already excluded)
+[type.lock]
+extend-glob = [
+  "*.lock",
+  "package-lock.json",
+  "pnpm-lock.yaml",
+  "yarn.lock",
+  "Cargo.lock",
+]
+check-file = false
+
+# ============================================================
+# 4. Overrides for specific folders (optional)
+# ============================================================
+
+# Test files – often use "foo", "bar", "baz"
+[type.tests]
+extend-glob = [
+  "**/*.test.ts",
+  "**/*.test.tsx",
+  "**/*.spec.ts",
+  "**/*.spec.tsx",
+  "tests/**/*.ts",
+  "tests/**/*.tsx",
+  "__tests__/**/*.ts",
+  "__tests__/**/*.tsx",
+]
+# You can add test-specific words here if needed:
+# [type.tests.extend-words]
+# foo = "foo"
+# bar = "bar"
+# baz = "baz"
+
+# Internal scripts / tooling
+[type.scripts]
+extend-glob = [
+  "scripts/**/*.ts",
+  "scripts/**/*.js",
+  "tools/**/*.ts",
+  "tools/**/*.js",
+]
+# Can be relaxed if many internal names are used
