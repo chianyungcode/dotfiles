@@ -45,11 +45,12 @@ Library/Application Support/Leader Key
 .agents/skills/ticktick-task/SKILL.md
 .agents/skills/orchestrating-brain-agent-tasks/SKILL.md
 .config/espanso/match/ai.yaml
+.config/espanso/match/base.yml
 .config/espanso/match/email.yaml
 .config/espanso/match/macos.yaml
 .config/espanso/match/ticktick.yaml
-.config/herdr/plugins/config/herdr-spreader/config.yaml.age
-.config/herdr/plugins/config/herdr-spreader/dotnix.yaml.age
+.config/herdr/plugins/config/herdr-spreader/config.yaml
+.config/herdr/plugins/config/herdr-spreader/dotnix.yaml
 .config/fish/env.d/030-secrets-age.fish
 .config/zsh/env.d/030-secrets-age.sh
 {{ end }}
