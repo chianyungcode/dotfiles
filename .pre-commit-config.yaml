@@ -50,6 +50,11 @@ repos:
 
   - repo: local
     hooks:
+      - id: treefmt
+        name: treefmt
+        entry: treefmt
+        language: system
+        files: \.(toml|ya?ml|fish|lua|sh|bash)$
       - id: shellcheck
         name: shellcheck
         entry: shellcheck

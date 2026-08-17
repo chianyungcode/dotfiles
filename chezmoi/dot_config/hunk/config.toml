@@ -1,5 +1,8 @@
 agent_notes                  = true
+copy_decorations             = false
+cursor_line                  = "row"
 exclude_untracked            = false
+hunk_headers                 = true
 line_numbers                 = true
 menu_bar                     = true
 mode                         = "auto"          # auto, split, stack
