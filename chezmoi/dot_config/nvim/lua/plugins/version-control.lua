@@ -1,7 +1,4 @@
 return {
-  --
-  --
-  --
   {
     "mrdwarf7/lazyjui.nvim",
     dependencies = {
@@ -63,6 +60,7 @@ return {
   { "yannvanhalewyn/jujutsu.nvim", enabled = false },
   -- https://github.com/NicolasGB/jj.nvim
   -- DESC: jj vcs integration with neovim
+
   {
     "nicolasgb/jj.nvim",
     enabled = false,

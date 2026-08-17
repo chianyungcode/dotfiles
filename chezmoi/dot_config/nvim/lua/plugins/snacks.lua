@@ -52,9 +52,9 @@ return {
     },
     -- Snacks.picker() ini adalah snacks.picker custom configuration
     picker = {
-      layout = {
-        preset = "ivy",
-      },
+      -- layout = {
+      --   preset = "ivy",
+      -- },
       sources = {
         -- NOTE: showing hidden and ignore files
         -- files = { ignored = true, hidden = true },
