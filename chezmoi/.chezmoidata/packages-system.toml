@@ -231,6 +231,7 @@
         # === LSP, formatter & linters ===
         "treefmt", # formatter multiplexer
         "harper",  # grammar checker LSP
+        "dprint",  # agnostic-langauge formatter
 
         # @text
         "codespell", # check code for misspellings

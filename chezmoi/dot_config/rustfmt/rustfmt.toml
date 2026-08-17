@@ -1,0 +1,33 @@
+style_edition = "2024"
+
+edition = "2021"
+
+max_width = 100
+
+tab_spaces = 4
+hard_tabs = false
+
+reorder_imports = true
+reorder_modules = true
+
+trailing_comma = "Vertical"
+
+brace_style = "SameLineWhere"
+
+match_arm_blocks = true
+
+wrap_comments = true
+comment_width = 100
+
+format_strings = true
+
+format_macro_matchers = true
+format_macro_bodies = true
+
+chain_width = 80
+
+array_width = 80
+
+fn_call_width = 80
+
+attr_fn_like_width = 70
