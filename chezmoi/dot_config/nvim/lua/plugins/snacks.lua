@@ -3,6 +3,11 @@ return {
 	"folke/snacks.nvim",
 	priority = 1000,
 	lazy = false,
+	-- Disable LazyVim's default Snacks picker mappings; fff owns these keys instead.
+	keys = {
+		{ "<leader><space>", false },
+		{ "<leader>/", false },
+	},
 	-- kode type dibawah adalah agar adanya completion, jika dihapus maka completion akan hilang
 	---@module 'snacks'
 	---@type snacks.Config
