@@ -118,6 +118,10 @@ set -g base-index 1 # Set base index for windows
 set -g pane-base-index 1 # Set base index for panes
 set -g mouse on # Enable mouse support
 set -g default-terminal "tmux-256color" # 'xterm-256color' is widely used by terminal emulator but you can change to 'tmux-256color' is specifically designed for tmux and is optimized for use within tmux sessions.
+# Preserve modifier keys such as Shift+Enter for applications inside tmux.
+set -s extended-keys on
+set -s extended-keys-format csi-u
+set -as terminal-features ',xterm-ghostty:extkeys'
 set -as terminal-overrides ",*:Tc"
 set -sg escape-time 0
 set -g focus-events on
