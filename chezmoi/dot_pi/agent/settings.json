@@ -11,11 +11,13 @@
     "npm:pi-caveman",
     "npm:pi-context-view",
     "npm:pi-mcp-adapter",
+    "npm:pi-skill-gate",
     "npm:pi-subagents",
     "npm:pi-web-access",
     "npm:@ff-labs/pi-fff",
     "npm:@dietrichgebert/ponytail",
     "npm:@narumitw/pi-btw",
-    "npm:@narumitw/pi-goal"
+    "npm:@narumitw/pi-goal",
+    "npm:@juicesharp/rpiv-todo"
   ]
 }
