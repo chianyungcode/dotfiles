@@ -76,7 +76,7 @@
 
     # difftastic aliases
     {{- if eq .machine.role "workstation" }}
-    log-patch = -c diff.external=difft log -p --ext-diff # `git log` with patches shown with difftastic.
+    log-patch = -c diff.external=difft log -p --ext-diff --stat # `git log` with patches shown with difftastic.
     sh = -c diff.external=difft show --ext-diff # Show the most recent commit with difftastic.
     {{- end }}
 
