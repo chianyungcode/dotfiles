@@ -1,7 +1,5 @@
 {
-  "lastChangelogVersion": "0.81.1",
-  "theme": "catppuccin-mocha",
-  "defaultThinkingLevel": "medium",
+  "defaultThinkingLevel": "high",
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.6-luna",
   "enabledModels": [
@@ -9,5 +7,15 @@
     "openai-codex/gpt-5.6-sol",
     "openai-codex/gpt-5.6-terra"
   ],
-  "packages": ["npm:@victor-software-house/pi-curated-themes", "npm:pi-zentui"]
+  "packages": [
+    "npm:pi-caveman",
+    "npm:pi-context-view",
+    "npm:pi-mcp-adapter",
+    "npm:pi-subagents",
+    "npm:pi-web-access",
+    "npm:@ff-labs/pi-fff",
+    "npm:@dietrichgebert/ponytail",
+    "npm:@narumitw/pi-btw",
+    "npm:@narumitw/pi-goal"
+  ]
 }
