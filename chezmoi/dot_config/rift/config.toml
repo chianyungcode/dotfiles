@@ -247,7 +247,6 @@
   # ]
   workspace_rules = []
 
-
   # Default workspace to activate on startup (0-based index).
   # If omitted, defaults to 0 (first workspace). Must be less than default_workspace_count.
   # Uncomment to change:
@@ -263,7 +262,7 @@
   # floating = true where aerospace runs "layout floating".
   app_rules = [
     # Workspace 1 (rift 0) — terminals / editors / 1Password
-    { app_id = "com.1password.1password", workspace = 0, floating = true },
+    { app_id = "com.1password.1password", workspace = 0, floating = false },
     { app_id = "com.github.wez.wezterm", workspace = 0, floating = false },
     { app_id = "com.mitchellh.ghostty", workspace = 0, floating = false },
     { app_id = "dev.zed.Zed", workspace = 0, floating = false },
@@ -366,7 +365,7 @@
   # - snap_strip / center_selection
 
   # Free Alt+Z for workspace 6 (aerospace); toggle managed-space elsewhere
-  "Alt + Ctrl + Z" = "toggle_space_activated"
+  "Alt + Z" = "toggle_space_activated"
 
   "Alt + H" = { move_focus = "left" }
   "Alt + J" = { move_focus = "down" }
@@ -387,7 +386,6 @@
   "Alt + S" = { switch_to_workspace = 1 } # aerospace 2
   "Alt + V" = { switch_to_workspace = 8 } # aerospace 9
   "Alt + X" = { switch_to_workspace = 6 } # aerospace 7
-  "Alt + Z" = { switch_to_workspace = 5 } # aerospace 6
 
   "comb1 + A" = { move_window_to_workspace = 0 }
   "comb1 + C" = { move_window_to_workspace = 7 }
@@ -397,7 +395,6 @@
   "comb1 + S" = { move_window_to_workspace = 1 }
   "comb1 + V" = { move_window_to_workspace = 8 }
   "comb1 + X" = { move_window_to_workspace = 6 }
-  "comb1 + Z" = { move_window_to_workspace = 5 }
 
   "Alt + Tab" = "switch_to_last_workspace"
 
@@ -405,8 +402,8 @@
   "Alt + Ctrl + 1" = { set_workspace_layout = { mode = "stack" } }
   "Alt + Ctrl + 2" = { set_workspace_layout = { mode = "master_stack" } }
   # Disable this because it's unstable
-  # "Alt + Ctrl + 3" = { set_workspace_layout = { mode = "bsp" } }
-  # "Alt + Ctrl + 4" = { set_workspace_layout = { mode = "scrolling" } }
+  "Alt + Ctrl + 3" = { set_workspace_layout = { mode = "bsp" } }
+  "Alt + Ctrl + 4" = { set_workspace_layout = { mode = "scrolling" } }
 
   "Alt + Comma"         = "toggle_stack"
   "Alt + Ctrl + E"      = "unjoin_windows"
@@ -450,7 +447,7 @@
   "Alt + Enter" = { "exec" = [
     "/bin/bash",
     "-c",
-    "open -a \"/System/Applications/Utilities/Terminal.app\"",
+    "open -a \"/Applications/Ghostty.app/\"",
   ] }
 
   "Alt + Shift + D" = "debug" # prints layout tree
