@@ -525,6 +525,12 @@
         "build-essential",
         "pkg-config",
         "libssl-dev",
+        "fd-find",
+        "fzf",
+        "jq",
+        "ripgrep",
+        "sd",
+        "yq",
       ]
 
     [packages.apt.homelab]
@@ -610,71 +616,71 @@
         "jq",
         "ripgrep",
         "sd",
-        "skim",             # Alternative to fzf fuzzy-finder
-        "yq",               # YAML processor
-        "appimagelauncher", # for integrating .AppImage
-        "difftastic",       # diff tools
-        "codespell",        # Fix common misspellings in source code and text files
+        "skim",                # Alternative to fzf fuzzy-finder
+        "yq",                  # YAML processor
+        "appimagelauncher",    # for integrating .AppImage
+        "difftastic",          # diff tools
+        "codespell",           # Fix common misspellings in source code and text files
         "dpkg",
-        "entr",             # dependency for tmux-autoreload
+        "entr",                # dependency for tmux-autoreload
         "eza",
-        "glow",             # Render markdown in CLI
-        "gum",              # Fuzzy finder
+        "glow",                # Render markdown in CLI
+        "gum",                 # Fuzzy finder
         "less",
-        "pastel",           # converter color in terminal
+        "pastel",              # converter color in terminal
         "pet-bin",
-        "pueue",            # Task runner and scheduler
+        "pueue",               # Task runner and scheduler
         "tectonic",
-        "thefuck",          # Fix typos
-        "tlrc",             # TLDR client, alternative tealdeer
-        "vivid",            # Color generator for LS_COLORS env variable
+        "thefuck",             # Fix typos
+        "tlrc",                # TLDR client, alternative tealdeer
+        "vivid",               # Color generator for LS_COLORS env variable
         "bottom",
         "gitleaks",
-        "jujutsu",          # jujutsu version control
-        "jjui-bin",         # jujutsu tui
-        "git-delta",        # Pager for git
-        "github-cli",       # Github CLI
-        "glab",             # GitLab CLI
+        "jujutsu",             # jujutsu version control
+        "jjui-bin",            # jujutsu tui
+        "git-delta",           # Pager for git
+        "github-cli",          # Github CLI
+        "glab",                # GitLab CLI
         "lazygit",
         "serie",
         "git-graph",
         "fish",
         "ghostty",
-        "sesh-bin",         # tmux session manager
+        "sesh-bin",            # tmux session manager
         "starship",
         "tmux",
-        "tmuxp",            # tmux session manager
-        "helix",            # Alternative neovim
+        "tmuxp",               # tmux session manager
+        "helix",               # Alternative neovim
         "neovim",
         "cloudflare-warp-bin",
         "docker",
         "docker-compose",
         "lazydocker",
         "tailscale",
-        "httpie",           # HTTP client
-        "hurl",             # runs HTTP requests defined in a simple plain text format.
-        "usbutils",         # check fingerprint info
-        "fprintd",          # fingerprint
-        "fuse2",            # apidog dependency
+        "httpie",              # HTTP client
+        "hurl",                # runs HTTP requests defined in a simple plain text format.
+        "usbutils",            # check fingerprint info
+        "fprintd",             # fingerprint
+        "fuse2",               # apidog dependency
         "localsend",
-        "lsof",             # opencode-bin dependency
+        "lsof",                # opencode-bin dependency
         "ticktick",
         "yubico-piv-tool",
-        "redis",            # Redis CLI
+        "redis",               # Redis CLI
         "nix",
-        "zlib",             # for building python
-        "biome",            # JS/TS linter, formatter
-        "eslint",           # JS/TS linter
-        "prettier",         # JS/TS formatter
-        "ruff",             # Python linter
-        "shellcheck",       # bash, sh linter
-        "shfmt",             # bash, sh formatter
-        "nixfmt",            # Nix formatter
-        "stylua",           # Lua formatter
-        "markdownlint-cli2", # Linter for markdown file
-        "taplo-cli",        # TOML formatter
-        "yamlfmt",          # YAML formatter
-        "yamllint",         # YAML linter
+        "zlib",                # for building python
+        "biome",               # JS/TS linter, formatter
+        "eslint",              # JS/TS linter
+        "prettier",            # JS/TS formatter
+        "ruff",                # Python linter
+        "shellcheck",          # bash, sh linter
+        "shfmt",               # bash, sh formatter
+        "nixfmt",              # Nix formatter
+        "stylua",              # Lua formatter
+        "markdownlint-cli2",   # Linter for markdown file
+        "taplo-cli",           # TOML formatter
+        "yamlfmt",             # YAML formatter
+        "yamllint",            # YAML linter
 
         # Text Editors & IDEs
         "datagrip",
