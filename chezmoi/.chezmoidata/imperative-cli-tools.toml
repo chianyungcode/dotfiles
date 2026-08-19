@@ -9,3 +9,15 @@
   cli   = "herdr"
   name  = "Herdr Hunk Diff"
   run   = "herdr plugin install jhochenbaum/herdr-hunk-diff --yes"
+
+[[imperative_cli_tools]]
+  check = "npx --yes skills ls --global --json | jq -e '.[] | select(.name == \"ponytail\")' >/dev/null"
+  cli   = "npx"
+  name  = "Ponytail skill"
+  run   = "npx --yes skills add DietrichGebert/ponytail --skill ponytail --agent codex claude-code pi opencode grok --global --yes"
+
+[[imperative_cli_tools]]
+  check = "npx --yes skills ls --global --json | jq -e '.[] | select(.name == \"caveman\")' >/dev/null"
+  cli   = "npx"
+  name  = "Caveman skill"
+  run   = "npx --yes skills add JuliusBrussee/caveman --skill caveman --agent codex claude-code pi opencode grok --global --yes"
