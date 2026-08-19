@@ -22,17 +22,6 @@
     systems               = ["linux"]
     version_regex         = ""
 
-  [binaries.bottom]
-    description           = "A cross-platform graphical process/system monitor with a focus on performance, privacy, and a nice visual design"
-    executable_name       = "btm"
-    install_filter        = ""
-    name                  = "bottom"
-    remove_from_release   = ""
-    repository            = "ClementTsang/bottom"
-    required_architecture = ""
-    systems               = ["linux"]
-    version_regex         = ""
-
   [binaries.doggo]
     description           = "Command-line DNS Client for Humans"
     executable_name       = ""
