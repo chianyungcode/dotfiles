@@ -84,7 +84,7 @@ before or after file application, and its numeric phase.
 | --- | --- |
 | `run_once_before_00-bootstrap.sh.tmpl` | Prepares platform prerequisites and package managers, including Homebrew or `paru`. |
 | `run_onchange_before_10-system-packages.sh.tmpl` | Installs and removes OS-level packages selected for the machine. |
-| `run_onchange_after_20-language-runtimes.sh.tmpl` | Installs configured language runtimes through `uv` and `mise`. |
+| `run_onchange_after_20-language-runtimes.sh.tmpl` | Installs configured language runtimes through `uv` and Proto. |
 | `run_onchange_after_30-language-packages.sh.tmpl` | Installs Python, npm, and Cargo packages. |
 | `run_onchange_after_40-standalone-tools.sh.tmpl` | Installs selected Linux tools from GitHub release archives. |
 | `run_once_after_50-post-install.sh.tmpl` | Performs one-time post-install setup such as shell plugins, nanorc, and compatibility links. |
@@ -111,11 +111,14 @@ standalone Bash scripts.
 | --- | --- |
 | `scripts/core.bash` | Shared logging, failure reporting, command checks, temporary directories, and cleanup. |
 | `scripts/language/packages.bash` | Installation helpers for `uv`, npm, and Cargo packages. |
-| `scripts/language/runtimes.bash` | Download and installation helpers for `uv` and `mise` runtimes. |
+| `scripts/language/runtimes.bash` | Download and installation helpers for `uv` and Proto runtimes. |
 | `scripts/standalone/github-release.bash` | GitHub API, release-asset selection, checksum verification, extraction, and installation helpers. |
 | `scripts/system/apt.bash` | APT package checks, repository setup, installation, and removal. |
 | `scripts/system/homebrew.bash` | Homebrew formula, cask, and Mac App Store installation behavior. |
 | `scripts/system/paru.bash` | Pacman/AUR package checks, installation, and removal through `paru`. |
+
+Proto manages the configured Node, Go, Rust, Bun, and Deno runtimes. Taplo
+has no Proto plugin, so the runtime helper installs it through Cargo instead.
 
 Keeping these helpers separate lets each lifecycle entrypoint remain focused on
 selecting data and invoking the appropriate platform or package workflow.
@@ -139,7 +142,6 @@ The target portion of `chezmoi/` is grouped by the configuration it installs:
   editors, terminals, window managers, Git, Jujutsu, and CLI tools.
 - `dot_agents/`, `dot_codex/`, `dot_grok/`, and `dot_pi/` contain AI-agent
   instructions, settings, and prompts.
-- `dot_proto/` contains Proto's toolchain configuration.
 - `dot_ssh/` contains the managed SSH configuration.
 - `dot_bashrc`, `dot_profile`, and `dot_zshenv` provide shell entrypoints;
   `empty_dot_zprofile` and `empty_dot_zshrc` intentionally create empty

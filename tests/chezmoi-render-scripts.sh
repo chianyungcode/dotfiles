@@ -216,7 +216,7 @@ check_rendered_script "$tmp_dir/server-runtime.sh"
 assert_contains "$tmp_dir/server-runtime.sh" 'ensure_uv'
 assert_not_contains "$tmp_dir/server-runtime.sh" 'node@latest'
 assert_not_contains "$tmp_dir/server-runtime.sh" 'rust@latest'
-assert_not_contains "$tmp_dir/server-runtime.sh" 'ensure_mise'
+assert_not_contains "$tmp_dir/server-runtime.sh" 'ensure_proto'
 
 standalone_source="$source_dir/.chezmoiscripts/run_onchange_after_40-standalone-tools.sh.tmpl"
 render_script "$mac_data" "$standalone_source" "$tmp_dir/mac-standalone.sh"

@@ -4,7 +4,9 @@ PHASE="20-language-runtimes"
 {{ template "scripts/core.bash" . }}
 {{ template "scripts/language/runtimes.bash" . -}}
 
-export PATH="{{ .xdg.data_home }}/mise/shims:$HOME/.local/bin:$PATH"
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export PROTO_HOME="${PROTO_HOME:-{{ .shell_env.common.PROTO_HOME }}}"
+export PATH="$PROTO_HOME/bin:$PROTO_HOME/shims:$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
 
 {{- $hasRuntimes := false -}}
 {{- range $runtime := .runtimes -}}
@@ -31,6 +33,6 @@ runtimes=(
 
 ensure_uv
 {{ if $hasRuntimes -}}
-ensure_mise
+ensure_proto
 install_language_runtimes "${runtimes[@]}"
 {{ end -}}

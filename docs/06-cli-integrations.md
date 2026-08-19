@@ -130,14 +130,18 @@
 - `chezmoi/dot_config/zsh/conf.d/third-party/jujutsu.sh`: Provides the same
   parent-shell directory handling for those Jujutsu workspace commands in Zsh.
 
-# mise
+# Proto
 
 ## Integration
 
-- `chezmoi/dot_config/fish/conf.d/90_mise.fish.tmpl`: Loads `mise activate
-  fish` conditionally for the supported Linux and macOS environments.
-- `chezmoi/dot_config/zsh/conf.d/third-party/mise.sh.tmpl`: Loads `mise
-  activate zsh`, deferred when the Zsh defer helper is available.
+- `chezmoi/.chezmoidata/packages-language.toml`: Declares the language runtimes
+  and versions managed by Proto.
+- `chezmoi/.chezmoitemplates/scripts/language/runtimes.bash`: Installs Proto
+  on demand and pins the configured runtimes globally.
+- `chezmoi/.chezmoidata/shell_env.toml`: Adds Proto's `bin` and `shims`
+  directories to `PATH`.
+- `chezmoi/dot_config/fish/completions/proto.fish` and
+  `chezmoi/dot_config/zsh/completions/_proto`: Provide shell completions.
 
 # pet
 

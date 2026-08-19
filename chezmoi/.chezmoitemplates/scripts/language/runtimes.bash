@@ -33,26 +33,50 @@ ensure_uv() {
 }
 
 {{ if $hasRuntimes -}}
-ensure_mise() {
-    command -v mise >/dev/null 2>&1 && return 0
-    # shellcheck disable=SC2194 # chezmoi renders the platform as a literal.
-    case "{{ .chezmoi.os }}:{{ index .chezmoi.osRelease "id" | default "" }}" in
-    darwin:*) brew install mise ;;
-    linux:arch) paru -S --needed --noconfirm mise ;;
-    linux:ubuntu | linux:debian)
-        download_installer https://mise.run mise-install
-        ;;
-    *) die "cannot install mise on this platform" ;;
-    esac
-    export PATH="$HOME/.local/bin:$PATH"
-    require_command mise
+ensure_proto() {
+    command -v proto >/dev/null 2>&1 && return 0
+    make_temp_dir "proto-install"
+    local installer="$TEMP_DIR/proto-install.sh"
+    curl --fail --show-error --silent --location --retry 3 \
+        https://moonrepo.dev/install/proto.sh --output "$installer"
+    /bin/bash "$installer" --yes --no-profile
+    export PATH="$PROTO_HOME/bin:$PROTO_HOME/shims:$HOME/.local/bin:$PATH"
+    require_command proto
+}
+
+install_taplo() {
+    local version=$1
+    # Proto has no Taplo plugin, so keep this one runtime on Cargo.
+    command -v taplo >/dev/null 2>&1 && return 0
+    require_command cargo
+    if [[ "$version" == latest ]]; then
+        cargo install taplo-cli --locked
+    else
+        cargo install taplo-cli --version "$version" --locked
+    fi
 }
 
 install_language_runtimes() {
-    local runtime runtime_name
+    local runtime runtime_name runtime_version
     for runtime in "$@"; do
-        mise use -g "$runtime"
         runtime_name=${runtime%@*}
+        runtime_version=${runtime#*@}
+        if [[ "$runtime_name" == taplo ]]; then
+            install_taplo "$runtime_version"
+        else
+            case "$runtime_name" in
+            node)
+                # Proto does not install Node's bundled npm by default.
+                proto install "$runtime_name" "$runtime_version" --pin global \
+                    -- --bundled-npm
+                command -v npm >/dev/null 2>&1 ||
+                    proto install npm latest --pin global
+                ;;
+            *)
+                proto install "$runtime_name" "$runtime_version" --pin global
+                ;;
+            esac
+        fi
         case "$runtime_name" in
         node)
             require_command node

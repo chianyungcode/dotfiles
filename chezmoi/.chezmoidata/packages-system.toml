@@ -499,6 +499,7 @@
         "tzdata",
         "unzip",
         "wget",
+        "xz-utils",
         "zsh",
 
         # CLI Utilities
@@ -520,10 +521,18 @@
 
     [packages.apt.development]
       packages = [
-        # File & text processing
+        # Essential build dependencies for VPS development
         "build-essential",
         "pkg-config",
         "libssl-dev",
+      ]
+
+    [packages.apt.homelab]
+      packages = ["iperf"]
+
+    [packages.apt.personal]
+      packages = [
+        # Development conveniences
         "fd-find",
         "fzf",
         "jq",
@@ -531,12 +540,6 @@
         "sd",
         "yq",
       ]
-
-    [packages.apt.homelab]
-      packages = ["iperf"]
-
-    [packages.apt.personal]
-      packages = []
 
   [packages.pacman]
     to_remove = []
@@ -556,6 +559,7 @@
         "tzdata",
         "unzip",
         "wget",
+        "xz",
         "zsh",
 
         # CLI Utilities
@@ -580,123 +584,9 @@
 
     [packages.pacman.development]
       packages = [
-        # File & text processing
-        "fd",
-        "fzf",
-        "jq",
-        "ripgrep",
-        "sd",
-        "skim",    # Alternative to fzf fuzzy-finder
-        "yq",      # YAML processor
-
-        "appimagelauncher", # for integrating .AppImage
-        "difftastic",       # diff tools
-        "codespell",        # Fix common misspellings in source code and text files
-        "dpkg",
-        "entr",             # dependency for tmux-autoreload
-        "eza",
-        "glow",             # Render markdown in CLI
-        "gum",              # Fuzzy finder
-        "less",
-        "pastel",           # converter color in terminal
-        "pet-bin",
-        "pueue",            # Task runner and scheduler
-        "tectonic",
-        "thefuck",          # Fix typos
-        "tlrc",             # TLDR client, alternative tealdeer
-        "vivid",            # Color generator for LS_COLORS env variable
-
-        # System monitor TUI
-        "bottom",
-        # "btop",
-        # "htop",
-
-        # Security
-        "gitleaks",
-
-        # Git & Version Control
-        "jujutsu",    # jujutsu version control
-        "jjui-bin",   # jujutsu tui
-        "git-delta",  # Pager for git
-        "github-cli", # Github CLI
-        "glab",       # GitLab CLI
-        "lazygit",
-        "serie",
-        "git-graph",
-
-        # Shell & Terminal
-        "fish",
-        "ghostty",
-        "sesh-bin", # tmux session manager
-        "starship",
-        "tmux",
-        "tmuxp",    # tmux session manager
-
-        # Text Editors & IDEs
-        "helix",  # Alternative neovim
-        "neovim",
-
-        # Cloud & Infra
-        "cloudflare-warp-bin",
-        "docker",
-        "docker-compose",
-        "lazydocker",
-        "tailscale",
-
-        # API & Networking
-        "httpie",   # HTTP client
-        "hurl",     # runs HTTP requests defined in a simple plain text format.
-        "usbutils", # check fingerprint info
-
-        # Desktop & Device
-        "fprintd",         # fingerprint
-        "fuse2",           # apidog dependency
-        "localsend",
-        "lsof",            # opencode-bin dependency
-        "ticktick",
-        "yubico-piv-tool",
-
-        # Databases
-        "redis", # Redis CLI
-
-        # Build & Runtime
-        "nix",
-        "zlib", # for building python
-
-        # LSP, formatter & linters
-
-        # JavaScript / TypeScript
-        "biome",    # JS/TS linter, formatter
-        "eslint",   # JS/TS linter
-        "prettier", # JS/TS formatter
-
-        # Python
-        "ruff", # Python linter
-
-        # Shell
-        "shellcheck", # bash, sh linter
-        "shfmt",      # bash, sh formatter
-
-        # Nix
-        "nixfmt", # Nix formatter
-
-        # Lua
-        "stylua", # Lua formatter
-
-        # Markdown
-        "markdownlint-cli2", # Linter for markdown file
-
-        # TOML
-        "taplo-cli", # TOML formatter
-
-        # YAML
-        "yamlfmt",  # YAML formatter
-        "yamllint", # YAML linter
-
-        # Optional
-        # "auto-cpufreq", # CPU frequency auto; disabled because it slowed terminal startup
-        # "sqlite3",      # for building python
-        # "tcl-tk",       # for building python
+        # Essential build dependencies for VPS development
+        "openssl",
+        "pkgconf",
       ]
 
     [packages.pacman.homelab]
@@ -715,6 +605,76 @@
 
         # Development Tools
         "opencode-bin",
+        "fd",
+        "fzf",
+        "jq",
+        "ripgrep",
+        "sd",
+        "skim",             # Alternative to fzf fuzzy-finder
+        "yq",               # YAML processor
+        "appimagelauncher", # for integrating .AppImage
+        "difftastic",       # diff tools
+        "codespell",        # Fix common misspellings in source code and text files
+        "dpkg",
+        "entr",             # dependency for tmux-autoreload
+        "eza",
+        "glow",             # Render markdown in CLI
+        "gum",              # Fuzzy finder
+        "less",
+        "pastel",           # converter color in terminal
+        "pet-bin",
+        "pueue",            # Task runner and scheduler
+        "tectonic",
+        "thefuck",          # Fix typos
+        "tlrc",             # TLDR client, alternative tealdeer
+        "vivid",            # Color generator for LS_COLORS env variable
+        "bottom",
+        "gitleaks",
+        "jujutsu",          # jujutsu version control
+        "jjui-bin",         # jujutsu tui
+        "git-delta",        # Pager for git
+        "github-cli",       # Github CLI
+        "glab",             # GitLab CLI
+        "lazygit",
+        "serie",
+        "git-graph",
+        "fish",
+        "ghostty",
+        "sesh-bin",         # tmux session manager
+        "starship",
+        "tmux",
+        "tmuxp",            # tmux session manager
+        "helix",            # Alternative neovim
+        "neovim",
+        "cloudflare-warp-bin",
+        "docker",
+        "docker-compose",
+        "lazydocker",
+        "tailscale",
+        "httpie",           # HTTP client
+        "hurl",             # runs HTTP requests defined in a simple plain text format.
+        "usbutils",         # check fingerprint info
+        "fprintd",          # fingerprint
+        "fuse2",            # apidog dependency
+        "localsend",
+        "lsof",             # opencode-bin dependency
+        "ticktick",
+        "yubico-piv-tool",
+        "redis",            # Redis CLI
+        "nix",
+        "zlib",             # for building python
+        "biome",            # JS/TS linter, formatter
+        "eslint",           # JS/TS linter
+        "prettier",         # JS/TS formatter
+        "ruff",             # Python linter
+        "shellcheck",       # bash, sh linter
+        "shfmt",             # bash, sh formatter
+        "nixfmt",            # Nix formatter
+        "stylua",           # Lua formatter
+        "markdownlint-cli2", # Linter for markdown file
+        "taplo-cli",        # TOML formatter
+        "yamlfmt",          # YAML formatter
+        "yamllint",         # YAML linter
 
         # Text Editors & IDEs
         "datagrip",

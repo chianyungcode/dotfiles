@@ -544,34 +544,46 @@ esac
 exit 0
 STUB
 chmod +x "$language_stub"
-for command_name in mise uv node npm go rustc cargo bun deno taplo; do
+for command_name in proto uv node npm go rustc cargo bun deno taplo; do
 	ln -s language-stub "$language_fake_bin/$command_name"
 done
+language_proto_home="$tmp_dir/proto-home"
+language_home="$tmp_dir/language-home"
+mkdir -p "$language_proto_home/bin" "$language_proto_home/shims" "$language_home"
+ln -s "$language_stub" "$language_proto_home/bin/proto"
 
 COMMAND_LOG="$tmp_dir/language-commands.log"
 : >"$COMMAND_LOG"
-PATH="$language_fake_bin:/usr/bin:/bin" \
+HOME="$language_home" \
+PROTO_HOME="$language_proto_home" \
+	PATH="$language_fake_bin:/usr/bin:/bin" \
 	COMMAND_LOG="$COMMAND_LOG" \
 	/bin/bash "$runtime_fixture"
-PATH="$language_fake_bin:/usr/bin:/bin" \
+HOME="$language_home" \
+PROTO_HOME="$language_proto_home" \
+	PATH="$language_fake_bin:/usr/bin:/bin" \
 	COMMAND_LOG="$COMMAND_LOG" \
 	/bin/bash "$language_fixture"
 
-mise_line=$(rg -n 'mise use -g node@latest' "$COMMAND_LOG" | cut -d: -f1)
+proto_line=$(rg -n 'proto install node latest --pin global -- --bundled-npm' "$COMMAND_LOG" | cut -d: -f1)
 uv_line=$(rg -n 'uv tool install python-tool' "$COMMAND_LOG" | cut -d: -f1)
 npm_line=$(rg -n 'npm install -g node-tool' "$COMMAND_LOG" | cut -d: -f1)
 cargo_line=$(rg -n 'cargo install cargo-tool' "$COMMAND_LOG" | cut -d: -f1)
 
-((mise_line < uv_line))
+((proto_line < uv_line))
 ((uv_line < npm_line))
 ((npm_line < cargo_line))
 
 : >"$COMMAND_LOG"
-PATH="$language_fake_bin:/usr/bin:/bin" \
+HOME="$language_home" \
+PROTO_HOME="$language_proto_home" \
+	PATH="$language_fake_bin:/usr/bin:/bin" \
 	COMMAND_LOG="$COMMAND_LOG" \
 	/bin/bash "$runtime_fixture"
 set +e
-PATH="$language_fake_bin:/usr/bin:/bin" \
+HOME="$language_home" \
+PROTO_HOME="$language_proto_home" \
+	PATH="$language_fake_bin:/usr/bin:/bin" \
 	COMMAND_LOG="$COMMAND_LOG" \
 	FAIL_NPM=true \
 	/bin/bash "$language_fixture" >"$tmp_dir/language-failure.out" 2>&1

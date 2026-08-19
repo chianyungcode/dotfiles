@@ -4,7 +4,7 @@ PHASE="30-language-packages"
 {{ template "scripts/core.bash" . }}
 {{ template "scripts/language/packages.bash" . -}}
 
-export PATH="{{ .xdg.data_home }}/mise/shims:$HOME/.local/bin:$PATH"
+export PATH="$HOME/.cargo/bin:{{ .xdg.data_home }}/mise/shims:$HOME/.local/bin:$PATH"
 
 uv_remove=(
 {{- range .packages.python.to_remove }}
