@@ -145,15 +145,22 @@ install_github_release() {
     curl --fail --show-error --silent --location --retry 3 \
         "$asset_url" --output "$archive"
 
-    local checksum_url
+    local asset_digest checksum_url
+    asset_digest=$(jq -r --arg url "$asset_url" '
+        .assets[]
+        | select(.browser_download_url == $url)
+        | .digest // ""
+    ' "$release_json" | head -n 1)
     checksum_url=$(select_checksum_asset "$release_json" "${archive##*/}")
-    if [[ -n "$checksum_url" && "$checksum_url" != null ]]; then
+    if [[ "$asset_digest" =~ ^sha256:[[:xdigit:]]{64}$ ]]; then
+        verify_sha256_digest "$archive" "${asset_digest#sha256:}"
+    elif [[ -n "$checksum_url" && "$checksum_url" != null ]]; then
         local checksum_file="$work_dir/${checksum_url##*/}"
         curl --fail --show-error --silent --location --retry 3 \
             "$checksum_url" --output "$checksum_file"
         verify_archive_checksum "$work_dir" "${archive##*/}" "$checksum_file"
     else
-        die "$name release does not publish a recognized checksum asset"
+        die "$name release does not publish a recognized checksum"
     fi
 
     extract_release_archive "$archive" "$extract_dir"

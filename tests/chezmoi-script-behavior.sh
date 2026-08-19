@@ -727,6 +727,26 @@ assert_log_contains 'releases/latest'
 assert_log_contains 'sample.tar.gz'
 assert_log_contains 'SHA256SUMS'
 
+inline_digest_release_json="$tmp_dir/release-with-inline-digest.json"
+jq --arg digest "sha256:$digest" '
+    del(.assets[1]) | .assets[0].digest = $digest
+' "$release_json_fixture" >"$inline_digest_release_json"
+inline_digest_home="$tmp_dir/inline-digest-home"
+: >"$COMMAND_LOG"
+PATH="$standalone_fake_bin" \
+	HOME="$inline_digest_home" \
+	COMMAND_LOG="$COMMAND_LOG" \
+	RELEASE_JSON_FIXTURE="$inline_digest_release_json" \
+	/bin/bash "$standalone_fixture" >"$tmp_dir/inline-digest.out" 2>&1 || {
+	cat "$tmp_dir/inline-digest.out" >&2
+	exit 1
+}
+[[ -x "$inline_digest_home/.local/bin/sample" ]]
+if rg -q 'fixtures.invalid/(SHA256SUMS|sample.tar.gz.sha256)' "$COMMAND_LOG"; then
+	printf 'inline digest should not download a checksum file\n' >&2
+	exit 1
+fi
+
 per_archive_release_json="$tmp_dir/release-with-per-archive-checksum.json"
 jq '.assets[1].name = "other.tar.gz.sha256"
     | .assets[1].browser_download_url = "https://fixtures.invalid/other.tar.gz.sha256"

@@ -238,7 +238,6 @@ check_rendered_script "$tmp_dir/server-standalone.sh"
 
 for repository in \
 	'atuinsh/atuin' \
-	'ClementTsang/bottom' \
 	'mr-karan/doggo' \
 	'dandavison/delta' \
 	'jesseduffield/lazygit' \
