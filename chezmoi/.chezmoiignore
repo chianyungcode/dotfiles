@@ -42,13 +42,8 @@ Library/Application Support/Leader Key
 # .chezmoiignore matches target paths, so source attributes like `encrypted_`
 # are stripped before matching. Keep Age-encrypted targets out of secretless
 # machines and CI so no Age identity is required.
-.agents/skills/ticktick-task/SKILL.md
-.agents/skills/orchestrating-brain-agent-tasks/SKILL.md
-.config/espanso/match/ai.yaml.age
-.config/espanso/match/base.yml.age
-.config/espanso/match/email.yaml.age
-.config/espanso/match/macos.yaml.age
-.config/espanso/match/ticktick.yaml.age
+.agents/skills/**
+.config/espanso/match/**
 .config/herdr/plugins/config/herdr-spreader/config.yaml.age
 .config/herdr/plugins/config/herdr-spreader/dotnix.yaml.age
 .config/fish/env.d/030-secrets-age.fish
