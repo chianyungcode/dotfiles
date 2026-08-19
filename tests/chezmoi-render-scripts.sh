@@ -207,6 +207,9 @@ done
 assert_contains "$tmp_dir/ubuntu-runtime.sh" 'node@latest'
 assert_contains "$tmp_dir/ubuntu-runtime.sh" 'rust@latest'
 assert_contains "$tmp_dir/ubuntu-language.sh" '@go-task/cli'
+assert_contains "$tmp_dir/ubuntu-language.sh" 'PROTO_HOME'
+assert_contains "$tmp_dir/ubuntu-language.sh" '\$PROTO_HOME/shims'
+assert_not_contains "$tmp_dir/ubuntu-language.sh" 'mise/shims'
 assert_contains "$tmp_dir/ubuntu-language.sh" 'cargo-binstall'
 
 server_data="$tmp_dir/server.json"
