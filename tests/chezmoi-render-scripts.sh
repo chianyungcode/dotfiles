@@ -246,6 +246,7 @@ for repository in \
 	assert_contains "$tmp_dir/ubuntu-standalone.sh" "$repository"
 	assert_contains "$tmp_dir/arch-standalone.sh" "$repository"
 done
+assert_contains "$tmp_dir/ubuntu-standalone.sh" '"-server-"'
 assert_contains "$tmp_dir/ubuntu-standalone.sh" 'install_git_credential_manager'
 assert_contains "$tmp_dir/ubuntu-standalone.sh" 'sudo dpkg -i'
 assert_not_contains "$tmp_dir/arch-standalone.sh" 'install_git_credential_manager|dpkg'

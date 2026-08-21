@@ -16,7 +16,7 @@
     executable_name       = "atuin"
     install_filter        = ""
     name                  = "atuin"
-    remove_from_release   = ""
+    remove_from_release   = "-server-"
     repository            = "atuinsh/atuin"
     required_architecture = ""
     systems               = ["linux"]
