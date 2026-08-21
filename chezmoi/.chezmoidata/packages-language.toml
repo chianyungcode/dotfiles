@@ -42,6 +42,12 @@
       packages = []
 
     [packages.cargo.development]
+      packages = []
+
+    [packages.cargo.homelab]
+      packages = []
+
+    [packages.cargo.personal]
       packages = [
         # Cargo Tooling
         "cargo-binstall",
@@ -64,13 +70,7 @@
 
         # @text
         "typos-cli",
-      ]
 
-    [packages.cargo.homelab]
-      packages = []
-
-    [packages.cargo.personal]
-      packages = [
         # Utility
         "cargo-seek",
 
