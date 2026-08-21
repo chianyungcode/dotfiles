@@ -36,14 +36,6 @@ abbr "bx"="bun x"
 # --- CLI TUI tools ---
 abbr "lzd"="lazydocker"
 
-# --- Cloud / Auth / Secrets CLIs ---
-abbr "aws"="op plugin run -- aws"
-abbr "dopr"="doppler run -- "
-abbr "gh"="op plugin run -- gh"
-abbr "glab"="op plugin run -- glab"
-abbr "tailprefs"="tailscale debug prefs"
-abbr "vercel"="op plugin run -- vercel"
-
 # --- Docker / Docker Compose ---
 abbr "dbl"="docker build"
 abbr "dcb"="docker-compose build"
