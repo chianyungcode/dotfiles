@@ -4,6 +4,7 @@
 
 return {
   -- { "killitar/obscure.nvim" },
+
   {
     "wtfox/luna.nvim",
     lazy = false,
@@ -252,7 +253,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "oldworld",
+      colorscheme = "luna",
     },
   },
 }
