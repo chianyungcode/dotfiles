@@ -1,4 +1,13 @@
-if [ -f "$HOME/.config/bash/bashrc" ]; then
-  # shellcheck disable=SC1090,SC1091 # path is generated at apply time and guarded above
-  source "$HOME/.config/bash/bashrc"
-fi
+# Load the same env.d modules zsh uses so interactive bash shells get an
+# identical environment and PATH without duplicating logic. The per-dir guards
+# in each module make re-sourcing after .profile a no-op.
+_env_dir="${XDG_CONFIG_HOME:-$HOME/.config}/zsh/env.d"
+
+for _env_file in "$_env_dir"/*.sh; do
+  if [ -r "$_env_file" ]; then
+    # shellcheck disable=SC1090 # path is constructed above and guarded by -r
+    . "$_env_file"
+  fi
+done
+
+unset _env_dir _env_file
