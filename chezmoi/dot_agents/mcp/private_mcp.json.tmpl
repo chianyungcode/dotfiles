@@ -2,7 +2,9 @@
   "mcpServers": {
     "linear": {
       "url": "https://mcp.linear.app/mcp",
-      "header": "Bearer {{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.ai_mcp.linear_apikey }}{{ end }}"
+      "headers": {
+        "Authorization": "Bearer {{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.ai_mcp.linear_apikey }}{{ end }}"
+      }
     },
     "ticktick": {
       "url": "https://mcp.ticktick.com",
