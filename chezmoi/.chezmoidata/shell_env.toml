@@ -20,6 +20,7 @@
   [shell_env.common]
     EDITOR                = "nvim"
     GIT_CONFIG_GLOBAL     = "$XDG_CONFIG_HOME/git/config"
+    HERMES_HOME           = "$XDG_CONFIG_HOME/hermes"
     LESSHISTFILE          = "/tmp/less-hist"
     LM_STUDIO_BIN         = "$HOME/.lmstudio/bin"
     PARALLEL_HOME         = "$XDG_CONFIG_HOME/parallel"
