@@ -1,18 +1,21 @@
 {
   "mcpServers": {
     "linear": {
+      "disabled": false,
       "url": "https://mcp.linear.app/mcp",
       "headers": {
         "Authorization": "Bearer {{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.ai_mcp.linear_apikey }}{{ end }}"
       }
     },
     "ticktick": {
+      "disabled": false,
       "url": "https://mcp.ticktick.com",
       "headers": {
         "Authorization": "Bearer {{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.ai_mcp.ticktick_apikey }}{{ end }}"
       }
     },
     "exa": {
+      "disabled": false,
       "command": "npx",
       "args": ["-y", "exa-mcp-server"],
       "env": {
@@ -20,6 +23,7 @@
       }
     },
     "capacities": {
+     "disabled": false,
      "url": "https://api.capacities.io/mcp"
     }
   }
