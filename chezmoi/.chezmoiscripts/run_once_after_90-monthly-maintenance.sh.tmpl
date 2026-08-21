@@ -4,6 +4,7 @@
 
 PHASE="90-monthly-maintenance"
 {{ template "scripts/core.bash" . }}
+export PATH="$HOME/.local/bin:$PATH"
 if command -v uv >/dev/null 2>&1; then
     uv tool upgrade --all
 else
