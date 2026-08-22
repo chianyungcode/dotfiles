@@ -555,12 +555,12 @@ ln -s "$language_stub" "$language_proto_home/bin/proto"
 COMMAND_LOG="$tmp_dir/language-commands.log"
 : >"$COMMAND_LOG"
 HOME="$language_home" \
-PROTO_HOME="$language_proto_home" \
+	PROTO_HOME="$language_proto_home" \
 	PATH="$language_fake_bin:/usr/bin:/bin" \
 	COMMAND_LOG="$COMMAND_LOG" \
 	/bin/bash "$runtime_fixture"
 HOME="$language_home" \
-PROTO_HOME="$language_proto_home" \
+	PROTO_HOME="$language_proto_home" \
 	PATH="$language_fake_bin:/usr/bin:/bin" \
 	COMMAND_LOG="$COMMAND_LOG" \
 	/bin/bash "$language_fixture"
@@ -576,13 +576,13 @@ cargo_line=$(rg -n 'cargo install cargo-tool' "$COMMAND_LOG" | cut -d: -f1)
 
 : >"$COMMAND_LOG"
 HOME="$language_home" \
-PROTO_HOME="$language_proto_home" \
+	PROTO_HOME="$language_proto_home" \
 	PATH="$language_fake_bin:/usr/bin:/bin" \
 	COMMAND_LOG="$COMMAND_LOG" \
 	/bin/bash "$runtime_fixture"
 set +e
 HOME="$language_home" \
-PROTO_HOME="$language_proto_home" \
+	PROTO_HOME="$language_proto_home" \
 	PATH="$language_fake_bin:/usr/bin:/bin" \
 	COMMAND_LOG="$COMMAND_LOG" \
 	FAIL_NPM=true \
