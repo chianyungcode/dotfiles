@@ -1,0 +1,53 @@
+model                  = "gpt-5.6-sol"
+model_reasoning_effort = "xhigh"
+
+[features]
+
+[mcp_servers.apidog]
+  args     = ["-y", "apidog-mcp-server@latest"]
+  command  = "npx"
+  env_vars = ["APIDOG_ACCESS_TOKEN", "APIDOG_PROJECT_ID"]
+
+[mcp_servers.context7]
+  bearer_token_env_var = "CONTEXT7_MCP_API_KEY"
+  enabled              = true
+  url                  = "https://mcp.context7.com/mcp"
+
+[mcp_servers.deepwiki]
+  enabled = false
+  url     = "https://mcp.deepwiki.com/mcp"
+
+[mcp_servers.exa]
+  bearer_token_env_var = "EXA_API_KEY"
+  enabled              = false
+  url                  = "https://mcp.exa.ai/mcp"
+
+[mcp_servers.linear]
+  bearer_token_env_var = "LINEAR_API_KEY"
+  enabled              = true
+  url                  = "https://mcp.linear.app/mcp"
+
+[mcp_servers.tavily]
+  bearer_token_env_var = "TAVILY_API_KEY"
+  enabled              = false
+  url                  = "https://mcp.tavily.com/mcp"
+
+[mcp_servers.ticktick]
+  bearer_token_env_var = "TICKTICK_API_KEY"
+  enabled              = true
+  url                  = "https://mcp.ticktick.com"
+
+[projects."/Users/chianyung/.local/share/chezmoi"]
+  trust_level = "trusted"
+
+[projects."/Users/chianyung/Code/Personal/Projects/Backend/allweezy-backend"]
+  trust_level = "trusted"
+
+[tui]
+  status_line = [
+    "model-with-reasoning",
+    "current-dir",
+    "context-used",
+    "weekly-limit",
+  ]
+  status_line_use_colors = true

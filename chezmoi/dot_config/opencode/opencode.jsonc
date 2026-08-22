@@ -6,9 +6,7 @@
     "context7": {
 			"type": "remote",
 			"url": "https://mcp.context7.com/mcp",
-      "headers": {
-        "CONTEXT7_API_KEY": "{{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.ai_mcp.context7_apikey }}{{ end }}"
-      },
+      "headers": { "Authorization": "Bearer {env:CONTEXT7_MCP_API_KEY}" },
 			"enabled": true
 		},
     "deepwiki": {
@@ -20,7 +18,7 @@
     "exa": {
       "type": "remote",
       "url": "https://mcp.exa.ai/mcp",
-      "headers": {},
+      "headers": { "Authorization": "Bearer {env:EXA_API_KEY}" },
       "enabled": false
     },
     "gitmcp": {
@@ -32,11 +30,15 @@
     "linear": {
       "type": "remote",
       "url": "https://mcp.linear.app/mcp",
+      "headers": {
+        "Authorization": "Bearer {env:LINEAR_API_KEY}"
+      },
       "enabled": true
     },
     "tavily": {
       "type": "remote",
-      "url": "https://mcp.tavily.com/mcp/?tavilyApiKey={{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.ai_mcp.tavily_apikey }}{{ end }}",
+      "url": "https://mcp.tavily.com/mcp",
+      "headers": { "Authorization": "Bearer {env:TAVILY_API_KEY}" },
       "enabled": false
       },
     "ticktick": {

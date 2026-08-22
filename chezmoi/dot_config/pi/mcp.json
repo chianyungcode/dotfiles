@@ -4,14 +4,14 @@
       "disabled": false,
       "url": "https://mcp.linear.app/mcp",
       "headers": {
-        "Authorization": "Bearer {{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.ai_mcp.linear_apikey }}{{ end }}"
+        "Authorization": "Bearer ${LINEAR_API_KEY}"
       }
     },
     "ticktick": {
       "disabled": false,
       "url": "https://mcp.ticktick.com",
       "headers": {
-        "Authorization": "Bearer {{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.ai_mcp.ticktick_apikey }}{{ end }}"
+        "Authorization": "Bearer ${TICKTICK_API_KEY}"
       }
     },
     "exa": {
@@ -19,7 +19,7 @@
       "command": "npx",
       "args": ["-y", "exa-mcp-server"],
       "env": {
-        "EXA_API_KEY": "{{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.ai_mcp.exa_apikey }}{{ end }}"
+        "EXA_API_KEY": "${EXA_API_KEY}"
       }
     },
     "capacities": {
