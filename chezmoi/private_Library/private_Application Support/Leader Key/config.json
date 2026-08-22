@@ -1,275 +1,275 @@
 {
-  "actions": [
-    {
-      "key": "q",
-      "type": "group",
-      "label": "Quit apps",
-      "actions": [
-        {
-          "key": "a",
-          "type": "group",
-          "actions": [
-            {
-              "key": "a",
-              "type": "url",
-              "value": "raycast://extensions/raycast/system/quit-all-apps",
-              "label": "Quit all apps"
-            },
-            {
-              "key": "s",
-              "type": "url",
-              "value": "raycast://extensions/mackopes/quit-applications/index",
-              "label": "Quit selected apps"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "group",
-      "label": "Raycast",
-      "actions": [
-        {
-          "type": "url",
-          "value": "raycast://extensions/raycast/emoji-symbols/search-emoji-symbols",
-          "key": "e"
-        },
-        {
-          "value": "raycast://confetti",
-          "key": "p",
-          "type": "url"
-        },
-        {
-          "type": "url",
-          "value": "raycast://extensions/raycast/system/open-camera",
-          "key": "c"
-        },
-        {
-          "type": "url",
-          "value": "raycast://extensions/benvp/audio-device/set-output-device",
-          "key": "o"
-        },
-        {
-          "type": "url",
-          "value": "raycast://extensions/VladCuciureanu/toothpick/manage-bluetooth-connections",
-          "key": "b"
-        }
-      ],
-      "key": "r"
-    },
-    {
-      "type": "group",
-      "label": "Session",
-      "actions": [
-        {
-          "type": "url",
-          "value": "raycast://extensions/jameslyons/session/session-start-new-form",
-          "label": "Start Session",
-          "key": "s"
-        },
-        {
-          "type": "url",
-          "value": "raycast://extensions/jameslyons/session/session-pause",
-          "label": "Pause Session",
-          "key": "d"
-        },
-        {
-          "type": "url",
-          "value": "raycast://extensions/jameslyons/session/session-finish",
-          "label": "Finish Session",
-          "key": "f"
-        },
-        {
-          "type": "url",
-          "value": "raycast://extensions/jameslyons/session/session-start-previous",
-          "label": "Start Last Session",
-          "key": "a"
-        },
-        {
-          "type": "url",
-          "value": "raycast://extensions/jameslyons/session/session-abandon",
-          "label": "Abandon Session",
-          "key": "g"
-        },
-        {
-          "type": "url",
-          "value": "raycast://extensions/jameslyons/session/break-start",
-          "label": "Break Session",
-          "key": "c"
-        }
-      ],
-      "key": "f"
-    },
-    {
-      "actions": [
-        {
-          "key": "p",
-          "type": "group",
-          "actions": [
-            {
-              "key": "a",
-              "type": "url",
-              "value": "https://9awgj69ymmsa.weezystore.id/transaction/order"
-            },
-            {
-              "key": "r",
-              "type": "url",
-              "value": "https://reseller.bangjeff.com/id/dashboard"
-            }
-          ]
-        },
-        {
-          "actions": [
-            {
-              "key": "g",
-              "type": "url",
-              "value": "https://github.com"
-            },
-            {
-              "key": "v",
-              "type": "url",
-              "value": "https://vercel.com"
-            }
-          ],
-          "type": "group",
-          "key": "d"
-        },
-        {
-          "actions": [
-            {
-              "type": "url",
-              "value": "https://mesinotomatis.com/client/bank/login/",
-              "key": "m"
-            },
-            {
-              "type": "url",
-              "value": "https://vpn.klikbca.com",
-              "key": "c"
-            },
-            {
-              "key": "i",
-              "value": "https://koprabymandiri.com/",
-              "type": "url"
-            },
-            {
-              "type": "url",
-              "value": "https://qlola.bri.co.id/",
-              "key": "r"
-            },
-            {
-              "type": "url",
-              "key": "n",
-              "value": "https://bnidirect.bni.co.id"
-            }
-          ],
-          "key": "b",
-          "type": "group"
-        },
-        {
-          "key": "t",
-          "type": "group",
-          "label": "Arc tabs",
-          "actions": [
-            {
-              "type": "url",
-              "key": "a",
-              "value": "raycast://extensions/the-browser-company/arc/search-tabs"
-            }
-          ]
-        }
-      ],
-      "type": "group",
-      "label": "Website",
-      "key": "w"
-    },
-    {
-      "key": "s",
-      "label": "System",
-      "type": "group",
-      "actions": [
-        {
-          "type": "group",
-          "key": "s",
-          "label": "Rest",
-          "actions": [
-            {
-              "type": "url",
-              "key": "q",
-              "label": "Lock screen | Raycast",
-              "value": "raycast://extensions/raycast/system/lock-screen"
-            },
-            {
-              "type": "command",
-              "key": "l",
-              "label": "Sleep",
-              "value": "pmset sleepnow"
-            },
-            {
-              "type": "command",
-              "key": "v",
-              "label": "Screen Saver",
-              "value": "open -a ScreenSaverEngine.app"
-            }
-          ]
-        },
-        {
-          "type": "group",
-          "key": "c",
-          "label": "Shortcuts",
-          "actions": [
-            {
-              "type": "command",
-              "value": "shortcuts run \"Start Session Only\"",
-              "key": "a"
-            }
-          ]
-        },
-        {
-          "key": "w",
-          "label": "Network",
-          "type": "group",
-          "actions": [
-            {
-              "key": "o",
-              "type": "command",
-              "value": "networksetup -setairportpower en0 on"
-            },
-            {
-              "key": "f",
-              "type": "command",
-              "value": "networksetup -setairportpower en0 off"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "group",
-      "key": "e",
-      "label": "Shortcuts",
-      "actions": [
-        {
-          "type": "command",
-          "value": "shortcuts run \"Start Session Only\"",
-          "key": "s"
-        },
-        {
-          "type": "command",
-          "value": "shortcuts run \"Pause Session\"",
-          "key": "d"
-        },
-        {
-          "type": "command",
-          "value": "shortcuts run \"Stop Session\"",
-          "key": "f"
-        },
-        {
-          "type": "command",
-          "value": "shortcuts run \"Start Recent Session Only\"",
-          "key": "a"
-        }
-      ]
-    }
-  ],
-  "type": "group"
+	"actions": [
+		{
+			"key": "q",
+			"type": "group",
+			"label": "Quit apps",
+			"actions": [
+				{
+					"key": "a",
+					"type": "group",
+					"actions": [
+						{
+							"key": "a",
+							"type": "url",
+							"value": "raycast://extensions/raycast/system/quit-all-apps",
+							"label": "Quit all apps"
+						},
+						{
+							"key": "s",
+							"type": "url",
+							"value": "raycast://extensions/mackopes/quit-applications/index",
+							"label": "Quit selected apps"
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "group",
+			"label": "Raycast",
+			"actions": [
+				{
+					"type": "url",
+					"value": "raycast://extensions/raycast/emoji-symbols/search-emoji-symbols",
+					"key": "e"
+				},
+				{
+					"value": "raycast://confetti",
+					"key": "p",
+					"type": "url"
+				},
+				{
+					"type": "url",
+					"value": "raycast://extensions/raycast/system/open-camera",
+					"key": "c"
+				},
+				{
+					"type": "url",
+					"value": "raycast://extensions/benvp/audio-device/set-output-device",
+					"key": "o"
+				},
+				{
+					"type": "url",
+					"value": "raycast://extensions/VladCuciureanu/toothpick/manage-bluetooth-connections",
+					"key": "b"
+				}
+			],
+			"key": "r"
+		},
+		{
+			"type": "group",
+			"label": "Session",
+			"actions": [
+				{
+					"type": "url",
+					"value": "raycast://extensions/jameslyons/session/session-start-new-form",
+					"label": "Start Session",
+					"key": "s"
+				},
+				{
+					"type": "url",
+					"value": "raycast://extensions/jameslyons/session/session-pause",
+					"label": "Pause Session",
+					"key": "d"
+				},
+				{
+					"type": "url",
+					"value": "raycast://extensions/jameslyons/session/session-finish",
+					"label": "Finish Session",
+					"key": "f"
+				},
+				{
+					"type": "url",
+					"value": "raycast://extensions/jameslyons/session/session-start-previous",
+					"label": "Start Last Session",
+					"key": "a"
+				},
+				{
+					"type": "url",
+					"value": "raycast://extensions/jameslyons/session/session-abandon",
+					"label": "Abandon Session",
+					"key": "g"
+				},
+				{
+					"type": "url",
+					"value": "raycast://extensions/jameslyons/session/break-start",
+					"label": "Break Session",
+					"key": "c"
+				}
+			],
+			"key": "f"
+		},
+		{
+			"actions": [
+				{
+					"key": "p",
+					"type": "group",
+					"actions": [
+						{
+							"key": "a",
+							"type": "url",
+							"value": "https://9awgj69ymmsa.weezystore.id/transaction/order"
+						},
+						{
+							"key": "r",
+							"type": "url",
+							"value": "https://reseller.bangjeff.com/id/dashboard"
+						}
+					]
+				},
+				{
+					"actions": [
+						{
+							"key": "g",
+							"type": "url",
+							"value": "https://github.com"
+						},
+						{
+							"key": "v",
+							"type": "url",
+							"value": "https://vercel.com"
+						}
+					],
+					"type": "group",
+					"key": "d"
+				},
+				{
+					"actions": [
+						{
+							"type": "url",
+							"value": "https://mesinotomatis.com/client/bank/login/",
+							"key": "m"
+						},
+						{
+							"type": "url",
+							"value": "https://vpn.klikbca.com",
+							"key": "c"
+						},
+						{
+							"key": "i",
+							"value": "https://koprabymandiri.com/",
+							"type": "url"
+						},
+						{
+							"type": "url",
+							"value": "https://qlola.bri.co.id/",
+							"key": "r"
+						},
+						{
+							"type": "url",
+							"key": "n",
+							"value": "https://bnidirect.bni.co.id"
+						}
+					],
+					"key": "b",
+					"type": "group"
+				},
+				{
+					"key": "t",
+					"type": "group",
+					"label": "Arc tabs",
+					"actions": [
+						{
+							"type": "url",
+							"key": "a",
+							"value": "raycast://extensions/the-browser-company/arc/search-tabs"
+						}
+					]
+				}
+			],
+			"type": "group",
+			"label": "Website",
+			"key": "w"
+		},
+		{
+			"key": "s",
+			"label": "System",
+			"type": "group",
+			"actions": [
+				{
+					"type": "group",
+					"key": "s",
+					"label": "Rest",
+					"actions": [
+						{
+							"type": "url",
+							"key": "q",
+							"label": "Lock screen | Raycast",
+							"value": "raycast://extensions/raycast/system/lock-screen"
+						},
+						{
+							"type": "command",
+							"key": "l",
+							"label": "Sleep",
+							"value": "pmset sleepnow"
+						},
+						{
+							"type": "command",
+							"key": "v",
+							"label": "Screen Saver",
+							"value": "open -a ScreenSaverEngine.app"
+						}
+					]
+				},
+				{
+					"type": "group",
+					"key": "c",
+					"label": "Shortcuts",
+					"actions": [
+						{
+							"type": "command",
+							"value": "shortcuts run \"Start Session Only\"",
+							"key": "a"
+						}
+					]
+				},
+				{
+					"key": "w",
+					"label": "Network",
+					"type": "group",
+					"actions": [
+						{
+							"key": "o",
+							"type": "command",
+							"value": "networksetup -setairportpower en0 on"
+						},
+						{
+							"key": "f",
+							"type": "command",
+							"value": "networksetup -setairportpower en0 off"
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "group",
+			"key": "e",
+			"label": "Shortcuts",
+			"actions": [
+				{
+					"type": "command",
+					"value": "shortcuts run \"Start Session Only\"",
+					"key": "s"
+				},
+				{
+					"type": "command",
+					"value": "shortcuts run \"Pause Session\"",
+					"key": "d"
+				},
+				{
+					"type": "command",
+					"value": "shortcuts run \"Stop Session\"",
+					"key": "f"
+				},
+				{
+					"type": "command",
+					"value": "shortcuts run \"Start Recent Session Only\"",
+					"key": "a"
+				}
+			]
+		}
+	],
+	"type": "group"
 }

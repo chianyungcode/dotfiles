@@ -1,18 +1,13 @@
 {
-  "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
-  "runtime": {
-    "version": "LuaJIT"
-  },
-  "diagnostics": {
-    "globals": [
-      "vim",
-      "LazyVim"
-    ],
-    "disable": [
-      "undefined-doc-name"
-    ]
-  },
-  "workspace": {
-    "checkThirdParty": false
-  }
+	"$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+	"runtime": {
+		"version": "LuaJIT"
+	},
+	"diagnostics": {
+		"globals": ["vim", "LazyVim"],
+		"disable": ["undefined-doc-name"]
+	},
+	"workspace": {
+		"checkThirdParty": false
+	}
 }

@@ -1,195 +1,195 @@
 [
-  {
-    "bindings": {
-      "cmd-alt-c": [
-        "agent::NewExternalAgentThread",
-        { "agent": { "custom": { "name": "codex-acp" } } }
-      ]
-    }
-  },
-  {
-    "context": "(VimControl && !menu)",
-    "bindings": {
-      "space": null
-    }
-  },
-  {
-    "context": "Pane",
-    "bindings": {
-      "ctrl-shift-tab": "pane::ActivatePreviousItem",
-      "ctrl-tab": "pane::ActivateNextItem"
-    }
-  },
-  {
-    "context": "Editor",
-    "bindings": {
-      "ctrl-s": "workspace::Save",
-      "ctrl-/": "terminal_panel::Toggle",
-      "ctrl-h": "workspace::ActivatePaneLeft",
-      "ctrl-l": "workspace::ActivatePaneRight",
-      "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-j": "workspace::ActivatePaneDown"
-    }
-  },
-  {
-    "context": "vim_mode == normal || vim_mode == visual",
-    "bindings": {
-      "s": "vim::HelixJumpToWord",
-      "shift-s": "vim::PushSneakBackward"
-    }
-  },
-  {
-    "context": "ProjectPanel && not_editing",
-    "bindings": {
-      ".": "project_panel::ToggleHideHidden",
-      "space e": "workspace::CloseActiveDock",
-      "d": "project_panel::Delete",
-      "a": "project_panel::NewFile",
-      "r": "project_panel::Rename",
-      "/": "file_finder::Toggle",
-      "y": "project_panel::Copy",
-      "x": "project_panel::Cut",
-      "p": "project_panel::Paste",
-      "ctrl-h": "workspace::ActivatePaneLeft",
-      "ctrl-l": "workspace::ActivatePaneRight",
-      "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-j": "workspace::ActivatePaneDown"
-    }
-  },
-  {
-    "context": "Editor && vim_mode == visual  && !menu && extension",
-    "bindings": {
-      "space a t": "agent::AddSelectionToThread"
-    }
-  },
-  {
-    "context": "vim_mode == normal && !menu",
-    "bindings": {
-      "space space": "file_finder::Toggle",
-      "space ,": "tab_switcher::Toggle",
-      "space a a": "workspace::ToggleRightDock",
+	{
+		"bindings": {
+			"cmd-alt-c": [
+				"agent::NewExternalAgentThread",
+				{ "agent": { "custom": { "name": "codex-acp" } } }
+			]
+		}
+	},
+	{
+		"context": "(VimControl && !menu)",
+		"bindings": {
+			"space": null
+		}
+	},
+	{
+		"context": "Pane",
+		"bindings": {
+			"ctrl-shift-tab": "pane::ActivatePreviousItem",
+			"ctrl-tab": "pane::ActivateNextItem"
+		}
+	},
+	{
+		"context": "Editor",
+		"bindings": {
+			"ctrl-s": "workspace::Save",
+			"ctrl-/": "terminal_panel::Toggle",
+			"ctrl-h": "workspace::ActivatePaneLeft",
+			"ctrl-l": "workspace::ActivatePaneRight",
+			"ctrl-k": "workspace::ActivatePaneUp",
+			"ctrl-j": "workspace::ActivatePaneDown"
+		}
+	},
+	{
+		"context": "vim_mode == normal || vim_mode == visual",
+		"bindings": {
+			"s": "vim::HelixJumpToWord",
+			"shift-s": "vim::PushSneakBackward"
+		}
+	},
+	{
+		"context": "ProjectPanel && not_editing",
+		"bindings": {
+			".": "project_panel::ToggleHideHidden",
+			"space e": "workspace::CloseActiveDock",
+			"d": "project_panel::Delete",
+			"a": "project_panel::NewFile",
+			"r": "project_panel::Rename",
+			"/": "file_finder::Toggle",
+			"y": "project_panel::Copy",
+			"x": "project_panel::Cut",
+			"p": "project_panel::Paste",
+			"ctrl-h": "workspace::ActivatePaneLeft",
+			"ctrl-l": "workspace::ActivatePaneRight",
+			"ctrl-k": "workspace::ActivatePaneUp",
+			"ctrl-j": "workspace::ActivatePaneDown"
+		}
+	},
+	{
+		"context": "Editor && vim_mode == visual  && !menu && extension",
+		"bindings": {
+			"space a t": "agent::AddSelectionToThread"
+		}
+	},
+	{
+		"context": "vim_mode == normal && !menu",
+		"bindings": {
+			"space space": "file_finder::Toggle",
+			"space ,": "tab_switcher::Toggle",
+			"space a a": "workspace::ToggleRightDock",
 
-      "space a o": [
-        "agent::NewExternalAgentThread",
-        { "agent": { "custom": { "name": "codex-acp" } } }
-      ],
-      "space a c": [
-        "agent::NewExternalAgentThread",
-        { "agent": { "custom": { "name": "claude-acp" } } }
-      ],
-      "space a g": [
-        "agent::NewExternalAgentThread",
-        { "agent": { "custom": { "name": "gemini" } } }
-      ],
+			"space a o": [
+				"agent::NewExternalAgentThread",
+				{ "agent": { "custom": { "name": "codex-acp" } } }
+			],
+			"space a c": [
+				"agent::NewExternalAgentThread",
+				{ "agent": { "custom": { "name": "claude-acp" } } }
+			],
+			"space a g": [
+				"agent::NewExternalAgentThread",
+				{ "agent": { "custom": { "name": "gemini" } } }
+			],
 
-      "space ;": "outline::Toggle",
-      "space o l": "outline::Toggle",
+			"space ;": "outline::Toggle",
+			"space o l": "outline::Toggle",
 
-      "space b d": "pane::CloseActiveItem",
-      "space b o": "pane::CloseOtherItems",
-      "space b b": "pane::AlternateFile",
-      "space `": "pane::AlternateFile",
-      "alt-1": ["pane::ActivateItem", 0],
-      "alt-2": ["pane::ActivateItem", 1],
-      "alt-3": ["pane::ActivateItem", 2],
-      "alt-4": ["pane::ActivateItem", 3],
-      "alt-5": ["pane::ActivateItem", 4],
-      "alt-6": ["pane::ActivateItem", 5],
-      "alt-7": ["pane::ActivateItem", 6],
-      "alt-8": ["pane::ActivateItem", 7],
-      "alt-9": ["pane::ActivateItem", 8],
+			"space b d": "pane::CloseActiveItem",
+			"space b o": "pane::CloseOtherItems",
+			"space b b": "pane::AlternateFile",
+			"space `": "pane::AlternateFile",
+			"alt-1": ["pane::ActivateItem", 0],
+			"alt-2": ["pane::ActivateItem", 1],
+			"alt-3": ["pane::ActivateItem", 2],
+			"alt-4": ["pane::ActivateItem", 3],
+			"alt-5": ["pane::ActivateItem", 4],
+			"alt-6": ["pane::ActivateItem", 5],
+			"alt-7": ["pane::ActivateItem", 6],
+			"alt-8": ["pane::ActivateItem", 7],
+			"alt-9": ["pane::ActivateItem", 8],
 
-      "space w o": [
-        "action::Sequence",
-        ["workspace::CloseInactiveTabsAndPanes", "workspace::CloseAllDocks"]
-      ],
-      "space w d": "pane::CloseAllItems",
+			"space w o": [
+				"action::Sequence",
+				["workspace::CloseInactiveTabsAndPanes", "workspace::CloseAllDocks"]
+			],
+			"space w d": "pane::CloseAllItems",
 
-      "space s f": "file_finder::Toggle",
-      "space s g": "pane::DeploySearch",
-      "space s s": "project_symbols::Toggle",
-      "space s t": ["workspace::SendKeystrokes", "space / shift-TODO enter"],
+			"space s f": "file_finder::Toggle",
+			"space s g": "pane::DeploySearch",
+			"space s s": "project_symbols::Toggle",
+			"space s t": ["workspace::SendKeystrokes", "space / shift-TODO enter"],
 
-      "space c r": "editor::Rename",
-      "space /": "pane::DeploySearch",
-      "space |": "pane::SplitVertical",
-      "space -": "pane::SplitHorizontal",
-      "space e": "project_panel::ToggleFocus",
-      "ctrl-h": "workspace::ActivatePaneLeft",
-      "ctrl-l": "workspace::ActivatePaneRight",
-      "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-j": "workspace::ActivatePaneDown",
-      "shift-h": "pane::ActivatePreviousItem",
-      "shift-l": "pane::ActivateNextItem",
-      "ctrl-/": "terminal_panel::Toggle",
+			"space c r": "editor::Rename",
+			"space /": "pane::DeploySearch",
+			"space |": "pane::SplitVertical",
+			"space -": "pane::SplitHorizontal",
+			"space e": "project_panel::ToggleFocus",
+			"ctrl-h": "workspace::ActivatePaneLeft",
+			"ctrl-l": "workspace::ActivatePaneRight",
+			"ctrl-k": "workspace::ActivatePaneUp",
+			"ctrl-j": "workspace::ActivatePaneDown",
+			"shift-h": "pane::ActivatePreviousItem",
+			"shift-l": "pane::ActivateNextItem",
+			"ctrl-/": "terminal_panel::Toggle",
 
-      "space h p": "editor::BlameHover",
-      "space h P": "editor::OpenGitBlameCommit",
-      "space h i": "editor::ToggleSelectedDiffHunks",
-      "space h s": "git::ToggleStaged",
-      "space h S": ["task::Spawn", { "task_name": "git: stage current file" }],
-      "space h r": "git::Restore",
-      "space h R": "git::RestoreFile",
-      "space h d": "git::Diff",
+			"space h p": "editor::BlameHover",
+			"space h P": "editor::OpenGitBlameCommit",
+			"space h i": "editor::ToggleSelectedDiffHunks",
+			"space h s": "git::ToggleStaged",
+			"space h S": ["task::Spawn", { "task_name": "git: stage current file" }],
+			"space h r": "git::Restore",
+			"space h R": "git::RestoreFile",
+			"space h d": "git::Diff",
 
-      "space g g": [
-        "task::Spawn",
-        { "task_name": "lazygit", "reveal_target": "center" }
-      ],
-      "space g b": "editor::OpenGitBlameCommit",
-      "space g B": "git::Blame",
-      "space g d": "git::Diff",
-      "space g f": "git::FileHistory",
+			"space g g": [
+				"task::Spawn",
+				{ "task_name": "lazygit", "reveal_target": "center" }
+			],
+			"space g b": "editor::OpenGitBlameCommit",
+			"space g B": "git::Blame",
+			"space g d": "git::Diff",
+			"space g f": "git::FileHistory",
 
-      "space g j": [
-        "task::Spawn",
-        { "task_name": "jjui", "reveal_target": "center" }
-      ],
+			"space g j": [
+				"task::Spawn",
+				{ "task_name": "jjui", "reveal_target": "center" }
+			],
 
-      "space x x": "diagnostics::Deploy",
-      "space x T": ["workspace::SendKeystrokes", "space / shift-TODO enter"]
-    }
-  },
-  {
-    "context": "Editor && showing_completions",
-    "bindings": {
-      "alt-1": ["workspace::SendKeystrokes", "pageup enter"],
-      "alt-2": ["workspace::SendKeystrokes", "pageup down enter"],
-      "alt-3": ["workspace::SendKeystrokes", "pageup down down enter"],
-      "alt-4": ["workspace::SendKeystrokes", "pageup down down down enter"],
-      "alt-5": ["workspace::SendKeystrokes", "pageup down down down down enter"]
-    }
-  },
-  {
-    "context": "FileFinder || (FileFinder > Picker > Editor) || (FileFinder > Picker > menu)",
-    "bindings": {
-      "ctrl-v": "pane::SplitRight",
-      "ctrl-h": "pane::SplitDown"
-    }
-  },
-  {
-    "context": "ProjectSearchBar",
-    "bindings": {
-      "space /": "pane::CloseActiveItem"
-    }
-  },
-  {
-    "context": "Terminal",
-    "bindings": {
-      "ctrl-/": "terminal_panel::Toggle"
-    }
-  },
-  {
-    "context": "AcpThread > Editor",
-    "bindings": {
-      "ctrl-t": "agent::CycleThinkingEffort"
-    }
-  },
-  {
-    "context": "vim_mode == insert",
-    "bindings": {
-      "ctrl-s": ["workspace::SendKeystrokes", "escape ctrl-s"],
-      "ctrl-y": "editor::ConfirmCompletion"
-    }
-  }
+			"space x x": "diagnostics::Deploy",
+			"space x T": ["workspace::SendKeystrokes", "space / shift-TODO enter"]
+		}
+	},
+	{
+		"context": "Editor && showing_completions",
+		"bindings": {
+			"alt-1": ["workspace::SendKeystrokes", "pageup enter"],
+			"alt-2": ["workspace::SendKeystrokes", "pageup down enter"],
+			"alt-3": ["workspace::SendKeystrokes", "pageup down down enter"],
+			"alt-4": ["workspace::SendKeystrokes", "pageup down down down enter"],
+			"alt-5": ["workspace::SendKeystrokes", "pageup down down down down enter"]
+		}
+	},
+	{
+		"context": "FileFinder || (FileFinder > Picker > Editor) || (FileFinder > Picker > menu)",
+		"bindings": {
+			"ctrl-v": "pane::SplitRight",
+			"ctrl-h": "pane::SplitDown"
+		}
+	},
+	{
+		"context": "ProjectSearchBar",
+		"bindings": {
+			"space /": "pane::CloseActiveItem"
+		}
+	},
+	{
+		"context": "Terminal",
+		"bindings": {
+			"ctrl-/": "terminal_panel::Toggle"
+		}
+	},
+	{
+		"context": "AcpThread > Editor",
+		"bindings": {
+			"ctrl-t": "agent::CycleThinkingEffort"
+		}
+	},
+	{
+		"context": "vim_mode == insert",
+		"bindings": {
+			"ctrl-s": ["workspace::SendKeystrokes", "escape ctrl-s"],
+			"ctrl-y": "editor::ConfirmCompletion"
+		}
+	}
 ]

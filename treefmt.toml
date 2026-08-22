@@ -75,3 +75,8 @@
 [formatter.stylua]
   command  = "stylua"
   includes = ["*.lua"]
+
+[formatter.biome]
+  command  = "biome"
+  includes = ["*.json"]
+  options  = ["format", "--write"]

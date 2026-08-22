@@ -1,20 +1,20 @@
 [
-  {
-    "label": "lazygit",
-    "command": "lazygit -p $ZED_WORKTREE_ROOT",
-    "hide": "on_success"
-  },
-  {
-    "label": "jjui",
-    "command": "jjui",
-    "hide": "on_success"
-  },
-  {
-    "label": "git: stage current file",
-    "command": "git",
-    "args": ["add", "$ZED_FILE"],
-    "reveal": "never",
-    "hide": "on_success",
-    "shell": "system"
-  }
+	{
+		"label": "lazygit",
+		"command": "lazygit -p $ZED_WORKTREE_ROOT",
+		"hide": "on_success"
+	},
+	{
+		"label": "jjui",
+		"command": "jjui",
+		"hide": "on_success"
+	},
+	{
+		"label": "git: stage current file",
+		"command": "git",
+		"args": ["add", "$ZED_FILE"],
+		"reveal": "never",
+		"hide": "on_success",
+		"shell": "system"
+	}
 ]

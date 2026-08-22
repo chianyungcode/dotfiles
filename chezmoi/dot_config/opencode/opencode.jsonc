@@ -1,19 +1,18 @@
 {
-	// personal documentation written in Notion
-	"$schema": "https://opencode.ai/config.json",
-	"theme": "opencode",
-	"mcp": {
+  // personal documentation written in Notion
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
     "context7": {
-			"type": "remote",
-			"url": "https://mcp.context7.com/mcp",
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
       "headers": { "Authorization": "Bearer {env:CONTEXT7_MCP_API_KEY}" },
-			"enabled": true
-		},
+      "enabled": true
+    },
     "deepwiki": {
-        "type": "remote",
-        "url": "https://mcp.deepwiki.com/mcp",
-        "headers": {},
-        "enabled": false
+      "type": "remote",
+      "url": "https://mcp.deepwiki.com/mcp",
+      "headers": {},
+      "enabled": false
     },
     "exa": {
       "type": "remote",
@@ -22,10 +21,10 @@
       "enabled": false
     },
     "gitmcp": {
-        "type": "remote",
-        "url": "https://gitmcp.io/chianyungcode/dotfiles",
-        "headers": {},
-        "enabled": false,
+      "type": "remote",
+      "url": "https://gitmcp.io/chianyungcode/dotfiles",
+      "headers": {},
+      "enabled": false
     },
     "linear": {
       "type": "remote",
@@ -40,37 +39,37 @@
       "url": "https://mcp.tavily.com/mcp",
       "headers": { "Authorization": "Bearer {env:TAVILY_API_KEY}" },
       "enabled": false
-      },
+    },
     "ticktick": {
-        "type": "remote",
-        "url": "https://mcp.ticktick.com",
-        "headers": {},
-        "enabled": true,
+      "type": "remote",
+      "url": "https://mcp.ticktick.com",
+      "headers": {},
+      "enabled": true
+    }
+  },
+  "provider": {
+    "openrouter": {
+      "models": {
+        "z-ai/glm-5": {
+          "options": {
+            "provider": {
+              "order": ["baseten", "z.ai"],
+              "allow_fallbacks": false
+            }
+          }
+        },
+        "moonshotai/kimi-k2.5": {
+          "options": {
+            "provider": {
+              "order": ["novitaai", "moonshotai"],
+              "allow_fallbacks": false
+            }
+          }
+        }
+      },
+      "options": {
+        "apiKey": "{env:OPENROUTER_API_KEY}"
       }
-	},
-	"provider": {
-		"openrouter": {
-			"models": {
-				"z-ai/glm-5": {
-					"options": {
-						"provider": {
-							"order": ["baseten", "z.ai"],
-							"allow_fallbacks": false
-						}
-					}
-				},
-				"moonshotai/kimi-k2.5": {
-					"options": {
-						"provider": {
-							"order": ["novitaai", "moonshotai"],
-							"allow_fallbacks": false
-						}
-					}
-				}
-			},
-			"options": {
-				"apiKey": "{env:OPENROUTER_API_KEY}"
-			}
-		}
-	}
+    }
+  }
 }
