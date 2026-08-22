@@ -425,4 +425,3 @@ complete -c hermes -f -n '__fish_seen_subcommand_from webhook' -a test -d 'Send 
 # worktree
 complete -c hermes -f -n '__fish_seen_subcommand_from worktree' -a list -d 'Classify every tree: age, size, verdict, reason (default act'
 complete -c hermes -f -n '__fish_seen_subcommand_from worktree' -a prune -d 'Remove safe trees and delete fully-merged local branches'
-
