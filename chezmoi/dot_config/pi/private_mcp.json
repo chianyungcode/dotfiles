@@ -1,0 +1,48 @@
+{
+	"mcpServers": {
+		"linear": {
+			"disabled": false,
+			"url": "https://mcp.linear.app/mcp",
+			"headers": {
+				"Authorization": "Bearer ${LINEAR_API_KEY}"
+			}
+		},
+		"ticktick": {
+			"disabled": false,
+			"url": "https://mcp.ticktick.com",
+			"headers": {
+				"Authorization": "Bearer ${TICKTICK_API_KEY}"
+			}
+		},
+		"exa": {
+			"disabled": true,
+			"url": "https://mcp.exa.ai/mcp",
+			"headers": {
+				"Authorization": "Bearer ${EXA_API_KEY}"
+			}
+		},
+		"capacities": {
+			"disabled": false,
+			"url": "https://api.capacities.io/mcp"
+		},
+		"context7": {
+			"disabled": false,
+			"url": "https://mcp.context7.com/mcp",
+			"headers": {
+				"Authorization": "Bearer ${CONTEXT7_MCP_API_KEY}"
+			}
+		},
+		"deepwiki": {
+			"disabled": true,
+			"url": "https://mcp.deepwiki.com/mcp",
+			"headers": {}
+		},
+		"tavily": {
+			"disabled": true,
+			"url": "https://mcp.tavily.com/mcp",
+			"headers": {
+				"Authorization": "Bearer ${TAVILY_API_KEY}"
+			}
+		}
+	}
+}

@@ -2,6 +2,12 @@
   // personal documentation written in Notion
   "$schema": "https://opencode.ai/config.json",
   "mcp": {
+    "capacities": {
+      "type": "remote",
+      "url": "https://api.capacities.io/mcp",
+      "headers": {},
+      "enabled": true
+    },
     "context7": {
       "type": "remote",
       "url": "https://mcp.context7.com/mcp",
@@ -18,12 +24,6 @@
       "type": "remote",
       "url": "https://mcp.exa.ai/mcp",
       "headers": { "Authorization": "Bearer {env:EXA_API_KEY}" },
-      "enabled": false
-    },
-    "gitmcp": {
-      "type": "remote",
-      "url": "https://gitmcp.io/chianyungcode/dotfiles",
-      "headers": {},
       "enabled": false
     },
     "linear": {
@@ -43,7 +43,7 @@
     "ticktick": {
       "type": "remote",
       "url": "https://mcp.ticktick.com",
-      "headers": {},
+      "headers": { "Authorization": "Bearer {env:TICKTICK_API_KEY}" },
       "enabled": true
     }
   },

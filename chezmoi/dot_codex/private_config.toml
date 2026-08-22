@@ -8,6 +8,10 @@ model_reasoning_effort = "xhigh"
   command  = "npx"
   env_vars = ["APIDOG_ACCESS_TOKEN", "APIDOG_PROJECT_ID"]
 
+[mcp_servers.capacities]
+  enabled = true
+  url     = "https://api.capacities.io/mcp"
+
 [mcp_servers.context7]
   bearer_token_env_var = "CONTEXT7_MCP_API_KEY"
   enabled              = true
