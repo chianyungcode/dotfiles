@@ -23,7 +23,7 @@ model_reasoning_effort = "xhigh"
 
 [mcp_servers.exa]
   bearer_token_env_var = "EXA_API_KEY"
-  enabled              = false
+  enabled              = true
   url                  = "https://mcp.exa.ai/mcp"
 
 [mcp_servers.linear]

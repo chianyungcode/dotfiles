@@ -351,6 +351,7 @@ mcp_servers:
       Authorization: "Bearer {{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.ai_mcp.ticktick_apikey }}{{ end }}"
   exa:
     url: "https://mcp.exa.ai/mcp"
+    enabled: true
     headers:
       Authorization: "Bearer {{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.ai_mcp.exa_apikey }}{{ end }}"
   capacities:
