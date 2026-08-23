@@ -344,22 +344,22 @@ mcp_servers:
   linear:
     url: "https://mcp.linear.app/mcp"
     headers:
-      Authorization: "Bearer {{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.ai_mcp.linear_apikey }}{{ end }}"
+      Authorization: "Bearer {{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.ai.mcp.linear_apikey }}{{ end }}"
   ticktick:
     url: "https://mcp.ticktick.com"
     headers:
-      Authorization: "Bearer {{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.ai_mcp.ticktick_apikey }}{{ end }}"
+      Authorization: "Bearer {{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.ai.mcp.ticktick_apikey }}{{ end }}"
   exa:
     url: "https://mcp.exa.ai/mcp"
     enabled: true
     headers:
-      Authorization: "Bearer {{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.ai_mcp.exa_apikey }}{{ end }}"
+      Authorization: "Bearer {{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.ai.mcp.exa_apikey }}{{ end }}"
   capacities:
     url: "https://api.capacities.io/mcp"
   context7:
     url: "https://mcp.context7.com/mcp"
     headers:
-      Authorization: "Bearer {{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.ai_mcp.context7_apikey }}{{ end }}"
+      Authorization: "Bearer {{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.ai.mcp.context7_apikey }}{{ end }}"
   deepwiki:
     url: "https://mcp.deepwiki.com/mcp"
     enabled: false
@@ -367,4 +367,4 @@ mcp_servers:
     url: "https://mcp.tavily.com/mcp"
     enabled: false
     headers:
-      Authorization: "Bearer {{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.ai_mcp.tavily_apikey }}{{ end }}"
+      Authorization: "Bearer {{ if eq .secrets.provider "onepassword" }}{{ onepasswordRead .secrets.ai.mcp.tavily_apikey }}{{ end }}"
