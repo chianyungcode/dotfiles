@@ -1,12 +1,7 @@
-model                  = "gpt-5.6-sol"
+model                  = "gpt-5.6-luna"
 model_reasoning_effort = "xhigh"
 
 [features]
-
-[mcp_servers.apidog]
-  args     = ["-y", "apidog-mcp-server@latest"]
-  command  = "npx"
-  env_vars = ["APIDOG_ACCESS_TOKEN", "APIDOG_PROJECT_ID"]
 
 [mcp_servers.capacities]
   enabled = true
