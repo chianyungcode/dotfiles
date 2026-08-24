@@ -29,6 +29,19 @@ Host {{ .name }}
     Port {{ range (onepassword .op_id).fields }}{{ if eq .label "port" }}{{ .value }}{{ end }}{{ end }}
     IdentityFile {{ if .generate_public_key_only }}{{ $.directories.ssh_keys_dir | replaceAllRegex "\\${HOME}" "~" }}/{{ .name }}.pub{{ else }}{{ $.directories.ssh_keys_dir | replaceAllRegex "\\${HOME}" "~" }}/{{ .name }}{{ end }}
     IdentitiesOnly yes
+{{-         if (index . "use_op_identity_agent") }}
+{{-             if .tailscale_ip }}
+Match originalhost tail{{ .name }} exec "test -z $SSH_TTY"
+{{-             else }}
+Match originalhost {{ .name }} exec "test -z $SSH_TTY"
+{{-             end }}
+{{-             if eq $.chezmoi.os "darwin" }}
+    IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+{{-             else if eq $.chezmoi.os "linux" }}
+    IdentityAgent ~/.1password/agent.sock
+{{-             end }}
+Match all
+{{-         end }}
 
 {{-     end }}
 {{- end }}

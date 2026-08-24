@@ -92,6 +92,7 @@ Add your remote server configuration to
 | `name`              | string  | Server identifier (used for SSH host alias)  | -       |
 | `op_id`             | string  | 1Password item UUID                          | -       |
 | `tailscale_ip`      | boolean | Use Tailscale connection                     | `false` |
+| `use_op_identity_agent` | boolean | Use the 1Password SSH agent socket       | `false` |
 
 <!-- markdownlint-enable MD013 -->
 
@@ -116,6 +117,12 @@ Go template syntax. The generated config includes:
 - **Tailscale connections**: `Host tail[server-name]` (prefix with 'tail')
 - **Security settings**: IdentityFile, IdentitiesOnly, and other security
   options
+- **Optional 1Password SSH agent**: IdentityAgent uses
+  `~/.1password/agent.sock` on Linux or
+  `~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock` on macOS
+  when `use_op_identity_agent = true` and the connection is not already an SSH
+  shell (`SSH_TTY` is unset). The generated config scopes this with
+  `Match originalhost` so forwarded agent sockets remain usable.
 
 ## Examples
 

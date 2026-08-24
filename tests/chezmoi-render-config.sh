@@ -7,7 +7,7 @@ source_dir="$repo_root/chezmoi"
 tmp_dir=$(mktemp -d)
 trap 'rm -rf "$tmp_dir"' EXIT
 
-for command_name in chezmoi jq rg; do
+for command_name in chezmoi jq rg ssh; do
 	command -v "$command_name" >/dev/null || {
 		printf 'missing required command: %s\n' "$command_name" >&2
 		exit 1
@@ -142,6 +142,51 @@ custom_xdg=$(chezmoi -S "$source_dir" -c "$workstation_config_file" \
 	--file "$source_dir/dot_config/fish/env.d/000-xdg.fish.tmpl")
 printf '%s\n' "$custom_xdg" | rg -q '/tmp/custom-xdg/data'
 printf '%s\n' "$custom_xdg" | rg -q '/tmp/custom-xdg/state'
+
+ssh_fake_bin="$tmp_dir/ssh-fake-bin"
+mkdir -p "$ssh_fake_bin"
+cat >"$ssh_fake_bin/op" <<'STUB'
+#!/usr/bin/env bash
+printf '%s\n' \
+	'{"fields":[{"label":"user","value":"test"},{"label":"hostname","value":"example.invalid"},{"label":"tailscale_ip","value":"100.64.0.1"},{"label":"port","value":"22"}]}'
+STUB
+chmod +x "$ssh_fake_bin/op"
+ssh_data="$tmp_dir/ssh.json"
+jq '.secrets.provider = "onepassword" | .chezmoi.os = "darwin"' \
+	"$server_data" >"$ssh_data"
+ssh_config="$tmp_dir/ssh-config"
+PATH="$ssh_fake_bin:$PATH" chezmoi -S "$source_dir" \
+	execute-template --override-data-file "$ssh_data" \
+	--file "$source_dir/dot_ssh/config.tmpl" >"$ssh_config"
+ssh_identity_count=$(rg -c '^    IdentityAgent ' "$ssh_config")
+expected_identity_count=$(jq '[.remote_servers[] | select(.use_op_identity_agent == true)] | length' \
+	"$ssh_data")
+[[ "$ssh_identity_count" -eq "$expected_identity_count" ]]
+rg -Fq 'IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"' \
+	"$ssh_config"
+ssh_local_config=$(env -u SSH_TTY ssh -G -F "$ssh_config" tailmbp)
+printf '%s\n' "$ssh_local_config" | rg -q '^identityagent .+2BUA8C4S2C.com.1password/t/agent.sock$'
+ssh_forwarded_config=$(SSH_TTY=/tmp/tty ssh -G -F "$ssh_config" tailmbp)
+if printf '%s\n' "$ssh_forwarded_config" | rg -q '^identityagent '; then
+	printf 'forwarded SSH agent unexpectedly overridden\n' >&2
+	exit 1
+fi
+
+jq '.chezmoi.os = "linux"' "$ssh_data" >"$tmp_dir/ssh-linux.json"
+PATH="$ssh_fake_bin:$PATH" chezmoi -S "$source_dir" \
+	execute-template --override-data-file "$tmp_dir/ssh-linux.json" \
+	--file "$source_dir/dot_ssh/config.tmpl" >"$tmp_dir/ssh-linux-config"
+rg -Fq 'IdentityAgent ~/.1password/agent.sock' "$tmp_dir/ssh-linux-config"
+
+jq '.remote_servers |= with_entries(.value.use_op_identity_agent = false)' \
+	"$ssh_data" >"$tmp_dir/ssh-disabled.json"
+PATH="$ssh_fake_bin:$PATH" chezmoi -S "$source_dir" \
+	execute-template --override-data-file "$tmp_dir/ssh-disabled.json" \
+	--file "$source_dir/dot_ssh/config.tmpl" >"$tmp_dir/ssh-disabled-config"
+if rg -q '^    IdentityAgent ' "$tmp_dir/ssh-disabled-config"; then
+	printf 'disabled 1Password SSH agent unexpectedly rendered\n' >&2
+	exit 1
+fi
 
 ci_ignore=$(CI=1 chezmoi -S "$source_dir" -c "$server_config_file" \
 	execute-template --override-data-file "$server_data" \
