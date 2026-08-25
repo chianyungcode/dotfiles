@@ -25,9 +25,11 @@ $character"""
   when   = "jj-starship detect"
 
 [character]
-  error_symbol   = "[➜](bold red)"
-  success_symbol = "[➜](bold green)"
-  vicmd_symbol   = "[V](bold green)"
+  error_symbol              = "[➜](bold red)"
+  success_symbol            = "[➜](bold green)"
+  vicmd_symbol              = "[V](bold green)"
+  vimcmd_replace_one_symbol = "[R](bold yellow)"
+  vimcmd_replace_symbol     = "[R](bold yellow)"
 
 [time]
   disabled        = false
