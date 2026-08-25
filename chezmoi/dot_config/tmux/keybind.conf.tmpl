@@ -1,0 +1,104 @@
+# === KEYBINDINGS ===
+# Use 'bind' as an alias for 'bind-key'
+
+# -------------------------------------------------------------------
+# Prefix
+# -------------------------------------------------------------------
+unbind C-b
+set -g prefix C-a
+bind-key C-a send-prefix  # or: bind-key -T prefix C-a send-prefix
+
+# -------------------------------------------------------------------
+# Configuration
+# -------------------------------------------------------------------
+# Reload tmux configuration
+bind r source-file $HOME/.config/tmux/tmux.conf \; display-message "Config reloaded"
+
+# -------------------------------------------------------------------
+# Pane management
+# -------------------------------------------------------------------
+# Split panes in the current directory
+unbind %
+bind | split-window -h -c '#{pane_current_path}'  # Horizontal split
+
+unbind '"'
+bind - split-window -v -c '#{pane_current_path}'  # Vertical split
+
+# Close panes/windows without confirmation
+unbind x
+bind -N "Close pane without confirmation" -T prefix x kill-pane
+
+unbind &
+bind -N "Close window without confirmation" -T prefix & kill-window
+
+# Pane navigation using hjkl (similar to Vim)
+bind-key h select-pane -L
+bind-key j select-pane -D
+bind-key k select-pane -U
+bind-key l select-pane -R
+
+# Switch between panes and display pane numbers
+unbind q # unbind 'display-pane' which the default is prefix + q
+bind Q display-pane # rebinding 'display-pane' to Q
+bind q last-pane # bind q to switch between last-pane
+
+# Resize pane with prefix + arrow keys
+bind Left resize-pane -L 5
+bind Right resize-pane -R 5
+bind Up resize-pane -U 5
+bind Down resize-pane -D 5
+
+# -------------------------------------------------------------------
+# Window and session management
+# -------------------------------------------------------------------
+# Create new window in the same working directory as the active pane
+bind c new-window -c '#{pane_current_path}'
+
+# Create a new tmux session
+bind -N "Create new session" -T prefix S new-session
+
+# Switch between windows
+bind a last-window
+bind A switch-client -l
+
+# Kill the current session
+bind g kill-session
+
+# Keep C-w available for the zsh shell keybind
+unbind C-w
+
+# -------------------------------------------------------------------
+# Run applications and scripts
+# -------------------------------------------------------------------
+bind-key o display-popup -E -d '#{pane_current_path}' -w 40% "$HOME/bin/sesh-connect-picker.sh"
+# bind -N "Control+g (root mode) lazygit" -T root C-g new-window -c "#{pane_current_path}" -n "🌳" "lazygit 2> /dev/null" # Lazygit
+bind -N "Run last sessions" -T prefix L run-shell "sesh last || tmux display-message -d 1000 'Oops, no last sessions found'"
+# bind -N "Control-d (root mode) lazydocker" -T prefix C-d new-window -c "#{pane_current_path}" -n "🐳" "lazydocker 2> /dev/null" # Lazydocker
+bind -N "Run btop" -T root C-m new-window -c "#{pane_current_path}" -n "📈" "btop"
+# bind -N "Run Yazi" -T root C-y new-window -c "#{pane_current_path}" -n "📁" "yazi"
+# bind -N "Run a script" Y split-window -v -l 10 "sleep 2 && bun run $(jq -r '.scripts | keys[]' package.json | fzf)"
+
+# -------------------------------------------------------------------
+# Copy mode (copy-mode-vi)
+# -------------------------------------------------------------------
+bind -T copy-mode-vi v send -X begin-selection
+{{- if eq .chezmoi.os "darwin" }}
+bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "pbcopy"
+bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "pbcopy"
+{{ else if and (eq .chezmoi.os "linux") }}
+if-shell 'command -v wl-copy' {
+      bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "wl-copy"
+      bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "wl-copy"
+    } {
+      if-shell 'command -v xclip' {
+        bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -selection clipboard -in"
+        bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "xclip -selection clipboard -in"
+      } {
+        if-shell 'command -v xsel' {
+          bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xsel --clipboard --input"
+          bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "xsel --clipboard --input"
+        }
+      }
+    }
+{{- end }}
+bind P paste-buffer
