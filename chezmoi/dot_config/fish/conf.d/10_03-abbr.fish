@@ -602,9 +602,6 @@ abbr --add zlk --set-cursor 'zellij kill-session "%"'
 abbr --add zlka "zellij kill-all-sessions --yes"
 abbr --add zlls "zellij list-sessions"
 
-# abbr "urldecode"="python -c \"import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])\""
-abbr --add which-command whence
-
 # chezmoi
 abbr --add ch chezmoi
 abbr --add chp --set-cursor 'chezmoi apply -P ~/.config/%'
