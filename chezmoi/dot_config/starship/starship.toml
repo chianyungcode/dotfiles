@@ -9,8 +9,8 @@ format = """
 $hostname\
 $directory\
 $custom\
-$git_state\
 $git_metrics\
+$git_state\
 $nodejs\
 $bun\
 $nix_shell\
@@ -48,11 +48,11 @@ $character"""
   symbol           = ""
 
 [git_branch]
-  enabled = false
-  symbol  = " "
+  disabled = true
+  symbol   = " "
 
 [git_status]
-  enabled = false
+  disabled = true
 
 [git_state]
   format = '\([$state( $progress_current/$progress_total)]($style)\) '
