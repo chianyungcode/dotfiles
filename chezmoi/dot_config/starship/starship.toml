@@ -8,9 +8,8 @@ add_newline = true
 format = """
 $hostname\
 $directory\
-$git_branch\
+$custom\
 $git_state\
-$git_status\
 $git_metrics\
 $nodejs\
 $bun\
@@ -19,17 +18,14 @@ $fill\
 $line_break\
 $character"""
 
-# $time\
+# $git_branch\
+# $git_status\
 
-# [custom.jj]
-#   command        = "prompt"
-#   format         = "$output"
-#   ignore_timeout = true
-#   shell          = ["starship-jj", "--ignore-working-copy", "starship"]
-#   use_stdin      = false
-#   when           = true
+[custom.jj]
+  format = "$output "
+  shell  = ["jj-starship"]
+  when   = "jj-starship detect"
 
-# Replace the '❯' symbol in the prompt with '➜'
 [character]
   error_symbol   = "[➜](bold red)"
   success_symbol = "[➜](bold green)"
@@ -51,6 +47,13 @@ $character"""
   style            = "bold red"
   symbol           = ""
 
+[git_branch]
+  enabled = false
+  symbol  = " "
+
+[git_status]
+  enabled = false
+
 [git_state]
   format = '\([$state( $progress_current/$progress_total)]($style)\) '
   style  = "bright-black"
@@ -61,15 +64,6 @@ $character"""
 [cmd_duration]
   format = "[$duration]($style)"
   style  = "yellow"
-
-[custom.stunnel]
-  command = "ps -o etime= -p $(ps aux | grep stunnel | grep -v grep | awk '{print $2}')"
-  format  = "[TUNNEL OPEN for $output]($style)"
-  style   = "red"
-  when    = "ps aux | grep stunnel | grep -v grep"
-
-  # ---------------------------------
-  # CUSTOM CONFIG
 
 # Disable the package module, hiding it from the prompt completely
 [package]
@@ -112,9 +106,6 @@ $character"""
 [fossil_branch]
   symbol = " "
 
-[git_branch]
-  symbol = " "
-
 [golang]
   symbol = " "
 
@@ -134,7 +125,7 @@ $character"""
   disabled   = false
   format     = "[$ssh_symbol](bold blue) on [$hostname](bold red) "
   ssh_only   = true
-  ssh_symbol = "🌏 "
+  ssh_symbol = "󰣀 "
 
 [java]
   symbol = " "

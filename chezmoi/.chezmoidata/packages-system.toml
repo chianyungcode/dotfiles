@@ -200,12 +200,13 @@
         # "zellij",
 
         # Shell & Terminal
-        "atuin",    # Better shell history
-        "direnv",   # Environment manager for shell based current directory
-        "fish",     # Alternative shell for zsh
-        "nushell",  # Alternative shell
-        "starship", # Configure shell prompt appearance
-        "vivid",    # Terminal color generator
+        "atuin",                    # Better shell history
+        "direnv",                   # Environment manager for shell based current directory
+        "fish",                     # Alternative shell for zsh
+        "nushell",                  # Alternative shell
+        "starship",                 # Configure shell prompt appearance
+        "dmmulroy/tap/jj-starship", # showing jj status in jj repo
+        "vivid",                    # Terminal color generator
 
         # Text Editors & IDEs
         # "helix",  # Alternative neovim
