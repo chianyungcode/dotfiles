@@ -1,8 +1,10 @@
 [packages]
   [packages.homebrew]
+
     to_remove = ["htop"]
 
     [packages.homebrew.graphical]
+
       casks = [
         # Security & Identity
         "1password",
@@ -59,9 +61,9 @@
         "sk",         # Alternative to fzf fuzzy-finder, written in Rust
 
         # @text/content preview
-        "bat",     # `cat` with syntax highlighting and git integration
-        "glow",    # Render markdown in CLI
-        "leaf-md", # Render markdown with GUI experience
+        "bat",                  # `cat` with syntax highlighting and git integration
+        "glow",                 # Render markdown in CLI
+        "leaf-markdown-viewer", # Render markdown with GUI experience
 
         # @text/content processing
         "choose-rust", # Alternative to 'awk' and 'cut'
@@ -89,20 +91,22 @@
         # "stow",      # Symlink manager
 
         # @file manager
-        "superfile", # File manager in terminal
-        "yazi",      # File manager in CLI
+        # "superfile", # File manager in terminal
+        "p7zip", # dependencies for zip in yazi
+        "yazi",  # File manager in CLI
 
         # @list file
         "eza", # Better ls
         "lla", # Better ls
 
         # @navigation
-        "DanielCardonaRojas/codemark/codemark",
-        "rip2",                                 # A safer rm, written in Rust
-        "zoxide",                               # Better cd
+        # "DanielCardonaRojas/codemark/codemark",
+        "rip2",   # A safer rm, written in Rust
+        "zoxide", # Better cd
 
         # CLI Help, Search & Productivity
         "halp",    # Better help
+        "mas",     # mac app store
         "most",    # Pager
         "navi",    # Interactive command-line cheatsheet
         "pet",     # CLI snippet manager
@@ -110,57 +114,59 @@
         "tlrc",    # TLDR client, alternative tealdeer
 
         # System Monitoring & Utilities
-        "bottom",    # System monitor TUI
+        # "bottom",    # System monitor TUI
+        "hyperfine", # benchmark cli
         "fastfetch", # Better system info
-        "macmon",    # Mac monitor
-        "onefetch",  # Git repo statistic
-        "pueue",     # Task runner and scheduler
-        "watchman",  # File watcher
-        "wtfutil",
+        # "macmon",    # Mac monitor
+        "onefetch", # Git repo statistic
+        "dust",     # modern disk analyzer
+        # "pueue",    # Task runner and scheduler
+        # "watchman", # File watcher
+        # "wtfutil", # personal dashboard: todo, uptime, etc
 
         # Media, Documents & Archives
         "ffmpegthumbnailer", # Video thumbnail for yazi CLI
         "imagemagick",       # Image processing
         "pastel",            # Convert colors in terminal
-        "pngpaste",          # Paste PNG into files on macOS
-        "poppler",           # PDF rendering library
-        "unzip",
+        # "pngpaste",          # Paste PNG into files on macOS
+        "poppler", # PDF rendering library, can convert pdf to anoother format
         "xz",
-
-        # GNU Core & Build Dependencies
-        "coreutils",  # GNU coreutils
-        "findutils",  # GNU find
-        "gawk",       # GNU awk
-        "gnu-getopt",
-        "gnu-sed",    # GNU implementation of the stream editor
-        "gnu-tar",    # GNU version of the tar archiving utility
-        "grep",       # GNU grep
-        "gzip",       # Data compression program
-        "icu4c@76",
-        "pkgconf",    # Package compiler and linker metadata toolkit
 
         # Version Control System
         # @diff tools
         "difftastic", # Diff tools
         "git-delta",  # Git diff viewer or pager
         "hunk",       # Diff tools TUI
+        "tuicr",      # diff tools with comment review
 
         # @git
-        "act",                       # Runs GitHub Actions locally
-        "bfg",                       # Remove large files or passwords from Git history
-        "gh",                        # GitHub CLI
+        # "commitizen", # conventional commit helper, alternative to `koji`
+        "koji",       # conventional commit helper
+        "lefthook",   # git hooks
+        "pre-commit", # git hooks
+
+        "act", # Runs GitHub Actions locally
+        "bfg", # Remove large files or passwords from Git history
+        "gh",  # GitHub CLI
         "git",
-        "git-extras",                # Add extra commands to git
+        # "git-branchless",  # branchless git
+        # "git-credential-oauth", # authenticate GitHub with OAuth
+        # "git-extras",      # Add extra commands to git
+        # "git-graph", # cosmetic showing git graph
         "git-filter-repo",
-        "git-lfs",
-        "glab",                      # GitLab CLI
+        "gitleaks",
+        # "git-lfs",
+        "glab",    # GitLab CLI
         "lazygit",
-        "withgraphite/tap/graphite",
+        # "serie", # cosmetic showing git graph
+        # "withgraphite/tap/graphite",
         "worktrunk",
 
         # @jujutsu
-        "jj",   # Jujutsu version control
-        "jjui", # Jujutsu TUI
+        "jj",                       # Jujutsu version control
+        "jjui",                     # Jujutsu TUI
+        "EzraCerpac/tap/jj-waltz",  # jj workspace switcher insipired by worktrunk
+        "dmmulroy/tap/jj-starship", # showing jj status in jj repo
 
         # Security & Cryptography
         "gnupg",    # GPG
@@ -183,8 +189,10 @@
 
         # Cloud & Infra
         # @env secret manager
-        "dotenvx/brew/dotenvx", # Env manager
-        "varlock",              # env with schema
+        # "dotenvx",    # Env manager
+        "secretspec",
+        "sops",
+        # "varlock",    # env with schema
 
         # @container
         "lazydocker", # Docker manager
@@ -193,48 +201,59 @@
         # "koyeb/tap/koyeb",                     # Koyeb CLI
 
         # Terminal Multiplexer
-        "gitmux", # Git status bar in tmux
-        "herdr",  # Tmux alternative with AI native integration
-        "sesh",   # Tmux session manager
-        "tmux",   # Terminal multiplexer
-        "tmuxp",  # Tmux session manager
+        # "gitmux",                # Git status bar in tmux
+        "herdr",                 # Tmux alternative with AI native integration
+        "herdr-plus",
+        "lazy-tmux",
+        "raine/workmux/workmux",
+        "sesh",                  # Tmux session manager
+        "tmux",                  # Terminal multiplexer
+        # "tmuxp",                 # Tmux session manager
         # "zellij",
 
         # Shell & Terminal
-        "atuin",                    # Better shell history
-        "direnv",                   # Environment manager for shell based current directory
-        "fish",                     # Alternative shell for zsh
-        "nushell",                  # Alternative shell
-        "starship",                 # Configure shell prompt appearance
-        "dmmulroy/tap/jj-starship", # showing jj status in jj repo
-        "vivid",                    # Terminal color generator
+        "atuin",  # Better shell history
+        "direnv", # Environment manager for shell based current directory
+        "fish",   # Alternative shell for zsh
+        "gum",
+        # "nushell",                  # Alternative shell
+        "starship", # Configure shell prompt appearance
+        "vivid",    # Terminal color generator
 
         # Text Editors & IDEs
+        # "evil-helix",  # Helix with neovim keybind
         # "helix",  # Alternative neovim
+        # "fresh",
         "neovim", # Text editor
         "vim",    # Alternative to neovim
 
-        # API & Data
+        # HTTP Client
         "httpie",      # HTTP client
         "hurl",        # command line tool that runs HTTP requests defined in a simple plain text format.
-        "mermaid-cli", # LaTex math
+        "mermaid-cli", # generate mermaid `.mmd` file to .{svg,jpg}
 
         # Databases
-        "mongosh", # MongoDB shell
-        "redis",   # Redis CLI
+        "mongosh",  # MongoDB shell
+        "rainfrog", # a database tool for the terminal
+        "redis",    # Redis CLI
 
         # Language & Build Tooling
         "cocoapods", # Dependency manager for Swift
-        "luarocks",  # Lua package manager
         "sqlite3",   # for building python
         "tcl-tk",    # for building python
         "tectonic",  # render LaTex math
         "zlib",      # for building python
 
+        # task runner
+        # "go-task",
+        "just",
+        # "mise",
+
         # === LSP, formatter & linters ===
-        "treefmt", # formatter multiplexer
+        #  "dprint",  # agnostic-language formatter
         "harper",  # grammar checker LSP
-        "dprint",  # agnostic-langauge formatter
+        "lychee",  # catch broken links in codebase
+        "treefmt", # formatter multiplexer
 
         # @text
         "codespell", # check code for misspellings
@@ -249,7 +268,9 @@
         "ruff", # Python linter
 
         # @lua
+        "luajit",              # lua Just In Time Compiler
         "lua-language-server", # lua LSP
+        "luarocks",            # lua package manager
         "stylua",              # lua formatter
 
         # @shell
@@ -262,6 +283,7 @@
         # @markdown
         "markdownlint-cli2", # Linter for markdown file
         "markdown-oxide",    # PKM markdown LSP
+        # "pandoc",            # convert markdown into another format
 
         # @toml
         "taplo", # TOML formatter
@@ -335,22 +357,32 @@
         "raindropio",
         # "remnote",
 
+        # @apps launcher
+        "raycast",
+        # "shobhit99/tap/supercmd",
+
+        # @dictation tools
+        "handy",
+        # "superwhisper",
+
         # Communication
         # "discord",
         "equibop", # Discord alternative
         # "readdle-spark", # Spark mail
 
         # Development & AI
-        "ollama",       # Run local LLM
-        "superwhisper",
+        "ollama", # Run local LLM
 
         # Text Editors, IDEs & Developer Tools
-        "cursor", # IDE : Write, edit, and chat about your code with AI
+        # "cursor", # IDE : Write, edit, and chat about your code with AI
         # "balenaetcher",
         "datagrip", # Databases and SQL IDE
         "dbngin",   # Lightweight DB GUI, Database version management tool
         "utm",      # Virtual Machine Emulator
         "zed",      # IDE
+
+        # others
+        # "webxsid/tap/crona", # task manager TUI
 
         # Window Management
         # "acsandmann/tap/rift",
@@ -358,7 +390,6 @@
         "menuwhere",
         "moom",                      # Manage saved layout window for better workflow
         "nikitabobko/tap/aerospace",
-        "raycast",
         # "rectangle",
         # "ruittenb/tap/spaceman", # macOS workspace naming
         # "omniwm"
@@ -368,9 +399,9 @@
         "thaw", # fork of jordanbaird-ice menubar
 
         # Keyboard Driven
-        "homerow", # Keyboard shortcuts for every button on your screen
+        # "homerow", # Keyboard shortcuts for every button on your screen
         # "keyboard-cowboy",    # Keyboard shortcut utility
-        "kindavim",
+        # "kindavim",
         "mouseless",
         "karabiner-elements",
 
@@ -395,20 +426,21 @@
         "ogdesign-eagle", # Organise all your reference images in one place
         # "pearcleaner",    # uninstall app
         # "qspace-pro", # Better finder
-        "replacicon", # Replace your app icon
-        "shottr",     # Screenshot tool
+        # "replacicon", # Replace your app icon
+        "shottr", # Screenshot tool
         # "swift-shift", # Drag window with ctl + shift
 
         # Media & Capture
         "cap",  # screen recording software
         "clop", # Image and video resizer
-        # "iina",
+        # "iina", # Video player
       ]
       formulae = [
         # CLI Utilities
-        "asciinema",  # record your terminal
-        "croc",       # File transfer
-        "eget",       # Easily install prebuilt binaries from GitHub.
+        "asciinema", # record your terminal
+        "croc",      # File transfer
+        "eget",      # Easily install prebuilt binaries from GitHub.
+        # "gitlogue",   # replay your git 
         "taproom",    # TUI for search homebrew package
         "mole",       # https://github.com/tw93/Mole
         "presenterm", # Presentation in CLI
@@ -618,33 +650,33 @@
         "jq",
         "ripgrep",
         "sd",
-        "skim",                # Alternative to fzf fuzzy-finder
-        "yq",                  # YAML processor
-        "appimagelauncher",    # for integrating .AppImage
-        "difftastic",          # diff tools
-        "codespell",           # Fix common misspellings in source code and text files
+        "skim",             # Alternative to fzf fuzzy-finder
+        "yq",               # YAML processor
+        "appimagelauncher", # for integrating .AppImage
+        "difftastic",       # diff tools
+        "codespell",        # Fix common misspellings in source code and text files
         "dpkg",
-        "entr",                # dependency for tmux-autoreload
+        "entr",             # dependency for tmux-autoreload
         "eza",
-        "glow",                # Render markdown in CLI
-        "gum",                 # Fuzzy finder
+        "glow",             # Render markdown in CLI
+        "gum",              # Fuzzy finder
         "less",
-        "pastel",              # converter color in terminal
+        "pastel",           # converter color in terminal
         "pet-bin",
-        "pueue",               # Task runner and scheduler
+        "pueue",            # Task runner and scheduler
         "tectonic",
-        "thefuck",             # Fix typos
-        "tlrc",                # TLDR client, alternative tealdeer
-        "vivid",               # Color generator for LS_COLORS env variable
+        "thefuck",          # Fix typos
+        "tlrc",             # TLDR client, alternative tealdeer
+        "vivid",            # Color generator for LS_COLORS env variable
         "bottom",
         "gitleaks",
-        "jujutsu",             # jujutsu version control
-        "jjui-bin",            # jujutsu tui
-        "git-delta",           # Pager for git
-        "github-cli",          # Github CLI
-        "glab",                # GitLab CLI
+        "jujutsu",          # jujutsu version control
+        "jjui-bin",         # jujutsu tui
+        "git-delta",        # Pager for git
+        "github-cli",       # Github CLI
+        "glab",             # GitLab CLI
         "lazygit",
-        "serie",
+        # "serie",
         "git-graph",
         "fish",
         "ghostty",
