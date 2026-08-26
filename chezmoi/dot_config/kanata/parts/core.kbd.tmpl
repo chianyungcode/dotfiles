@@ -1,0 +1,97 @@
+;; Shared aliases used by every layer or by feature modules.
+(defalias
+  ;; Common top-row shortcuts used by all layers.
+  mc C-up ;; Mission Control
+  sls M-spc ;; Spotlight Search
+  dtn S-C-A-M-f5 ;; Dictation
+  dnd S-C-A-M-f6 ;; Do Not Disturb
+
+  ;; Used by the base, tmux, and zellij layers.
+  lwh_symbols (layer-while-held symbols)
+  thl-spc-symbols (tap-hold $tap-time $hold-time spc @lwh_symbols)
+)
+
+;; Base / default layer.
+(defalias
+  ;; Layer access used by base aliases.
+  lwh_herdr (layer-while-held herdr)
+  lwh_tmux (layer-while-held tmux)
+  lwh_nav (layer-while-held nav)
+
+  ;; Tap-hold layer access.
+  thl-caps-nav (tap-hold $tap-time $hold-time esc @lwh_nav)
+  thl-ret-herdr (tap-hold $tap-time $hold-time ret @lwh_herdr)
+  thl-sls-tmux (tap-hold $tap-time $hold-time / @lwh_tmux)
+  thl-z-tmux (tap-hold $tap-time $hold-time z @lwh_tmux)
+  thl-v-zlj (tap-hold $tap-time $hold-time v (layer-while-held zellij))
+  thl-m-zlj (tap-hold $tap-time $hold-time m (layer-while-held zellij))
+
+  ;; Home-row modifiers and sublayer access.
+  a  (tap-hold $tap-time $hold-time a (layer-while-held sublayers))
+  ;  (tap-hold $tap-time $hold-time ; (layer-while-held sublayers))
+  s (tap-hold $tap-time $hold-time s lctl)
+  d (tap-hold $tap-time $hold-time d lalt)
+  f (tap-hold $tap-time $hold-time f lmet)
+  l (tap-hold $tap-time $hold-time l lctl)
+  k (tap-hold $tap-time $hold-time k lalt)
+  j (tap-hold $tap-time $hold-time j lmet)
+
+  ;; Switch applications.
+  {{ if eq .chezmoi.os "darwin" -}}
+  lmet_tab (tap-hold $tap-time $hold-time tab (macro M-tab))
+  {{- else if eq .chezmoi.os "linux" }}
+  lmet_tab (tap-hold $tap-time $hold-time tab (macro A-tab))
+  {{- end }}
+)
+
+(deflayer base
+  🔅  🔆  @mc  @sls  @dtn  @dnd  ◀◀  ▶⏸  ▶▶  🔇  🔉  🔊
+  grv  1  2  3  4  5  6  7  8  9  0  -  =  bspc
+  @lmet_tab  q  w  e  r  t  y  u  i  o  p  [  ]  \
+  @thl-caps-nav  @a  @s  @d  @f  g  h  @j  @k  @l  @;  '  @thl-ret-herdr
+  lsft  @thl-z-tmux  x  c  @thl-v-zlj  b  n  @thl-m-zlj  ,  .  @thl-sls-tmux  rsft
+  lctl  lmet  lalt  @thl-spc-symbols  ralt  rmet  rctl
+)
+
+;; Navigation layer.
+(defalias
+  ;; Layer access used by navigation aliases.
+  lwh_sublayers (layer-while-held sublayers)
+  thl-spc-sublayers (tap-hold $tap-time $hold-time spc @lwh_sublayers)
+
+  ;; Navigation and application shortcuts.
+  sprwhpr C-A-/ ;; Superwhisper
+  hmrwapp M-S-spc
+  hyperkey (tap-hold $tap-time $hold-time spc (multi lsft lctl lalt lmet))
+  tab-left C-S-tab
+  tab-right C-tab
+)
+
+(deflayer nav
+  🔅  🔆  @mc  @sls  @dtn  @dnd  ◀◀  ▶⏸  ▶▶  🔇  🔉  🔊
+  grv  1  2  3  4  5  6  7  8  9  0  -  =  bspc
+  tab  f1  f2  f3  f4  f5  f6  f7  f8  f9  f10  @tab-left  @tab-right  \
+  caps  a  @sprwhpr  @hmrwapp  f  g  left  down  up  right  ;  '  ret
+  lsft  z  x  c  v  b  j  rctl  @hmrwapp  .  rmet  rsft
+  lctl  lmet  lalt  @thl-spc-sublayers  ralt  @hyperkey  rctl
+)
+
+;; Symbols layer.
+(deflayer symbols
+  🔅  🔆  @mc  @sls  @dtn  @dnd  ◀◀  ▶⏸  ▶▶  🔇  🔉  🔊
+  grv  1  2  3  4  5  6  7  8  9  0  -  =  bspc
+  tab  XX  -  =  XX  XX  XX  XX  -  =  XX  XX  XX  \
+  caps  S-1  S-2  S-3  S-4  S-5  S-6  S-7  S-8  S-9  S-0  '  ret
+  lsft  1  2  3  4  5  6  7  8  [  ]  \
+  lctl  lmet  lalt  spc  ralt  rmet  rctl
+)
+
+;; Sublayers layer.
+(deflayer sublayers
+  🔅  🔆  @mc  @sls  @dtn  @dnd  ◀◀  ▶⏸  ▶▶  🔇  🔉  🔊
+  grv  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  bspc
+  tab  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX
+  caps  1  2  3  4  5  6  7  8  9  0  XX  XX
+  lsft  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX
+  lctl  lmet  lalt  spc  ralt  rmet  rctl
+)

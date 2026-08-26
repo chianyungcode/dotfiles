@@ -1,0 +1,28 @@
+;; Input combos / chording.
+#|
+  Syntax:
+  (participating-keysN) actionN timeoutN release-behaviourN (disabled-layersN)
+
+  Reference:
+  https://jtroo.github.io/config.html#input-chords-v2
+
+  timeoutN:
+  The maximum time (in milliseconds) between the first key press and the
+  subsequent ones for them to be recognized as a chord. If the keys are not
+  pressed within this window, Kanata processes them as regular key presses.
+|#
+
+(defchordsv2
+  {{- if eq .chezmoi.os "darwin" }}
+  (m ,) C-a $input-chord-time all-released ()
+  ;; (i o) A-left 20 all-released ()
+  ;; (o p) A-right 20 all-released ()
+
+  {{- else if eq .chezmoi.os "linux" }}
+  (m ,) C-a $input-chord-time all-released ()
+  (i o) C-left 20 all-released ()
+  (o p) C-right 20 all-released ()
+  (lalt lsft [) C-S-tab 250 first-release ()
+  (lalt lsft ]) C-tab 250 first-release ()
+  {{- end }}
+)

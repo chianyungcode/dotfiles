@@ -1,0 +1,33 @@
+;; HERDR layer and aliases.
+(defalias
+  herdr-workspace-1 (macro C-a C-1)
+  herdr-workspace-2 (macro C-a C-2)
+  herdr-workspace-3 (macro C-a C-3)
+  herdr-workspace-4 (macro C-a C-4)
+  herdr-workspace-5 (macro C-a C-5)
+  herdr-workspace-6 (macro C-a C-6)
+  herdr-workspace-7 (macro C-a C-7)
+  herdr-workspace-8 (macro C-a C-8)
+  herdr-workspace-9 (macro C-a C-9)
+
+  herdr-agent-1 (macro C-a A-1)
+  herdr-agent-2 (macro C-a A-2)
+  herdr-agent-3 (macro C-a A-3)
+  herdr-agent-4 (macro C-a A-4)
+  herdr-agent-5 (macro C-a A-5)
+  herdr-agent-6 (macro C-a A-6)
+  herdr-agent-7 (macro C-a A-7)
+  herdr-agent-8 (macro C-a A-8)
+  herdr-agent-9 (macro C-a A-9)
+
+  herdr-pane-zoom (macro C-a z)
+)
+
+(deflayer herdr
+  🔅  🔆  @mc  @sls  @dtn  @dnd  ◀◀  ▶⏸  ▶▶  🔇  🔉  🔊
+  grv  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  -  =  bspc
+  tab  @herdr-workspace-1  @herdr-workspace-2  @herdr-workspace-3  @herdr-workspace-4  @herdr-workspace-5  @herdr-workspace-6  @herdr-workspace-7  @herdr-workspace-8  @herdr-workspace-9  XX  XX  XX  \
+  caps  @herdr-agent-1  @herdr-agent-2  @herdr-agent-3  @herdr-agent-4  @herdr-agent-5  @herdr-agent-6  @herdr-agent-7  @herdr-agent-8  @herdr-agent-9  ;  '  ret
+  lsft  @herdr-pane-zoom  XX  XX  XX  XX  XX  XX  XX  XX  XX  rsft
+  lctl  lmet  lalt  spc  ralt  rmet  rctl
+)
