@@ -14,6 +14,13 @@ bind-key C-a send-prefix  # or: bind-key -T prefix C-a send-prefix
 # Reload tmux configuration
 bind r source-file $HOME/.config/tmux/tmux.conf \; display-message "Config reloaded"
 
+# Open the active pane's scrollback in Neovim.
+bind-key e run-shell -b \
+  'scrollback_file=$(mktemp "${TMPDIR:-/tmp}/tmux-scrollback.XXXXXX") || exit; \
+   tmux capture-pane -p -S - -E - -t "#{pane_id}" > "$scrollback_file" || exit; \
+   tmux display-popup -E -c #{q:client_name} -d #{q:pane_current_path} -w 80% -h 80% \
+     /bin/sh -c "nvim \"\$1\" && rm -f \"\$1\"" sh "$scrollback_file"'
+
 # -------------------------------------------------------------------
 # Pane management
 # -------------------------------------------------------------------
