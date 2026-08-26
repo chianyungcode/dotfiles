@@ -1,403 +1,404 @@
 return {
-	-- DESC: File picker, alternative to snacks.picker, telescope, mini.picker and etc.
-	-- https://github.com/dmtrKovalenko/fff
-	{
-		"dmtrKovalenko/fff",
-		build = function()
-			-- downloads a prebuilt binary or falls back to cargo build
-			require("fff.download").download_or_build_binary()
-		end,
-		-- for nixos:
-		-- build = "nix run .#release",
-		opts = {
-			grep = {
-				modes = { "regex", "plain", "fuzzy" },
-			},
-			debug = {
-				enabled = false,
-				show_scores = true,
-			},
-		},
-		lazy = false, -- the plugin lazy-initialises itself
-		keys = {
-			{
-				"<leader><space>",
-				function()
-					require("fff").find_files()
-				end,
-				desc = "Find files (fff)",
-			},
-			{
-				"<leader>/",
-				function()
-					require("fff").live_grep()
-				end,
-				desc = "Live grep (fff)",
-			},
-			{
-				"fz",
-				function()
-					require("fff").live_grep({ grep = { modes = { "fuzzy", "plain" } } })
-				end,
-				desc = "Live fffuzy grep",
-			},
-			{
-				"fw",
-				function()
-					require("fff").live_grep_under_cursor()
-				end,
-				mode = { "n", "x" },
-				desc = "Search current word / selection",
-			},
-		},
-	},
+  -- DESC: File picker, alternative to snacks.picker, telescope, mini.picker and etc.
+  -- https://github.com/dmtrKovalenko/fff
+  {
+    "dmtrKovalenko/fff",
+    build = function()
+      -- downloads a prebuilt binary or falls back to cargo build
+      require("fff.download").download_or_build_binary()
+    end,
+    enabled = false,
+    -- for nixos:
+    -- build = "nix run .#release",
+    opts = {
+      grep = {
+        modes = { "regex", "plain", "fuzzy" },
+      },
+      debug = {
+        enabled = false,
+        show_scores = true,
+      },
+    },
+    lazy = false, -- the plugin lazy-initialises itself
+    keys = {
+      {
+        "<leader><space>",
+        function()
+          require("fff").find_files()
+        end,
+        desc = "Find files (fff)",
+      },
+      {
+        "<leader>/",
+        function()
+          require("fff").live_grep()
+        end,
+        desc = "Live grep (fff)",
+      },
+      {
+        "fz",
+        function()
+          require("fff").live_grep({ grep = { modes = { "fuzzy", "plain" } } })
+        end,
+        desc = "Live fffuzy grep",
+      },
+      {
+        "fw",
+        function()
+          require("fff").live_grep_under_cursor()
+        end,
+        mode = { "n", "x" },
+        desc = "Search current word / selection",
+      },
+    },
+  },
 
-	{
-		"chenxin-yan/footnote.nvim",
-		enabled = false,
-		opts = {
-			-- add any configuration here
-		},
-	},
+  {
+    "chenxin-yan/footnote.nvim",
+    enabled = false,
+    opts = {
+      -- add any configuration here
+    },
+  },
 
-	{
-		"tris203/precognition.nvim",
-		enabled = false,
-		--event = "VeryLazy",
-		opts = {
-			-- startVisible = true,
-			-- showBlankVirtLine = true,
-			-- highlightColor = { link = "Comment" },
-			-- hints = {
-			--      Caret = { text = "^", prio = 2 },
-			--      Dollar = { text = "$", prio = 1 },
-			--      MatchingPair = { text = "%", prio = 5 },
-			--      Zero = { text = "0", prio = 1 },
-			--      w = { text = "w", prio = 10 },
-			--      b = { text = "b", prio = 9 },
-			--      e = { text = "e", prio = 8 },
-			--      W = { text = "W", prio = 7 },
-			--      B = { text = "B", prio = 6 },
-			--      E = { text = "E", prio = 5 },
-			-- },
-			-- gutterHints = {
-			--     G = { text = "G", prio = 10 },
-			--     gg = { text = "gg", prio = 9 },
-			--     PrevParagraph = { text = "{", prio = 8 },
-			--     NextParagraph = { text = "}", prio = 8 },
-			-- },
-			-- disabled_fts = {
-			--     "startify",
-			-- },
-		},
-	},
+  {
+    "tris203/precognition.nvim",
+    enabled = false,
+    --event = "VeryLazy",
+    opts = {
+      -- startVisible = true,
+      -- showBlankVirtLine = true,
+      -- highlightColor = { link = "Comment" },
+      -- hints = {
+      --      Caret = { text = "^", prio = 2 },
+      --      Dollar = { text = "$", prio = 1 },
+      --      MatchingPair = { text = "%", prio = 5 },
+      --      Zero = { text = "0", prio = 1 },
+      --      w = { text = "w", prio = 10 },
+      --      b = { text = "b", prio = 9 },
+      --      e = { text = "e", prio = 8 },
+      --      W = { text = "W", prio = 7 },
+      --      B = { text = "B", prio = 6 },
+      --      E = { text = "E", prio = 5 },
+      -- },
+      -- gutterHints = {
+      --     G = { text = "G", prio = 10 },
+      --     gg = { text = "gg", prio = 9 },
+      --     PrevParagraph = { text = "{", prio = 8 },
+      --     NextParagraph = { text = "}", prio = 8 },
+      -- },
+      -- disabled_fts = {
+      --     "startify",
+      -- },
+    },
+  },
 
-	{
-		"johnpmitsch/vai.nvim",
-		enabled = false,
-		opts = {
-			-- trigger key to see jump letters
-			-- works with jump, delete d/, yank y/, or visual select v/
-			trigger = "\\", -- this is the default \
-			-- jump distances plus or minus start-end
-			sweet_spot_start = 6, -- easiest combos start here
-			sweet_spot_end = 15, -- easiest combos end here
-			-- customize letters prioritized by typing ease
-			labels = {
-				"a",
-				"s",
-				"d",
-				"f",
-				"g",
-				"h",
-				"j",
-				"k",
-				"l",
-				"w",
-				"e",
-				"r",
-				"t",
-				"y",
-				"u",
-				"i",
-				"o",
-				"c",
-				"v",
-				"n",
-			},
-		},
-	},
+  {
+    "johnpmitsch/vai.nvim",
+    enabled = false,
+    opts = {
+      -- trigger key to see jump letters
+      -- works with jump, delete d/, yank y/, or visual select v/
+      trigger = "\\", -- this is the default \
+      -- jump distances plus or minus start-end
+      sweet_spot_start = 6, -- easiest combos start here
+      sweet_spot_end = 15, -- easiest combos end here
+      -- customize letters prioritized by typing ease
+      labels = {
+        "a",
+        "s",
+        "d",
+        "f",
+        "g",
+        "h",
+        "j",
+        "k",
+        "l",
+        "w",
+        "e",
+        "r",
+        "t",
+        "y",
+        "u",
+        "i",
+        "o",
+        "c",
+        "v",
+        "n",
+      },
+    },
+  },
 
-	{
-		"mluders/comfy-line-numbers.nvim",
-		enabled = false,
-		opts = {},
-	},
+  {
+    "mluders/comfy-line-numbers.nvim",
+    enabled = false,
+    opts = {},
+  },
 
-	{
-		"mikavilpas/yazi.nvim",
-		enabled = false,
-		version = "*", -- use the latest stable version
-		event = "VeryLazy",
-		dependencies = {
-			{ "nvim-lua/plenary.nvim", lazy = true },
-		},
-		keys = {
-			-- 👇 in this section, choose your own keymappings!
-			{
-				"<leader>-",
-				mode = { "n", "v" },
-				"<cmd>Yazi<cr>",
-				desc = "Open yazi at the current file",
-			},
-			{
-				-- Open in the current working directory
-				"<leader>cw",
-				"<cmd>Yazi cwd<cr>",
-				desc = "Open the file manager in nvim's working directory",
-			},
-			{
-				"<c-up>",
-				"<cmd>Yazi toggle<cr>",
-				desc = "Resume the last yazi session",
-			},
-		},
-		---@type YaziConfig | {}
-		opts = {
-			-- if you want to open yazi instead of netrw, see below for more info
-			open_for_directories = false,
-			keymaps = {
-				show_help = "<f1>",
-			},
-		},
-		-- 👇 if you use `open_for_directories=true`, this is recommended
-		init = function()
-			-- mark netrw as loaded so it's not loaded at all.
-			--
-			-- More details: https://github.com/mikavilpas/yazi.nvim/issues/802
-			vim.g.loaded_netrwPlugin = 1
-		end,
-	},
-	-- https://github.com/chentoast/marks.nvim
-	-- DESC: A better user experience for interacting with and manipulating Vim marks.
-	{
-		"chentoast/marks.nvim",
-		enabled = true,
-		event = "VeryLazy",
-		opts = {},
-	},
+  {
+    "mikavilpas/yazi.nvim",
+    enabled = false,
+    version = "*", -- use the latest stable version
+    event = "VeryLazy",
+    dependencies = {
+      { "nvim-lua/plenary.nvim", lazy = true },
+    },
+    keys = {
+      -- 👇 in this section, choose your own keymappings!
+      {
+        "<leader>-",
+        mode = { "n", "v" },
+        "<cmd>Yazi<cr>",
+        desc = "Open yazi at the current file",
+      },
+      {
+        -- Open in the current working directory
+        "<leader>cw",
+        "<cmd>Yazi cwd<cr>",
+        desc = "Open the file manager in nvim's working directory",
+      },
+      {
+        "<c-up>",
+        "<cmd>Yazi toggle<cr>",
+        desc = "Resume the last yazi session",
+      },
+    },
+    ---@type YaziConfig | {}
+    opts = {
+      -- if you want to open yazi instead of netrw, see below for more info
+      open_for_directories = false,
+      keymaps = {
+        show_help = "<f1>",
+      },
+    },
+    -- 👇 if you use `open_for_directories=true`, this is recommended
+    init = function()
+      -- mark netrw as loaded so it's not loaded at all.
+      --
+      -- More details: https://github.com/mikavilpas/yazi.nvim/issues/802
+      vim.g.loaded_netrwPlugin = 1
+    end,
+  },
+  -- https://github.com/chentoast/marks.nvim
+  -- DESC: A better user experience for interacting with and manipulating Vim marks.
+  {
+    "chentoast/marks.nvim",
+    enabled = true,
+    event = "VeryLazy",
+    opts = {},
+  },
 
-	{
-		"akinsho/toggleterm.nvim",
-		enabled = false,
-		version = "*",
-		config = function()
-			require("toggleterm").setup({
-				open_mapping = [[<c-\>]], -- default key untuk toggle
-				direction = "float",
-			})
-		end,
-	},
+  {
+    "akinsho/toggleterm.nvim",
+    enabled = false,
+    version = "*",
+    config = function()
+      require("toggleterm").setup({
+        open_mapping = [[<c-\>]], -- default key untuk toggle
+        direction = "float",
+      })
+    end,
+  },
 
-	-- https://github.com/A7Lavinraj/fyler.nvim
-	-- DESC: Combination of nvim-tree and oil.nvim, file explorer with tree view and vim operations
-	{
-		"FylerOrg/fyler.nvim",
-		enabled = true,
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		keys = {
-			{
-				"<leader>fm",
-				function()
-					require("fyler").open({
-						kind = "floating",
-					})
-				end,
-				desc = "Open Fyler",
-			},
-		},
-		opts = {
-			integrations = {
-				icon = "nvim_web_devicons",
-			},
-			ui = {
-				indent_guides = true,
-			},
-			win_opts = {
-				number = true,
-				relativenumber = true,
-			},
-		},
-	},
+  -- https://github.com/A7Lavinraj/fyler.nvim
+  -- DESC: Combination of nvim-tree and oil.nvim, file explorer with tree view and vim operations
+  {
+    "FylerOrg/fyler.nvim",
+    enabled = true,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    keys = {
+      {
+        "<leader>fm",
+        function()
+          require("fyler").open({
+            kind = "floating",
+          })
+        end,
+        desc = "Open Fyler",
+      },
+    },
+    opts = {
+      integrations = {
+        icon = "nvim_web_devicons",
+      },
+      ui = {
+        indent_guides = true,
+      },
+      win_opts = {
+        number = true,
+        relativenumber = true,
+      },
+    },
+  },
 
-	{
-		"leath-dub/snipe.nvim",
-		enabled = true,
-		keys = {
-			{
-				"gb",
-				function()
-					require("snipe").open_buffer_menu()
-				end,
-				desc = "Open Snipe buffer menu",
-			},
-		},
-		--- @type snipe.DefaultConfig
-		opts = {
-			ui = {
-				position = "center",
-				open_win_override = {
-					border = "rounded",
-				},
-				text_align = "file-first",
-			},
-			hints = {
-				dictionary = "asdflewcmpghio",
-			},
-		},
-	},
+  {
+    "leath-dub/snipe.nvim",
+    enabled = true,
+    keys = {
+      {
+        "gb",
+        function()
+          require("snipe").open_buffer_menu()
+        end,
+        desc = "Open Snipe buffer menu",
+      },
+    },
+    --- @type snipe.DefaultConfig
+    opts = {
+      ui = {
+        position = "center",
+        open_win_override = {
+          border = "rounded",
+        },
+        text_align = "file-first",
+      },
+      hints = {
+        dictionary = "asdflewcmpghio",
+      },
+    },
+  },
 
-	{
-		-- Ini hanya untuk tambahan custom options saja, untuk defaultnya diinstall via LazyExtras di file lazy.lua
-		-- NOTE: Install mini.files with LazyExtras, because it preconfigured open mini.files where's directories in the current buffer and showing the preview
-		"nvim-mini/mini.files",
-		enabled = false,
-		version = false,
-		opts = {
-			-- No need to copy this inside `setup()`. Will be used automatically.
+  {
+    -- Ini hanya untuk tambahan custom options saja, untuk defaultnya diinstall via LazyExtras di file lazy.lua
+    -- NOTE: Install mini.files with LazyExtras, because it preconfigured open mini.files where's directories in the current buffer and showing the preview
+    "nvim-mini/mini.files",
+    enabled = false,
+    version = false,
+    opts = {
+      -- No need to copy this inside `setup()`. Will be used automatically.
 
-			-- Customization of shown content
-			content = {
-				-- Predicate for which file system entries to show
-				filter = nil,
-				-- What prefix to show to the left of file system entry
-				prefix = nil,
-				-- In which order to show file system entries
-				sort = nil,
-			},
+      -- Customization of shown content
+      content = {
+        -- Predicate for which file system entries to show
+        filter = nil,
+        -- What prefix to show to the left of file system entry
+        prefix = nil,
+        -- In which order to show file system entries
+        sort = nil,
+      },
 
-			-- Module mappings created only inside explorer.
-			-- Use `''` (empty string) to not create one.
-			mappings = {
-				close = "q",
-				go_in = "l",
-				go_in_plus = "L",
-				go_out = "h",
-				go_out_plus = "H",
-				mark_goto = "'",
-				mark_set = "m",
-				reset = "<BS>",
-				reveal_cwd = "@",
-				show_help = "g?",
-				synchronize = "=",
-				trim_left = "<",
-				trim_right = ">",
-			},
+      -- Module mappings created only inside explorer.
+      -- Use `''` (empty string) to not create one.
+      mappings = {
+        close = "q",
+        go_in = "l",
+        go_in_plus = "L",
+        go_out = "h",
+        go_out_plus = "H",
+        mark_goto = "'",
+        mark_set = "m",
+        reset = "<BS>",
+        reveal_cwd = "@",
+        show_help = "g?",
+        synchronize = "=",
+        trim_left = "<",
+        trim_right = ">",
+      },
 
-			-- General options
-			options = {
-				-- Whether to delete permanently or move into module-specific trash
-				permanent_delete = true,
-				-- Whether to use for editing directories
-				use_as_default_explorer = true,
-			},
+      -- General options
+      options = {
+        -- Whether to delete permanently or move into module-specific trash
+        permanent_delete = true,
+        -- Whether to use for editing directories
+        use_as_default_explorer = true,
+      },
 
-			-- Customization of explorer windows
-			windows = {
-				-- Maximum number of windows to show side by side
-				max_number = math.huge,
-				-- Whether to show preview of file/directory under cursor
-				preview = true,
-				-- Width of focused window
-				width_focus = 25,
-				-- Width of non-focused window
-				width_nofocus = 15,
-				-- Width of preview window
-				width_preview = 75,
-			},
-		},
-	},
+      -- Customization of explorer windows
+      windows = {
+        -- Maximum number of windows to show side by side
+        max_number = math.huge,
+        -- Whether to show preview of file/directory under cursor
+        preview = true,
+        -- Width of focused window
+        width_focus = 25,
+        -- Width of non-focused window
+        width_nofocus = 15,
+        -- Width of preview window
+        width_preview = 75,
+      },
+    },
+  },
 
-	{
-		"hedyhli/outline.nvim",
-		config = function()
-			-- Example mapping to toggle outline
-			vim.keymap.set("n", "<leader>ol", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
+  {
+    "hedyhli/outline.nvim",
+    config = function()
+      -- Example mapping to toggle outline
+      vim.keymap.set("n", "<leader>ol", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
 
-			require("outline").setup({
-				-- Your setup opts here (leave empty to use defaults)
-				outline_window = {
-					width = 35,
-					auto_jump = true,
+      require("outline").setup({
+        -- Your setup opts here (leave empty to use defaults)
+        outline_window = {
+          width = 35,
+          auto_jump = true,
 
-					show_numbers = true,
-					show_relative_numbers = true,
-				},
-			})
-		end,
-	},
+          show_numbers = true,
+          show_relative_numbers = true,
+        },
+      })
+    end,
+  },
 
-	-- https://github.com/FluxxField/smart-motion.nvim
-	-- DESC: alternative to flash, leap, hop nvim
-	{
-		"FluxxField/smart-motion.nvim",
-		enabled = false,
-		opts = {
-			presets = {
-				words = true, -- w, b, e, ge
-				lines = true, -- j, k
-				search = true, -- s, f, F, t, T, ;, ,, gs
-				delete = true, -- d, dt, dT, rdw, rdl
-				yank = true, -- y, yt, yT, ryw, ryl
-				change = true, -- c, ct, cT
-				paste = true, -- p, P
-				treesitter = true, -- ]], [[, ]c, [c, ]b, [b, daa, caa, yaa, dfn, cfn, yfn, saa
-				diagnostics = true, -- ]d, [d, ]e, [e
-				git = true, -- ]g, [g
-				quickfix = true, -- ]q, [q, ]l, [l
-				marks = true, -- g', gm
-				misc = true, -- . (repeat), gmd, gmy
-			},
-		},
-	},
+  -- https://github.com/FluxxField/smart-motion.nvim
+  -- DESC: alternative to flash, leap, hop nvim
+  {
+    "FluxxField/smart-motion.nvim",
+    enabled = false,
+    opts = {
+      presets = {
+        words = true, -- w, b, e, ge
+        lines = true, -- j, k
+        search = true, -- s, f, F, t, T, ;, ,, gs
+        delete = true, -- d, dt, dT, rdw, rdl
+        yank = true, -- y, yt, yT, ryw, ryl
+        change = true, -- c, ct, cT
+        paste = true, -- p, P
+        treesitter = true, -- ]], [[, ]c, [c, ]b, [b, daa, caa, yaa, dfn, cfn, yfn, saa
+        diagnostics = true, -- ]d, [d, ]e, [e
+        git = true, -- ]g, [g
+        quickfix = true, -- ]q, [q, ]l, [l
+        marks = true, -- g', gm
+        misc = true, -- . (repeat), gmd, gmy
+      },
+    },
+  },
 
-	{
-		-- youtube videos: https://www.youtube.com/watch?v=p_sVgHS2zcA
-		"folke/flash.nvim",
-		event = "VeryLazy",
-		---@type Flash.Config
-		opts = {
-			modes = {
-				search = {
-					enabled = false, -- Set to 'true' if want a labels when searching with '/' or '?'
-				},
-				char = {
-					jump_labels = true,
-				},
-			},
-			search = {
-				multi_window = false,
-			},
-		},
-		-- stylua: ignore
-	},
+  {
+    -- youtube videos: https://www.youtube.com/watch?v=p_sVgHS2zcA
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    ---@type Flash.Config
+    opts = {
+      modes = {
+        search = {
+          enabled = false, -- Set to 'true' if want a labels when searching with '/' or '?'
+        },
+        char = {
+          jump_labels = true,
+        },
+      },
+      search = {
+        multi_window = false,
+      },
+    },
+    -- stylua: ignore
+  },
 
-	{
-		"smoka7/multicursors.nvim",
-		enabled = false,
-		event = "VeryLazy",
-		dependencies = {
-			"nvimtools/hydra.nvim",
-		},
-		opts = {},
-		cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
-		keys = {
-			{
-				mode = { "v", "n" },
-				"<Leader>m",
-				"<cmd>MCstart<cr>",
-				desc = "Create a selection for selected text or word under the cursor",
-			},
-		},
-	},
+  {
+    "smoka7/multicursors.nvim",
+    enabled = false,
+    event = "VeryLazy",
+    dependencies = {
+      "nvimtools/hydra.nvim",
+    },
+    opts = {},
+    cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
+    keys = {
+      {
+        mode = { "v", "n" },
+        "<Leader>m",
+        "<cmd>MCstart<cr>",
+        desc = "Create a selection for selected text or word under the cursor",
+      },
+    },
+  },
 }
