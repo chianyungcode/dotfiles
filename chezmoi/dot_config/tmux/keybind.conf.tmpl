@@ -77,13 +77,27 @@ unbind C-w
 # -------------------------------------------------------------------
 # Run applications and scripts
 # -------------------------------------------------------------------
-bind-key o display-popup -E -d '#{pane_current_path}' -w 40% "$HOME/bin/sesh-connect-picker.sh"
+bind-key o display-popup -E -d '#{pane_current_path}' -w 40% "sesh-connect-picker"
 # bind -N "Control+g (root mode) lazygit" -T root C-g new-window -c "#{pane_current_path}" -n "🌳" "lazygit 2> /dev/null" # Lazygit
-bind -N "Run last sessions" -T prefix L run-shell "sesh last || tmux display-message -d 1000 'Oops, no last sessions found'"
 # bind -N "Control-d (root mode) lazydocker" -T prefix C-d new-window -c "#{pane_current_path}" -n "🐳" "lazydocker 2> /dev/null" # Lazydocker
-bind -N "Run btop" -T root C-m new-window -c "#{pane_current_path}" -n "📈" "btop"
 # bind -N "Run Yazi" -T root C-y new-window -c "#{pane_current_path}" -n "📁" "yazi"
 # bind -N "Run a script" Y split-window -v -l 10 "sleep 2 && bun run $(jq -r '.scripts | keys[]' package.json | fzf)"
+# bind -N "Run last sessions" -T prefix L run-shell "sesh last || tmux display-message -d 1000 'Oops, no last sessions found'"
+# bind -N "Run btop" -T root C-m new-window -c "#{pane_current_path}" -n "📈" "btop"
+
+# workmux
+bind-key b run-shell 'workmux sidebar'
+bind-key -T prefix M-1 run-shell "workmux sidebar jump 1"
+bind-key -T prefix M-2 run-shell "workmux sidebar jump 2"
+bind-key -T prefix M-3 run-shell "workmux sidebar jump 3"
+bind-key -T prefix M-4 run-shell "workmux sidebar jump 4"
+bind-key -T prefix M-5 run-shell "workmux sidebar jump 5"
+bind-key -T prefix M-6 run-shell "workmux sidebar jump 6"
+bind-key -T prefix M-7 run-shell "workmux sidebar jump 7"
+bind-key -T prefix M-8 run-shell "workmux sidebar jump 8"
+bind-key -T prefix M-9 run-shell "workmux sidebar jump 9"
+
+bind-key -T prefix C-s display-popup -h 40 -w 65% -E "workmux dashboard"
 
 # -------------------------------------------------------------------
 # Copy mode (copy-mode-vi)
