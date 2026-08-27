@@ -12,19 +12,15 @@ layouts:
     panes:
       - command: <agent>
         focus: true
-      - command: <agent:codex>
+      - command: <agent:opencode>
         split: horizontal
   review:
     panes:
       - command: <agent>
 sidebar:
-  agent_icons:
-    codex:
-      icon: cx
   position: left
   # Use workmux's responsive default: 10% of the terminal width,
   # clamped between 25 and 50 columns.
   layout: tiles
   dim_stale: true
   sort: recency
-
