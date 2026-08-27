@@ -24,9 +24,11 @@ run_imperative_cli() {
 }
 
 {{- range .imperative_cli_tools }}
+{{- if .enabled }}
 run_imperative_cli \
     {{ printf "%q" .name }} \
     {{ printf "%q" .cli }} \
     {{ printf "%q" .check }} \
     {{ printf "%q" .run }}
+{{- end }}
 {{- end }}

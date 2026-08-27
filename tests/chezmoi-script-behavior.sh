@@ -111,29 +111,34 @@ chezmoi -S "$source_dir" execute-template \
 	--override-data-file "$base_data_file" \
 	--file "$imperative_source" >"$imperative_default_fixture"
 chmod +x "$imperative_default_fixture"
-rg -q 'herdr plugin install qu8n/herdr-automatic-rename --yes' \
-	"$imperative_default_fixture"
-rg -q 'plugin_id == \\"jhochenbaum.hunkdiff\\"' \
-	"$imperative_default_fixture"
-rg -q 'skills add DietrichGebert/ponytail --skill ponytail' \
-	"$imperative_default_fixture"
-rg -q 'skills add JuliusBrussee/caveman --skill caveman' \
-	"$imperative_default_fixture"
+if rg -q 'herdr plugin install|skills add' "$imperative_default_fixture"; then
+	printf 'disabled imperative commands should not be rendered\n' >&2
+	exit 1
+fi
 
 imperative_data="$tmp_dir/imperative-behavior.json"
 jq \
 	--argjson operations '[
       {
         "name": "primary operation",
+        "enabled": true,
         "cli": "fake-cli",
         "check": "fake-cli check",
         "run": "fake-cli run"
       },
       {
         "name": "later operation",
+        "enabled": true,
         "cli": "fake-cli",
         "check": "fake-cli later-check",
         "run": "fake-cli later-run"
+      },
+      {
+        "name": "disabled operation",
+        "enabled": false,
+        "cli": "fake-cli",
+        "check": "fake-cli disabled-check",
+        "run": "fake-cli disabled-run"
       }
     ]' \
 	'.imperative_cli_tools = $operations' \
@@ -144,6 +149,10 @@ chezmoi -S "$source_dir" execute-template \
 	--override-data-file "$imperative_data" \
 	--file "$imperative_source" >"$imperative_fixture"
 chmod +x "$imperative_fixture"
+if rg -q 'disabled operation|disabled-check|disabled-run' "$imperative_fixture"; then
+	printf 'disabled imperative command should not be rendered\n' >&2
+	exit 1
+fi
 
 imperative_fake_bin="$tmp_dir/imperative-fake-bin"
 mkdir -p "$imperative_fake_bin"

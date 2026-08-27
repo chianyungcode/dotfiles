@@ -320,10 +320,9 @@ for profile in mac ubuntu arch; do
 	check_rendered_script "$imperative"
 done
 imperative="$tmp_dir/mac-imperative-cli-tools.sh"
-assert_contains "$imperative" 'herdr plugin install'
-assert_contains "$imperative" 'herdr-automatic-rename'
 assert_contains "$imperative" 'already satisfied'
 assert_contains "$imperative" 'is not installed'
+assert_not_contains "$imperative" 'herdr plugin install'
 
 actual_scripts="$tmp_dir/actual-scripts.txt"
 expected_scripts="$tmp_dir/expected-scripts.txt"
