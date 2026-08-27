@@ -71,7 +71,7 @@
 
         # @text/content search
         "ripgrep", # Search tool like grep and the silver searcher
-        # "ynqa/tap/sigrs", # Interactive grep, disable this because it slow 
+        # "ynqa/tap/sigrs", # Interactive grep, disable this because it slow
 
         # @file search
         "fd", # Better find
@@ -156,6 +156,7 @@
         "glab",                      # GitLab CLI
         "lazygit",
         "withgraphite/tap/graphite",
+        "worktrunk",
 
         # @jujutsu
         "jj",   # Jujutsu version control

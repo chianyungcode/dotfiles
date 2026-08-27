@@ -54,11 +54,10 @@
         "cargo-update",
 
         # Version Control System
-        "ghgrab",      # A TUI to download files/folders from repositories without cloning repos.
-        "koji",        # conventional commit cli alternative for commitizen
-        "oyui",        # Modern TUI merge tool and interactive diff editor for Jujutsu (jj) and Git
-        "starship-jj", # https://gitlab.com/lanastara_foss/starship-jj
-        "worktrunk",   # git worktree wrapper
+        "ghgrab", # A TUI to download files/folders from repositories without cloning repos.
+        "koji",   # conventional commit cli alternative for commitizen
+        "oyui",   # Modern TUI merge tool and interactive diff editor for Jujutsu (jj) and Git
+        # "starship-jj", # https://gitlab.com/lanastara_foss/starship-jj
 
         # LSP, formatter & linters
 
