@@ -1,0 +1,4 @@
+open_mode        = "workspace"
+picker_placement = "popup"
+popup_height     = 24
+popup_width      = "70%"
