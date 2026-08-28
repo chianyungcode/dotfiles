@@ -72,7 +72,8 @@
         "scooter",     # Find and replace content file
 
         # @text/content search
-        "ripgrep", # Search tool like grep and the silver searcher
+        "ripgrep",  # Search tool like grep and the silver searcher
+        "ast_grep",
         # "ynqa/tap/sigrs", # Interactive grep, disable this because it slow
 
         # @file search
@@ -263,6 +264,9 @@
         "biome",    # JS/TS linter, formatter
         "eslint",   # JS/TS linter
         "prettier", # JS/TS formatter
+
+        # @go
+        "gopls", # go lsp
 
         # @python
         "ruff", # Python linter

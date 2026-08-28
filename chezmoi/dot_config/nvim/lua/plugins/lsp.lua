@@ -1,5 +1,4 @@
 return {
-  -- == Language Server Protocol ==
   {
     "mason-org/mason-lspconfig.nvim", -- Ini yang memberitahu ke nvim-lspconfig mana LSP yang harus dijalankan
     dependencies = {
@@ -9,22 +8,22 @@ return {
     opts = {
       -- Only LSP can be listed here, for formatters and linters provide in mason.nvim plugin
       ensure_installed = {
-        "ast_grep", -- Generic AST-based code search/rewrite
+        -- "ast_grep", -- Generic AST-based code search/rewrite
         "astro", -- Astro
-        "biome", -- JavaScript / TypeScript
+        -- "biome", -- JavaScript / TypeScript
         -- "copilot-language-server", -- Copilot NES (next edit suggestion)
         -- "denols", -- JavaScript / TypeScript (Deno)
-        "eslint", -- JavaScript / TypeScript (linting)
-        "gopls", -- Go
+        -- "eslint", -- JavaScript / TypeScript (linting)
+        -- "gopls", -- Go
         "html", -- HTML
         "jsonls", -- JSON
         -- "lua_ls", -- Lua
-        "markdown_oxide", -- Markdown
+        -- "markdown_oxide", -- Markdown
         "prismals", -- Prisma
-        "ruff", -- Python
+        -- "ruff", -- Python
         "sqls", -- SQL
         -- "tailwindcss", -- Tailwind CSS
-        "taplo", -- TOML (don't install with mason because can giving an error on Neovim LSP)
+        -- "taplo", -- TOML (don't install with mason because can giving an error on Neovim LSP)
         -- "tombi", -- TOML
         "templ", -- Templ (Go HTML templating)
         "ts_ls", -- JavaScript / TypeScript
