@@ -77,7 +77,6 @@ unbind C-w
 # -------------------------------------------------------------------
 # Run applications and scripts
 # -------------------------------------------------------------------
-bind-key o display-popup -E -d '#{pane_current_path}' -w 40% "sesh-connect-picker"
 # bind -N "Control+g (root mode) lazygit" -T root C-g new-window -c "#{pane_current_path}" -n "🌳" "lazygit 2> /dev/null" # Lazygit
 # bind -N "Control-d (root mode) lazydocker" -T prefix C-d new-window -c "#{pane_current_path}" -n "🐳" "lazydocker 2> /dev/null" # Lazydocker
 # bind -N "Run Yazi" -T root C-y new-window -c "#{pane_current_path}" -n "📁" "yazi"
@@ -85,19 +84,42 @@ bind-key o display-popup -E -d '#{pane_current_path}' -w 40% "sesh-connect-picke
 # bind -N "Run last sessions" -T prefix L run-shell "sesh last || tmux display-message -d 1000 'Oops, no last sessions found'"
 # bind -N "Run btop" -T root C-m new-window -c "#{pane_current_path}" -n "📈" "btop"
 
-# workmux
-bind-key b run-shell 'workmux sidebar'
-bind-key -T prefix M-1 run-shell "workmux sidebar jump 1"
-bind-key -T prefix M-2 run-shell "workmux sidebar jump 2"
-bind-key -T prefix M-3 run-shell "workmux sidebar jump 3"
-bind-key -T prefix M-4 run-shell "workmux sidebar jump 4"
-bind-key -T prefix M-5 run-shell "workmux sidebar jump 5"
-bind-key -T prefix M-6 run-shell "workmux sidebar jump 6"
-bind-key -T prefix M-7 run-shell "workmux sidebar jump 7"
-bind-key -T prefix M-8 run-shell "workmux sidebar jump 8"
-bind-key -T prefix M-9 run-shell "workmux sidebar jump 9"
+# sesh
+# bind-key o display-popup -E -d '#{pane_current_path}' -w 40% "sesh-connect-picker"
+# session & layout picker
+bind-key "s" run-shell "sesh connect \"$(
+  sesh list --icons | fzf-tmux -p 80%,70% \
+    --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
+    --header '  ^a all ^t tmux ^g configs ^x zoxide ^d tmux kill ^f find' \
+    --bind 'tab:down,btab:up' \
+    --bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list --icons)' \
+    --bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -t --icons)' \
+    --bind 'ctrl-g:change-prompt(⚙️  )+reload(sesh list -c --icons)' \
+    --bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -z --icons)' \
+    --bind 'ctrl-f:change-prompt(🔎  )+reload(fd -H -d 2 -t d -E .Trash . ~)' \
+    --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡  )+reload(sesh list --icons)' \
+    --preview-window 'right:55%' \
+    --preview 'sesh preview {}'
+)\""
+# window picker
+bind-key "W" run-shell 'target="$(tmux list-windows -a -F "##{session_name}:##{window_index} ##{window_name}" | fzf-tmux -p 60%,50% --prompt "🪟  " | sed -E "s/^(.*):([0-9]+) .*/\1:\2/")"; [ -z "$target" ] || tmux switch-client -t "$target"'
 
-bind-key -T prefix C-s display-popup -h 40 -w 65% -E "workmux dashboard"
+# lazy-tmux
+bind-key f display-popup -B -w 65% -h 75% -E 'env TERM_PROGRAM=Apple_Terminal lazy-tmux picker'
+
+# workmux
+bind-key -T prefix w display-popup -h 40 -w 65% -E "workmux dashboard"
+bind-key b run-shell 'workmux sidebar'
+
+bind-key -T prefix M-1 run-shell -b "workmux sidebar jump 1 >/dev/null 2>&1 || true"
+bind-key -T prefix M-2 run-shell -b "workmux sidebar jump 2 >/dev/null 2>&1 || true"
+bind-key -T prefix M-3 run-shell -b "workmux sidebar jump 3 >/dev/null 2>&1 || true"
+bind-key -T prefix M-4 run-shell -b "workmux sidebar jump 4 >/dev/null 2>&1 || true"
+bind-key -T prefix M-5 run-shell -b "workmux sidebar jump 5 >/dev/null 2>&1 || true"
+bind-key -T prefix M-6 run-shell -b "workmux sidebar jump 6 >/dev/null 2>&1 || true"
+bind-key -T prefix M-7 run-shell -b "workmux sidebar jump 7 >/dev/null 2>&1 || true"
+bind-key -T prefix M-8 run-shell -b "workmux sidebar jump 8 >/dev/null 2>&1 || true"
+bind-key -T prefix M-9 run-shell -b "workmux sidebar jump 9 >/dev/null 2>&1 || true"
 
 # -------------------------------------------------------------------
 # Copy mode (copy-mode-vi)

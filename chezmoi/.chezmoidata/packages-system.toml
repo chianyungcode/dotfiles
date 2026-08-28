@@ -203,12 +203,13 @@
 
         # Terminal Multiplexer
         # "gitmux",                # Git status bar in tmux
-        "herdr",                 # Tmux alternative with AI native integration
+        "herdr",      # Tmux alternative with AI native integration
         "herdr-plus",
-        "lazy-tmux",
+        # "lazy-tmux",
         "raine/workmux/workmux",
         "sesh",                  # Tmux session manager
         "tmux",                  # Terminal multiplexer
+        "tmuxinator",            # Tmux session manager
         # "tmuxp",                 # Tmux session manager
         # "zellij",
 
@@ -304,7 +305,6 @@
         # "flyctl",                    # Fly.io CLI
         # "kanata",                    # Cross-platform software keyboard remapper
         # "stripe/stripe-cli/stripe",
-        # "tmuxinator",                # Tmux session manager
       ]
       taps = [
         # Development Tools
