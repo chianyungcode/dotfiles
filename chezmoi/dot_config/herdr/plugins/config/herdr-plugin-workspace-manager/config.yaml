@@ -1,0 +1,37 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/razajamil/herdr-plugin-workspace-manager/main/schema.json
+
+layouts:
+  - id: codex-editor
+
+    # Dijalankan sebelum layout lain dibuat
+    setup:
+      command: direnv allow
+      blocking: true
+
+    tabs:
+      - title: editor
+        panes:
+          - title: nvim
+            command: nvim
+            setup: true
+
+          - title: codex
+            agent: codex
+            split: vertical
+            size: 0.35
+
+      - title: lazygit
+        panes:
+          - title: lazygit
+            command: lazygit
+            persist: true
+
+      - title: termninal
+        panes:
+          - title: terminal
+
+workspaces:
+  - repo: ~/Code/Personal/Experiments/nix-dendritic-projects/dotnix
+    path: ~/.herdr/worktrees/dotnix
+    defaultLayout: codex-editor

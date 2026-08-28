@@ -1,0 +1,28 @@
+description = "Dotnix config repo"                                         # shown in the browser
+name        = "dotnix"                                                     # required: the workspace label
+working_dir = "~/Code/Personal/Experiments/nix-dendritic-projects/dotnix/"
+
+# Tabs open in file order. The FIRST tab reuses the workspace's root tab; the
+# rest are created behind it so the first tab stays in front.
+
+[[tabs]]
+  name = "coding agent" # required: the tab label
+
+  [[tabs.panes]]
+    command = "codex"
+
+  [[tabs.panes]]
+    command = "hunk diff"
+    ratio   = 0.35
+    split   = "right"
+
+[[tabs]]
+  command = "nvim"
+  name    = "editor"
+
+[[tabs]]
+  name = "terminal" # no command — just an empty shell
+
+[[tabs]]
+  name        = "dot_config"
+  working_dir = "~/.config"

@@ -1,0 +1,34 @@
+repo = "dotfiles"
+
+[[tabs]]
+  name = "coding agent" # required: the tab label
+
+  [[tabs.panes]]
+    command = "codex"
+
+  [[tabs.panes]]
+    command = "hunk diff --watch"
+    label   = "hunk"
+    ratio   = 0.45
+    split   = "right"
+
+[[tabs]]
+  name = "editor"
+
+  [[tabs.panes]]
+    command = "nvim"
+    label   = "neovim"
+
+[[tabs]]
+  name = "jjui"
+
+  [[tabs.panes]]
+    command = "jjui"
+    label   = "vcs"
+
+[[tabs]]
+  name = "terminal" # no command — just an empty shell
+
+[[tabs]]
+  name        = "dot_config"
+  working_dir = "~/.config"

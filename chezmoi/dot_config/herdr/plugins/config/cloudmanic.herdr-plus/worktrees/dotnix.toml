@@ -1,0 +1,23 @@
+repo = "dotnix"
+
+[[tabs]]
+  name = "coding agent" # required: the tab label
+
+  [[tabs.panes]]
+    command = "codex"
+
+  [[tabs.panes]]
+    command = "hunk diff"
+    ratio   = 0.35
+    split   = "right"
+
+[[tabs]]
+  command = "nvim"
+  name    = "editor"
+
+[[tabs]]
+  name = "terminal" # no command — just an empty shell
+
+[[tabs]]
+  name        = "dot_config"
+  working_dir = "~/.config"
