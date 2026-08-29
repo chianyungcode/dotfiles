@@ -70,12 +70,5 @@ onboarding = false
   [[keys.command]]
     command     = "cloudmanic.herdr-plus.projects"
     description = "herdr-plus: projects"
-    key         = "prefix+up"
+    key         = "prefix+s"
     type        = "plugin_action"
-
-    # herdr-plugin-workspace-manager
-    # [[keys.command]]
-    #   command     = "herdr-plugin-workspace-manager.apply"
-    #   description = "Apply workspace layout"
-    #   key         = "prefix+shift+a"
-    #   type        = "plugin_action"

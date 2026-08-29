@@ -74,6 +74,9 @@ bind g kill-session
 # Keep C-w available for the zsh shell keybind
 unbind C-w
 
+# select session & window
+bind-key -T prefix o choose-tree
+
 # -------------------------------------------------------------------
 # Run applications and scripts
 # -------------------------------------------------------------------
@@ -84,7 +87,7 @@ unbind C-w
 # bind -N "Run last sessions" -T prefix L run-shell "sesh last || tmux display-message -d 1000 'Oops, no last sessions found'"
 # bind -N "Run btop" -T root C-m new-window -c "#{pane_current_path}" -n "📈" "btop"
 
-# sesh
+# @sesh
 # bind-key o display-popup -E -d '#{pane_current_path}' -w 40% "sesh-connect-picker"
 # session & layout picker
 bind-key "s" run-shell "sesh connect \"$(
@@ -102,13 +105,15 @@ bind-key "s" run-shell "sesh connect \"$(
     --preview 'sesh preview {}'
 )\""
 # window picker
-bind-key "W" run-shell 'target="$(tmux list-windows -a -F "##{session_name}:##{window_index} ##{window_name}" | fzf-tmux -p 60%,50% --prompt "🪟  " | sed -E "s/^(.*):([0-9]+) .*/\1:\2/")"; [ -z "$target" ] || tmux switch-client -t "$target"'
+# bind-key "W" run-shell 'target="$(tmux list-windows -a -F "##{session_name}:##{window_index} ##{window_name}" | fzf-tmux -p 60%,50% --prompt "🪟  " | sed -E "s/^(.*):([0-9]+) .*/\1:\2/")"; [ -z "$target" ] || tmux switch-client -t "$target"'
 
-# lazy-tmux
-bind-key f display-popup -B -w 65% -h 75% -E 'env TERM_PROGRAM=Apple_Terminal lazy-tmux picker'
-
-# workmux
-bind-key -T prefix w display-popup -h 40 -w 65% -E "workmux dashboard"
+# @workmux (worktree + predefined layout)
+# new worktree
+bind-key -T prefix W command-prompt -F -p "Worktee name:" "run-shell -c '#{pane_current_path}' 'workmux add \"%%%\"'"
+# open worktree - picker
+bind-key -T prefix w display-popup -h 40 -w 65% -E "workmux dashboard --tab worktrees"
+# close worktree
+bind-key -T prefix X run-shell "workmux remove"
 bind-key b run-shell 'workmux sidebar'
 
 bind-key -T prefix M-1 run-shell -b "workmux sidebar jump 1 >/dev/null 2>&1 || true"
@@ -120,6 +125,9 @@ bind-key -T prefix M-6 run-shell -b "workmux sidebar jump 6 >/dev/null 2>&1 || t
 bind-key -T prefix M-7 run-shell -b "workmux sidebar jump 7 >/dev/null 2>&1 || true"
 bind-key -T prefix M-8 run-shell -b "workmux sidebar jump 8 >/dev/null 2>&1 || true"
 bind-key -T prefix M-9 run-shell -b "workmux sidebar jump 9 >/dev/null 2>&1 || true"
+
+# @lazy-tmux
+# bind-key f display-popup -B -w 65% -h 75% -E 'env TERM_PROGRAM=Apple_Terminal lazy-tmux picker'
 
 # -------------------------------------------------------------------
 # Copy mode (copy-mode-vi)
