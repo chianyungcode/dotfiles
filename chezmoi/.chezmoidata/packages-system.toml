@@ -287,7 +287,7 @@
         # @markdown
         "markdownlint-cli2", # Linter for markdown file
         "markdown-oxide",    # PKM markdown LSP
-        # "pandoc",            # convert markdown into another format
+        "pandoc",            # convert markdown into another format, deps for pi plugin "/preview-markdown"
 
         # @toml
         "taplo", # TOML formatter
