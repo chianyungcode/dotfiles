@@ -20,6 +20,13 @@
   run     = "herdr plugin install cloudmanic/herdr-plus --yes"
 
 [[imperative_cli_tools]]
+  check   = "herdr plugin list --json | jq -e '.result.plugins[] | select(.plugin_id == \"tdi.worktree-setup\")' >/dev/null"
+  cli     = "herdr"
+  enabled = true
+  name    = "Herdr Worktree Setup"
+  run     = "herdr plugin install tdi/herdr-worktree-setup --yes"
+
+[[imperative_cli_tools]]
   check   = "test -d ~/.tmux/plugins/tpm"
   cli     = "git"
   enabled = true
