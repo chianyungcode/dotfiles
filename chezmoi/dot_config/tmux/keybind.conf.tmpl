@@ -44,6 +44,10 @@ bind-key j select-pane -D
 bind-key k select-pane -U
 bind-key l select-pane -R
 
+# swap pane (only support horizontal)
+bind-key '{' swap-pane -U
+bind-key '}' swap-pane -D
+
 # Switch between panes and display pane numbers
 unbind q # unbind 'display-pane' which the default is prefix + q
 bind Q display-pane # rebinding 'display-pane' to Q
@@ -64,9 +68,24 @@ bind c new-window -c '#{pane_current_path}'
 # Create a new tmux session
 bind -N "Create new session" -T prefix S new-session
 
+# Explicit bindings used by the Kanata tmux layer.
+# These include bindings that tmux provides by default.
+bind-key d detach-client
+bind-key '$' command-prompt -I "#S" { rename-session "%%" }
+bind-key , command-prompt -I "#W" { rename-window "%%" }
+bind-key u command-prompt -p "Rename pane:" { select-pane -T "%%" }
+
 # Switch between windows
 bind a last-window
 bind A switch-client -l
+bind-key 1 select-window -t :1
+bind-key 2 select-window -t :2
+bind-key 3 select-window -t :3
+bind-key 4 select-window -t :4
+bind-key 5 select-window -t :5
+bind-key 6 select-window -t :6
+bind-key 7 select-window -t :7
+bind-key 8 select-window -t :8
 
 # Kill the current session
 bind g kill-session
@@ -87,8 +106,7 @@ bind-key -T prefix o choose-tree
 # bind -N "Run last sessions" -T prefix L run-shell "sesh last || tmux display-message -d 1000 'Oops, no last sessions found'"
 # bind -N "Run btop" -T root C-m new-window -c "#{pane_current_path}" -n "📈" "btop"
 
-# @sesh
-# bind-key o display-popup -E -d '#{pane_current_path}' -w 40% "sesh-connect-picker"
+# == sesh ==
 # session & layout picker
 bind-key "s" run-shell "sesh connect \"$(
   sesh list --icons | fzf-tmux -p 80%,70% \
@@ -107,15 +125,19 @@ bind-key "s" run-shell "sesh connect \"$(
 # window picker
 # bind-key "W" run-shell 'target="$(tmux list-windows -a -F "##{session_name}:##{window_index} ##{window_name}" | fzf-tmux -p 60%,50% --prompt "🪟  " | sed -E "s/^(.*):([0-9]+) .*/\1:\2/")"; [ -z "$target" ] || tmux switch-client -t "$target"'
 
-# @workmux (worktree + predefined layout)
+# bind-key o display-popup -E -d '#{pane_current_path}' -w 40% "sesh-connect-picker"
+
+# == workmux (worktree + predefined layout) ==
+# agent sidebar
+bind-key b run-shell 'workmux sidebar'
 # new worktree
 bind-key -T prefix W command-prompt -F -p "Worktee name:" "run-shell -c '#{pane_current_path}' 'workmux add \"%%%\"'"
 # open worktree - picker
 bind-key -T prefix w display-popup -h 40 -w 65% -E "workmux dashboard --tab worktrees"
 # close worktree
 bind-key -T prefix X run-shell "workmux remove"
-bind-key b run-shell 'workmux sidebar'
 
+# agent select
 bind-key -T prefix M-1 run-shell -b "workmux sidebar jump 1 >/dev/null 2>&1 || true"
 bind-key -T prefix M-2 run-shell -b "workmux sidebar jump 2 >/dev/null 2>&1 || true"
 bind-key -T prefix M-3 run-shell -b "workmux sidebar jump 3 >/dev/null 2>&1 || true"
@@ -126,12 +148,18 @@ bind-key -T prefix M-7 run-shell -b "workmux sidebar jump 7 >/dev/null 2>&1 || t
 bind-key -T prefix M-8 run-shell -b "workmux sidebar jump 8 >/dev/null 2>&1 || true"
 bind-key -T prefix M-9 run-shell -b "workmux sidebar jump 9 >/dev/null 2>&1 || true"
 
-# @lazy-tmux
+# == lazy-tmux ==
 # bind-key f display-popup -B -w 65% -h 75% -E 'env TERM_PROGRAM=Apple_Terminal lazy-tmux picker'
+
+# -------------------------------------------------------------------
+# Tmux plugins
+# -------------------------------------------------------------------
+set -g @flash-copy-bind-key "F"
 
 # -------------------------------------------------------------------
 # Copy mode (copy-mode-vi)
 # -------------------------------------------------------------------
+bind-key [ copy-mode
 bind -T copy-mode-vi v send -X begin-selection
 {{- if eq .chezmoi.os "darwin" }}
 bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "pbcopy"

@@ -4,7 +4,6 @@
 
   tx-new-window (macro @tmux-prefix c) ;; New window.
   tx-new-session (macro @tmux-prefix S-s)
-  tx-plg-sesh (macro @tmux-prefix o) ;; Sesh plugin.
   tx-detach (macro @tmux-prefix d) ;; Detach tmux.
   tx-vi-mode (macro @tmux-prefix [) ;; Switch to tmux vi mode.
 
@@ -19,12 +18,12 @@
   tx-sw-pane (macro @tmux-prefix q)
 
   ;; split pane
-  tx-splith (macro @tmux-prefix -)
   tx-splitv (macro @tmux-prefix S-\)
+  tx-splith (macro @tmux-prefix -)
 
   ;; select session/window
-  tx-slcsession (macro @tmux-prefix s)
-  tx-slcwindow (macro @tmux-prefix w)
+  tx-slcsession (macro @tmux-prefix s) ;; select session (bootstrap predefined layout), tmux use 'sesh' cli & herdr use 'herdr-plus' plugins
+  tx-slcworktree (macro @tmux-prefix w) ;; select worktree, in tmux using 'workmux dashboard' & herdr using native worktree picker
 
   ;; kill session/window/pane
   tx-kill-session (macro @tmux-prefix g)
@@ -64,7 +63,7 @@
 (deflayer tmux
   🔅  🔆  @mc  @sls  @dtn  @dnd  ◀◀  ▶⏸  ▶▶  🔇  🔉  🔊
   grv  @tx-wdw-1  @tx-wdw-2  @tx-wdw-3  @tx-wdw-4  @tx-wdw-5  @tx-wdw-6  @tx-wdw-7  @tx-wdw-8  9  0  @tx-splith  @tx-splitv  bspc
-  lrld  @tx-slcsession  @tx-slcwindow  @tx-detach  @tx-plg-sesh  XX  XX  @tx-rsz-left  @tx-rsz-bottom  @tx-rsz-up  @tx-rsz-right  @tx-swap-prev  @tx-swap-next  \
+  lrld  @tx-slcsession  @tx-slcworktree  @tx-detach  XX  XX  XX  @tx-rsz-left  @tx-rsz-bottom  @tx-rsz-up  @tx-rsz-right  @tx-swap-prev  @tx-swap-next  \
   caps  @tx-sw-session  @tx-sw-window  @tx-sw-pane  @tx-flash  XX  @tx-p-left  @tx-p-bottom  @tx-p-top  @tx-p-right  ;  '  ret
   lsft  @tx-kill-session  @tx-kill-window  @tx-kill-pane  @tx-vi-mode  @tx-new-session  @tx-new-window  @tx-rn-session  @tx-rn-window  @tx-rn-pane  /  rsft
   lctl  lmet  lalt  @thl-spc-symbols  ralt  rmet  rctl
