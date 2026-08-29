@@ -47,14 +47,23 @@ onboarding = false
   focus_pane_right = "prefix+l"
   focus_pane_up    = "prefix+k"
   last_pane        = "prefix+q"
+  rename_pane      = "prefix+u"
+  swap_pane_down   = "prefix+shift+j"
+  swap_pane_left   = "prefix+shift+h"
+  swap_pane_right  = "prefix+shift+l"
+  swap_pane_up     = "prefix+shift+k"
 
   # splits
   split_horizontal = "prefix+minus" # tmux: -  (stacked)
   split_vertical   = "prefix+|"     # tmux: |  (side-by-side)
 
   # reload / resize
-  reload_config = "prefix+r" # tmux: prefix+r reloads config
-  resize_mode   = "prefix+R" # shifted to R to free up r
+  reload_config     = "prefix+r" # tmux: prefix+r reloads config
+  resize_mode       = "prefix+R" # shifted to R to free up r
+  resize_pane_left  = "prefix+left"
+  resize_pane_right = "prefix+right"
+  resize_pane_up    = "prefix+up"
+  resize_pane_down  = "prefix+down"
 
   # herdr-only features keep nearby keys
   copy_mode      = "prefix+["
