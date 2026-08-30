@@ -599,10 +599,27 @@ abbr -a hs --set-cursor "hunk show '@%'"
 
 # tmux
 abbr --add tx tmux
-abbr --add ts --set-cursor 'tmux new -s "%"'
+abbr --add ts --set-cursor 'tmux new -A -s "%"'
 abbr --add tl "tmux list-sessions"
 abbr --add tkss --set-cursor 'tmux kill-session -t "%"'
 abbr --add tksv "tmux kill-server"
+
+# herdr
+abbr -a h herdr
+abbr -a hs --set-cursor "herdr session attach %"
+abbr -a hsl "herdr session list"
+abbr -a hss "herdr session stop"
+function hsd
+    if test (count $argv) -ne 1
+        printf 'Usage: hsd <session>\n' >&2
+        return 2
+    end
+
+    set -l session $argv[1]
+    herdr session stop "$session"; or return $status
+    herdr session delete "$session"
+end
+abbr -a hsvs "herdr server stop"
 
 # tmuxifier
 abbr --add txi tmuxifier

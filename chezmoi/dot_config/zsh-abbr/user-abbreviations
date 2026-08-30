@@ -458,7 +458,7 @@ abbr jevlp='jj evolog -p -r "@%"'
 abbr hd='hunk diff "@%"'
 abbr hs="hunk show '@%'"
 
-# --- Homebrew ---
+# --- homebrew ---
 abbr "bci"="brew info --cask"
 abbr "bcin"="brew install --cask"
 abbr "bcl"="brew list --cask"
@@ -492,7 +492,7 @@ abbr "bugbc"="brew upgrade --greedy && brew cleanup"
 abbr "bup"="brew upgrade"
 abbr "buz"="brew uninstall --zap"
 
-# --- Zellij ---
+# --- zellij ---
 abbr "zl"="zellij"
 abbr "zla"="zellij attach"
 abbr "zld"="zellij delete-session"
@@ -511,14 +511,22 @@ abbr "tailacer"="ssh tailacer"
 abbr "tailmbp"="ssh tailmbp"
 abbr "tailpc"="ssh tailpc-nixos"
 
-# --- Tmux / Tmuxifier / Tmuxinator ---
+# --- tmux  ---
 abbr "bktmux"="tmux list-keys | sk"
 abbr "tx"="tmux"
-abbr "ts"='tmux new -s "%"'
+abbr "ts"='tmux new -A -s "%"'
 abbr "tl"="tmux list-sessions"
 abbr "tkss"='tmux kill-session -t "%"'
 abbr "tksv"="tmux kill-server"
 
+# --- herdr ---
+abbr "h"="herdr"
+abbr "hs"="herdr session attach %"
+abbr "hsl"="herdr session list"
+abbr "hss"="herdr session stop"
+abbr "hsvs"="herdr server stop"
+
+# --- tmuxifier ---
 abbr "txi"="tmuxifier"
 abbr "txis"='tmuxifier s "%"'
 
