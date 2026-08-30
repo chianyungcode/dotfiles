@@ -87,3 +87,10 @@ onboarding = false
     description = "herdr-plus: projects"
     key         = "prefix+s"
     type        = "plugin_action"
+
+  # herdr-nvim
+  [[keys.command]]
+    command     = "chmarax.herdr-nvim.pick-file"
+    description = "open file from agent output"
+    key         = "prefix+O"
+    type        = "plugin_action"

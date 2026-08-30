@@ -1,10 +1,11 @@
 return {
+  { "ChmaraX/herdr-nvim", opts = {} },
 
   -- https://github.com/folke/sidekick.nvim
   -- DESC: AI sidebar in neovim
   {
     "seraphynee/sidekick.nvim",
-    enabled = true,
+    enabled = false,
     opts = {
       -- add any options here
       nes = { enabled = false },
