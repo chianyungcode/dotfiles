@@ -94,3 +94,15 @@ onboarding = false
     description = "open file from agent output"
     key         = "prefix+O"
     type        = "plugin_action"
+
+  [[keys.command]]
+    command     = "herdr-last.toggle-workspace"
+    description = "Toggle to last workspace"
+    key         = "prefix+A"
+    type        = "plugin_action"
+
+  [[keys.command]]
+    command     = "herdr-last.toggle-tab"
+    description = "Toggle to last tab"
+    key         = "prefix+a"
+    type        = "plugin_action"

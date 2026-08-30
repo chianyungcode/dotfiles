@@ -2,6 +2,7 @@ accordion-padding                                               = 45
 after-login-command                                             = []
 after-startup-command                                           = ["layout accordion"]
 automatically-unhide-macos-hidden-apps                          = false
+config-version                                                  = 2
 default-root-container-layout                                   = "accordion"
 default-root-container-orientation                              = "vertical"
 enable-normalization-flatten-containers                         = true

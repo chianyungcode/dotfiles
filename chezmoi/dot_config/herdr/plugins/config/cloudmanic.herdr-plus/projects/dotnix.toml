@@ -6,7 +6,7 @@ working_dir = "~/Code/Personal/Experiments/nix-dendritic-projects/dotnix/"
 # rest are created behind it so the first tab stays in front.
 
 [[tabs]]
-  name = "coding agent" # required: the tab label
+  name = "ai" # required: the tab label
 
   [[tabs.panes]]
     command = "codex"
@@ -19,6 +19,13 @@ working_dir = "~/Code/Personal/Experiments/nix-dendritic-projects/dotnix/"
 [[tabs]]
   command = "nvim"
   name    = "editor"
+
+[[tabs]]
+  name = "vcs"
+
+  [[tabs.panes]]
+    command = "lazygit"
+    label   = "lazygit"
 
 [[tabs]]
   name = "terminal" # no command — just an empty shell

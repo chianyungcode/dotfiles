@@ -1,10 +1,10 @@
 repo = "dotfiles"
 
 [[tabs]]
-  name = "coding agent" # required: the tab label
+  name = "ai" # required: the tab label
 
   [[tabs.panes]]
-    command = "codex"
+    command = "pi"
 
   [[tabs.panes]]
     command = "hunk diff --watch"
@@ -20,11 +20,11 @@ repo = "dotfiles"
     label   = "neovim"
 
 [[tabs]]
-  name = "jjui"
+  name = "vcs"
 
   [[tabs.panes]]
     command = "jjui"
-    label   = "vcs"
+    label   = "jjui"
 
 [[tabs]]
   name = "terminal" # no command — just an empty shell
