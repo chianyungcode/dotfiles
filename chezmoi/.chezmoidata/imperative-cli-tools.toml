@@ -7,13 +7,6 @@
   run     = "herdr plugin install qu8n/herdr-automatic-rename --yes"
 
 [[imperative_cli_tools]]
-  check   = "herdr plugin list --json | jq -e '.result.plugins[] | select(.plugin_id == \"jhochenbaum.hunkdiff\")' >/dev/null"
-  cli     = "herdr"
-  enabled = true
-  name    = "Herdr Hunk Diff"
-  run     = "herdr plugin install jhochenbaum/herdr-hunk-diff --yes"
-
-[[imperative_cli_tools]]
   check   = "herdr plugin list --json | jq -e '.result.plugins[] | select(.plugin_id == \"cloudmanic.herdr-plus\")' >/dev/null"
   cli     = "herdr"
   enabled = true
@@ -33,6 +26,20 @@
   enabled = true
   name    = "Herdr Flash"
   run     = "herdr plugin install youguanxinqing/herdr-flash --yes"
+
+[[imperative_cli_tools]]
+  check   = "herdr plugin list --json | jq -e '.result.plugins[] | select(.plugin_id == \"lmilojevicc/herdr-last\")' >/dev/null"
+  cli     = "herdr"
+  enabled = true
+  name    = "Herdr Last (workspace & tab)"
+  run     = "herdr plugin install lmilojevicc/herdr-last --yes"
+
+[[imperative_cli_tools]]
+  check   = "herdr plugin list --json | jq -e '.result.plugins[] | select(.plugin_id == \"jhochenbaum.hunkdiff\")' >/dev/null"
+  cli     = "herdr"
+  enabled = false
+  name    = "Herdr Hunk Diff"
+  run     = "herdr plugin install jhochenbaum/herdr-hunk-diff --yes"
 
 # === AGENT SKILLS ===
 [[imperative_cli_tools]]
