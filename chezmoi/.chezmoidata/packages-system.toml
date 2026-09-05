@@ -73,7 +73,7 @@
 
         # @text/content search
         "ripgrep",  # Search tool like grep and the silver searcher
-        "ast_grep",
+        "ast-grep",
         # "ynqa/tap/sigrs", # Interactive grep, disable this because it slow
 
         # @file search
