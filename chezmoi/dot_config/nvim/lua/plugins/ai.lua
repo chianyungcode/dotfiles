@@ -5,7 +5,7 @@ return {
   -- DESC: AI sidebar in neovim
   {
     "seraphynee/sidekick.nvim",
-    enabled = false,
+    enabled = true,
     opts = {
       -- add any options here
       nes = { enabled = false },
@@ -50,7 +50,7 @@ return {
         mode = { "n", "v" },
       },
       {
-        "<leader>as",
+        "<leader>ai",
         function()
           require("sidekick.cli").select()
           -- Or to select only installed tools:
