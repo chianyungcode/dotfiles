@@ -159,16 +159,33 @@ PATH="$ssh_fake_bin:$PATH" chezmoi -S "$source_dir" \
 	execute-template --override-data-file "$ssh_data" \
 	--file "$source_dir/dot_ssh/config.tmpl" >"$ssh_config"
 ssh_identity_count=$(rg -c '^    IdentityAgent ' "$ssh_config")
-expected_identity_count=$(jq '[.remote_servers[] | select(.use_op_identity_agent == true)] | length' \
+expected_identity_count=$(jq '[(.workstations, .development_servers, .deployment_servers, .git_hosts) | . // {} | .[] | select(.use_op_identity_agent == true)] | length' \
 	"$ssh_data")
 [[ "$ssh_identity_count" -eq "$expected_identity_count" ]]
 rg -Fq 'IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"' \
 	"$ssh_config"
-ssh_local_config=$(env -u SSH_TTY ssh -G -F "$ssh_config" tailmbp)
+rg -Fq '# --- Workstations ---' "$ssh_config"
+rg -Fq '# --- Development servers ---' "$ssh_config"
+rg -Fq '# --- Deployment servers ---' "$ssh_config"
+rg -Fq '# --- Git hosts ---' "$ssh_config"
+rg -Fq 'Host tailws-mbp' "$ssh_config"
+rg -Fq 'Host prod-hermes-oracle' "$ssh_config"
+rg -Fq 'Host ghcny' "$ssh_config"
+if jq -e '[(.deployment_servers // {}) | .[] | select(.forward_agent == true or .use_op_identity_agent == true)] | length > 0' "$ssh_data" >/dev/null; then
+	printf 'deployment server unexpectedly allows agent forwarding\n' >&2
+	exit 1
+fi
+ssh_local_config=$(env -u SSH_TTY ssh -G -F "$ssh_config" tailws-mbp)
 printf '%s\n' "$ssh_local_config" | rg -q '^identityagent .+2BUA8C4S2C.com.1password/t/agent.sock$'
-ssh_forwarded_config=$(SSH_TTY=/tmp/tty ssh -G -F "$ssh_config" tailmbp)
+ssh_forwarded_config=$(SSH_TTY=/tmp/tty ssh -G -F "$ssh_config" tailws-mbp)
 if printf '%s\n' "$ssh_forwarded_config" | rg -q '^identityagent '; then
 	printf 'forwarded SSH agent unexpectedly overridden\n' >&2
+	exit 1
+fi
+ssh_prod_config=$(ssh -G -F "$ssh_config" prod-hermes-oracle)
+printf '%s\n' "$ssh_prod_config" | rg -q '^forwardagent no$'
+if printf '%s\n' "$ssh_prod_config" | rg -q '^identityagent '; then
+	printf 'deployment server unexpectedly uses identity agent\n' >&2
 	exit 1
 fi
 
@@ -178,7 +195,7 @@ PATH="$ssh_fake_bin:$PATH" chezmoi -S "$source_dir" \
 	--file "$source_dir/dot_ssh/config.tmpl" >"$tmp_dir/ssh-linux-config"
 rg -Fq 'IdentityAgent ~/.1password/agent.sock' "$tmp_dir/ssh-linux-config"
 
-jq '.remote_servers |= with_entries(.value.use_op_identity_agent = false)' \
+jq '(.workstations, .development_servers, .deployment_servers, .git_hosts) |= (. // {} | with_entries(.value.use_op_identity_agent = false))' \
 	"$ssh_data" >"$tmp_dir/ssh-disabled.json"
 PATH="$ssh_fake_bin:$PATH" chezmoi -S "$source_dir" \
 	execute-template --override-data-file "$tmp_dir/ssh-disabled.json" \

@@ -501,16 +501,6 @@ abbr "zlk"="zellij kill-session"
 abbr "zlka"="zellij kill-all-sessions --yes"
 abbr "zlls"="zellij list-sessions"
 
-# --- SSH / Remote hosts ---
-abbr "acer"="ssh acer"
-abbr "gcp1"="ssh gcp1"
-abbr "ghcny"="ssh ghcny"
-abbr "ghspy"="ssh ghspy"
-abbr "mbp"="ssh mbp"
-abbr "tailacer"="ssh tailacer"
-abbr "tailmbp"="ssh tailmbp"
-abbr "tailpc"="ssh tailpc-nixos"
-
 # --- tmux  ---
 abbr "bktmux"="tmux list-keys | sk"
 abbr "tx"="tmux"

@@ -1275,7 +1275,7 @@ jq \
 	--arg ssh_keys_dir "$security_keys_dir" \
 	'.secrets.provider = "onepassword"
      | .directories.ssh_keys_dir = $ssh_keys_dir
-     | .remote_servers = {
+     | .development_servers = {
          fixture: {
            name: "fixture",
            op_id: "fixture-op-id",
@@ -1440,7 +1440,7 @@ security_public_only_keys_dir="$tmp_dir/security-public-only-keys"
 security_public_only_data="$tmp_dir/security-public-only.json"
 jq --arg ssh_keys_dir "$security_public_only_keys_dir" \
 	'.directories.ssh_keys_dir = $ssh_keys_dir
-     | .remote_servers.fixture.generate_public_key_only = true' \
+     | .development_servers.fixture.generate_public_key_only = true' \
 	"$security_data" >"$security_public_only_data"
 security_public_only_fixture="$tmp_dir/security-public-only.sh"
 PATH="$security_fake_bin:$PATH" chezmoi -S "$source_dir" execute-template \
@@ -1470,7 +1470,7 @@ assert_no_security_fixture_material "$tmp_dir/security-public-only.out"
 prepare_existing_security_defaults() {
 	local keys_dir=$1
 	mkdir -p "$keys_dir"
-	jq -r '.remote_servers[]?.name' "$base_data_file" |
+	jq -r '[(.workstations, .development_servers, .deployment_servers, .git_hosts) | . // {} | .[] | .name] | .[]' "$base_data_file" |
 		while IFS= read -r server_name; do
 			printf '%s\n' 'existing key fixture' \
 				>"$keys_dir/$server_name"
@@ -1496,7 +1496,7 @@ assert_security_directory_conflict() {
 		--arg ssh_keys_dir "$keys_dir" \
 		--argjson public_only "$public_only" \
 		'.directories.ssh_keys_dir = $ssh_keys_dir
-         | .remote_servers.fixture.generate_public_key_only = $public_only' \
+         | .development_servers.fixture.generate_public_key_only = $public_only' \
 		"$security_data" >"$data_file"
 	PATH="$security_fake_bin:$PATH" \
 		chezmoi -S "$source_dir" execute-template \

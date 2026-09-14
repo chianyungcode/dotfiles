@@ -28,6 +28,12 @@
 			"value": ""
 		},
 		{
+			"id": "tailscale_ip",
+			"type": "STRING",
+			"label": "tailscale_ip",
+			"value": ""
+		},
+		{
 			"id": "port",
 			"type": "STRING",
 			"label": "port",

@@ -106,7 +106,25 @@ install_server_keys() {
 
 mkdir -p "{{ .directories.ssh_keys_dir }}"
 
-{{ range .remote_servers -}}
+{{ range .workstations -}}
+install_server_keys \
+    "{{ .op_id }}" \
+    "{{ $.directories.ssh_keys_dir }}/{{ .name }}" \
+    "{{ if .generate_public_key_only }}false{{ else }}true{{ end }}"
+{{ end -}}
+{{ range .development_servers -}}
+install_server_keys \
+    "{{ .op_id }}" \
+    "{{ $.directories.ssh_keys_dir }}/{{ .name }}" \
+    "{{ if .generate_public_key_only }}false{{ else }}true{{ end }}"
+{{ end -}}
+{{ range .deployment_servers -}}
+install_server_keys \
+    "{{ .op_id }}" \
+    "{{ $.directories.ssh_keys_dir }}/{{ .name }}" \
+    "{{ if .generate_public_key_only }}false{{ else }}true{{ end }}"
+{{ end -}}
+{{ range .git_hosts -}}
 install_server_keys \
     "{{ .op_id }}" \
     "{{ $.directories.ssh_keys_dir }}/{{ .name }}" \

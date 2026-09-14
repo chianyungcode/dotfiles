@@ -27,19 +27,13 @@ Before starting, ensure you have:
 
 ### Step 1: Create 1Password Items
 
-Create 1Password items using the provided templates. Choose the appropriate
-template based on your connection method:
-
-#### For Regular SSH Connections
+Create 1Password items using the single provided template. One template
+covers both connection methods: fill `hostname`, `tailscale_ip`, or both,
+and flip `via_tailscale` in the Chezmoi data to switch between them
+without recreating the item.
 
 ```bash
 op item create --template remote-server.json
-```
-
-#### For Tailscale SSH Connections
-
-```bash
-op item create --template tailscale-remote-server.json
 ```
 
 > **Note**: When using Tailscale, the hostname typically uses Tailscale's Magic
@@ -54,7 +48,8 @@ After creating the item, manually fill in the following fields in 1Password:
 | `privkey` or `private key` | Private SSH key content         | ✅       |
 | `pubkey` or `public key`   | Public SSH key content          | ✅       |
 | `user`                     | SSH username for the connection | ✅       |
-| `hostname`                 | Server hostname or IP address   | ✅       |
+| `hostname`                 | Server hostname or IP address   | ✅ (unless Tailscale-only) |
+| `tailscale_ip`             | Tailscale IP or Magic DNS name  | ✅ (unless public-only)    |
 | `port`                     | SSH port (default: 22)          | ❌       |
 
 > **Security Note**: Store only the key content without any additional
@@ -65,21 +60,50 @@ After creating the item, manually fill in the following fields in 1Password:
 ### Step 3: Add Server Configuration
 
 Add your remote server configuration to
-`./chezmoi/.chezmoidata/remote-servers.toml`:
+`./chezmoi/.chezmoidata/remote_servers.toml`. The file holds four tables
+— one per role — so workstation, development, deployment, and git-host
+entries stay separated:
 
 ```toml
-[remote_servers]
-  [remote_servers.example-server]
+[workstations]
+  [workstations.ws-mbp]
   add_to_ssh_config = true
-  name = "example-server"
+  name = "ws-mbp"
   op_id = "your-1password-item-id-here"
-  tailscale_ip = false
+  forward_agent = true
+  use_op_identity_agent = true
+  via_tailscale = true
 
-  [remote_servers.tailscale-server]
+[development_servers]
+  [development_servers.dev-atlas]
   add_to_ssh_config = true
-  name = "tailscale-server"
-  op_id = "your-tailscale-server-item-id"
-  tailscale_ip = true
+  name = "dev-atlas"
+  op_id = "your-development-server-item-id"
+  forward_agent = true
+  use_op_identity_agent = true
+  # Flip this when the VPS moves between public IP and Tailscale.
+  via_tailscale = true
+
+[deployment_servers]
+  [deployment_servers.prod-web-01]
+  add_to_ssh_config = true
+  name = "prod-web-01"
+  op_id = "your-deployment-server-item-id"
+  # Policy: deployment servers must keep both agent flags false.
+  forward_agent = false
+  use_op_identity_agent = false
+  via_tailscale = false
+
+[git_hosts]
+  # Names here are frozen: they are embedded in git remote URLs
+  # (e.g. ghcny:owner/repo.git). Do not rename or add prefixes.
+  [git_hosts.ghcny]
+  add_to_ssh_config = true
+  name = "ghcny"
+  op_id = "your-git-host-item-id"
+  forward_agent = false
+  use_op_identity_agent = true
+  via_tailscale = false
 ```
 
 #### Configuration Options
@@ -91,8 +115,10 @@ Add your remote server configuration to
 | `add_to_ssh_config` | boolean | Whether to include this server in SSH config | `false` |
 | `name`              | string  | Server identifier (used for SSH host alias)  | -       |
 | `op_id`             | string  | 1Password item UUID                          | -       |
-| `tailscale_ip`      | boolean | Use Tailscale connection                     | `false` |
-| `use_op_identity_agent` | boolean | Use the 1Password SSH agent socket       | `false` |
+| `via_tailscale`         | boolean | Connect via Tailscale (`Host tail<name>`)    | `false` |
+| `forward_agent`         | boolean | Set `ForwardAgent yes` (never for deployment)| `false` |
+| `use_op_identity_agent` | boolean | Use the 1Password SSH agent socket           | `false` |
+| `generate_public_key_only` | boolean | Materialize only the `.pub` key file      | `false` |
 
 <!-- markdownlint-enable MD013 -->
 
@@ -129,46 +155,54 @@ Go template syntax. The generated config includes:
 ### Example 1: Regular Server Setup
 
 ```toml
-[remote_servers]
-  [remote_servers.web-server]
+[deployment_servers]
+  [deployment_servers.prod-web-01]
   add_to_ssh_config = true
-  name = "web-server"
+  name = "prod-web-01"
   op_id = "abc123def456"
-  tailscale_ip = false
+  forward_agent = false
+  use_op_identity_agent = false
+  via_tailscale = false
 ```
 
 Generated SSH config:
 
 ```text
-Host web-server
+Host prod-web-01
     User ubuntu
     Hostname 192.168.1.100
     Port 22
-    IdentityFile ~/.ssh-keys/web-server
+    IdentityFile ~/.ssh-keys/prod-web-01.pub
     IdentitiesOnly yes
 ```
 
 ### Example 2: Tailscale Server Setup
 
 ```toml
-[remote_servers]
-  [remote_servers.db-server]
+[workstations]
+  [workstations.ws-db]
   add_to_ssh_config = true
-  name = "db-server"
+  name = "ws-db"
   op_id = "xyz789uvw012"
-  tailscale_ip = true
+  forward_agent = true
+  use_op_identity_agent = true
+  via_tailscale = true
 ```
 
 Generated SSH config:
 
 ```text
-Host taildb-server
+Host tailws-db
     User admin
     Hostname 100.64.0.1
     Port 22
-    IdentityFile ~/.ssh-keys/db-server
+    IdentityFile ~/.ssh-keys/ws-db.pub
     IdentitiesOnly yes
 ```
+
+The logical alias keeps the short name (`ws-db` →
+`ssh tailws-db`), so muscle memory keeps working while the rendered
+`Host` carries the effective `tail` address.
 
 ## Verification Steps
 
@@ -232,14 +266,14 @@ op signin
 
 1. Verify Tailscale is running: `tailscale status`
 2. Check if Magic DNS is enabled in Tailscale admin
-3. Ensure `tailscale_ip` is set to `true` in configuration
+3. Ensure `via_tailscale` is set to `true` in configuration
 
 #### Issue: Wrong hostname in SSH config
 
 **Symptoms**: Connection to wrong server **Solution**:
 
-1. Check 1Password item's `hostname` field
-2. Verify `tailscale_ip` setting matches your intention
+1. Check the 1Password item's `hostname` / `tailscale_ip` fields
+2. Verify `via_tailscale` matches your intention
 3. Re-run chezmoi apply: `chezmoi apply`
 
 ## Security Best Practices
@@ -268,15 +302,17 @@ manually add entries after the managed section.
 
 ### Multiple Environments
 
-For different environments (dev/staging/prod), use naming conventions:
+For different environments (dev/staging/prod), use the role tables with
+`dev-` / `prod-` name prefixes:
 
 ```toml
-[remote_servers]
-  [remote_servers.prod-web-01]
-  # production configuration
+[development_servers]
+  [development_servers.dev-web-01]
+  # development configuration (agent forwarding allowed)
 
-  [remote_servers.staging-web-01]
-  # staging configuration
+[deployment_servers]
+  [deployment_servers.prod-web-01]
+  # production configuration (agent forwarding forbidden)
 ```
 
 ## References

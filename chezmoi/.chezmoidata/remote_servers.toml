@@ -1,54 +1,108 @@
-[remote_servers]
-  [remote_servers.ghcny]
+[workstations]
+  [workstations.ws-acer]
+    add_to_ssh_config        = true
+    forward_agent            = true
+    generate_public_key_only = true
+    name                     = "ws-acer"
+    op_id                    = "h4zlfpcdlr3r64qjteoqwww6be"
+    use_op_identity_agent    = true
+    via_tailscale            = true
+
+  [workstations.ws-mbp]
+    add_to_ssh_config        = true
+    forward_agent            = true
+    generate_public_key_only = true
+    name                     = "ws-mbp"
+    op_id                    = "o3hurjw4rkl24c4msn22pzoele"
+    use_op_identity_agent    = true
+    via_tailscale            = true
+
+  [workstations.ws-pc-nixos]
+    add_to_ssh_config        = true
+    forward_agent            = true
+    generate_public_key_only = true
+    name                     = "ws-pc-nixos"
+    op_id                    = "5ulvmrvynchgsmlffm64spatn4"
+    use_op_identity_agent    = true
+    via_tailscale            = true
+
+[development_servers]
+  # No development servers yet. Example entry for a VPS reachable
+  # over Tailscale or its public IP (flip via_tailscale as needed):
+  # [development_servers.dev-atlas]
+  #   add_to_ssh_config        = true
+  #   forward_agent            = true
+  #   generate_public_key_only = true
+  #   name                     = "dev-atlas"
+  #   op_id                    = "replace-with-1password-item-id"
+  #   via_tailscale            = true
+  #   use_op_identity_agent    = true
+
+[deployment_servers]
+  # Policy: deployment servers must keep forward_agent = false and
+  # use_op_identity_agent = false (enforced by tests).
+  [deployment_servers.prod-hermes-oracle]
+    add_to_ssh_config        = true
+    forward_agent            = false
+    generate_public_key_only = true
+    name                     = "prod-hermes-oracle"
+    op_id                    = "jxfgdojzdjpgxuqpi4doncf3aq"
+    use_op_identity_agent    = false
+    via_tailscale            = false
+
+[git_hosts]
+  # Names here are frozen: they are embedded in git remote URLs
+  # (e.g. ghcny:owner/repo.git). Do not rename or add prefixes.
+  [git_hosts.ghcny]
     add_to_ssh_config        = true
     forward_agent            = false
     generate_public_key_only = true
     name                     = "ghcny"
     op_id                    = "5b2sfyzvwpuzcjcp2wfa7ablk4"
-    tailscale_ip             = false
     use_op_identity_agent    = true
+    via_tailscale            = false
 
-  [remote_servers.ghspy]
+  [git_hosts.ghspy]
     add_to_ssh_config        = true
     forward_agent            = false
     generate_public_key_only = true
     name                     = "ghspy"
     op_id                    = "fzv7mncqpjjmezf47kloo4t6ji"
-    tailscale_ip             = false
     use_op_identity_agent    = true
+    via_tailscale            = false
 
-  [remote_servers.glcny]
+  [git_hosts.glcny]
     add_to_ssh_config        = true
     forward_agent            = false
     generate_public_key_only = true
     name                     = "glcny"
     op_id                    = "nhczmzrx5uazmizwj6yzkjqohi"
-    tailscale_ip             = false
     use_op_identity_agent    = true
+    via_tailscale            = false
 
-  [remote_servers.mbp]
-    add_to_ssh_config        = true
-    forward_agent            = true
-    generate_public_key_only = true
-    name                     = "mbp"
-    op_id                    = "o3hurjw4rkl24c4msn22pzoele"
-    tailscale_ip             = true
-    use_op_identity_agent    = true
+[remote_servers.mbp]
+  add_to_ssh_config        = true
+  forward_agent            = true
+  generate_public_key_only = true
+  name                     = "mbp"
+  op_id                    = "o3hurjw4rkl24c4msn22pzoele"
+  tailscale_ip             = true
+  use_op_identity_agent    = true
 
-  [remote_servers.acer]
-    add_to_ssh_config        = true
-    forward_agent            = true
-    generate_public_key_only = true
-    name                     = "acer"
-    op_id                    = "h4zlfpcdlr3r64qjteoqwww6be"
-    tailscale_ip             = true
-    use_op_identity_agent    = true
+[remote_servers.acer]
+  add_to_ssh_config        = true
+  forward_agent            = true
+  generate_public_key_only = true
+  name                     = "acer"
+  op_id                    = "h4zlfpcdlr3r64qjteoqwww6be"
+  tailscale_ip             = true
+  use_op_identity_agent    = true
 
-  [remote_servers.pc]
-    add_to_ssh_config        = true
-    forward_agent            = true
-    generate_public_key_only = true
-    name                     = "pc-nixos"
-    op_id                    = "5ulvmrvynchgsmlffm64spatn4"
-    tailscale_ip             = true
-    use_op_identity_agent    = true
+[remote_servers.pc]
+  add_to_ssh_config        = true
+  forward_agent            = true
+  generate_public_key_only = true
+  name                     = "pc-nixos"
+  op_id                    = "5ulvmrvynchgsmlffm64spatn4"
+  tailscale_ip             = true
+  use_op_identity_agent    = true
