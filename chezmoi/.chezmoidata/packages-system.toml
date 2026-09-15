@@ -363,6 +363,7 @@
 
         # @apps launcher
         "raycast",
+        # "tinycast",
         # "shobhit99/tap/supercmd",
 
         # @dictation tools
