@@ -1,4 +1,4 @@
-{{ if eq .secrets.provider "onepassword" }}
+{{ if and (eq .secrets.provider "onepassword") .features.personal }}
 
 # If file <key>.pub (public key) exist in ~/.ssh_keys directory
 {{- if stat (joinPath .chezmoi.homeDir ".ssh_keys" "ghcny.pub") }}
