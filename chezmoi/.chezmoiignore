@@ -30,10 +30,25 @@ Library
 .config/ghostty
 .config/hypr
 .config/karabiner
+.config/kitty
 .config/launchpallete
 .config/rift
 .config/wezterm
 Library/Application Support/Leader Key
+{{ end }}
+
+{{ if not .features.personal }}
+# Personal-only configs are opt-in. Company machines without the `personal`
+# feature skip these so nothing non-development is deployed.
+# Note: `private_` source prefixes are stripped in target paths, so
+# `private_hermes` matches `.config/hermes` and `private_agent.toml`
+# matches `agent.toml`.
+.config/1Password/ssh/agent.toml
+.config/bunch
+.config/espanso
+.config/hermes
+.config/launchpallete
+.config/zed
 {{ end }}
 
 {{- $is_ci := ne (env "CI") "" -}}

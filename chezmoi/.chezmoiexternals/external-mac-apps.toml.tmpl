@@ -1,4 +1,4 @@
-{{ if and (eq .chezmoi.os "darwin") .features.graphical }}
+{{ if and (eq .chezmoi.os "darwin") .features.graphical .features.personal }}
 
 {{- range .macos_external_app }}
 {{- if and .app_name .download_url }}

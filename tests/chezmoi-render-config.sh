@@ -101,6 +101,7 @@ server_data="$tmp_dir/server.json"
 development_server_data="$tmp_dir/development-server.json"
 homelab_server_data="$tmp_dir/homelab-server.json"
 workstation_data="$tmp_dir/workstation.json"
+work_mac_data="$tmp_dir/work-mac.json"
 custom_identity_data="$tmp_dir/custom-identity.json"
 custom_xdg_data="$tmp_dir/custom-xdg.json"
 
@@ -108,6 +109,8 @@ make_data "$server_data" "$server_base_data" server false false false false none
 make_data "$development_server_data" "$server_base_data" server true false false false none false /tmp/chezmoi-development
 make_data "$homelab_server_data" "$server_base_data" server false true false false none false /tmp/chezmoi-homelab
 make_data "$workstation_data" "$workstation_base_data" workstation true true true true none false /tmp/chezmoi-workstation
+# Company Mac: GUI enabled for dev terminals, but no `personal` feature.
+make_data "$work_mac_data" "$workstation_base_data" workstation true false false true none false /tmp/chezmoi-work-mac
 make_data "$custom_identity_data" "$custom_base_data" workstation true false true true none false /tmp/chezmoi-custom
 make_data "$custom_xdg_data" "$workstation_base_data" workstation true false true true none false /tmp/custom-xdg
 
@@ -118,6 +121,58 @@ render_apply workstation "$workstation_config_file" "$workstation_data"
 render_apply custom-identity "$custom_config_file" "$custom_identity_data"
 render_apply ci "$server_config_file" "$server_data" true
 render_apply custom-xdg "$workstation_config_file" "$custom_xdg_data"
+
+# Company Mac (development + graphical, no personal) must ignore
+# personal-only configs while keeping dev graphical terminals.
+work_mac_ignore=$(chezmoi -S "$source_dir" -c "$workstation_config_file" \
+	execute-template --override-data-file "$work_mac_data" \
+	--file "$source_dir/.chezmoiignore")
+for personal_target in \
+	'.config/1Password/ssh/agent.toml' \
+	'.config/bunch' \
+	'.config/espanso' \
+	'.config/hermes' \
+	'.config/launchpallete' \
+	'.config/zed'; do
+	printf '%s\n' "$work_mac_ignore" | rg -Fq "$personal_target" || {
+		printf 'work-mac .chezmoiignore is missing %s\n' "$personal_target" >&2
+		exit 1
+	}
+done
+if printf '%s\n' "$work_mac_ignore" | rg -q '^\.config/(ghostty|wezterm|kitty)$'; then
+	printf 'work-mac unexpectedly ignores dev terminals\n' >&2
+	exit 1
+fi
+
+# Company Mac with 1Password must not clone personal repos or download
+# personal macOS apps.
+jq '.secrets.provider = "onepassword" | .chezmoi.os = "darwin"' \
+	"$work_mac_data" >"$tmp_dir/work-mac-op.json"
+work_mac_projects=$(chezmoi -S "$source_dir" \
+	execute-template --override-data-file "$tmp_dir/work-mac-op.json" \
+	--file "$source_dir/.chezmoiexternals/my-project.toml.tmpl")
+if printf '%s\n' "$work_mac_projects" | rg -q 'type = "git-repo"'; then
+	printf 'work-mac unexpectedly clones personal projects\n' >&2
+	exit 1
+fi
+work_mac_ext_apps=$(chezmoi -S "$source_dir" \
+	execute-template --override-data-file "$tmp_dir/work-mac-op.json" \
+	--file "$source_dir/.chezmoiexternals/external-mac-apps.toml.tmpl")
+if printf '%s\n' "$work_mac_ext_apps" | rg -q '^\['; then
+	printf 'work-mac unexpectedly downloads personal mac apps\n' >&2
+	exit 1
+fi
+
+# Personal Mac keeps the personal externals (regression guard).
+jq '.chezmoi.os = "darwin"' \
+	"$workstation_data" >"$tmp_dir/personal-mac.json"
+personal_mac_ext_apps=$(chezmoi -S "$source_dir" \
+	execute-template --override-data-file "$tmp_dir/personal-mac.json" \
+	--file "$source_dir/.chezmoiexternals/external-mac-apps.toml.tmpl")
+printf '%s\n' "$personal_mac_ext_apps" | rg -q 'wisprflow' || {
+	printf 'personal mac unexpectedly skips external mac apps\n' >&2
+	exit 1
+}
 
 server_config=$(<"$server_config_file")
 if printf '%s\n' "$server_config" | rg -q '^encryption =|^\[age\]'; then
