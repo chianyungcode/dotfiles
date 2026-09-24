@@ -42,7 +42,7 @@
 
         # Docker replacement
         "orbstack",
-        "augani/dory/dory",
+        # "augani/dory/dory",
 
         # Optional
         # "amazon-q",
@@ -195,8 +195,9 @@
         "sops",
         # "varlock",    # env with schema
 
-        # @container
-        "lazydocker", # Docker manager
+        # @isolation
+        "docker/tap/sbx", # docker sandboxes
+        "lazydocker",     # Docker manager
 
         "awscli",
         # "koyeb/tap/koyeb",                     # Koyeb CLI
@@ -343,12 +344,13 @@
     [packages.homebrew.personal]
       casks = [
         # Browsers
-        "brave-browser",
-        "comet",
+        "aside",         # agentic browser
+        "brave-browser", # traditional browser
+        # "comet",         # agentic browser
         # "google-chrome",
-        # "helium-browser",
-        # "thebrowsercompany-dia", # Dia Browser
-        "zen", # Browser
+        # "helium-browser", # traditional browser
+        # "thebrowsercompany-dia", # agentic browser
+        "zen", # traditional browser
 
         # Productivity & Knowledge
         # "anki",
