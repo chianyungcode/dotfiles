@@ -1,73 +1,66 @@
 {
-  // personal documentation written in Notion
-  "$schema": "https://opencode.ai/config.json",
+  "model": "opencode-go/deepseek-v4.1-flash",
   "mcp": {
-    "capacities": {
-      "type": "remote",
-      "url": "https://api.capacities.io/mcp",
-      "headers": {},
-      "enabled": true
-    },
-    "context7": {
-      "type": "remote",
-      "url": "https://mcp.context7.com/mcp",
-      "headers": { "Authorization": "Bearer {env:CONTEXT7_MCP_API_KEY}" },
-      "enabled": true
-    },
-    "deepwiki": {
-      "type": "remote",
-      "url": "https://mcp.deepwiki.com/mcp",
-      "headers": {},
-      "enabled": false
-    },
-    "exa": {
-      "type": "remote",
-      "url": "https://mcp.exa.ai/mcp",
-      "headers": { "Authorization": "Bearer {env:EXA_API_KEY}" },
-      "enabled": true
-    },
-    "linear": {
-      "type": "remote",
-      "url": "https://mcp.linear.app/mcp",
-      "headers": {
-        "Authorization": "Bearer {env:LINEAR_API_KEY}"
+    "servers": {
+      "capacities": {
+        "type": "remote",
+        "url": "https://api.capacities.io/mcp",
+        "headers": {},
+        "disabled": false
       },
-      "enabled": true
-    },
-    "tavily": {
-      "type": "remote",
-      "url": "https://mcp.tavily.com/mcp",
-      "headers": { "Authorization": "Bearer {env:TAVILY_API_KEY}" },
-      "enabled": false
-    },
-    "ticktick": {
-      "type": "remote",
-      "url": "https://mcp.ticktick.com",
-      "headers": { "Authorization": "Bearer {env:TICKTICK_API_KEY}" },
-      "enabled": true
+      "context7": {
+        "type": "remote",
+        "url": "https://mcp.context7.com/mcp",
+        "headers": { "Authorization": "Bearer {env:CONTEXT7_MCP_API_KEY}" },
+        "disabled": false
+      },
+      "deepwiki": {
+        "type": "remote",
+        "url": "https://mcp.deepwiki.com/mcp",
+        "headers": {},
+        "disabled": true
+      },
+      "exa": {
+        "type": "remote",
+        "url": "https://mcp.exa.ai/mcp",
+        "headers": { "Authorization": "Bearer {env:EXA_API_KEY}" },
+        "disabled": false
+      },
+      "linear": {
+        "type": "remote",
+        "url": "https://mcp.linear.app/mcp",
+        "headers": {
+          "Authorization": "Bearer {env:LINEAR_API_KEY}"
+        },
+        "disabled": false
+      },
+      "tavily": {
+        "type": "remote",
+        "url": "https://mcp.tavily.com/mcp",
+        "headers": { "Authorization": "Bearer {env:TAVILY_API_KEY}" },
+        "disabled": true
+      },
+      "ticktick": {
+        "type": "remote",
+        "url": "https://mcp.ticktick.com",
+        "headers": { "Authorization": "Bearer {env:TICKTICK_API_KEY}" },
+        "disabled": false
+      }
     }
   },
-  "provider": {
+  "providers": {
     "openrouter": {
       "models": {
         "z-ai/glm-5": {
-          "options": {
+          "settings": {
             "provider": {
               "order": ["baseten", "z.ai"],
               "allow_fallbacks": false
             }
           }
-        },
-        "moonshotai/kimi-k2.5": {
-          "options": {
-            "provider": {
-              "order": ["novitaai", "moonshotai"],
-              "allow_fallbacks": false
-            }
-          }
         }
       },
-      "options": {
+      "settings": {
         "apiKey": "{env:OPENROUTER_API_KEY}"
       }
     }
