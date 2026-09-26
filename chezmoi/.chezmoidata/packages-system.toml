@@ -52,7 +52,7 @@
         # Coding Agents CLI's
         # "cursor-cli",
         # "pi-coding-agent",
-        "opencode",
+        "anomalyco/tap/opencode-v2",
 
         # File & Text Processing
         # @fuzzy finder
