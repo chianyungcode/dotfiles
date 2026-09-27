@@ -1,0 +1,96 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+command -v chezmoi >/dev/null 2>&1 || {
+	echo "chezmoi is required to locate the source state." >&2
+	exit 1
+}
+command -v cmp >/dev/null 2>&1 || {
+	echo "cmp is required to compare completion files." >&2
+	exit 1
+}
+
+source_dir="$(chezmoi source-path)"
+completion_source_dir="$source_dir/dot_config/fish/completions"
+tmpdir="$(mktemp -d "${TMPDIR:-/tmp}/update-fish-completions.XXXXXXXX")"
+trap 'rm -rf "$tmpdir"' EXIT
+
+generated=()
+generated_count=0
+
+generate_stdout() {
+	local cli="$1"
+	local filename="$2"
+	shift 2
+
+	if ! command -v "$cli" >/dev/null 2>&1; then
+		printf 'Skipping %s: command is not installed.\n' "$cli"
+		return
+	fi
+
+	printf 'Generating %s completion...\n' "$cli"
+	"$@" > "$tmpdir/$filename"
+	if [[ ! -s "$tmpdir/$filename" ]]; then
+		printf 'Error: %s generated an empty completion file.\n' "$cli" >&2
+		exit 1
+	fi
+	chmod 0644 "$tmpdir/$filename"
+	generated+=("$filename")
+	generated_count=$((generated_count + 1))
+}
+
+generate_stdout herdr herdr.fish herdr completion fish
+generate_stdout atuin atuin.fish atuin gen-completions --shell fish
+generate_stdout proto proto.fish proto completions --shell fish
+
+if command -v pueue >/dev/null 2>&1; then
+	printf 'Generating pueue completion...\n'
+	pueue completions fish "$tmpdir"
+	if [[ ! -s "$tmpdir/pueue.fish" ]]; then
+		echo "Error: pueue did not generate pueue.fish." >&2
+		exit 1
+	fi
+	chmod 0644 "$tmpdir/pueue.fish"
+	generated+=(pueue.fish)
+	generated_count=$((generated_count + 1))
+else
+	printf 'Skipping pueue: command is not installed.\n'
+fi
+
+generate_stdout taplo taplo.fish taplo completions fish
+
+if [[ "$generated_count" -eq 0 ]]; then
+	printf 'No completion generators are installed.\n'
+	exit 0
+fi
+
+changed_count=0
+
+for filename in "${generated[@]}"; do
+	source_filename="$filename"
+	if [[ "$filename" == atuin.fish ]]; then
+		source_filename=private_atuin.fish
+	fi
+	source_path="$completion_source_dir/$source_filename"
+	generated_file="$tmpdir/$filename"
+	if [[ ! -f "$source_path" ]]; then
+		printf 'Error: managed source file was not found: %s\n' "$source_path" >&2
+		exit 1
+	fi
+
+	if cmp -s "$generated_file" "$source_path"; then
+		printf 'Unchanged: %s\n' "$filename"
+		continue
+	fi
+
+	cp "$generated_file" "$source_path"
+	changed_count=$((changed_count + 1))
+	printf 'Updated source state: %s\n' "$source_path"
+done
+
+if [[ "$changed_count" -gt 0 ]]; then
+	printf "Run 'chezmoi apply' to update the installed Fish completions.\n"
+else
+	printf 'Fish completions are already up to date.\n'
+fi
