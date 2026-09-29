@@ -8,15 +8,15 @@
   # - animation_fps: frames per second (0.0 = display refresh rate). 60–120 recommended.
   #   ease_in_circ, ease_out_circ, ease_in_out_circ
   animate            = false
-  animation_duration = 0.3
-  animation_fps      = 1
+  animation_duration = 0.15
+  animation_fps      = 120
 
   # Space activation behavior
   # - If true, spaces start inactive (rift does not manage windows there)
   #   and you must toggle activation via a keybind (toggle_space_activated).
   # - If false, spaces are managed by default and you can disable specific ones.
   # Default is true; uncomment to change.
-  #default_disable = false
+  default_disable = false
 
   # Mouse/Focus behavior
   # - focus_follows_mouse: moving the mouse into a window focuses it
@@ -241,11 +241,12 @@
   # Workspace-specific rules
   # - workspace: target workspace by index (integer) or name (string)
   # - layout: layout mode to use ("traditional", "bsp", "stack", "master_stack", "scrolling")
-  # workspace_rules = [
-  #   { workspace = 1, layout = "bsp" },
-  #   { workspace = "second", layout = "scrolling" }
-  # ]
-  workspace_rules = []
+  workspace_rules = [
+    { workspace = "1", layout = "stack" },
+    { workspace = "2", layout = "scrolling" },
+    { workspace = "4", layout = "scrolling" },
+    { workspace = "5", layout = "scrolling" },
+  ]
 
   # Default workspace to activate on startup (0-based index).
   # If omitted, defaults to 0 (first workspace). Must be less than default_workspace_count.
@@ -296,7 +297,6 @@
     { app_id = "com.figma.Desktop", workspace = 5, floating = false },
     { app_id = "com.apple.Music", workspace = 5, floating = true },
     { app_id = "com.manytricks.Moom", workspace = 5, floating = true },
-    { app_id = "com.jinghaoshe.qspace.pro", workspace = 5, floating = true },
     { app_id = "com.philipyoungg.session-setapp", workspace = 5, floating = true },
     { app_id = "io.raindrop.macapp", workspace = 5, floating = false },
     { app_id = "com.apple.ActivityMonitor", workspace = 5, floating = true },
@@ -312,6 +312,9 @@
 
     # Float only (no workspace assignment in aerospace)
     { app_id = "com.alienator88.Pearcleaner", floating = true },
+    { app_id = "com.tinycast.app", floating = true },
+    { app_id = "com.apple.systempreferences", floating = true },
+    { app_id = "com.jinghaoshe.qspace.pro", floating = true },
   ]
 
 # Modifier combinations that can be reused in key bindings
@@ -396,7 +399,7 @@
   "comb1 + V" = { move_window_to_workspace = 8 }
   "comb1 + X" = { move_window_to_workspace = 6 }
 
-  "Alt + Tab" = "switch_to_last_workspace"
+  "Alt + Escape" = "switch_to_last_workspace"
 
   # commands to change the layout engine of the active workspace
   "Alt + Ctrl + 1" = { set_workspace_layout = { mode = "stack" } }
