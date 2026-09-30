@@ -7,6 +7,7 @@
     "openai-codex/gpt-6-luna",
     "openai-codex/gpt-6-sol"
   ],
+  "defaultTools": ["+codemode"],
   "packages": [
     {
       "source": "npm:pi-caveman",
@@ -18,10 +19,6 @@
     },
     {
       "source": "npm:pi-markdown-preview",
-      "autoload": true
-    },
-    {
-      "source": "npm:pi-mcp-adapter",
       "autoload": true
     },
     {
