@@ -47,15 +47,18 @@ local config = {
 	-- ### Config font ###
 	-- Alternative font: Geist Mono/Fira Code/JetBrains Mono/MonoLisa/MesloLGS Nerd Font Mono/Maple Mono/Cartograph CF
 {{- if eq .chezmoi.os "darwin"}}
-	font_size = 18.7,
-	font = wezterm.font("Geist Mono"),
+  font_size = 17.7,
+  font = wezterm.font({
+    family = "Paper Mono",
+    harfbuzz_features = { "ss01", "ss04", "zero" },
+  }),
 {{ else if eq .chezmoi.os "linux"}}
 	font_size = 12.5,
 	font = wezterm.font("TX-02"),
 {{- end }}
 
 	-- https://wezfurlong.org/wezterm/config/lua/config/underline_thickness.html#underline_thickness
-	underline_thickness = 2.8,
+	-- underline_thickness = 2.8,
 	max_fps = 120,
 
 	-- ### Config window ###
