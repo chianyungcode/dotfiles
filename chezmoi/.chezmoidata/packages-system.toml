@@ -196,8 +196,7 @@
         # "varlock",    # env with schema
 
         # @isolation
-        "docker/tap/sbx", # docker sandboxes
-        "lazydocker",     # Docker manager
+        "lazydocker", # Docker manager
 
         "awscli",
         # "koyeb/tap/koyeb",                     # Koyeb CLI
