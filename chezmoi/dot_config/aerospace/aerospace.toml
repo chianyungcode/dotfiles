@@ -100,10 +100,6 @@ start-at-login                                                  = false
   run       = "move-node-to-workspace 2"
 
 [[on-window-detected]]
-  if.app-id = "dev.kdrag0n.MacVirt"
-  run       = "move-node-to-workspace 2"
-
-[[on-window-detected]]
   if.app-id = "com.jetbrains.datagrip"
   run       = "move-node-to-workspace 2"
 
@@ -121,6 +117,10 @@ start-at-login                                                  = false
 
 [[on-window-detected]]
   if.app-id = "app.zen-browser.zen"
+  run       = "move-node-to-workspace 2"
+
+[[on-window-detected]]
+  if.app-id = "at.studio.AsideBrowser"
   run       = "move-node-to-workspace 2"
 
 [[on-window-detected]]
@@ -142,6 +142,14 @@ start-at-login                                                  = false
 [[on-window-detected]]
   if.app-id = "ai.perplexity.comet"
   run       = "move-node-to-workspace 2"
+
+[[on-window-detected]]
+  if.app-id = "com.openai.codex"
+  run       = "move-node-to-workspace 3"
+
+[[on-window-detected]]
+  if.app-id = "dev.kdrag0n.MacVirt"
+  run       = "move-node-to-workspace 3"
 
 [[on-window-detected]]
   if.app-id = "notion.id"
