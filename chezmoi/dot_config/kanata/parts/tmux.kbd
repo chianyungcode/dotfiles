@@ -1,6 +1,6 @@
 ;; TMUX layer and aliases.
 (defalias
-  tmux-prefix C-a
+  tmux-prefix C-b
 
   tx-new-window (macro @tmux-prefix c) ;; New window.
   tx-new-session (macro @tmux-prefix S-s)
