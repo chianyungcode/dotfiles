@@ -15,7 +15,7 @@ onboarding = false
   tab_bar_position                  = "bottom"
 
 [keys]
-  prefix = "ctrl+a"
+  prefix = "ctrl+b"
 
   # worktree
   new_worktree    = "prefix+W"
