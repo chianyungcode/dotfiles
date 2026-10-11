@@ -453,6 +453,10 @@
         "presenterm", # Presentation in CLI
 
         "tuxedo", # task management TUI
+
+        # Media
+        "LargeModGames/spotatui/spotatui", # Terminal music player
+
         # Window Management
         "felixkratz/formulae/borders",
 
@@ -649,6 +653,9 @@
         # Utility
         "asciinema", # record your terminal
         "superfile", # file manager in terminal
+
+        # Media
+        "spotatui-bin", # Terminal music player
 
         # Development Tools
         "opencode-bin",
