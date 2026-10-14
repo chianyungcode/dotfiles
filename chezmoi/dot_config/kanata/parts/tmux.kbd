@@ -2,62 +2,62 @@
 (defalias
   tmux-prefix C-b
 
-  tx-new-window (macro @tmux-prefix c) ;; New window.
-  tx-new-session (macro @tmux-prefix S-s)
-  tx-detach (macro @tmux-prefix d) ;; Detach tmux.
-  tx-vi-mode (macro @tmux-prefix [) ;; Switch to tmux vi mode.
+  tx-new-window (macro @tmux-prefix 50 c) ;; New window.
+  tx-new-session (macro @tmux-prefix 50 S-s)
+  tx-detach (macro @tmux-prefix 50 d) ;; Detach tmux.
+  tx-vi-mode (macro @tmux-prefix 50 [) ;; Switch to tmux vi mode.
 
   ;; rename session/window/pane
-  tx-rn-session (macro @tmux-prefix S-4) ;; Rename session.
-  tx-rn-window (macro @tmux-prefix ,) ;; Rename window.
-  tx-rn-pane (macro @tmux-prefix u) ;; Rename pane.
+  tx-rn-session (macro @tmux-prefix 50 S-4) ;; Rename session.
+  tx-rn-window (macro @tmux-prefix 50 ,) ;; Rename window.
+  tx-rn-pane (macro @tmux-prefix 50 u) ;; Rename pane.
 
   ;; switch between last session/window/pane
-  tx-sw-session (macro @tmux-prefix S-a)
-  tx-sw-window (macro @tmux-prefix a)
-  tx-sw-pane (macro @tmux-prefix q)
+  tx-sw-session (macro @tmux-prefix 50 S-a)
+  tx-sw-window (macro @tmux-prefix 50 a)
+  tx-sw-pane (macro @tmux-prefix 50 q)
 
   ;; split pane
-  tx-splitv (macro @tmux-prefix S-\)
-  tx-splith (macro @tmux-prefix -)
+  tx-splitv (macro @tmux-prefix 50 S-\)
+  tx-splith (macro @tmux-prefix 50 -)
 
   ;; select session/window
-  tx-slcsession (macro @tmux-prefix s) ;; select session (bootstrap predefined layout), tmux use 'sesh' cli & herdr use 'herdr-plus' plugins
-  tx-slcworktree (macro @tmux-prefix w) ;; select worktree, in tmux using 'workmux dashboard' & herdr using native worktree picker
+  tx-slcsession (macro @tmux-prefix 50 s) ;; select session (bootstrap predefined layout), tmux use 'sesh' cli & herdr use 'herdr-plus' plugins
+  tx-slcworktree (macro @tmux-prefix 50 w) ;; select worktree, in tmux using 'workmux dashboard' & herdr using native worktree picker
 
   ;; kill session/window/pane
-  tx-kill-session (macro @tmux-prefix g)
-  tx-kill-window (macro @tmux-prefix S-7)
-  tx-kill-pane (macro @tmux-prefix x)
+  tx-kill-session (macro @tmux-prefix 50 g)
+  tx-kill-window (macro @tmux-prefix 50 S-7)
+  tx-kill-pane (macro @tmux-prefix 50 x)
 
   ;; switch window to {number}
-  tx-wdw-1 (macro @tmux-prefix Digit1)
-  tx-wdw-2 (macro @tmux-prefix Digit2)
-  tx-wdw-3 (macro @tmux-prefix Digit3)
-  tx-wdw-4 (macro @tmux-prefix Digit4)
-  tx-wdw-5 (macro @tmux-prefix Digit5)
-  tx-wdw-6 (macro @tmux-prefix Digit6)
-  tx-wdw-7 (macro @tmux-prefix Digit7)
-  tx-wdw-8 (macro @tmux-prefix Digit8)
+  tx-wdw-1 (macro @tmux-prefix 50 Digit1)
+  tx-wdw-2 (macro @tmux-prefix 50 Digit2)
+  tx-wdw-3 (macro @tmux-prefix 50 Digit3)
+  tx-wdw-4 (macro @tmux-prefix 50 Digit4)
+  tx-wdw-5 (macro @tmux-prefix 50 Digit5)
+  tx-wdw-6 (macro @tmux-prefix 50 Digit6)
+  tx-wdw-7 (macro @tmux-prefix 50 Digit7)
+  tx-wdw-8 (macro @tmux-prefix 50 Digit8)
 
   ;; pane navigation
-  tx-p-left (macro @tmux-prefix h)
-  tx-p-bottom (macro @tmux-prefix j)
-  tx-p-top (macro @tmux-prefix k)
-  tx-p-right (macro @tmux-prefix l)
+  tx-p-left (macro @tmux-prefix 50 h)
+  tx-p-bottom (macro @tmux-prefix 50 j)
+  tx-p-top (macro @tmux-prefix 50 k)
+  tx-p-right (macro @tmux-prefix 50 l)
 
   ;; resize pane
-  tx-rsz-right (macro @tmux-prefix right)
-  tx-rsz-left (macro @tmux-prefix left)
-  tx-rsz-up (macro @tmux-prefix up)
-  tx-rsz-bottom (macro @tmux-prefix down)
+  tx-rsz-right (macro @tmux-prefix 50 right)
+  tx-rsz-left (macro @tmux-prefix 50 left)
+  tx-rsz-up (macro @tmux-prefix 50 up)
+  tx-rsz-bottom (macro @tmux-prefix 50 down)
 
   ;; swap pane
-  tx-swap-prev (macro @tmux-prefix S-[)
-  tx-swap-next (macro @tmux-prefix S-])
+  tx-swap-prev (macro @tmux-prefix 50 S-[)
+  tx-swap-next (macro @tmux-prefix 50 S-])
 
   ;; plugins
-  tx-flash (macro @tmux-prefix S-f)
+  tx-flash (macro @tmux-prefix 50 S-f)
 )
 
 (deflayer tmux
