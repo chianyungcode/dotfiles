@@ -1,26 +1,27 @@
 ;; HERDR layer and aliases.
 (defalias
-  herdr-workspace-1 (macro C-b C-1)
-  herdr-workspace-2 (macro C-b C-2)
-  herdr-workspace-3 (macro C-b C-3)
-  herdr-workspace-4 (macro C-b C-4)
-  herdr-workspace-5 (macro C-b C-5)
-  herdr-workspace-6 (macro C-b C-6)
-  herdr-workspace-7 (macro C-b C-7)
-  herdr-workspace-8 (macro C-b C-8)
-  herdr-workspace-9 (macro C-b C-9)
+  herdr-workspace-1 (macro C-b 50 C-1)
+  herdr-workspace-2 (macro C-b 50 C-2)
+  herdr-workspace-3 (macro C-b 50 C-3)
+  herdr-workspace-4 (macro C-b 50 C-4)
+  herdr-workspace-5 (macro C-b 50 C-5)
+  herdr-workspace-6 (macro C-b 50 C-6)
+  herdr-workspace-7 (macro C-b 50 C-7)
+  herdr-workspace-8 (macro C-b 50 C-8)
+  herdr-workspace-9 (macro C-b 50 C-9)
 
-  herdr-agent-1 (macro C-b A-1)
-  herdr-agent-2 (macro C-b A-2)
-  herdr-agent-3 (macro C-b A-3)
-  herdr-agent-4 (macro C-b A-4)
-  herdr-agent-5 (macro C-b A-5)
-  herdr-agent-6 (macro C-b A-6)
-  herdr-agent-7 (macro C-b A-7)
-  herdr-agent-8 (macro C-b A-8)
-  herdr-agent-9 (macro C-b A-9)
+  herdr-agent-1 (macro C-b 50 A-1)
+  herdr-agent-2 (macro C-b 50 A-2)
+  herdr-agent-3 (macro C-b 50 A-3)
+  herdr-agent-4 (macro C-b 50 A-4)
+  herdr-agent-5 (macro C-b 50 A-5)
+  herdr-agent-6 (macro C-b 50 A-6)
+  herdr-agent-7 (macro C-b 50 A-7)
+  herdr-agent-8 (macro C-b 50 A-8)
+  herdr-agent-9 (macro C-b 50 A-9)
 
-  herdr-pane-zoom (macro C-b z)
+  herdr-pane-zoom (macro C-b 50 z)
+  herdr-sidebar (macro C-b 50 b)
 )
 
 (deflayer herdr
@@ -28,6 +29,6 @@
   grv  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  -  =  bspc
   tab  @herdr-workspace-1  @herdr-workspace-2  @herdr-workspace-3  @herdr-workspace-4  @herdr-workspace-5  @herdr-workspace-6  @herdr-workspace-7  @herdr-workspace-8  @herdr-workspace-9  XX  XX  XX  \
   caps  @herdr-agent-1  @herdr-agent-2  @herdr-agent-3  @herdr-agent-4  @herdr-agent-5  @herdr-agent-6  @herdr-agent-7  @herdr-agent-8  @herdr-agent-9  ;  '  ret
-  lsft  @herdr-pane-zoom  XX  XX  XX  XX  XX  XX  XX  XX  XX  rsft
+  lsft  @herdr-pane-zoom  XX  XX  XX  @herdr-sidebar  XX  XX  XX  XX  XX  rsft
   lctl  lmet  lalt  spc  ralt  rmet  rctl
 )
