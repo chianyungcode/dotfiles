@@ -20,7 +20,9 @@ different package manager implicitly.
 ## Package definitions
 
 Package declarations live in
-[`.chezmoidata/packages-system.toml`](../chezmoi/.chezmoidata/packages-system.toml).
+the manager-specific files under
+[`.chezmoidata/packages/system/`](../chezmoi/.chezmoidata/packages/system/):
+`homebrew.toml`, `mas.toml`, `apt.toml`, and `pacman.toml`.
 Each supported package manager has these feature groups where applicable:
 
 - `common`: always installed;
@@ -147,7 +149,8 @@ For each package, it:
 
 ## Applying package changes
 
-After changing [`packages-system.toml`](../chezmoi/.chezmoidata/packages-system.toml),
+After changing a manager-specific file under
+[`packages/system/`](../chezmoi/.chezmoidata/packages/system/),
 inspect the rendered result before applying it to a real machine:
 
 ```bash

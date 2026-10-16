@@ -1,0 +1,67 @@
+[packages]
+  [packages.apt]
+    to_remove = []
+
+    [packages.apt.common]
+      packages = [
+        # System Essentials
+        "apt-transport-https",
+        "curl",
+        "dnsutils",
+        "logrotate",
+        "nano",
+        "needrestart",
+        "net-tools",
+        "openssh-server",
+        "p7zip-full",
+        "sudo",
+        "tzdata",
+        "unzip",
+        "wget",
+        "xz-utils",
+        "zsh",
+
+        # CLI Utilities
+        "bat",    # cat with syntax highlighting and Git integration
+        "figlet",
+        "eza",
+        "lolcat",
+        "mc",     # Midnight Commander
+        "ncdu",   # NCurses Disk Usage
+
+        # Git & Version Control
+        "git",
+        "git-extras",
+
+        # Security
+        "gnupg",
+        "gpg",
+      ]
+
+    [packages.apt.development]
+      packages = [
+        # Essential build dependencies for VPS development
+        "build-essential",
+        "pkg-config",
+        "libssl-dev",
+        "fd-find",
+        "fzf",
+        "jq",
+        "ripgrep",
+        "sd",
+        "yq",
+      ]
+
+    [packages.apt.homelab]
+      packages = ["iperf"]
+
+    [packages.apt.personal]
+      packages = [
+        # Development conveniences
+        "fd-find",
+        "fzf",
+        "jq",
+        "ripgrep",
+        "sd",
+        "yq",
+      ]

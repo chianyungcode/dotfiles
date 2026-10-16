@@ -17,7 +17,7 @@
   #   download_url = "https://tunaformac.com/download/latest"
   #   type         = "dmg"
   #
-  # # blur external 
+  # # blur external
   # [[macos_external_app]]
   #   app_name     = "monocle"
   #   download_url = "https://files.heyiam.dk/updates/Monocle-3-0-3.dmg"

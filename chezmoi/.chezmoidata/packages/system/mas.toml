@@ -1,0 +1,44 @@
+[packages]
+  [packages.mas]
+    [packages.mas.common]
+      apps = []
+
+    [packages.mas.development]
+      apps = []
+
+    [packages.mas.homelab]
+      apps = []
+
+    [packages.mas.personal]
+      apps = [
+        # Utility
+        "1355679052", # Dropover
+        "6451349778", # Rapidmg
+        "6474854386", # Launchpallete
+        "6698876601", # Folder preview
+        "6532621020", # IP address in menubar
+        # "6476907452", # Applight (app launcher)
+        # "1502839586", # Hand mirror
+        # "1551462255", # Mouseboost
+        # "497799835",  # Velja
+        # "6444667067", # Hyperduck
+        # "1604176982", # Onething
+        # "6743316600", # Subscription Day
+        #"6746757189", # Corner Time
+
+        # Productivity
+        # "6739802604", # Folo
+        "1609960918", # Jomo
+        "966085870",  # Ticktick
+        # "1666327168", # Spaced
+        # "6739781207", # Pieoneer
+
+        # Paid / Optional
+        # "6471482080", # Cursor Teleporter by Apptorium
+        # "6748582349", # Spatial Dock
+
+        # Entertainment
+        # "1606145041", # Sleeve
+      ]
+
+      # APT package manager

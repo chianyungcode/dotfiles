@@ -123,10 +123,20 @@ done
 base_data_file="$tmp_dir/base.json"
 chezmoi -S "$source_dir" data >"$base_data_file"
 
-[[ -f "$source_dir/.chezmoidata/packages-system.toml" ]] ||
-	fail "packages-system.toml is missing"
-[[ -f "$source_dir/.chezmoidata/packages-language.toml" ]] ||
-	fail "packages-language.toml is missing"
+for data_path in \
+	directories.toml packages/github-binaries.toml packages/languages.toml \
+	cli-tool-setup.toml ssh-hosts.toml apps/cask-app-names.toml \
+	apps/macos-external-apps.toml packages/system/apt.toml \
+	packages/system/homebrew.toml packages/system/mas.toml packages/system/pacman.toml; do
+	[[ -f "$source_dir/.chezmoidata/$data_path" ]] ||
+		fail "new data path is missing: $data_path"
+done
+for data_path in \
+	constants.toml binaries.toml packages-language.toml imperative-cli-tools.toml \
+	remote_servers.toml diff-name-apps.toml macos-external-apps.toml packages-system.toml; do
+	[[ ! -e "$source_dir/.chezmoidata/$data_path" ]] ||
+		fail "legacy data path still exists: $data_path"
+done
 [[ ! -e "$source_dir/.chezmoidata/packages.toml" ]] ||
 	fail "legacy packages.toml still exists"
 
@@ -157,7 +167,7 @@ mac_data="$tmp_dir/mac.json"
 ubuntu_data="$tmp_dir/ubuntu.json"
 arch_data="$tmp_dir/arch.json"
 make_profile "$mac_data" darwin darwin arm64 true true false true
-make_profile "$ubuntu_data" linux ubuntu amd64 true false false false
+make_profile "$ubuntu_data" linux ubuntu amd64 true true false false
 make_profile "$arch_data" linux arch amd64 true true false true
 
 bootstrap_source="$source_dir/.chezmoiscripts/run_once_before_00-bootstrap.sh.tmpl"
@@ -322,7 +332,7 @@ done
 imperative="$tmp_dir/mac-imperative-cli-tools.sh"
 assert_contains "$imperative" 'already satisfied'
 assert_contains "$imperative" 'is not installed'
-assert_not_contains "$imperative" 'herdr plugin install'
+assert_contains "$imperative" 'herdr plugin install'
 
 actual_scripts="$tmp_dir/actual-scripts.txt"
 expected_scripts="$tmp_dir/expected-scripts.txt"

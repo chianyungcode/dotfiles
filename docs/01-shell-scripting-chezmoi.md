@@ -59,15 +59,15 @@ being installed as files themselves.
 | File | Purpose |
 | --- | --- |
 | `accounts.toml` | Identity profiles containing Git author and GitHub account settings. |
-| `binaries.toml` | Metadata for standalone binaries downloaded from GitHub releases. |
-| `constants.toml` | Shared directory constants such as repository, SSH-key, and user-bin paths. |
-| `diff-name-apps.toml` | Homebrew cask-to-application-name mappings used when checking existing macOS apps. |
-| `imperative-cli-tools.toml` | Checks and commands for CLI plugins or extensions that need imperative installation. |
-| `macos-external-apps.toml` | macOS application download records consumed by the external-app template. |
+| `cli-tool-setup.toml` | Checks and commands for CLI plugins or extensions that need imperative installation. |
+| `directories.toml` | Shared directory constants such as repository, SSH-key, and user-bin paths. |
+| `apps/cask-app-names.toml` | Homebrew cask-to-application-name mappings used when checking existing macOS apps. |
+| `apps/macos-external-apps.toml` | macOS application download records consumed by the external-app template. |
 | `onepassword.toml` | 1Password item references and document values used by secret-aware templates. |
-| `packages-language.toml` | Python, Node, Cargo, and runtime package declarations. |
-| `packages-system.toml` | Homebrew, Mac App Store, APT, and Pacman/`paru` package declarations. |
-| `remote_servers.toml` | Remote host, SSH, key-generation, and 1Password item settings. |
+| `packages/github-binaries.toml` | Metadata for standalone binaries downloaded from GitHub releases. |
+| `packages/languages.toml` | Python, Node, Cargo, and runtime package declarations. |
+| `packages/system/{apt,homebrew,mas,pacman}.toml` | System package declarations separated by package manager. |
+| `ssh-hosts.toml` | Remote host, SSH, key-generation, and 1Password item settings. |
 | `shell_env.toml` | XDG paths, Homebrew paths, common environment variables, and PATH entries. |
 
 The generated machine configuration from `.chezmoi.toml.tmpl` adds values such
