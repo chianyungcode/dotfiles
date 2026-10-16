@@ -134,7 +134,7 @@
 
 ## Integration
 
-- `chezmoi/.chezmoidata/packages-language.toml`: Declares the language runtimes
+- `chezmoi/.chezmoidata/packages/languages.toml`: Declares the language runtimes
   and versions managed by Proto.
 - `chezmoi/.chezmoitemplates/scripts/language/runtimes.bash`: Installs Proto
   on demand and pins the configured runtimes globally.

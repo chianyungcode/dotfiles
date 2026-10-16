@@ -60,7 +60,7 @@ After creating the item, manually fill in the following fields in 1Password:
 ### Step 3: Add Server Configuration
 
 Add your remote server configuration to
-`./chezmoi/.chezmoidata/remote_servers.toml`. The file holds four tables
+`./chezmoi/.chezmoidata/ssh-hosts.toml`. The file holds four tables
 — one per role — so workstation, development, deployment, and git-host
 entries stay separated:
 
