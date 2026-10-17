@@ -453,7 +453,5 @@
     "open -a \"/Applications/Ghostty.app/\"",
   ] }
 
-  "Alt + Shift + D" = "debug" # prints layout tree
-
   "Alt + Ctrl + Q" = "save_and_exit"
   "Alt + Ctrl + S" = "serialize"
