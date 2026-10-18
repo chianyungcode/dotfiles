@@ -1,0 +1,3 @@
+{{ range $key, $value := .shell_env.sbx -}}
+set -gx {{ $key }} "{{ $value }}"
+{{ end -}}
