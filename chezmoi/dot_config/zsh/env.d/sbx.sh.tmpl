@@ -1,0 +1,3 @@
+{{ range $key, $value := .shell_env.sbx -}}
+export {{ $key }}="{{ $value }}"
+{{ end -}}
