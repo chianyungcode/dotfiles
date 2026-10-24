@@ -23,9 +23,10 @@
   thl-ret-herdr (tap-hold $tap-time $hold-time ret @lwh_herdr)
   thl-sls-tmux (tap-hold $tap-time $hold-time / @lwh_tmux)
   thl-z-tmux (tap-hold $tap-time $hold-time z @lwh_tmux)
+  thl-semicolon-tmux (tap-hold $tap-time $hold-time ; @lwh_tmux)
 
   ;; Home-row modifiers and sublayer access.
-  a  (tap-hold $tap-time $hold-time a (layer-while-held sublayers))
+  a  (tap-hold $tap-time $hold-time a @lwh_tmux)
   ;  (tap-hold $tap-time $hold-time ; (layer-while-held sublayers))
   s (tap-hold $tap-time $hold-time s lctl)
   d (tap-hold $tap-time $hold-time d lalt)
@@ -46,7 +47,7 @@
   🔅  🔆  @mc  @sls  @dtn  @dnd  ◀◀  ▶⏸  ▶▶  🔇  🔉  🔊
   grv  1  2  3  4  5  6  7  8  9  0  -  =  bspc
   @lmet_tab  q  w  e  r  t  y  u  i  o  p  [  ]  \
-  @thl-caps-nav  @a  @s  @d  @f  g  h  @j  @k  @l  @;  '  @thl-ret-herdr
+  @thl-caps-nav  @a  @s  @d  @f  g  h  @j  @k  @l  @thl-semicolon-tmux  '  @thl-ret-herdr
   lsft  @thl-z-tmux  x  c  v  b  n  m  ,  .  @thl-sls-tmux  rsft
   lctl  lmet  lalt  @thl-spc-symbols  ralt  rmet  rctl
 )
