@@ -1,0 +1,1 @@
+-- Add single-key shortcuts here with rex.bind("<key>", "<action>").
