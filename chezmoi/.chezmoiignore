@@ -14,6 +14,11 @@ Library
 .config/borders
 {{ end }}
 
+# Rex is macOS-only and configured only on personal machines.
+{{ if or (ne .chezmoi.os "darwin") (not .features.personal) }}
+.config/rex
+{{ end }}
+
 # Ignore .config/hypr unless the OS is Linux and the distro is Arch.
 # This means:
 # If the OS is NOT Linux OR the distro is NOT Arch, then ignore .config/hypr.
