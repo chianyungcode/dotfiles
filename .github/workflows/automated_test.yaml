@@ -9,6 +9,7 @@ on:
       - ".github/actions/**"
       - ".chezmoiroot"
       - "chezmoi/**"
+      - "tests/chezmoi-render-config.sh"
     branches:
       - master
       - main
@@ -22,6 +23,7 @@ on:
       - ".github/actions/**"
       - ".chezmoiroot"
       - "chezmoi/**"
+      - "tests/chezmoi-render-config.sh"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -33,7 +35,7 @@ jobs:
       CI: "true"
     # runs-on: ubuntu-latest
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         os: ["ubuntu-latest", "macos-latest"]
     runs-on: ${{ matrix.os }}
@@ -100,6 +102,20 @@ jobs:
       - name: Install chezmoi
         run: |
           sh -c "$(curl -fsLS get.chezmoi.io)"
+
+      - name: Install render test dependencies
+        run: |
+          if [[ "$RUNNER_OS" == "Linux" ]]; then
+            sudo apt-get update
+            sudo apt-get install -y jq ripgrep
+          else
+            brew install jq ripgrep
+          fi
+
+      - name: Validate configuration render matrix
+        run: |
+          export PATH="$PWD/bin:$PATH"
+          ./tests/chezmoi-render-config.sh
 
       # ----------------------------------------------
       # Run chezmoi apply

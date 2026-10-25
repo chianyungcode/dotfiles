@@ -104,6 +104,7 @@ workstation_data="$tmp_dir/workstation.json"
 work_mac_data="$tmp_dir/work-mac.json"
 custom_identity_data="$tmp_dir/custom-identity.json"
 custom_xdg_data="$tmp_dir/custom-xdg.json"
+ci_data="$tmp_dir/ci.json"
 
 make_data "$server_data" "$server_base_data" server false false false false none false /tmp/chezmoi-server
 make_data "$development_server_data" "$server_base_data" server true false false false none false /tmp/chezmoi-development
@@ -113,14 +114,22 @@ make_data "$workstation_data" "$workstation_base_data" workstation true true tru
 make_data "$work_mac_data" "$workstation_base_data" workstation true false false true none false /tmp/chezmoi-work-mac
 make_data "$custom_identity_data" "$custom_base_data" workstation true false true true none false /tmp/chezmoi-custom
 make_data "$custom_xdg_data" "$workstation_base_data" workstation true false true true none false /tmp/custom-xdg
+# CI must skip encrypted targets even when the profile enables them.
+jq '.encrypted_files.enabled = true' "$workstation_data" >"$ci_data"
 
 render_apply server "$server_config_file" "$server_data"
 render_apply development-server "$server_config_file" "$development_server_data"
 render_apply homelab-server "$server_config_file" "$homelab_server_data"
 render_apply workstation "$workstation_config_file" "$workstation_data"
 render_apply custom-identity "$custom_config_file" "$custom_identity_data"
-render_apply ci "$server_config_file" "$server_data" true
+render_apply ci "$workstation_config_file" "$ci_data" true
 render_apply custom-xdg "$workstation_config_file" "$custom_xdg_data"
+
+# Exercise macOS-only targets even when this test runs on Linux.
+jq '.chezmoi.os = "darwin"' "$server_data" >"$tmp_dir/mac-server.json"
+jq '.chezmoi.os = "darwin"' "$workstation_data" >"$tmp_dir/mac-workstation.json"
+render_apply mac-server "$server_config_file" "$tmp_dir/mac-server.json"
+render_apply mac-workstation "$workstation_config_file" "$tmp_dir/mac-workstation.json"
 
 # Company Mac (development + graphical, no personal) must ignore
 # personal-only configs while keeping dev graphical terminals.

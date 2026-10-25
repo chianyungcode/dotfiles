@@ -58,14 +58,19 @@ Library/Application Support/Leader Key
 
 {{- $is_ci := ne (env "CI") "" -}}
 {{- $skip_encrypted := or (not .encrypted_files.enabled) $is_ci -}}
+{{ if or (ne .secrets.provider "onepassword") $is_ci }}
+# This environment file requires 1Password credentials.
+.config/hermes/.env
+{{ end }}
 {{ if $skip_encrypted }}
 # .chezmoiignore matches target paths, so source attributes like `encrypted_`
 # are stripped before matching. Keep Age-encrypted targets out of secretless
 # machines and CI so no Age identity is required.
 .agents/skills/**
 .config/espanso/match/**
-.config/herdr/plugins/config/herdr-spreader/config.yaml.age
-.config/herdr/plugins/config/herdr-spreader/dotnix.yaml.age
+# Age suffixes remain in target paths. Cover every encrypted .age file,
+# including new targets added outside the directories above.
+**/*.age
 .config/fish/env.d/030-secrets-age.fish
 .config/zsh/env.d/030-secrets-age.sh
 {{ end }}
