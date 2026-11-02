@@ -79,6 +79,7 @@ Library/Application Support/Leader Key
 # Skip private provider-backed targets in CI.
 .agents
 .codex
+.claude
 .config/espanso/match/ai.yaml
 .config/espanso/match/email.yaml
 .config/espanso/match/macos.yaml
