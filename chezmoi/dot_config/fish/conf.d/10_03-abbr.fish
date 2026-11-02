@@ -532,7 +532,7 @@ abbr -a jgps --set-cursor 'jj git push -b %'
 abbr -a jgpsm --set-cursor 'jj git push -b main'
 
 abbr -a jl 'jj log'
-abbr -a jla "jj log 'all()'"
+abbr -a jla "jj log -r 'all()'"
 abbr -a jlr --set-cursor "jj log -r '%'"
 abbr -a jlt --set-cursor "jj log -T %"
 abbr -a jls --set-cursor 'jj log -s'

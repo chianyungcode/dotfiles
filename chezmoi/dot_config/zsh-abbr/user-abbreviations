@@ -412,7 +412,7 @@ abbr jgpsm="jj git push -b main"
 
 abbr jl="jj log"
 abbr jlr="jj log -r '%'"
-abbr jla="jj log 'all()'"
+abbr jla="jj log -r 'all()'"
 abbr jlt="jj log -T %"
 abbr jls='jj log -s -r "@%"'
 abbr jlsp='jj log -s -p -r "@%"'
