@@ -204,7 +204,6 @@
         # Terminal Multiplexer
         # "gitmux",                # Git status bar in tmux
         "herdr",      # Tmux alternative with AI native integration
-        "herdr-plus",
         # "lazy-tmux",
         "raine/workmux/workmux",
         "sesh",                  # Tmux session manager
