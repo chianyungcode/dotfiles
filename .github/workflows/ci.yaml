@@ -37,17 +37,40 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install tools
+        env:
+          GH_TOKEN: ${{ github.token }}
+          # Tests expect fish 4 key notation; Ubuntu's apt only has fish 3.
+          FISH_VERSION: "4.9.3"
+          JJ_VERSION: "v0.46.0"
         run: |
-          sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin"
-          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          bin="$HOME/.local/bin"
+          mkdir -p "$bin"
+          echo "$bin" >> "$GITHUB_PATH"
+          sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$bin"
+
           sudo apt-get update -qq
-          sudo apt-get install -y -qq ripgrep
+          sudo apt-get install -y -qq ripgrep shellcheck shfmt zsh
 
-      - name: Validate init data
-        run: ./tests/chezmoi-init-data.sh
+          cd "$RUNNER_TEMP"
+          gh release download "$FISH_VERSION" -R fish-shell/fish-shell \
+            -p "fish-$FISH_VERSION-linux-x86_64.tar.xz"
+          tar -xJf "fish-$FISH_VERSION-linux-x86_64.tar.xz" -C "$bin" fish
+          gh release download "$JJ_VERSION" -R jj-vcs/jj \
+            -p "jj-$JJ_VERSION-x86_64-unknown-linux-musl.tar.gz"
+          tar -xzf "jj-$JJ_VERSION-x86_64-unknown-linux-musl.tar.gz" -C "$bin" ./jj
 
-      - name: Validate configuration render matrix
-        run: ./tests/chezmoi-render-config.sh
+      - name: Run test suite
+        run: |
+          status=0
+          for test in tests/*.sh tests/chezmoi-init-prompts.py; do
+            # Needs network and a token; runs as its own step below.
+            [[ "$test" == tests/chezmoi-package-names.sh ]] && continue
+            echo "::group::$test"
+            if [[ "$test" == *.py ]]; then python3 "$test"; else bash "$test"; fi ||
+              { echo "::error::$test failed"; status=1; }
+            echo "::endgroup::"
+          done
+          exit "$status"
 
       - name: Validate package names
         env:
