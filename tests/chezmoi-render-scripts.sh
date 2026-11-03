@@ -2,6 +2,10 @@
 
 set -euo pipefail
 
+# CI runners export CI=true, which makes templates skip CI-gated work.
+# Cases that need CI behavior set it explicitly.
+unset CI
+
 fail() {
 	printf '%s\n' "$1" >&2
 	exit 1

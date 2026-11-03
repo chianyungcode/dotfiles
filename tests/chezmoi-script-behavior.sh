@@ -2,6 +2,10 @@
 
 set -euo pipefail
 
+# CI runners export CI=true, which makes templates skip CI-gated work.
+# Cases that need CI behavior set it explicitly.
+unset CI
+
 repo_root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 source_dir="$repo_root/chezmoi"
 tmp_dir=$(mktemp -d)
