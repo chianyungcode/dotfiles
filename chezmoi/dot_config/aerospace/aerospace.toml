@@ -96,6 +96,10 @@ start-at-login                                                  = false
   run       = "move-node-to-workspace 1"
 
 [[on-window-detected]]
+  if.app-id = "com.superlogical.rex"
+  run       = "move-node-to-workspace 1"
+
+[[on-window-detected]]
   if.app-id = "com.apidog.app"
   run       = "move-node-to-workspace 2"
 
@@ -233,4 +237,12 @@ start-at-login                                                  = false
 
 [[on-window-detected]]
   if.app-id = "com.alienator88.Pearcleaner"
+  run       = ["layout floating"]
+
+[[on-window-detected]]
+  if.app-id = "com.tinycast.app"
+  run       = ["layout floating"]
+
+[[on-window-detected]]
+  if.app-id = "com.apple.systempreferences"
   run       = ["layout floating"]

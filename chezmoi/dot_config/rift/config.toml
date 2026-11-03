@@ -263,15 +263,15 @@
   # floating = true where aerospace runs "layout floating".
   app_rules = [
     # Workspace 1 (rift 0) — terminals / editors / 1Password
-    { app_id = "com.1password.1password", workspace = 0, floating = false },
+    { app_id = "com.1password.1password", workspace = 0, floating = true },
     { app_id = "com.github.wez.wezterm", workspace = 0, floating = false },
     { app_id = "com.mitchellh.ghostty", workspace = 0, floating = false },
     { app_id = "dev.zed.Zed", workspace = 0, floating = false },
     { app_id = "com.jetbrains.WebStorm", workspace = 0, floating = false },
+    { app_id = "com.superlogical.rex", workspace = 0, floating = false },
 
-    # Workspace 2 (rift 1) — browsers / DB / VMs / API
+    # Workspace 2 (rift 1) — browsers / DB / API
     { app_id = "com.apidog.app", workspace = 1, floating = false },
-    { app_id = "dev.kdrag0n.MacVirt", workspace = 1, floating = false },
     { app_id = "com.jetbrains.datagrip", workspace = 1, floating = false },
     { app_id = "com.todesktop.230313mzl4w4u92", workspace = 1, floating = false }, # Cursor
     { app_id = "company.thebrowser.Browser", workspace = 1, floating = false },    # Arc
@@ -282,21 +282,26 @@
     { app_id = "com.google.Chrome", workspace = 1, floating = false },
     { app_id = "net.imput.helium", workspace = 1, floating = false },
     { app_id = "ai.perplexity.comet", workspace = 1, floating = false },
+    { app_id = "at.studio.AsideBrowser", workspace = 1, floating = false },
 
-    # Workspace 4 (rift 3) — notes / knowledge
+    # Workspace 3 (rift 2) — AI / VMs
+    { app_id = "com.openai.codex", workspace = 2, floating = false },
+    { app_id = "dev.kdrag0n.MacVirt", workspace = 2, floating = false },
+
+    # Workspace 4 (rift 3) — notes / knowledge / tasks / issues
     { app_id = "notion.id", workspace = 3, floating = false },
     { app_id = "md.obsidian", workspace = 3, floating = false },
     { app_id = "io.capacities.app", workspace = 3, floating = false },
 
-    # Workspace 5 (rift 4) — tasks / issues
-    { app_id = "com.linear", workspace = 4, floating = false },
-    { app_id = "com.TickTick.task.mac", workspace = 4, floating = false },
+    { app_id = "com.linear", workspace = 3, floating = false },
+    { app_id = "com.TickTick.task.mac", workspace = 3, floating = false },
 
     # Workspace 6 (rift 5) — media / utilities (many floating)
     { app_id = "com.catforce.timemator-setapp", workspace = 5, floating = true },
     { app_id = "com.figma.Desktop", workspace = 5, floating = false },
     { app_id = "com.apple.Music", workspace = 5, floating = true },
     { app_id = "com.manytricks.Moom", workspace = 5, floating = true },
+    { app_id = "com.jinghaoshe.qspace.pro", workspace = 5, floating = true },
     { app_id = "com.philipyoungg.session-setapp", workspace = 5, floating = true },
     { app_id = "io.raindrop.macapp", workspace = 5, floating = false },
     { app_id = "com.apple.ActivityMonitor", workspace = 5, floating = true },
@@ -310,11 +315,10 @@
     { app_id = "net.coldx.App-for-WhatsApp-setapp", workspace = 7, floating = false },
     { app_id = "com.tdesktop.Telegram", workspace = 7, floating = true },
 
-    # Float only (no workspace assignment in aerospace)
+    # Float only (no workspace assignment)
     { app_id = "com.alienator88.Pearcleaner", floating = true },
     { app_id = "com.tinycast.app", floating = true },
     { app_id = "com.apple.systempreferences", floating = true },
-    { app_id = "com.jinghaoshe.qspace.pro", floating = true },
   ]
 
 # Modifier combinations that can be reused in key bindings
