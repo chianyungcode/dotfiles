@@ -77,6 +77,13 @@ The matrix renders secretless server and development data, a graphical
 workstation, CI-derived ignores, and custom XDG paths into temporary
 destinations. It does not install packages or require `op` credentials.
 
+To catch package typos before a slow apply, verify every Homebrew and APT
+entry resolves upstream (needs network and `gh`):
+
+```bash
+./tests/chezmoi-package-names.sh
+```
+
 ## Usage
 
 - **Edit Files**: Modify files in `~/.local/share/chezmoi/` and run
