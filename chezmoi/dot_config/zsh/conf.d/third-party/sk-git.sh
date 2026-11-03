@@ -310,24 +310,34 @@ if [[ -o interactive ]] && (( $+commands[git] && $+commands[sk] )); then
   zle -N sk-git-each-ref-widget
   zle -N sk-git-worktrees-widget
 
-  for keymap in emacs viins vicmd; do
-    bindkey -M "$keymap" '^g^h' sk-git-hashes-widget
-    bindkey -M "$keymap" '^gh' sk-git-hashes-widget
-    bindkey -M "$keymap" '^g^f' sk-git-files-widget
-    bindkey -M "$keymap" '^gf' sk-git-files-widget
-    bindkey -M "$keymap" '^g^b' sk-git-branches-widget
-    bindkey -M "$keymap" '^gb' sk-git-branches-widget
-    bindkey -M "$keymap" '^g^t' sk-git-tags-widget
-    bindkey -M "$keymap" '^gt' sk-git-tags-widget
-    bindkey -M "$keymap" '^g^r' sk-git-remotes-widget
-    bindkey -M "$keymap" '^gr' sk-git-remotes-widget
-    bindkey -M "$keymap" '^g^s' sk-git-stashes-widget
-    bindkey -M "$keymap" '^gs' sk-git-stashes-widget
-    bindkey -M "$keymap" '^g^l' sk-git-reflogs-widget
-    bindkey -M "$keymap" '^gl' sk-git-reflogs-widget
-    bindkey -M "$keymap" '^g^e' sk-git-each-ref-widget
-    bindkey -M "$keymap" '^ge' sk-git-each-ref-widget
-    bindkey -M "$keymap" '^g^w' sk-git-worktrees-widget
-    bindkey -M "$keymap" '^gw' sk-git-worktrees-widget
-  done
+  __sk_git_bind_keys() {
+    local keymap
+    for keymap in emacs viins vicmd; do
+      bindkey -M "$keymap" '^g^h' sk-git-hashes-widget
+      bindkey -M "$keymap" '^gh' sk-git-hashes-widget
+      bindkey -M "$keymap" '^g^f' sk-git-files-widget
+      bindkey -M "$keymap" '^gf' sk-git-files-widget
+      bindkey -M "$keymap" '^g^b' sk-git-branches-widget
+      bindkey -M "$keymap" '^gb' sk-git-branches-widget
+      bindkey -M "$keymap" '^g^t' sk-git-tags-widget
+      bindkey -M "$keymap" '^gt' sk-git-tags-widget
+      bindkey -M "$keymap" '^g^r' sk-git-remotes-widget
+      bindkey -M "$keymap" '^gr' sk-git-remotes-widget
+      bindkey -M "$keymap" '^g^s' sk-git-stashes-widget
+      bindkey -M "$keymap" '^gs' sk-git-stashes-widget
+      bindkey -M "$keymap" '^g^l' sk-git-reflogs-widget
+      bindkey -M "$keymap" '^gl' sk-git-reflogs-widget
+      bindkey -M "$keymap" '^g^e' sk-git-each-ref-widget
+      bindkey -M "$keymap" '^ge' sk-git-each-ref-widget
+      bindkey -M "$keymap" '^g^w' sk-git-worktrees-widget
+      bindkey -M "$keymap" '^gw' sk-git-worktrees-widget
+    done
+  }
+
+  # Bind after deferred plugins so none of them can override these keys.
+  if (( $+functions[zsh-defer] )); then
+    zsh-defer __sk_git_bind_keys
+  else
+    __sk_git_bind_keys
+  fi
 fi
