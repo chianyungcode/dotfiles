@@ -120,8 +120,13 @@ for command_name in bash chezmoi jq rg shellcheck shfmt; do
 		}
 done
 
+# Generate a config instead of reading the machine's own, so the base data
+# (including .identity and .xdg) is the same locally and in CI.
+config_file="$tmp_dir/chezmoi.toml"
+chezmoi -S "$source_dir" -c "$tmp_dir/missing.toml" execute-template --init \
+	--file "$source_dir/.chezmoi.toml.tmpl" >"$config_file"
 base_data_file="$tmp_dir/base.json"
-chezmoi -S "$source_dir" data >"$base_data_file"
+chezmoi -S "$source_dir" -c "$config_file" data >"$base_data_file"
 
 for data_path in \
 	directories.toml packages/github-binaries.toml packages/languages.toml \

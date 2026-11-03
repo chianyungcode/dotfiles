@@ -69,6 +69,8 @@ set -euo pipefail
 printf '%s\n' "$1" >"$SK_GIT_TEST_OPEN"
 STUB
 chmod +x "$stub_bin/open"
+# Linux resolves the opener as xdg-open; macOS uses open.
+ln -s "$stub_bin/open" "$stub_bin/xdg-open"
 
 cat >"$stub_bin/ssh" <<'STUB'
 #!/usr/bin/env bash

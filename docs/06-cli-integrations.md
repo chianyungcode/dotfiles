@@ -71,7 +71,7 @@
 
 - `chezmoi/dot_config/fish/conf.d/99_skim.fish`: Uses fd to enumerate hidden
   files and directories, excluding `.git`, for the Fish `sk` picker.
-- `chezmoi/dot_config/zsh/conf.d/third-party/99_skim.sh`: Uses fd to generate
+- `chezmoi/dot_config/zsh/conf.d/third-party/skim.sh`: Uses fd to generate
   candidates for the Zsh `sk` `Ctrl-T` widget.
 - `chezmoi/dot_config/zsh/conf.d/third-party/fzf.sh.tmpl`: Uses fd for fzf
   path and directory completion and for the default file candidate list.
@@ -100,7 +100,7 @@
 - `chezmoi/dot_config/fish/conf.d/90_sk-git.fish`: Provides native Fish
   `sk-git` widgets that paste selected commit hashes (`Ctrl-G H`) or local
   branches (`Ctrl-G B`) into the command line with Git previews.
-- `chezmoi/dot_config/zsh/conf.d/third-party/90_sk-git.sh`: Provides the
+- `chezmoi/dot_config/zsh/conf.d/third-party/sk-git.sh`: Provides the
   native Zsh `sk` Git integration, preserving pickers for files, branches,
   tags, remotes, hashes, stashes, reflogs, each-ref, and worktrees. In the
   hashes picker, `Ctrl-O` opens the selected commit in a browser and `Ctrl-D`
@@ -187,7 +187,7 @@
 - `chezmoi/dot_config/fish/conf.d/90_sk-git.fish`: Uses `sk` for multi-select
   Git commit and local-branch pickers with adaptive previews and Fish-native
   key bindings.
-- `chezmoi/dot_config/zsh/conf.d/third-party/90_sk-git.sh`: Provides the
+- `chezmoi/dot_config/zsh/conf.d/third-party/sk-git.sh`: Provides the
   native Zsh `sk` Git picker set for files, branches, tags, remotes, hashes,
   stashes, reflogs, each-ref, and worktrees; the hashes picker keeps `Ctrl-O`
   for browser opening and `Ctrl-D` for diffs.
@@ -197,7 +197,7 @@
   opens all marked files in `$EDITOR`, `Ctrl-C` keeps the default cancellation
   behavior, and `Ctrl-D` changes into a highlighted directory before reopening
   the picker.
-- `chezmoi/dot_config/zsh/conf.d/third-party/99_skim.sh`: Binds `Ctrl-T` to a
+- `chezmoi/dot_config/zsh/conf.d/third-party/skim.sh`: Binds `Ctrl-T` to a
   Zsh Line Editor widget that uses fd for candidates and bat/lla for previews;
   `Ctrl-E` opens all marked files in `$EDITOR`, `Ctrl-C` keeps the default
   cancellation behavior, and `Ctrl-D` changes into a highlighted directory

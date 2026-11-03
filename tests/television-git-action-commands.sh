@@ -53,6 +53,7 @@ git init -q --bare "$remote"
 git -C "$repo" config user.name "Television test"
 git -C "$repo" config user.email "television@example.invalid"
 git -C "$repo" config commit.gpgsign false
+git -C "$repo" config tag.gpgsign false
 printf 'base\n' >"$repo/file with spaces.txt"
 git -C "$repo" add "file with spaces.txt"
 git -C "$repo" commit -qm "base"
