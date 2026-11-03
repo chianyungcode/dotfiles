@@ -1,0 +1,117 @@
+---
+# Slow, real `chezmoi apply` on fresh runners (macOS installs ~140 formulae).
+# Runs only when install logic changes on main, weekly to catch upstream
+# drift (renamed/removed packages), or on demand:
+#   gh workflow run e2e.yaml --ref <branch>
+name: "E2E Apply"
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 2 * * 1"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/e2e.yaml"
+      - ".chezmoiroot"
+      - "chezmoi/.chezmoi.toml.tmpl"
+      - "chezmoi/.chezmoidata/packages/**"
+      - "chezmoi/.chezmoidata/cli-tool-setup.toml"
+      - "chezmoi/.chezmoiscripts/**"
+      - "chezmoi/.chezmoitemplates/scripts/**"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  apply:
+    name: chezmoi apply (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["ubuntu-latest", "macos-latest"]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 40
+    env:
+      CI: "true"
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+      HOMEBREW_NO_ANALYTICS: "1"
+      HOMEBREW_NO_ENV_HINTS: "1"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Stage source and config
+        run: |
+          mkdir -p "$HOME/.local/share/chezmoi" "$HOME/.config/chezmoi"
+          cp -a . "$HOME/.local/share/chezmoi"
+
+          cat > "$HOME/.config/chezmoi/chezmoi.toml" << EOF
+          [data.identity]
+              profile          = "server-minimal"
+              git_name         = "chianyungcode-server"
+              git_email        = "chianyungcode-server@local.invalid"
+              github_username  = ""
+              signing_key      = ""
+              github_token     = ""
+
+          [data.machine]
+              role = "server"
+
+          [data.features]
+              development = true
+              homelab     = false
+              personal    = false
+              graphical   = false
+
+          [data.secrets]
+              provider = "none"
+
+          [data.encrypted_files]
+              enabled = false
+
+          [data.xdg]
+              cache_home  = "$HOME/.cache"
+              config_home = "$HOME/.config"
+              data_home   = "$HOME/.local/share"
+              state_home  = "$HOME/.local/state"
+          EOF
+
+      - name: Install chezmoi
+        run: |
+          sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Run chezmoi apply
+        run: |
+          chezmoi --source "$HOME/.local/share/chezmoi/chezmoi" \
+            --config "$HOME/.config/chezmoi/chezmoi.toml" apply
+
+      - name: Confirm dotfiles are installed
+        run: |
+          existing_files=(.config/zsh/.zshrc .bashrc .config/git/config .ssh/config)
+          missing_files=()
+          if [[ "$RUNNER_OS" == "macOS" ]]; then
+            existing_files+=(.config/nano/nanorc .config/zsh/conf.d/080-macos.sh)
+            missing_files+=(.config/zsh/conf.d/080-linux.sh)
+          else
+            existing_files+=(.config/zsh/conf.d/080-linux.sh)
+            missing_files+=(.config/zsh/conf.d/080-macos.sh Library)
+          fi
+
+          status=0
+          for file in "${existing_files[@]}"; do
+            [[ -e "$HOME/$file" ]] || { echo "::error::$file not found"; status=1; }
+          done
+          for file in "${missing_files[@]}"; do
+            [[ ! -e "$HOME/$file" ]] || { echo "::error::$file unexpectedly exists"; status=1; }
+          done
+          for package in jq pygmentize; do
+            command -v "$package" >/dev/null || { echo "::error::$package not installed"; status=1; }
+          done
+          exit "$status"
