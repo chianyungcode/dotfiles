@@ -22,6 +22,7 @@ git -C "$repo" init -q
 git -C "$repo" config user.name "Television test"
 git -C "$repo" config user.email "television@example.invalid"
 git -C "$repo" config commit.gpgsign false
+git -C "$repo" config tag.gpgsign false
 printf 'tracked\n' >"$repo/tracked.txt"
 git -C "$repo" add tracked.txt
 git -C "$repo" commit -qm "initial"

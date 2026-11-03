@@ -8,7 +8,7 @@ fail() {
 }
 
 repo_root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
-zsh_config="$repo_root/chezmoi/dot_config/zsh/conf.d/third-party/90_sk-git.sh"
+zsh_config="$repo_root/chezmoi/dot_config/zsh/conf.d/third-party/sk-git.sh"
 tmp_dir=$(mktemp -d)
 trap 'rm -rf "$tmp_dir"' EXIT
 export GIT_CONFIG_GLOBAL="$tmp_dir/global-gitconfig"
@@ -36,6 +36,7 @@ git -C "$git_repo" init -q -b main
 git -C "$git_repo" config user.name "sk-git argument test"
 git -C "$git_repo" config user.email "sk-git-arguments@example.invalid"
 git -C "$git_repo" config commit.gpgsign false
+git -C "$git_repo" config tag.gpgsign false
 printf 'tracked\n' >"$git_repo/tracked.txt"
 git -C "$git_repo" add tracked.txt
 git -C "$git_repo" commit -q -m "initial commit"

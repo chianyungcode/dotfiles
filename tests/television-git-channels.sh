@@ -36,14 +36,24 @@ assert_contains() {
 		fail "$file is missing: $pattern"
 }
 
+# Match a whole `key = value` line, ignoring the indentation and `=`
+# alignment that taplo adds.
+assert_setting() {
+	local file=$1
+	local setting=$2
+	sed -E 's/^[[:space:]]+//; s/[[:space:]]*=[[:space:]]*/ = /' "$file" |
+		rg -Fxq -- "$setting" ||
+		fail "$file is missing setting: $setting"
+}
+
 for channel in "${channels[@]}"; do
 	file="$channel_dir/$channel.toml"
 	[[ -f "$file" ]] || fail "$file is missing"
 
-	assert_contains "$file" "name = \"x$channel\""
-	assert_contains "$file" 'requirements = ["git"]'
-	assert_contains "$file" 'no_sort = true'
-	assert_contains "$file" 'frecency = false'
+	assert_setting "$file" "name = \"x$channel\""
+	assert_setting "$file" 'requirements = ["git"]'
+	assert_setting "$file" 'no_sort = true'
+	assert_setting "$file" 'frecency = false'
 	assert_contains "$file" '[source]'
 	assert_contains "$file" '[preview]'
 
@@ -103,6 +113,7 @@ git init -q "$worktree_repo"
 git -C "$worktree_repo" config user.name "Television test"
 git -C "$worktree_repo" config user.email "television@example.invalid"
 git -C "$worktree_repo" config commit.gpgsign false
+git -C "$worktree_repo" config tag.gpgsign false
 printf 'base\n' >"$worktree_repo/base.txt"
 git -C "$worktree_repo" add base.txt
 git -C "$worktree_repo" commit -qm "base"

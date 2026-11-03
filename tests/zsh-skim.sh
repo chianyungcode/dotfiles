@@ -8,7 +8,7 @@ fail() {
 }
 
 repo_root=$(cd "$(dirname "$0")/.." && pwd)
-skim_source="$repo_root/chezmoi/dot_config/zsh/conf.d/third-party/99_skim.sh"
+skim_source="$repo_root/chezmoi/dot_config/zsh/conf.d/third-party/skim.sh"
 tmp_dir=$(mktemp -d)
 trap 'rm -rf "$tmp_dir"' EXIT
 

@@ -102,8 +102,13 @@ rg -q '\[core-test\] ERROR line [0-9]+: false \(status [0-9]+\)' \
 failure_temp=$(<"$failure_record")
 [[ ! -d "$failure_temp" ]]
 
+# Generate a config instead of reading the machine's own, so the base data
+# is the same locally and in CI.
+config_file="$tmp_dir/chezmoi.toml"
+chezmoi -S "$source_dir" -c "$tmp_dir/missing.toml" execute-template --init \
+	--file "$source_dir/.chezmoi.toml.tmpl" >"$config_file"
 base_data_file="$tmp_dir/base.json"
-chezmoi -S "$source_dir" data >"$base_data_file"
+chezmoi -S "$source_dir" -c "$config_file" data >"$base_data_file"
 
 imperative_source="$source_dir/.chezmoiscripts/run_after_70-imperative-cli-tools.sh.tmpl"
 imperative_default_fixture="$tmp_dir/imperative-default.sh"
@@ -111,10 +116,19 @@ chezmoi -S "$source_dir" execute-template \
 	--override-data-file "$base_data_file" \
 	--file "$imperative_source" >"$imperative_default_fixture"
 chmod +x "$imperative_default_fixture"
-if rg -q 'herdr plugin install|skills add' "$imperative_default_fixture"; then
-	printf 'disabled imperative commands should not be rendered\n' >&2
-	exit 1
-fi
+# The real data must render exactly its enabled entries.
+while IFS=$'\t' read -r enabled name; do
+	if [[ "$enabled" == true ]]; then
+		rg -Fq "$name" "$imperative_default_fixture" || {
+			printf 'enabled imperative command not rendered: %s\n' "$name" >&2
+			exit 1
+		}
+	elif rg -Fq "$name" "$imperative_default_fixture"; then
+		printf 'disabled imperative command rendered: %s\n' "$name" >&2
+		exit 1
+	fi
+done < <(jq -r '.imperative_cli_tools[] | [(.enabled | tostring), .name] | @tsv' \
+	"$base_data_file")
 
 imperative_data="$tmp_dir/imperative-behavior.json"
 jq \
@@ -712,7 +726,7 @@ case "$url" in
 esac
 STUB
 chmod +x "$standalone_fake_bin/curl"
-for command_name in awk bash cat chmod cp find grep head jq mkdir mktemp mv rm \
+for command_name in awk bash cat chmod cp find grep gzip head jq mkdir mktemp mv rm \
 	sha256sum shasum tar touch; do
 	command_path=$(command -v "$command_name") || continue
 	ln -s "$command_path" "$standalone_fake_bin/$command_name"

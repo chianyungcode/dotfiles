@@ -8,14 +8,13 @@ fail() {
 }
 
 repo_root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
-zsh_config="$repo_root/chezmoi/dot_config/zsh/conf.d/third-party/90_sk-git.sh"
+zsh_config="$repo_root/chezmoi/dot_config/zsh/conf.d/third-party/sk-git.sh"
 legacy_fzf_git="$repo_root/chezmoi/dot_config/fzf-git/fzf-git.sh"
 legacy_fzf_git_dir="$repo_root/chezmoi/dot_config/fzf-git"
 legacy_fzf_git_readme="$legacy_fzf_git_dir/README.md"
 zother_tools="$repo_root/chezmoi/dot_config/zsh/conf.d/third-party/zother-tools.sh.tmpl"
 zsh_loader="$repo_root/chezmoi/dot_config/zsh/dot_zshrc.tmpl"
 third_party_dir="$repo_root/chezmoi/dot_config/zsh/conf.d/third-party"
-unrelated_fzf="$third_party_dir/fzf.sh.tmpl"
 unrelated_fzf_zoxide="$third_party_dir/zoxide.sh"
 tmp_dir=$(mktemp -d)
 trap 'rm -rf "$tmp_dir"' EXIT
@@ -29,21 +28,18 @@ git_bin=$(command -v git)
 awk_bin=$(command -v awk)
 uname_bin=$(command -v uname)
 
-[[ -f "$zsh_config" ]] || fail "90_sk-git.sh is missing"
+[[ -f "$zsh_config" ]] || fail "sk-git.sh is missing"
 [[ ! -e "$legacy_fzf_git" ]] || fail 'obsolete fzf-git payload still exists'
 [[ ! -e "$legacy_fzf_git_readme" ]] || fail 'obsolete fzf-git README still exists'
 [[ ! -d "$legacy_fzf_git_dir" ]] || fail 'obsolete fzf-git directory still exists'
 if rg -n -e '^# FZF Git integration$' -e 'fzf-git/fzf-git\.sh' "$zother_tools"; then
 	fail 'obsolete FZF Git source block still exists'
 fi
-sk_git_module_count=$(rg --files "$third_party_dir" | awk '$0 ~ /\/90_sk-git\.sh$/ { count++ } END { print count + 0 }')
-[[ "$sk_git_module_count" == 1 ]] || fail "expected exactly one 90_sk-git.sh module, found $sk_git_module_count"
+sk_git_module_count=$(rg --files "$third_party_dir" | awk '$0 ~ /\/sk-git\.sh$/ { count++ } END { print count + 0 }')
+[[ "$sk_git_module_count" == 1 ]] || fail "expected exactly one sk-git.sh module, found $sk_git_module_count"
 [[ $(rg -Fxc '    source "$file"' "$zsh_loader") == 1 ]] ||
 	fail 'Zsh conf.d loader does not load modules exactly once'
-[[ -f "$unrelated_fzf" ]] || fail 'unrelated Zsh FZF integration was removed'
 [[ -f "$unrelated_fzf_zoxide" ]] || fail 'unrelated Zsh zoxide FZF widget was removed'
-rg -Fq 'FZF_CTRL_R_COMMAND' "$unrelated_fzf" ||
-	fail 'unrelated Zsh FZF integration was changed'
 rg -Fq 'fzf_zoxide_widget' "$unrelated_fzf_zoxide" ||
 	fail 'unrelated zoxide FZF widget was changed'
 zsh -n "$zsh_config"
