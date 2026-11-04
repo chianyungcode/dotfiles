@@ -1,4 +1,21 @@
 {{if lookPath "starship" -}}
 # Initialize tools
-eval "$(starship init zsh)"
+# Bake PROMPT2 into the cached init script instead of spawning
+# `starship prompt --continuation` on every startup. It depends on the config,
+# so drop the cache whenever starship.toml is newer than it.
+__starship_init_script() {
+  local line
+  command starship init zsh | while IFS= read -r line; do
+    if [[ $line == PROMPT2=* ]]; then
+      print -r -- "PROMPT2=${(qq)$(STARSHIP_SHELL=zsh command starship prompt --continuation)}"
+    else
+      print -r -- "$line"
+    fi
+  done
+}
+_starship_cache=${XDG_CACHE_HOME:-$HOME/.cache}/zsh/init/starship
+[[ ${STARSHIP_CONFIG:-$HOME/.config/starship.toml} -nt $_starship_cache ]] && command rm -rf -- $_starship_cache
+__cached_source starship __starship_init_script
+unfunction __starship_init_script
+unset _starship_cache
 {{- end }}

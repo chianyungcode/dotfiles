@@ -24,7 +24,7 @@
 # Initialize tools
 if (( $+commands[zoxide] )); then
   _init_zoxide_zsh() {
-    eval "$(zoxide init zsh)"
+    __cached_source zoxide
   }
 
   if (( $+functions[zsh-defer] )); then
