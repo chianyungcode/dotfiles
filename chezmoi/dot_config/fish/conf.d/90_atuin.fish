@@ -1,5 +1,11 @@
 set -gx ATUIN_NOBIND true
-atuin init fish | source
+# Create the session id here instead of letting the init script spawn
+# `atuin uuid` (same 32-hex format, version-7 nibble set).
+if not set -q ATUIN_SESSION; or test "$ATUIN_SHLVL" != "$SHLVL"
+    set -gx ATUIN_SESSION (printf '%04x%04x%04x7%03x%04x%04x%04x%04x' (random 0 65535) (random 0 65535) (random 0 65535) (random 0 4095) (random 32768 49151) (random 0 65535) (random 0 65535) (random 0 65535))
+    set -gx ATUIN_SHLVL $SHLVL
+end
+__cached_source atuin
 
 # In vi mode, Up in insert mode needs an explicit binding too.
 if string match -q '4.*' $version
