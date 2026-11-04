@@ -11,6 +11,10 @@
 # As Directories are ignored, we can store a bunch of boilerplate script in a ``./conf.d/custom-directory``
 # then we can make an entry point script: `./conf.d/custom-directory.zsh`managing all the files in that directory
 
+# nix-darwin's /etc/zshrc runs an uncached compinit (plus compaudit), promptinit
+# and bashcompinit before .zshrc; .zshrc already sets all of that up, so skip it.
+NOSYSZSHRC=1
+
 env_dir="${ZDOTDIR:-$HOME/.config/zsh}/env.d"
 
 # Pastikan direktori ada

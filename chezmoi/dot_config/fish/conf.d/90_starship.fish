@@ -1,1 +1,1 @@
-starship init fish | source
+__cached_source starship starship init fish --print-full-init

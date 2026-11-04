@@ -1,6 +1,10 @@
-for _f in ${HOME}/.config/herdr/plugins/github/herdr-automatic-rename-*/shell/hook.zsh(N); do
-  source $_f; break
-done
+# The hook no-ops outside a herdr pane, so skip sourcing it there.
+if [[ -n ${HERDR_PANE_ID-} ]]; then
+  for _f in ${HOME}/.config/herdr/plugins/github/herdr-automatic-rename-*/shell/hook.zsh(N); do
+    source $_f; break
+  done
+  unset _f
+fi
 
 # Stop and delete a Herdr session in one command.
 function hsd() {

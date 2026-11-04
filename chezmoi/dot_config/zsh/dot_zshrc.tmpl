@@ -69,20 +69,10 @@ fi
 # ============================================
 # Initialize Completions
 # ============================================
-autoload -Uz compinit
-zcdump="$HOME/.cache/zsh/zcompdump-${ZSH_VERSION}"
-
-# Compile if needed
-if [[ -r "$zcdump" && (! -f "${zcdump}.zwc" || "$zcdump" -nt "${zcdump}.zwc") ]]; then
-  zcompile "$zcdump"
-fi
-
-# Use cache if fresh (<24h), else rebuild
-if [[ -r "$zcdump" && -n "$zcdump"(#qN.mh-24) ]]; then
-  compinit -C -d "$zcdump"
-else
-  compinit -d "$zcdump"
-fi
+# compinit runs after conf.d (see below) so the fpath entries added by the
+# plugin bundle end up in the dump. Until then, queue compdef calls.
+typeset -ga __compdef_queue
+compdef() { __compdef_queue+=("${(j: :)${(@q)@}}") }
 
 # ============================================
 # Source Config Files
@@ -95,5 +85,32 @@ for dir in "${config_dirs[@]}"; do
     source "$file"
   done
 done
+
+autoload -Uz compinit
+zcdump="$HOME/.cache/zsh/zcompdump-${ZSH_VERSION}"
+
+# Full check (new functions + compaudit) at most once a day, else trust the dump.
+() {
+  local -a fresh=($zcdump(N.mh-24))
+  if (( $#fresh )); then
+    compinit -C -d "$zcdump"
+  else
+    compinit -d "$zcdump" && touch "$zcdump"
+  fi
+}
+
+# Compile in the background; zsh picks up the .zwc on the next startup.
+if [[ ! -s "${zcdump}.zwc" || "$zcdump" -nt "${zcdump}.zwc" ]]; then
+  zcompile "$zcdump" &!
+fi
+
+# Replay compdef calls queued before compinit.
+() {
+  local def
+  for def in $__compdef_queue; do
+    eval "compdef $def"
+  done
+}
+unset __compdef_queue zcdump
 
 # zprof               # Uncomment at the bottom to view profiling results
