@@ -6,7 +6,16 @@ if (( $+commands[atuin] )); then
     if [[ -n ${ZSH_NAME} ]]; then
         _init_atuin_zsh() {
             export ATUIN_NOBIND="true"
-            eval "$(atuin init zsh)"
+            # Create the session id here instead of letting the init script spawn
+            # `atuin uuid` (same 32-hex format, version-7 nibble set).
+            if [[ -z ${ATUIN_SESSION:-} || ${ATUIN_SHLVL:-} != $SHLVL ]]; then
+                printf -v ATUIN_SESSION '%04x%04x%04x7%03x%04x%04x%04x%04x' \
+                    $(( RANDOM << 1 ^ RANDOM )) $(( RANDOM << 1 ^ RANDOM )) $(( RANDOM << 1 ^ RANDOM )) \
+                    $(( RANDOM % 4096 )) $(( 32768 + RANDOM % 16384 )) \
+                    $(( RANDOM << 1 ^ RANDOM )) $(( RANDOM << 1 ^ RANDOM )) $(( RANDOM << 1 ^ RANDOM ))
+                export ATUIN_SESSION ATUIN_SHLVL=$SHLVL
+            fi
+            __cached_source atuin
             bindkey '^[[A' atuin-up-search
             bindkey '^[OA' atuin-up-search
             (( $+widgets[_atuin_search_widget] )) && bindkey '^r' _atuin_search_widget
