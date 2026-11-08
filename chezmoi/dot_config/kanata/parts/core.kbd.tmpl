@@ -21,13 +21,10 @@
   ;; Tap-hold layer access.
   thl-caps-nav (tap-hold $tap-time $hold-time esc @lwh_nav)
   thl-ret-herdr (tap-hold $tap-time $hold-time ret @lwh_herdr)
-  thl-sls-tmux (tap-hold $tap-time $hold-time / @lwh_tmux)
-  thl-z-tmux (tap-hold $tap-time $hold-time z @lwh_tmux)
   thl-semicolon-tmux (tap-hold $tap-time $hold-time ; @lwh_tmux)
 
   ;; Home-row modifiers and sublayer access.
   a  (tap-hold $tap-time $hold-time a @lwh_tmux)
-  ;  (tap-hold $tap-time $hold-time ; (layer-while-held sublayers))
   s (tap-hold $tap-time $hold-time s lctl)
   d (tap-hold $tap-time $hold-time d lalt)
   f (tap-hold $tap-time $hold-time f lmet)
@@ -48,7 +45,7 @@
   grv  1  2  3  4  5  6  7  8  9  0  -  =  bspc
   @lmet_tab  q  w  e  r  t  y  u  i  o  p  [  ]  \
   @thl-caps-nav  @a  @s  @d  @f  g  h  @j  @k  @l  @thl-semicolon-tmux  '  @thl-ret-herdr
-  lsft  @thl-z-tmux  x  c  v  b  n  m  ,  .  @thl-sls-tmux  rsft
+  lsft  z  x  c  v  b  n  m  ,  .  /  rsft
   lctl  lmet  lalt  @thl-spc-symbols  ralt  rmet  rctl
 )
 
@@ -59,8 +56,9 @@
   thl-spc-sublayers (tap-hold $tap-time $hold-time spc @lwh_sublayers)
 
   ;; Navigation and application shortcuts.
-  sprwhpr C-A-/ ;; Superwhisper
-  hmrwapp M-S-spc
+  whisper C-A-/ ;; Whispering app
+  homerow M-S-spc ;; Homerow app (click by label)
+  mouseless rctl ;; Mouseless app
   hyperkey (tap-hold $tap-time $hold-time spc (multi lsft lctl lalt lmet))
   tab-left C-S-tab
   tab-right C-tab
@@ -68,10 +66,10 @@
 
 (deflayer nav
   🔅  🔆  @mc  @sls  @dtn  @dnd  ◀◀  ▶⏸  ▶▶  🔇  🔉  🔊
-  grv  1  2  3  4  5  6  7  8  9  0  -  =  bspc
-  tab  f1  f2  f3  f4  f5  f6  f7  f8  f9  f10  @tab-left  @tab-right  \
-  caps  a  @sprwhpr  @hmrwapp  f  g  left  down  up  right  ;  '  ret
-  lsft  z  x  c  v  b  j  rctl  @hmrwapp  .  rmet  rsft
+  grv  f1  f2  f3  f4  f5  f6  f7  f8  f9  f10  f11  f12  bspc
+  tab  XX  @whisper  @homerow  XX  XX  home  pgdn  pgup  end  XX  @tab-left  @tab-right  \
+  caps  a  lctl  lalt  lmet  g  left  down  up  right  ;  '  ret
+  lsft  z  x  c  v  b  j  @mouseless  @homerow  .  rmet  rsft
   lctl  lmet  lalt  @thl-spc-sublayers  ralt  @hyperkey  rctl
 )
 
